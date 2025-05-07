@@ -8,47 +8,10 @@
     <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core@latest/dist/ionic/ionic.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core@latest/css/ionic.bundle.css" />
     <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
 
-    <style>
-      h1#book_name_hindi {
-        font-size: 1rem;
-        font-weight: normal;
-        margin: 0;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
-
-      p.Sub-Heading.active {
-        background-color: #e0f7fa;
-        font-weight: bold;
-        border-radius: 6px;
-        padding: 4px 10px;
-      }
-
-      .accordion-header {
-        background: #f1f1f1;
-        border: none;
-        width: 100%;
-        text-align: left;
-        padding: 10px;
-        cursor: pointer;
-      }
-
-      .accordion-content {
-        display: none;
-        padding: 10px;
-      }
-
-      .accordion-content.active {
-        display: block;
-      }
-
-      .menu-pane {
-        padding: 10px;
-      }
-    </style>
+    
   </head>
 
   <body>
@@ -246,7 +209,15 @@
             });
 
             // Add swipe support
-            const hammer = new Hammer(document.getElementById("main-content"));
+            
+          })
+          .catch((err) => {
+            console.error(`Failed to fetch or process ${fileName}`, err);
+          });
+      });
+      
+      
+      const hammer = new Hammer(document.getElementById("main-content"));
 
             hammer.on("swipeleft", () => {
               if (currentSubIndex < allSubHeadings.length - 1) {
@@ -261,11 +232,6 @@
                 allSubHeadings[currentSubIndex].click();
               }
             });
-          })
-          .catch((err) => {
-            console.error(`Failed to fetch or process ${fileName}`, err);
-          });
-      });
     </script>
   </body>
 </html>
