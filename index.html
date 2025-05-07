@@ -3,15 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title> स्वाध्यायः |  </title>
+    <title>स्वाध्यायः |</title>
     <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core@latest/dist/ionic/ionic.esm.js"></script>
     <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core@latest/dist/ionic/ionic.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core@latest/css/ionic.bundle.css" />
     <link rel="stylesheet" href="style.css" />
     <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
-
-    
   </head>
 
   <body>
@@ -209,31 +206,59 @@
             });
 
             // Add swipe support
-            
           })
           .catch((err) => {
             console.error(`Failed to fetch or process ${fileName}`, err);
           });
       });
-      
-      
-      const hammer = new Hammer(document.getElementById("main-content"));
 
-            hammer.on("swipeleft", () => {
-              if (currentSubIndex < allSubHeadings.length - 1) {
-                currentSubIndex++;
-                allSubHeadings[currentSubIndex].click();
-                alert("Swiped");
-              }
-            });
+      //const hammer = new Hammer(document.getElementById("main-content"));
+      //
+      //      hammer.on("swipeleft", () => {
+      //        if (currentSubIndex < allSubHeadings.length - 1) {
+      //          currentSubIndex++;
+      //          allSubHeadings[currentSubIndex].click();
+      //        }
+      //      });
+      //
+      //      hammer.on("swiperight", () => {
+      //        if (currentSubIndex > 0) {
+      //          currentSubIndex--;
+      //          allSubHeadings[currentSubIndex].click();
+      //        }
+      //      });
 
-            hammer.on("swiperight", () => {
-              if (currentSubIndex > 0) {
-                currentSubIndex--;
-                allSubHeadings[currentSubIndex].click();
-                alert("Swiped");
-              }
-            });
+      let startX = 0;
+      let isDragging = false;
+
+      interact("#main-content").draggable({
+        listeners: {
+          start(event) {
+            startX = event.client.x;
+            isDragging = true;
+          },
+          move(event) {
+            // Optional: visual feedback or drag preview
+          },
+          end(event) {
+            if (!isDragging) return;
+
+            const deltaX = event.client.x - startX;
+
+            if (deltaX < -50 && currentSubIndex < allSubHeadings.length - 1) {
+              // Swipe left
+              currentSubIndex++;
+              allSubHeadings[currentSubIndex].click();
+            } else if (deltaX > 50 && currentSubIndex > 0) {
+              // Swipe right
+              currentSubIndex--;
+              allSubHeadings[currentSubIndex].click();
+            }
+
+            isDragging = false;
+          }
+        }
+      });
     </script>
   </body>
 </html>
