@@ -150,7 +150,7 @@
 
         const params = new URLSearchParams(window.location.search);
         let fileParam = [...params.keys()][0] || "shiva_puran";
-        const fileName = `${fileParam}.html`;
+        const fileName = `\books\${fileParam}.html`;
 
         fetch(fileName)
           .then((response) => response.text())
