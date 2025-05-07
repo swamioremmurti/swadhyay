@@ -56,6 +56,14 @@ p {
     font-size: 2em;
 }
 
+
+
+.accordion-content.Sub-Heading {
+    font-size: 1.0em;
+    font-weight: bold;
+    padding: 10px;
+}
+
 .Sub-Heading,
 .Numbers {
     color: darkred;
