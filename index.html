@@ -53,24 +53,6 @@
 
   <body>
     <ion-app>
-      <div
-        id="loader"
-        style="
-          position: fixed;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background: white;
-          z-index: 9999;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          flex-direction: column;
-        ">
-        <ion-spinner name="crescent"></ion-spinner>
-        <p id="loader-progress" style="margin-top: 10px">Loading... 0%</p>
-      </div>
       <!-- Mobile Menu -->
       <ion-menu content-id="main-content" side="start" menu-id="main" type="overlay">
         <ion-header>
@@ -131,146 +113,10 @@
     </ion-app>
 
     <script>
-      <!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ionic Responsive Layout</title>
-    <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core@latest/dist/ionic/ionic.esm.js"></script>
-    <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core@latest/dist/ionic/ionic.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core@latest/css/ionic.bundle.css" />
-    <link rel="stylesheet" href="style.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
-
-    <style>
-      h1#book_name_hindi {
-        font-size: 1rem;
-        font-weight: normal;
-        margin: 0;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
-
-      p.Sub-Heading.active {
-        background-color: #e0f7fa;
-        font-weight: bold;
-        border-radius: 6px;
-        padding: 4px 10px;
-      }
-
-      .accordion-header {
-        background: #f1f1f1;
-        border: none;
-        width: 100%;
-        text-align: left;
-        padding: 10px;
-        cursor: pointer;
-      }
-
-      .accordion-content {
-        display: none;
-        padding: 10px;
-      }
-
-      .accordion-content.active {
-        display: block;
-      }
-
-      .menu-pane {
-        padding: 10px;
-      }
-
-      #loader {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: white;
-        z-index: 9999;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-      }
-    </style>
-  </head>
-
-  <body>
-    <ion-app>
-      <!-- Loader -->
-      <div id="loader">
-        <ion-spinner name="crescent"></ion-spinner>
-        <p id="loader-progress" style="margin-top:10px;">Loading... 0%</p>
-      </div>
-
-      <!-- Mobile Menu -->
-      <ion-menu content-id="main-content" side="start" menu-id="main" type="overlay">
-        <ion-header>
-          <ion-toolbar color="primary">
-            <ion-title>Index</ion-title>
-          </ion-toolbar>
-        </ion-header>
-        <ion-content id="mobile-menu-content" class="menu-pane">
-          <!-- Injected accordion here -->
-        </ion-content>
-      </ion-menu>
-
-      <ion-split-pane content-id="main-content" when="md">
-        <ion-menu content-id="main-content" side="start" type="overlay" class="ion-hide-md-down">
-          <ion-header>
-            <ion-toolbar color="primary">
-              <ion-title>Index</ion-title>
-            </ion-toolbar>
-          </ion-header>
-          <ion-content id="desktop-menu-content" class="menu-pane">
-            <!-- Injected accordion here -->
-          </ion-content>
-        </ion-menu>
-
-        <!-- Main Content -->
-        <div class="ion-page" id="main-content">
-          <ion-header>
-            <ion-toolbar color="primary">
-              <ion-buttons slot="start">
-                <ion-menu-button autoHide="false"></ion-menu-button>
-              </ion-buttons>
-              <ion-title id="book_title"></ion-title>
-              <div slot="end">
-                <h1 id="book_name_hindi"></h1>
-              </div>
-            </ion-toolbar>
-          </ion-header>
-
-          <ion-content id="main-scrollable-content" scroll-events="true">
-            <ion-grid>
-              <ion-row>
-                <ion-col>
-                  <div id="display"></div>
-                  <div id="content" style="display: none"></div>
-                </ion-col>
-              </ion-row>
-            </ion-grid>
-          </ion-content>
-
-          <ion-footer>
-            <ion-toolbar color="primary">
-              <ion-title size="small"></ion-title>
-            </ion-toolbar>
-          </ion-footer>
-        </div>
-      </ion-split-pane>
-    </ion-app>
-
-    <script>
       document.addEventListener("DOMContentLoaded", function () {
         const displayDiv = document.getElementById("display");
         const mobileMenu = document.getElementById("mobile-menu-content");
         const desktopMenu = document.getElementById("desktop-menu-content");
-        const loader = document.getElementById("loader");
-        const progressText = document.getElementById("loader-progress");
 
         const allSubHeadings = [];
         let currentSubIndex = -1;
@@ -307,36 +153,7 @@
         const fileName = `${fileParam}.html`;
 
         fetch(fileName)
-          .then((response) => {
-            const contentLength = response.headers.get("content-length");
-            if (!contentLength) return response.text();
-
-            const total = parseInt(contentLength, 10);
-            let loaded = 0;
-            const reader = response.body.getReader();
-            const decoder = new TextDecoder("utf-8");
-            let result = "";
-
-            function updateProgress() {
-              const percent = Math.floor((loaded / total) * 100);
-              progressText.textContent = `Loading... ${percent}%`;
-            }
-
-            function readChunk() {
-              return reader.read().then(({ done, value }) => {
-                if (done) return result;
-                loaded += value.length;
-                updateProgress();
-                result += decoder.decode(value, { stream: true });
-                return readChunk();
-              });
-            }
-
-            return readChunk().then((fullText) => {
-              loader.style.display = "none";
-              return fullText;
-            });
-          })
+          .then((response) => response.text())
           .then((html) => {
             const tempDiv = document.createElement("div");
             tempDiv.innerHTML = html;
@@ -347,6 +164,7 @@
               return;
             }
 
+            // Set Hindi book name in header
             const titleHindi = contentDiv.querySelector("p.Title-Page---Book-Name-Hindi");
             if (titleHindi) {
               const h1 = document.getElementById("book_name_hindi");
@@ -415,7 +233,7 @@
 
                     const menu = document.querySelector("ion-menu[menu-id='main']");
                     if (menu) {
-                      document.activeElement?.blur();
+                      document.activeElement?.blur(); // ✅ Fix: blur active element
                       menu.close();
                       document.querySelector("ion-content")?.scrollToTop(500);
                     }
@@ -427,6 +245,7 @@
               }
             });
 
+            // Add swipe support
             const hammer = new Hammer(document.getElementById("main-content"));
 
             hammer.on("swipeleft", () => {
@@ -444,14 +263,9 @@
             });
           })
           .catch((err) => {
-            loader.style.display = "none";
             console.error(`Failed to fetch or process ${fileName}`, err);
           });
       });
-    </script>
-  </body>
-</html>
-
     </script>
   </body>
 </html>
