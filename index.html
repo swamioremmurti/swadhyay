@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>स्वाध्यायः |</title>
+    <title> स्वाध्यायः |  </title>
     <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core@latest/dist/ionic/ionic.esm.js"></script>
     <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core@latest/dist/ionic/ionic.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core@latest/css/ionic.bundle.css" />
@@ -20,25 +20,19 @@
             <ion-title>Index</ion-title>
           </ion-toolbar>
         </ion-header>
-        <ion-content id="mobile-menu-content" class="menu-pane">
-          <!-- Injected accordion here -->
-        </ion-content>
+        <ion-content id="mobile-menu-content" class="menu-pane"></ion-content>
       </ion-menu>
 
       <ion-split-pane content-id="main-content" when="md">
-        <!-- Desktop Menu (inside split pane) -->
         <ion-menu content-id="main-content" side="start" type="overlay" class="ion-hide-md-down">
           <ion-header>
             <ion-toolbar color="primary">
               <ion-title>Index</ion-title>
             </ion-toolbar>
           </ion-header>
-          <ion-content id="desktop-menu-content" class="menu-pane">
-            <!-- Injected accordion here -->
-          </ion-content>
+          <ion-content id="desktop-menu-content" class="menu-pane"></ion-content>
         </ion-menu>
 
-        <!-- Main Content -->
         <div class="ion-page" id="main-content">
           <ion-header>
             <ion-toolbar color="primary">
@@ -83,10 +77,7 @@
 
         function toHindiNumber(num) {
           const hindiDigits = ["०", "१", "२", "३", "४", "५", "६", "७", "८", "९"];
-          return String(num)
-            .split("")
-            .map((d) => hindiDigits[parseInt(d)])
-            .join("");
+          return String(num).split("").map((d) => hindiDigits[parseInt(d)]).join("");
         }
 
         function createSection(title) {
@@ -124,7 +115,6 @@
               return;
             }
 
-            // Set Hindi book name in header
             const titleHindi = contentDiv.querySelector("p.Title-Page---Book-Name-Hindi");
             if (titleHindi) {
               const h1 = document.getElementById("book_name_hindi");
@@ -136,9 +126,7 @@
             let currentAccordionDesktop = null;
             let subHeadingCount = 0;
 
-            let introEndIndex = paragraphs.findIndex(
-              (p) => p.classList.contains("Heading") || p.classList.contains("Sub-Heading")
-            );
+            let introEndIndex = paragraphs.findIndex((p) => p.classList.contains("Heading") || p.classList.contains("Sub-Heading"));
             if (introEndIndex === -1) introEndIndex = paragraphs.length;
 
             for (let i = 0; i < introEndIndex; i++) {
@@ -146,7 +134,7 @@
               displayDiv.appendChild(clone);
             }
 
-            paragraphs.forEach((p, index) => {
+            paragraphs.forEach((p) => {
               if (p.classList.contains("Heading")) {
                 const mobileSec = createSection(p.textContent);
                 mobileMenu.appendChild(mobileSec.section);
@@ -170,11 +158,9 @@
                   item.addEventListener("click", function () {
                     document.querySelectorAll("p.Sub-Heading.active").forEach((el) => el.classList.remove("active"));
                     this.classList.add("active");
-
                     currentSubIndex = allSubHeadings.indexOf(this);
 
                     displayDiv.innerHTML = "";
-
                     const startIndex = paragraphs.indexOf(p);
                     let endIndex = paragraphs.length;
 
@@ -193,7 +179,7 @@
 
                     const menu = document.querySelector("ion-menu[menu-id='main']");
                     if (menu) {
-                      document.activeElement?.blur(); // ✅ Fix: blur active element
+                      setTimeout(() => document.activeElement?.blur(), 50); // Prevent aria-hidden warning
                       menu.close();
                       document.querySelector("ion-content")?.scrollToTop(500);
                     }
@@ -205,59 +191,36 @@
               }
             });
 
-            // Add swipe support
+            // Replace Hammer.js swipe logic with Interact.js
+            let startX = 0;
+            let isDragging = false;
+
+            interact('#main-content').draggable({
+              listeners: {
+                start(event) {
+                  startX = event.client.x;
+                  isDragging = true;
+                },
+                end(event) {
+                  if (!isDragging) return;
+                  const deltaX = event.client.x - startX;
+
+                  if (deltaX < -50 && currentSubIndex < allSubHeadings.length - 1) {
+                    currentSubIndex++;
+                    allSubHeadings[currentSubIndex].click();
+                  } else if (deltaX > 50 && currentSubIndex > 0) {
+                    currentSubIndex--;
+                    allSubHeadings[currentSubIndex].click();
+                  }
+
+                  isDragging = false;
+                },
+              },
+            });
           })
           .catch((err) => {
             console.error(`Failed to fetch or process ${fileName}`, err);
           });
-      });
-
-      //const hammer = new Hammer(document.getElementById("main-content"));
-      //
-      //      hammer.on("swipeleft", () => {
-      //        if (currentSubIndex < allSubHeadings.length - 1) {
-      //          currentSubIndex++;
-      //          allSubHeadings[currentSubIndex].click();
-      //        }
-      //      });
-      //
-      //      hammer.on("swiperight", () => {
-      //        if (currentSubIndex > 0) {
-      //          currentSubIndex--;
-      //          allSubHeadings[currentSubIndex].click();
-      //        }
-      //      });
-
-      let startX = 0;
-      let isDragging = false;
-
-      interact("#main-content").draggable({
-        listeners: {
-          start(event) {
-            startX = event.client.x;
-            isDragging = true;
-          },
-          move(event) {
-            // Optional: visual feedback or drag preview
-          },
-          end(event) {
-            if (!isDragging) return;
-
-            const deltaX = event.client.x - startX;
-
-            if (deltaX < -50 && currentSubIndex < allSubHeadings.length - 1) {
-              // Swipe left
-              currentSubIndex++;
-              allSubHeadings[currentSubIndex].click();
-            } else if (deltaX > 50 && currentSubIndex > 0) {
-              // Swipe right
-              currentSubIndex--;
-              allSubHeadings[currentSubIndex].click();
-            }
-
-            isDragging = false;
-          }
-        }
       });
     </script>
   </body>
