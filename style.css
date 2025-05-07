@@ -1,0 +1,213 @@
+body {
+    font-family: "LohitDevanagari", sans-serif;
+    font-size: 1.2em;
+    line-height: 2em !important;
+}
+
+.accordion-header {
+    background-color: #eee;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    width: 100%;
+    text-align: left;
+    font-weight: bold;
+    border-bottom: 1px solid #ccc;
+    font-size: 1em;
+    line-height: 1.5em;
+}
+
+.accordion-content {
+    display: none;
+    padding: 10px;
+    border-left: 2px solid #ccc;
+    margin-bottom: 10px;
+}
+
+.accordion-content.active {
+    display: block;
+}
+
+p {
+    text-align: justify;
+}
+
+#index .heading {
+    color: orangered;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1em;
+}
+
+#index .Sub-Heading {
+    color: darkred;
+    text-align: justify;
+    font-weight: bold;
+}
+
+.Titel-Page---Shri-Hari {
+    text-align: center;
+}
+
+.heading {
+    color: orangered;
+    text-align: center;
+    font-weight: bold;
+    font-size: 2em;
+}
+
+.Sub-Heading,
+.Numbers {
+    color: darkred;
+    text-align: center;
+    font-weight: bold;
+}
+
+.char-style-override-7 {
+    text-align: center;
+    font-style: italic;
+    /*display: block;*/
+    padding: 10px;
+}
+
+.Shlok {
+    text-align: center;
+    color: crimson;
+    font-weight: bold;
+    font-style: italic;
+    margin: 10px;
+}
+
+.Page-Break {
+    text-align: center;
+    display: block;
+    padding: 10px;
+}
+
+.Title-Page---Book-Name-Hindi,
+.Title-Page---Book-Name {
+    text-align: center;
+    font-size: 2.5em;
+    font-weight: bold;
+    color: red;
+    line-height: 1.5em;
+    margin: 5px;
+}
+
+.pravachan {
+    text-align: center;
+    font-size: 1.2.0em;
+}
+
+.Title-Page---Tvamev-mata,
+.Title-Page---Author-Name {
+    text-align: center;
+}
+
+.Footnotes-Bold {
+    font-weight: bold;
+    text-align: center;
+}
+
+.Footnotes {
+    color: blue;
+}
+
+.Footnotes-Right {
+    text-align: right;
+}
+
+[class^="Shlok"],
+[class^="SHLOK"] {
+    /* Your styles here */
+    color: red;
+    text-align: center;
+    font-weight: bold;
+    margin: 0px;
+}
+
+.Uwach {
+    text-align: center;
+    font-style: italic;
+}
+
+.Sub-Heading-1 {
+    display: none;
+}
+
+.char-style-override-8 {
+    text-align: right;
+    display: block;
+}
+
+.OM,
+.Title-page---sub-title,
+.Tavmev-Mata--pita,
+.Page-Break-1 {
+    text-align: center;
+    font-style: italic;
+    margin: 0;
+}
+
+html,
+body,
+ion-app,
+ion-content {
+    height: 100%;
+}
+
+.menu-content {
+    display: flex;
+    height: 100%;
+}
+
+.desktop-menu {
+    padding-left: 5%;
+    width: 25%;
+    height: 100%;
+    overflow-y: auto;
+}
+
+.desktop-content {
+    width: 65%;
+    overflow-y: auto;
+}
+
+.accordion-section {
+    border-bottom: 1px solid #ccc;
+}
+
+.accordion-header {
+    width: 100%;
+    background: #f0f0f0;
+    padding: 10px;
+    text-align: left;
+    border: none;
+    font-weight: bold;
+}
+
+.accordion-content {
+    padding-left: 10px;
+    display: none;
+}
+
+.accordion-content.active {
+    display: block;
+}
+
+p.Sub-Heading.active {
+    background-color: #d0ebff;
+    font-weight: bold;
+    border-radius: 4px;
+    padding: 4px 8px;
+}
+
+@media (max-width: 767px) {
+    .desktop-menu {
+        display: none;
+    }
+
+    .desktop-content {
+        width: 100%;
+    }
+}
