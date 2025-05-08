@@ -57,7 +57,7 @@ p {
 }
 
 .accordion-content.Sub-Heading {
-    font-size: 1em;
+    font-size: 1em !important;
     font-weight: bold;
     padding: 10px;
 }
