@@ -1,231 +1,384 @@
 <!doctype html>
-<html lang="en">
+<html lang="sa">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title> स्वाध्यायः |  </title>
-    <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core@latest/dist/ionic/ionic.esm.js"></script>
-    <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core@latest/dist/ionic/ionic.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core@latest/css/ionic.bundle.css" />
-    <link rel="stylesheet" href="style.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
-  
+    <title>स्वाध्याय</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
     <style>
-      .mobile-menu-content.Sub-Heading{
-        font-size: 0.8em !important;
+      body {
+        font-family: "Noto Sans Devanagari", serif;
+      }
+      .logo {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #c89f0d;
+      }
+      /* Menu item styling */
+      .navbar-nav .nav-item .nav-link {
+        font-size: 1.5rem; /* Increase size of main menu items */
+        font-weight: bold; /* Make main menu items bold */
+      }
+
+      /* Dropdown menu item styling */
+      .dropdown-menu .dropdown-item {
+        font-size: 1.2rem; /* Increase size of sub-menu items */
+        font-weight: bold; /* Make sub-menu items bold */
+      }
+
+      .section-title {
+        font-size: 2rem;
+        margin: 1.5rem 0 0.5rem;
+        font-weight: bold;
+        color: goldenrod
+      }
+      .swiper-slide {
+        text-align: center;
+      }
+      .book-image {
+        width: auto;
+        height: 200px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+      
+      .swiper-slide a{
+        text-decoration: none !important;
+      }
+      
+      .book-title {
+        margin-top: 0.5rem;
+        font-size: 1.5rem;
+        color: maroon;
+        font-weight: bold;
+        text-align: center;
+        text-decoration: none !important;
+      }
+
+      @media (min-width: 992px) {
+        .dropdown-menu {
+          width: 100%;
+          padding: 20px;
+        }
+
+        .dropdown-menu .dropdown-item {
+          display: inline-block;
+          width: 23%; /* 4 columns */
+          margin: 5px 1%;
+          box-sizing: border-box;
+        }
+      }
+
+      /* Mobile Version: Adjust to normal dropdown */
+      @media (max-width: 991px) {
+        .dropdown-menu .dropdown-item {
+          width: 100%; /* Full width on mobile */
+          display: block;
+        }
+      }
+
+      /* Styling for dropdown divider */
+      .dropdown-divider {
+        border-top: 1px solid #ccc;
+        margin: 10px 0;
       }
     </style>
-    
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari&display=swap" rel="stylesheet" />
   </head>
-
   <body>
-    <ion-app>
-      <!-- Mobile Menu -->
-      <ion-menu content-id="main-content" side="start" menu-id="main" type="overlay">
-        <ion-header>
-          <ion-toolbar color="primary">
-            <ion-title>Index</ion-title>
-          </ion-toolbar>
-        </ion-header>
-        <ion-content id="mobile-menu-content" class="menu-pane"></ion-content>
-      </ion-menu>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand d-none d-lg-block logo" href="#">स्वाध्याय</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNavDropdown"
+          aria-controls="navbarNavDropdown"
+          aria-expanded="false"
+          aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand d-block d-lg-none ms-auto logo" href="#">स्वाध्याय</a>
 
-      <ion-split-pane content-id="main-content" when="md">
-        <ion-menu content-id="main-content" side="start" type="overlay" class="ion-hide-md-down">
-          <ion-header>
-            <ion-toolbar color="primary">
-              <ion-title>Index</ion-title>
-            </ion-toolbar>
-          </ion-header>
-          <ion-content id="desktop-menu-content" class="menu-pane"></ion-content>
-        </ion-menu>
-
-        <div class="ion-page" id="main-content">
-          <ion-header>
-            <ion-toolbar color="primary">
-              <ion-buttons slot="start">
-                <ion-menu-button autoHide="false"></ion-menu-button>
-              </ion-buttons>
-              <ion-title id="book_title"></ion-title>
-              <div slot="end">
-                <h1 id="book_name_hindi"></h1>
-              </div>
-            </ion-toolbar>
-          </ion-header>
-
-          <ion-content id="main-scrollable-content" scroll-events="true">
-            <ion-grid>
-              <ion-row>
-                <ion-col>
-                  <div id="display"></div>
-                  <div id="content" style="display: none"></div>
-                </ion-col>
-              </ion-row>
-            </ion-grid>
-          </ion-content>
-
-          <ion-footer>
-            <ion-toolbar color="primary">
-              <ion-title size="small"></ion-title>
-            </ion-toolbar>
-          </ion-footer>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">वेदाः</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">ऋग्वेदः</a></li>
+                <li><a class="dropdown-item" href="#">यजुर्वेदः</a></li>
+                <li><a class="dropdown-item" href="#">सामवेदः</a></li>
+                <li><a class="dropdown-item" href="#">अथर्ववेदः</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">उपनिषद्</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">ऐतरेय उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">ऐतरेय आरण्यक उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">बृहदारण्यक उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">चाण्डोग्य उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">ईशावास्य उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">केन उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">कठ उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">काठक उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">मुण्डक उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">माण्डूक्य उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">प्रणतार्क उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">रीत्युपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">श्वेताश्वतर उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">तैत्तिरीय उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">तैत्तिरीय आरण्यक उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">ऋग्वेद उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">यजुर्वेद उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">सामवेद उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">अथर्ववेद उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">काश्यक उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">किम्बिल उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">उपतार उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">द्वादश उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">भागवत उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">शाक्त उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">गुरु उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">अपस्तम्ब उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">सान्क्य उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">द्रष्टान्त उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">सुतार्क उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">स्वमन्दल उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">उन्मुक्त उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">शेषनाथ उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">गौतम उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">सत्य उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">नायक उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">पञ्चकुला उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">पाराशर उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">पञ्चतन्त्रम् उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">ज्ञान उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">प्रपञ्च उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">वेव्यास उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">रत्न उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">देवकृत्य उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">अन्नमयी उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">शान्ति उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">तुलसी उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">शान्तिपाठ उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">श्रुतिसार उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">कौंडिन्य उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">गोवर्धन उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">तपोवन उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">देवराज उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">ज्ञानानन्द उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">व्रात्य उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">हेमवर्त उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">मणिमाला उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">त्रिलोक उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">महाशक्तिर उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">शिरस्त्र उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">मातृभूमि उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">त्रिवेणी उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">स्रग्धारा उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">महाभागव उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">दक्ष उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">कृतयुग उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">सहस्रांश उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">अवलोकिता उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">सुप्रभात उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">देवकूट उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">सुशील उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">श्वेतवस्त्र उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">सर्वसिद्धि उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">परात्मन उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">आत्मान्वेषण उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">शम्भु उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">सत्यामृत उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">महेश्वर उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">पवित्रा उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">मोक्षपद उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">यज्ञनिष्ठा उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">चन्द्र उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">त्रयक्षर उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">अग्रणी उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">अर्चि उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">सनातन उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">केशव उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">भगवान उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">आदित्य उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">भूमि उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">पाराम्य उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">ब्रह्मा उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">प्रियंवद उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">महेश्वर देव उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">बृहन्मूलक उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">सुवर्णपुराण उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">महात्मा उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">आदर्श उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">सिद्धिदायक उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">श्रद्धा उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">ब्राह्मण्य उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">ज्ञानसार उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">यमेश्वर उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">पारंपर्य उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">वासुदेव उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">आद्योपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">परमात्मा उपनिषद्</a></li>
+                <li><a class="dropdown-item" href="#">शिवाभिधा उपनिषद्</a></li>
+                <!-- Add all others as needed -->
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">पुराणाः</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">महापुराणाः</a></li>
+                <li><hr class="dropdown-divider" /></li>
+                <li><a class="dropdown-item" href="#">ब्रह्म पुराण</a></li>
+                <li><a class="dropdown-item" href="#">पद्म पुराण</a></li>
+                <li><a class="dropdown-item" href="#">विष्णु पुराण</a></li>
+                <li><a class="dropdown-item" href="#">शिव पुराण</a></li>
+                <li><a class="dropdown-item" href="#">भागवत पुराण</a></li>
+                <li><a class="dropdown-item" href="#">नारद पुराण</a></li>
+                <li><a class="dropdown-item" href="#">मार्कण्डेय पुराण</a></li>
+                <li><a class="dropdown-item" href="#">अग्नि पुराण</a></li>
+                <li><a class="dropdown-item" href="#">भविष्य पुराण</a></li>
+                <li><a class="dropdown-item" href="#">ब्रह्मवैवर्त पुराण</a></li>
+                <li><a class="dropdown-item" href="#">लिङ्ग पुराण</a></li>
+                <li><a class="dropdown-item" href="#">वराह पुराण</a></li>
+                <li><a class="dropdown-item" href="#">स्कन्द पुराण</a></li>
+                <li><a class="dropdown-item" href="#">वामन पुराण</a></li>
+                <li><a class="dropdown-item" href="#">कूर्म पुराण</a></li>
+                <li><a class="dropdown-item" href="#">मत्स्य पुराण</a></li>
+                <li><a class="dropdown-item" href="#">गरुड पुराण</a></li>
+                <li><a class="dropdown-item" href="#">ब्रह्माण्ड पुराण</a></li>
+                <li><hr class="dropdown-divider" /></li>
+                <li><a class="dropdown-item" href="#">उपपुराणाः</a></li>
+                <li><hr class="dropdown-divider" /></li>
+                <li><a class="dropdown-item" href="#">सञ्ज्ञा पुराण</a></li>
+                <li><a class="dropdown-item" href="#">नृसिंह पुराण</a></li>
+                <li><a class="dropdown-item" href="#">नरसिंह पुराण</a></li>
+                <li><a class="dropdown-item" href="#">बृहन्नारदीय पुराण</a></li>
+                <li><a class="dropdown-item" href="#">सैन्धव पुराण</a></li>
+                <li><a class="dropdown-item" href="#">आदित्य पुराण</a></li>
+                <li><a class="dropdown-item" href="#">दुर्वासा पुराण</a></li>
+                <li><a class="dropdown-item" href="#">कपालिनी पुराण</a></li>
+                <li><a class="dropdown-item" href="#">कलिका पुराण</a></li>
+                <li><a class="dropdown-item" href="#">महेश्वर पुराण</a></li>
+                <li><a class="dropdown-item" href="#">शिव धर्म पुराण</a></li>
+                <li><a class="dropdown-item" href="#">शिव धर्मोत्तर पुराण</a></li>
+                <li><a class="dropdown-item" href="#">विष्णुधर्म पुराण</a></li>
+                <li><a class="dropdown-item" href="#">विष्णुधर्मोत्तर पुराण</a></li>
+                <li><a class="dropdown-item" href="#">गणेश पुराण</a></li>
+                <li><a class="dropdown-item" href="#">हयग्रीव पुराण</a></li>
+                <li><a class="dropdown-item" href="#">वामन पुराण</a></li>
+                <li><a class="dropdown-item" href="#">पाराशर पुराण</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">इतिहासः</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">रामायणम्</a></li>
+                <li><a class="dropdown-item" href="#">महाभारतम्</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">गीता सङ्ग्रहः</a>
+            </li>
+          </ul>
         </div>
-      </ion-split-pane>
-    </ion-app>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="section-title">वेद</div>
+          <div class="swiper ved-swiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <img src="images/book.jpg" class="book-image" alt="ऋग्वेद" />
+                <div class="book-title">ऋग्वेद</div>
+              </div>
+              <div class="swiper-slide">
+                <img src="images/book.jpg" class="book-image" alt="सामवेद" />
+                <div class="book-title">सामवेद</div>
+              </div>
+              <div class="swiper-slide">
+                <img src="images/book.jpg" class="book-image" alt="यजुर्वेद" />
+                <div class="book-title">यजुर्वेद</div>
+              </div>
+              <div class="swiper-slide">
+                <img src="images/book.jpg" class="book-image" alt="अथर्ववेद" />
+                <div class="book-title">अथर्ववेद</div>
+              </div>
+            </div>
+          </div>
 
+          <!-- Upanishads -->
+          <div class="section-title">उपनिषद्</div>
+          <div class="swiper upanishad-swiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <img src="images/book.jpg" class="book-image" alt="ईशोपनिषद्" />
+                <div class="book-title">ईशोपनिषद्</div>
+              </div>
+              <!-- Add other Upanishads here -->
+            </div>
+          </div>
+
+          <!-- Mahapuranas -->
+          <div class="section-title">महापुराण</div>
+          <div class="swiper mahapurana-swiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <a href="index_1.html?shiva_puran">
+                <img src="images/book.jpg" class="book-image" alt="भागवत पुराण" />
+                <div class="book-title">शिव पुराण</div></a>
+              </div>
+              <!-- Add other Mahapuranas -->
+            </div>
+          </div>
+
+          <!-- Upapuranas -->
+          <div class="section-title">उपपुराण</div>
+          <div class="swiper upapurana-swiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <img src="images/book.jpg" class="book-image" alt="गणेश पुराण" />
+                <div class="book-title">गणेश पुराण</div>
+              </div>
+              <div class="swiper-slide">
+                <img src="images/book.jpg" class="book-image" alt="गणेश पुराण" />
+                <div class="book-title">गणेश पुराण</div>
+              </div>
+              <div class="swiper-slide">
+                <img src="images/book.jpg" class="book-image" alt="गणेश पुराण" />
+                <div class="book-title">गणेश पुराण</div>
+              </div>
+              <!-- Add other Upapuranas -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const displayDiv = document.getElementById("display");
-        const mobileMenu = document.getElementById("mobile-menu-content");
-        const desktopMenu = document.getElementById("desktop-menu-content");
-
-        const allSubHeadings = [];
-        let currentSubIndex = -1;
-
-        function toHindiNumber(num) {
-          const hindiDigits = ["०", "१", "२", "३", "४", "५", "६", "७", "८", "९"];
-          return String(num)
-            .split("")
-            .map((d) => hindiDigits[parseInt(d)])
-            .join("");
+      const config = {
+        slidesPerView: 2.5,
+        spaceBetween: 10,
+        breakpoints: {
+          768: {
+            slidesPerView: 5.5,
+            spaceBetween: 20
+          }
         }
+      };
 
-        function createSection(title) {
-          const section = document.createElement("div");
-          section.className = "accordion-section";
-
-          const header = document.createElement("button");
-          header.className = "accordion-header";
-          header.textContent = title;
-          header.onclick = function () {
-            this.nextElementSibling.classList.toggle("active");
-          };
-
-          const content = document.createElement("div");
-          content.className = "accordion-content";
-
-          section.appendChild(header);
-          section.appendChild(content);
-          return { section, content };
-        }
-
-        const params = new URLSearchParams(window.location.search);
-        let fileParam = [...params.keys()][0] || "shiva_puran";
-        const fileName = `/books/${fileParam}.html`;
-
-        fetch(fileName)
-          .then((response) => response.text())
-          .then((html) => {
-            const tempDiv = document.createElement("div");
-            tempDiv.innerHTML = html;
-            const contentDiv = tempDiv.querySelector("#content");
-
-            if (!contentDiv) {
-              console.error(`No div with ID 'content' found in ${fileName}`);
-              return;
-            }
-
-            const titleHindi = contentDiv.querySelector("p.Title-Page---Book-Name-Hindi");
-            if (titleHindi) {
-              const h1 = document.getElementById("book_name_hindi");
-              if (h1) h1.textContent = titleHindi.textContent.trim();
-            }
-
-            const paragraphs = Array.from(contentDiv.querySelectorAll("p"));
-            let currentAccordionMobile = null;
-            let currentAccordionDesktop = null;
-            let subHeadingCount = 0;
-
-            let introEndIndex = paragraphs.findIndex(
-              (p) => p.classList.contains("Heading") || p.classList.contains("Sub-Heading")
-            );
-            if (introEndIndex === -1) introEndIndex = paragraphs.length;
-
-            for (let i = 0; i < introEndIndex; i++) {
-              const clone = paragraphs[i].cloneNode(true);
-              displayDiv.appendChild(clone);
-            }
-
-            paragraphs.forEach((p, index) => {
-              if (p.classList.contains("Heading")) {
-                const mobileSec = createSection(p.textContent);
-                mobileMenu.appendChild(mobileSec.section);
-                currentAccordionMobile = mobileSec.content;
-
-                const desktopSec = createSection(p.textContent);
-                desktopMenu.appendChild(desktopSec.section);
-                currentAccordionDesktop = desktopSec.content;
-
-                subHeadingCount = 0;
-              } else if (p.classList.contains("Sub-Heading")) {
-                subHeadingCount++;
-                const text = `${toHindiNumber(subHeadingCount)}. ${p.textContent}`;
-
-                [currentAccordionMobile, currentAccordionDesktop].forEach((container) => {
-                  const item = document.createElement("p");
-                  item.className = "Sub-Heading";
-                  item.textContent = text;
-                  item.style.cursor = "pointer";
-
-                  item.addEventListener("click", function () {
-                    document.querySelectorAll("p.Sub-Heading.active").forEach((el) => el.classList.remove("active"));
-                    this.classList.add("active");
-
-                    currentSubIndex = allSubHeadings.indexOf(this);
-
-                    displayDiv.innerHTML = "";
-
-                    const startIndex = paragraphs.indexOf(p);
-                    let endIndex = paragraphs.length;
-
-                    for (let i = startIndex + 1; i < paragraphs.length; i++) {
-                      const next = paragraphs[i];
-                      if (next.classList.contains("Heading") || next.classList.contains("Sub-Heading")) {
-                        endIndex = i;
-                        break;
-                      }
-                    }
-
-                    for (let i = startIndex; i < endIndex; i++) {
-                      const clone = paragraphs[i].cloneNode(true);
-                      displayDiv.appendChild(clone);
-                    }
-
-                    const menu = document.querySelector("ion-menu[menu-id='main']");
-                    if (menu) {
-                      document.activeElement?.blur();
-                      menu.close();
-                      document.querySelector("ion-content")?.scrollToTop(500);
-                    }
-                  });
-
-                  container && container.appendChild(item);
-                  allSubHeadings.push(item);
-                });
-              }
-            });
-
-            // Add swipe support back using Hammer.js
-            const hammer = new Hammer(document.getElementById("main-content"));
-
-            hammer.on("swipeleft", () => {
-              if (currentSubIndex < allSubHeadings.length - 1) {
-                currentSubIndex++;
-                allSubHeadings[currentSubIndex].click();
-              }
-            });
-
-            hammer.on("swiperight", () => {
-              if (currentSubIndex > 0) {
-                currentSubIndex--;
-                allSubHeadings[currentSubIndex].click();
-              }
-            });
-          })
-          .catch((err) => {
-            console.error(`Failed to fetch or process ${fileName}`, err);
-          });
-      });
+      new Swiper(".ved-swiper", config);
+      new Swiper(".upanishad-swiper", config);
+      new Swiper(".mahapurana-swiper", config);
+      new Swiper(".upapurana-swiper", config);
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
