@@ -3,19 +3,22 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title> स्वाध्यायः |  </title>
+    <title>स्वाध्यायः |</title>
     <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core@latest/dist/ionic/ionic.esm.js"></script>
     <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core@latest/dist/ionic/ionic.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core@latest/css/ionic.bundle.css" />
     <link rel="stylesheet" href="style.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
-  
+
     <style>
-      .mobile-menu-content.Sub-Heading{
+      .mobile-menu-content.Sub-Heading {
         font-size: 0.8em !important;
       }
+
+      .accordion-content .Sub-Heading {
+        font-size: 1em;
+      }
     </style>
-    
   </head>
 
   <body>
@@ -66,7 +69,9 @@
 
           <ion-footer>
             <ion-toolbar color="primary">
-              <ion-title size="small"></ion-title>
+              <ion-title size="small">
+                <button>Read</button>
+              </ion-title>
             </ion-toolbar>
           </ion-footer>
         </div>
