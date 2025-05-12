@@ -72,22 +72,17 @@
           <ion-footer>
             <ion-toolbar color="primary">
               <ion-buttons slot="start">
-                <ion-button id="prev-button">
-                  <ion-icon name="arrow-back-outline"></ion-icon>
-                </ion-button>
+                <ion-button id="prev-button">← Prev</ion-button>
               </ion-buttons>
-
               <ion-title size="small">
                 <button>Read</button>
               </ion-title>
-
               <ion-buttons slot="end">
-                <ion-button id="next-button">
-                  <ion-icon name="arrow-forward-outline"></ion-icon>
-                </ion-button>
+                <ion-button id="next-button">Next →</ion-button>
               </ion-buttons>
             </ion-toolbar>
           </ion-footer>
+          
         </div>
       </ion-split-pane>
     </ion-app>
@@ -165,7 +160,7 @@
               displayDiv.appendChild(clone);
             }
 
-            paragraphs.forEach((p, index) => {
+            paragraphs.forEach((p) => {
               if (p.classList.contains("Heading")) {
                 const mobileSec = createSection(p.textContent);
                 mobileMenu.appendChild(mobileSec.section);
@@ -224,36 +219,31 @@
               }
             });
 
-            // Add swipe support using Hammer.js
-            const hammer = new Hammer(document.getElementById("main-content"));
+            // Navigation logic
+            function goToSubheading(index) {
+              index = Math.max(0, Math.min(index, allSubHeadings.length - 1));
+              currentSubIndex = index;
+              allSubHeadings[index]?.click();
+            }
 
-            hammer.on("swipeleft", () => {
-              if (currentSubIndex < allSubHeadings.length - 1) {
-                currentSubIndex++;
-                allSubHeadings[currentSubIndex].click();
-              }
-            });
-
-            hammer.on("swiperight", () => {
-              if (currentSubIndex > 0) {
-                currentSubIndex--;
-                allSubHeadings[currentSubIndex].click();
-              }
-            });
-
-            // Add navigation button functionality
+            // Button click handlers
             document.getElementById("prev-button").addEventListener("click", () => {
-              if (currentSubIndex > 0) {
-                currentSubIndex--;
-                allSubHeadings[currentSubIndex].click();
-              }
+              goToSubheading(currentSubIndex - 1);
             });
 
             document.getElementById("next-button").addEventListener("click", () => {
-              if (currentSubIndex < allSubHeadings.length - 1) {
-                currentSubIndex++;
-                allSubHeadings[currentSubIndex].click();
-              }
+              goToSubheading(currentSubIndex + 1);
+            });
+
+            // Swipe support
+            const hammer = new Hammer(document.getElementById("main-content"));
+
+            hammer.on("swipeleft", () => {
+              goToSubheading(currentSubIndex + 1);
+            });
+
+            hammer.on("swiperight", () => {
+              goToSubheading(currentSubIndex - 1);
             });
           })
           .catch((err) => {
