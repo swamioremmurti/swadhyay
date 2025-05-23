@@ -219,30 +219,46 @@
             });
 
             // Navigation logic
-            function goToSubheading(index) {
-              index = Math.max(0, Math.min(index, allSubHeadings.length - 1));
-              currentSubIndex = index;
-              allSubHeadings[index]?.click();
+            function navigateToConceptualSubheading(targetConceptualIdx) {
+              const totalConceptualSubHeadings = allSubHeadings.length / 2; // Assumes allSubHeadings has pairs
+              if (totalConceptualSubHeadings === 0 && allSubHeadings.length === 0) return; // No subheadings
+
+              // Clamp the target conceptual index
+              targetConceptualIdx = Math.max(0, Math.min(targetConceptualIdx, totalConceptualSubHeadings - 1));
+
+              // Determine the actual item index in allSubHeadings (e.g., the mobile item, which is the first of the pair)
+              const itemIndexToClick = targetConceptualIdx * 2;
+
+              // Update global currentSubIndex to point to the item we are about to click
+              // This ensures consistency if the click handler itself relies on currentSubIndex,
+              // though our handler recalculates it via indexOf(this).
+              currentSubIndex = itemIndexToClick;
+
+              allSubHeadings[itemIndexToClick]?.click(); // Simulate click on the menu item
             }
 
             // Button click handlers
             document.getElementById("prev-button").addEventListener("click", () => {
-              goToSubheading(currentSubIndex - 1);
+              const currentConceptualIdx = (currentSubIndex === -1) ? -1 : Math.floor(currentSubIndex / 2);
+              navigateToConceptualSubheading(currentConceptualIdx - 1);
             });
 
             document.getElementById("next-button").addEventListener("click", () => {
-              goToSubheading(currentSubIndex + 1);
+              const currentConceptualIdx = (currentSubIndex === -1) ? -1 : Math.floor(currentSubIndex / 2);
+              navigateToConceptualSubheading(currentConceptualIdx + 1);
             });
 
             // Swipe support
             const hammer = new Hammer(document.getElementById("main-content"));
 
-            hammer.on("swipeleft", () => {
-              goToSubheading(currentSubIndex + 1);
+            hammer.on("swipeleft", () => { // Corresponds to "Next"
+              const currentConceptualIdx = (currentSubIndex === -1) ? -1 : Math.floor(currentSubIndex / 2);
+              navigateToConceptualSubheading(currentConceptualIdx + 1);
             });
 
-            hammer.on("swiperight", () => {
-              goToSubheading(currentSubIndex - 1);
+            hammer.on("swiperight", () => { // Corresponds to "Prev"
+              const currentConceptualIdx = (currentSubIndex === -1) ? -1 : Math.floor(currentSubIndex / 2);
+              navigateToConceptualSubheading(currentConceptualIdx - 1);
             });
           })
           .catch((err) => {
