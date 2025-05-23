@@ -249,7 +249,8 @@
             });
 
             // Swipe support
-            const hammer = new Hammer(document.getElementById("main-content"));
+            const mainScrollableContent = document.getElementById("main-scrollable-content");
+            const hammer = new Hammer(mainScrollableContent);
 
             hammer.on("swipeleft", () => { // Corresponds to "Next"
               const currentConceptualIdx = (currentSubIndex === -1) ? -1 : Math.floor(currentSubIndex / 2);
