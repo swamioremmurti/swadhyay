@@ -20,6 +20,10 @@
         text-align: justify;
         line-height: 1.5em;
       }
+
+      #main-scrollable-content {
+  touch-action: pan-y;
+}
     </style>
   </head>
 
@@ -86,15 +90,17 @@
       </ion-split-pane>
     </ion-app>
 
-    <script>
+    <script type="module">
+      import { createGesture } from 'https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js';
+    
       document.addEventListener("DOMContentLoaded", function () {
         const displayDiv = document.getElementById("display");
         const mobileMenu = document.getElementById("mobile-menu-content");
         const desktopMenu = document.getElementById("desktop-menu-content");
-
+    
         const allSubHeadings = [];
         let currentSubIndex = -1;
-
+    
         function toHindiNumber(num) {
           const hindiDigits = ["०", "१", "२", "३", "४", "५", "६", "७", "८", "९"];
           return String(num)
@@ -102,95 +108,95 @@
             .map((d) => hindiDigits[parseInt(d)])
             .join("");
         }
-
+    
         function createSection(title) {
           const section = document.createElement("div");
           section.className = "accordion-section";
-
+    
           const header = document.createElement("button");
           header.className = "accordion-header";
           header.textContent = title;
           header.onclick = function () {
             this.nextElementSibling.classList.toggle("active");
           };
-
+    
           const content = document.createElement("div");
           content.className = "accordion-content";
-
+    
           section.appendChild(header);
           section.appendChild(content);
           return { section, content };
         }
-
+    
         const params = new URLSearchParams(window.location.search);
         let fileParam = [...params.keys()][0] || "shiva_puran";
         const fileName = `/books/${fileParam}.html`;
-
+    
         fetch(fileName)
           .then((response) => response.text())
           .then((html) => {
             const tempDiv = document.createElement("div");
             tempDiv.innerHTML = html;
             const contentDiv = tempDiv.querySelector("#content");
-
+    
             if (!contentDiv) {
               console.error(`No div with ID 'content' found in ${fileName}`);
               return;
             }
-
+    
             const titleHindi = contentDiv.querySelector("p.Title-Page---Book-Name-Hindi");
             if (titleHindi) {
               const h1 = document.getElementById("book_name_hindi");
               if (h1) h1.textContent = titleHindi.textContent.trim();
             }
-
+    
             const paragraphs = Array.from(contentDiv.querySelectorAll("p"));
             let currentAccordionMobile = null;
             let currentAccordionDesktop = null;
             let subHeadingCount = 0;
-
+    
             let introEndIndex = paragraphs.findIndex(
               (p) => p.classList.contains("Heading") || p.classList.contains("Sub-Heading")
             );
             if (introEndIndex === -1) introEndIndex = paragraphs.length;
-
+    
             for (let i = 0; i < introEndIndex; i++) {
               const clone = paragraphs[i].cloneNode(true);
               displayDiv.appendChild(clone);
             }
-
+    
             paragraphs.forEach((p) => {
               if (p.classList.contains("Heading")) {
                 const mobileSec = createSection(p.textContent);
                 mobileMenu.appendChild(mobileSec.section);
                 currentAccordionMobile = mobileSec.content;
-
+    
                 const desktopSec = createSection(p.textContent);
                 desktopMenu.appendChild(desktopSec.section);
                 currentAccordionDesktop = desktopSec.content;
-
+    
                 subHeadingCount = 0;
               } else if (p.classList.contains("Sub-Heading")) {
                 subHeadingCount++;
                 const text = `${toHindiNumber(subHeadingCount)}. ${p.textContent}`;
-
+    
                 [currentAccordionMobile, currentAccordionDesktop].forEach((container) => {
                   const item = document.createElement("p");
                   item.className = "Sub-Heading";
                   item.textContent = text;
                   item.style.cursor = "pointer";
-
+    
                   item.addEventListener("click", function () {
                     document.querySelectorAll("p.Sub-Heading.active").forEach((el) => el.classList.remove("active"));
                     this.classList.add("active");
-
+    
                     currentSubIndex = allSubHeadings.indexOf(this);
-
+    
                     displayDiv.innerHTML = "";
-
+    
                     const startIndex = paragraphs.indexOf(p);
                     let endIndex = paragraphs.length;
-
+    
                     for (let i = startIndex + 1; i < paragraphs.length; i++) {
                       const next = paragraphs[i];
                       if (next.classList.contains("Heading") || next.classList.contains("Sub-Heading")) {
@@ -198,12 +204,12 @@
                         break;
                       }
                     }
-
+    
                     for (let i = startIndex; i < endIndex; i++) {
                       const clone = paragraphs[i].cloneNode(true);
                       displayDiv.appendChild(clone);
                     }
-
+    
                     const menu = document.querySelector("ion-menu[menu-id='main']");
                     if (menu) {
                       document.activeElement?.blur();
@@ -211,61 +217,62 @@
                       document.querySelector("ion-content")?.scrollToTop(500);
                     }
                   });
-
+    
                   container && container.appendChild(item);
                   allSubHeadings.push(item);
                 });
               }
             });
-
-            // Navigation logic
+    
             function navigateToConceptualSubheading(targetConceptualIdx) {
-              const totalConceptualSubHeadings = allSubHeadings.length / 2; // Assumes allSubHeadings has pairs
-              if (totalConceptualSubHeadings === 0 && allSubHeadings.length === 0) return; // No subheadings
-
-              // Clamp the target conceptual index
+              const totalConceptualSubHeadings = allSubHeadings.length / 2;
+              if (totalConceptualSubHeadings === 0 && allSubHeadings.length === 0) return;
+    
               targetConceptualIdx = Math.max(0, Math.min(targetConceptualIdx, totalConceptualSubHeadings - 1));
-
-              // Determine the actual item index in allSubHeadings (e.g., the mobile item, which is the first of the pair)
               const itemIndexToClick = targetConceptualIdx * 2;
-
-              // Update global currentSubIndex to point to the item we are about to click
-              // This ensures consistency if the click handler itself relies on currentSubIndex,
-              // though our handler recalculates it via indexOf(this).
               currentSubIndex = itemIndexToClick;
-
-              allSubHeadings[itemIndexToClick]?.click(); // Simulate click on the menu item
+              allSubHeadings[itemIndexToClick]?.click();
             }
-
-            // Button click handlers
+    
             document.getElementById("prev-button").addEventListener("click", () => {
               const currentConceptualIdx = (currentSubIndex === -1) ? -1 : Math.floor(currentSubIndex / 2);
               navigateToConceptualSubheading(currentConceptualIdx - 1);
             });
-
+    
             document.getElementById("next-button").addEventListener("click", () => {
               const currentConceptualIdx = (currentSubIndex === -1) ? -1 : Math.floor(currentSubIndex / 2);
               navigateToConceptualSubheading(currentConceptualIdx + 1);
             });
-
-            // Swipe support
+    
+            // Replace Hammer.js swipe detection with Ionic gesture
             const mainScrollableContent = document.getElementById("main-scrollable-content");
-            const hammer = new Hammer(mainScrollableContent);
-
-            hammer.on("swipeleft", () => { // Corresponds to "Next"
-              const currentConceptualIdx = (currentSubIndex === -1) ? -1 : Math.floor(currentSubIndex / 2);
-              navigateToConceptualSubheading(currentConceptualIdx + 1);
+    
+            const swipeGesture = createGesture({
+              el: mainScrollableContent,
+              gestureName: 'swipe-gesture',
+              threshold: 15,
+              onEnd: ev => {
+                const deltaX = ev.deltaX;
+    
+                const currentConceptualIdx = (currentSubIndex === -1) ? -1 : Math.floor(currentSubIndex / 2);
+    
+                if (deltaX < -50) {
+                  // Swipe left → Next
+                  navigateToConceptualSubheading(currentConceptualIdx + 1);
+                } else if (deltaX > 50) {
+                  // Swipe right → Previous
+                  navigateToConceptualSubheading(currentConceptualIdx - 1);
+                }
+              }
             });
-
-            hammer.on("swiperight", () => { // Corresponds to "Prev"
-              const currentConceptualIdx = (currentSubIndex === -1) ? -1 : Math.floor(currentSubIndex / 2);
-              navigateToConceptualSubheading(currentConceptualIdx - 1);
-            });
+    
+            swipeGesture.enable();
           })
           .catch((err) => {
             console.error(`Failed to fetch or process ${fileName}`, err);
           });
       });
     </script>
+    
   </body>
 </html>
