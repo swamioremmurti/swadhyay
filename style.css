@@ -1,8 +1,11 @@
-@import url('https://cdn.jsdelivr.net/npm/@fontsource/noto-sans-devanagari@5.2.5/files/NotoSansDevanagari-Regular.woff2');
+@font-face {
+  font-family: sanskrit;
+  src: url('fonts/Sanskrit2003.otf');
+}
 
 
 body {
-    font-family: "NotoSansDevanagari-Regular", sans-serif !important;
+    font-family: "sanskrit" !important;
     font-size: 1.2em;
     line-height: 2em !important;
 }
@@ -32,7 +35,7 @@ body {
 }
 
 p {
-    font-family: "NotoSansDevanagari-Regular", sans-serif !important;
+    font-family: "sanskrit" !important;
     text-align: justify;
 }
 
@@ -84,9 +87,9 @@ p {
 .Shlok {
     text-align: center;
     color: crimson;
-    font-weight: bold;
     font-style: italic;
     margin: 10px;
+    font-size: 2.0 em;
 }
 
 .Page-Break {
@@ -134,7 +137,8 @@ p {
     color: red;
     text-align: center;
     font-weight: bold;
-    margin: 0px;
+    margin: 10px;
+    font-size: 1.5em;
 }
 
 .Uwach {
