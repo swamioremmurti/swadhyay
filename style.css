@@ -1,5 +1,8 @@
+@import url('https://cdn.jsdelivr.net/npm/@fontsource/noto-sans-devanagari@5.2.5/files/NotoSansDevanagari-Regular.woff2');
+
+
 body {
-    font-family: "LohitDevanagari", sans-serif;
+    font-family: "NotoSansDevanagari-Regular", sans-serif !important;
     font-size: 1.2em;
     line-height: 2em !important;
 }
@@ -29,6 +32,7 @@ body {
 }
 
 p {
+    font-family: "NotoSansDevanagari-Regular", sans-serif !important;
     text-align: justify;
 }
 
@@ -256,3 +260,13 @@ p.Sub-Heading.active {
         width: 100%;
     }
 }
+
+.mobile-menu-content.Sub-Heading {
+    font-size: 0.8em !important;
+  }
+
+  .accordion-content .Sub-Heading {
+    font-size: 1em;
+    text-align: justify;
+    line-height: 1.5em;
+  }
