@@ -352,6 +352,10 @@ body,
     color: #0a2976;
     font-weight: bold;
 }
+#display{
+    padding-bottom: 50px;
+}
+
 @media (max-width: 767.98px) {
     .main-content {
         border-radius: 0;
