@@ -42,8 +42,8 @@ p {
 #index .heading {
     color: orangered;
     text-align: center;
-    font-weight: bold;
-    font-size: 1em;
+    /*font-weight: bold;*/
+    font-size: 1.5em;
 }
 
 #index .Sub-Heading {
@@ -65,7 +65,7 @@ p {
 
 .accordion-content.Sub-Heading {
     font-size: 1em !important;
-    font-weight: bold;
+    /*font-weight: bold;*/
     padding: 10px;
 }
 
@@ -73,7 +73,7 @@ p {
 .Numbers {
     color: darkred;
     text-align: center;
-    font-weight: bold;
+    /*font-weight: bold;*/
     font-size: 1.5em;
 }
 
@@ -87,9 +87,9 @@ p {
 .Shlok {
     text-align: center;
     color: crimson;
-    font-style: italic;
-    margin: 10px;
-    font-size: 2.0 em;
+    /*font-style: italic;*/
+    margin: 30px;
+    /*font-size: 1.5 em;*/
 }
 
 .Page-Break {
@@ -102,7 +102,7 @@ p {
 .Title-Page---Book-Name {
     text-align: center;
     font-size: 2.5em;
-    font-weight: bold;
+    /*font-weight: bold;*/
     color: red;
     line-height: 1.5em;
     margin: 5px;
@@ -119,7 +119,7 @@ p {
 }
 
 .Footnotes-Bold {
-    font-weight: bold;
+    /*font-weight: bold;*/
     text-align: center;
 }
 
@@ -136,9 +136,9 @@ p {
     /* Your styles here */
     color: red;
     text-align: center;
-    font-weight: bold;
-    margin: 10px;
-    font-size: 1.5em;
+    /*font-weight: bold;*/
+    line-height: 1.5em;
+    /*font-size: 1.5em;*/
 }
 
 .Uwach {
