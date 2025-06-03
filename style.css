@@ -86,7 +86,7 @@ p {
 
 .Shlok {
     text-align: center;
-    color: crimson;
+    color: crimson !important;
     /*font-style: italic;*/
     margin: 30px;
     /*font-size: 1.5 em;*/
