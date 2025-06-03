@@ -1,6 +1,24 @@
 @font-face {
   font-family: sanskrit;
-  src: url('fonts/Sanskrit2003.otf');
+  src: url('fonts/siddhanta1.ttf');
+}
+
+:root {
+	--ion-color-new: #69bb7b;
+	--ion-color-new-rgb: 105,187,123;
+	--ion-color-new-contrast: #000000;
+	--ion-color-new-contrast-rgb: 0,0,0;
+	--ion-color-new-shade: #5ca56c;
+	--ion-color-new-tint: #78c288;
+}
+
+.ion-color-new {
+	--ion-color-base: var(--ion-color-new);
+	--ion-color-base-rgb: var(--ion-color-new-rgb);
+	--ion-color-contrast: var(--ion-color-new-contrast);
+	--ion-color-contrast-rgb: var(--ion-color-new-contrast-rgb);
+	--ion-color-shade: var(--ion-color-new-shade);
+	--ion-color-tint: var(--ion-color-new-tint);
 }
 
 
@@ -136,9 +154,9 @@ p {
     /* Your styles here */
     color: red;
     text-align: center;
-    /*font-weight: bold;*/
-    line-height: 1.5em;
-    /*font-size: 1.5em;*/
+    font-weight: bold;
+    line-height: 1.7em;
+    font-size: 1.2em;
 }
 
 .Uwach {
@@ -274,3 +292,5 @@ p.Sub-Heading.active {
     text-align: justify;
     line-height: 1.5em;
   }
+
+
