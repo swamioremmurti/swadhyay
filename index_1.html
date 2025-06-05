@@ -12,59 +12,60 @@
 
         <script>
             async function speakHindiLines() {
-    const contentDiv = document.getElementById('display');
+                const contentDiv = document.getElementById("display");
 
-    // Extract lines excluding <p> elements with class including "Shlok"
-    const lines = Array.from(contentDiv.childNodes)
-        .filter(node => {
-            if (node.nodeType === Node.ELEMENT_NODE && node.tagName === "P") {
-                return !node.className.includes("Shlok");
+                // Extract lines excluding <p> elements with class including "Shlok"
+                const lines = Array.from(contentDiv.childNodes)
+                    .filter((node) => {
+                        if (node.nodeType === Node.ELEMENT_NODE && node.tagName === "P") {
+                            return !node.className.includes("Shlok");
+                        }
+                        return true;
+                    })
+                    .map((node) => node.textContent.trim())
+                    .filter((line) => line.length > 0);
+
+                // Get Hindi voice
+                function getHindiVoice() {
+                    return new Promise((resolve) => {
+                        const synth = window.speechSynthesis;
+                        let voices = synth.getVoices();
+
+                        if (voices.length) {
+                            resolve(voices.find((voice) => voice.lang && voice.lang.startsWith("hi")));
+                        } else {
+                            synth.onvoiceschanged = () => {
+                                voices = synth.getVoices();
+                                resolve(voices.find((voice) => voice.lang && voice.lang.startsWith("hi")));
+                            };
+                        }
+                    });
+                }
+
+                const hindiVoice = await getHindiVoice();
+
+                if (!hindiVoice) {
+                    alert("Hindi voice not found. Please install Hindi language pack in your device TTS settings.");
+                    return;
+                }
+
+                const synth = window.speechSynthesis;
+
+                function speakLine(index) {
+                    if (index >= lines.length) return;
+
+                    const utterance = new SpeechSynthesisUtterance(lines[index]);
+                    utterance.voice = hindiVoice;
+
+                    utterance.onend = () => {
+                        speakLine(index + 1);
+                    };
+
+                    synth.speak(utterance);
+                }
+
+                speakLine(0);
             }
-            return true;
-        })
-        .map(node => node.textContent.trim())
-        .filter(line => line.length > 0);
-
-    // Get Hindi voice
-    function getHindiVoice() {
-        return new Promise(resolve => {
-            const synth = window.speechSynthesis;
-            let voices = synth.getVoices();
-
-            if (voices.length) {
-                resolve(voices.find(voice => voice.lang && voice.lang.startsWith('hi')));
-            } else {
-                synth.onvoiceschanged = () => {
-                    voices = synth.getVoices();
-                    resolve(voices.find(voice => voice.lang && voice.lang.startsWith('hi')));
-                };
-            }
-        });
-    }
-
-    const hindiVoice = await getHindiVoice();
-
-    if (!hindiVoice) {
-        alert('Hindi voice not found. Please install Hindi language pack in your device TTS settings.');
-        return;
-    }
-
-    const synth = window.speechSynthesis;
-
-    function speakLine(index) {
-        if (index >= lines.length) return;
-
-        const utterance = new SpeechSynthesisUtterance(lines[index]);
-        utterance.voice = hindiVoice;
-
-        utterance.onend = () => {
-            speakLine(index + 1);
-        };
-
-        synth.speak(utterance);
-    }
-
-    speakLine(0);
         </script>
     </head>
     <body>
