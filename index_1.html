@@ -45,7 +45,24 @@
                 const hindiVoice = await getHindiVoice();
 
                 if (!hindiVoice) {
-                    alert("Hindi voice not found. Please install Hindi language pack in your device TTS settings.");
+                    alert(
+                        "Hindi voice not found.\n\n" +
+                            "📱 To install Hindi TTS on your device:\n\n" +
+                            "🔹 Android:\n" +
+                            "1. Open Settings\n" +
+                            '2. Go to "System" > "Languages & input"\n' +
+                            '3. Tap "Text-to-speech output"\n' +
+                            "4. Tap the ⚙️ next to Google Text-to-Speech\n" +
+                            '5. Select "Install voice data"\n' +
+                            '6. Find and install "Hindi (India)"\n\n' +
+                            "🔹 iPhone (iOS):\n" +
+                            "1. Open Settings\n" +
+                            '2. Go to "Accessibility" > "Spoken Content"\n' +
+                            '3. Tap "Voices"\n' +
+                            '4. Select "Hindi" under the "South Asia" section\n' +
+                            "5. Tap the download icon to install\n\n" +
+                            "Once installed, reload the page and try again."
+                    );
                     return;
                 }
 
