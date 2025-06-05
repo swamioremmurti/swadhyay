@@ -10,6 +10,12 @@ body {
     line-height: 2em !important;
 }
 
+.Title{
+    text-align: center;
+    font-size: 2em;
+    font-weight: bold;
+}
+
 .accordion-header {
     background-color: #eee;
     border: none;
