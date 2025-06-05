@@ -14,11 +14,11 @@
             async function speakHindiLines() {
                 const contentDiv = document.getElementById("display");
 
-                // Extract lines excluding <p> elements with class including "Shlok"
+                // Extract lines excluding <p> elements with class containing "shlok" (case-insensitive)
                 const lines = Array.from(contentDiv.childNodes)
                     .filter((node) => {
                         if (node.nodeType === Node.ELEMENT_NODE && node.tagName === "P") {
-                            return !node.className.includes("Shlok");
+                            return !node.className.toLowerCase().includes("shlok");
                         }
                         return true;
                     })
@@ -65,7 +65,6 @@
                 }
 
                 speakLine(0);
-                //
             }
         </script>
     </head>
