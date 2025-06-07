@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ekadashi Calculator</title>
+  <style>
+    #widget {
+      font-family: sans-serif;
+      width: 300px;
+      padding: 1em;
+      background: #f5f5ff;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    #result {
+      font-size: 1.1em;
+      font-weight: bold;
+      color: #005599;
+    }
+  </style>
+</head>
+<body>
+<div id="widget">
+  <p>Next Ekadashi (estimated):</p>
+  <div id="result">Calculating...</div>
+</div>
+
+<script>
+  // Constants
+  const DEG = Math.PI / 180;
+  const EPOCH = new Date(Date.UTC(2000, 0, 1, 12)); // J2000
+
+  // Utility: days since J2000
+  function daysSinceEpoch(date) {
+    return (date - EPOCH) / (1000 * 60 * 60 * 24);
+  }
+
+  // Solar longitude (simplified)
+  function solarLongitude(d) {
+    let g = (357.529 + 0.98560028 * d) % 360; // mean anomaly
+    let q = (280.459 + 0.98564736 * d) % 360; // mean longitude
+    let L = (q + 1.915 * Math.sin(g * DEG) + 0.020 * Math.sin(2 * g * DEG)) % 360;
+    return (L + 360) % 360;
+  }
+
+  // Lunar longitude (simplified)
+  function lunarLongitude(d) {
+    let l0 = (218.316 + 13.176396 * d) % 360; // mean longitude
+    let m = (134.963 + 13.064993 * d) % 360; // moon's anomaly
+    let f = (93.272 + 13.229350 * d) % 360;  // moon's argument of latitude
+    let L = l0 + 6.289 * Math.sin(m * DEG); // + corrections
+    L += 1.274 * Math.sin((2 * (l0 - solarLongitude(d)) - m) * DEG);
+    return (L + 360) % 360;
+  }
+
+  // Compute tithi at sunrise
+  function tithiAtSunrise(date) {
+    const d = daysSinceEpoch(date);
+    const sun = solarLongitude(d);
+    const moon = lunarLongitude(d);
+    let diff = (moon - sun + 360) % 360;
+    return Math.floor(diff / 12) + 1; // 1 to 30
+  }
+
+  // Find next Ekadashi (tithi = 11)
+  function findNextEkadashi() {
+      
+    const now = new Date();
+    for (let i = 0; i < 60; i++) {
+      const testDate = new Date(now.getTime() + i * 86400000);
+      const tithi = tithiAtSunrise(testDate);
+      if (tithi === 11) {
+        return testDate.toDateString();
+      }
+    }
+    return "Not found in 60 days";
+  }
+
+  document.getElementById("result").textContent = findNextEkadashi();
+</script>
+</body>
+</html>
