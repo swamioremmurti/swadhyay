@@ -155,20 +155,14 @@
                     <!-- Side Menu Desktop -->
                     <nav class="col-md-4 d-none d-md-block side-menu" id="desktop-menu">
                         <div class="fw-bold mb-2">
-                            <!--...-->
+                        <!--...-->
                         </div>
                         <div id="desktop-menu-content"></div>
                     </nav>
                     <!-- Main Content -->
                     <main class="col-12 col-md-8 main-content" id="main-scrollable-content">
                         <div id="display"></div>
-                        <div id="content" style="display: none">
-                            
-                            
-                            
-                            
-                            
-                        </div>
+                        <div id="content" style="display: none"></div>
                     </main>
                 </div>
             </div>
@@ -203,29 +197,6 @@
                 const mobileMenu = document.getElementById("mobile-menu-content");
                 const desktopMenu = document.getElementById("desktop-menu-content");
 
-                const progressBar = document.getElementById("progress-bar");
-                let progress = 0;
-                let progressInterval;
-
-                function startProgressBar() {
-                    progress = 0;
-                    progressBar.style.width = "0%";
-                    progressInterval = setInterval(() => {
-                        if (progress < 90) {
-                            progress += Math.random() * 5;
-                            progressBar.style.width = `${progress}%`;
-                        }
-                    }, 200);
-                }
-
-                function completeProgressBar() {
-                    clearInterval(progressInterval);
-                    progressBar.style.width = "100%";
-                    setTimeout(() => {
-                        progressBar.style.width = "0%";
-                    }, 500);
-                }
-
                 const allSubHeadings = [];
                 let currentSubIndex = -1;
 
@@ -237,6 +208,7 @@
                         .join("");
                 }
 
+                // Bootstrap Accordion Section
                 function createAccordionSection(title, sectionId) {
                     const accordionItem = document.createElement("div");
                     accordionItem.className = "accordion-item";
@@ -260,17 +232,14 @@
                     };
                 }
 
+                // Get file param
                 const params = new URLSearchParams(window.location.search);
                 let fileParam = [...params.keys()][0] || "shiva_puran";
                 const fileName = `/books/${fileParam}.html`;
 
-                startProgressBar(); // 🔵 Start progress
-
                 fetch(fileName)
                     .then((response) => response.text())
                     .then((html) => {
-                        completeProgressBar(); // ✅ Complete progress
-
                         const tempDiv = document.createElement("div");
                         tempDiv.innerHTML = html;
                         const contentDiv = tempDiv.querySelector("#content");
@@ -280,6 +249,7 @@
                             return;
                         }
 
+                        // Set Hindi title
                         const titleHindi = contentDiv.querySelector("p.Title-Page---Book-Name-Hindi");
                         if (titleHindi) {
                             const h1 = document.getElementById("book_name_hindi");
@@ -292,6 +262,7 @@
                         let currentAccordionMobile = null;
                         let currentAccordionDesktop = null;
 
+                        // Show intro
                         let introEndIndex = paragraphs.findIndex(
                             (p) => p.classList.contains("Heading") || p.classList.contains("Sub-Heading")
                         );
@@ -301,6 +272,7 @@
                             displayDiv.appendChild(clone);
                         }
 
+                        // Bootstrap Accordions
                         const mobileAccordion = document.createElement("div");
                         mobileAccordion.className = "accordion";
                         mobileAccordion.id = "accordionMenuMobile";
@@ -341,6 +313,7 @@
                                         this.classList.add("active");
 
                                         currentSubIndex = allSubHeadings.indexOf(this);
+
                                         displayDiv.innerHTML = "";
 
                                         const startIndex = paragraphs.indexOf(p);
@@ -362,13 +335,13 @@
                                             displayDiv.appendChild(clone);
                                         }
 
+                                        // Close offcanvas on mobile
                                         if (window.innerWidth < 768) {
                                             const offcanvas = bootstrap.Offcanvas.getInstance(
                                                 document.getElementById("offcanvasMenu")
                                             );
                                             if (offcanvas) offcanvas.hide();
                                         }
-
                                         document
                                             .getElementById("main-scrollable-content")
                                             .scrollTo({ top: 0, behavior: "smooth" });
@@ -380,6 +353,7 @@
                             }
                         });
 
+                        // Navigation logic
                         function navigateToConceptualSubheading(targetConceptualIdx) {
                             const totalConceptualSubHeadings = allSubHeadings.length / 2;
                             if (totalConceptualSubHeadings === 0 && allSubHeadings.length === 0) return;
@@ -391,17 +365,16 @@
                             currentSubIndex = itemIndexToClick;
                             allSubHeadings[itemIndexToClick]?.click();
                         }
-
                         document.getElementById("prev-button").addEventListener("click", () => {
                             const currentConceptualIdx = currentSubIndex === -1 ? -1 : Math.floor(currentSubIndex / 2);
                             navigateToConceptualSubheading(currentConceptualIdx - 1);
                         });
-
                         document.getElementById("next-button").addEventListener("click", () => {
                             const currentConceptualIdx = currentSubIndex === -1 ? -1 : Math.floor(currentSubIndex / 2);
                             navigateToConceptualSubheading(currentConceptualIdx + 1);
                         });
 
+                        // Swipe support
                         const mainScrollableContent = document.getElementById("main-scrollable-content");
                         const hammer = new Hammer(mainScrollableContent);
                         hammer.on("swipeleft", () => {
@@ -413,13 +386,13 @@
                             navigateToConceptualSubheading(currentConceptualIdx - 1);
                         });
 
+                        // Keyboard navigation
                         document.addEventListener("keydown", (e) => {
                             if (e.key === "ArrowLeft") document.getElementById("prev-button").click();
                             if (e.key === "ArrowRight") document.getElementById("next-button").click();
                         });
                     })
                     .catch((err) => {
-                        completeProgressBar(); // 🛑 Still complete the progress bar
                         console.error(`Failed to fetch or process ${fileName}`, err);
                     });
             });
