@@ -155,7 +155,7 @@
                     <!-- Side Menu Desktop -->
                     <nav class="col-md-4 d-none d-md-block side-menu" id="desktop-menu">
                         <div class="fw-bold mb-2">
-                        <!--...-->
+                            <!--...-->
                         </div>
                         <div id="desktop-menu-content"></div>
                     </nav>
@@ -163,10 +163,11 @@
                     <main class="col-12 col-md-8 main-content" id="main-scrollable-content">
                         <div id="display"></div>
                         <div id="content" style="display: none">
-                            <div id="progress-bar-container" style="height: 4px; background-color: #e0e0e0;">
-    <div id="progress-bar" style="width: 0%; height: 100%; background-color: #007bff; transition: width 0.3s;"></div>
-</div>
-                        
+                            
+                            
+                            
+                            
+                            
                         </div>
                     </main>
                 </div>
@@ -198,52 +199,52 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
         <script>
             document.addEventListener("DOMContentLoaded", function () {
-    const displayDiv = document.getElementById("display");
-    const mobileMenu = document.getElementById("mobile-menu-content");
-    const desktopMenu = document.getElementById("desktop-menu-content");
+                const displayDiv = document.getElementById("display");
+                const mobileMenu = document.getElementById("mobile-menu-content");
+                const desktopMenu = document.getElementById("desktop-menu-content");
 
-    const progressBar = document.getElementById("progress-bar");
-    let progress = 0;
-    let progressInterval;
+                const progressBar = document.getElementById("progress-bar");
+                let progress = 0;
+                let progressInterval;
 
-    function startProgressBar() {
-        progress = 0;
-        progressBar.style.width = "0%";
-        progressInterval = setInterval(() => {
-            if (progress < 90) {
-                progress += Math.random() * 5;
-                progressBar.style.width = `${progress}%`;
-            }
-        }, 200);
-    }
+                function startProgressBar() {
+                    progress = 0;
+                    progressBar.style.width = "0%";
+                    progressInterval = setInterval(() => {
+                        if (progress < 90) {
+                            progress += Math.random() * 5;
+                            progressBar.style.width = `${progress}%`;
+                        }
+                    }, 200);
+                }
 
-    function completeProgressBar() {
-        clearInterval(progressInterval);
-        progressBar.style.width = "100%";
-        setTimeout(() => {
-            progressBar.style.width = "0%";
-        }, 500);
-    }
+                function completeProgressBar() {
+                    clearInterval(progressInterval);
+                    progressBar.style.width = "100%";
+                    setTimeout(() => {
+                        progressBar.style.width = "0%";
+                    }, 500);
+                }
 
-    const allSubHeadings = [];
-    let currentSubIndex = -1;
+                const allSubHeadings = [];
+                let currentSubIndex = -1;
 
-    function toHindiNumber(num) {
-        const hindiDigits = ["०", "१", "२", "३", "४", "५", "६", "७", "८", "९"];
-        return String(num)
-            .split("")
-            .map((d) => hindiDigits[parseInt(d)])
-            .join("");
-    }
+                function toHindiNumber(num) {
+                    const hindiDigits = ["०", "१", "२", "३", "४", "५", "६", "७", "८", "९"];
+                    return String(num)
+                        .split("")
+                        .map((d) => hindiDigits[parseInt(d)])
+                        .join("");
+                }
 
-    function createAccordionSection(title, sectionId) {
-        const accordionItem = document.createElement("div");
-        accordionItem.className = "accordion-item";
+                function createAccordionSection(title, sectionId) {
+                    const accordionItem = document.createElement("div");
+                    accordionItem.className = "accordion-item";
 
-        const headerId = `heading-${sectionId}`;
-        const collapseId = `collapse-${sectionId}`;
+                    const headerId = `heading-${sectionId}`;
+                    const collapseId = `collapse-${sectionId}`;
 
-        accordionItem.innerHTML = `
+                    accordionItem.innerHTML = `
           <h2 class="accordion-header" id="${headerId}">
             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#${collapseId}" aria-expanded="false" aria-controls="${collapseId}">
               ${title}
@@ -253,176 +254,175 @@
             <div class="accordion-body p-0"></div>
           </div>
         `;
-        return {
-            section: accordionItem,
-            content: accordionItem.querySelector(".accordion-body")
-        };
-    }
+                    return {
+                        section: accordionItem,
+                        content: accordionItem.querySelector(".accordion-body")
+                    };
+                }
 
-    const params = new URLSearchParams(window.location.search);
-    let fileParam = [...params.keys()][0] || "shiva_puran";
-    const fileName = `/books/${fileParam}.html`;
+                const params = new URLSearchParams(window.location.search);
+                let fileParam = [...params.keys()][0] || "shiva_puran";
+                const fileName = `/books/${fileParam}.html`;
 
-    startProgressBar(); // 🔵 Start progress
+                startProgressBar(); // 🔵 Start progress
 
-    fetch(fileName)
-        .then((response) => response.text())
-        .then((html) => {
-            completeProgressBar(); // ✅ Complete progress
+                fetch(fileName)
+                    .then((response) => response.text())
+                    .then((html) => {
+                        completeProgressBar(); // ✅ Complete progress
 
-            const tempDiv = document.createElement("div");
-            tempDiv.innerHTML = html;
-            const contentDiv = tempDiv.querySelector("#content");
+                        const tempDiv = document.createElement("div");
+                        tempDiv.innerHTML = html;
+                        const contentDiv = tempDiv.querySelector("#content");
 
-            if (!contentDiv) {
-                console.error(`No div with ID 'content' found in ${fileName}`);
-                return;
-            }
+                        if (!contentDiv) {
+                            console.error(`No div with ID 'content' found in ${fileName}`);
+                            return;
+                        }
 
-            const titleHindi = contentDiv.querySelector("p.Title-Page---Book-Name-Hindi");
-            if (titleHindi) {
-                const h1 = document.getElementById("book_name_hindi");
-                if (h1) h1.textContent = titleHindi.textContent.trim();
-            }
+                        const titleHindi = contentDiv.querySelector("p.Title-Page---Book-Name-Hindi");
+                        if (titleHindi) {
+                            const h1 = document.getElementById("book_name_hindi");
+                            if (h1) h1.textContent = titleHindi.textContent.trim();
+                        }
 
-            const paragraphs = Array.from(contentDiv.querySelectorAll("p"));
-            let subHeadingCount = 0;
-            let sectionIndex = 0;
-            let currentAccordionMobile = null;
-            let currentAccordionDesktop = null;
+                        const paragraphs = Array.from(contentDiv.querySelectorAll("p"));
+                        let subHeadingCount = 0;
+                        let sectionIndex = 0;
+                        let currentAccordionMobile = null;
+                        let currentAccordionDesktop = null;
 
-            let introEndIndex = paragraphs.findIndex(
-                (p) => p.classList.contains("Heading") || p.classList.contains("Sub-Heading")
-            );
-            if (introEndIndex === -1) introEndIndex = paragraphs.length;
-            for (let i = 0; i < introEndIndex; i++) {
-                const clone = paragraphs[i].cloneNode(true);
-                displayDiv.appendChild(clone);
-            }
+                        let introEndIndex = paragraphs.findIndex(
+                            (p) => p.classList.contains("Heading") || p.classList.contains("Sub-Heading")
+                        );
+                        if (introEndIndex === -1) introEndIndex = paragraphs.length;
+                        for (let i = 0; i < introEndIndex; i++) {
+                            const clone = paragraphs[i].cloneNode(true);
+                            displayDiv.appendChild(clone);
+                        }
 
-            const mobileAccordion = document.createElement("div");
-            mobileAccordion.className = "accordion";
-            mobileAccordion.id = "accordionMenuMobile";
-            mobileMenu.appendChild(mobileAccordion);
+                        const mobileAccordion = document.createElement("div");
+                        mobileAccordion.className = "accordion";
+                        mobileAccordion.id = "accordionMenuMobile";
+                        mobileMenu.appendChild(mobileAccordion);
 
-            const desktopAccordion = document.createElement("div");
-            desktopAccordion.className = "accordion";
-            desktopAccordion.id = "accordionMenuDesktop";
-            desktopMenu.appendChild(desktopAccordion);
+                        const desktopAccordion = document.createElement("div");
+                        desktopAccordion.className = "accordion";
+                        desktopAccordion.id = "accordionMenuDesktop";
+                        desktopMenu.appendChild(desktopAccordion);
 
-            paragraphs.forEach((p) => {
-                if (p.classList.contains("Heading")) {
-                    sectionIndex++;
-                    const sectionId = `${sectionIndex}`;
-                    const mobileSec = createAccordionSection(p.textContent, `mobile${sectionId}`);
-                    mobileAccordion.appendChild(mobileSec.section);
-                    currentAccordionMobile = mobileSec.content;
+                        paragraphs.forEach((p) => {
+                            if (p.classList.contains("Heading")) {
+                                sectionIndex++;
+                                const sectionId = `${sectionIndex}`;
+                                const mobileSec = createAccordionSection(p.textContent, `mobile${sectionId}`);
+                                mobileAccordion.appendChild(mobileSec.section);
+                                currentAccordionMobile = mobileSec.content;
 
-                    const desktopSec = createAccordionSection(p.textContent, `desktop${sectionId}`);
-                    desktopAccordion.appendChild(desktopSec.section);
-                    currentAccordionDesktop = desktopSec.content;
+                                const desktopSec = createAccordionSection(p.textContent, `desktop${sectionId}`);
+                                desktopAccordion.appendChild(desktopSec.section);
+                                currentAccordionDesktop = desktopSec.content;
 
-                    subHeadingCount = 0;
-                } else if (p.classList.contains("Sub-Heading")) {
-                    subHeadingCount++;
-                    const text = `${toHindiNumber(subHeadingCount)}. ${p.textContent}`;
+                                subHeadingCount = 0;
+                            } else if (p.classList.contains("Sub-Heading")) {
+                                subHeadingCount++;
+                                const text = `${toHindiNumber(subHeadingCount)}. ${p.textContent}`;
 
-                    [currentAccordionMobile, currentAccordionDesktop].forEach((container) => {
-                        const item = document.createElement("div");
-                        item.className = "subheading-link px-2 py-1";
-                        item.style.cursor = "pointer";
-                        item.textContent = text;
+                                [currentAccordionMobile, currentAccordionDesktop].forEach((container) => {
+                                    const item = document.createElement("div");
+                                    item.className = "subheading-link px-2 py-1";
+                                    item.style.cursor = "pointer";
+                                    item.textContent = text;
 
-                        item.addEventListener("click", function () {
-                            document
-                                .querySelectorAll(".subheading-link.active")
-                                .forEach((el) => el.classList.remove("active"));
-                            this.classList.add("active");
+                                    item.addEventListener("click", function () {
+                                        document
+                                            .querySelectorAll(".subheading-link.active")
+                                            .forEach((el) => el.classList.remove("active"));
+                                        this.classList.add("active");
 
-                            currentSubIndex = allSubHeadings.indexOf(this);
-                            displayDiv.innerHTML = "";
+                                        currentSubIndex = allSubHeadings.indexOf(this);
+                                        displayDiv.innerHTML = "";
 
-                            const startIndex = paragraphs.indexOf(p);
-                            let endIndex = paragraphs.length;
+                                        const startIndex = paragraphs.indexOf(p);
+                                        let endIndex = paragraphs.length;
 
-                            for (let i = startIndex + 1; i < paragraphs.length; i++) {
-                                const next = paragraphs[i];
-                                if (
-                                    next.classList.contains("Heading") ||
-                                    next.classList.contains("Sub-Heading")
-                                ) {
-                                    endIndex = i;
-                                    break;
-                                }
+                                        for (let i = startIndex + 1; i < paragraphs.length; i++) {
+                                            const next = paragraphs[i];
+                                            if (
+                                                next.classList.contains("Heading") ||
+                                                next.classList.contains("Sub-Heading")
+                                            ) {
+                                                endIndex = i;
+                                                break;
+                                            }
+                                        }
+
+                                        for (let i = startIndex; i < endIndex; i++) {
+                                            const clone = paragraphs[i].cloneNode(true);
+                                            displayDiv.appendChild(clone);
+                                        }
+
+                                        if (window.innerWidth < 768) {
+                                            const offcanvas = bootstrap.Offcanvas.getInstance(
+                                                document.getElementById("offcanvasMenu")
+                                            );
+                                            if (offcanvas) offcanvas.hide();
+                                        }
+
+                                        document
+                                            .getElementById("main-scrollable-content")
+                                            .scrollTo({ top: 0, behavior: "smooth" });
+                                    });
+
+                                    container && container.appendChild(item);
+                                    allSubHeadings.push(item);
+                                });
                             }
-
-                            for (let i = startIndex; i < endIndex; i++) {
-                                const clone = paragraphs[i].cloneNode(true);
-                                displayDiv.appendChild(clone);
-                            }
-
-                            if (window.innerWidth < 768) {
-                                const offcanvas = bootstrap.Offcanvas.getInstance(
-                                    document.getElementById("offcanvasMenu")
-                                );
-                                if (offcanvas) offcanvas.hide();
-                            }
-
-                            document
-                                .getElementById("main-scrollable-content")
-                                .scrollTo({ top: 0, behavior: "smooth" });
                         });
 
-                        container && container.appendChild(item);
-                        allSubHeadings.push(item);
+                        function navigateToConceptualSubheading(targetConceptualIdx) {
+                            const totalConceptualSubHeadings = allSubHeadings.length / 2;
+                            if (totalConceptualSubHeadings === 0 && allSubHeadings.length === 0) return;
+                            targetConceptualIdx = Math.max(
+                                0,
+                                Math.min(targetConceptualIdx, totalConceptualSubHeadings - 1)
+                            );
+                            const itemIndexToClick = targetConceptualIdx * 2;
+                            currentSubIndex = itemIndexToClick;
+                            allSubHeadings[itemIndexToClick]?.click();
+                        }
+
+                        document.getElementById("prev-button").addEventListener("click", () => {
+                            const currentConceptualIdx = currentSubIndex === -1 ? -1 : Math.floor(currentSubIndex / 2);
+                            navigateToConceptualSubheading(currentConceptualIdx - 1);
+                        });
+
+                        document.getElementById("next-button").addEventListener("click", () => {
+                            const currentConceptualIdx = currentSubIndex === -1 ? -1 : Math.floor(currentSubIndex / 2);
+                            navigateToConceptualSubheading(currentConceptualIdx + 1);
+                        });
+
+                        const mainScrollableContent = document.getElementById("main-scrollable-content");
+                        const hammer = new Hammer(mainScrollableContent);
+                        hammer.on("swipeleft", () => {
+                            const currentConceptualIdx = currentSubIndex === -1 ? -1 : Math.floor(currentSubIndex / 2);
+                            navigateToConceptualSubheading(currentConceptualIdx + 1);
+                        });
+                        hammer.on("swiperight", () => {
+                            const currentConceptualIdx = currentSubIndex === -1 ? -1 : Math.floor(currentSubIndex / 2);
+                            navigateToConceptualSubheading(currentConceptualIdx - 1);
+                        });
+
+                        document.addEventListener("keydown", (e) => {
+                            if (e.key === "ArrowLeft") document.getElementById("prev-button").click();
+                            if (e.key === "ArrowRight") document.getElementById("next-button").click();
+                        });
+                    })
+                    .catch((err) => {
+                        completeProgressBar(); // 🛑 Still complete the progress bar
+                        console.error(`Failed to fetch or process ${fileName}`, err);
                     });
-                }
             });
-
-            function navigateToConceptualSubheading(targetConceptualIdx) {
-                const totalConceptualSubHeadings = allSubHeadings.length / 2;
-                if (totalConceptualSubHeadings === 0 && allSubHeadings.length === 0) return;
-                targetConceptualIdx = Math.max(
-                    0,
-                    Math.min(targetConceptualIdx, totalConceptualSubHeadings - 1)
-                );
-                const itemIndexToClick = targetConceptualIdx * 2;
-                currentSubIndex = itemIndexToClick;
-                allSubHeadings[itemIndexToClick]?.click();
-            }
-
-            document.getElementById("prev-button").addEventListener("click", () => {
-                const currentConceptualIdx = currentSubIndex === -1 ? -1 : Math.floor(currentSubIndex / 2);
-                navigateToConceptualSubheading(currentConceptualIdx - 1);
-            });
-
-            document.getElementById("next-button").addEventListener("click", () => {
-                const currentConceptualIdx = currentSubIndex === -1 ? -1 : Math.floor(currentSubIndex / 2);
-                navigateToConceptualSubheading(currentConceptualIdx + 1);
-            });
-
-            const mainScrollableContent = document.getElementById("main-scrollable-content");
-            const hammer = new Hammer(mainScrollableContent);
-            hammer.on("swipeleft", () => {
-                const currentConceptualIdx = currentSubIndex === -1 ? -1 : Math.floor(currentSubIndex / 2);
-                navigateToConceptualSubheading(currentConceptualIdx + 1);
-            });
-            hammer.on("swiperight", () => {
-                const currentConceptualIdx = currentSubIndex === -1 ? -1 : Math.floor(currentSubIndex / 2);
-                navigateToConceptualSubheading(currentConceptualIdx - 1);
-            });
-
-            document.addEventListener("keydown", (e) => {
-                if (e.key === "ArrowLeft") document.getElementById("prev-button").click();
-                if (e.key === "ArrowRight") document.getElementById("next-button").click();
-            });
-        })
-        .catch((err) => {
-            completeProgressBar(); // 🛑 Still complete the progress bar
-            console.error(`Failed to fetch or process ${fileName}`, err);
-        });
-});
-
         </script>
     </body>
 </html>
