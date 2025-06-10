@@ -328,9 +328,9 @@ body,
 }
 .app-header,
 .app-footer {
-    background: linear-gradient(0deg, rgba(255, 95, 109, 1), rgba(255, 195, 113, 1));
-    -webkit-background: linear-gradient(0deg, rgba(255, 95, 109, 1), rgba(255, 195, 113, 1));
-    -moz-background: linear-gradient(0deg, rgba(255, 95, 109, 1), rgba(255, 195, 113, 1));
+    background: linear-gradient(120deg, rgba(251, 194, 235, 1), rgba(166, 193, 238, 1));
+-webkit-background: linear-gradient(120deg, rgba(251, 194, 235, 1), rgba(166, 193, 238, 1));
+-moz-background: linear-gradient(120deg, rgba(251, 194, 235, 1), rgba(166, 193, 238, 1));
     color: #fff;
     height: 56px;
     display: flex;
