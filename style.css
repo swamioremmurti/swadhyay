@@ -3,17 +3,24 @@
     src: url("fonts/siddhanta1.ttf");
 }
 
-
 body {
     font-family: "sanskrit" !important;
     font-size: 1.2em;
     line-height: 2em !important;
 }
 
-.Title{
+.Title {
     text-align: center;
-    font-size: 2em;
+    font-size: 2.5em;
     font-weight: bold;
+    color: crimson;
+}
+
+.Sub-Title {
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: 500;
+    color: Red;
 }
 
 .accordion-header {
@@ -29,11 +36,16 @@ body {
     line-height: 1.5em;
 }
 
+.accordion {
+    padding-bottom: 250px;
+}
+
 .accordion-content {
     display: none;
     padding: 10px;
     border-left: 2px solid #ccc;
     margin-bottom: 10px;
+    padding-bottom: 250px;
 }
 
 .accordion-content.active {
@@ -75,7 +87,8 @@ p {
     padding: 10px;
 }
 
-.Sub-Heading,.Sub-Heading-2,
+.Sub-Heading,
+.Sub-Heading-2,
 .Numbers {
     color: darkred;
     text-align: center;
@@ -315,7 +328,14 @@ body,
 }
 .app-header,
 .app-footer {
-    background: #3880ff;
+    background: #ff1919;
+    background: linear-gradient(
+        0deg,
+        rgba(255, 25, 25, 1) 0%,
+        rgba(153, 12, 12, 1) 38%,
+        rgba(153, 12, 12, 1) 66%,
+        rgba(255, 0, 0, 1) 100%
+    );
     color: #fff;
     height: 56px;
     display: flex;
@@ -358,7 +378,7 @@ body,
     color: #0a2976;
     font-weight: bold;
 }
-#display{
+#display {
     padding-bottom: 50px;
 }
 
