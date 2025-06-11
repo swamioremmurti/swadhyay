@@ -432,3 +432,8 @@ body,
         padding: 0.5rem 0;
     }
 }
+
+.author {
+    text-align: center;
+    font-weight: bold;
+}
