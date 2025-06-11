@@ -449,3 +449,16 @@ body,
 .TXT-Bold {
     font-weight: bold;
 }
+
+.Center {
+    text-align: center;
+    
+}
+
+.Bold {
+    font-weight: bold;
+}
+
+.Right {
+    text-align: right;
+}
