@@ -437,3 +437,7 @@ body,
     text-align: center;
     font-weight: bold;
 }
+
+.char-style-override-6 {
+    font-weight: 600;
+}
