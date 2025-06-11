@@ -155,7 +155,7 @@
                     <!-- Side Menu Desktop -->
                     <nav class="col-md-4 d-none d-md-block side-menu" id="desktop-menu">
                         <div class="fw-bold mb-2">
-                        <!--...-->
+                            <!--...-->
                         </div>
                         <div id="desktop-menu-content"></div>
                     </nav>
@@ -168,10 +168,17 @@
             </div>
 
             <!-- Footer -->
-            <footer class="app-footer flex-shrink-0">
-                <button id="prev-button">← Prev</button>
-                <button id="read-button" onclick="speakHindiLines()">Read</button>
-                <button id="next-button">Next →</button>
+            <footer class="app-footer flex-shrink-1">
+                <div class="container-fluid flex-grow-1 d-flex flex-column px-0">
+                    <div class="row flex-grow-1 gx-0">
+                        <div class="col-md-4 d-none d-md-block"></div>
+                        <div class="col-md-8 d-none d-md-block">
+                            <button id="prev-button">← Prev</button>
+                            <button id="read-button" onclick="speakHindiLines()">Read</button>
+                            <button id="next-button">Next →</button>
+                        </div>
+                    </div>
+                </div>
             </footer>
         </div>
 
