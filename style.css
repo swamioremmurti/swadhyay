@@ -441,3 +441,11 @@ body,
 .char-style-override-6 {
     font-weight: 600;
 }
+
+.para-style-override-3 {
+    text-align: right;
+}
+
+.TXT-Bold {
+    font-weight: bold;
+}
