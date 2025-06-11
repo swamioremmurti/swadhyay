@@ -253,17 +253,15 @@
                 const fileName = `/books/${fileParam}.html`;
 
                 const progressKey = "readingProgress";
-                const savedProgress = JSON.parse(localStorage.getItem(progressKey));
+                const allProgress = JSON.parse(localStorage.getItem(progressKey) || "{}");
                 let startAtChapterIndex = -1;
 
-                if (savedProgress && savedProgress.book === fileParam) {
+                if (allProgress[fileParam] && allProgress[fileParam].chapterIndex !== undefined) {
                     const resume = confirm(
                         "पिछली बार की स्थिति से पढ़ना चाहेंगे?\n\nWould you like to resume from where you left off?"
                     );
                     if (resume) {
-                        startAtChapterIndex = savedProgress.chapterIndex;
-                    } else {
-                        localStorage.removeItem(progressKey);
+                        startAtChapterIndex = allProgress[fileParam].chapterIndex;
                     }
                 }
 
@@ -345,13 +343,8 @@
                                         currentSubIndex = allSubHeadings.indexOf(this);
 
                                         // Save progress to localStorage
-                                        localStorage.setItem(
-                                            progressKey,
-                                            JSON.stringify({
-                                                book: fileParam,
-                                                chapterIndex: currentSubIndex
-                                            })
-                                        );
+                                        allProgress[fileParam] = { chapterIndex: currentSubIndex };
+                                        localStorage.setItem(progressKey, JSON.stringify(allProgress));
 
                                         displayDiv.innerHTML = "";
 
