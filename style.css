@@ -151,6 +151,11 @@ p {
     /*font-size: 1.5 em;*/
 }
 
+.Uvach{
+    text-align: center;
+    font-style: italic;
+}
+
 .Page-Break {
     text-align: center;
     display: block;
