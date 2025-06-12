@@ -467,3 +467,9 @@ body,
 .Right {
     text-align: right;
 }
+
+.devta {
+    text-align: center;
+    font-style: italic;
+        
+}
