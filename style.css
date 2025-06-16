@@ -473,3 +473,16 @@ body,
     font-style: italic;
         
 }
+
+.Sub-Head-2 {
+    text-align: center;
+    font-weight: bold;
+}
+
+.char-style-override-2 {
+    font-weight: bold;
+}
+
+.TXT-Right {
+    text-align: right;
+}
