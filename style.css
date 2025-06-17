@@ -486,3 +486,15 @@ body,
 .TXT-Right {
     text-align: right;
 }
+
+.blue {
+    color:blue;
+}
+
+.pink {
+    color: orangered;
+}
+
+.ocean-blue {
+    color: purple;
+}
