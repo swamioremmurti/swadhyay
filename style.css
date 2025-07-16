@@ -498,3 +498,12 @@ body,
 .ocean-blue {
     color: purple;
 }
+
+
+.disabled-link {
+  
+  pointer-events: none; /* makes it unclickable */
+  color: gray;          /* styling to look disabled */
+  text-decoration: none;
+  cursor: default;
+}
