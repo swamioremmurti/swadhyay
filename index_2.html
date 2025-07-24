@@ -6,34 +6,80 @@
         <title>स्वाध्याय - हिन्दू शास्त्र संग्रह</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari&display=swap" rel="stylesheet" />
         <style>
             body {
                 font-family: "Noto Sans Devanagari", sans-serif;
                 background-color: #f8f9fa;
             }
+
             .category-card {
                 transition:
                     transform 0.2s ease,
                     box-shadow 0.2s ease;
                 cursor: pointer;
             }
+
             .category-card:hover {
                 transform: translateY(-5px);
                 box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
             }
+
             .hero {
+                position: relative;
                 background: url("images/Mount-Kailash.png") center center/cover;
                 color: white;
-                padding: 40px 0;
+                padding: 20px 0;
                 text-align: center;
+                overflow: hidden;
             }
+
+            .hero::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.5);
+                z-index: 1;
+            }
+
+            .hero > * {
+                position: relative;
+                z-index: 2;
+            }
+
             .hero h1 {
                 font-weight: 700;
                 color: yellow;
                 font-size: 3em;
             }
+
+            .card-detail {
+                margin-top: 0px;
+                border: none;
+
+                animation: fadeIn 0.3s ease-in-out;
+            }
+
+            h5 {
+                font-weight: bold;
+                color: #b90861;
+            }
+
+            @keyframes fadeIn {
+                from {
+                    opacity: 0;
+                    transform: translateY(10px);
+                }
+
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
         </style>
-        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari&display=swap" rel="stylesheet" />
     </head>
     <body>
         <!-- Hero Section -->
@@ -47,9 +93,9 @@
         <!-- Categories Section -->
         <section class="py-5">
             <div class="container">
-                <div class="row g-4">
+                <div class="row g-4" id="category-row">
                     <!-- Vedas -->
-                    <div class="col-md-4">
+                    <div class="col-md-4 col-6 category-col" data-id="ved" data-title="वेद">
                         <div class="card category-card text-center p-4">
                             <i class="fas fa-book fa-2x mb-3 text-primary"></i>
                             <h5 class="card-title">वेद</h5>
@@ -57,7 +103,7 @@
                         </div>
                     </div>
                     <!-- Upanishads -->
-                    <div class="col-md-4">
+                    <div class="col-md-4 col-6 category-col" data-id="upanishad" data-title="उपनिषद्">
                         <div class="card category-card text-center p-4">
                             <i class="fas fa-scroll fa-2x mb-3 text-success"></i>
                             <h5 class="card-title">उपनिषद्</h5>
@@ -65,7 +111,7 @@
                         </div>
                     </div>
                     <!-- Puranas -->
-                    <div class="col-md-4">
+                    <div class="col-md-4 col-6 category-col" data-id="puran" data-title="पुराण">
                         <div class="card category-card text-center p-4">
                             <i class="fas fa-atlas fa-2x mb-3 text-warning"></i>
                             <h5 class="card-title">पुराण</h5>
@@ -73,7 +119,7 @@
                         </div>
                     </div>
                     <!-- Itihasas -->
-                    <div class="col-md-4">
+                    <div class="col-md-4 col-6 category-col" data-id="itihas" data-title="इतिहास">
                         <div class="card category-card text-center p-4">
                             <i class="fas fa-feather fa-2x mb-3 text-danger"></i>
                             <h5 class="card-title">इतिहास</h5>
@@ -81,7 +127,7 @@
                         </div>
                     </div>
                     <!-- Gita Sangrah -->
-                    <div class="col-md-4">
+                    <div class="col-md-4 col-6 category-col" data-id="gita" data-title="गीता संहिता">
                         <div class="card category-card text-center p-4">
                             <i class="fas fa-chess-board fa-2x mb-3 text-info"></i>
                             <h5 class="card-title">गीता संहिता</h5>
@@ -89,7 +135,7 @@
                         </div>
                     </div>
                     <!-- Stotras -->
-                    <div class="col-md-4">
+                    <div class="col-md-4 col-6 category-col" data-id="stotra" data-title="स्तोत्र">
                         <div class="card category-card text-center p-4">
                             <i class="fas fa-praying-hands fa-2x mb-3 text-secondary"></i>
                             <h5 class="card-title">स्तोत्र</h5>
@@ -100,9 +146,66 @@
             </div>
         </section>
 
+        <!-- Hidden templates -->
+        <div style="display: none">
+            <div id="ved-template">
+                <h5>वेदों का विस्तृत परिचय</h5>
+                <p>चार वेद: ऋग्वेद, यजुर्वेद, सामवेद और अथर्ववेद। ये हिन्दू धर्म के प्राचीनतम ग्रंथ हैं।</p>
+            </div>
+            <div id="upanishad-template">
+                <h5>उपनिषदों की झलक</h5>
+                <p>उपनिषद आध्यात्मिक ज्ञान और ब्रह्मविद्या का मूल स्रोत हैं।</p>
+            </div>
+            <div id="puran-template">
+                <h5>पुराणों का महत्व</h5>
+                <p>पुराणों में सृष्टि, देवताओं, अवतारों और धर्म की विविध कथाएँ हैं।</p>
+            </div>
+            <div id="itihas-template">
+                <h5>इतिहास ग्रंथ</h5>
+                <!--<p>रामायण और महाभारत — दो महाकाव्य जो धर्म, नीति और इतिहास का आधार हैं।</p>-->
+                
+            </div>
+            <div id="gita-template">
+                <h5>गीता संहिता</h5>
+                <p>भगवद्गीता सहित अन्य अनेक गीता जैसे अष्टावक्र गीता, उद्धव गीता आदि।</p>
+            </div>
+            <div id="stotra-template">
+                <h5>स्तोत्र संग्रह</h5>
+                <p>विविध देवताओं को समर्पित स्तोत्र, चालीसा, आरती और प्रार्थनाएँ।</p>
+            </div>
+        </div>
+
         <!-- Footer -->
         <footer class="text-center py-3">© 2025 स्वाध्याय | सभी अधिकार सुरक्षित</footer>
 
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Scripts -->
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                const cards = document.querySelectorAll(".category-col");
+
+                cards.forEach((card, index) => {
+                    card.addEventListener("click", () => {
+                        // Remove existing detail section if present
+                        const existing = document.querySelector(".card-detail");
+                        if (existing) existing.remove();
+
+                        const screenWidth = window.innerWidth;
+                        const perRow = screenWidth < 768 ? 2 : 3;
+                        const rowEndIndex = index + (perRow - (index % perRow)) - 1;
+                        const lastCard = cards[Math.min(rowEndIndex, cards.length - 1)];
+
+                        const idBase = card.getAttribute("data-id");
+                        const templateEl = document.getElementById(`${idBase}-template`);
+                        if (!templateEl) return;
+
+                        const wrapper = document.createElement("div");
+                        wrapper.className = "col-12 card-detail";
+                        wrapper.innerHTML = '<div class="card p-4 bg-light border">' + templateEl.innerHTML + "</div>";
+
+                        lastCard.parentElement.insertBefore(wrapper, lastCard.nextSibling);
+                    });
+                });
+            });
+        </script>
     </body>
 </html>
