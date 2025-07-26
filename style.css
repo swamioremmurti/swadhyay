@@ -510,3 +510,7 @@ body,
 .hidden {
     display: none;
 }
+
+.justify {
+    text-align: justify;
+}
