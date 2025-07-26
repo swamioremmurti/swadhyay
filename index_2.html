@@ -9,7 +9,7 @@
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari&display=swap" rel="stylesheet" />
         <link rel="stylesheet" href="includes/swiper-bundle.min.css" />
-        <script src="includes/swiper-bundle.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
         <style>
             body {
@@ -63,7 +63,6 @@
             .card-detail {
                 margin-top: 0px;
                 border: none;
-
                 animation: fadeIn 0.3s ease-in-out;
             }
 
@@ -83,27 +82,6 @@
                     transform: translateY(0);
                 }
             }
-        </style>
-        <style>
-            body {
-                font-family: "Noto Sans Devanagari", serif;
-            }
-            .logo {
-                font-size: 1.5rem;
-                font-weight: bold;
-                color: #c89f0d;
-            }
-            /* Menu item styling */
-            .navbar-nav .nav-item .nav-link {
-                font-size: 1.5rem; /* Increase size of main menu items */
-                font-weight: bold; /* Make main menu items bold */
-            }
-
-            /* Dropdown menu item styling */
-            .dropdown-menu .dropdown-item {
-                font-size: 1.2rem; /* Increase size of sub-menu items */
-                font-weight: bold; /* Make sub-menu items bold */
-            }
 
             .section-title {
                 font-size: 2rem;
@@ -111,12 +89,19 @@
                 font-weight: bold;
                 color: goldenrod;
             }
+
+            .swiper {
+                width: 100%;
+                padding-bottom: 20px;
+            }
+
             .swiper-slide {
                 text-align: center;
             }
+
             .book-image {
                 width: auto;
-                height: 200px;
+                height: 180px;
                 border-radius: 8px;
                 box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             }
@@ -131,38 +116,6 @@
                 color: maroon;
                 font-weight: bold;
                 text-align: center;
-                text-decoration: none !important;
-            }
-
-            .accordion-content .Sub-Heading {
-                font-size: 1em;
-            }
-            @media (min-width: 992px) {
-                .dropdown-menu {
-                    width: 100%;
-                    padding: 20px;
-                }
-
-                .dropdown-menu .dropdown-item {
-                    display: inline-block;
-                    width: 23%; /* 4 columns */
-                    margin: 5px 1%;
-                    box-sizing: border-box;
-                }
-            }
-
-            /* Mobile Version: Adjust to normal dropdown */
-            @media (max-width: 991px) {
-                .dropdown-menu .dropdown-item {
-                    width: 100%; /* Full width on mobile */
-                    display: block;
-                }
-            }
-
-            /* Styling for dropdown divider */
-            .dropdown-divider {
-                border-top: 1px solid #ccc;
-                margin: 10px 0;
             }
         </style>
     </head>
@@ -179,59 +132,54 @@
         <section class="py-5">
             <div class="container">
                 <div class="row g-4" id="category-row">
-                    <!-- Vedas -->
-                    <div class="col-md-4 col-6 category-col" data-id="ved" data-title="वेद">
+                    <!-- Cards -->
+                    <div class="col-md-4 col-6 category-col" data-id="ved">
                         <div class="card category-card text-center p-4">
                             <i class="fas fa-book fa-2x mb-3 text-primary"></i>
-                            <h5 class="card-title">वेद</h5>
-                            <p class="card-text">ऋग्वेद, यजुर्वेद, सामवेद, अथर्ववेद</p>
+                            <h5>वेद</h5>
+                            <p>ऋग्वेद, यजुर्वेद, सामवेद, अथर्ववेद</p>
                         </div>
                     </div>
-                    <!-- Upanishads -->
-                    <div class="col-md-4 col-6 category-col" data-id="upanishad" data-title="उपनिषद्">
+                    <div class="col-md-4 col-6 category-col" data-id="upanishad">
                         <div class="card category-card text-center p-4">
                             <i class="fas fa-scroll fa-2x mb-3 text-success"></i>
-                            <h5 class="card-title">उपनिषद्</h5>
-                            <p class="card-text">प्रमुख उपनिषदों के शुद्ध संस्करण</p>
+                            <h5>उपनिषद्</h5>
+                            <p>प्रमुख उपनिषदों के शुद्ध संस्करण</p>
                         </div>
                     </div>
-                    <!-- Puranas -->
-                    <div class="col-md-4 col-6 category-col" data-id="puran" data-title="पुराण">
+                    <div class="col-md-4 col-6 category-col" data-id="puran">
                         <div class="card category-card text-center p-4">
                             <i class="fas fa-atlas fa-2x mb-3 text-warning"></i>
-                            <h5 class="card-title">पुराण</h5>
-                            <p class="card-text">अठारह पुराणों का संग्रह</p>
+                            <h5>पुराण</h5>
+                            <p>अठारह पुराणों का संग्रह</p>
                         </div>
                     </div>
-                    <!-- Itihasas -->
-                    <div class="col-md-4 col-6 category-col" data-id="itihas" data-title="इतिहास">
+                    <div class="col-md-4 col-6 category-col" data-id="itihas">
                         <div class="card category-card text-center p-4">
                             <i class="fas fa-feather fa-2x mb-3 text-danger"></i>
-                            <h5 class="card-title">इतिहास</h5>
-                            <p class="card-text">रामायण और महाभारत</p>
+                            <h5>इतिहास</h5>
+                            <p>रामायण और महाभारत</p>
                         </div>
                     </div>
-                    <!-- Gita Sangrah -->
-                    <div class="col-md-4 col-6 category-col" data-id="gita" data-title="गीता संहिता">
+                    <div class="col-md-4 col-6 category-col" data-id="gita">
                         <div class="card category-card text-center p-4">
                             <i class="fas fa-chess-board fa-2x mb-3 text-info"></i>
-                            <h5 class="card-title">गीता संहिता</h5>
-                            <p class="card-text">श्रीमद्भगवद्गीता एवं अन्य गीता</p>
+                            <h5>गीता संहिता</h5>
+                            <p>श्रीमद्भगवद्गीता एवं अन्य गीता</p>
                         </div>
                     </div>
-                    <!-- Stotras -->
-                    <div class="col-md-4 col-6 category-col" data-id="stotra" data-title="स्तोत्र">
+                    <div class="col-md-4 col-6 category-col" data-id="stotra">
                         <div class="card category-card text-center p-4">
                             <i class="fas fa-praying-hands fa-2x mb-3 text-secondary"></i>
-                            <h5 class="card-title">स्तोत्र</h5>
-                            <p class="card-text">विविध स्तोत्र और प्रार्थनाएँ</p>
+                            <h5>स्तोत्र</h5>
+                            <p>विविध स्तोत्र और प्रार्थनाएँ</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Hidden templates -->
+        <!-- Hidden Templates -->
         <div style="display: none">
             <div id="ved-template">
                 <h5>वेदों का विस्तृत परिचय</h5>
@@ -244,59 +192,50 @@
                     संरक्षित किया।
                 </p>
 
-                <div class="container">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="section-title">वेद</div>
-                            <div class="swiper ved-swiper">
-                                <div class="swiper-wrapper">
-                                    <div class="swiper-slide">
-                                        <a href="index_1.html?rigveda">
-                                            <img src="images/rigveda.png" class="book-image" alt="ऋग्वेद" />
-                                            <div class="book-title">ऋग्वेद</div></a
-                                        >
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <a href="index_1.html?vedasama">
-                                            <img src="images/samaveda.png" class="book-image" alt="सामवेद" />
-                                            <div class="book-title">सामवेद</div></a
-                                        >
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <a href="index_1.html?vedayajur">
-                                            <img src="images/yajurved.png" class="book-image" alt="यजुर्वेद" />
-                                            <div class="book-title">यजुर्वेद</div>
-                                        </a>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <img src="images/atarvaved.png" class="book-image" alt="अथर्ववेद" />
-                                        <div class="book-title">अथर्ववेद</div>
-                                    </div>
-                                </div>
-                            </div>
+                <div class="section-title">वेद</div>
+                <div class="swiper ved-swiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <a href="index_1.html?rigveda">
+                                <img src="images/rigveda.png" class="book-image" alt="ऋग्वेद" />
+                                <div class="book-title">ऋग्वेद</div>
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="index_1.html?vedasama">
+                                <img src="images/samaveda.png" class="book-image" alt="सामवेद" />
+                                <div class="book-title">सामवेद</div>
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="index_1.html?vedayajur">
+                                <img src="images/yajurved.png" class="book-image" alt="यजुर्वेद" />
+                                <div class="book-title">यजुर्वेद</div>
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="images/atarvaved.png" class="book-image" alt="अथर्ववेद" />
+                            <div class="book-title">अथर्ववेद</div>
                         </div>
                     </div>
                 </div>
             </div>
             <div id="upanishad-template">
                 <h5>उपनिषदों की झलक</h5>
-                <p>उपनिषद आध्यात्मिक ज्ञान और ब्रह्मविद्या का मूल स्रोत हैं।</p>
+                <p>उपनिषद भारतीय दर्शन का अमूल्य रत्न हैं। ये वेदों के अंतिम भाग हैं, जिन्हें वेदांत भी कहा जाता है। "उपनिषद" शब्द का शाब्दिक अर्थ है — "उप" (निकट), "नि" (नीचे), और "सद्" (बैठना) — अर्थात गुरु के पास बैठकर ज्ञान प्राप्त करना। इन ग्रंथों में आत्मा (आत्मन्), ब्रह्म, मोक्ष, और जीवन के परम सत्य पर गहन चर्चा की गई है।</p>
             </div>
             <div id="puran-template">
                 <h5>पुराणों का महत्व</h5>
-                <p>पुराणों में सृष्टि, देवताओं, अवतारों और धर्म की विविध कथाएँ हैं।</p>
+                <p>सृष्टि, देवताओं और धर्म की कथाएँ।</p>
             </div>
-            <div id="itihas-template">
-                <h5>इतिहास ग्रंथ</h5>
-                <!--<p>रामायण और महाभारत — दो महाकाव्य जो धर्म, नीति और इतिहास का आधार हैं।</p>-->
-            </div>
+            <div id="itihas-template"><h5>इतिहास ग्रंथ</h5></div>
             <div id="gita-template">
                 <h5>गीता संहिता</h5>
-                <p>भगवद्गीता सहित अन्य अनेक गीता जैसे अष्टावक्र गीता, उद्धव गीता आदि।</p>
+                <p>भगवद्गीता और अन्य गीता ग्रंथ।</p>
             </div>
             <div id="stotra-template">
                 <h5>स्तोत्र संग्रह</h5>
-                <p>विविध देवताओं को समर्पित स्तोत्र, चालीसा, आरती और प्रार्थनाएँ।</p>
+                <p>प्रार्थनाएँ, चालीसा, आरती आदि।</p>
             </div>
         </div>
 
@@ -308,9 +247,17 @@
             document.addEventListener("DOMContentLoaded", () => {
                 const cards = document.querySelectorAll(".category-col");
 
+                const config = {
+                    slidesPerView: 2.5,
+                    spaceBetween: 10,
+                    breakpoints: {
+                        768: { slidesPerView: 4.5, spaceBetween: 20 },
+                        1024: { slidesPerView: 7.5, spaceBetween: 20 }
+                    }
+                };
+
                 cards.forEach((card, index) => {
                     card.addEventListener("click", () => {
-                        // Remove existing detail section if present
                         const existing = document.querySelector(".card-detail");
                         if (existing) existing.remove();
 
@@ -328,30 +275,15 @@
                         wrapper.innerHTML = '<div class="card p-4 bg-light border">' + templateEl.innerHTML + "</div>";
 
                         lastCard.parentElement.insertBefore(wrapper, lastCard.nextSibling);
+
+                        // ✅ Initialize Swipers in the new content
+                        const swipers = wrapper.querySelectorAll(".swiper");
+                        swipers.forEach((swiperEl) => {
+                            new Swiper(swiperEl, config);
+                        });
                     });
                 });
             });
-        </script>
-        <script>
-            const config = {
-                slidesPerView: 2.5,
-                spaceBetween: 10,
-                breakpoints: {
-                    768: {
-                        slidesPerView: 4.5,
-                        spaceBetween: 20
-                    },
-                    1024: {
-                        slidesPerView: 7.5,
-                        spaceBetween: 20
-                    }
-                }
-            };
-
-            new Swiper(".ved-swiper", config);
-            new Swiper(".upanishad-swiper", config);
-            new Swiper(".mahapurana-swiper", config);
-            new Swiper(".upapurana-swiper", config);
         </script>
     </body>
 </html>
