@@ -1,0 +1,591 @@
+<!doctype html>
+<html lang="sa">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>स्वाध्याय</title>
+    <link rel="stylesheet" href="includes/bootstrap.min.css" />
+    <link rel="stylesheet" href="includes/swiper-bundle.min.css" />
+
+    <style>
+      body {
+        font-family: "Noto Sans Devanagari", serif;
+      }
+      .logo {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #c89f0d;
+      }
+      /* Menu item styling */
+      .navbar-nav .nav-item .nav-link {
+        font-size: 1.5rem; /* Increase size of main menu items */
+        font-weight: bold; /* Make main menu items bold */
+      }
+
+      /* Dropdown menu item styling */
+      .dropdown-menu .dropdown-item {
+        font-size: 1.2rem; /* Increase size of sub-menu items */
+        font-weight: bold; /* Make sub-menu items bold */
+      }
+
+      .section-title {
+        font-size: 2rem;
+        margin: 1.5rem 0 0.5rem;
+        font-weight: bold;
+        color: goldenrod;
+      }
+      .swiper-slide {
+        text-align: center;
+      }
+      .book-image {
+        width: auto;
+        height: 200px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .swiper-slide a {
+        text-decoration: none !important;
+      } 
+
+      .book-title {
+        margin-top: 0.5rem;
+        font-size: 1.5rem;
+        color: maroon;
+        font-weight: bold;
+        text-align: center;
+        text-decoration: none !important;
+      }
+
+      .accordion-content .Sub-Heading {
+        font-size: 1em;
+      }
+      @media (min-width: 992px) {
+        .dropdown-menu {
+          width: 100%;
+          padding: 20px;
+        }
+
+        .dropdown-menu .dropdown-item {
+          display: inline-block;
+          width: 23%; /* 4 columns */
+          margin: 5px 1%;
+          box-sizing: border-box;
+        }
+      }
+
+      /* Mobile Version: Adjust to normal dropdown */
+      @media (max-width: 991px) {
+        .dropdown-menu .dropdown-item {
+          width: 100%; /* Full width on mobile */
+          display: block;
+        }
+      }
+
+      /* Styling for dropdown divider */
+      .dropdown-divider {
+        border-top: 1px solid #ccc;
+        margin: 10px 0;
+      }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand d-none d-lg-block logo" href="#">स्वाध्याय</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNavDropdown"
+          aria-controls="navbarNavDropdown"
+          aria-expanded="false"
+          aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand d-block d-lg-none ms-auto logo" href="#">स्वाध्याय</a>
+
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">वेदाः</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">ऋग्वेदः</a></li>
+                <li><a class="dropdown-item" href="#">यजुर्वेदः</a></li>
+                <li><a class="dropdown-item" href="#">सामवेदः</a></li>
+                <li><a class="dropdown-item" href="#">अथर्ववेदः</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">उपनिषद्</a>
+              <ul class="dropdown-menu" id="upanishad-list">
+                <!-- Add all others as needed -->
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">पुराणाः</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">महापुराणाः</a></li>
+                <li><hr class="dropdown-divider" /></li>
+                <li><a class="dropdown-item" href="#">ब्रह्म पुराण</a></li>
+                <li><a class="dropdown-item" href="#">पद्म पुराण</a></li>
+                <li><a class="dropdown-item" href="#">विष्णु पुराण</a></li>
+                <li><a class="dropdown-item" href="#">शिव पुराण</a></li>
+                <li><a class="dropdown-item" href="#">भागवत पुराण</a></li>
+                <li><a class="dropdown-item" href="#">नारद पुराण</a></li>
+                <li><a class="dropdown-item" href="#">मार्कण्डेय पुराण</a></li>
+                <li><a class="dropdown-item" href="#">अग्नि पुराण</a></li>
+                <li><a class="dropdown-item" href="#">भविष्य पुराण</a></li>
+                <li><a class="dropdown-item" href="#">ब्रह्मवैवर्त पुराण</a></li>
+                <li><a class="dropdown-item" href="#">लिङ्ग पुराण</a></li>
+                <li><a class="dropdown-item" href="#">वराह पुराण</a></li>
+                <li><a class="dropdown-item" href="#">स्कन्द पुराण</a></li>
+                <li><a class="dropdown-item" href="#">वामन पुराण</a></li>
+                <li><a class="dropdown-item" href="#">कूर्म पुराण</a></li>
+                <li><a class="dropdown-item" href="#">मत्स्य पुराण</a></li>
+                <li><a class="dropdown-item" href="#">गरुड पुराण</a></li>
+                <li><a class="dropdown-item" href="#">ब्रह्माण्ड पुराण</a></li>
+                <li><hr class="dropdown-divider" /></li>
+                <li><a class="dropdown-item" href="#">उपपुराणाः</a></li>
+                <li><hr class="dropdown-divider" /></li>
+                <li><a class="dropdown-item" href="#">सञ्ज्ञा पुराण</a></li>
+                <li><a class="dropdown-item" href="#">नृसिंह पुराण</a></li>
+                <li><a class="dropdown-item" href="#">नरसिंह पुराण</a></li>
+                <li><a class="dropdown-item" href="#">बृहन्नारदीय पुराण</a></li>
+                <li><a class="dropdown-item" href="#">सैन्धव पुराण</a></li>
+                <li><a class="dropdown-item" href="#">आदित्य पुराण</a></li>
+                <li><a class="dropdown-item" href="#">दुर्वासा पुराण</a></li>
+                <li><a class="dropdown-item" href="#">कपालिनी पुराण</a></li>
+                <li><a class="dropdown-item" href="#">कलिका पुराण</a></li>
+                <li><a class="dropdown-item" href="#">महेश्वर पुराण</a></li>
+                <li><a class="dropdown-item" href="#">शिव धर्म पुराण</a></li>
+                <li><a class="dropdown-item" href="#">शिव धर्मोत्तर पुराण</a></li>
+                <li><a class="dropdown-item" href="#">विष्णुधर्म पुराण</a></li>
+                <li><a class="dropdown-item" href="#">विष्णुधर्मोत्तर पुराण</a></li>
+                <li><a class="dropdown-item" href="#">गणेश पुराण</a></li>
+                <li><a class="dropdown-item" href="#">हयग्रीव पुराण</a></li>
+                <li><a class="dropdown-item" href="#">वामन पुराण</a></li>
+                <li><a class="dropdown-item" href="#">पाराशर पुराण</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">इतिहासः</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">रामायणम्</a></li>
+                <li><a class="dropdown-item" href="#">महाभारतम्</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">गीता सङ्ग्रहः</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="section-title">वेद</div>
+          <div class="swiper ved-swiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <a href="index_1.html?rigveda">
+                  <img src="images/rigveda.png" class="book-image" alt="ऋग्वेद" />
+                  <div class="book-title">ऋग्वेद</div></a
+                >
+              </div>
+              <div class="swiper-slide">
+                <a href="index_1.html?vedasama">
+                  <img src="images/samaveda.png" class="book-image" alt="सामवेद" />
+                  <div class="book-title">सामवेद</div></a
+                >
+              </div>
+              <div class="swiper-slide">
+                <a href="index_1.html?vedayajur">
+                  <img src="images/yajurved.png" class="book-image" alt="यजुर्वेद" />
+                  <div class="book-title">यजुर्वेद</div>
+                </a>
+              </div>
+              <div class="swiper-slide">
+                <img src="images/atarvaved.png" class="book-image" alt="अथर्ववेद" />
+                <div class="book-title">अथर्ववेद</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Upanishads -->
+          <div class="section-title">उपनिषद्</div>
+          <div class="swiper upanishad-swiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <a href="index_1.html?upa_ishavas">
+                  <img src="images/ishavasya.png" class="book-image" alt="ईशावास्य उपनिषद्" />
+                  <div class="book-title">ईशावास्य उपनिषद्</div></a
+                >
+              </div>
+              <div class="swiper-slide">
+                <a href="index_1.html?u_केनोपनिषद्">
+                  <img src="images/kenopanishad.png" class="book-image" alt="केन उपनिषद्" />
+                  <div class="book-title">केनोपनिषद्</div>
+                </a>
+              </div>
+              <div class="swiper-slide">
+                <a href="index_1.html?u_कठोपनिषद्">
+                  <img src="images/book.jpg" class="book-image" alt="केन उपनिषद्" />
+                  <div class="book-title">कठोपनिषद्</div>
+                </a>
+              </div>
+              <div class="swiper-slide">
+                <a href="index_1.html?u_माण्डूक्योपनिषद्">
+                <img src="images/book.jpg" class="book-image" alt="माण्डूक्य उपनिषद्" />
+                  <div class="book-title">माण्डूक्य उपनिषद्</div>
+                </a>
+              </div>
+              <div class="swiper-slide">
+                <a href="index_1.html?u_तैत्तिरीयोपनिषद्">
+                <img src="images/book.jpg" class="book-image" alt="माण्डूक्य उपनिषद्" />
+                  <div class="book-title">तैत्तिरीयोपनिषद्</div>
+                </a>
+              </div>
+              <div class="swiper-slide">
+                <a href="index_1.html?u_प्रश्नोपनिषद्">
+                <img src="images/book.jpg" class="book-image" alt="माण्डूक्य उपनिषद्" />
+                  <div class="book-title">प्रश्नोपनिषद्</div>
+                </a>
+              </div>
+              <div class="swiper-slide" >
+                <a href="books/" class="disabled-link">
+                <img src="images/book.jpg" class="book-image" alt="ऐतरेय उपनिषद्" />
+                <div class="book-title">ऐतरेय उपनिषद्</div>
+                  </a>
+              </div>
+              <div class="swiper-slide">
+                <img src="images/book.jpg" class="book-image" alt="ऐतरेय आरण्यक उपनिषद्" />
+                <div class="book-title">ऐतरेय आरण्यक उपनिषद्</div>
+              </div>
+              <div class="swiper-slide">
+                <img src="images/book.jpg" class="book-image" alt="बृहदारण्यक उपनिषद्" />
+                <div class="book-title">बृहदारण्यक उपनिषद्</div>
+              </div>
+              <div class="swiper-slide">
+                <img src="images/book.jpg" class="book-image" alt="चाण्डोग्य उपनिषद्" />
+                <div class="book-title">चाण्डोग्य उपनिषद्</div>
+              </div>
+
+              <div class="swiper-slide">
+                <img src="images/book.jpg" class="book-image" alt="कठ उपनिषद्" />
+                <div class="book-title">कठ उपनिषद्</div>
+              </div>
+              <div class="swiper-slide">
+                <img src="images/book.jpg" class="book-image" alt="काठक उपनिषद्" />
+                <div class="book-title">काठक उपनिषद्</div>
+              </div>
+              <div class="swiper-slide">
+                <img src="images/book.jpg" class="book-image" alt="मुण्डक उपनिषद्" />
+                <div class="book-title">मुण्डक उपनिषद्</div>
+              </div>
+              
+
+              <!-- Add other Upanishads here -->
+            </div>
+          </div>
+
+          <!-- Mahapuranas -->
+          <div class="section-title">महापुराण</div>
+          <div class="swiper mahapurana-swiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <img src="images/book.jpg" class="book-image" alt="ब्रह्म पुराण" />
+                <div class="book-title">ब्रह्म पुराण</div>
+              </div>
+
+              <div class="swiper-slide">
+                <a href="index_1.html?puran_vishnu">
+                  <img src="images/vishnupuran.png" class="book-image" alt="विष्णु पुराण" />
+                  <div class="book-title">विष्णु पुराण</div>
+                </a>
+              </div>
+
+              <div class="swiper-slide">
+                <a href="index_1.html?puran_shiva">
+                  <img src="images/shiv_puran.png" class="book-image" alt="शिव पुराण" />
+                  <div class="book-title">संक्षिप्त शिवपुराण</div>
+                </a>
+              </div>
+
+              <div class="swiper-slide">
+                <a href="index_1.html?puran_padma">
+                  <img src="images/padmapuran.png" class="book-image" alt="पद्म पुराण" />
+                  <div class="book-title">पद्म पुराण</div>
+                </a>
+              </div>
+
+              <div class="swiper-slide">
+                <a href="index_1.html?puran_bhagavat">
+                  <img src="images/bhagavat_mahapuran.png" class="book-image" alt="भागवत पुराण" />
+                  <div class="book-title">श्रीमद‍्भागवत महापुराण</div>
+                </a>
+              </div>
+              <div class="swiper-slide">
+                <a href="index_1.html?puran_varaha">
+                  <img src="images/varahpuran.png" class="book-image" alt="वराह पुराण" />
+                  <div class="book-title">वराह पुराण</div>
+                </a>
+              </div>
+              <div class="swiper-slide">
+                <a href="index_1.html?puran_narad">
+                  <img src="images/naradpuran.png" class="book-image" alt="नारद पुराण" />
+                  <div class="book-title">नारद पुराण</div>
+                </a>
+              </div>
+              <div class="swiper-slide">
+                <a href="index_1.html?puran_garud">
+                  <img src="images/garud_puran.png" class="book-image" alt="गरुड पुराण" />
+                  <div class="book-title">गरुड पुराण</div>
+                </a>
+              </div>
+              <div class="swiper-slide">
+                <img src="images/book.jpg" class="book-image" alt="मार्कण्डेय पुराण" />
+                <div class="book-title">मार्कण्डेय पुराण</div>
+              </div>
+              <div class="swiper-slide">
+                <img src="images/book.jpg" class="book-image" alt="अग्नि पुराण" />
+                <div class="book-title">अग्नि पुराण</div>
+              </div>
+              <div class="swiper-slide">
+                <img src="images/book.jpg" class="book-image" alt="भविष्य पुराण" />
+                <div class="book-title">भविष्य पुराण</div>
+              </div>
+              <div class="swiper-slide">
+                <img src="images/book.jpg" class="book-image" alt="ब्रह्मवैवर्त पुराण" />
+                <div class="book-title">ब्रह्मवैवर्त पुराण</div>
+              </div>
+              <div class="swiper-slide">
+                <img src="images/book.jpg" class="book-image" alt="लिङ्ग पुराण" />
+                <div class="book-title">लिङ्ग पुराण</div>
+              </div>
+
+              <div class="swiper-slide">
+                <img src="images/book.jpg" class="book-image" alt="स्कन्द पुराण" />
+                <div class="book-title">स्कन्द पुराण</div>
+              </div>
+              <div class="swiper-slide">
+                <img src="images/book.jpg" class="book-image" alt="वामन पुराण" />
+                <div class="book-title">वामन पुराण</div>
+              </div>
+              <div class="swiper-slide">
+                <img src="images/book.jpg" class="book-image" alt="कूर्म पुराण" />
+                <div class="book-title">कूर्म पुराण</div>
+              </div>
+              <div class="swiper-slide">
+                <img src="images/book.jpg" class="book-image" alt="मत्स्य पुराण" />
+                <div class="book-title">मत्स्य पुराण</div>
+              </div>
+
+              <div class="swiper-slide">
+                <img src="images/book.jpg" class="book-image" alt="ब्रह्माण्ड पुराण" />
+                <div class="book-title">ब्रह्माण्ड पुराण</div>
+              </div>
+
+              <!-- Add other Mahapuranas -->
+            </div>
+          </div>
+
+          <!-- Upapuranas -->
+          <div class="section-title">इतिहास</div>
+          <div class="swiper upapurana-swiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <a href="index_1.html?valmiki">
+                  <img src="images/valmiki.png" class="book-image" alt="गणेश पुराण" />
+                  <div class="book-title">श्रीमद्वाल्मीकीय<br />रामायण</div>
+                </a>
+              </div>
+              <div class="swiper-slide">
+                <a href="index_1.html?संक्षिप्तमहाभारत">
+                  <img src="images/sanksiptmahabharatham.png" class="book-image" alt="गणेश पुराण" />
+                  <div class="book-title">संक्षिप्त महाभारत</div>
+                </a>
+              </div>
+              
+              <!-- Add other Upapuranas -->
+            </div>
+          </div>
+          <div class="section-title">दर्शन</div>
+          <div class="swiper upapurana-swiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <a href="index_1.html?पातञ्जलयोगदर्शन">
+                  <img src="images/patanjaliyogdarshan.png" class="book-image" alt="गणेश पुराण" />
+                  <div class="book-title">पातञ्जलयोगदर्शन</div>
+                </a>
+              </div>
+              <div class="swiper-slide">
+                <a href="index_1.html?ब्रह्मसूत्र">
+                  <img src="images/brahmasutras.png" class="book-image" alt="गणेश पुराण" />
+                  <div class="book-title">ब्रह्मसूत्र</div>
+                </a>
+              </div>
+              <div class="swiper-slide">
+                <img src="images/book.jpg" class="book-image" alt="गणेश पुराण" />
+                <div class="book-title"></div>
+              </div>
+              <!-- Add other Upapuranas -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <script>
+      const upanishads = [
+        "ऐतरेय उपनिषद्",
+        "ऐतरेय आरण्यक उपनिषद्",
+        "बृहदारण्यक उपनिषद्",
+        "चाण्डोग्य उपनिषद्",
+        "ईशावास्य उपनिषद्",
+        "केन उपनिषद्",
+        "कठ उपनिषद्",
+        "काठक उपनिषद्",
+        "मुण्डक उपनिषद्",
+        "माण्डूक्य उपनिषद्",
+        "प्रणतार्क उपनिषद्",
+        "रीत्युपनिषद्",
+        "श्वेताश्वतर उपनिषद्",
+        "तैत्तिरीय उपनिषद्",
+        "तैत्तिरीय आरण्यक उपनिषद्",
+        "ऋग्वेद उपनिषद्",
+        "यजुर्वेद उपनिषद्",
+        "सामवेद उपनिषद्",
+        "अथर्ववेद उपनिषद्",
+        "काश्यक उपनिषद्",
+        "किम्बिल उपनिषद्",
+        "उपतार उपनिषद्",
+        "द्वादश उपनिषद्",
+        "भागवत उपनिषद्",
+        "शाक्त उपनिषद्",
+        "गुरु उपनिषद्",
+        "अपस्तम्ब उपनिषद्",
+        "सान्क्य उपनिषद्",
+        "द्रष्टान्त उपनिषद्",
+        "सुतार्क उपनिषद्",
+        "स्वमन्दल उपनिषद्",
+        "उन्मुक्त उपनिषद्",
+        "शेषनाथ उपनिषद्",
+        "गौतम उपनिषद्",
+        "सत्य उपनिषद्",
+        "नायक उपनिषद्",
+        "पञ्चकुला उपनिषद्",
+        "पाराशर उपनिषद्",
+        "पञ्चतन्त्रम् उपनिषद्",
+        "ज्ञान उपनिषद्",
+        "प्रपञ्च उपनिषद्",
+        "वेव्यास उपनिषद्",
+        "रत्न उपनिषद्",
+        "देवकृत्य उपनिषद्",
+        "अन्नमयी उपनिषद्",
+        "शान्ति उपनिषद्",
+        "तुलसी उपनिषद्",
+        "शान्तिपाठ उपनिषद्",
+        "श्रुतिसार उपनिषद्",
+        "कौंडिन्य उपनिषद्",
+        "गोवर्धन उपनिषद्",
+        "तपोवन उपनिषद्",
+        "देवराज उपनिषद्",
+        "ज्ञानानन्द उपनिषद्",
+        "व्रात्य उपनिषद्",
+        "हेमवर्त उपनिषद्",
+        "मणिमाला उपनिषद्",
+        "त्रिलोक उपनिषद्",
+        "महाशक्तिर उपनिषद्",
+        "शिरस्त्र उपनिषद्",
+        "मातृभूमि उपनिषद्",
+        "त्रिवेणी उपनिषद्",
+        "स्रग्धारा उपनिषद्",
+        "महाभागव उपनिषद्",
+        "दक्ष उपनिषद्",
+        "कृतयुग उपनिषद्",
+        "सहस्रांश उपनिषद्",
+        "अवलोकिता उपनिषद्",
+        "सुप्रभात उपनिषद्",
+        "देवकूट उपनिषद्",
+        "सुशील उपनिषद्",
+        "श्वेतवस्त्र उपनिषद्",
+        "सर्वसिद्धि उपनिषद्",
+        "परात्मन उपनिषद्",
+        "आत्मान्वेषण उपनिषद्",
+        "शम्भु उपनिषद्",
+        "सत्यामृत उपनिषद्",
+        "महेश्वर उपनिषद्",
+        "पवित्रा उपनिषद्",
+        "मोक्षपद उपनिषद्",
+        "यज्ञनिष्ठा उपनिषद्",
+        "चन्द्र उपनिषद्",
+        "त्रयक्षर उपनिषद्",
+        "अग्रणी उपनिषद्",
+        "अर्चि उपनिषद्",
+        "सनातन उपनिषद्",
+        "केशव उपनिषद्",
+        "भगवान उपनिषद्",
+        "आदित्य उपनिषद्",
+        "भूमि उपनिषद्",
+        "पाराम्य उपनिषद्",
+        "ब्रह्मा उपनिषद्",
+        "प्रियंवद उपनिषद्",
+        "महेश्वर देव उपनिषद्",
+        "बृहन्मूलक उपनिषद्",
+        "सुवर्णपुराण उपनिषद्",
+        "महात्मा उपनिषद्",
+        "आदर्श उपनिषद्",
+        "सिद्धिदायक उपनिषद्",
+        "श्रद्धा उपनिषद्",
+        "ब्राह्मण्य उपनिषद्",
+        "ज्ञानसार उपनिषद्",
+        "यमेश्वर उपनिषद्",
+        "पारंपर्य उपनिषद्",
+        "वासुदेव उपनिषद्",
+        "आद्योपनिषद्",
+        "परमात्मा उपनिषद्",
+        "शिवाभिधा उपनिषद्"
+      ];
+
+      const container = document.getElementById("upanishad-list");
+
+      upanishads.forEach((name) => {
+        const li = document.createElement("li");
+        const a = document.createElement("a");
+        a.className = "dropdown-item";
+        a.href = "#";
+        a.textContent = name;
+        li.appendChild(a);
+        container.appendChild(li);
+      });
+    </script>
+
+    <script>
+      const config = {
+        slidesPerView: 2.5,
+        spaceBetween: 10,
+        breakpoints: {
+          768: {
+            slidesPerView: 4.5,
+            spaceBetween: 20
+          },
+          1024: {
+            slidesPerView: 7.5,
+            spaceBetween: 20
+          }
+        }
+      };
+
+      new Swiper(".ved-swiper", config);
+      new Swiper(".upanishad-swiper", config);
+      new Swiper(".mahapurana-swiper", config);
+      new Swiper(".upapurana-swiper", config);
+    </script>
+    <script src="includes/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
