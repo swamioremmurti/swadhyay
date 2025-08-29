@@ -514,3 +514,15 @@ body,
 .justify {
     text-align: justify;
 }
+
+.center {
+    text-align: center;
+}
+
+.right {
+    text-align: right;
+}
+
+.italic {
+    font-style: italic;
+}

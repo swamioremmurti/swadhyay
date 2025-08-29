@@ -19,6 +19,13 @@
             .frame-2 {
                 max-width: 250px;
             }
+
+            .my-text {
+                -webkit-user-select: text;
+                -moz-user-select: text;
+                -ms-user-select: text;
+                user-select: text;
+            }
         </style>
 
         <script>
@@ -163,11 +170,9 @@
                     </nav>
                     <!-- Main Content -->
                     <main class="col-12 col-md-8 main-content" id="main-scrollable-content">
-                        <div id="display">
-                        </div>
+                        <div id="display"></div>
                         <div id="content" style="">
                             <!--<img src="images/loader.gif" style="width: 100%">-->
-                        
                         </div>
                     </main>
                 </div>
@@ -391,8 +396,6 @@
                                 });
                             }
                         });
-                    
-                        
 
                         // Navigate to saved chapter if applicable
                         if (startAtChapterIndex !== -1 && allSubHeadings[startAtChapterIndex]) {
@@ -424,7 +427,8 @@
 
                         // Swipe support
                         const mainScrollableContent = document.getElementById("main-scrollable-content");
-                        const hammer = new Hammer(mainScrollableContent);
+                        const hammer = new Hammer(mainScrollableContent, { touchAction: "auto" });
+
                         hammer.on("swipeleft", () => {
                             const currentConceptualIdx = currentSubIndex === -1 ? -1 : Math.floor(currentSubIndex / 2);
                             navigateToConceptualSubheading(currentConceptualIdx + 1);
