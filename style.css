@@ -526,3 +526,9 @@ body,
 .italic {
     font-style: italic;
 }
+
+
+
+.s_text {
+    color: darkblue;
+}
