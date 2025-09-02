@@ -26,6 +26,13 @@
                 -ms-user-select: text;
                 user-select: text;
             }
+
+            .Heading {
+                text-align: center;
+                font-weight: bold;
+                color: crimson;
+                font-size: 1.4em;
+            }
         </style>
 
         <script>
@@ -222,45 +229,15 @@
                 const mobileMenu = document.getElementById("mobile-menu-content");
                 const desktopMenu = document.getElementById("desktop-menu-content");
 
+                // Shared state
                 const allSubHeadings = [];
                 let currentSubIndex = -1;
+                let currentConceptualIdx = -1; // -1 = intro
+                const conceptualItems = []; // unified nav list
 
-                function toHindiNumber(num) {
-                    const hindiDigits = ["०", "१", "२", "३", "४", "५", "६", "७", "८", "९"];
-                    return String(num)
-                        .split("")
-                        .map((d) => hindiDigits[parseInt(d)])
-                        .join("");
-                }
-
-                // Bootstrap Accordion Section
-                function createAccordionSection(title, sectionId) {
-                    const accordionItem = document.createElement("div");
-                    accordionItem.className = "accordion-item";
-
-                    const headerId = `heading-${sectionId}`;
-                    const collapseId = `collapse-${sectionId}`;
-
-                    accordionItem.innerHTML = `
-                <h2 class="accordion-header" id="${headerId}">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#${collapseId}" aria-expanded="false" aria-controls="${collapseId}">
-                        ${title}
-                    </button>
-                </h2>
-                <div id="${collapseId}" class="accordion-collapse collapse" aria-labelledby="${headerId}" data-bs-parent="#accordionMenu">
-                    <div class="accordion-body p-0"></div>
-                </div>
-            `;
-                    return {
-                        section: accordionItem,
-                        content: accordionItem.querySelector(".accordion-body")
-                    };
-                }
-
-                // Get file param
+                // ===== Progress storage =====
                 const params = new URLSearchParams(window.location.search);
-                let fileParam = [...params.keys()][0] || "shiva_puran";
+                const fileParam = [...params.keys()][0] || "shiva_puran";
                 const fileName = `/books/${fileParam}.html`;
 
                 const progressKey = "readingProgress";
@@ -276,6 +253,78 @@
                     }
                 }
 
+                // ===== Helpers =====
+                function toHindiNumber(num) {
+                    const hindiDigits = ["०", "१", "२", "३", "४", "५", "६", "७", "८", "९"];
+                    return String(num)
+                        .split("")
+                        .map((d) => hindiDigits[parseInt(d)])
+                        .join("");
+                }
+
+                function showIntro(paragraphs) {
+                    displayDiv.innerHTML = "";
+                    let introEndIndex = paragraphs.findIndex(
+                        (p) => p.classList.contains("Heading") || p.classList.contains("Sub-Heading")
+                    );
+                    if (introEndIndex === -1) introEndIndex = paragraphs.length;
+                    for (let i = 0; i < introEndIndex; i++) {
+                        displayDiv.appendChild(paragraphs[i].cloneNode(true));
+                    }
+                    currentConceptualIdx = -1;
+                    document.getElementById("main-scrollable-content").scrollTo({ top: 0, behavior: "smooth" });
+                }
+
+                function showSlice(paragraphs, startIndex, endIndex) {
+                    displayDiv.innerHTML = "";
+                    for (let i = startIndex; i < endIndex; i++) {
+                        displayDiv.appendChild(paragraphs[i].cloneNode(true));
+                    }
+                    document.getElementById("main-scrollable-content").scrollTo({ top: 0, behavior: "smooth" });
+                }
+
+                function createAccordionSection(title, sectionId) {
+                    const accordionItem = document.createElement("div");
+                    accordionItem.className = "accordion-item";
+
+                    const headerId = `heading-${sectionId}`;
+                    const collapseId = `collapse-${sectionId}`;
+
+                    accordionItem.innerHTML = `
+            <h2 class="accordion-header" id="${headerId}">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#${collapseId}" aria-expanded="false" aria-controls="${collapseId}">
+                ${title}
+              </button>
+            </h2>
+            <div id="${collapseId}" class="accordion-collapse collapse" aria-labelledby="${headerId}" data-bs-parent="#accordionMenu">
+              <div class="accordion-body p-0"></div>
+            </div>
+        `;
+                    return {
+                        section: accordionItem,
+                        content: accordionItem.querySelector(".accordion-body"),
+                        headerButton: accordionItem.querySelector("button")
+                    };
+                }
+
+                function analyzeHeading(paragraphs, startIndex) {
+                    let firstSubHeadingIdx = -1;
+                    let endIndex = paragraphs.length;
+                    for (let i = startIndex + 1; i < paragraphs.length; i++) {
+                        const next = paragraphs[i];
+                        if (next.classList.contains("Sub-Heading") && firstSubHeadingIdx === -1) {
+                            firstSubHeadingIdx = i;
+                        }
+                        if (next.classList.contains("Heading")) {
+                            endIndex = i;
+                            break;
+                        }
+                    }
+                    return { firstSubHeadingIdx, endIndex };
+                }
+
+                // ===== Fetch book content =====
                 fetch(fileName)
                     .then((response) => response.text())
                     .then((html) => {
@@ -301,17 +350,10 @@
                         let currentAccordionMobile = null;
                         let currentAccordionDesktop = null;
 
-                        // Show intro
-                        let introEndIndex = paragraphs.findIndex(
-                            (p) => p.classList.contains("Heading") || p.classList.contains("Sub-Heading")
-                        );
-                        if (introEndIndex === -1) introEndIndex = paragraphs.length;
-                        for (let i = 0; i < introEndIndex; i++) {
-                            const clone = paragraphs[i].cloneNode(true);
-                            displayDiv.appendChild(clone);
-                        }
+                        // Show intro at first load
+                        showIntro(paragraphs);
 
-                        // Accordions
+                        // Build accordion containers
                         const mobileAccordion = document.createElement("div");
                         mobileAccordion.className = "accordion";
                         mobileAccordion.id = "accordionMenuMobile";
@@ -322,10 +364,12 @@
                         desktopAccordion.id = "accordionMenuDesktop";
                         desktopMenu.appendChild(desktopAccordion);
 
+                        // Build menu and conceptual items
                         paragraphs.forEach((p) => {
                             if (p.classList.contains("Heading")) {
                                 sectionIndex++;
                                 const sectionId = `${sectionIndex}`;
+
                                 const mobileSec = createAccordionSection(p.textContent, `mobile${sectionId}`);
                                 mobileAccordion.appendChild(mobileSec.section);
                                 currentAccordionMobile = mobileSec.content;
@@ -335,15 +379,59 @@
                                 currentAccordionDesktop = desktopSec.content;
 
                                 subHeadingCount = 0;
+
+                                const startIndex = paragraphs.indexOf(p);
+                                const { firstSubHeadingIdx, endIndex } = analyzeHeading(paragraphs, startIndex);
+                                let headingConceptualIdx = null;
+                                if (firstSubHeadingIdx === -1) {
+                                    headingConceptualIdx = conceptualItems.length;
+                                    conceptualItems.push({ type: "heading", startIndex, endIndex });
+                                }
+
+                                function handleHeadingClick() {
+                                    if (firstSubHeadingIdx !== -1) {
+                                        const targetText = paragraphs[firstSubHeadingIdx].textContent;
+                                        const conceptualClickIdx = allSubHeadings.findIndex((el) =>
+                                            el.textContent.includes(targetText)
+                                        );
+                                        if (conceptualClickIdx !== -1) {
+                                            allSubHeadings[conceptualClickIdx].click();
+                                            const subConceptualIdx = conceptualItems.findIndex(
+                                                (it) => it.type === "sub" && it.index === conceptualClickIdx
+                                            );
+                                            if (subConceptualIdx !== -1) currentConceptualIdx = subConceptualIdx;
+                                        }
+                                    } else {
+                                        showSlice(paragraphs, startIndex, endIndex);
+                                        currentConceptualIdx = headingConceptualIdx;
+                                    }
+                                }
+
+                                mobileSec.headerButton.addEventListener("click", handleHeadingClick);
+                                desktopSec.headerButton.addEventListener("click", handleHeadingClick);
                             } else if (p.classList.contains("Sub-Heading")) {
                                 subHeadingCount++;
-                                const text = `${toHindiNumber(subHeadingCount)}. ${p.textContent}`;
+                                const displayText = `${toHindiNumber(subHeadingCount)}. ${p.textContent}`;
+                                const startIndex = paragraphs.indexOf(p);
+
+                                let endIndex = paragraphs.length;
+                                for (let i = startIndex + 1; i < paragraphs.length; i++) {
+                                    const next = paragraphs[i];
+                                    if (next.classList.contains("Heading") || next.classList.contains("Sub-Heading")) {
+                                        endIndex = i;
+                                        break;
+                                    }
+                                }
+
+                                const subConceptualIdx = conceptualItems.length;
+                                let firstAllSubHeadingsIndex = null;
 
                                 [currentAccordionMobile, currentAccordionDesktop].forEach((container) => {
                                     const item = document.createElement("div");
                                     item.className = "subheading-link px-2 py-1";
                                     item.style.cursor = "pointer";
-                                    item.textContent = text;
+                                    item.textContent = displayText;
+                                    item.dataset.conceptualIdx = String(subConceptualIdx);
 
                                     item.addEventListener("click", function () {
                                         document
@@ -352,33 +440,31 @@
                                         this.classList.add("active");
 
                                         currentSubIndex = allSubHeadings.indexOf(this);
+                                        currentConceptualIdx = parseInt(this.dataset.conceptualIdx, 10);
 
-                                        // Save progress to localStorage
                                         allProgress[fileParam] = { chapterIndex: currentSubIndex };
                                         localStorage.setItem(progressKey, JSON.stringify(allProgress));
 
                                         displayDiv.innerHTML = "";
 
-                                        const startIndex = paragraphs.indexOf(p);
-                                        let endIndex = paragraphs.length;
-
-                                        for (let i = startIndex + 1; i < paragraphs.length; i++) {
-                                            const next = paragraphs[i];
-                                            if (
-                                                next.classList.contains("Heading") ||
-                                                next.classList.contains("Sub-Heading")
-                                            ) {
-                                                endIndex = i;
+                                        // Add parent Heading
+                                        let parentHeading = null;
+                                        for (let i = startIndex - 1; i >= 0; i--) {
+                                            if (paragraphs[i].classList.contains("Heading")) {
+                                                parentHeading = paragraphs[i].cloneNode(true);
                                                 break;
                                             }
                                         }
-
-                                        for (let i = startIndex; i < endIndex; i++) {
-                                            const clone = paragraphs[i].cloneNode(true);
-                                            displayDiv.appendChild(clone);
+                                        if (parentHeading) {
+                                            parentHeading.classList.add("parent-heading");
+                                            displayDiv.appendChild(parentHeading);
                                         }
 
-                                        // Close mobile menu
+                                        // Add subheading slice
+                                        for (let i = startIndex; i < endIndex; i++) {
+                                            displayDiv.appendChild(paragraphs[i].cloneNode(true));
+                                        }
+
                                         if (window.innerWidth < 768) {
                                             const offcanvas = bootstrap.Offcanvas.getInstance(
                                                 document.getElementById("offcanvasMenu")
@@ -393,55 +479,63 @@
 
                                     container && container.appendChild(item);
                                     allSubHeadings.push(item);
+                                    if (firstAllSubHeadingsIndex === null)
+                                        firstAllSubHeadingsIndex = allSubHeadings.length - 1;
                                 });
+
+                                conceptualItems.push({ type: "sub", index: firstAllSubHeadingsIndex });
                             }
                         });
 
-                        // Navigate to saved chapter if applicable
+                        // Resume last read
                         if (startAtChapterIndex !== -1 && allSubHeadings[startAtChapterIndex]) {
                             allSubHeadings[startAtChapterIndex].click();
+                            const matchIdx = conceptualItems.findIndex(
+                                (it) => it.type === "sub" && it.index === startAtChapterIndex
+                            );
+                            if (matchIdx !== -1) currentConceptualIdx = matchIdx;
                         }
 
-                        // Navigation logic
-                        function navigateToConceptualSubheading(targetConceptualIdx) {
-                            const totalConceptualSubHeadings = allSubHeadings.length / 2;
-                            if (totalConceptualSubHeadings === 0 && allSubHeadings.length === 0) return;
-                            targetConceptualIdx = Math.max(
-                                0,
-                                Math.min(targetConceptualIdx, totalConceptualSubHeadings - 1)
-                            );
-                            const itemIndexToClick = targetConceptualIdx * 2;
-                            currentSubIndex = itemIndexToClick;
-                            allSubHeadings[itemIndexToClick]?.click();
+                        // ===== Navigation =====
+                        function navigateToConceptual(targetIdx) {
+                            if (targetIdx < -1) targetIdx = -1;
+                            if (targetIdx === -1) {
+                                showIntro(paragraphs);
+                                return;
+                            }
+                            if (conceptualItems.length === 0) return;
+                            if (targetIdx > conceptualItems.length - 1) targetIdx = conceptualItems.length - 1;
+
+                            const item = conceptualItems[targetIdx];
+                            currentConceptualIdx = targetIdx;
+
+                            if (item.type === "sub") {
+                                const el = allSubHeadings[item.index];
+                                el && el.click();
+                            } else if (item.type === "heading") {
+                                showSlice(paragraphs, item.startIndex, item.endIndex);
+                            }
                         }
 
                         document.getElementById("prev-button").addEventListener("click", () => {
-                            const currentConceptualIdx = currentSubIndex === -1 ? -1 : Math.floor(currentSubIndex / 2);
-                            navigateToConceptualSubheading(currentConceptualIdx - 1);
+                            navigateToConceptual(currentConceptualIdx - 1);
                         });
-
                         document.getElementById("next-button").addEventListener("click", () => {
-                            const currentConceptualIdx = currentSubIndex === -1 ? -1 : Math.floor(currentSubIndex / 2);
-                            navigateToConceptualSubheading(currentConceptualIdx + 1);
+                            navigateToConceptual(currentConceptualIdx + 1);
                         });
 
-                        // Swipe support
                         const mainScrollableContent = document.getElementById("main-scrollable-content");
-                        const hammer = new Hammer(mainScrollableContent, { touchAction: "auto" });
+                        //const hammer = new Hammer(mainScrollableContent);
+                        const hammer = new Hammer(document.body);
+                        hammer
+                            .get("swipe")
+                            .set({ direction: Hammer.DIRECTION_HORIZONTAL, threshold: 10, velocity: 0.3 });
+                        hammer.on("swipeleft", () => navigateToConceptual(currentConceptualIdx + 1));
+                        hammer.on("swiperight", () => navigateToConceptual(currentConceptualIdx - 1));
 
-                        hammer.on("swipeleft", () => {
-                            const currentConceptualIdx = currentSubIndex === -1 ? -1 : Math.floor(currentSubIndex / 2);
-                            navigateToConceptualSubheading(currentConceptualIdx + 1);
-                        });
-                        hammer.on("swiperight", () => {
-                            const currentConceptualIdx = currentSubIndex === -1 ? -1 : Math.floor(currentSubIndex / 2);
-                            navigateToConceptualSubheading(currentConceptualIdx - 1);
-                        });
-
-                        // Keyboard navigation
                         document.addEventListener("keydown", (e) => {
-                            if (e.key === "ArrowLeft") document.getElementById("prev-button").click();
-                            if (e.key === "ArrowRight") document.getElementById("next-button").click();
+                            if (e.key === "ArrowLeft") navigateToConceptual(currentConceptualIdx - 1);
+                            if (e.key === "ArrowRight") navigateToConceptual(currentConceptualIdx + 1);
                         });
                     })
                     .catch((err) => {
