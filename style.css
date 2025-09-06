@@ -527,8 +527,16 @@ body,
     font-style: italic;
 }
 
+.Title-Book {
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: crimson;
+}
 
-
-.s_text {
-    color: darkblue;
+.end_ch {
+    text-align: center;
+    font-style: italic;
+    font-weight: bold;
+    color: crimson;
 }
