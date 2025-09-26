@@ -540,3 +540,8 @@ body,
     font-weight: bold;
     color: crimson;
 }
+
+.chapterEnd{
+    text-align: center;
+    font-style: italic;
+}
