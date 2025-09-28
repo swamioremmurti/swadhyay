@@ -34,27 +34,34 @@
                 font-size: 1.4em;
             }
 
-            /* Top loader progress bar */
-            #loader-container {
+            /* Fullscreen loader overlay */
+            #loader-overlay {
                 position: fixed;
-                top: 0;
-                left: 0;
+                inset: 0;
                 width: 100%;
-                height: 4px;
-                background-color: #e0e0e0;
-                z-index: 2000;
-                opacity: 1;
-                transition: opacity 0.3s ease;
-            }
-            #loader-progress {
-                width: 0%;
                 height: 100%;
-                background-color: #0d6efd; /* Bootstrap primary */
-                transition: width 0.2s ease;
+                background-color: rgba(255, 255, 255, 0.25); /* 25% transparent white */
+                z-index: 5000;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                transition: opacity 0.3s ease, visibility 0.3s ease;
             }
-            #loader-container.hidden {
+            #loader-overlay.hidden {
                 opacity: 0;
+                visibility: hidden;
                 pointer-events: none;
+            }
+            .loader-box {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 0.75rem;
+                backdrop-filter: blur(1px);
+            }
+            #loader-text {
+                font-weight: 600;
             }
         </style>
 
@@ -161,9 +168,14 @@
         </script>
     </head>
     <body>
-        <!-- Loader Progress Bar -->
-        <div id="loader-container">
-            <div id="loader-progress"></div>
+        <!-- Fullscreen Loader Overlay -->
+        <div id="loader-overlay">
+            <div class="loader-box">
+                <div class="spinner-border text-primary" role="status" style="width:3rem;height:3rem;">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <div class="text-primary" id="loader-text">Loading…</div>
+            </div>
         </div>
 
         <div id="app-root" class="d-flex flex-column h-100 w-100">
@@ -227,7 +239,7 @@
                                     onclick="speakHindiLines()">
                                     Read
                                 </button>
-                                <button id="next-button" class="btn btn-primary flex-fill ms-1">Next →</button>
+                                `<button id="next-button" class="btn btn-primary flex-fill ms-1">Next →</button>
                             </div>
                         </div>
                     </div>
@@ -258,8 +270,8 @@
                 const desktopMenu = document.getElementById("desktop-menu-content");
 
                 // Loader elements
-                const loaderContainer = document.getElementById("loader-container");
-                const loaderProgress = document.getElementById("loader-progress");
+                const loaderOverlay = document.getElementById("loader-overlay");
+                const loaderText = document.getElementById("loader-text");
 
                 // Shared state
                 const allSubHeadings = [];
@@ -360,30 +372,29 @@
                 const xhr = new XMLHttpRequest();
                 xhr.open("GET", fileName, true);
 
-                // Start with visible loader and 0%
-                loaderContainer.classList.remove("hidden");
-                loaderProgress.style.width = "0%";
+                // Show overlay initially
+                loaderOverlay.classList.remove("hidden");
+                loaderText.textContent = "Loading…";
 
                 // Progress handler
                 xhr.onprogress = function (event) {
                     if (event.lengthComputable) {
-                        const percent = (event.loaded / event.total) * 100;
-                        loaderProgress.style.width = percent + "%";
+                        const percent = Math.floor((event.loaded / event.total) * 100);
+                        loaderText.textContent = `Loading… ${percent}%`;
                     } else {
-                        // Fallback if content length is unknown: gently pulse forward
-                        const current = parseFloat(loaderProgress.style.width) || 0;
-                        const next = Math.min(current + 8, 95); // cap to avoid jumping to 100% prematurely
-                        loaderProgress.style.width = next + "%";
+                        // Fallback: simple pulse/dots when total size unknown
+                        const base = "Loading";
+                        const dots = (loaderText.textContent.match(/\./g) || []).length % 3;
+                        loaderText.textContent = base + "…" + ".".repeat(dots + 1);
                     }
                 };
 
                 xhr.onload = function () {
                     if (xhr.status === 200) {
-                        // Fill to 100% and fade out
-                        loaderProgress.style.width = "100%";
+                        loaderText.textContent = "Loaded 100%";
                         setTimeout(() => {
-                            loaderContainer.classList.add("hidden");
-                        }, 200);
+                            loaderOverlay.classList.add("hidden");
+                        }, 300);
 
                         const html = xhr.responseText;
 
@@ -597,13 +608,13 @@
                         });
                     } else {
                         console.error(`Failed to fetch or process ${fileName} (status: ${xhr.status})`);
-                        loaderContainer.classList.add("hidden");
+                        loaderOverlay.classList.add("hidden");
                     }
                 };
 
                 xhr.onerror = function () {
                     console.error(`Failed to fetch or process ${fileName}`);
-                    loaderContainer.classList.add("hidden");
+                    loaderOverlay.classList.add("hidden");
                 };
 
                 xhr.send();
