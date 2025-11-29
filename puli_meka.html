@@ -1,0 +1,526 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Bagh-Chal – Vanilla JS (Tiger AI)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Tailwind (for the same classes you used) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-900">
+  <div class="max-w-4xl mx-auto p-4 md:p-6">
+    <!-- Top bar -->
+    <div class="flex flex-wrap items-center gap-3 mb-4">
+      <label class="text-sm text-gray-700">Difficulty</label>
+      <select id="difficulty" class="px-2 py-1 border rounded-lg bg-white">
+        <option>Easy</option>
+        <option>Medium</option>
+        <option>Hard</option>
+        <option>Expert</option>
+      </select>
+      <div class="ml-auto text-sm text-gray-500">
+        Alpha–beta depth: <span id="depthLabel">1</span>
+      </div>
+    </div>
+
+    <!-- Badges -->
+    <div class="flex flex-wrap items-center gap-3 mb-3 mt-2" id="badges"></div>
+
+    <!-- Board -->
+    <div class="w-full overflow-hidden rounded-2xl border bg-white" id="boardWrap"></div>
+
+    <!-- Controls -->
+    <div class="mt-4 flex flex-wrap items-center gap-3">
+      <button id="undoBtn" class="px-4 py-2 rounded-xl bg-white border border-gray-300 hover:bg-gray-50 active:scale-[.99] shadow-sm">
+        Undo
+      </button>
+      <button id="resetBtn" class="px-4 py-2 rounded-xl bg-gray-900 text-white hover:bg-gray-800 active:scale-[.99] shadow-sm">
+        Reset
+      </button>
+      <span class="text-sm text-gray-600 ml-auto" id="message"></span>
+    </div>
+
+    <!-- Info card -->
+    <div class="mt-6">
+      <div class="rounded-2xl border bg-white p-4">
+        <h2 class="text-xl font-semibold mb-2">How the AI plays</h2>
+        <ul class="list-disc ml-5 space-y-2 text-sm leading-relaxed">
+          <li>Prioritizes captures and positions with higher tiger mobility.</li>
+          <li>Alpha–beta search looks ahead <span class="font-mono">{depth}</span> ply with move ordering.</li>
+          <li>Heuristic evaluates material (goats captured), mobility, center control, and capture threats.</li>
+        </ul>
+        <p class="text-xs text-gray-500 mt-3">
+          Note: This Vanilla JS build uses a simple greedy Tiger AI (captures &gt; mobility &gt; center). No full alpha–beta here.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // --- Constants -----------------------------------------------------------------
+    const TOTAL_GOATS = 20;
+    const depthByDifficulty = { Easy: 1, Medium: 3, Hard: 5, Expert: 7 };
+
+    const badge = (text) => {
+      const el = document.createElement("span");
+      el.className = "text-xs px-2 py-1 rounded-full bg-gray-100 border";
+      el.textContent = text;
+      return el;
+    };
+
+    // --- Board (5x5 with diagonals) ------------------------------------------------
+    const board = (() => {
+      const width = 520, height = 520, margin = 40, size = 5;
+      const stepX = (width - margin * 2) / (size - 1);
+      const stepY = (height - margin * 2) / (size - 1);
+      const nodes = [];
+      const idAt = (r, c) => r * size + c;
+      for (let r = 0; r < size; r++) {
+        for (let c = 0; c < size; c++) {
+          nodes.push({ id: idAt(r,c), r, c, x: margin + c*stepX, y: margin + r*stepY });
+        }
+      }
+      const neighborDirs = [
+        [-1,-1], [-1,0], [-1,1],
+        [ 0,-1],         [ 0,1],
+        [ 1,-1], [ 1,0], [ 1,1],
+      ];
+      const segments = [];
+      const inBounds = (r,c) => r>=0 && r<size && c>=0 && c<size;
+      for (const n of nodes) {
+        for (const [dr,dc] of neighborDirs) {
+          const r2 = n.r + dr, c2 = n.c + dc;
+          if (!inBounds(r2, c2)) continue;
+          const o = nodes[idAt(r2, c2)];
+          if (o.id > n.id) segments.push({ ax:n.x, ay:n.y, bx:o.x, by:o.y });
+        }
+      }
+      const neighbors = new Map();
+      for (const n of nodes) {
+        const list = [];
+        for (const [dr,dc] of neighborDirs) {
+          const r2 = n.r + dr, c2 = n.c + dc;
+          if (inBounds(r2,c2)) list.push(idAt(r2,c2));
+        }
+        neighbors.set(n.id, list);
+      }
+      const landingInDir = (id, dr, dc) => {
+        const n = nodes[id];
+        const r1 = n.r + dr, c1 = n.c + dc;
+        const r2 = n.r + 2*dr, c2 = n.c + 2*dc;
+        if (!inBounds(r1,c1) || !inBounds(r2,c2)) return null;
+        return { over: idAt(r1,c1), land: idAt(r2,c2) };
+      };
+      return { width, height, nodes, segments, idAt, neighbors, landingInDir, size };
+    })();
+
+    // --- Game state ----------------------------------------------------------------
+    const initialState = () => ({
+      phase: "placement",          // "placement" -> "movement" (for goats)
+      turn: "G",                   // You (Goats) start
+      goatsPlaced: 0,
+      goatsCaptured: 0,
+      selected: null,              // node id
+      occ: {},                     // id -> { side: 'G' | 'T' }
+      message: "Place a goat on any empty point.",
+    });
+
+    let state = initialState();
+    const stack = [];
+
+    function placeInitialTigers(occ) {
+      const corners = [
+        board.idAt(0,0),
+        board.idAt(0,board.size-1),
+        board.idAt(board.size-1,0),
+        board.idAt(board.size-1,board.size-1),
+      ];
+      for (const id of corners) occ[id] = { side: "T" };
+    }
+    placeInitialTigers(state.occ);
+
+    // --- DOM -----------------------------------------------------------------------
+    const badgesWrap = document.getElementById("badges");
+    const messageEl = document.getElementById("message");
+    const boardWrap = document.getElementById("boardWrap");
+    const difficultySel = document.getElementById("difficulty");
+    const depthLabel = document.getElementById("depthLabel");
+
+    function updateDepthLabel() {
+      depthLabel.textContent = depthByDifficulty[difficultySel.value];
+    }
+    difficultySel.addEventListener("change", updateDepthLabel);
+    updateDepthLabel();
+
+    // --- Rendering -----------------------------------------------------------------
+    function renderBadges() {
+      badgesWrap.innerHTML = "";
+      const phaseText = state.phase === "placement" ? "Phase: Placement" : "Phase: Movement";
+      const turnText = state.turn === "G" ? "Your Turn" : "Tiger (AI) Turn";
+      badgesWrap.appendChild(badge(phaseText));
+      badgesWrap.appendChild(badge(turnText));
+      badgesWrap.appendChild(badge(`Goats placed: ${state.goatsPlaced}/${TOTAL_GOATS}`));
+      badgesWrap.appendChild(badge(`Goats captured: ${state.goatsCaptured}`));
+    }
+
+    function pieceSVG(id, x, y, side, selected) {
+      const isTiger = side === "T";
+      return `
+        <g data-piece="${id}" style="cursor:pointer">
+          <circle cx="${x}" cy="${y}" r="18" fill="${isTiger ? "#111827" : "#f59e0b"}"></circle>
+          <circle cx="${x}" cy="${y}" r="14" fill="${isTiger ? "#374151" : "#fde68a"}"></circle>
+          <text x="${x}" y="${y + 5}" text-anchor="middle" font-size="14" font-weight="700" fill="${isTiger ? "#f3f4f6" : "#111827"}">
+            ${isTiger ? "🐯" : "🐐"}
+          </text>
+          ${selected ? `<circle cx="${x}" cy="${y}" r="22" fill="none" stroke="#34d399" stroke-width="3"></circle>` : ""}
+        </g>
+      `;
+    }
+
+    function computeTigerMobility() {
+      let moves = 0;
+      const dirs = [
+        [-1,-1], [-1,0], [-1,1],
+        [ 0,-1],         [ 0,1],
+        [ 1,-1], [ 1,0], [ 1,1],
+      ];
+      for (const idStr in state.occ) {
+        const id = +idStr;
+        const p = state.occ[id];
+        if (p.side !== "T") continue;
+        for (const nId of board.neighbors.get(id)) if (!state.occ[nId]) moves++;
+        for (const [dr,dc] of dirs) {
+          const jump = board.landingInDir(id, dr, dc);
+          if (!jump) continue;
+          if (state.occ[jump.over]?.side === "G" && !state.occ[jump.land]) moves++;
+        }
+      }
+      return moves;
+    }
+
+    function checkWins() {
+      const tigersWin = state.goatsCaptured >= 5;
+      const goatsWin = computeTigerMobility() === 0;
+      return { tigersWin, goatsWin };
+    }
+
+    function renderBoard() {
+      const { width, height, segments, nodes } = board;
+      const { tigersWin, goatsWin } = checkWins();
+      const legalSet = legalToSet();
+
+      const svg = `
+        <svg viewBox="0 0 ${width} ${height}" class="w-full h-auto">
+          <defs>
+            <radialGradient id="bgGrad" cx="50%" cy="40%" r="80%">
+              <stop offset="0%" stop-opacity="1" stop-color="#ffffff"></stop>
+              <stop offset="100%" stop-opacity="1" stop-color="#f3f4f6"></stop>
+            </radialGradient>
+          </defs>
+          <rect x="0" y="0" width="${width}" height="${height}" fill="url(#bgGrad)"></rect>
+
+          ${segments.map(s => `
+            <line x1="${s.ax}" y1="${s.ay}" x2="${s.bx}" y2="${s.by}"
+              stroke="#1f2937" stroke-width="2" stroke-linecap="round" opacity="0.25"></line>
+          `).join("")}
+
+          ${goatsWin ? `<text x="${width/2}" y="36" text-anchor="middle" font-size="22" font-weight="700" fill="#10b981">
+            Goats win! Tigers are trapped.
+          </text>` : ""}
+
+          ${tigersWin ? `<text x="${width/2}" y="36" text-anchor="middle" font-size="22" font-weight="700" fill="#ef4444">
+            Tigers win! 5 goats captured.
+          </text>` : ""}
+
+          ${nodes.map(n => {
+            const occ = state.occ[n.id];
+            const isSel = state.selected === n.id;
+            const isLegal = legalSet.has(n.id);
+            return `
+              <g data-node="${n.id}">
+                <circle cx="${n.x}" cy="${n.y}" r="22" fill="${isLegal ? "#a7f3d0" : "transparent"}"
+                        opacity="${isLegal ? "0.8" : "1"}" style="cursor:pointer"></circle>
+                <circle cx="${n.x}" cy="${n.y}" r="6" fill="#1f2937" opacity="0.5"></circle>
+                ${occ ? pieceSVG(n.id, n.x, n.y, occ.side, isSel) : ""}
+              </g>
+            `;
+          }).join("")}
+        </svg>
+      `;
+      boardWrap.innerHTML = svg;
+
+      // Attach events
+      boardWrap.querySelectorAll("[data-node]").forEach(g => {
+        const id = +g.getAttribute("data-node");
+        g.addEventListener("click", (e) => {
+          const pieceEl = g.querySelector("[data-piece]");
+          if (pieceEl && e.target.closest("[data-piece]")) {
+            onPieceClick(id);
+          } else {
+            onNodeClick(id);
+          }
+        });
+      });
+    }
+
+    // --- Legal moves for current selection (only for goats; tigers are AI) --------
+    function legalToSet() {
+      const set = new Set();
+      const sel = state.selected;
+      if (sel == null) return set;
+
+      const piece = state.occ[sel];
+      if (!piece) return set;
+
+      // Only show move targets for goats on player's turn
+      if (piece.side !== "G" || state.turn !== "G") return set;
+
+      const stepTargets = board.neighbors.get(sel).filter(n => !state.occ[n]);
+      stepTargets.forEach(n => set.add(n));
+      return set;
+    }
+
+    // --- History -------------------------------------------------------------------
+    function pushHistory() {
+      stack.push(JSON.parse(JSON.stringify(state)));
+    }
+
+    // --- UI interactions -----------------------------------------------------------
+    function onNodeClick(id) {
+      const { tigersWin, goatsWin } = checkWins();
+      if (tigersWin || goatsWin) return;
+
+      // Goat placement (your turn)
+      if (state.phase === "placement" && state.turn === "G") {
+        if (state.occ[id]) {
+          state.message = "That point is occupied.";
+          rerender();
+          return;
+        }
+        pushHistory();
+        state.occ[id] = { side: "G" };
+        state.goatsPlaced++;
+        state.message = "Goat placed.";
+
+        if (state.goatsPlaced >= TOTAL_GOATS) {
+          state.phase = "movement";
+          state.message = "All goats placed. Move a goat.";
+        }
+
+        state.selected = null;
+        state.turn = "T";
+        rerender();
+        aiTigerTurn(); // AI plays after your placement
+        return;
+      }
+
+      // Movement phase: moving goat to empty target
+      if (state.phase === "movement" && state.turn === "G" && state.selected != null) {
+        const piece = state.occ[state.selected];
+        if (!piece || piece.side !== "G") {
+          state.message = "Select a goat to move.";
+          rerender();
+          return;
+        }
+        const legal = legalToSet();
+        if (!legal.has(id)) {
+          state.message = "Illegal move.";
+          rerender();
+          return;
+        }
+        pushHistory();
+        const mover = state.occ[state.selected];
+        delete state.occ[state.selected];
+        state.occ[id] = mover;
+        state.selected = null;
+        state.message = "Goat moved.";
+        state.turn = "T";
+        rerender();
+        aiTigerTurn(); // AI responds
+        return;
+      }
+
+      // If nothing selected or not your turn
+      if (state.turn !== "G") {
+        state.message = "It's Tiger (AI) turn.";
+      } else {
+        state.message = state.phase === "placement"
+          ? "Click an empty point to place a goat."
+          : "Select a goat to move.";
+      }
+      rerender();
+    }
+
+    function onPieceClick(id) {
+      const { tigersWin, goatsWin } = checkWins();
+      if (tigersWin || goatsWin) return;
+
+      const piece = state.occ[id];
+      if (!piece) return;
+
+      // Tigers are AI-controlled
+      if (piece.side === "T") {
+        state.message = "Tigers are AI-controlled.";
+        rerender();
+        return;
+      }
+
+      // During placement, goats cannot move
+      if (state.phase === "placement") {
+        state.message = "You're still placing goats—click an empty point.";
+        rerender();
+        return;
+      }
+
+      // Select/toggle goat on your turn
+      if (state.turn !== "G") {
+        state.message = "It's Tiger (AI) turn.";
+        rerender();
+        return;
+      }
+
+      if (state.selected === id) {
+        state.selected = null;
+        state.message = "";
+      } else {
+        state.selected = id;
+        state.message = "Goat selected. Choose a destination.";
+      }
+      rerender();
+    }
+
+    // --- Undo / Reset --------------------------------------------------------------
+    document.getElementById("undoBtn").addEventListener("click", () => {
+      if (!stack.length) return;
+      state = stack.pop();
+      rerender();
+    });
+
+    document.getElementById("resetBtn").addEventListener("click", () => {
+      state = initialState();
+      placeInitialTigers(state.occ);
+      stack.length = 0;
+      rerender();
+    });
+
+    // --- Tiger AI ------------------------------------------------------------------
+    // Heuristic bits
+    const center = { r: 2, c: 2 };
+    function manhattanToCenter(r, c) { return Math.abs(r - center.r) + Math.abs(c - center.c); }
+
+    function mobilityAt(id) {
+      // empty neighbors from this node
+      let count = 0;
+      for (const n of board.neighbors.get(id)) if (!state.occ[n]) count++;
+      return count;
+    }
+
+    function futureCapturesFrom(id) {
+      let count = 0;
+      const dirs = [
+        [-1,-1], [-1,0], [-1,1],
+        [ 0,-1],         [ 0,1],
+        [ 1,-1], [ 1,0], [ 1,1],
+      ];
+      for (const [dr,dc] of dirs) {
+        const j = board.landingInDir(id, dr, dc);
+        if (!j) continue;
+        if (state.occ[j.over]?.side === "G" && !state.occ[j.land]) count++;
+      }
+      return count;
+    }
+
+    function listTigerMoves() {
+      const moves = [];
+      const dirs = [
+        [-1,-1], [-1,0], [-1,1],
+        [ 0,-1],         [ 0,1],
+        [ 1,-1], [ 1,0], [ 1,1],
+      ];
+      for (const idStr in state.occ) {
+        const from = +idStr;
+        if (state.occ[from].side !== "T") continue;
+
+        // Step moves
+        for (const to of board.neighbors.get(from)) {
+          if (state.occ[to]) continue;
+          const n = board.nodes[to];
+          const mob = mobilityAt(to);
+          const fut = futureCapturesFrom(to);
+          const centerBonus = 4 - manhattanToCenter(n.r, n.c);
+          const score = 10 + mob + 2*fut + centerBonus * 0.5;
+          moves.push({ from, to, over: null, score });
+        }
+
+        // Jump captures
+        for (const [dr,dc] of dirs) {
+          const j = board.landingInDir(from, dr, dc);
+          if (!j) continue;
+          if (state.occ[j.over]?.side === "G" && !state.occ[j.land]) {
+            const n = board.nodes[j.land];
+            const mob = mobilityAt(j.land);
+            const fut = futureCapturesFrom(j.land);
+            const centerBonus = 4 - manhattanToCenter(n.r, n.c);
+            // Heavily favor captures
+            const score = 100 + mob + 3*fut + centerBonus * 0.5;
+            moves.push({ from, to: j.land, over: j.over, score });
+          }
+        }
+      }
+      // Prefer captures over steps by score; tie-break randomly among best
+      if (!moves.length) return moves;
+      const bestScore = Math.max(...moves.map(m => m.score));
+      const best = moves.filter(m => m.score === bestScore);
+      return [best[Math.floor(Math.random()*best.length)]];
+    }
+
+    function applyTigerMove(move) {
+      pushHistory();
+      const mover = state.occ[move.from];
+      delete state.occ[move.from];
+      if (move.over != null) {
+        delete state.occ[move.over];
+        state.goatsCaptured++;
+      }
+      state.occ[move.to] = mover;
+      const captured = move.over != null;
+      state.message = captured ? "Tiger captured a goat!" : "Tiger moved.";
+      state.turn = "G";
+      state.selected = null;
+      rerender();
+    }
+
+    function aiTigerTurn() {
+      // Guard conditions
+      const { tigersWin, goatsWin } = checkWins();
+      if (tigersWin || goatsWin) return;
+      if (state.turn !== "T") return;
+
+      // Small delay for UX
+      setTimeout(() => {
+        const options = listTigerMoves();
+        if (!options.length) {
+          // No move: goats win
+          state.message = "Tigers are immobilized!";
+          rerender();
+          return;
+        }
+        applyTigerMove(options[0]);
+      }, 350);
+    }
+
+    // --- Rerender ------------------------------------------------------------------
+    function rerender() {
+      renderBadges();
+      renderBoard();
+      const { tigersWin, goatsWin } = checkWins();
+      if (tigersWin) state.message = "Game over: Tigers captured 5 goats.";
+      if (goatsWin) state.message = "Game over: Tigers immobilized.";
+      messageEl.textContent = state.message;
+    }
+
+    // Initial paint
+    rerender();
+  </script>
+</body>
+</html>

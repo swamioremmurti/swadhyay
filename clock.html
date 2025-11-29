@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Solar Sandhyā Calculator (No Timezone)</title>
+  <style>
+    :root{--bg:#0f172a;--card:#111827;--muted:#93a3b8;--text:#e5e7eb;--accent:#38bdf8;--ok:#22c55e;--warn:#f59e0b;--err:#ef4444;--border:#1f2937}
+    *{box-sizing:border-box}
+    body{margin:0;background:linear-gradient(180deg,#0b1024,#0f172a);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Helvetica,Arial,sans-serif;}
+    header{padding:24px 16px;text-align:center}
+    h1{margin:0 0 6px;font-weight:800;font-size:clamp(20px,3vw,28px)}
+    p.sub{margin:0;color:var(--muted)}
+    .container{max-width:980px;margin:0 auto;padding:16px}
+    .panel{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:16px}
+    .grid{display:grid;gap:14px}
+    @media(min-width:768px){.grid-cols-2{grid-template-columns:1fr 1fr}.grid-cols-3{grid-template-columns:repeat(3,1fr)}}
+    label{display:block;font-size:12px;color:var(--muted);margin-bottom:6px}
+    input[type="date"],input[type="number"],button{width:100%;padding:10px 12px;border-radius:10px;border:1px solid var(--border);background:#0b1220;color:var(--text)}
+    input[type="number"]{appearance:textfield}
+    input::placeholder{color:#6b7280}
+    button{cursor:pointer;background:linear-gradient(180deg,#1f3a5f,#15304f);border-color:#1f2a40}
+    button:hover{filter:brightness(1.1)}
+    .row{display:flex;gap:10px;align-items:end}
+    .row > *{flex:1}
+    .actions{display:flex;gap:10px;flex-wrap:wrap}
+    .pill{display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border:1px solid var(--border);border-radius:999px;color:var(--muted);font-size:12px}
+    .cards{display:grid;gap:12px;margin-top:12px}
+    @media(min-width:880px){.cards{grid-template-columns:repeat(2,1fr)}}
+    .card{border:1px solid var(--border);background:#0b1220;border-radius:14px;padding:14px}
+    .card h3{margin:0 0 8px;font-size:16px}
+    .card p{margin:6px 0}
+    .badge{font-size:11px;padding:2px 8px;border-radius:999px;border:1px solid var(--border);color:var(--muted)}
+    .ok{border-color:#134e2e;color:#86efac}
+    .warn{border-color:#4a3310;color:#facc15}
+    .err{border-color:#5b1111;color:#fca5a5}
+    .foot{color:var(--muted);font-size:12px;margin-top:12px}
+    .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace}
+    .small{font-size:12px;color:var(--muted)}
+    .note{margin-top:8px;color:var(--muted);font-size:12px}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Solar Sandhyā Calculator</h1>
+    <p class="sub">No time zones, no libraries — pure JS. Uses <b>Local Solar Time</b> (LMST) derived from your latitude/longitude.</p>
+  </header>
+
+  <div class="container grid grid-cols-2" id="app">
+    <section class="panel">
+      <div class="grid">
+        <div class="row">
+          <div>
+            <label for="date">Date</label>
+            <input id="date" type="date">
+          </div>
+          <div>
+            <label>&nbsp;</label>
+            <button id="todayBtn">Use Today</button>
+          </div>
+        </div>
+        <div class="row">
+          <div>
+            <label for="lat">Latitude (°)</label>
+            <input id="lat" type="number" inputmode="decimal" step="0.000001" placeholder="e.g., 28.6139" />
+          </div>
+          <div>
+            <label for="lon">Longitude (°; East + / West −)</label>
+            <input id="lon" type="number" inputmode="decimal" step="0.000001" placeholder="e.g., 77.2090" />
+          </div>
+        </div>
+        <div class="actions">
+          <button id="geoBtn">Use My Location</button>
+          <button id="calcBtn">Calculate</button>
+          <span class="pill"><span>☀️</span><span class="small">Outputs in <b>Local Solar Time</b> (no time zone).</span></span>
+        </div>
+        <div class="note">Tip: West longitudes are negative. For example, New Delhi ≈ <span class="mono">lat 28.6139, lon 77.2090</span>.</div>
+        <div id="status" class="small"></div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="cards" id="results">
+        <!-- Cards injected here -->
+      </div>
+      <div class="foot">Definitions used:
+        <ul>
+          <li>Brahma Muhūrta: <span class="mono">[Sunrise − 1h36] → [Sunrise − 48m]</span> (48 min duration).</li>
+          <li>Prātaḥ Sandhyā: <span class="mono">[Sunrise − 48m] → [Sunrise + 48m]</span>.</li>
+          <li>Mādhyāhnika: <span class="mono">[Solar Noon − 24m] → [Solar Noon + 24m]</span>.</li>
+          <li>Sāyam (Āsura) Sandhyā: <span class="mono">[Sunset − 12m] → [Sunset + 48m]</span>.</li>
+        </ul>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    // ---------- Utilities ----------
+    const toRad = d => d * Math.PI / 180;
+    const toDeg = r => r * 180 / Math.PI;
+
+    function dayOfYear(date){
+      const start = new Date(Date.UTC(date.getUTCFullYear(),0,1));
+      const diff = (Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()) - start.getTime())/86400000;
+      return diff + 1; // 1..366
+    }
+
+    function fractionalYearGamma(date){
+      // NOAA: gamma in radians
+      const n = dayOfYear(date);
+      const hour = 12; // evaluate near noon to reduce error
+      return 2 * Math.PI / 365 * (n - 1 + (hour - 12)/24);
+    }
+
+    function solarDeclination(date){
+      // NOAA approximation (radians)
+      const g = fractionalYearGamma(date);
+      const decl = 0.006918
+        - 0.399912 * Math.cos(g) + 0.070257 * Math.sin(g)
+        - 0.006758 * Math.cos(2*g) + 0.000907 * Math.sin(2*g)
+        - 0.002697 * Math.cos(3*g) + 0.001480 * Math.sin(3*g);
+      return decl; // radians
+    }
+
+    function sunriseSunsetLocalSolar(date, latDeg){
+      // Returns {sunrise: minutes, sunset: minutes} in Local Solar Time (minutes from 00:00 LMST)
+      // Using standard refraction/solar radius zenith 90.833°
+      const phi = toRad(latDeg);
+      const delta = solarDeclination(date); // radians
+      const cosH = (Math.cos(toRad(90.833)) - Math.sin(phi)*Math.sin(delta)) / (Math.cos(phi)*Math.cos(delta));
+      if (isNaN(cosH) || cosH < -1 || cosH > 1){
+        return null; // polar day/night (no sunrise or no sunset)
+      }
+      const H = Math.acos(cosH); // radians, hour angle at sunrise/sunset
+      const Hdeg = toDeg(H);
+      const deltaMinutes = Hdeg * 4; // minutes from solar noon
+      const sunrise = 12*60 - deltaMinutes; // LMST minutes
+      const sunset  = 12*60 + deltaMinutes; // LMST minutes
+      return { sunrise, sunset };
+    }
+
+    function clampMinutes(m){
+      // keep within 0..1440 but preserve wrap-around intent
+      while(m < 0) m += 1440;
+      while(m >= 1440) m -= 1440;
+      return m;
+    }
+
+    function fmtMinutes(min){
+      min = clampMinutes(Math.round(min));
+      const h = Math.floor(min/60);
+      const m = min % 60;
+      const hh = String(h).padStart(2,'0');
+      const mm = String(m).padStart(2,'0');
+      return `${hh}:${mm}`;
+    }
+
+    function makeCard(title, startMin, endMin, badgeClass){
+      const el = document.createElement('div');
+      el.className = 'card';
+      el.innerHTML = `
+        <h3>${title} <span class="badge ${badgeClass}">Local Solar Time</span></h3>
+        <p><b>Start:</b> <span class="mono">${fmtMinutes(startMin)}</span></p>
+        <p><b>End:</b> <span class="mono">${fmtMinutes(endMin)}</span></p>
+      `;
+      return el;
+    }
+
+    function setStatus(msg, tone=''){
+      const el = document.getElementById('status');
+      el.textContent = msg;
+      el.style.color = tone==='err' ? 'var(--err)' : tone==='warn' ? 'var(--warn)' : 'var(--muted)';
+    }
+
+    // ---------- Main calculation ----------
+    function calculate(){
+      const lat = parseFloat(document.getElementById('lat').value);
+      const lon = parseFloat(document.getElementById('lon').value); // not used for LMST outputs (by design)
+      const dateInput = document.getElementById('date').value;
+      if (isNaN(lat) || isNaN(lon)){
+        setStatus('Please enter valid latitude and longitude (lon can be negative in the West).','err');
+        return;
+      }
+      if (!dateInput){
+        setStatus('Please choose a date.','err');
+        return;
+      }
+      const date = new Date(dateInput + 'T12:00:00Z');
+
+      const ss = sunriseSunsetLocalSolar(date, lat);
+      const results = document.getElementById('results');
+      results.innerHTML = '';
+
+      if (!ss){
+        setStatus('For this latitude/date, the Sun may not rise/set (polar day/night). Times unavailable.','warn');
+        return;
+      }
+
+      setStatus('Calculated using Local Solar Time (LMST). Longitude affects civil time, but LMST is independent of time zones.');
+
+      const sunrise = ss.sunrise; // minutes LMST
+      const sunset  = ss.sunset;  // minutes LMST
+      const solarNoon = 12*60;    // by definition in LMST
+
+      // Windows (all in minutes, LMST)
+      const brahmaStart = sunrise - (1*60 + 36); // 1h36 before sunrise
+      const brahmaEnd   = sunrise - 48;
+
+      const pratahStart = sunrise - 48;
+      const pratahEnd   = sunrise + 48;
+
+      const madhStart   = solarNoon - 24;
+      const madhEnd     = solarNoon + 24;
+
+      const sayamStart  = sunset - 12;
+      const sayamEnd    = sunset + 48;
+
+      results.appendChild(makeCard('Brahma Muhūrta', brahmaStart, brahmaEnd, 'ok'));
+      results.appendChild(makeCard('Prātaḥ Sandhyā', pratahStart, pratahEnd, 'ok'));
+      results.appendChild(makeCard('Mādhyāhnika Sandhyā', madhStart, madhEnd, 'warn'));
+      results.appendChild(makeCard('Sāyam (Āsura) Sandhyā', sayamStart, sayamEnd, 'ok'));
+
+      // Also show reference sunrise/sunset in LMST
+      const ref = document.createElement('div');
+      ref.className = 'card';
+      ref.innerHTML = `
+        <h3>Reference (LMST)</h3>
+        <p><b>Sunrise:</b> <span class="mono">${fmtMinutes(sunrise)}</span> &nbsp; <b>Sunset:</b> <span class="mono">${fmtMinutes(sunset)}</span> &nbsp; <b>Solar Noon:</b> <span class="mono">12:00</span></p>
+        <p class="small">These are in <b>Local Solar Time</b> (LMST). To convert to your civil clock, add your longitude-based offset (~${(lon/15).toFixed(2)}h) and the equation-of-time for that date.</p>
+      `;
+      results.appendChild(ref);
+    }
+
+    // ---------- Geolocation ----------
+    function useMyLocation(){
+      if(!('geolocation' in navigator)){
+        setStatus('Geolocation not supported in this browser. Enter coordinates manually.','warn');
+        return;
+      }
+      setStatus('Locating…');
+      navigator.geolocation.getCurrentPosition((pos)=>{
+        const { latitude, longitude } = pos.coords;
+        document.getElementById('lat').value = latitude.toFixed(6);
+        document.getElementById('lon').value = longitude.toFixed(6);
+        setStatus('Location acquired. Now choose a date and Calculate.');
+      },(err)=>{
+        setStatus('Location error: '+err.message,'err');
+      },{ enableHighAccuracy:true, timeout:8000, maximumAge:30000 });
+    }
+
+    // ---------- Init ----------
+    function setToday(){
+      const now = new Date();
+      const yyyy = now.getUTCFullYear();
+      const mm = String(now.getUTCMonth()+1).padStart(2,'0');
+      const dd = String(now.getUTCDate()).padStart(2,'0');
+      document.getElementById('date').value = `${yyyy}-${mm}-${dd}`;
+    }
+
+    document.getElementById('todayBtn').addEventListener('click', setToday);
+    document.getElementById('geoBtn').addEventListener('click', useMyLocation);
+    document.getElementById('calcBtn').addEventListener('click', calculate);
+
+    // defaults
+    setToday();
+  </script>
+</body>
+</html>

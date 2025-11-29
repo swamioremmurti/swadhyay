@@ -555,3 +555,9 @@ body,
 .Image {
     text-align: center;
 }
+
+.chapterend {
+    text-align: center;
+    font-style: italic;
+    
+}
