@@ -1,528 +1,571 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="te">
-<head>
-  <meta charset="UTF-8" />
-  <title>తెలుగు అక్షరాల ట్రేసింగ్</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <head>
+        <meta charset="UTF-8" />
+        <title>తెలుగు అక్షరాల ట్రేసింగ్</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+        <style>
+            * {
+                box-sizing: border-box;
+            }
 
-    body {
-      margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: #f5f7fa;
-      color: #263238;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      padding: 16px;
-    }
+            body {
+                margin: 0;
+                font-family:
+                    system-ui,
+                    -apple-system,
+                    BlinkMacSystemFont,
+                    "Segoe UI",
+                    sans-serif;
+                background: #f5f7fa;
+                color: #263238;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-height: 100vh;
+                padding: 16px;
+            }
 
-    .app {
-      background: #ffffff;
-      width: 100%;
-      max-width: 520px;
-      border-radius: 16px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-      padding: 16px 16px 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
+            .app {
+                background: #ffffff;
+                width: 100%;
+                max-width: 520px;
+                border-radius: 16px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+                padding: 16px 16px 20px;
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+            }
 
-    header {
-      text-align: center;
-    }
+            header {
+                text-align: center;
+            }
 
-    header h1 {
-      font-size: 1.25rem;
-      margin: 0;
-    }
+            header h1 {
+                font-size: 1.25rem;
+                margin: 0;
+            }
 
-    header p {
-      margin: 4px 0 0;
-      font-size: 0.9rem;
-      color: #607d8b;
-    }
+            header p {
+                margin: 4px 0 0;
+                font-size: 0.9rem;
+                color: #607d8b;
+            }
 
-    .tracing-area {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 12px;
-    }
+            .tracing-area {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 12px;
+            }
 
-    .letter-wrapper {
-      position: relative;
-      width: min(80vw, 80vh, 420px);
-      aspect-ratio: 1 / 1;
-      border-radius: 16px;
-      background: #eceff1;
-      overflow: hidden;
-      touch-action: none;
-    }
+            .letter-wrapper {
+                position: relative;
+                width: min(80vw, 80vh, 420px);
+                aspect-ratio: 1 / 1;
+                border-radius: 16px;
+                background: #eceff1;
+                overflow: hidden;
+                touch-action: none;
+            }
 
-    .letter-wrapper svg,
-    .letter-wrapper canvas {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      display: block;
-    }
+            .letter-wrapper svg,
+            .letter-wrapper canvas {
+                position: absolute;
+                inset: 0;
+                width: 100%;
+                height: 100%;
+                display: block;
+            }
 
-    /* Dotted guide style */
-    #guide-letter {
-      fill: none;
-      stroke: #b0bec5;
-      stroke-width: 4;
-      stroke-dasharray: 8 10;
-      paint-order: stroke;
-    }
+            /* Dotted guide style */
+            #guide-letter {
+                fill: none;
+                stroke: #b0bec5;
+                stroke-width: 4;
+                stroke-dasharray: 8 10;
+                paint-order: stroke;
+            }
 
-    .controls {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      justify-content: space-between;
-      align-items: center;
-      width: 100%;
-    }
+            .controls {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 8px;
+                justify-content: space-between;
+                align-items: center;
+                width: 100%;
+            }
 
-    .nav-buttons {
-      display: flex;
-      gap: 8px;
-      flex: 1;
-    }
+            .nav-buttons {
+                display: flex;
+                gap: 8px;
+                flex: 1;
+            }
 
-    button {
-      border: none;
-      border-radius: 999px;
-      padding: 8px 14px;
-      font-size: 0.9rem;
-      font-weight: 600;
-      cursor: pointer;
-      background: #eceff1;
-      color: #37474f;
-      transition: transform 0.08s ease, box-shadow 0.08s ease, background 0.15s ease;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      min-width: 0;
-      flex: 1;
-    }
+            button {
+                border: none;
+                border-radius: 999px;
+                padding: 8px 14px;
+                font-size: 0.9rem;
+                font-weight: 600;
+                cursor: pointer;
+                background: #eceff1;
+                color: #37474f;
+                transition:
+                    transform 0.08s ease,
+                    box-shadow 0.08s ease,
+                    background 0.15s ease;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                gap: 6px;
+                min-width: 0;
+                flex: 1;
+            }
 
-    button:active {
-      transform: translateY(1px);
-      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1) inset;
-    }
+            button:active {
+                transform: translateY(1px);
+                box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1) inset;
+            }
 
-    button.primary {
-      background: #ffb74d;
-      color: #4e342e;
-    }
+            button.primary {
+                background: #ffb74d;
+                color: #4e342e;
+            }
 
-    button.primary:hover {
-      background: #ffa726;
-    }
+            button.primary:hover {
+                background: #ffa726;
+            }
 
-    .info {
-      font-size: 0.8rem;
-      color: #78909c;
-      text-align: right;
-      flex: 1;
-      min-width: 80px;
-    }
+            .info {
+                font-size: 0.8rem;
+                color: #78909c;
+                text-align: right;
+                flex: 1;
+                min-width: 80px;
+            }
 
-    .current-letter-label {
-      font-weight: 600;
-      font-size: 1.1rem;
-      color: #37474f;
-    }
+            .current-letter-label {
+                font-weight: 600;
+                font-size: 1.1rem;
+                color: #37474f;
+            }
 
-    .stats-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      font-size: 0.8rem;
-      width: 100%;
-      justify-content: space-between;
-      color: #546e7a;
-    }
+            .stats-row {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 6px;
+                font-size: 0.8rem;
+                width: 100%;
+                justify-content: space-between;
+                color: #546e7a;
+            }
 
-    .stat-chip {
-      background: #eceff1;
-      border-radius: 999px;
-      padding: 4px 10px;
-      white-space: nowrap;
-    }
+            .stat-chip {
+                background: #eceff1;
+                border-radius: 999px;
+                padding: 4px 10px;
+                white-space: nowrap;
+            }
 
-    .score-highlight {
-      font-weight: 700;
-      color: #004d40;
-    }
+            .score-highlight {
+                font-weight: 700;
+                color: #004d40;
+            }
 
-    .score-warning {
-      color: #bf360c;
-    }
+            .score-warning {
+                color: #bf360c;
+            }
 
-    @media (max-width: 480px) {
-      .app {
-        padding: 12px;
-      }
-      header h1 {
-        font-size: 1.1rem;
-      }
-      .letter-wrapper {
-        width: 100%;
-      }
-    }
-  </style>
-</head>
-<body>
-  <div class="app">
-    <header>
-      <h1>తెలుగు అక్షరాల ట్రేసింగ్</h1>
-      <p>బొగ్గు దారాన్ని (dotted line) అనుసరించి అక్షరాన్ని ట్రేస్ చేయండి 🖐️</p>
-    </header>
+            @media (max-width: 480px) {
+                .app {
+                    padding: 12px;
+                }
+                header h1 {
+                    font-size: 1.1rem;
+                }
+                .letter-wrapper {
+                    width: 100%;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="app">
+            <header>
+                <h1>తెలుగు అక్షరాల ట్రేసింగ్</h1>
+                <p>అక్షరాన్ని ట్రేస్ చేయండి 🖐️</p>
+            </header>
 
-    <main class="tracing-area">
-      <div class="letter-wrapper" id="letterWrapper">
-        <!-- Dotted guide using SVG text -->
-        <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
-          <text id="guide-letter"
-                x="50%"
-                y="50%"
-                dominant-baseline="middle"
-                text-anchor="middle"
-                style="font-family:'Noto Sans Telugu','Gautami','Lohit Telugu','Pothana2000',sans-serif;
-                       font-size:260px;">
-            అ
-          </text>
-        </svg>
+            <main class="tracing-area">
+                <div class="letter-wrapper" id="letterWrapper">
+                    <!-- Dotted guide using SVG text -->
+                    <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+                        <text
+                            id="guide-letter"
+                            x="50%"
+                            y="50%"
+                            dominant-baseline="middle"
+                            text-anchor="middle"
+                            style="
+                                font-family: &quot;Noto Sans Telugu&quot;, &quot;Gautami&quot;, &quot;Lohit Telugu&quot;,
+                                    &quot;Pothana2000&quot;, sans-serif;
+                                font-size: 260px;
+                            ">
+                            అ
+                        </text>
+                    </svg>
 
-        <!-- Tracing canvas -->
-        <canvas id="traceCanvas"></canvas>
-      </div>
+                    <!-- Tracing canvas -->
+                    <canvas id="traceCanvas"></canvas>
+                </div>
 
-      <!-- Top controls: nav + clear -->
-      <div class="controls">
-        <div class="nav-buttons">
-          <button id="prevBtn" title="Previous letter">
-            ⬅ ముందుది
-          </button>
-          <button id="nextBtn" title="Next letter">
-            తరువాత ➡
-          </button>
+                <!-- Top controls: nav + clear -->
+                <div class="controls">
+                    <div class="nav-buttons" style="width: 100vw">
+                        <button id="prevBtn" title="Previous letter">⬅ ముందుది</button>
+                        <button id="nextBtn" title="Next letter">తరువాత ➡</button>
+                    </div>
+                    <div>
+                        <button id="clearBtn" class="primary" title="Clear drawing">🧹 క్లియర్</button>
+                    </div>
+                </div>
+
+                <div class="controls">
+                    <div class="current-letter-label" id="currentLetterLabel">అ</div>
+                    <div class="info" id="indexInfo">1 / 10</div>
+                </div>
+
+                <!-- Stats & score display -->
+                <div class="stats-row">
+                    <span class="stat-chip" id="scoreInfo">స్కోర్: –</span>
+                    <span class="stat-chip" id="attemptInfo">ప్రయత్నాలు: 0</span>
+                    <span class="stat-chip" id="bestInfo">ఉత్తమ స్కోర్: –</span>
+                    <span class="stat-chip" id="tries95Info">95% చేరడానికి ప్రయత్నాలు: –</span>
+                </div>
+            </main>
         </div>
 
-        <button id="clearBtn" class="primary" title="Clear drawing">
-          🧹 క్లియర్
-        </button>
-      </div>
+        <script>
+            // Telugu vowels and consonants
+            const teluguLetters = [
+                "అ",
+                "ఆ",
+                "ఇ",
+                "ఈ",
+                "ఉ",
+                "ఊ",
+                "ఋ",
+                "ఎ",
+                "ఏ",
+                "ఐ",
+                "ఒ",
+                "ఓ",
+                "ఔ",
+                "అం",
+                "అః",
+                "క",
+                "ఖ",
+                "గ",
+                "ఘ",
+                "ఙ",
+                "చ",
+                "ఛ",
+                "జ",
+                "ఝ",
+                "ఞ",
+                "ట",
+                "ఠ",
+                "డ",
+                "ఢ",
+                "ణ",
+                "త",
+                "థ",
+                "ద",
+                "ధ",
+                "న",
+                "ప",
+                "ఫ",
+                "బ",
+                "భ",
+                "మ",
+                "య",
+                "ర",
+                "ల",
+                "వ",
+                "శ",
+                "ష",
+                "స",
+                "హ",
+                "ళ",
+                "క్ష",
+                "జ్ఞ"
+            ];
 
-      <div class="controls">
-        <div class="current-letter-label" id="currentLetterLabel">అ</div>
-        <div class="info" id="indexInfo">1 / 10</div>
-      </div>
+            // Per-letter stats
+            const letterStats = teluguLetters.map(() => ({
+                attempts: 0,
+                bestScore: 0,
+                completed95: false,
+                triesTo95: null
+            }));
 
-      <!-- Stats & score display -->
-      <div class="stats-row">
-        <span class="stat-chip" id="scoreInfo">స్కోర్: –</span>
-        <span class="stat-chip" id="attemptInfo">ప్రయత్నాలు: 0</span>
-        <span class="stat-chip" id="bestInfo">ఉత్తమ స్కోర్: –</span>
-        <span class="stat-chip" id="tries95Info">95% చేరడానికి ప్రయత్నాలు: –</span>
-      </div>
-    </main>
-  </div>
+            let currentIndex = 0;
 
-  <script>
-    // Telugu vowels and consonants
-    const teluguLetters = [
-      "అ", "ఆ", "ఇ", "ఈ", "ఉ", "ఊ", "ఋ", "ఎ", "ఏ", "ఐ",
-      "ఒ", "ఓ", "ఔ", "అం", "అః",
-      "క", "ఖ", "గ", "ఘ", "ఙ",
-      "చ", "ఛ", "జ", "ఝ", "ఞ",
-      "ట", "ఠ", "డ", "ఢ", "ణ",
-      "త", "థ", "ద", "ధ", "న",
-      "ప", "ఫ", "బ", "భ", "మ",
-      "య", "ర", "ల", "వ",
-      "శ", "ష", "స", "హ",
-      "ళ", "క్ష", "జ్ఞ"
-    ];
+            const guideText = document.getElementById("guide-letter");
+            const canvas = document.getElementById("traceCanvas");
+            const wrapper = document.getElementById("letterWrapper");
+            const currentLetterLabel = document.getElementById("currentLetterLabel");
+            const indexInfo = document.getElementById("indexInfo");
 
-    // Per-letter stats
-    const letterStats = teluguLetters.map(() => ({
-      attempts: 0,
-      bestScore: 0,
-      completed95: false,
-      triesTo95: null
-    }));
+            const prevBtn = document.getElementById("prevBtn");
+            const nextBtn = document.getElementById("nextBtn");
+            const clearBtn = document.getElementById("clearBtn");
 
-    let currentIndex = 0;
+            const scoreInfo = document.getElementById("scoreInfo");
+            const attemptInfo = document.getElementById("attemptInfo");
+            const bestInfo = document.getElementById("bestInfo");
+            const tries95Info = document.getElementById("tries95Info");
 
-    const guideText = document.getElementById("guide-letter");
-    const canvas = document.getElementById("traceCanvas");
-    const wrapper = document.getElementById("letterWrapper");
-    const currentLetterLabel = document.getElementById("currentLetterLabel");
-    const indexInfo = document.getElementById("indexInfo");
+            let ctx;
+            let isDrawing = false;
+            let lastX = 0;
+            let lastY = 0;
+            let currentSize = 0;
+            let dpr = window.devicePixelRatio || 1;
 
-    const prevBtn = document.getElementById("prevBtn");
-    const nextBtn = document.getElementById("nextBtn");
-    const clearBtn = document.getElementById("clearBtn");
+            // Offscreen canvases for analysis
+            const targetMask = document.createElement("canvas"); // letter shape
+            const userMask = document.createElement("canvas"); // user strokes
+            let targetCtx = targetMask.getContext("2d");
+            let userCtx = userMask.getContext("2d");
 
-    const scoreInfo = document.getElementById("scoreInfo");
-    const attemptInfo = document.getElementById("attemptInfo");
-    const bestInfo = document.getElementById("bestInfo");
-    const tries95Info = document.getElementById("tries95Info");
+            function setupCanvasSize() {
+                const rect = wrapper.getBoundingClientRect();
+                const size = Math.min(rect.width, rect.height);
+                currentSize = size;
+                dpr = window.devicePixelRatio || 1;
 
-    let ctx;
-    let isDrawing = false;
-    let lastX = 0;
-    let lastY = 0;
-    let currentSize = 0;
-    let dpr = window.devicePixelRatio || 1;
+                // Visible canvas
+                canvas.style.width = size + "px";
+                canvas.style.height = size + "px";
 
-    // Offscreen canvases for analysis
-    const targetMask = document.createElement("canvas"); // letter shape
-    const userMask = document.createElement("canvas");   // user strokes
-    let targetCtx = targetMask.getContext("2d");
-    let userCtx = userMask.getContext("2d");
+                canvas.width = size * dpr;
+                canvas.height = size * dpr;
 
-    function setupCanvasSize() {
-      const rect = wrapper.getBoundingClientRect();
-      const size = Math.min(rect.width, rect.height);
-      currentSize = size;
-      dpr = window.devicePixelRatio || 1;
+                // Offscreen canvases
+                targetMask.width = size * dpr;
+                targetMask.height = size * dpr;
+                userMask.width = size * dpr;
+                userMask.height = size * dpr;
 
-      // Visible canvas
-      canvas.style.width = size + "px";
-      canvas.style.height = size + "px";
+                ctx = canvas.getContext("2d");
+                targetCtx = targetMask.getContext("2d");
+                userCtx = userMask.getContext("2d");
 
-      canvas.width = size * dpr;
-      canvas.height = size * dpr;
+                // Logical coordinate system in CSS pixels:
+                ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+                targetCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+                userCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-      // Offscreen canvases
-      targetMask.width = size * dpr;
-      targetMask.height = size * dpr;
-      userMask.width = size * dpr;
-      userMask.height = size * dpr;
+                ctx.lineCap = "round";
+                ctx.lineJoin = "round";
+                ctx.strokeStyle = "#ff5722";
+                ctx.lineWidth = size / 25;
 
-      ctx = canvas.getContext("2d");
-      targetCtx = targetMask.getContext("2d");
-      userCtx = userMask.getContext("2d");
+                userCtx.lineCap = "round";
+                userCtx.lineJoin = "round";
+                userCtx.strokeStyle = "#000"; // black mask
+                userCtx.lineWidth = size / 25;
 
-      // Logical coordinate system in CSS pixels:
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      targetCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      userCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+                drawTargetMask(); // draw mask for current letter and size
+            }
 
-      ctx.lineCap = "round";
-      ctx.lineJoin = "round";
-      ctx.strokeStyle = "#ff5722";
-      ctx.lineWidth = size / 25;
+            function drawTargetMask() {
+                const letter = teluguLetters[currentIndex];
+                targetCtx.clearRect(0, 0, currentSize, currentSize);
 
-      userCtx.lineCap = "round";
-      userCtx.lineJoin = "round";
-      userCtx.strokeStyle = "#000";       // black mask
-      userCtx.lineWidth = size / 25;
+                const fontSize = currentSize * 0.7;
+                targetCtx.fillStyle = "#000000";
+                targetCtx.textAlign = "center";
+                targetCtx.textBaseline = "middle";
+                targetCtx.font = fontSize + "px 'Noto Sans Telugu','Gautami','Lohit Telugu','Pothana2000',sans-serif";
+                targetCtx.fillText(letter, currentSize / 2, currentSize / 2);
+            }
 
-      drawTargetMask(); // draw mask for current letter and size
-    }
+            function clearCanvas() {
+                if (!ctx) return;
+                ctx.clearRect(0, 0, currentSize, currentSize);
+                userCtx.clearRect(0, 0, currentSize, currentSize);
+                scoreInfo.textContent = "స్కోర్: –";
+                scoreInfo.classList.remove("score-highlight", "score-warning");
+            }
 
-    function drawTargetMask() {
-      const letter = teluguLetters[currentIndex];
-      targetCtx.clearRect(0, 0, currentSize, currentSize);
+            function getCanvasPos(evt) {
+                const rect = canvas.getBoundingClientRect();
+                return {
+                    x: evt.clientX - rect.left,
+                    y: evt.clientY - rect.top
+                };
+            }
 
-      const fontSize = currentSize * 0.7;
-      targetCtx.fillStyle = "#000000";
-      targetCtx.textAlign = "center";
-      targetCtx.textBaseline = "middle";
-      targetCtx.font = fontSize + "px 'Noto Sans Telugu','Gautami','Lohit Telugu','Pothana2000',sans-serif";
-      targetCtx.fillText(letter, currentSize / 2, currentSize / 2);
-    }
+            function startDrawing(evt) {
+                evt.preventDefault();
+                isDrawing = true;
+                const pos = getCanvasPos(evt);
+                lastX = pos.x;
+                lastY = pos.y;
+            }
 
-    function clearCanvas() {
-      if (!ctx) return;
-      ctx.clearRect(0, 0, currentSize, currentSize);
-      userCtx.clearRect(0, 0, currentSize, currentSize);
-      scoreInfo.textContent = "స్కోర్: –";
-      scoreInfo.classList.remove("score-highlight", "score-warning");
-    }
+            function draw(evt) {
+                if (!isDrawing) return;
+                evt.preventDefault();
+                const pos = getCanvasPos(evt);
 
-    function getCanvasPos(evt) {
-      const rect = canvas.getBoundingClientRect();
-      return {
-        x: evt.clientX - rect.left,
-        y: evt.clientY - rect.top
-      };
-    }
+                ctx.beginPath();
+                ctx.moveTo(lastX, lastY);
+                ctx.lineTo(pos.x, pos.y);
+                ctx.stroke();
 
-    function startDrawing(evt) {
-      evt.preventDefault();
-      isDrawing = true;
-      const pos = getCanvasPos(evt);
-      lastX = pos.x;
-      lastY = pos.y;
-    }
+                userCtx.beginPath();
+                userCtx.moveTo(lastX, lastY);
+                userCtx.lineTo(pos.x, pos.y);
+                userCtx.stroke();
 
-    function draw(evt) {
-      if (!isDrawing) return;
-      evt.preventDefault();
-      const pos = getCanvasPos(evt);
+                lastX = pos.x;
+                lastY = pos.y;
+            }
 
-      ctx.beginPath();
-      ctx.moveTo(lastX, lastY);
-      ctx.lineTo(pos.x, pos.y);
-      ctx.stroke();
+            function stopDrawing(evt) {
+                if (!isDrawing) return;
+                evt && evt.preventDefault();
+                isDrawing = false;
+                evaluateTrace(); // auto-update score after each stroke
+            }
 
-      userCtx.beginPath();
-      userCtx.moveTo(lastX, lastY);
-      userCtx.lineTo(pos.x, pos.y);
-      userCtx.stroke();
+            function updateLetter() {
+                const letter = teluguLetters[currentIndex];
+                guideText.textContent = letter;
+                currentLetterLabel.textContent = letter;
+                indexInfo.textContent = currentIndex + 1 + " / " + teluguLetters.length;
 
-      lastX = pos.x;
-      lastY = pos.y;
-    }
+                clearCanvas();
+                drawTargetMask();
+                refreshStatsDisplay();
+            }
 
-    function stopDrawing(evt) {
-      if (!isDrawing) return;
-      evt && evt.preventDefault();
-      isDrawing = false;
-      evaluateTrace(); // auto-update score after each stroke
-    }
+            function refreshStatsDisplay() {
+                const stats = letterStats[currentIndex];
+                attemptInfo.textContent = "ప్రయత్నాలు: " + stats.attempts;
+                bestInfo.textContent = "ఉత్తమ స్కోర్: " + (stats.bestScore > 0 ? stats.bestScore + "%" : "–");
+                tries95Info.textContent =
+                    "95% చేరడానికి ప్రయత్నాలు: " + (stats.triesTo95 != null ? stats.triesTo95 : "–");
+            }
 
-    function updateLetter() {
-      const letter = teluguLetters[currentIndex];
-      guideText.textContent = letter;
-      currentLetterLabel.textContent = letter;
-      indexInfo.textContent = (currentIndex + 1) + " / " + teluguLetters.length;
+            // Compute accuracy by comparing user drawing with letter mask
+            function evaluateTrace() {
+                const stats = letterStats[currentIndex];
 
-      clearCanvas();
-      drawTargetMask();
-      refreshStatsDisplay();
-    }
+                const w = targetMask.width;
+                const h = targetMask.height;
 
-    function refreshStatsDisplay() {
-      const stats = letterStats[currentIndex];
-      attemptInfo.textContent = "ప్రయత్నాలు: " + stats.attempts;
-      bestInfo.textContent =
-        "ఉత్తమ స్కోర్: " + (stats.bestScore > 0 ? stats.bestScore + "%" : "–");
-      tries95Info.textContent =
-        "95% చేరడానికి ప్రయత్నాలు: " +
-        (stats.triesTo95 != null ? stats.triesTo95 : "–");
-    }
+                if (w === 0 || h === 0) return;
 
-    // Compute accuracy by comparing user drawing with letter mask
-    function evaluateTrace() {
-      const stats = letterStats[currentIndex];
+                const tData = targetCtx.getImageData(0, 0, w, h).data;
+                const uData = userCtx.getImageData(0, 0, w, h).data;
 
-      const w = targetMask.width;
-      const h = targetMask.height;
+                let letterCount = 0; // pixels where letter exists
+                let drawnCount = 0; // pixels where user drew
+                let correctCount = 0; // pixels where both match
 
-      if (w === 0 || h === 0) return;
+                const step = Math.max(1, Math.floor(dpr));
 
-      const tData = targetCtx.getImageData(0, 0, w, h).data;
-      const uData = userCtx.getImageData(0, 0, w, h).data;
+                for (let y = 0; y < h; y += step) {
+                    for (let x = 0; x < w; x += step) {
+                        const idx = (y * w + x) * 4 + 3; // alpha channel
+                        const t = tData[idx] > 10; // letter present
+                        const u = uData[idx] > 10; // user stroke present
 
-      let letterCount = 0;   // pixels where letter exists
-      let drawnCount = 0;    // pixels where user drew
-      let correctCount = 0;  // pixels where both match
+                        if (t) letterCount++;
+                        if (u) drawnCount++;
+                        if (t && u) correctCount++;
+                    }
+                }
 
-      const step = Math.max(1, Math.floor(dpr));
+                if (letterCount === 0 || drawnCount === 0) {
+                    scoreInfo.textContent = "స్కోర్: ముందుగా అక్షరాన్ని ట్రేస్ చేయండి 🙂";
+                    scoreInfo.classList.remove("score-highlight", "score-warning");
+                    return;
+                }
 
-      for (let y = 0; y < h; y += step) {
-        for (let x = 0; x < w; x += step) {
-          const idx = (y * w + x) * 4 + 3; // alpha channel
-          const t = tData[idx] > 10; // letter present
-          const u = uData[idx] > 10; // user stroke present
+                const precision = correctCount / drawnCount;
+                const recall = correctCount / letterCount;
 
-          if (t) letterCount++;
-          if (u) drawnCount++;
-          if (t && u) correctCount++;
-        }
-      }
+                const f1 = precision + recall > 0 ? (2 * precision * recall) / (precision + recall) : 0;
 
-      if (letterCount === 0 || drawnCount === 0) {
-        scoreInfo.textContent = "స్కోర్: ముందుగా అక్షరాన్ని ట్రేస్ చేయండి 🙂";
-        scoreInfo.classList.remove("score-highlight", "score-warning");
-        return;
-      }
+                const accuracy = Math.round(f1 * 100);
 
-      const precision = correctCount / drawnCount;
-      const recall = correctCount / letterCount;
+                // Update stats
+                stats.attempts++;
+                if (accuracy > stats.bestScore) {
+                    stats.bestScore = accuracy;
+                }
+                if (!stats.completed95 && accuracy >= 95) {
+                    stats.completed95 = true;
+                    stats.triesTo95 = stats.attempts;
+                }
 
-      const f1 =
-        (precision + recall) > 0
-          ? (2 * precision * recall) / (precision + recall)
-          : 0;
+                // Update UI
+                scoreInfo.textContent = "స్కోర్: " + accuracy + "%";
+                scoreInfo.classList.remove("score-highlight", "score-warning");
+                if (accuracy >= 95) {
+                    scoreInfo.classList.add("score-highlight");
+                    scoreInfo.textContent += " 🎉 చాలా బాగా చేసారు!";
+                } else {
+                    scoreInfo.classList.add("score-warning");
+                }
 
-      const accuracy = Math.round(f1 * 100);
+                refreshStatsDisplay();
+            }
 
-      // Update stats
-      stats.attempts++;
-      if (accuracy > stats.bestScore) {
-        stats.bestScore = accuracy;
-      }
-      if (!stats.completed95 && accuracy >= 95) {
-        stats.completed95 = true;
-        stats.triesTo95 = stats.attempts;
-      }
+            // Navigation handlers
+            prevBtn.addEventListener("click", () => {
+                currentIndex = (currentIndex - 1 + teluguLetters.length) % teluguLetters.length;
+                updateLetter();
+            });
 
-      // Update UI
-      scoreInfo.textContent = "స్కోర్: " + accuracy + "%";
-      scoreInfo.classList.remove("score-highlight", "score-warning");
-      if (accuracy >= 95) {
-        scoreInfo.classList.add("score-highlight");
-        scoreInfo.textContent += " 🎉 చాలా బాగా చేసారు!";
-      } else {
-        scoreInfo.classList.add("score-warning");
-      }
+            nextBtn.addEventListener("click", () => {
+                currentIndex = (currentIndex + 1) % teluguLetters.length;
+                updateLetter();
+            });
 
-      refreshStatsDisplay();
-    }
+            clearBtn.addEventListener("click", () => {
+                clearCanvas();
+            });
 
-    // Navigation handlers
-    prevBtn.addEventListener("click", () => {
-      currentIndex = (currentIndex - 1 + teluguLetters.length) % teluguLetters.length;
-      updateLetter();
-    });
+            // Pointer events (works for mouse, touch, pen)
+            canvas.addEventListener("pointerdown", startDrawing);
+            canvas.addEventListener("pointermove", draw);
+            canvas.addEventListener("pointerup", stopDrawing);
+            canvas.addEventListener("pointerleave", stopDrawing);
+            canvas.addEventListener("pointercancel", stopDrawing);
 
-    nextBtn.addEventListener("click", () => {
-      currentIndex = (currentIndex + 1) % teluguLetters.length;
-      updateLetter();
-    });
+            // Disable context menu on long press / right-click
+            canvas.addEventListener("contextmenu", (e) => e.preventDefault());
 
-    clearBtn.addEventListener("click", () => {
-      clearCanvas();
-    });
+            // Handle resize
+            window.addEventListener("resize", () => {
+                setupCanvasSize();
+                clearCanvas(); // stats stay
+            });
 
-    // Pointer events (works for mouse, touch, pen)
-    canvas.addEventListener("pointerdown", startDrawing);
-    canvas.addEventListener("pointermove", draw);
-    canvas.addEventListener("pointerup", stopDrawing);
-    canvas.addEventListener("pointerleave", stopDrawing);
-    canvas.addEventListener("pointercancel", stopDrawing);
-
-    // Disable context menu on long press / right-click
-    canvas.addEventListener("contextmenu", (e) => e.preventDefault());
-
-    // Handle resize
-    window.addEventListener("resize", () => {
-      setupCanvasSize();
-      clearCanvas(); // stats stay
-    });
-
-    // Initial setup
-    window.addEventListener("load", () => {
-      setupCanvasSize();
-      updateLetter();
-    });
-  </script>
-</body>
+            // Initial setup
+            window.addEventListener("load", () => {
+                setupCanvasSize();
+                updateLetter();
+            });
+        </script>
+    </body>
 </html>
