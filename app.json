@@ -1,0 +1,409 @@
+{
+  "projectName": "Pedda Bala Siksha – LMS App",
+  "pages": [
+    {
+      "name": "01 – Design System",
+      "sections": [
+        {
+          "name": "Colors",
+          "type": "style-tokens",
+          "tokens": {
+            "primary": "#7B1F27",
+            "primaryDark": "#5A151B",
+            "accentGold": "#D4A017",
+            "accentGoldSoft": "#F1C55A",
+            "bgBeige": "#FFF3E1",
+            "accentPeacockBlue": "#006B8F",
+            "success": "#E6B325",
+            "error": "#AD2721"
+          }
+        },
+        {
+          "name": "Typography",
+          "type": "text-styles",
+          "styles": [
+            {
+              "name": "Display/Logo",
+              "fontFamily": "Telugu Calligraphy (custom)",
+              "fontSize": 40,
+              "fontWeight": "Bold",
+              "lineHeight": 1.1,
+              "letterSpacing": 0
+            },
+            {
+              "name": "Heading/H1 Telugu",
+              "fontFamily": "Noto Sans Telugu",
+              "fontSize": 28,
+              "fontWeight": "Bold",
+              "lineHeight": 1.25
+            },
+            {
+              "name": "Heading/H2 Telugu",
+              "fontFamily": "Noto Sans Telugu",
+              "fontSize": 22,
+              "fontWeight": "SemiBold",
+              "lineHeight": 1.3
+            },
+            {
+              "name": "Body/Primary Telugu",
+              "fontFamily": "Noto Sans Telugu",
+              "fontSize": 16,
+              "fontWeight": "Regular",
+              "lineHeight": 1.5
+            },
+            {
+              "name": "Caption/Small",
+              "fontFamily": "Noto Sans Telugu",
+              "fontSize": 12,
+              "fontWeight": "Regular",
+              "lineHeight": 1.3
+            },
+            {
+              "name": "UI/English Label",
+              "fontFamily": "Poppins",
+              "fontSize": 12,
+              "fontWeight": "Medium",
+              "lineHeight": 1.3
+            }
+          ]
+        },
+        {
+          "name": "Elevation & Radius",
+          "type": "tokens",
+          "radii": {
+            "card": 16,
+            "button": 24,
+            "chip": 20
+          },
+          "shadows": {
+            "level1": "0 2 4 rgba(0,0,0,0.08)",
+            "level2": "0 4 12 rgba(0,0,0,0.12)"
+          },
+          "spacingScale": [4, 8, 12, 16, 20, 24, 32]
+        }
+      ]
+    },
+    {
+      "name": "02 – Components",
+      "frames": [
+        {
+          "name": "Buttons",
+          "components": [
+            {
+              "name": "Button/Primary",
+              "type": "component",
+              "props": {
+                "width": 320,
+                "height": 56,
+                "radius": 24,
+                "fill": "{colors.primary}",
+                "textStyle": "UI/English Label",
+                "textColor": "#FFFFFF"
+              }
+            },
+            {
+              "name": "Button/Secondary",
+              "type": "component",
+              "props": {
+                "width": 320,
+                "height": 56,
+                "radius": 24,
+                "fill": "{colors.accentGold}",
+                "textStyle": "Body/Primary Telugu",
+                "textColor": "#7B1F27"
+              }
+            }
+          ]
+        },
+        {
+          "name": "Category Tile",
+          "components": [
+            {
+              "name": "Tile/Category",
+              "type": "component",
+              "props": {
+                "width": 140,
+                "height": 140,
+                "radius": 20,
+                "fill": "{colors.primary}",
+                "border": {
+                  "color": "{colors.accentGold}",
+                  "width": 2
+                },
+                "iconSlot": true,
+                "labelStyle": "Body/Primary Telugu",
+                "labelColor": "#FFF3E1"
+              }
+            }
+          ]
+        },
+        {
+          "name": "Nav Bar",
+          "components": [
+            {
+              "name": "BottomNav/Item",
+              "type": "component",
+              "props": {
+                "iconSlot": true,
+                "labelStyle": "UI/English Label",
+                "defaultColor": "#F1C55A",
+                "activeColor": "#FFFFFF"
+              }
+            },
+            {
+              "name": "BottomNav/Bar",
+              "type": "component",
+              "props": {
+                "height": 72,
+                "background": "{colors.primary}",
+                "items": 4
+              }
+            }
+          ]
+        },
+        {
+          "name": "Cards",
+          "components": [
+            {
+              "name": "Card/Lesson",
+              "type": "component",
+              "props": {
+                "width": 360,
+                "height": 96,
+                "radius": 16,
+                "fill": "#FFFFFF",
+                "shadow": "level1",
+                "hasProgressBar": true
+              }
+            }
+          ]
+        },
+        {
+          "name": "Mascots",
+          "components": [
+            {
+              "name": "Mascot/Boy",
+              "type": "component",
+              "variants": ["idle", "namaste", "thinking", "celebrate"]
+            },
+            {
+              "name": "Mascot/Girl",
+              "type": "component",
+              "variants": ["wave", "happy", "clap", "celebrate"]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "03 – Core Screens",
+      "frames": [
+        {
+          "name": "Splash",
+          "size": { "width": 1080, "height": 1920 },
+          "elements": [
+            { "type": "background", "fill": "{colors.primary}" },
+            {
+              "type": "logoText",
+              "content": "పెద్ద బాల శిక్ష",
+              "style": "Display/Logo",
+              "color": "{colors.accentGold}",
+              "position": "center-top"
+            },
+            { "type": "mascotPair", "component": "Mascot/Boy+Girl", "position": "center" },
+            {
+              "type": "caption",
+              "content": "Powered by Telugu Knowledge",
+              "style": "UI/English Label",
+              "color": "{colors.accentGoldSoft}",
+              "position": "bottom-center"
+            }
+          ]
+        },
+        {
+          "name": "Home",
+          "size": { "width": 1080, "height": 1920 },
+          "elements": [
+            { "type": "background", "fill": "{colors.primary}" },
+            {
+              "type": "header",
+              "content": "నమస్కారం, కొనసాగించండి…",
+              "style": "Heading/H1 Telugu",
+              "color": "#FFFFFF",
+              "decorativeArch": true
+            },
+            {
+              "type": "grid",
+              "name": "CategoryGrid",
+              "columns": 2,
+              "tileComponent": "Tile/Category",
+              "items": [
+                { "label": "తెలుగు భాష", "icon": "icon-feather-telugu" },
+                { "label": "గణితం", "icon": "icon-feather-math" },
+                { "label": "సామాన్య జ్ఞానం", "icon": "icon-feather-gk" },
+                { "label": "నైతిక కథలు", "icon": "icon-feather-moral" },
+                { "label": "Spoken English", "icon": "icon-feather-english" },
+                { "label": "ఆటలు & ప్రశ్నలు", "icon": "icon-feather-games" }
+              ]
+            },
+            {
+              "type": "bottomNav",
+              "component": "BottomNav/Bar",
+              "items": [
+                "Home",
+                "Explore",
+                "Progress",
+                "Profile"
+              ]
+            },
+            {
+              "type": "mascotOverlay",
+              "component": "Mascot/Boy+Girl",
+              "position": "bottom-right"
+            }
+          ]
+        },
+        {
+          "name": "Lesson List",
+          "size": { "width": 1080, "height": 1920 },
+          "elements": [
+            {
+              "type": "header",
+              "content": "తెలుగు భాష – పాఠాలు",
+              "style": "Heading/H2 Telugu",
+              "bg": "{colors.primary}",
+              "color": "#FFFFFF"
+            },
+            {
+              "type": "list",
+              "itemComponent": "Card/Lesson",
+              "items": [
+                { "title": "అక్షరాలు & ఉచ్చారణ", "progress": 0.5 },
+                { "title": "సులభమైన పదాలు", "progress": 0.2 }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Lesson Reader",
+          "size": { "width": 1080, "height": 1920 },
+          "elements": [
+            {
+              "type": "header",
+              "content": "పాఠం 1: అక్షరాలు",
+              "style": "Heading/H2 Telugu",
+              "bg": "{colors.primary}"
+            },
+            {
+              "type": "card",
+              "style": "LessonContent",
+              "bodyStyle": "Body/Primary Telugu",
+              "hasAudioButton": true,
+              "scrollable": true
+            },
+            {
+              "type": "primaryButton",
+              "component": "Button/Secondary",
+              "label": "ప్రాక్టీస్ ప్రారంభించు",
+              "position": "bottom"
+            }
+          ]
+        },
+        {
+          "name": "Quiz",
+          "size": { "width": 1080, "height": 1920 },
+          "elements": [
+            {
+              "type": "progress",
+              "mode": "step",
+              "label": "ప్రశ్న 1 / 10"
+            },
+            {
+              "type": "questionText",
+              "style": "Heading/H2 Telugu",
+              "content": "‘అ’ తర్వాత వచ్చే అక్షరం ఏది?"
+            },
+            {
+              "type": "options",
+              "layout": "vertical",
+              "optionStyle": "Button/Primary",
+              "options": ["ఆ", "ఇ", "ఉ", "ఊ"]
+            },
+            {
+              "type": "mascotHint",
+              "component": "Mascot/Boy",
+              "variant": "thinking"
+            }
+          ]
+        },
+        {
+          "name": "Quiz Result",
+          "size": { "width": 1080, "height": 1920 },
+          "elements": [
+            {
+              "type": "header",
+              "content": "అద్భుతం!",
+              "style": "Heading/H1 Telugu",
+              "color": "{colors.accentGold}"
+            },
+            {
+              "type": "scoreBadge",
+              "content": "8 / 10",
+              "style": "Heading/H2 Telugu"
+            },
+            {
+              "type": "rewardRow",
+              "items": ["stars", "peacockFeather", "trophy"]
+            },
+            {
+              "type": "primaryButton",
+              "component": "Button/Secondary",
+              "label": "మళ్ళీ ప్రయత్నించు"
+            },
+            {
+              "type": "secondaryButton",
+              "component": "Button/Primary",
+              "label": "ప్రోగ్రెస్ చూడండి"
+            },
+            {
+              "type": "mascotCelebration",
+              "component": "Mascot/Girl",
+              "variant": "celebrate"
+            }
+          ]
+        },
+        {
+          "name": "Progress",
+          "size": { "width": 1080, "height": 1920 },
+          "elements": [
+            {
+              "type": "tabs",
+              "labels": ["Student", "Parent"]
+            },
+            {
+              "type": "chart",
+              "mode": "steps-gopuram",
+              "label": "Learning Steps",
+              "dataBinding": "completedLessons"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "04 – Prototype Flow",
+      "prototypeLinks": [
+        { "from": "Splash", "to": "Home", "trigger": "afterDelay", "delayMs": 2000, "animation": "fade-in" },
+        { "from": "Home.CategoryGrid[0]", "to": "Lesson List", "trigger": "onClick", "animation": "slide-left" },
+        { "from": "Lesson List.Card[0]", "to": "Lesson Reader", "trigger": "onClick", "animation": "smart-animate" },
+        { "from": "Lesson Reader.Button", "to": "Quiz", "trigger": "onClick", "animation": "slide-up" },
+        { "from": "Quiz.lastQuestion", "to": "Quiz Result", "trigger": "onComplete", "animation": "scale-in" },
+        { "from": "Quiz Result.secondaryButton", "to": "Progress", "trigger": "onClick", "animation": "slide-left" }
+      ]
+    },
+    {
+      "name": "99 – Assets (Mascots / Textures)",
+      "note": "Place SVG/PNG mascots, kalamkari borders, background textures here as components."
+    }
+  ]
+}
