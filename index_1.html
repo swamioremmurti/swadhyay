@@ -1,624 +1,1069 @@
 <!doctype html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>स्वाध्यायः |</title>
-        <!-- Bootstrap 5 CSS -->
-        <link href="includes/bootstrap.min.css" rel="stylesheet" />
-        <link rel="stylesheet" href="style.css" />
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>स्वाध्याय — पाठक</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Devanagari:wght@400;600;700&family=Noto+Sans+Devanagari:wght@400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
+    <style>
+    /* ═══════════════════════════════════════════
+       DESIGN TOKENS — mirrors index.html
+    ═══════════════════════════════════════════ */
+    :root {
+        --bg:      #08040f;
+        --surface: #110920;
+        --card:    #1a1030;
+        --border:  rgba(200,145,45,0.22);
+        --gold:    #c89230;
+        --gold-lt: #f0bf60;
+        --gold-dk: #7a5510;
+        --saff:    #dd6010;
+        --saff-lt: #ff8040;
+        --txt:     #ede0c5;
+        --txt2:    #c0a070;
+        --txt3:    #7a6040;
+        --radius:  14px;
+        --serif:   "Noto Serif Devanagari", serif;
+        --sans:    "Noto Sans Devanagari", sans-serif;
+        --sidebar-w: 300px;
+        --header-h:  58px;
+        --footer-h:  60px;
+        --fs:        1.1rem;
+    }
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    html { font-size:16px; scroll-behavior:smooth; }
+    body {
+        font-family:var(--sans); background:var(--bg); color:var(--txt);
+        height:100vh; overflow:hidden; display:flex; flex-direction:column;
+    }
+    ::-webkit-scrollbar{width:5px}
+    ::-webkit-scrollbar-track{background:var(--bg)}
+    ::-webkit-scrollbar-thumb{background:var(--gold-dk);border-radius:4px}
 
-        <style>
-            .highlight {
-                background-color: yellow;
-                padding: 2px;
-                border-radius: 4px;
-            }
+    /* ── Loader ── */
+    #loader-overlay{
+        position:fixed;inset:0;z-index:9000;
+        background:rgba(8,4,15,.93);
+        display:flex;flex-direction:column;
+        align-items:center;justify-content:center;gap:1.2rem;
+        transition:opacity .35s,visibility .35s;
+    }
+    #loader-overlay.hidden{opacity:0;visibility:hidden;pointer-events:none}
+    .loader-om{font-size:3.5rem;color:var(--gold);animation:omPulse 1.4s ease-in-out infinite}
+    @keyframes omPulse{0%,100%{opacity:.4;transform:scale(.9)}50%{opacity:1;transform:scale(1.06)}}
+    #loader-text{font-size:1rem;color:var(--txt2);letter-spacing:.06em}
+    .loader-bar-wrap{width:220px;height:4px;background:rgba(200,145,45,.15);border-radius:2px;overflow:hidden}
+    #loader-bar{height:100%;width:0%;background:linear-gradient(90deg,var(--saff),var(--gold));border-radius:2px;transition:width .3s}
 
-            .frame-2 {
-                max-width: 250px;
-            }
+    /* ── Scroll progress ── */
+    #scroll-prog{position:fixed;top:var(--header-h);left:0;right:0;height:3px;z-index:400;background:rgba(200,145,45,.1)}
+    #scroll-prog-bar{height:100%;width:0%;background:linear-gradient(90deg,var(--saff),var(--gold));transition:width .1s}
 
-            .my-text {
-                -webkit-user-select: text;
-                -moz-user-select: text;
-                -ms-user-select: text;
-                user-select: text;
-            }
+    /* ── Header ── */
+    .rd-hdr{
+        position:fixed;top:0;left:0;right:0;z-index:600;
+        height:var(--header-h);
+        background:rgba(8,4,15,.92);backdrop-filter:blur(16px);
+        border-bottom:1px solid var(--border);
+        display:flex;align-items:center;gap:.6rem;padding:0 .9rem;
+    }
+    .rd-icon-btn{
+        background:none;border:none;cursor:pointer;color:var(--txt2);
+        padding:.4rem;border-radius:8px;display:flex;align-items:center;justify-content:center;
+        transition:color .2s,background .2s;font-size:1rem;flex-shrink:0;
+    }
+    .rd-icon-btn:hover{color:var(--gold-lt);background:rgba(200,145,45,.1)}
+    .rd-icon-btn svg{width:20px;height:20px;fill:currentColor}
+    .rd-brand{font-family:var(--serif);font-size:1.1rem;font-weight:700;color:var(--gold-lt);text-decoration:none;letter-spacing:.04em;white-space:nowrap;flex-shrink:0}
+    .rd-sep{color:var(--gold-dk);margin:0 .1rem;font-size:.9rem;flex-shrink:0}
+    #hdr-breadcrumb{
+        flex:1;overflow:hidden;
+        display:flex;align-items:center;gap:.3rem;
+        font-size:.82rem;color:var(--txt3);
+        white-space:nowrap;min-width:0;
+    }
+    #hdr-breadcrumb .hbc{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .hbc-chapter{color:var(--txt2)}
+    .hbc-sub{color:var(--gold-lt)!important;font-weight:600}
+    .rd-back{font-size:.8rem;color:var(--txt3);text-decoration:none;border:1px solid var(--border);border-radius:20px;padding:.22rem .7rem;white-space:nowrap;transition:color .2s,border-color .2s;flex-shrink:0}
+    .rd-back:hover{color:var(--gold-lt);border-color:var(--gold-dk)}
 
-            .Heading {
-                text-align: center;
-                font-weight: bold;
-                color: crimson;
-                font-size: 1.4em;
-            }
+    /* ── Search bar ── */
+    #search-bar{
+        position:fixed;top:var(--header-h);left:0;right:0;z-index:590;
+        background:rgba(17,9,32,.97);backdrop-filter:blur(12px);
+        border-bottom:1px solid var(--border);
+        padding:.5rem 1rem;display:none;align-items:center;gap:.6rem;
+    }
+    #search-bar.open{display:flex}
+    #search-input{
+        flex:1;background:var(--card);border:1px solid var(--border);
+        color:var(--txt);border-radius:8px;padding:.4rem .8rem;
+        font-family:var(--sans);font-size:.95rem;outline:none;
+    }
+    #search-input:focus{border-color:var(--gold-dk)}
+    #search-close{background:none;border:none;cursor:pointer;color:var(--txt3);font-size:1.2rem;padding:.1rem .3rem;transition:color .2s}
+    #search-close:hover{color:var(--gold-lt)}
+    #search-results{
+        position:fixed;top:calc(var(--header-h) + 46px);left:0;right:0;z-index:580;
+        background:rgba(17,9,32,.98);border-bottom:1px solid var(--border);
+        max-height:280px;overflow-y:auto;display:none;
+    }
+    #search-results.open{display:block}
+    .sr-item{padding:.55rem 1.2rem;cursor:pointer;border-bottom:1px solid rgba(200,145,45,.07);font-size:.88rem;color:var(--txt2);transition:background .15s,color .15s}
+    .sr-item:hover{background:rgba(200,145,45,.09);color:var(--gold-lt)}
+    .sr-item .sr-ctx{font-size:.75rem;color:var(--txt3);margin-top:.15rem}
+    .sr-match{color:var(--gold-lt);font-weight:700}
+    .sr-empty{padding:.8rem 1.2rem;color:var(--txt3);font-size:.9rem;text-align:center}
+    mark.search-hl{background:rgba(221,96,16,.3);color:var(--gold-lt);border-radius:3px;padding:0 2px}
 
-            /* Fullscreen loader overlay */
-            #loader-overlay {
-                position: fixed;
-                inset: 0;
-                width: 100%;
-                height: 100%;
-                background-color: rgba(255, 255, 255, 0.25); /* 25% transparent white */
-                z-index: 5000;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                flex-direction: column;
-                transition: opacity 0.3s ease, visibility 0.3s ease;
-            }
-            #loader-overlay.hidden {
-                opacity: 0;
-                visibility: hidden;
-                pointer-events: none;
-            }
-            .loader-box {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                gap: 0.75rem;
-                backdrop-filter: blur(1px);
-            }
-            #loader-text {
-                font-weight: 600;
-            }
-        </style>
+    /* ── Shortcut modal ── */
+    .shortcut-modal{
+        position:fixed;inset:0;z-index:800;
+        background:rgba(0,0,0,.6);backdrop-filter:blur(4px);
+        display:none;align-items:center;justify-content:center;
+    }
+    .shortcut-modal.open{display:flex}
+    .sc-box{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;min-width:260px;max-width:340px}
+    .sc-title{font-family:var(--serif);color:var(--gold-lt);font-size:1.1rem;margin-bottom:1rem;text-align:center}
+    .sc-row{display:flex;justify-content:space-between;align-items:center;padding:.35rem 0;border-bottom:1px solid rgba(200,145,45,.1);font-size:.88rem}
+    .sc-row:last-of-type{border:none}
+    .sc-key{background:var(--card);color:var(--txt2);border:1px solid var(--border);border-radius:5px;padding:.1rem .5rem;font-size:.78rem;font-family:monospace}
+    .sc-action{color:var(--txt3)}
+    .sc-close-btn{display:block;margin:.9rem auto 0;background:var(--card);border:1px solid var(--border);color:var(--txt2);border-radius:8px;padding:.4rem 1.4rem;cursor:pointer;font-size:.9rem;transition:color .2s}
+    .sc-close-btn:hover{color:var(--gold-lt)}
 
-        <script>
-            async function speakHindiLines() {
-                const contentDiv = document.getElementById("display");
+    /* ── Layout ── */
+    .rd-body{
+        display:flex;flex:1;
+        margin-top:var(--header-h);
+        height:calc(100vh - var(--header-h) - var(--footer-h));
+        overflow:hidden;
+    }
 
-                // Extract lines excluding <p> elements with class containing "shlok" (case-insensitive)
-                const nodes = Array.from(contentDiv.childNodes).filter((node) => {
-                    if (node.nodeType === Node.ELEMENT_NODE && node.tagName === "P") {
-                        return !node.className.toLowerCase().includes("shlok");
-                    }
-                    return true;
-                });
+    /* ── Sidebar ── */
+    .rd-sidebar{
+        width:var(--sidebar-w);flex-shrink:0;
+        background:var(--surface);border-right:1px solid var(--border);
+        display:flex;flex-direction:column;overflow:hidden;
+        transition:width .25s,border .25s;
+    }
+    .rd-sidebar.collapsed{width:0;border-right:none}
+    .sb-tabs{display:flex;border-bottom:1px solid var(--border);flex-shrink:0}
+    .sb-tab{
+        flex:1;background:none;border:none;cursor:pointer;
+        padding:.55rem .3rem;font-size:.78rem;font-weight:600;
+        color:var(--txt3);letter-spacing:.04em;
+        border-bottom:2px solid transparent;transition:color .2s,border-color .2s;
+    }
+    .sb-tab:hover{color:var(--txt2)}
+    .sb-tab.active{color:var(--gold-lt);border-bottom-color:var(--saff)}
+    .sb-panel{display:none;flex:1;overflow-y:auto;flex-direction:column}
+    .sb-panel.active{display:flex}
+    .sb-head{padding:.55rem 1rem;font-size:.68rem;color:var(--gold);letter-spacing:.12em;text-transform:uppercase;border-bottom:1px solid var(--border);background:rgba(200,145,45,.06);flex-shrink:0}
 
-                const lines = nodes.map((node) => node.textContent.trim()).filter((line) => line.length > 0);
+    /* chapters accordion */
+    .rd-chapter{border-bottom:1px solid rgba(200,145,45,.1)}
+    .rd-ch-btn{
+        width:100%;background:none;border:none;cursor:pointer;
+        display:flex;align-items:flex-start;gap:.5rem;
+        padding:.65rem 1rem;color:var(--txt2);font-family:var(--sans);
+        font-size:.86rem;text-align:left;line-height:1.35;
+        transition:background .15s,color .15s;
+    }
+    .rd-ch-btn:hover{background:rgba(200,145,45,.07);color:var(--gold-lt)}
+    .rd-ch-btn.open,.rd-ch-btn.active{color:var(--gold-lt);background:rgba(200,145,45,.09)}
+    .rd-ch-arrow{margin-left:auto;flex-shrink:0;font-size:.6rem;color:var(--gold-dk);transition:transform .2s;margin-top:.28rem}
+    .rd-ch-btn.open .rd-ch-arrow{transform:rotate(90deg)}
+    .rd-ch-time{font-size:.68rem;color:var(--txt3);display:block;margin-top:.1rem}
+    .rd-sub-list{display:none;background:rgba(0,0,0,.2)}
+    .rd-sub-list.open{display:block}
+    .rd-sub-btn{
+        display:block;width:100%;background:none;border:none;cursor:pointer;
+        padding:.5rem 1rem .5rem 2rem;
+        font-family:var(--sans);font-size:.82rem;color:var(--txt3);text-align:left;
+        line-height:1.4;border-left:2px solid transparent;
+        transition:color .15s,border-color .15s,background .15s;
+    }
+    .rd-sub-btn:hover{color:var(--txt);background:rgba(200,145,45,.05)}
+    .rd-sub-btn.active{color:var(--gold-lt);border-left-color:var(--saff);background:rgba(221,96,16,.08);font-weight:600}
+    .rd-sub-time{display:block;font-size:.68rem;color:var(--txt3);font-weight:400;margin-top:.1rem}
 
-                function getHindiVoice() {
-                    return new Promise((resolve) => {
-                        const synth = window.speechSynthesis;
-                        let voices = synth.getVoices();
+    /* bookmarks panel */
+    .bm-empty{padding:1.5rem 1rem;text-align:center;color:var(--txt3);font-size:.9rem}
+    .bm-item{display:flex;align-items:flex-start;gap:.5rem;padding:.6rem .8rem;border-bottom:1px solid rgba(200,145,45,.07);cursor:pointer;transition:background .15s}
+    .bm-item:hover{background:rgba(200,145,45,.07)}
+    .bm-text{flex:1;font-size:.82rem;color:var(--txt2);line-height:1.4;overflow:hidden;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical}
+    .bm-ctx{font-size:.7rem;color:var(--gold-dk);margin-bottom:.18rem;font-weight:600;letter-spacing:.02em}
+    @keyframes bmFlash{0%{background:rgba(200,145,45,.35)}100%{background:transparent}}
+    .bm-flash{animation:bmFlash 1.6s ease-out forwards;border-radius:4px}
+    .bm-del{background:none;border:none;cursor:pointer;color:var(--txt3);font-size:1rem;padding:.1rem .3rem;transition:color .2s;flex-shrink:0}
+    .bm-del:hover{color:var(--saff-lt)}
 
-                        if (voices.length) {
-                            resolve(voices.find((voice) => voice.lang && voice.lang.startsWith("hi")));
-                        } else {
-                            synth.onvoiceschanged = () => {
-                                voices = synth.getVoices();
-                                resolve(voices.find((voice) => voice.lang && voice.lang.startsWith("hi")));
-                            };
-                        }
-                    });
-                }
+    /* ── Main reading area ── */
+    .rd-main{flex:1;overflow-y:auto;overflow-x:hidden;background:var(--bg);display:flex;flex-direction:column}
+    .rd-content-wrap{max-width:740px;width:100%;margin:0 auto;padding:2rem 1.8rem 5rem}
 
-                const hindiVoice = await getHindiVoice();
+    /* ── Reading typography ── */
+    #display{
+        font-family:var(--serif);
+        font-size:var(--fs);
+        color:var(--txt);
+        line-height:1.95;
+        user-select:text;-webkit-user-select:text;
+    }
+    #display p{margin-bottom:.85rem}
+    #display .Heading{
+        font-family:var(--serif);font-size:1.35rem;font-weight:700;color:var(--gold-lt);
+        text-align:center;margin:1.6rem 0 .9rem;padding-bottom:.45rem;
+        border-bottom:1px solid var(--border);
+    }
+    #display .Sub-Heading,#display .Sub-Heading-2{
+        font-family:var(--serif);font-size:1.05rem;font-weight:600;
+        color:var(--saff-lt);text-align:center;margin:1.2rem 0 .5rem;
+    }
+    #display [class*="Shlok"],#display [class*="SHLOK"],#display [class*="shlok"]{
+        color:var(--gold-lt)!important;text-align:center;line-height:2.1;font-style:italic;margin:.5rem 0;
+    }
+    #display .Gadya{color:var(--txt);text-align:justify}
+    #display .Uwach,#display .Uvach{text-align:center;font-style:italic;color:var(--txt3)}
+    #display .Title,#display .Title-Page---Book-Name-Hindi,#display .Title-Page---Book-Name{
+        text-align:center;font-size:1.55rem;font-weight:700;color:var(--gold-lt);margin:1rem 0;
+    }
+    #display .Sub-Title{text-align:center;color:var(--saff-lt);font-size:1.05rem}
+    #display .Numbers{color:var(--txt2);text-align:center}
+    #display .author{text-align:center;font-weight:600;color:var(--txt2)}
+    #display .end_ch,#display .chapterEnd,#display .chapterend{text-align:center;font-style:italic;color:var(--gold-dk)}
+    #display .Page-Break,#display .Page-Break-1{text-align:center;color:var(--gold-dk);opacity:.5;border-bottom:1px solid var(--border);padding:.3rem 0;margin:1rem 0}
+    #display .Footnotes{color:var(--txt3);font-size:.85rem}
+    #display .Footnotes-Right{text-align:right;color:var(--txt3);font-size:.85rem}
+    #display .Image{text-align:center}
+    #display .Image img{max-width:100%;border-radius:8px}
+    #display .bold,#display .Bold,#display .TXT-Bold{font-weight:700}
+    #display .italic,#display .char-style-override-7{font-style:italic}
+    #display .Center,#display .center{text-align:center}
+    #display .Right,#display .right,#display .TXT-Right,#display .para-style-override-3{text-align:right}
+    #display .justify{text-align:justify}
+    #display .blue{color:#88ccff}
+    #display .pink{color:var(--saff-lt)}
+    #display .ocean-blue{color:#c080ff}
+    #display .Sub-Heading-1{display:none}
+    #display .parent-heading{color:var(--gold-dk)!important;font-size:.95rem!important;font-style:italic;margin-bottom:.6rem!important;text-align:center}
+    .highlight{background:rgba(221,96,16,.28);color:var(--gold-lt);border-radius:3px;padding:0 2px}
 
-                if (!hindiVoice) {
-                    alert(
-                        "Hindi voice not found.\n\n" +
-                            "📱 To install Hindi TTS on your device:\n\n" +
-                            "🔹 Android:\n" +
-                            "1. Open Settings\n" +
-                            '2. Go to "System" > "Languages & input"\n' +
-                            '3. Tap "Text-to-speech output"\n' +
-                            "4. Tap the ⚙️ next to Google Text-to-Speech\n" +
-                            '5. Select "Install voice data"\n' +
-                            '6. Find and install "Hindi (India)"\n\n' +
-                            "🔹 iPhone (iOS):\n" +
-                            "1. Open Settings\n" +
-                            '2. Go to "Accessibility" > "Spoken Content"\n' +
-                            '3. Tap "Voices"\n' +
-                            '4. Select "Hindi" under the "South Asia" section\n' +
-                            "5. Tap the download icon to install\n\n" +
-                            "Once installed, reload the page and try again."
-                    );
-                    return;
-                }
+    /* paragraph wrapper + bookmark star */
+    .para-wrap{position:relative;display:block}
+    .bm-star{
+        position:absolute;right:-22px;top:2px;
+        background:none;border:none;cursor:pointer;
+        color:var(--txt3);font-size:.9rem;
+        opacity:0;transition:opacity .15s,color .15s;line-height:1;padding:0;
+    }
+    .para-wrap:hover .bm-star{opacity:1}
+    .bm-star.saved{opacity:1;color:var(--gold)}
+    #display p{cursor:pointer}
+    #display p:hover{background:rgba(200,145,45,.04);border-radius:4px}
 
-                const synth = window.speechSynthesis;
+    /* ── Reading modes ── */
+    body.mode-sepia{--bg:#f5ead4;--surface:#e8d7b0;--txt:#3a2008;--txt2:#7a4a10;--txt3:#a07838;--card:#ecdfc0;--border:rgba(120,80,20,.25)}
+    body.mode-sepia .rd-main,.rd-sidebar{background:var(--bg)}
+    body.mode-sepia #display .Heading{color:#7a2800}
+    body.mode-sepia #display [class*="Shlok"]{color:#7a2800!important}
+    body.mode-sepia #display .Sub-Heading,body.mode-sepia #display .Sub-Heading-2{color:#994400}
+    body.mode-light{--bg:#f8f6f0;--surface:#eceae2;--txt:#1a1208;--txt2:#5a4020;--txt3:#9a8060;--card:#f0ece0;--border:rgba(80,60,20,.2)}
+    body.mode-light .rd-main,.rd-sidebar{background:var(--bg)}
+    body.mode-light #display .Heading{color:#8b0000}
+    body.mode-light #display [class*="Shlok"]{color:#8b0000!important}
+    body.mode-light #display .Sub-Heading,body.mode-light #display .Sub-Heading-2{color:#cc4400}
 
-                function speakLine(index) {
-                    if (index >= lines.length) return;
+    /* ── Footer ── */
+    .rd-footer{
+        position:fixed;bottom:0;left:0;right:0;z-index:500;
+        height:var(--footer-h);
+        background:rgba(8,4,15,.95);backdrop-filter:blur(16px);
+        border-top:1px solid var(--border);
+        display:flex;align-items:center;padding:0 1.2rem;
+    }
+    .rd-ft-left{width:var(--sidebar-w);flex-shrink:0}
+    .rd-ft-main{flex:1;display:flex;align-items:center;justify-content:center;gap:1.4rem}
+    /* nav chevron buttons */
+    .rd-btn-nav{
+        width:40px;height:40px;border-radius:50%;
+        background:rgba(200,145,45,.1);border:1px solid var(--border);
+        color:var(--gold-lt);cursor:pointer;
+        display:flex;align-items:center;justify-content:center;
+        transition:background .2s,border-color .2s,transform .18s,opacity .2s;
+        flex-shrink:0;
+    }
+    .rd-btn-nav:hover{background:rgba(200,145,45,.22);border-color:var(--gold-dk);transform:scale(1.08)}
+    .rd-btn-nav:disabled{opacity:.25;cursor:not-allowed;transform:none}
+    .rd-btn-nav svg{width:16px;height:16px;fill:currentColor}
+    /* centre play/stop button */
+    .rd-btn-read{
+        width:50px;height:50px;border-radius:50%;border:none;cursor:pointer;
+        background:conic-gradient(from 135deg,var(--saff),var(--gold),var(--saff));
+        display:flex;align-items:center;justify-content:center;
+        box-shadow:0 0 18px rgba(221,96,16,.35);
+        transition:transform .18s,box-shadow .2s,background .3s;
+        flex-shrink:0;
+    }
+    .rd-btn-read:hover{transform:scale(1.1);box-shadow:0 0 28px rgba(221,96,16,.55)}
+    .rd-btn-read svg{width:20px;height:20px;fill:#1a0800;transition:fill .2s}
+    .rd-btn-read.speaking{
+        background:conic-gradient(from 135deg,#c02020,#e04020,#c02020);
+        box-shadow:0 0 18px rgba(200,30,30,.4);
+    }
+    .rd-btn-read.speaking svg{fill:#fff}
+    /* shortcut icon */
+    .rd-ft-right{display:flex;align-items:center;flex-shrink:0}
+    .rd-ft-icon{background:none;border:none;cursor:pointer;color:var(--txt3);font-size:1rem;padding:.3rem .4rem;border-radius:6px;transition:color .2s,background .2s}
+    .rd-ft-icon:hover{color:var(--gold-lt);background:rgba(200,145,45,.1)}
 
-                    // Remove previous highlights and restore original HTML if needed
-                    contentDiv.querySelectorAll(".highlight").forEach((el) => {
-                        const parent = el.parentNode;
-                        parent.replaceChild(document.createTextNode(el.textContent), el);
-                        parent.normalize();
-                    });
+    /* ── Toast ── */
+    .toast{
+        position:fixed;bottom:calc(var(--footer-h)+12px);left:50%;
+        transform:translateX(-50%) translateY(20px);
+        background:var(--card);border:1px solid var(--border);
+        border-radius:8px;padding:.45rem 1rem;
+        font-size:.85rem;color:var(--txt2);
+        z-index:700;opacity:0;transition:opacity .3s,transform .3s;
+        pointer-events:none;white-space:nowrap;
+    }
+    .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
-                    const node = nodes[index];
-                    const lineText = lines[index];
+    /* ── Mobile offcanvas ── */
+    .rd-offcanvas{
+        position:fixed;top:0;left:0;bottom:0;z-index:800;
+        width:min(var(--sidebar-w),85vw);
+        background:var(--surface);border-right:1px solid var(--border);
+        transform:translateX(-100%);transition:transform .28s cubic-bezier(.4,0,.2,1);
+        display:flex;flex-direction:column;overflow:hidden;
+    }
+    .rd-offcanvas.open{transform:translateX(0)}
+    .rd-oc-head{display:flex;align-items:center;justify-content:space-between;padding:.7rem 1rem;border-bottom:1px solid var(--border);background:rgba(200,145,45,.07);flex-shrink:0}
+    .rd-oc-title{font-family:var(--serif);font-size:1rem;color:var(--gold-lt);font-weight:700}
+    .rd-close-btn{background:none;border:none;cursor:pointer;color:var(--txt3);font-size:1.3rem;line-height:1;padding:.2rem .4rem;transition:color .2s}
+    .rd-close-btn:hover{color:var(--gold-lt)}
+    .rd-oc-body{overflow-y:auto;flex:1;display:flex;flex-direction:column}
+    .rd-overlay{display:none;position:fixed;inset:0;z-index:700;background:rgba(0,0,0,.55)}
+    .rd-overlay.open{display:block}
 
-                    // Highlight only the lineText inside the node
-                    if (node.nodeType === Node.TEXT_NODE) {
-                        const span = document.createElement("span");
-                        span.textContent = node.textContent;
-                        span.classList.add("highlight");
-                        contentDiv.replaceChild(span, node);
-                        nodes[index] = span;
-                        span.scrollIntoView({ behavior: "smooth", block: "center" });
-                    } else if (node.nodeType === Node.ELEMENT_NODE) {
-                        const html = node.innerHTML;
-                        const escaped = lineText.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-                        const regex = new RegExp(escaped, "g");
-                        node.innerHTML = html.replace(regex, `<span class="highlight">$&</span>`);
-                        const highlightSpan = node.querySelector(".highlight");
-                        if (highlightSpan) {
-                            highlightSpan.scrollIntoView({ behavior: "smooth", block: "center" });
-                        }
-                    }
+    /* ── Floating settings button ── */
+    #settings-fab{
+        position:fixed;right:1rem;bottom:calc(var(--footer-h) + .9rem);z-index:490;
+        width:42px;height:42px;border-radius:50%;
+        background:linear-gradient(135deg,var(--card),var(--surface));
+        border:1px solid var(--border);cursor:pointer;
+        display:flex;align-items:center;justify-content:center;
+        font-size:1.15rem;color:var(--txt2);
+        box-shadow:0 4px 16px rgba(0,0,0,.5);
+        transition:color .2s,border-color .2s,transform .2s;
+    }
+    #settings-fab:hover{color:var(--gold-lt);border-color:var(--gold-dk);transform:scale(1.08)}
 
-                    const utterance = new SpeechSynthesisUtterance(lineText);
-                    utterance.voice = hindiVoice;
+    /* ── Settings panel (bottom sheet on mobile, popover on desktop) ── */
+    #settings-panel{
+        position:fixed;right:1rem;bottom:calc(var(--footer-h) + 62px);z-index:700;
+        background:var(--surface);border:1px solid var(--border);
+        border-radius:var(--radius);padding:1rem 1.1rem;min-width:220px;
+        box-shadow:0 8px 32px rgba(0,0,0,.6);
+        display:none;flex-direction:column;gap:.85rem;
+        transform:translateY(10px);opacity:0;
+        transition:opacity .2s,transform .2s;
+    }
+    #settings-panel.open{display:flex;opacity:1;transform:translateY(0)}
+    .sp-head{font-size:.7rem;color:var(--gold);letter-spacing:.1em;text-transform:uppercase;margin-bottom:-.2rem}
+    .sp-row{display:flex;align-items:center;gap:.5rem}
+    .sp-btn{
+        flex:1;height:34px;background:none;border:1px solid var(--border);
+        color:var(--txt2);border-radius:8px;cursor:pointer;font-family:var(--sans);
+        font-size:.85rem;transition:all .15s;
+    }
+    .sp-btn:hover{border-color:var(--gold-dk);color:var(--gold-lt)}
+    .sp-btn.active{border-color:var(--gold);color:var(--gold-lt);background:rgba(200,145,45,.12)}
+    .sp-mode-row{display:flex;gap:.5rem}
+    .sp-mode-btn{
+        flex:1;height:36px;background:none;border:1px solid var(--border);
+        border-radius:8px;cursor:pointer;font-size:.95rem;
+        transition:all .15s;display:flex;align-items:center;justify-content:center;gap:.3rem;
+    }
+    .sp-mode-btn:hover{border-color:var(--gold-dk)}
+    .sp-mode-btn.active{border-color:var(--gold);background:rgba(200,145,45,.12)}
+    .sp-font-label{font-size:.8rem;color:var(--txt3);text-align:center;min-width:40px}
 
-                    utterance.onend = () => {
-                        speakLine(index + 1);
-                    };
+    /* ── Responsive ── */
+    @media(max-width:768px){
+        .rd-sidebar,.rd-ft-left{display:none}
+        .rd-content-wrap{padding:1.4rem .9rem 5rem}
+        #sidebar-toggle-btn{display:none!important}
+        #settings-panel{right:.5rem;left:.5rem;min-width:unset}
+    }
+    @media(min-width:769px){
+        .rd-offcanvas,.rd-overlay{display:none!important}
+        #mobile-menu-btn{display:none!important}
+    }
+    </style>
+</head>
+<body>
 
-                    synth.speak(utterance);
-                }
+<!-- LOADER -->
+<div id="loader-overlay">
+    <div class="loader-om">ॐ</div>
+    <div class="loader-bar-wrap"><div id="loader-bar"></div></div>
+    <div id="loader-text">Loading…</div>
+</div>
 
-                speakLine(0);
-            }
-        </script>
-    </head>
-    <body>
-        <!-- Fullscreen Loader Overlay -->
-        <div id="loader-overlay">
-            <div class="loader-box">
-                <div class="spinner-border text-primary" role="status" style="width:3rem;height:3rem;">
-                    <span class="visually-hidden">Loading...</span>
-                </div>
-                <div class="text-primary" id="loader-text">Loading…</div>
-            </div>
+<!-- SCROLL PROGRESS -->
+<div id="scroll-prog"><div id="scroll-prog-bar"></div></div>
+
+<!-- SEARCH BAR -->
+<div id="search-bar">
+    <input type="search" id="search-input" placeholder="खोजें… (ग्रन्थ में)" autocomplete="off">
+    <button id="search-close">✕</button>
+</div>
+<div id="search-results"></div>
+
+<!-- SHORTCUT MODAL -->
+<div class="shortcut-modal" id="shortcut-modal">
+    <div class="sc-box">
+        <div class="sc-title">⌨ कुंजी-संक्षेप</div>
+        <div class="sc-row"><span class="sc-action">← पूर्व अनुभाग</span><span class="sc-key">←</span></div>
+        <div class="sc-row"><span class="sc-action">→ अगला अनुभाग</span><span class="sc-key">→</span></div>
+        <div class="sc-row"><span class="sc-action">खोज खोलें</span><span class="sc-key">Ctrl+F</span></div>
+        <div class="sc-row"><span class="sc-action">अक्षर बड़ा</span><span class="sc-key">Ctrl++</span></div>
+        <div class="sc-row"><span class="sc-action">अक्षर छोटा</span><span class="sc-key">Ctrl+−</span></div>
+        <div class="sc-row"><span class="sc-action">स्वाइप बाएँ/दाएँ</span><span class="sc-key">Swipe</span></div>
+        <button class="sc-close-btn" id="sc-close">बंद करें</button>
+    </div>
+</div>
+
+<!-- HEADER -->
+<header class="rd-hdr">
+    <button class="rd-icon-btn" id="mobile-menu-btn" aria-label="मेनू">
+        <svg viewBox="0 0 16 16"><path d="M2.5 12a.5.5 0 0 1 0-1h11a.5.5 0 0 1 0 1h-11zm0-4a.5.5 0 0 1 0-1h11a.5.5 0 0 1 0 1h-11zm0-4a.5.5 0 0 1 0-1h11a.5.5 0 0 1 0 1h-11z"/></svg>
+    </button>
+    <button class="rd-icon-btn" id="sidebar-toggle-btn" aria-label="Sidebar">
+        <svg viewBox="0 0 16 16"><path d="M2.5 12a.5.5 0 0 1 0-1h11a.5.5 0 0 1 0 1h-11zm0-4a.5.5 0 0 1 0-1h11a.5.5 0 0 1 0 1h-11zm0-4a.5.5 0 0 1 0-1h11a.5.5 0 0 1 0 1h-11z"/></svg>
+    </button>
+    <a href="index.html" class="rd-brand">स्वाध्याय</a>
+    <span class="rd-sep">›</span>
+    <div id="hdr-breadcrumb">
+        <span class="hbc" id="hbc-book"></span>
+        <span class="rd-sep hbc-mid" style="display:none">›</span>
+        <span class="hbc hbc-chapter" id="hbc-chapter" style="display:none"></span>
+        <span class="rd-sep hbc-sub-sep" style="display:none">›</span>
+        <span class="hbc hbc-sub" id="hbc-sub" style="display:none"></span>
+    </div>
+    <button class="rd-icon-btn" id="search-btn" title="खोजें (Ctrl+F)" style="font-size:1.05rem">🔍</button>
+    <a href="index.html" class="rd-back">← पुस्तकालय</a>
+</header>
+
+<!-- LAYOUT -->
+<div class="rd-body">
+    <!-- SIDEBAR (desktop) -->
+    <aside class="rd-sidebar" id="rd-sidebar">
+        <div class="sb-tabs">
+            <button class="sb-tab active" data-tab="chapters" data-ctx="desktop">📖 अध्याय</button>
+            <button class="sb-tab"        data-tab="bookmarks" data-ctx="desktop">🔖 बुकमार्क</button>
         </div>
-
-        <div id="app-root" class="d-flex flex-column h-100 w-100">
-            <!-- Header -->
-            <header class="app-header flex-shrink-0">
-                <button
-                    class="btn btn-link d-md-none"
-                    type="button"
-                    data-bs-toggle="offcanvas"
-                    data-bs-target="#offcanvasMenu"
-                    aria-controls="offcanvasMenu">
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="32"
-                        height="32"
-                        fill="white"
-                        class="bi bi-list"
-                        viewBox="0 0 16 16">
-                        <path
-                            fill-rule="evenodd"
-                            d="M2.5 12.5a.5.5 0 0 1 0-1h11a.5.5 0 0 1 0 1h-11zm0-4a.5.5 0 0 1 0-1h11a.5.5 0 0 1 0 1h-11zm0-4a.5.5 0 0 1 0-1h11a.5.5 0 0 1 0 1h-11z" />
-                    </svg>
-                </button>
-                <span id="book_title" class="fw-bold">स्वाध्यायः</span>
-                <span id="book_name_hindi" class="ms-2"></span>
-            </header>
-
-            <!-- Main Row -->
-            <div class="container-fluid flex-grow-1 d-flex flex-column px-0">
-                <div class="row main-row flex-grow-1 gx-0">
-                    <!-- Side Menu Desktop -->
-                    <nav class="col-md-4 d-none d-md-block side-menu" id="desktop-menu">
-                        <div class="fw-bold mb-2">
-                            <!--...-->
-                        </div>
-                        <div id="desktop-menu-content">
-                            <!--<img src="images/loader.gif" style="width: 100%">-->
-                        </div>
-                    </nav>
-                    <!-- Main Content -->
-                    <main class="col-12 col-md-8 main-content" id="main-scrollable-content">
-                        <div id="display"></div>
-                        <div id="content" style="">
-                            <!--<img src="images/loader.gif" style="width: 100%">-->
-                        </div>
-                    </main>
-                </div>
-            </div>
-
-            <!-- Footer -->
-            <footer class="app-footer flex-shrink-1">
-                <div class="container-fluid flex-grow-1 d-flex flex-column px-0">
-                    <div class="row flex-grow-1 gx-0">
-                        <div class="col-md-4 d-none d-md-block"></div>
-                        <div class="col-md-8 d-md-block">
-                            <div class="d-flex justify-content-between w-100">
-                                <button id="prev-button" class="btn btn-primary flex-fill me-1">← Prev</button>
-                                <button
-                                    id="read-button"
-                                    class="btn btn-success flex-fill mx-1"
-                                    onclick="speakHindiLines()">
-                                    Read
-                                </button>
-                                <button id="next-button" class="btn btn-primary flex-fill ms-1">Next →</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </footer>
+        <div class="sb-panel active" id="panel-chapters">
+            <div class="sb-head">अध्याय-सूची</div>
+            <div id="desktop-chapters"></div>
         </div>
-
-        <!-- Offcanvas Menu for Mobile -->
-        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasMenu" aria-labelledby="offcanvasMenuLabel">
-            <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="offcanvasMenuLabel">Index</h5>
-                <button
-                    type="button"
-                    class="btn-close text-reset"
-                    data-bs-dismiss="offcanvas"
-                    aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body side-menu" id="mobile-menu-content"></div>
+        <div class="sb-panel" id="panel-bookmarks">
+            <div class="sb-head">सहेजे गए अनुच्छेद</div>
+            <div id="desktop-bookmarks"></div>
         </div>
+    </aside>
 
-        <!-- Bootstrap JS Bundle -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- MAIN -->
+    <main class="rd-main" id="rd-main">
+        <div class="rd-content-wrap">
+            <div id="display"></div>
+        </div>
+    </main>
+</div>
 
-        <script>
-            document.addEventListener("DOMContentLoaded", function () {
-                const displayDiv = document.getElementById("display");
-                const mobileMenu = document.getElementById("mobile-menu-content");
-                const desktopMenu = document.getElementById("desktop-menu-content");
+<!-- FOOTER -->
+<footer class="rd-footer">
+    <div class="rd-ft-left"></div>
+    <div class="rd-ft-main">
+        <!-- prev -->
+        <button class="rd-btn-nav" id="prev-btn" disabled aria-label="पूर्व अनुभाग">
+            <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+        </button>
+        <!-- play / stop -->
+        <button class="rd-btn-read" id="read-btn" aria-label="सुनें">
+            <!-- speaker icon (default) -->
+            <svg id="read-icon-play" viewBox="0 0 24 24">
+                <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 7.97v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+            </svg>
+            <!-- stop icon (while speaking) -->
+            <svg id="read-icon-stop" viewBox="0 0 24 24" style="display:none">
+                <path d="M6 6h12v12H6z"/>
+            </svg>
+        </button>
+        <!-- next -->
+        <button class="rd-btn-nav" id="next-btn" aria-label="अगला अनुभाग">
+            <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+        </button>
+    </div>
+    <div class="rd-ft-right">
+        <button class="rd-ft-icon" id="shortcut-btn" title="कुंजी-संक्षेप">⌨</button>
+    </div>
+</footer>
 
-                // Loader elements
-                const loaderOverlay = document.getElementById("loader-overlay");
-                const loaderText = document.getElementById("loader-text");
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
 
-                // Shared state
-                const allSubHeadings = [];
-                let currentSubIndex = -1;
-                let currentConceptualIdx = -1; // -1 = intro
-                const conceptualItems = []; // unified nav list
+<!-- FLOATING SETTINGS -->
+<button id="settings-fab" title="प्रदर्शन सेटिंग">⚙️</button>
+<div id="settings-panel">
+    <div class="sp-head">अक्षर-आकार</div>
+    <div class="sp-row">
+        <button class="sp-btn" id="font-down">A−</button>
+        <span class="sp-font-label" id="font-size-label">1.1×</span>
+        <button class="sp-btn" id="font-up">A+</button>
+    </div>
+    <div class="sp-head">पृष्ठभूमि</div>
+    <div class="sp-mode-row">
+        <button class="sp-mode-btn active" id="mode-dark"  title="रात्रि">🌙<span style="font-size:.72rem;color:var(--txt3)">रात</span></button>
+        <button class="sp-mode-btn"        id="mode-sepia" title="सेपिया">📜<span style="font-size:.72rem;color:var(--txt3)">सेपिया</span></button>
+        <button class="sp-mode-btn"        id="mode-light" title="दिन">☀️<span style="font-size:.72rem;color:var(--txt3)">दिन</span></button>
+    </div>
+</div>
 
-                // ===== Progress storage =====
-                const params = new URLSearchParams(window.location.search);
-                const fileParam = [...params.keys()][0] || "shiva_puran";
-                const fileName = `/books/${fileParam}.html`;
+<!-- MOBILE OFFCANVAS -->
+<div class="rd-overlay" id="rd-overlay"></div>
+<div class="rd-offcanvas" id="rd-offcanvas">
+    <div class="rd-oc-head">
+        <span class="rd-oc-title">ॐ अध्याय-सूची</span>
+        <button class="rd-close-btn" id="offcanvas-close">✕</button>
+    </div>
+    <div class="rd-oc-body">
+        <div class="sb-tabs">
+            <button class="sb-tab active" data-tab="chapters" data-ctx="mobile">📖 अध्याय</button>
+            <button class="sb-tab"        data-tab="bookmarks" data-ctx="mobile">🔖 बुकमार्क</button>
+        </div>
+        <div class="sb-panel active" id="mobile-panel-chapters">
+            <div class="sb-head">अध्याय-सूची</div>
+            <div id="mobile-chapters"></div>
+        </div>
+        <div class="sb-panel" id="mobile-panel-bookmarks">
+            <div class="sb-head">सहेजे गए</div>
+            <div id="mobile-bookmarks"></div>
+        </div>
+    </div>
+</div>
 
-                const progressKey = "readingProgress";
-                const allProgress = JSON.parse(localStorage.getItem(progressKey) || "{}");
-                let startAtChapterIndex = -1;
+<script>
+/* ═══════════════════════════════════════════════
+   UTILITIES
+═══════════════════════════════════════════════ */
+function toHindiNum(n){return String(n).split("").map(d=>"०१२३४५६७८९"[+d]||d).join("")}
+function wordCount(t){return t.trim().split(/\s+/).filter(Boolean).length}
+function readMins(wc){return Math.max(1,Math.round(wc/120))}
 
-                if (allProgress[fileParam] && allProgress[fileParam].chapterIndex !== undefined) {
-                    const resume = confirm(
-                        "पिछली बार की स्थिति से पढ़ना चाहेंगे?\n\nWould you like to resume from where you left off?"
-                    );
-                    if (resume) {
-                        startAtChapterIndex = allProgress[fileParam].chapterIndex;
-                    }
-                }
+function showToast(msg){
+    const t=document.getElementById("toast");
+    t.textContent=msg;t.classList.add("show");
+    clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove("show"),2200);
+}
 
-                // ===== Helpers =====
-                function toHindiNumber(num) {
-                    const hindiDigits = ["०", "१", "२", "३", "४", "५", "६", "७", "८", "९"];
-                    return String(num)
-                        .split("")
-                        .map((d) => hindiDigits[parseInt(d)])
-                        .join("");
-                }
+/* ── Breadcrumb ── */
+function setBreadcrumb(book,chapter,sub){
+    document.getElementById("hbc-book").textContent=book||"";
+    const elCh=document.getElementById("hbc-chapter");
+    const elSub=document.getElementById("hbc-sub");
+    const sepMid=document.querySelector(".hbc-mid");
+    const sepSub=document.querySelector(".hbc-sub-sep");
+    elCh.textContent=chapter||""; elSub.textContent=sub||"";
+    sepMid.style.display=chapter?"":"none"; elCh.style.display=chapter?"":"none";
+    sepSub.style.display=sub?"":"none"; elSub.style.display=sub?"":"none";
+}
 
-                function showIntro(paragraphs) {
-                    displayDiv.innerHTML = "";
-                    let introEndIndex = paragraphs.findIndex(
-                        (p) => p.classList.contains("Heading") || p.classList.contains("Sub-Heading")
-                    );
-                    if (introEndIndex === -1) introEndIndex = paragraphs.length;
-                    for (let i = 0; i < introEndIndex; i++) {
-                        displayDiv.appendChild(paragraphs[i].cloneNode(true));
-                    }
-                    currentConceptualIdx = -1;
-                    document.getElementById("main-scrollable-content").scrollTo({ top: 0, behavior: "smooth" });
-                }
+/* ═══════════════════════════════════════════════
+   TTS
+═══════════════════════════════════════════════ */
+let isSpeaking=false;
+async function speakContent(){
+    const synth=window.speechSynthesis;
+    if(isSpeaking){synth.cancel();return}
+    const contentDiv=document.getElementById("display");
+    const nodes=Array.from(contentDiv.childNodes).filter(n=>{
+        if(n.nodeType===Node.ELEMENT_NODE&&n.tagName==="P")
+            return !n.className.toLowerCase().includes("shlok");
+        return true;
+    });
+    const lines=nodes.map(n=>n.textContent.trim()).filter(l=>l.length>0);
+    function getHindiVoice(){
+        return new Promise(resolve=>{
+            let v=synth.getVoices();
+            if(v.length)return resolve(v.find(x=>x.lang&&x.lang.startsWith("hi")));
+            synth.onvoiceschanged=()=>{v=synth.getVoices();resolve(v.find(x=>x.lang&&x.lang.startsWith("hi")))};
+        });
+    }
+    const voice=await getHindiVoice();
+    if(!voice){alert("Hindi TTS voice not found.\nAndroid: Settings › System › Languages & input › TTS\niOS: Settings › Accessibility › Spoken Content › Voices › Hindi");return}
+    isSpeaking=true;
+    const btn=document.getElementById("read-btn");
+    btn.classList.add("speaking");
+    document.getElementById("read-icon-play").style.display="none";
+    document.getElementById("read-icon-stop").style.display="";
+    function clearHL(){contentDiv.querySelectorAll(".highlight").forEach(el=>{el.parentNode.replaceChild(document.createTextNode(el.textContent),el);el.parentNode.normalize()})}
+    function speakLine(i){
+        if(i>=lines.length||!isSpeaking){clearHL();isSpeaking=false;btn.classList.remove("speaking");document.getElementById("read-icon-play").style.display="";document.getElementById("read-icon-stop").style.display="none";return}
+        clearHL();
+        const node=nodes[i],line=lines[i];
+        if(node.nodeType===Node.TEXT_NODE){const sp=document.createElement("span");sp.textContent=node.textContent;sp.className="highlight";contentDiv.replaceChild(sp,node);nodes[i]=sp;sp.scrollIntoView({behavior:"smooth",block:"center"})}
+        else if(node.nodeType===Node.ELEMENT_NODE){const esc=line.replace(/[.*+?^${}()|[\]\\]/g,"\\$&");node.innerHTML=node.innerHTML.replace(new RegExp(esc,"g"),`<span class="highlight">$&</span>`);const hl=node.querySelector(".highlight");if(hl)hl.scrollIntoView({behavior:"smooth",block:"center"})}
+        const utt=new SpeechSynthesisUtterance(line);utt.voice=voice;
+        utt.onend=()=>speakLine(i+1);synth.speak(utt);
+    }
+    speakLine(0);
+}
 
-                function showSlice(paragraphs, startIndex, endIndex) {
-                    displayDiv.innerHTML = "";
-                    for (let i = startIndex; i < endIndex; i++) {
-                        displayDiv.appendChild(paragraphs[i].cloneNode(true));
-                    }
-                    document.getElementById("main-scrollable-content").scrollTo({ top: 0, behavior: "smooth" });
-                }
+/* ═══════════════════════════════════════════════
+   BOOKMARKS
+═══════════════════════════════════════════════ */
+const BM_KEY="sv_bookmarks";
+let bookFileParam="";
+function getBMs(){return JSON.parse(localStorage.getItem(BM_KEY)||"{}")}
+function saveBMs(bm){localStorage.setItem(BM_KEY,JSON.stringify(bm))}
 
-                function createAccordionSection(title, sectionId) {
-                    const accordionItem = document.createElement("div");
-                    accordionItem.className = "accordion-item";
-
-                    const headerId = `heading-${sectionId}`;
-                    const collapseId = `collapse-${sectionId}`;
-
-                    accordionItem.innerHTML = `
-            <h2 class="accordion-header" id="${headerId}">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#${collapseId}" aria-expanded="false" aria-controls="${collapseId}">
-                ${title}
-              </button>
-            </h2>
-            <div id="${collapseId}" class="accordion-collapse collapse" aria-labelledby="${headerId}" data-bs-parent="#accordionMenu">
-              <div class="accordion-body p-0"></div>
-            </div>
-        `;
-                    return {
-                        section: accordionItem,
-                        content: accordionItem.querySelector(".accordion-body"),
-                        headerButton: accordionItem.querySelector("button")
-                    };
-                }
-
-                function analyzeHeading(paragraphs, startIndex) {
-                    let firstSubHeadingIdx = -1;
-                    let endIndex = paragraphs.length;
-                    for (let i = startIndex + 1; i < paragraphs.length; i++) {
-                        const next = paragraphs[i];
-                        if (next.classList.contains("Sub-Heading") && firstSubHeadingIdx === -1) {
-                            firstSubHeadingIdx = i;
-                        }
-                        if (next.classList.contains("Heading")) {
-                            endIndex = i;
+function addBM(pid,text,chT,shT,cidx){
+    const bm=getBMs();
+    if(!bm[bookFileParam])bm[bookFileParam]=[];
+    if(!bm[bookFileParam].find(b=>b.pid===pid)){
+        bm[bookFileParam].push({pid,text:text.slice(0,160),chT,shT,cidx,ts:Date.now()});
+        saveBMs(bm);showToast("🔖 बुकमार्क सहेजा");
+    }
+    renderBMPanel();
+}
+function removeBM(pid){
+    const bm=getBMs();
+    if(bm[bookFileParam])bm[bookFileParam]=bm[bookFileParam].filter(b=>b.pid!==pid);
+    saveBMs(bm);renderBMPanel();
+    document.querySelectorAll(`.bm-star[data-pid="${pid}"]`).forEach(s=>{s.classList.remove("saved");s.textContent="☆";s.title="बुकमार्क करें"});
+    showToast("बुकमार्क हटाया");
+}
+function renderBMPanel(){
+    const bm=getBMs()[bookFileParam]||[];
+    ["desktop-bookmarks","mobile-bookmarks"].forEach(id=>{
+        const el=document.getElementById(id);if(!el)return;
+        el.innerHTML="";
+        if(!bm.length){el.innerHTML='<div class="bm-empty">कोई बुकमार्क नहीं</div>';return}
+        bm.slice().reverse().forEach(b=>{
+            const div=document.createElement("div");div.className="bm-item";
+            div.innerHTML=
+                `<div class="bm-text"><div class="bm-ctx">${b.chT}${b.shT?" › "+b.shT:""}</div>${b.text}</div>`+
+                `<button class="bm-del" title="हटाएँ" data-pid="${b.pid}">✕</button>`;
+            div.querySelector(".bm-del").addEventListener("click",e=>{e.stopPropagation();removeBM(b.pid)});
+            div.addEventListener("click",()=>{
+                if(typeof window._svNavigate!=="function"){showToast("पुस्तक लोड हो रही है…");return}
+                let cidx=(b.cidx!=null)?b.cidx:(window._svFindSection?.(b.chT,b.shT)??-1);
+                if(cidx<0){showToast("अनुभाग नहीं मिला");return}
+                window._svNavigate(cidx);
+                /* after render, find & scroll to the exact paragraph */
+                setTimeout(()=>{
+                    const needle=b.text.slice(0,40).trim();
+                    const paras=document.querySelectorAll("#display p");
+                    for(const p of paras){
+                        if(p.textContent.trim().startsWith(needle.slice(0,30))){
+                            p.scrollIntoView({behavior:"smooth",block:"center"});
+                            p.classList.add("bm-flash");
+                            setTimeout(()=>p.classList.remove("bm-flash"),1600);
                             break;
                         }
                     }
-                    return { firstSubHeadingIdx, endIndex };
-                }
-
-                // ===== Fetch book content with progress (XHR) =====
-                const xhr = new XMLHttpRequest();
-                xhr.open("GET", fileName, true);
-
-                // Show overlay initially
-                loaderOverlay.classList.remove("hidden");
-                loaderText.textContent = "Loading…";
-
-                // Progress handler
-                xhr.onprogress = function (event) {
-                    if (event.lengthComputable) {
-                        const percent = Math.floor((event.loaded / event.total) * 100);
-                        loaderText.textContent = `Loading… ${percent}%`;
-                    } else {
-                        // Fallback: simple pulse/dots when total size unknown
-                        const base = "Loading";
-                        const dots = (loaderText.textContent.match(/\./g) || []).length % 3;
-                        loaderText.textContent = base + "…" + ".".repeat(dots + 1);
-                    }
-                };
-
-                xhr.onload = function () {
-                    if (xhr.status === 200) {
-                        loaderText.textContent = "Loaded 100%";
-                        setTimeout(() => {
-                            loaderOverlay.classList.add("hidden");
-                        }, 300);
-
-                        const html = xhr.responseText;
-
-                        const tempDiv = document.createElement("div");
-                        tempDiv.innerHTML = html;
-                        const contentDiv = tempDiv.querySelector("#content");
-
-                        if (!contentDiv) {
-                            console.error(`No div with ID 'content' found in ${fileName}`);
-                            return;
-                        }
-
-                        // Set Hindi title
-                        const titleHindi = contentDiv.querySelector("p.Title-Page---Book-Name-Hindi");
-                        if (titleHindi) {
-                            const h1 = document.getElementById("book_name_hindi");
-                            if (h1) h1.textContent = titleHindi.textContent.trim();
-                        }
-
-                        const paragraphs = Array.from(contentDiv.querySelectorAll("p"));
-                        let subHeadingCount = 0;
-                        let sectionIndex = 0;
-                        let currentAccordionMobile = null;
-                        let currentAccordionDesktop = null;
-
-                        // Show intro at first load
-                        showIntro(paragraphs);
-
-                        // Build accordion containers
-                        const mobileAccordion = document.createElement("div");
-                        mobileAccordion.className = "accordion";
-                        mobileAccordion.id = "accordionMenuMobile";
-                        mobileMenu.appendChild(mobileAccordion);
-
-                        const desktopAccordion = document.createElement("div");
-                        desktopAccordion.className = "accordion";
-                        desktopAccordion.id = "accordionMenuDesktop";
-                        desktopMenu.appendChild(desktopAccordion);
-
-                        // Build menu and conceptual items
-                        paragraphs.forEach((p) => {
-                            if (p.classList.contains("Heading")) {
-                                sectionIndex++;
-                                const sectionId = `${sectionIndex}`;
-
-                                const mobileSec = createAccordionSection(p.textContent, `mobile${sectionId}`);
-                                mobileAccordion.appendChild(mobileSec.section);
-                                currentAccordionMobile = mobileSec.content;
-
-                                const desktopSec = createAccordionSection(p.textContent, `desktop${sectionId}`);
-                                desktopAccordion.appendChild(desktopSec.section);
-                                currentAccordionDesktop = desktopSec.content;
-
-                                subHeadingCount = 0;
-
-                                const startIndex = paragraphs.indexOf(p);
-                                const { firstSubHeadingIdx, endIndex } = analyzeHeading(paragraphs, startIndex);
-                                let headingConceptualIdx = null;
-                                if (firstSubHeadingIdx === -1) {
-                                    headingConceptualIdx = conceptualItems.length;
-                                    conceptualItems.push({ type: "heading", startIndex, endIndex });
-                                }
-
-                                function handleHeadingClick() {
-                                    if (firstSubHeadingIdx !== -1) {
-                                        const targetText = paragraphs[firstSubHeadingIdx].textContent;
-                                        const conceptualClickIdx = allSubHeadings.findIndex((el) =>
-                                            el.textContent.includes(targetText)
-                                        );
-                                        if (conceptualClickIdx !== -1) {
-                                            allSubHeadings[conceptualClickIdx].click();
-                                            const subConceptualIdx = conceptualItems.findIndex(
-                                                (it) => it.type === "sub" && it.index === conceptualClickIdx
-                                            );
-                                            if (subConceptualIdx !== -1) currentConceptualIdx = subConceptualIdx;
-                                        }
-                                    } else {
-                                        showSlice(paragraphs, startIndex, endIndex);
-                                        currentConceptualIdx = headingConceptualIdx;
-                                    }
-                                }
-
-                                mobileSec.headerButton.addEventListener("click", handleHeadingClick);
-                                desktopSec.headerButton.addEventListener("click", handleHeadingClick);
-                            } else if (p.classList.contains("Sub-Heading")) {
-                                subHeadingCount++;
-                                const displayText = `${toHindiNumber(subHeadingCount)}. ${p.textContent}`;
-                                const startIndex = paragraphs.indexOf(p);
-
-                                let endIndex = paragraphs.length;
-                                for (let i = startIndex + 1; i < paragraphs.length; i++) {
-                                    const next = paragraphs[i];
-                                    if (next.classList.contains("Heading") || next.classList.contains("Sub-Heading")) {
-                                        endIndex = i;
-                                        break;
-                                    }
-                                }
-
-                                const subConceptualIdx = conceptualItems.length;
-                                let firstAllSubHeadingsIndex = null;
-
-                                [currentAccordionMobile, currentAccordionDesktop].forEach((container) => {
-                                    const item = document.createElement("div");
-                                    item.className = "subheading-link px-2 py-1";
-                                    item.style.cursor = "pointer";
-                                    item.textContent = displayText;
-                                    item.dataset.conceptualIdx = String(subConceptualIdx);
-
-                                    item.addEventListener("click", function () {
-                                        document
-                                            .querySelectorAll(".subheading-link.active")
-                                            .forEach((el) => el.classList.remove("active"));
-                                        this.classList.add("active");
-
-                                        currentSubIndex = allSubHeadings.indexOf(this);
-                                        currentConceptualIdx = parseInt(this.dataset.conceptualIdx, 10);
-
-                                        allProgress[fileParam] = { chapterIndex: currentSubIndex };
-                                        localStorage.setItem(progressKey, JSON.stringify(allProgress));
-
-                                        displayDiv.innerHTML = "";
-
-                                        // Add parent Heading
-                                        let parentHeading = null;
-                                        for (let i = startIndex - 1; i >= 0; i--) {
-                                            if (paragraphs[i].classList.contains("Heading")) {
-                                                parentHeading = paragraphs[i].cloneNode(true);
-                                                break;
-                                            }
-                                        }
-                                        if (parentHeading) {
-                                            parentHeading.classList.add("parent-heading");
-                                            displayDiv.appendChild(parentHeading);
-                                        }
-
-                                        // Add subheading slice
-                                        for (let i = startIndex; i < endIndex; i++) {
-                                            displayDiv.appendChild(paragraphs[i].cloneNode(true));
-                                        }
-
-                                        if (window.innerWidth < 768) {
-                                            const offcanvas = bootstrap.Offcanvas.getInstance(
-                                                document.getElementById("offcanvasMenu")
-                                            );
-                                            if (offcanvas) offcanvas.hide();
-                                        }
-
-                                        document
-                                            .getElementById("main-scrollable-content")
-                                            .scrollTo({ top: 0, behavior: "smooth" });
-                                    });
-
-                                    container && container.appendChild(item);
-                                    allSubHeadings.push(item);
-                                    if (firstAllSubHeadingsIndex === null)
-                                        firstAllSubHeadingsIndex = allSubHeadings.length - 1;
-                                });
-
-                                conceptualItems.push({ type: "sub", index: firstAllSubHeadingsIndex });
-                            }
-                        });
-
-                        // Resume last read
-                        if (startAtChapterIndex !== -1 && allSubHeadings[startAtChapterIndex]) {
-                            allSubHeadings[startAtChapterIndex].click();
-                            const matchIdx = conceptualItems.findIndex(
-                                (it) => it.type === "sub" && it.index === startAtChapterIndex
-                            );
-                            if (matchIdx !== -1) currentConceptualIdx = matchIdx;
-                        }
-
-                        // ===== Navigation =====
-                        function navigateToConceptual(targetIdx) {
-                            if (targetIdx < -1) targetIdx = -1;
-                            if (targetIdx === -1) {
-                                showIntro(paragraphs);
-                                return;
-                            }
-                            if (conceptualItems.length === 0) return;
-                            if (targetIdx > conceptualItems.length - 1) targetIdx = conceptualItems.length - 1;
-
-                            const item = conceptualItems[targetIdx];
-                            currentConceptualIdx = targetIdx;
-
-                            if (item.type === "sub") {
-                                const el = allSubHeadings[item.index];
-                                el && el.click();
-                            } else if (item.type === "heading") {
-                                showSlice(paragraphs, item.startIndex, item.endIndex);
-                            }
-                        }
-
-                        document.getElementById("prev-button").addEventListener("click", () => {
-                            navigateToConceptual(currentConceptualIdx - 1);
-                        });
-                        document.getElementById("next-button").addEventListener("click", () => {
-                            navigateToConceptual(currentConceptualIdx + 1);
-                        });
-
-                        const mainScrollableContent = document.getElementById("main-scrollable-content");
-                        const hammer = new Hammer(document.body);
-                        hammer
-                            .get("swipe")
-                            .set({ direction: Hammer.DIRECTION_HORIZONTAL, threshold: 10, velocity: 0.3 });
-                        hammer.on("swipeleft", () => navigateToConceptual(currentConceptualIdx + 1));
-                        hammer.on("swiperight", () => navigateToConceptual(currentConceptualIdx - 1));
-
-                        document.addEventListener("keydown", (e) => {
-                            if (e.key === "ArrowLeft") navigateToConceptual(currentConceptualIdx - 1);
-                            if (e.key === "ArrowRight") navigateToConceptual(currentConceptualIdx + 1);
-                        });
-                    } else {
-                        console.error(`Failed to fetch or process ${fileName} (status: ${xhr.status})`);
-                        loaderOverlay.classList.add("hidden");
-                    }
-                };
-
-                xhr.onerror = function () {
-                    console.error(`Failed to fetch or process ${fileName}`);
-                    loaderOverlay.classList.add("hidden");
-                };
-
-                xhr.send();
+                },300);
             });
-        </script>
-    </body>
+            el.appendChild(div);
+        });
+    });
+}
+
+/* ═══════════════════════════════════════════════
+   SEARCH
+═══════════════════════════════════════════════ */
+let searchIdx=[];   // [{text, chT, shT, conceptualIdx}]
+function buildSearchIdx(paragraphs,chapters){
+    searchIdx=[];
+    chapters.forEach(ch=>{
+        const chT=ch.headingEl.textContent.trim();
+        if(ch.subHeadings.length===0){
+            for(let i=ch.startIdx;i<ch.endIdx;i++){
+                const t=paragraphs[i].textContent.trim();
+                if(t)searchIdx.push({text:t,chT,shT:"",conceptualIdx:ch.conceptualIdx});
+            }
+        } else {
+            ch.subHeadings.forEach(sh=>{
+                const shT=sh.el.textContent.trim();
+                for(let i=sh.startIdx;i<sh.endIdx;i++){
+                    const t=paragraphs[i].textContent.trim();
+                    if(t)searchIdx.push({text:t,chT,shT,conceptualIdx:sh.conceptualIdx});
+                }
+            });
+        }
+    });
+}
+function doSearch(q,navFn){
+    const resDiv=document.getElementById("search-results");
+    if(!q||q.trim().length<2){resDiv.classList.remove("open");resDiv.innerHTML="";return}
+    const ql=q.trim().toLowerCase();
+    const hits=searchIdx.filter(d=>d.text.toLowerCase().includes(ql)).slice(0,40);
+    resDiv.innerHTML="";
+    if(!hits.length){resDiv.innerHTML='<div class="sr-empty">कोई परिणाम नहीं</div>';resDiv.classList.add("open");return}
+    hits.forEach(h=>{
+        const item=document.createElement("div");item.className="sr-item";
+        const idx=h.text.toLowerCase().indexOf(ql);
+        const raw=h.text.slice(Math.max(0,idx-30),idx+70).replace(/</g,"&lt;");
+        const hl=raw.replace(new RegExp(ql.replace(/[.*+?^${}()|[\]\\]/g,"\\$&"),"gi"),m=>`<span class="sr-match">${m}</span>`);
+        item.innerHTML=`<div>${hl}</div><div class="sr-ctx">${h.chT}${h.shT?" › "+h.shT:""}</div>`;
+        item.addEventListener("click",()=>{
+            navFn(h.conceptualIdx);
+            resDiv.classList.remove("open");
+            document.getElementById("search-bar").classList.remove("open");
+            const esc=ql.replace(/[.*+?^${}()|[\]\\]/g,"\\$&");
+            setTimeout(()=>{
+                document.getElementById("display").querySelectorAll("p").forEach(p=>{
+                    if(p.textContent.toLowerCase().includes(ql)){
+                        p.innerHTML=p.innerHTML.replace(new RegExp(esc,"gi"),m=>`<mark class="search-hl">${m}</mark>`);
+                        p.querySelector("mark.search-hl")?.scrollIntoView({behavior:"smooth",block:"center"});
+                    }
+                });
+            },200);
+        });
+        resDiv.appendChild(item);
+    });
+    resDiv.classList.add("open");
+}
+
+/* ═══════════════════════════════════════════════
+   MAIN APP
+═══════════════════════════════════════════════ */
+document.addEventListener("DOMContentLoaded",function(){
+
+    const displayDiv=document.getElementById("display");
+    const rdMain   =document.getElementById("rd-main");
+
+    /* URL param */
+    const params=new URLSearchParams(window.location.search);
+    bookFileParam=[...params.keys()][0]||"shiva_puran";
+    const fileName=`/books/${bookFileParam}.html`;
+
+    /* Resume progress */
+    const PROG_KEY="readingProgress";
+    const allProg=JSON.parse(localStorage.getItem(PROG_KEY)||"{}");
+    let resumeIdx=-1;
+    if(allProg[bookFileParam]?.conceptualIdx!==undefined)
+        if(confirm("पिछली बार की स्थिति से पढ़ना चाहेंगे?\n\nResume from where you left off?"))
+            resumeIdx=allProg[bookFileParam].conceptualIdx;
+
+    /* State */
+    let paragraphs=[], chapters=[], conceptualItems=[];
+    let currentCIdx=-1, bookTitle="";
+
+    /* Helpers */
+    function scrollTop(){rdMain.scrollTo({top:0,behavior:"smooth"})}
+
+    function showIntro(){
+        displayDiv.innerHTML="";
+        let end=paragraphs.findIndex(p=>p.classList.contains("Heading")||p.classList.contains("Sub-Heading"));
+        if(end===-1)end=paragraphs.length;
+        for(let i=0;i<end;i++)displayDiv.appendChild(paragraphs[i].cloneNode(true));
+        currentCIdx=-1;setBreadcrumb(bookTitle,"","");scrollTop();updateNavBtns();
+    }
+
+    function loadItem(idx){
+        if(idx<0||idx>=conceptualItems.length)return;
+        currentCIdx=idx;
+        const item=conceptualItems[idx];
+        displayDiv.innerHTML="";
+        if(item.type==="heading"){
+            for(let i=item.ch.startIdx;i<item.ch.endIdx;i++)
+                displayDiv.appendChild(paragraphs[i].cloneNode(true));
+            setBreadcrumb(bookTitle,item.ch.headingEl.textContent.trim(),"");
+        } else {
+            const sh=item.sh,ch=item.ch;
+            const dimH=ch.headingEl.cloneNode(true);dimH.classList.add("parent-heading");displayDiv.appendChild(dimH);
+            for(let i=sh.startIdx;i<sh.endIdx;i++)displayDiv.appendChild(paragraphs[i].cloneNode(true));
+            setBreadcrumb(bookTitle,ch.headingEl.textContent.trim(),sh.el.textContent.trim());
+        }
+        allProg[bookFileParam]={conceptualIdx:idx};
+        localStorage.setItem(PROG_KEY,JSON.stringify(allProg));
+        decorateParas(item);scrollTop();updateNavBtns();syncActive(idx);
+    }
+
+    /* Decorate: copy on click + bookmark star */
+    function decorateParas(item){
+        let pid=0;
+        displayDiv.querySelectorAll("p").forEach(p=>{
+            const id=`p_${currentCIdx}_${pid++}`;
+            const chT=item.ch.headingEl.textContent.trim();   // always the chapter title
+            const shT=item.type==="sub"?item.sh.el.textContent.trim():"";
+            // copy
+            p.addEventListener("click",()=>{
+                navigator.clipboard?.writeText(p.textContent+`\n— ${bookTitle}${shT?" › "+shT:""}`)
+                    .then(()=>showToast("📋 कॉपी हो गया")).catch(()=>{});
+            });
+            // bookmark star
+            const star=document.createElement("button");
+            star.className="bm-star";star.dataset.pid=id;star.title="बुकमार्क करें";star.textContent="☆";
+            const bm=getBMs()[bookFileParam]||[];
+            if(bm.find(b=>b.pid===id)){star.classList.add("saved");star.textContent="★"}
+            star.addEventListener("click",e=>{
+                e.stopPropagation();
+                const cur=getBMs()[bookFileParam]||[];
+                if(cur.find(b=>b.pid===id)){removeBM(id)}
+                else{addBM(id,p.textContent,chT,shT,currentCIdx);star.classList.add("saved");star.textContent="★"}
+            });
+            // wrap
+            const wrap=document.createElement("span");wrap.className="para-wrap";
+            p.parentNode.insertBefore(wrap,p);wrap.appendChild(p);wrap.appendChild(star);
+        });
+        renderBMPanel();
+    }
+
+    function syncActive(idx){
+        /* clear only active markers, leave open/closed accordion state untouched */
+        document.querySelectorAll(".rd-ch-btn.active,.rd-sub-btn.active").forEach(b=>b.classList.remove("active"));
+        /* mark the newly active item and ensure its chapter is open */
+        document.querySelectorAll(`[data-cidx="${idx}"]`).forEach(b=>{
+            b.classList.add("active");
+            const sl=b.closest(".rd-chapter")?.querySelector(".rd-sub-list");
+            if(sl)sl.classList.add("open");
+            const cb=b.closest(".rd-chapter")?.querySelector(".rd-ch-btn");
+            if(cb)cb.classList.add("open","active");
+        });
+    }
+
+    function updateNavBtns(){
+        document.getElementById("prev-btn").disabled=currentCIdx<=0&&currentCIdx!==-1?false:currentCIdx<0;
+        // simpler:
+        document.getElementById("prev-btn").disabled=(currentCIdx<0);
+        document.getElementById("next-btn").disabled=(currentCIdx>=conceptualItems.length-1);
+    }
+
+    /* Parse structure */
+    function parseStructure(){
+        chapters=[];let curCh=null;
+        paragraphs.forEach((p,idx)=>{
+            if(p.classList.contains("Heading")){
+                curCh={headingEl:p,startIdx:idx,endIdx:paragraphs.length,subHeadings:[],conceptualIdx:-1};
+                chapters.push(curCh);
+            } else if(p.classList.contains("Sub-Heading")&&curCh){
+                curCh.subHeadings.push({el:p,startIdx:idx,endIdx:paragraphs.length,text:p.textContent.trim(),conceptualIdx:-1});
+            }
+        });
+        chapters.forEach((ch,ci)=>{
+            ch.endIdx=chapters[ci+1]?chapters[ci+1].startIdx:paragraphs.length;
+            ch.subHeadings.forEach((sh,si)=>{
+                sh.endIdx=ch.subHeadings[si+1]?ch.subHeadings[si+1].startIdx:ch.endIdx;
+            });
+        });
+        conceptualItems=[];
+        chapters.forEach(ch=>{
+            if(ch.subHeadings.length===0){
+                ch.conceptualIdx=conceptualItems.length;
+                conceptualItems.push({type:"heading",ch});
+            } else {
+                ch.subHeadings.forEach(sh=>{
+                    sh.conceptualIdx=conceptualItems.length;
+                    conceptualItems.push({type:"sub",ch,sh});
+                });
+            }
+        });
+    }
+
+    /* Build menu DOM for ONE container — no shared state issues */
+    function buildMenuDOM(container){
+        container.innerHTML="";
+        chapters.forEach(ch=>{
+            const chDiv=document.createElement("div");chDiv.className="rd-chapter";
+            const chBtn=document.createElement("button");chBtn.className="rd-ch-btn";
+            let chText="";
+            for(let i=ch.startIdx;i<ch.endIdx;i++)chText+=paragraphs[i].textContent+" ";
+            chBtn.innerHTML=`<span>${ch.headingEl.textContent}<span class="rd-ch-time">~${toHindiNum(readMins(wordCount(chText)))} मिनट</span></span><span class="rd-ch-arrow">▶</span>`;
+            const subList=document.createElement("div");subList.className="rd-sub-list";
+            chDiv.appendChild(chBtn);chDiv.appendChild(subList);container.appendChild(chDiv);
+
+            if(ch.subHeadings.length===0){
+                chBtn.dataset.cidx=String(ch.conceptualIdx);
+                chBtn.addEventListener("click",()=>loadItem(ch.conceptualIdx));
+            } else {
+                chBtn.addEventListener("click",()=>{
+                    const open=subList.classList.toggle("open");
+                    chBtn.classList.toggle("open",open);
+                });
+                ch.subHeadings.forEach((sh,si)=>{
+                    let shText="";
+                    for(let i=sh.startIdx;i<sh.endIdx;i++)shText+=paragraphs[i].textContent+" ";
+                    const subBtn=document.createElement("button");subBtn.className="rd-sub-btn";
+                    subBtn.dataset.cidx=String(sh.conceptualIdx);
+                    subBtn.innerHTML=`${toHindiNum(si+1)}. ${sh.text}<span class="rd-sub-time">~${toHindiNum(readMins(wordCount(shText)))} मिनट</span>`;
+                    subBtn.addEventListener("click",()=>{
+                        if(window.innerWidth<769)closeOffcanvas();
+                        loadItem(sh.conceptualIdx);
+                    });
+                    subList.appendChild(subBtn);
+                });
+            }
+        });
+    }
+
+    function navigateTo(idx){if(idx>=0&&idx<conceptualItems.length)loadItem(idx)}
+    window._svNavigate=navigateTo;   // expose for bookmark panel (defined outside DOMContentLoaded)
+    window._svFindSection=function(chT,shT){
+        /* find conceptual index by chapter + sub-heading title (fallback for old bookmarks) */
+        const idx=conceptualItems.findIndex(it=>{
+            const chMatch=it.ch.headingEl.textContent.trim()===chT;
+            if(!shT) return chMatch && it.type==="heading";
+            return chMatch && it.type==="sub" && it.sh.el.textContent.trim()===shT;
+        });
+        return idx;   // -1 if not found
+    };
+
+    /* Mobile offcanvas */
+    function openOffcanvas(){document.getElementById("rd-offcanvas").classList.add("open");document.getElementById("rd-overlay").classList.add("open")}
+    function closeOffcanvas(){document.getElementById("rd-offcanvas").classList.remove("open");document.getElementById("rd-overlay").classList.remove("open")}
+
+    /* XHR */
+    const xhr=new XMLHttpRequest();
+    xhr.open("GET",fileName,true);
+    document.getElementById("loader-overlay").classList.remove("hidden");
+    xhr.onprogress=e=>{
+        if(e.lengthComputable){const pct=Math.floor(e.loaded/e.total*100);document.getElementById("loader-bar").style.width=pct+"%";document.getElementById("loader-text").textContent=`Loading… ${pct}%`}
+    };
+    xhr.onload=function(){
+        document.getElementById("loader-bar").style.width="100%";
+        document.getElementById("loader-text").textContent="तैयार है";
+        setTimeout(()=>document.getElementById("loader-overlay").classList.add("hidden"),350);
+        if(xhr.status!==200)return;
+        const tmp=document.createElement("div");tmp.innerHTML=xhr.responseText;
+        const contentDiv=tmp.querySelector("#content");if(!contentDiv)return;
+        const titleEl=contentDiv.querySelector("p.Title-Page---Book-Name-Hindi,p.Title");
+        bookTitle=titleEl?titleEl.textContent.trim():bookFileParam;
+        document.title=`${bookTitle} — स्वाध्याय`;
+        document.getElementById("hbc-book").textContent=bookTitle;
+        paragraphs=Array.from(contentDiv.querySelectorAll("p"));
+        parseStructure();
+        buildMenuDOM(document.getElementById("desktop-chapters"));
+        buildMenuDOM(document.getElementById("mobile-chapters"));
+        buildSearchIdx(paragraphs,chapters);
+        if(resumeIdx>=0&&resumeIdx<conceptualItems.length)loadItem(resumeIdx);
+        else showIntro();
+        renderBMPanel();
+    };
+    xhr.onerror=()=>document.getElementById("loader-overlay").classList.add("hidden");
+    xhr.send();
+
+    /* ── Events ── */
+
+    /* scroll progress */
+    rdMain.addEventListener("scroll",function(){
+        const max=this.scrollHeight-this.clientHeight;
+        document.getElementById("scroll-prog-bar").style.width=(max>0?this.scrollTop/max*100:0)+"%";
+    });
+
+    /* sidebar toggle (desktop) */
+    document.getElementById("sidebar-toggle-btn").addEventListener("click",()=>{
+        document.getElementById("rd-sidebar").classList.toggle("collapsed");
+    });
+
+    /* mobile menu */
+    document.getElementById("mobile-menu-btn").addEventListener("click",openOffcanvas);
+    document.getElementById("offcanvas-close").addEventListener("click",closeOffcanvas);
+    document.getElementById("rd-overlay").addEventListener("click",closeOffcanvas);
+
+    /* sidebar tabs */
+    document.querySelectorAll(".sb-tab").forEach(tab=>{
+        tab.addEventListener("click",()=>{
+            const ctx=tab.dataset.ctx;
+            const scope=ctx==="mobile"?document.getElementById("rd-offcanvas"):document.getElementById("rd-sidebar");
+            scope.querySelectorAll(".sb-tab").forEach(t=>t.classList.remove("active"));
+            scope.querySelectorAll(".sb-panel").forEach(p=>p.classList.remove("active"));
+            tab.classList.add("active");
+            const panelId=(ctx==="mobile"?"mobile-panel-":"panel-")+tab.dataset.tab;
+            const panel=document.getElementById(panelId);if(panel)panel.classList.add("active");
+        });
+    });
+
+    /* nav buttons */
+    document.getElementById("prev-btn").addEventListener("click",()=>navigateTo(currentCIdx-1));
+    document.getElementById("next-btn").addEventListener("click",()=>navigateTo(currentCIdx+1));
+
+    /* read aloud */
+    document.getElementById("read-btn").addEventListener("click",speakContent);
+
+    /* floating settings FAB */
+    const settingsPanel=document.getElementById("settings-panel");
+    document.getElementById("settings-fab").addEventListener("click",e=>{
+        e.stopPropagation();
+        settingsPanel.classList.toggle("open");
+    });
+    document.addEventListener("click",e=>{
+        if(!settingsPanel.contains(e.target)&&e.target.id!=="settings-fab")
+            settingsPanel.classList.remove("open");
+    });
+
+    /* font size */
+    let fs=1.1;
+    function setFs(v){
+        fs=v;
+        document.documentElement.style.setProperty("--fs",fs+"rem");
+        document.getElementById("font-size-label").textContent=fs.toFixed(1)+"×";
+    }
+    document.getElementById("font-up").addEventListener("click",()=>setFs(Math.min(2.0,+(fs+0.1).toFixed(1))));
+    document.getElementById("font-down").addEventListener("click",()=>setFs(Math.max(0.8,+(fs-0.1).toFixed(1))));
+
+    /* reading mode */
+    ["dark","sepia","light"].forEach(m=>{
+        document.getElementById("mode-"+m).addEventListener("click",()=>{
+            document.body.classList.remove("mode-sepia","mode-light");
+            if(m!=="dark")document.body.classList.add("mode-"+m);
+            document.querySelectorAll(".sp-mode-btn").forEach(b=>b.classList.remove("active"));
+            document.getElementById("mode-"+m).classList.add("active");
+        });
+    });
+
+    /* search */
+    const searchBar=document.getElementById("search-bar");
+    const searchInput=document.getElementById("search-input");
+    const searchResults=document.getElementById("search-results");
+    document.getElementById("search-btn").addEventListener("click",()=>{
+        searchBar.classList.toggle("open");
+        if(searchBar.classList.contains("open")){searchInput.focus()}
+        else{searchResults.classList.remove("open");searchResults.innerHTML=""}
+    });
+    document.getElementById("search-close").addEventListener("click",()=>{searchBar.classList.remove("open");searchResults.classList.remove("open");searchResults.innerHTML=""});
+    searchInput.addEventListener("input",()=>doSearch(searchInput.value,navigateTo));
+    searchInput.addEventListener("keydown",e=>{if(e.key==="Escape"){searchBar.classList.remove("open");searchResults.classList.remove("open")}});
+
+    /* shortcut modal */
+    document.getElementById("shortcut-btn").addEventListener("click",()=>document.getElementById("shortcut-modal").classList.add("open"));
+    document.getElementById("sc-close").addEventListener("click",()=>document.getElementById("shortcut-modal").classList.remove("open"));
+    document.getElementById("shortcut-modal").addEventListener("click",e=>{if(e.target===e.currentTarget)e.currentTarget.classList.remove("open")});
+
+    /* keyboard shortcuts */
+    document.addEventListener("keydown",e=>{
+        if(e.target===searchInput)return;
+        if(e.key==="ArrowLeft")navigateTo(currentCIdx-1);
+        if(e.key==="ArrowRight")navigateTo(currentCIdx+1);
+        if((e.ctrlKey||e.metaKey)&&e.key==="f"){e.preventDefault();searchBar.classList.add("open");searchInput.focus()}
+        if((e.ctrlKey||e.metaKey)&&(e.key==="+"||e.key==="=")){e.preventDefault();setFs(Math.min(2.0,+(fs+0.1).toFixed(1)))}
+        if((e.ctrlKey||e.metaKey)&&e.key==="-"){e.preventDefault();setFs(Math.max(0.8,+(fs-0.1).toFixed(1)))}
+        if(e.key==="Escape"){document.getElementById("shortcut-modal").classList.remove("open");searchBar.classList.remove("open");searchResults.classList.remove("open")}
+    });
+
+    /* swipe */
+    const hammer=new Hammer(document.body);
+    hammer.get("swipe").set({direction:Hammer.DIRECTION_HORIZONTAL,threshold:10,velocity:0.3});
+    hammer.on("swipeleft", ()=>navigateTo(currentCIdx+1));
+    hammer.on("swiperight",()=>navigateTo(currentCIdx-1));
+
+});
+</script>
+</body>
 </html>

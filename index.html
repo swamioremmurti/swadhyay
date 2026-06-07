@@ -235,8 +235,9 @@
         font-size:.88rem; color:var(--gold); font-weight:600; white-space:nowrap;
     }
 
-    /* Expanded book panel */
+    /* Expanded book panel — lives inside the grid, spans all columns */
     .book-panel {
+        grid-column: 1 / -1;
         background: var(--card2); border: 1px solid var(--border);
         border-radius: var(--radius); padding: 1.5rem 1.2rem 1.2rem;
         animation: slide-in .22s ease;
@@ -264,46 +265,59 @@
     .bk-sub   { font-size:.82rem; color:var(--txt3); margin-top:.15rem; }
     .bk-cs    { display:inline-block; font-size:.75rem; margin-top:.25rem; background:rgba(255,255,255,.07); color:var(--txt3); border-radius:4px; padding:1px 7px; }
 
-    /* ── PANCHANG + FESTIVALS (single section, no repeat) ── */
-    .panch-grid {
-        display: grid;
-        grid-template-columns: repeat(5,1fr);
-        gap: 1rem;
+    /* ── PANCHANG + VRAT SIDE BY SIDE (desktop) */
+    .panch-vrat-row {
+        display: flex;
+        gap: 1.5rem;
+        align-items: flex-start;
     }
-    @media(max-width:900px) { .panch-grid { grid-template-columns:repeat(3,1fr); } }
-    @media(max-width:520px) { .panch-grid { grid-template-columns:repeat(2,1fr); } }
+    .panch-vrat-row .panch-block   { flex: 3; min-width: 0; }
+    .panch-right-col {
+        flex: 2; min-width: 0;
+        display: flex; flex-direction: column; gap: 1.2rem;
+    }
+    .fest-inner-head {
+        font-family: var(--serif); font-size: 1.1rem; font-weight: 700;
+        color: var(--gold-lt); margin-bottom: .8rem; text-align: center;
+    }
+    @media(max-width: 780px) {
+        .panch-vrat-row { flex-direction: column; }
+    }
 
-    .panch-card {
-        background:var(--card); border:1px solid var(--border);
-        border-radius:var(--radius); padding:1.2rem .9rem;
-        text-align:center; position:relative; overflow:hidden;
+    /* ── PANCHANG BLOCK (mirrors vrat-block) ── */
+    .panch-block {
+        background:linear-gradient(135deg,#0d1520,#111a2e);
+        border:1px solid rgba(200,145,45,.25); border-radius:var(--radius);
+        padding:1.4rem 1.2rem;
     }
-    .panch-card::after {
-        content:""; position:absolute; top:0;left:0;right:0; height:3px;
-        background:linear-gradient(90deg,var(--saff),var(--gold));
+    .panch-block h3 { font-size:1.4rem; color:var(--gold-lt); margin-bottom:1rem; font-family:var(--serif); text-align:center; }
+    .panch-inner-row { display:flex; gap:1rem; align-items:flex-start; }
+    .panch-col { flex:1; min-width:0; }
+    .panch-col-astro {
+        border-left:1px solid rgba(200,145,45,.2);
+        padding-left:1rem;
     }
-    .p-icon { font-size:2rem; margin-bottom:.4rem; }
-    .p-lbl  { font-size:.75rem; color:var(--txt3); letter-spacing:.06em; text-transform:uppercase; margin-bottom:.3rem; }
-    .p-val  { font-size:1.1rem; font-weight:700; color:var(--gold-lt); line-height:1.2; }
-    .p-sub  { font-size:.82rem; color:var(--txt2); margin-top:.25rem; }
-
-    .astro-row {
-        display:flex; flex-wrap:wrap; gap:.8rem; margin-top:1.2rem; justify-content:center;
+    .panch-col-head {
+        font-size:.68rem; color:var(--gold); font-weight:700;
+        letter-spacing:.12em; text-transform:uppercase;
+        margin-bottom:.5rem; text-align:center;
     }
-    .astro-item {
-        background:var(--card); border:1px solid var(--border);
-        border-radius:12px; padding:.75rem 1.2rem;
-        text-align:center; flex:1; min-width:110px;
+    @media(max-width:600px) {
+        .panch-inner-row { flex-direction:column; gap:.6rem; }
+        .panch-col-astro { border-left:none; padding-left:0;
+            border-top:1px solid rgba(200,145,45,.2); padding-top:.6rem; }
     }
-    .astro-icon { font-size:1.5rem; }
-    .astro-lbl  { font-size:.78rem; color:var(--txt3); margin-top:.1rem; }
-    .astro-val  { font-size:1.05rem; font-weight:700; color:var(--gold-lt); }
+    .panch-divider {
+        font-size:.7rem; color:var(--txt3); letter-spacing:.1em; text-transform:uppercase;
+        text-align:center; padding:.35rem 0; margin:.4rem 0 .6rem;
+        border-top:1px solid rgba(200,145,45,.14);
+    }
 
     /* Ekadasi — only here, no duplication in hero */
     .vrat-block {
         background:linear-gradient(135deg,#220510,#350d20);
         border:1px solid rgba(200,60,80,.3); border-radius:var(--radius);
-        padding:1.6rem 1.4rem; margin-top:1.2rem;
+        padding:1.6rem 1.4rem; margin-top:0;
     }
     .vrat-block h3 { font-size:1.4rem; color:var(--gold-lt); margin-bottom:1.1rem; font-family:var(--serif); text-align:center; }
     .vrat-row {
@@ -316,6 +330,35 @@
     .vrat-label { font-size:.82rem; color:var(--txt3); white-space:nowrap; flex-shrink:0; }
     .vrat-name  { font-size:1.05rem; font-weight:700; color:var(--gold-lt); }
     .vrat-date  { font-size:.95rem; color:var(--txt2); margin-left:auto; white-space:nowrap; }
+
+    /* ── SHASTRIYA GHATNA block ─────────────── */
+    .shastr-block {
+        background:linear-gradient(135deg,#0d1a2e,#152236);
+        border:1px solid rgba(100,160,255,.22); border-radius:var(--radius);
+        padding:1.6rem 1.4rem; margin-top:1.2rem;
+    }
+    .shastr-block h3 { font-size:1.4rem; color:#9ecbff; margin-bottom:.3rem; font-family:var(--serif); text-align:center; }
+    .shastr-subtitle { text-align:center; font-size:.85rem; color:var(--txt3); margin-bottom:1.1rem; }
+    .shastr-cards { display:flex; flex-direction:column; gap:.8rem; }
+    .shastr-card {
+        background:rgba(0,0,0,.28); border:1px solid rgba(100,160,255,.12);
+        border-radius:10px; padding:1rem 1.1rem;
+    }
+    .shastr-badge {
+        display:inline-flex; align-items:center; gap:.4rem;
+        font-size:.75rem; font-weight:700; letter-spacing:.04em;
+        background:rgba(100,160,255,.14); color:#9ecbff;
+        border-radius:20px; padding:2px 10px; margin-bottom:.55rem;
+    }
+    .shastr-badge.strong { background:rgba(60,200,100,.15); color:#7deeaa; }
+    .shastr-granth { font-size:.8rem; color:var(--txt3); margin-bottom:.3rem; }
+    .shastr-event { font-size:1.05rem; font-weight:700; color:var(--gold-lt); line-height:1.3; margin-bottom:.4rem; }
+    .shastr-vivran { font-size:.88rem; color:var(--txt2); line-height:1.6; }
+    .shastr-vivran.collapsed { display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; }
+    .shastr-more { font-size:.82rem; color:#9ecbff; cursor:pointer; margin-top:.3rem; text-decoration:underline; text-underline-offset:2px; }
+    .shastr-tags { display:flex; flex-wrap:wrap; gap:.3rem; margin-top:.5rem; }
+    .shastr-tag { font-size:.72rem; background:rgba(255,255,255,.06); color:var(--txt3); border-radius:12px; padding:1px 8px; }
+    .shastr-empty { text-align:center; color:var(--txt3); font-size:.95rem; padding:1rem 0; }
 
     /* Festivals */
     .fest-card {
@@ -476,8 +519,7 @@
         </div>
     </div>
 
-    <!-- Injected when a card is clicked -->
-    <div id="book-panel" class="hidden" style="margin-top:1.2rem"></div>
+    <!-- book-panel injected dynamically inside the grid by JS -->
 </div>
 
 
@@ -491,52 +533,89 @@
     <div class="sec-head">
         <h2>🪔 आज का पञ्चाङ्ग</h2>
         <p id="full-date">—</p>
-        <div class="orn">❧ ❧ ❧</div>
     </div>
 
-    <!-- Panchang 5 elements -->
-    <div class="panch-grid">
-        <div class="panch-card">
-            <div class="p-icon">☀️</div>
-            <div class="p-lbl">वार</div>
-            <div class="p-val" id="p-vara">—</div>
-            <div class="p-sub" id="p-vara-d">—</div>
-        </div>
-        <div class="panch-card">
-            <div class="p-icon">🌙</div>
-            <div class="p-lbl">तिथि</div>
-            <div class="p-val" id="p-tithi">—</div>
-            <div class="p-sub" id="p-paksha">—</div>
-        </div>
-        <div class="panch-card">
-            <div class="p-icon">⭐</div>
-            <div class="p-lbl">नक्षत्र</div>
-            <div class="p-val" id="p-naks">—</div>
-            <div class="p-sub" id="p-naks-d">—</div>
-        </div>
-        <div class="panch-card">
-            <div class="p-icon">🔮</div>
-            <div class="p-lbl">योग</div>
-            <div class="p-val" id="p-yoga">—</div>
-            <div class="p-sub" id="p-yoga-q">—</div>
-        </div>
-        <div class="panch-card">
-            <div class="p-icon">📅</div>
-            <div class="p-lbl">हिन्दू मास</div>
-            <div class="p-val" id="p-masa">—</div>
-            <div class="p-sub">विक्रम सं. २०८२</div>
-        </div>
-    </div>
+    <!-- Desktop: panchang + vrat side by side -->
+    <div class="panch-vrat-row">
+    <div class="panch-block">
+        <h3>🪔 पञ्चाङ्ग</h3>
+        <div class="panch-inner-row">
 
-    <!-- Astro times -->
-    <div class="astro-row">
-        <div class="astro-item"><div class="astro-icon">🌅</div><div class="astro-lbl">सूर्योदय</div><div class="astro-val" id="p-sunrise">—</div></div>
-        <div class="astro-item"><div class="astro-icon">🌇</div><div class="astro-lbl">सूर्यास्त</div><div class="astro-val" id="p-sunset">—</div></div>
-        <div class="astro-item"><div class="astro-icon">🌕</div><div class="astro-lbl">चन्द्रोदय</div><div class="astro-val" id="p-moonrise">—</div></div>
-        <div class="astro-item"><div class="astro-icon">⚠️</div><div class="astro-lbl">राहुकाल</div><div class="astro-val" id="p-rahu">—</div></div>
-        <div class="astro-item"><div class="astro-icon">🧿</div><div class="astro-lbl">सम्वत्सर</div><div class="astro-val">क्रोधी</div></div>
-    </div>
+            <!-- Left sub-col: पाँच अंग -->
+            <div class="panch-col">
+                <div class="panch-col-head">पञ्चाङ्ग</div>
+                <div class="vrat-row">
+                    <span class="vrat-icon">☀️</span>
+                    <span class="vrat-label">वार</span>
+                    <span class="vrat-name" id="p-vara">—</span>
+                    <span class="vrat-date" id="p-vara-d">—</span>
+                </div>
+                <div class="vrat-row">
+                    <span class="vrat-icon">🌙</span>
+                    <span class="vrat-label">तिथि</span>
+                    <span class="vrat-name" id="p-tithi">—</span>
+                    <span class="vrat-date" id="p-paksha">—</span>
+                </div>
+                <div class="vrat-row">
+                    <span class="vrat-icon">⭐</span>
+                    <span class="vrat-label">नक्षत्र</span>
+                    <span class="vrat-name" id="p-naks">—</span>
+                    <span class="vrat-date" id="p-naks-d">—</span>
+                </div>
+                <div class="vrat-row">
+                    <span class="vrat-icon">🔮</span>
+                    <span class="vrat-label">योग</span>
+                    <span class="vrat-name" id="p-yoga">—</span>
+                    <span class="vrat-date" id="p-yoga-q">—</span>
+                </div>
+                <div class="vrat-row" style="margin-bottom:0">
+                    <span class="vrat-icon">📅</span>
+                    <span class="vrat-label">हिन्दू मास</span>
+                    <span class="vrat-name" id="p-masa">—</span>
+                    <span class="vrat-date">विक्रम सं. २०८२</span>
+                </div>
+            </div>
 
+            <!-- Right sub-col: खगोलीय समय -->
+            <div class="panch-col panch-col-astro">
+                <div class="panch-col-head">खगोलीय समय</div>
+                <div class="vrat-row">
+                    <span class="vrat-icon">🌅</span>
+                    <span class="vrat-label">सूर्योदय</span>
+                    <span class="vrat-name" id="p-sunrise">—</span>
+                </div>
+                <div class="vrat-row">
+                    <span class="vrat-icon">🌇</span>
+                    <span class="vrat-label">सूर्यास्त</span>
+                    <span class="vrat-name" id="p-sunset">—</span>
+                </div>
+                <div class="vrat-row">
+                    <span class="vrat-icon">🌕</span>
+                    <span class="vrat-label">चन्द्रोदय</span>
+                    <span class="vrat-name" id="p-moonrise">—</span>
+                </div>
+                <div class="vrat-row">
+                    <span class="vrat-icon">🌑</span>
+                    <span class="vrat-label">चन्द्रास्त</span>
+                    <span class="vrat-name" id="p-moonset">—</span>
+                </div>
+                <div class="vrat-row">
+                    <span class="vrat-icon">⚠️</span>
+                    <span class="vrat-label">राहुकाल</span>
+                    <span class="vrat-name" id="p-rahu">—</span>
+                </div>
+                <div class="vrat-row" style="margin-bottom:0">
+                    <span class="vrat-icon">🧿</span>
+                    <span class="vrat-label">सम्वत्सर</span>
+                    <span class="vrat-name">क्रोधी</span>
+                </div>
+            </div>
+
+        </div><!-- /panch-inner-row -->
+    </div><!-- /panch-block -->
+
+    <!-- Right column: vrat + festivals -->
+    <div class="panch-right-col">
     <!-- Upcoming Vrats — ONLY here -->
     <div class="vrat-block">
         <h3>🌙 आगामी व्रत</h3>
@@ -558,17 +637,24 @@
             <span class="vrat-name" id="vrat-chat-name">—</span>
             <span class="vrat-date" id="vrat-chat-date">—</span>
         </div>
-    </div>
+    </div><!-- /vrat-block -->
 
-    <!-- Festivals — in same section -->
-    <div style="margin-top:2.8rem">
-        <div class="sec-head" style="margin-bottom:1.5rem">
-            <h2>🎊 आगामी पर्व एवं उत्सव</h2>
-            <div class="orn">✦ ✦ ✦</div>
-        </div>
+    <!-- Festivals — right below vrat in same column -->
+    <div class="fest-inner">
+        <div class="fest-inner-head">🎊 आगामी पर्व एवं उत्सव</div>
         <div class="swiper fest-swiper" style="padding-bottom:1rem">
             <div class="swiper-wrapper" id="fest-list"></div>
         </div>
+    </div>
+
+    </div><!-- /panch-right-col -->
+    </div><!-- /panch-vrat-row -->
+
+    <!-- Shastriya Ghatna — today's tithi in scripture -->
+    <div class="shastr-block" id="shastr-block" style="display:none">
+        <h3>📜 आज की शास्त्रीय घटना</h3>
+        <div class="shastr-subtitle" id="shastr-subtitle">आज की तिथि से संबंधित शास्त्रीय प्रसंग</div>
+        <div class="shastr-cards" id="shastr-list"></div>
     </div>
 
 </div>
@@ -870,19 +956,81 @@ function sunriseSunset(date) {
     return { sr: calc(true), ss: calc(false) };
 }
 
-/* Moonrise: rough approximation — moon rises ~50 min later per day after new moon */
-function moonriseApprox(date, sr) {
-    const t = getTithi(date); // 1-30
-    // New moon (t≈30/1): moonrise near sunrise. Full moon (t≈15): moonrise near sunset.
-    const dayFromNew = t <= 15 ? t - 1 : t - 16;
-    const paksha = t <= 15 ? 1 : -1; // waxing: rises later; waning: rises near midnight+
-    if (t <= 15) {
-        // Waxing: rises sr + (t-1)*~0.8h
-        return ((sr + (t - 1) * 0.82) % 24 + 24) % 24;
-    } else {
-        // Waning: rises after midnight, ~sr + 12 + (t-16)*0.82
-        return ((sr + 12 + (t - 16) * 0.82) % 24 + 24) % 24;
-    }
+/* ── MOON RISE / SET (Paul Schlyter lunar ephemeris + lat/lng) ──────────────
+   Uses the same USER_LAT / USER_LNG as the USNO sunrise algorithm.
+   Accurate to ±10–30 min for most dates/locations.
+─────────────────────────────────────────────────────────────────────────── */
+function moonRiseSet(date) {
+    const D2R = Math.PI / 180, R2D = 180 / Math.PI;
+    const lat = USER_LAT, lng = USER_LNG;
+    const utcOff = -date.getTimezoneOffset() / 60;
+
+    // Days from J2000.0
+    const d = (Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) - Date.UTC(2000,0,1)) / 86400000;
+
+    // ── Moon orbital elements ──────────────────────────────────────────────
+    const N  = ((125.1228 - 0.0529538083 * d) % 360 + 360) % 360;  // ascending node lon
+    const w  = ((318.0634 + 0.1643573223 * d) % 360 + 360) % 360;  // arg of perigee
+    const e  = 0.054900;                                              // eccentricity
+    const a  = 60.2666;                                               // semi-major (earth radii)
+    let   Mm = ((115.3654 + 13.0649929509 * d) % 360 + 360) % 360;  // mean anomaly
+
+    // Eccentric anomaly (Newton–Raphson)
+    let E = Mm + R2D * e * Math.sin(Mm * D2R) * (1 + e * Math.cos(Mm * D2R));
+    for (let i = 0; i < 5; i++)
+        E -= (E - R2D * e * Math.sin(E * D2R) - Mm) / (1 - e * Math.cos(E * D2R));
+
+    // Heliocentric rectangular
+    const xv = a * (Math.cos(E * D2R) - e);
+    const yv = a * Math.sqrt(1 - e * e) * Math.sin(E * D2R);
+    const v   = R2D * Math.atan2(yv, xv);   // true anomaly
+    const r   = Math.sqrt(xv * xv + yv * yv);
+
+    const inc = 5.1454 * D2R;
+    const vw  = (v + w) * D2R;
+    const xh  = r * (Math.cos(N*D2R)*Math.cos(vw) - Math.sin(N*D2R)*Math.sin(vw)*Math.cos(inc));
+    const yh  = r * (Math.sin(N*D2R)*Math.cos(vw) + Math.cos(N*D2R)*Math.sin(vw)*Math.cos(inc));
+    const zh  = r * Math.sin(vw) * Math.sin(inc);
+
+    // ── Perturbations (main terms) ─────────────────────────────────────────
+    const Ms = ((356.0470 + 0.9856002585 * d) % 360 + 360) % 360;  // Sun mean anomaly
+    const Ls = ((Ms + 282.9404 + 4.70935e-5 * d) % 360 + 360) % 360; // Sun mean lon
+    const Lm = ((Mm + w + N) % 360 + 360) % 360;  // Moon mean lon
+    const Dm = Lm - Ls;   // elongation
+    const Fm = Lm - N;    // arg of latitude
+
+    const dlon = -1.274*Math.sin((Mm - 2*Dm)*D2R) + 0.658*Math.sin(2*Dm*D2R)
+               - 0.186*Math.sin(Ms*D2R)            - 0.059*Math.sin((2*Mm - 2*Dm)*D2R)
+               - 0.057*Math.sin((Mm - 2*Dm + Ms)*D2R) + 0.053*Math.sin((Mm + 2*Dm)*D2R)
+               + 0.046*Math.sin((2*Dm - Ms)*D2R)   + 0.041*Math.sin((Mm - Ms)*D2R)
+               - 0.035*Math.sin(Dm*D2R)             - 0.031*Math.sin((Mm + Ms)*D2R)
+               - 0.015*Math.sin((2*Fm - 2*Dm)*D2R) + 0.011*Math.sin((Mm - 4*Dm)*D2R);
+    const dlat = -0.173*Math.sin((Fm - 2*Dm)*D2R)  - 0.055*Math.sin((Mm - Fm - 2*Dm)*D2R)
+               - 0.046*Math.sin((Mm + Fm - 2*Dm)*D2R) + 0.033*Math.sin((Fm + 2*Dm)*D2R)
+               + 0.017*Math.sin((2*Mm + Fm)*D2R);
+
+    const moonLon = (R2D * Math.atan2(yh, xh) + dlon + 360) % 360;
+    const moonLat = R2D * Math.atan2(zh, Math.sqrt(xh*xh + yh*yh)) + dlat;
+
+    // ── Ecliptic → Equatorial ─────────────────────────────────────────────
+    const eps = 23.4393 - 3.563e-7 * d;
+    const sinEps = Math.sin(eps*D2R), cosEps = Math.cos(eps*D2R);
+    const sinLon = Math.sin(moonLon*D2R), cosLon = Math.cos(moonLon*D2R);
+    const sinLat = Math.sin(moonLat*D2R), cosLat = Math.cos(moonLat*D2R);
+
+    const RA  = ((R2D * Math.atan2(sinLon*cosEps - Math.tan(moonLat*D2R)*sinEps, cosLon) / 15) % 24 + 24) % 24;
+    const Dec = R2D * Math.asin(sinLat*cosEps + cosLat*sinEps*sinLon);
+
+    // ── Hour angle at rise / set (zenith 90.833° — refraction + semi-diameter) ──
+    const cosH = (Math.cos(90.833*D2R) - Math.sin(Dec*D2R)*Math.sin(lat*D2R))
+               / (Math.cos(Dec*D2R) * Math.cos(lat*D2R));
+    if (cosH > 1 || cosH < -1) return { rise: null, set: null };
+
+    const H        = R2D * Math.acos(cosH) / 15;
+    const lngHour  = lng / 15;
+    const rise = (((RA - lngHour - H) % 24 + 24) % 24) + utcOff;
+    const set  = (((RA - lngHour + H) % 24 + 24) % 24) + utcOff;
+    return { rise: ((rise % 24 + 24) % 24), set: ((set % 24 + 24) % 24) };
 }
 
 function fetchLocation() {
@@ -983,7 +1131,99 @@ function buildPanchang(){
     const{sr,ss}=sunriseSunset(now);
     document.getElementById("p-sunrise").textContent=toHM(sr);
     document.getElementById("p-sunset").textContent=toHM(ss);
-    document.getElementById("p-moonrise").textContent=toHM(moonriseApprox(now,sr));
+    const moon = moonRiseSet(now);
+    document.getElementById("p-moonrise").textContent = moon.rise != null ? toHM(moon.rise) : "—";
+    document.getElementById("p-moonset").textContent  = moon.set  != null ? toHM(moon.set)  : "—";
+}
+
+/* ============================================================
+   SHASTRIYA GHATNA — match today's panchang vs dates.json
+============================================================ */
+function buildShaastriyaGhatna(){
+    const now = new Date();
+    const t = getTithi(now);
+    const todayTithiName  = TITHIS[t - 1] || "";      // e.g. "नवमी"
+    const todayPaksha     = t <= 15 ? "शुक्लपक्ष" : "कृष्णपक्ष"; // no space
+    const todayMaas       = MASAS[getMasa(now)];       // e.g. "चैत्र"
+
+    fetch("database/dates.json")
+        .then(r => r.json())
+        .then(json => {
+            const entries = json.data || [];
+
+            // Scoring rules:
+            // - maas = today's exact maas  → eligible (score 3 or 2)
+            // - maas = "वर्षभर"            → eligible (applies all year, score 3 or 2)
+            // - maas = "अनिर्दिष्ट"        → SKIP
+            // - maas = any other month     → SKIP
+            // Score 3: tithi + paksha match (maas = today or वर्षभर)
+            // Score 2: tithi matches, paksha = दोनों (maas = today or वर्षभर)
+            function score(e) {
+                if (!e.tithi || e.tithi === "अनिर्दिष्ट") return 0;
+                const maasOk = e.maas === todayMaas || e.maas === "वर्षभर";
+                if (!maasOk) return 0;                            // wrong month or अनिर्दिष्ट → skip
+                if (!e.tithi.includes(todayTithiName)) return 0;  // tithi must appear
+                const pkMatch = e.paksh === todayPaksha || e.paksh === "दोनों";
+                return pkMatch ? 3 : 2;
+            }
+
+            const scored = entries.map(e => ({e, s: score(e)}))
+                                  .filter(x => x.s > 0)
+                                  .sort((a, b) => b.s - a.s);
+
+            // No fallback — only show exact-month matches; cap at 4 cards
+            const shown = scored.slice(0, 4);
+
+            const block = document.getElementById("shastr-block");
+            const list  = document.getElementById("shastr-list");
+            const sub   = document.getElementById("shastr-subtitle");
+            list.innerHTML = "";
+
+            if (!shown.length) {
+                // No exact maas+tithi match — keep block hidden
+                return;
+            }
+
+            block.style.display = "block";
+            sub.textContent = todayTithiName + " · " + todayPaksha + " · " + todayMaas;
+
+            shown.forEach(({e, s}) => {
+                const card = document.createElement("div");
+                card.className = "shastr-card";
+
+                const badgeClass = s === 3 ? "shastr-badge strong" : "shastr-badge";
+                const badgeText  = s === 3 ? "✦ तिथि · पक्ष · मास — पूर्ण मिलान"
+                                           : "✦ तिथि · मास मिलान";
+
+                const vivran = e.vivraN || "";
+                const shortV = vivran.length > 240 ? vivran.slice(0, 240) + "…" : vivran;
+                const hasMore = vivran.length > 240;
+                const vivId = "viv-" + e.id;
+
+                const tags = (e.tags || []).slice(0, 5)
+                    .map(tg => `<span class="shastr-tag">${tg}</span>`).join("");
+
+                card.innerHTML = `
+                    <div class="${badgeClass}">${badgeText}</div>
+                    <div class="shastr-granth">📖 ${e.granth} · ${e.skandh_kand} · ${e.sarg_adhyay}</div>
+                    <div class="shastr-event">${e.parv_vrat_naam || e.ghatna}</div>
+                    ${e.ghatna && e.parv_vrat_naam ? `<div style="font-size:.84rem;color:var(--txt3);margin-bottom:.3rem">🔹 ${e.ghatna}</div>` : ""}
+                    <div class="shastr-vivran collapsed" id="${vivId}">${shortV}</div>
+                    ${hasMore ? `<div class="shastr-more" onclick="
+                        var el=document.getElementById('${vivId}');
+                        var full=${JSON.stringify(vivran)};
+                        if(el.classList.contains('collapsed')){el.textContent=full;el.classList.remove('collapsed');this.textContent='… कम करें';}
+                        else{el.textContent=${JSON.stringify(shortV)};el.classList.add('collapsed');this.textContent='… और पढ़ें';}
+                    ">… और पढ़ें</div>` : ""}
+                    ${e.phal ? `<div style="font-size:.82rem;color:#9ecbff;margin-top:.45rem">🌸 फल: ${e.phal}</div>` : ""}
+                    <div class="shastr-tags">${tags}</div>
+                `;
+                list.appendChild(card);
+            });
+        })
+        .catch(() => {
+            // silently skip if JSON not found
+        });
 }
 
 /* ============================================================
@@ -1045,9 +1285,30 @@ ${tsvg}
    LIBRARY
 ============================================================ */
 let openCat=null;
-function renderBooks(catId){
-    const cat=LIBRARY[catId],panel=document.getElementById("book-panel");
+
+function renderBooks(catId, clickedCard){
+    const cat=LIBRARY[catId];
+    const grid=document.getElementById("cat-grid");
+
+    /* remove any existing panel from the grid */
+    const old=document.getElementById("book-panel");
+    if(old) old.remove();
+
+    /* find the last card in the same visual row as clickedCard */
+    const cards=Array.from(grid.querySelectorAll(".cat-card"));
+    const rowTop=clickedCard.getBoundingClientRect().top;
+    let lastInRow=clickedCard;
+    cards.forEach(c=>{
+        if(Math.abs(c.getBoundingClientRect().top - rowTop) < 10){
+            if(cards.indexOf(c) > cards.indexOf(lastInRow)) lastInRow=c;
+        }
+    });
+
+    /* build panel */
+    const panel=document.createElement("div");
+    panel.id="book-panel";
     panel.className="book-panel";
+
     let html=`<div class="panel-desc">${cat.desc}</div><div class="book-grid">`;
     cat.books.forEach(bk=>{
         const cover=mkCover(bk),cls="bk"+(bk.na?" dim":""),tag=bk.na?'<span class="bk-cs">शीघ्र आएगा</span>':"";
@@ -1059,20 +1320,25 @@ function renderBooks(catId){
     });
     html+="</div>";
     panel.innerHTML=html;
-    panel.scrollIntoView({behavior:"smooth",block:"nearest"});
+
+    /* insert right after the last card in that row */
+    lastInRow.insertAdjacentElement("afterend", panel);
+    panel.scrollIntoView({behavior:"smooth", block:"nearest"});
 }
+
 function initLibrary(){
     document.querySelectorAll(".cat-card").forEach(card=>{
         card.addEventListener("click",()=>{
             const id=card.dataset.cat;
             if(openCat===id){
                 card.classList.remove("open");
-                document.getElementById("book-panel").className="hidden";
-                openCat=null;return;
+                const p=document.getElementById("book-panel");
+                if(p) p.remove();
+                openCat=null; return;
             }
             document.querySelectorAll(".cat-card").forEach(c=>c.classList.remove("open"));
-            card.classList.add("open");openCat=id;
-            renderBooks(id);
+            card.classList.add("open"); openCat=id;
+            renderBooks(id, card);
         });
     });
 }
@@ -1090,7 +1356,7 @@ function setQuote(){
    INIT
 ============================================================ */
 document.addEventListener("DOMContentLoaded",()=>{
-    tick(); buildPanchang(); buildVrats(); buildFestivals(); initLibrary(); setQuote();
+    tick(); buildPanchang(); buildVrats(); buildShaastriyaGhatna(); buildFestivals(); initLibrary(); setQuote();
     fetchLocation();
     setInterval(tick,1000);
     setInterval(buildPanchang,60000);
