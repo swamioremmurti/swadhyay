@@ -226,6 +226,10 @@
     #display [class*="Shlok"],#display [class*="SHLOK"],#display [class*="shlok"]{
         color:var(--gold-lt)!important;text-align:center;line-height:2.1;font-style:italic;margin:.5rem 0;
     }
+    /* Shlok layout without colour override — author lines etc. */
+    #display .shlok-layout{
+        text-align:center;line-height:2.1;font-style:italic;margin:.5rem 0;
+    }
     #display .Gadya{color:var(--txt);text-align:justify}
     #display .Uwach,#display .Uvach{text-align:center;font-style:italic;color:var(--txt3)}
     #display .Title,#display .Title-Page---Book-Name-Hindi,#display .Title-Page---Book-Name{
@@ -773,6 +777,7 @@ document.addEventListener("DOMContentLoaded",function(){
         let end=paragraphs.findIndex(p=>p.classList.contains("Heading")||p.classList.contains("Sub-Heading"));
         if(end===-1)end=paragraphs.length;
         for(let i=0;i<end;i++)displayDiv.appendChild(paragraphs[i].cloneNode(true));
+        applyShlokClasses();
         currentCIdx=-1;setBreadcrumb(bookTitle,"","");scrollTop();updateNavBtns();
     }
 
@@ -793,7 +798,20 @@ document.addEventListener("DOMContentLoaded",function(){
         }
         allProg[bookFileParam]={conceptualIdx:idx};
         localStorage.setItem(PROG_KEY,JSON.stringify(allProg));
-        decorateParas(item);scrollTop();updateNavBtns();syncActive(idx);
+        applyShlokClasses();decorateParas(item);scrollTop();updateNavBtns();syncActive(idx);
+    }
+
+    /* Classes that should render as full Shlok (gold + centred + italic) */
+    const SHLOK_LIKE=["Title-Page---Tvamev-mata","Titel-Page---Shri-Hari"];
+    /* Classes that get shlok layout only — colour stays as normal text */
+    const SHLOK_LAYOUT_LIKE=["Title-Page---Author-Name"];
+    function applyShlokClasses(){
+        displayDiv.querySelectorAll("p").forEach(p=>{
+            if(SHLOK_LIKE.some(c=>p.classList.contains(c)))
+                p.classList.add("Shlok");
+            if(SHLOK_LAYOUT_LIKE.some(c=>p.classList.contains(c)))
+                p.classList.add("shlok-layout");
+        });
     }
 
     /* Decorate: copy on click + bookmark star */
