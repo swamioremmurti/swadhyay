@@ -41,21 +41,25 @@
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; font-size: 17px; }
+    html { scroll-behavior: smooth; font-size: 17px; overflow-x: hidden; max-width: 100%; }
     body {
         font-family: var(--sans);
         background: var(--bg);
         color: var(--txt);
         overflow-x: hidden;
+        max-width: 100%;
         line-height: 1.7;
     }
-    ::-webkit-scrollbar { width: 5px; }
-    ::-webkit-scrollbar-track { background: var(--surface); }
-    ::-webkit-scrollbar-thumb { background: var(--saff); border-radius: 4px; }
+    /* Custom scrollbar — desktop only (pointer: fine = mouse) */
+    @media (pointer: fine) {
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: var(--surface); }
+        ::-webkit-scrollbar-thumb { background: var(--saff); border-radius: 4px; }
+    }
 
     /* ── UTILITIES ──────────────────────────── */
-    .wrap    { max-width: 1160px; margin: 0 auto; padding: 0 1.25rem; }
-    .section { padding: 3rem 0; }
+    .wrap    { max-width: 1160px; margin: 0 auto; padding: 0 1.25rem; width: 100%; }
+    .section { padding: 3rem 0; width: 100%; }
     .hidden  { display: none !important; }
 
     .sec-head { text-align: center; margin-bottom: 2.2rem; }
@@ -377,8 +381,12 @@
     .vrat-row:last-child { margin-bottom: 0; }
     .vrat-icon  { font-size: 1.25rem; flex-shrink: 0; }
     .vrat-label { font-size: .8rem; color: var(--txt3); white-space: nowrap; flex-shrink: 0; }
-    .vrat-name  { font-size: 1rem; font-weight: 700; color: var(--txt); }
-    .vrat-date  { font-size: .88rem; color: var(--txt2); margin-left: auto; white-space: nowrap; }
+    .vrat-name  { font-size: 1rem; font-weight: 700; color: var(--txt); min-width: 0; word-break: break-word; }
+    .vrat-date  { font-size: .88rem; color: var(--txt2); margin-left: auto; white-space: nowrap; flex-shrink: 0; }
+    @media(max-width:480px) {
+        .vrat-row   { flex-wrap: wrap; }
+        .vrat-date  { margin-left: 0; width: 100%; color: var(--txt3); font-size: .82rem; }
+    }
 
     /* Shastriya Ghatna */
     .shastr-block {
@@ -475,14 +483,16 @@
 
 <!-- NAV -->
 <nav class="nav">
-    <a class="nav-brand" href="index.html">ॐ स्वाध्याय</a>
+    <a class="nav-brand" href="index.html">स्वाध्याय</a>
     <div class="nav-links">
+        <!--
         <a href="tithi.html"><i class="fas fa-calendar-alt"></i>&nbsp;तिथि</a>
         <a href="clock.html"><i class="far fa-clock"></i>&nbsp;घड़ी</a>
         <a href="about.html"><i class="fas fa-info-circle"></i>&nbsp;परिचय</a>
         <button class="nav-search-btn" onclick="document.querySelector('.search-inner input').focus();document.querySelector('.search-wrap').scrollIntoView({behavior:'smooth'})">
             <i class="fas fa-search"></i>
         </button>
+        -->
     </div>
 </nav>
 
