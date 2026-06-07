@@ -1313,7 +1313,7 @@ function renderBooks(catId, clickedCard){
     cat.books.forEach(bk=>{
         const cover=mkCover(bk),cls="bk"+(bk.na?" dim":""),tag=bk.na?'<span class="bk-cs">शीघ्र आएगा</span>':"";
         if(bk.id){
-            html+=`<a class="${cls}" href="index_1.html?${bk.id}"><div class="bk-cover"><img src="${cover}" alt="${bk.t}" loading="lazy"></div><div class="bk-name">${bk.t}</div><div class="bk-sub">${bk.s}</div>${tag}</a>`;
+            html+=`<a class="${cls}" href="book.html?${bk.id}"><div class="bk-cover"><img src="${cover}" alt="${bk.t}" loading="lazy"></div><div class="bk-name">${bk.t}</div><div class="bk-sub">${bk.s}</div>${tag}</a>`;
         }else{
             html+=`<div class="${cls}"><div class="bk-cover"><img src="${cover}" alt="${bk.t}" loading="lazy"></div><div class="bk-name">${bk.t}</div><div class="bk-sub">${bk.s}</div>${tag}</div>`;
         }
