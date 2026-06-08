@@ -1,491 +1,1007 @@
 <!doctype html>
 <html lang="hi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>स्वाध्याय — हिन्दू शास्त्र संग्रह</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Devanagari:wght@400;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="includes/swiper-bundle.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>स्वाध्याय — हिन्दू शास्त्र संग्रह</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Noto+Serif+Devanagari:wght@400;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap"
+            rel="stylesheet" />
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+        <link rel="stylesheet" href="includes/swiper-bundle.min.css" />
+        <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
-    <style>
-    /* ══════════════════════════════════════════
+        <style>
+            /* ══════════════════════════════════════════
        TOKENS — Light Warm Indian Palette
     ══════════════════════════════════════════ */
-    :root {
-        --bg:        #FFF8F0;
-        --surface:   #FFF0E0;
-        --card:      #FFFFFF;
-        --card2:     #FFF4E8;
+            :root {
+                --bg: #fff8f0;
+                --surface: #fff0e0;
+                --card: #ffffff;
+                --card2: #fff4e8;
 
-        --saff:      #FF6D00;
-        --saff-lt:   #FF9100;
-        --gold:      #FFB300;
-        --gold-lt:   #FFC84A;
-        --kumkum:    #C62828;
-        --maroon:    #7B1600;
-        --dark-hdr:  #3D0000;
-        --pista:     #00C853;
-        --lotus:     #E91E63;
-        --marigold:  #FFB300;
+                --saff: #ff6d00;
+                --saff-lt: #ff9100;
+                --gold: #ffb300;
+                --gold-lt: #ffc84a;
+                --kumkum: #c62828;
+                --maroon: #7b1600;
+                --dark-hdr: #3d0000;
+                --pista: #00c853;
+                --lotus: #e91e63;
+                --marigold: #ffb300;
 
-        --border:    rgba(180,80,0,0.14);
-        --txt:       #1A0A00;
-        --txt2:      #7A4020;
-        --txt3:      #B08060;
-        --radius:    18px;
-        --serif:     "Noto Serif Devanagari", serif;
-        --sans:      "Noto Sans Devanagari", sans-serif;
-        --shadow:    rgba(180,80,0,0.12) 0 4px 20px;
-    }
+                --border: rgba(180, 80, 0, 0.14);
+                --txt: #1a0a00;
+                --txt2: #7a4020;
+                --txt3: #b08060;
+                --radius: 18px;
+                --serif: "Noto Serif Devanagari", serif;
+                --sans: "Noto Sans Devanagari", sans-serif;
+                --shadow: rgba(180, 80, 0, 0.12) 0 4px 20px;
+            }
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; font-size: 17px; overflow-x: hidden; max-width: 100%; }
-    body {
-        font-family: var(--sans);
-        background: var(--bg);
-        color: var(--txt);
-        overflow-x: hidden;
-        max-width: 100%;
-        line-height: 1.7;
-    }
-    /* Custom scrollbar — desktop only (pointer: fine = mouse) */
-    @media (pointer: fine) {
-        ::-webkit-scrollbar { width: 5px; }
-        ::-webkit-scrollbar-track { background: var(--surface); }
-        ::-webkit-scrollbar-thumb { background: var(--saff); border-radius: 4px; }
-    }
+            *,
+            *::before,
+            *::after {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+            html {
+                scroll-behavior: smooth;
+                font-size: 17px;
+                overflow-x: hidden;
+                max-width: 100%;
+            }
+            body {
+                font-family: var(--sans);
+                background: var(--bg);
+                color: var(--txt);
+                overflow-x: hidden;
+                max-width: 100%;
+                line-height: 1.7;
+            }
+            /* Custom scrollbar — desktop only (pointer: fine = mouse) */
+            @media (pointer: fine) {
+                ::-webkit-scrollbar {
+                    width: 5px;
+                }
+                ::-webkit-scrollbar-track {
+                    background: var(--surface);
+                }
+                ::-webkit-scrollbar-thumb {
+                    background: var(--saff);
+                    border-radius: 4px;
+                }
+            }
 
-    /* ── UTILITIES ──────────────────────────── */
-    .wrap    { max-width: 1160px; margin: 0 auto; padding: 0 1.25rem; width: 100%; }
-    .section { padding: 3rem 0; width: 100%; }
-    .hidden  { display: none !important; }
+            /* ── UTILITIES ──────────────────────────── */
+            .wrap {
+                max-width: 1160px;
+                margin: 0 auto;
+                padding: 0 1.25rem;
+                width: 100%;
+            }
+            .section {
+                padding: 3rem 0;
+                width: 100%;
+            }
+            .hidden {
+                display: none !important;
+            }
 
-    .sec-head { text-align: center; margin-bottom: 2.2rem; }
-    .sec-head h2 {
-        font-family: var(--serif);
-        font-size: clamp(1.45rem, 3.2vw, 2rem);
-        color: var(--kumkum);
-        font-weight: 700; line-height: 1.2;
-    }
-    .sec-head p { color: var(--txt2); font-size: .95rem; margin-top: .35rem; }
+            .sec-head {
+                text-align: center;
+                margin-bottom: 2.2rem;
+            }
+            .sec-head h2 {
+                font-family: var(--serif);
+                font-size: clamp(1.45rem, 3.2vw, 2rem);
+                color: var(--kumkum);
+                font-weight: 700;
+                line-height: 1.2;
+            }
+            .sec-head p {
+                color: var(--txt2);
+                font-size: 0.95rem;
+                margin-top: 0.35rem;
+            }
 
-    /* Rangoli divider */
-    .rangoli-div {
-        display: flex; align-items: center; gap: .8rem;
-        margin: .7rem auto 0; max-width: 280px;
-    }
-    .rangoli-div::before,
-    .rangoli-div::after {
-        content: ""; flex: 1; height: 1.5px;
-        background: linear-gradient(90deg, transparent, var(--gold), transparent);
-    }
-    .rangoli-div span {
-        color: var(--saff); font-size: 1.1rem; letter-spacing: .4rem;
-        flex-shrink: 0;
-    }
+            /* Rangoli divider */
+            .rangoli-div {
+                display: flex;
+                align-items: center;
+                gap: 0.8rem;
+                margin: 0.7rem auto 0;
+                max-width: 280px;
+            }
+            .rangoli-div::before,
+            .rangoli-div::after {
+                content: "";
+                flex: 1;
+                height: 1.5px;
+                background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            }
+            .rangoli-div span {
+                color: var(--saff);
+                font-size: 1.1rem;
+                letter-spacing: 0.4rem;
+                flex-shrink: 0;
+            }
 
-    /* ── NAV ────────────────────────────────── */
-    .nav {
-        position: fixed; top: 0; left: 0; right: 0; z-index: 500;
-        background: var(--dark-hdr);
-        border-bottom: 3px solid var(--saff);
-        display: flex; align-items: center; justify-content: space-between;
-        padding: .7rem 1.5rem; height: 58px;
-        box-shadow: 0 2px 16px rgba(61,0,0,0.35);
-    }
-    .nav-brand {
-        font-family: var(--serif); font-size: 1.3rem; font-weight: 700;
-        color: #FFD740; text-decoration: none; letter-spacing: .04em;
-    }
-    .nav-links { display: flex; align-items: center; gap: 1.4rem; }
-    .nav-links a {
-        color: rgba(255,255,255,0.85); text-decoration: none;
-        font-size: .95rem; transition: color .2s;
-    }
-    .nav-links a:hover { color: var(--gold-lt); }
-    .nav-search-btn {
-        background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.25);
-        color: #fff; border-radius: 50%; width: 34px; height: 34px;
-        display: flex; align-items: center; justify-content: center;
-        cursor: pointer; font-size: .9rem; transition: background .2s;
-    }
-    .nav-search-btn:hover { background: rgba(255,145,0,0.3); }
+            /* ── NAV ────────────────────────────────── */
+            .nav {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                z-index: 500;
+                background: var(--dark-hdr);
+                border-bottom: 3px solid var(--saff);
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 0.7rem 1.5rem;
+                height: 58px;
+                box-shadow: 0 2px 16px rgba(61, 0, 0, 0.35);
+            }
+            .nav-brand {
+                font-family: var(--serif);
+                font-size: 1.3rem;
+                font-weight: 700;
+                color: #ffd740;
+                text-decoration: none;
+                letter-spacing: 0.04em;
+            }
+            .nav-links {
+                display: flex;
+                align-items: center;
+                gap: 1.4rem;
+            }
+            .nav-links a {
+                color: rgba(255, 255, 255, 0.85);
+                text-decoration: none;
+                font-size: 0.95rem;
+                transition: color 0.2s;
+            }
+            .nav-links a:hover {
+                color: var(--gold-lt);
+            }
+            .nav-search-btn {
+                background: rgba(255, 255, 255, 0.12);
+                border: 1px solid rgba(255, 255, 255, 0.25);
+                color: #fff;
+                border-radius: 50%;
+                width: 34px;
+                height: 34px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                font-size: 0.9rem;
+                transition: background 0.2s;
+            }
+            .nav-search-btn:hover {
+                background: rgba(255, 145, 0, 0.3);
+            }
 
-    /* ── HERO ───────────────────────────────── */
-    .hero {
-        margin-top: 58px;
-        position: relative;
-        min-height: 42vh;
-        display: flex; align-items: center; justify-content: center;
-        overflow: hidden;
-        background: linear-gradient(135deg, #7B1600 0%, #C62828 40%, #FF6D00 70%, #FFB300 100%);
-    }
-    /* Rangoli SVG pattern overlay */
-    .hero-pattern {
-        position: absolute; inset: 0; pointer-events: none; opacity: .08;
-        background-image:
-            radial-gradient(circle at 15% 50%, #fff 1px, transparent 1px),
-            radial-gradient(circle at 85% 50%, #fff 1px, transparent 1px),
-            radial-gradient(circle at 50% 20%, #fff 1px, transparent 1px),
-            radial-gradient(circle at 50% 80%, #fff 1px, transparent 1px);
-        background-size: 40px 40px;
-    }
-    .hero-lotus {
-        position: absolute; right: 5%; top: 50%; transform: translateY(-50%);
-        font-size: clamp(6rem, 15vw, 10rem); opacity: .08; pointer-events: none;
-        line-height: 1;
-    }
-    .hero-inner {
-        position: relative; z-index: 10; text-align: center;
-        padding: 2.5rem 1.5rem 2.8rem;
-        display: flex; flex-direction: column; align-items: center; gap: .85rem;
-        width: 100%; max-width: 880px;
-    }
-    .hero-om {
-        font-size: clamp(3rem, 8vw, 5rem); line-height: 1; color: #FFD740;
-        filter: drop-shadow(0 0 18px rgba(255,210,0,.7));
-        animation: om-glow 4s ease-in-out infinite;
-    }
-    @keyframes om-glow {
-        0%,100% { filter: drop-shadow(0 0 14px rgba(255,210,0,.6)); }
-        50%      { filter: drop-shadow(0 0 32px rgba(255,255,150,1)); }
-    }
-    .hero-title {
-        font-family: var(--serif);
-        font-size: clamp(2.4rem, 7vw, 4rem);
-        font-weight: 700; letter-spacing: .04em; line-height: 1.1;
-        color: #FFFFFF;
-        text-shadow: 0 2px 12px rgba(61,0,0,0.5);
-    }
-    .hero-tagline {
-        font-size: clamp(1rem, 2.5vw, 1.25rem);
-        color: rgba(255,255,255,0.92);
-        background: rgba(0,0,0,0.18);
-        border: 1px solid rgba(255,255,255,0.3);
-        border-radius: 100px; padding: .5rem 1.6rem;
-        backdrop-filter: blur(4px);
-    }
-    .hero-verse {
-        font-size: .95rem; font-style: italic;
-        color: rgba(255,255,220,0.88);
-    }
+            /* ── HERO ───────────────────────────────── */
+            .hero {
+                margin-top: 58px;
+                position: relative;
+                min-height: 42vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                overflow: hidden;
+                background: linear-gradient(135deg, #7b1600 0%, #c62828 40%, #ff6d00 70%, #ffb300 100%);
+            }
+            /* Rangoli SVG pattern overlay */
+            .hero-pattern {
+                position: absolute;
+                inset: 0;
+                pointer-events: none;
+                opacity: 0.08;
+                background-image: radial-gradient(circle at 15% 50%, #fff 1px, transparent 1px),
+                    radial-gradient(circle at 85% 50%, #fff 1px, transparent 1px),
+                    radial-gradient(circle at 50% 20%, #fff 1px, transparent 1px),
+                    radial-gradient(circle at 50% 80%, #fff 1px, transparent 1px);
+                background-size: 40px 40px;
+            }
+            .hero-lotus {
+                position: absolute;
+                right: 5%;
+                top: 50%;
+                transform: translateY(-50%);
+                font-size: clamp(6rem, 15vw, 10rem);
+                opacity: 0.08;
+                pointer-events: none;
+                line-height: 1;
+            }
+            .hero-inner {
+                position: relative;
+                z-index: 10;
+                text-align: center;
+                padding: 2.5rem 1.5rem 2.8rem;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 0.85rem;
+                width: 100%;
+                max-width: 880px;
+            }
+            .hero-om {
+                font-size: clamp(3rem, 8vw, 5rem);
+                line-height: 1;
+                color: #ffd740;
+                filter: drop-shadow(0 0 18px rgba(255, 210, 0, 0.7));
+                animation: om-glow 4s ease-in-out infinite;
+            }
+            @keyframes om-glow {
+                0%,
+                100% {
+                    filter: drop-shadow(0 0 14px rgba(255, 210, 0, 0.6));
+                }
+                50% {
+                    filter: drop-shadow(0 0 32px rgba(255, 255, 150, 1));
+                }
+            }
+            .hero-title {
+                font-family: var(--serif);
+                font-size: clamp(2.4rem, 7vw, 4rem);
+                font-weight: 700;
+                letter-spacing: 0.04em;
+                line-height: 1.1;
+                color: #ffffff;
+                text-shadow: 0 2px 12px rgba(61, 0, 0, 0.5);
+            }
+            .hero-tagline {
+                font-size: clamp(1rem, 2.5vw, 1.25rem);
+                color: rgba(255, 255, 255, 0.92);
+                background: rgba(0, 0, 0, 0.18);
+                border: 1px solid rgba(255, 255, 255, 0.3);
+                border-radius: 100px;
+                padding: 0.5rem 1.6rem;
+                backdrop-filter: blur(4px);
+            }
+            .hero-verse {
+                font-size: 0.95rem;
+                font-style: italic;
+                color: rgba(255, 255, 220, 0.88);
+            }
 
-    /* Stats row */
-    .hero-stats { display: flex; flex-wrap: wrap; justify-content: center; gap: .75rem; }
-    .stat {
-        background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.35);
-        border-radius: 12px; padding: .65rem 1.3rem; text-align: center;
-        min-width: 80px; backdrop-filter: blur(6px);
-    }
-    .stat-n { font-size: 1.8rem; font-weight: 700; color: #FFD740; line-height: 1; }
-    .stat-l { font-size: .82rem; color: rgba(255,255,255,0.85); margin-top: .1rem; }
+            /* Stats row */
+            .hero-stats {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 0.75rem;
+            }
+            .stat {
+                background: rgba(255, 255, 255, 0.18);
+                border: 1px solid rgba(255, 255, 255, 0.35);
+                border-radius: 12px;
+                padding: 0.65rem 1.3rem;
+                text-align: center;
+                min-width: 80px;
+                backdrop-filter: blur(6px);
+            }
+            .stat-n {
+                font-size: 1.8rem;
+                font-weight: 700;
+                color: #ffd740;
+                line-height: 1;
+            }
+            .stat-l {
+                font-size: 0.82rem;
+                color: rgba(255, 255, 255, 0.85);
+                margin-top: 0.1rem;
+            }
 
-    /* Today bar in hero */
-    .today-bar {
-        display: flex; flex-wrap: wrap; justify-content: center; align-items: center;
-        gap: .4rem 1rem;
-        background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.25);
-        border-radius: 12px; padding: .6rem 1.2rem;
-        font-size: .95rem; backdrop-filter: blur(4px);
-    }
-    .td-item { display: flex; gap: .3rem; align-items: baseline; }
-    .td-lbl  { color: rgba(255,255,200,0.75); font-size: .8rem; }
-    .td-val  { color: #FFD740; font-weight: 600; }
-    .td-sep  { color: rgba(255,200,100,0.5); }
+            /* Today bar in hero */
+            .today-bar {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                align-items: center;
+                gap: 0.4rem 1rem;
+                background: rgba(0, 0, 0, 0.2);
+                border: 1px solid rgba(255, 255, 255, 0.25);
+                border-radius: 12px;
+                padding: 0.6rem 1.2rem;
+                font-size: 0.95rem;
+                backdrop-filter: blur(4px);
+            }
+            .td-item {
+                display: flex;
+                gap: 0.3rem;
+                align-items: baseline;
+            }
+            .td-lbl {
+                color: rgba(255, 255, 200, 0.75);
+                font-size: 0.8rem;
+            }
+            .td-val {
+                color: #ffd740;
+                font-weight: 600;
+            }
+            .td-sep {
+                color: rgba(255, 200, 100, 0.5);
+            }
 
-    /* Hero CTA */
-    .hero-cta {
-        display: inline-flex; align-items: center; gap: .55rem;
-        background: #FFFFFF;
-        color: var(--maroon); font-weight: 700; font-size: 1rem;
-        border-radius: 100px; padding: .75rem 2rem;
-        text-decoration: none; border: none; cursor: pointer;
-        font-family: var(--sans);
-        box-shadow: 0 4px 20px rgba(0,0,0,0.25);
-        transition: transform .2s, box-shadow .2s;
-    }
-    .hero-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,0,0,0.3); }
+            /* Hero CTA */
+            .hero-cta {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.55rem;
+                background: #ffffff;
+                color: var(--maroon);
+                font-weight: 700;
+                font-size: 1rem;
+                border-radius: 100px;
+                padding: 0.75rem 2rem;
+                text-decoration: none;
+                border: none;
+                cursor: pointer;
+                font-family: var(--sans);
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+                transition:
+                    transform 0.2s,
+                    box-shadow 0.2s;
+            }
+            .hero-cta:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 8px 28px rgba(0, 0, 0, 0.3);
+            }
 
-    /* ── SEARCH BAR ─────────────────────────── */
-    .search-wrap {
-        background: var(--surface);
-        border-bottom: 1px solid var(--border);
-        padding: 1rem 1.25rem;
-    }
-    .search-inner {
-        max-width: 680px; margin: 0 auto;
-        position: relative;
-    }
-    .search-inner input {
-        width: 100%; padding: .85rem 1rem .85rem 3rem;
-        background: #FFFFFF; border: 1.5px solid var(--border);
-        border-radius: 50px; font-family: var(--sans); font-size: 1rem;
-        color: var(--txt); outline: none;
-        box-shadow: 0 2px 12px rgba(180,80,0,0.08);
-        transition: border-color .2s, box-shadow .2s;
-    }
-    .search-inner input:focus {
-        border-color: var(--saff);
-        box-shadow: 0 2px 20px rgba(255,109,0,0.18);
-    }
-    .search-inner input::placeholder { color: var(--txt3); }
-    .search-icon {
-        position: absolute; left: 1rem; top: 50%; transform: translateY(-50%);
-        color: var(--saff); font-size: 1.05rem; pointer-events: none;
-    }
+            /* ── SEARCH BAR ─────────────────────────── */
+            .search-wrap {
+                background: var(--surface);
+                border-bottom: 1px solid var(--border);
+                padding: 1rem 1.25rem;
+            }
+            .search-inner {
+                max-width: 680px;
+                margin: 0 auto;
+                position: relative;
+            }
+            .search-inner input {
+                width: 100%;
+                padding: 0.85rem 1rem 0.85rem 3rem;
+                background: #ffffff;
+                border: 1.5px solid var(--border);
+                border-radius: 50px;
+                font-family: var(--sans);
+                font-size: 1rem;
+                color: var(--txt);
+                outline: none;
+                box-shadow: 0 2px 12px rgba(180, 80, 0, 0.08);
+                transition:
+                    border-color 0.2s,
+                    box-shadow 0.2s;
+            }
+            .search-inner input:focus {
+                border-color: var(--saff);
+                box-shadow: 0 2px 20px rgba(255, 109, 0, 0.18);
+            }
+            .search-inner input::placeholder {
+                color: var(--txt3);
+            }
+            .search-icon {
+                position: absolute;
+                left: 1rem;
+                top: 50%;
+                transform: translateY(-50%);
+                color: var(--saff);
+                font-size: 1.05rem;
+                pointer-events: none;
+            }
 
-    /* ── LIBRARY ────────────────────────────── */
-    #library { background: var(--bg); }
+            /* ── LIBRARY ────────────────────────────── */
+            #library {
+                background: var(--bg);
+            }
 
-    .cat-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-        gap: 1rem;
-    }
-    @media(max-width:600px) { .cat-grid { grid-template-columns: 1fr 1fr; gap: .75rem; } }
+            .cat-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+                gap: 1rem;
+            }
+            @media (max-width: 600px) {
+                .cat-grid {
+                    grid-template-columns: 1fr 1fr;
+                    gap: 0.75rem;
+                }
+            }
 
-    .cat-card {
-        background: var(--card);
-        border: 1.5px solid var(--border);
-        border-radius: var(--radius);
-        padding: 1.2rem 1rem;
-        cursor: pointer;
-        transition: transform .2s, box-shadow .2s, border-color .2s;
-        display: flex; align-items: center; gap: .9rem;
-        position: relative; overflow: hidden; min-height: 76px;
-        box-shadow: var(--shadow);
-    }
-    @media(max-width:600px) {
-        .cat-card { flex-direction: column; align-items: center; text-align: center; padding: 1.1rem .75rem; gap: .5rem; }
-        .cat-count { margin-left: 0; }
-        .cat-text p { font-size: .8rem; }
-    }
-    .cat-card::before {
-        content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-        background: linear-gradient(90deg, var(--kumkum), var(--saff), var(--gold));
-        transform: scaleX(0); transition: transform .25s; transform-origin: left;
-    }
-    .cat-card:hover::before, .cat-card.open::before { transform: scaleX(1); }
-    .cat-card:hover {
-        transform: translateY(-4px);
-        box-shadow: rgba(180,80,0,0.22) 0 8px 28px;
-        border-color: var(--saff);
-    }
-    .cat-card.open {
-        border-color: var(--gold);
-        background: var(--card2);
-        box-shadow: rgba(180,80,0,0.18) 0 6px 24px;
-    }
+            .cat-card {
+                background: var(--card);
+                border: 1.5px solid var(--border);
+                border-radius: var(--radius);
+                padding: 1.2rem 1rem;
+                cursor: pointer;
+                transition:
+                    transform 0.2s,
+                    box-shadow 0.2s,
+                    border-color 0.2s;
+                display: flex;
+                align-items: center;
+                gap: 0.9rem;
+                position: relative;
+                overflow: hidden;
+                min-height: 76px;
+                box-shadow: var(--shadow);
+            }
+            @media (max-width: 600px) {
+                .cat-card {
+                    flex-direction: column;
+                    align-items: center;
+                    text-align: center;
+                    padding: 1.1rem 0.75rem;
+                    gap: 0.5rem;
+                }
+                .cat-count {
+                    margin-left: 0;
+                }
+                .cat-text p {
+                    font-size: 0.8rem;
+                }
+            }
+            .cat-card::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: 3px;
+                background: linear-gradient(90deg, var(--kumkum), var(--saff), var(--gold));
+                transform: scaleX(0);
+                transition: transform 0.25s;
+                transform-origin: left;
+            }
+            .cat-card:hover::before,
+            .cat-card.open::before {
+                transform: scaleX(1);
+            }
+            .cat-card:hover {
+                transform: translateY(-4px);
+                box-shadow: rgba(180, 80, 0, 0.22) 0 8px 28px;
+                border-color: var(--saff);
+            }
+            .cat-card.open {
+                border-color: var(--gold);
+                background: var(--card2);
+                box-shadow: rgba(180, 80, 0, 0.18) 0 6px 24px;
+            }
 
-    .cat-icon { width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.45rem; flex-shrink: 0; }
-    .cat-text h3 { font-size: 1.1rem; font-weight: 700; color: var(--kumkum); line-height: 1.2; }
-    .cat-text p  { font-size: .87rem; color: var(--txt2); margin-top: .15rem; }
-    .cat-count {
-        margin-left: auto; flex-shrink: 0;
-        background: linear-gradient(135deg, rgba(255,109,0,.1), rgba(255,179,0,.08));
-        border: 1px solid rgba(255,109,0,.3);
-        border-radius: 20px; padding: .2rem .85rem;
-        font-size: .84rem; color: var(--saff); font-weight: 700; white-space: nowrap;
-    }
+            .cat-icon {
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.45rem;
+                flex-shrink: 0;
+            }
+            .cat-text h3 {
+                font-size: 1.1rem;
+                font-weight: 700;
+                color: var(--kumkum);
+                line-height: 1.2;
+            }
+            .cat-text p {
+                font-size: 0.87rem;
+                color: var(--txt2);
+                margin-top: 0.15rem;
+            }
+            .cat-count {
+                margin-left: auto;
+                flex-shrink: 0;
+                background: linear-gradient(135deg, rgba(255, 109, 0, 0.1), rgba(255, 179, 0, 0.08));
+                border: 1px solid rgba(255, 109, 0, 0.3);
+                border-radius: 20px;
+                padding: 0.2rem 0.85rem;
+                font-size: 0.84rem;
+                color: var(--saff);
+                font-weight: 700;
+                white-space: nowrap;
+            }
 
-    /* Book panel */
-    .book-panel {
-        grid-column: 1 / -1;
-        background: linear-gradient(135deg, #FFF8F0, #FFF2E6);
-        border: 1.5px solid rgba(255,109,0,.25);
-        border-radius: var(--radius);
-        padding: 1.4rem 1.1rem 1.2rem;
-        animation: slide-in .22s ease;
-        box-shadow: rgba(180,80,0,0.1) 0 4px 20px;
-    }
-    @keyframes slide-in { from{opacity:0;transform:translateY(-8px)} to{opacity:1;transform:translateY(0)} }
-    .panel-desc {
-        font-size: .95rem; color: var(--txt2); line-height: 1.8;
-        border-left: 4px solid var(--saff); padding-left: 1rem; margin-bottom: 1.2rem;
-        background: rgba(255,109,0,.04); border-radius: 0 8px 8px 0; padding: .6rem 1rem;
-    }
-    .book-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(115px, 1fr));
-        gap: 1rem;
-    }
-    @media(max-width:480px) { .book-grid { grid-template-columns: repeat(2,1fr); gap: .8rem; } }
+            /* Book panel */
+            .book-panel {
+                grid-column: 1 / -1;
+                background: linear-gradient(135deg, #fff8f0, #fff2e6);
+                border: 1.5px solid rgba(255, 109, 0, 0.25);
+                border-radius: var(--radius);
+                padding: 1.4rem 1.1rem 1.2rem;
+                animation: slide-in 0.22s ease;
+                box-shadow: rgba(180, 80, 0, 0.1) 0 4px 20px;
+            }
+            @keyframes slide-in {
+                from {
+                    opacity: 0;
+                    transform: translateY(-8px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            .panel-desc {
+                font-size: 0.95rem;
+                color: var(--txt2);
+                line-height: 1.8;
+                border-left: 4px solid var(--saff);
+                padding-left: 1rem;
+                margin-bottom: 1.2rem;
+                background: rgba(255, 109, 0, 0.04);
+                border-radius: 0 8px 8px 0;
+                padding: 0.6rem 1rem;
+            }
+            .book-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(115px, 1fr));
+                gap: 1rem;
+            }
+            @media (max-width: 480px) {
+                .book-grid {
+                    grid-template-columns: repeat(2, 1fr);
+                    gap: 0.8rem;
+                }
+            }
 
-    .bk { display: block; text-decoration: none; cursor: pointer; transition: transform .2s; }
-    .bk:hover { transform: translateY(-5px) scale(1.03); }
-    .bk.dim .bk-cover { opacity: .45; filter: grayscale(.4); }
-    .bk.dim .bk-name  { color: var(--txt3); }
-    .bk-cover { width: 100%; aspect-ratio: 2/3; border-radius: 10px; box-shadow: 3px 5px 18px rgba(0,0,0,0.18); overflow: hidden; display: block; }
-    .bk-cover img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .bk-name  { font-size: .9rem; font-weight: 600; color: var(--txt); line-height: 1.3; margin-top: .4rem; }
-    .bk-sub   { font-size: .78rem; color: var(--txt3); margin-top: .12rem; }
-    .bk-cs    { display: inline-block; font-size: .72rem; margin-top: .22rem; background: rgba(255,109,0,0.09); color: var(--saff); border-radius: 4px; padding: 1px 7px; }
+            .bk {
+                display: block;
+                text-decoration: none;
+                cursor: pointer;
+                transition: transform 0.2s;
+            }
+            .bk:hover {
+                transform: translateY(-5px) scale(1.03);
+            }
+            .bk.dim .bk-cover {
+                opacity: 0.45;
+                filter: grayscale(0.4);
+            }
+            .bk.dim .bk-name {
+                color: var(--txt3);
+            }
+            .bk-cover {
+                width: 100%;
+                aspect-ratio: 2/3;
+                border-radius: 10px;
+                box-shadow: 3px 5px 18px rgba(0, 0, 0, 0.18);
+                overflow: hidden;
+                display: block;
+            }
+            .bk-cover img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                display: block;
+            }
+            .bk-name {
+                font-size: 0.9rem;
+                font-weight: 600;
+                color: var(--txt);
+                line-height: 1.3;
+                margin-top: 0.4rem;
+            }
+            .bk-sub {
+                font-size: 0.78rem;
+                color: var(--txt3);
+                margin-top: 0.12rem;
+            }
+            .bk-cs {
+                display: inline-block;
+                font-size: 0.72rem;
+                margin-top: 0.22rem;
+                background: rgba(255, 109, 0, 0.09);
+                color: var(--saff);
+                border-radius: 4px;
+                padding: 1px 7px;
+            }
 
-    /* ── PANCHANG BAND ──────────────────────── */
-    .band {
-        background: var(--surface);
-        border-top: 1px solid var(--border);
-        border-bottom: 1px solid var(--border);
-    }
+            /* ── PANCHANG BAND ──────────────────────── */
+            .band {
+                background: var(--surface);
+                border-top: 1px solid var(--border);
+                border-bottom: 1px solid var(--border);
+            }
 
-    .panch-vrat-row { display: flex; gap: 1.4rem; align-items: flex-start; }
-    .panch-vrat-row .panch-block { flex: 3; min-width: 0; }
-    .panch-right-col { flex: 2; min-width: 0; display: flex; flex-direction: column; gap: 1.1rem; }
-    .fest-inner-head {
-        font-family: var(--serif); font-size: 1.05rem; font-weight: 700;
-        color: var(--kumkum); margin-bottom: .75rem; text-align: center;
-    }
-    @media(max-width:780px) { .panch-vrat-row { flex-direction: column; } }
+            .panch-vrat-row {
+                display: flex;
+                gap: 1.4rem;
+                align-items: flex-start;
+            }
+            .panch-vrat-row .panch-block {
+                flex: 3;
+                min-width: 0;
+            }
+            .panch-right-col {
+                flex: 2;
+                min-width: 0;
+                display: flex;
+                flex-direction: column;
+                gap: 1.1rem;
+            }
+            .fest-inner-head {
+                font-family: var(--serif);
+                font-size: 1.05rem;
+                font-weight: 700;
+                color: var(--kumkum);
+                margin-bottom: 0.75rem;
+                text-align: center;
+            }
+            @media (max-width: 780px) {
+                .panch-vrat-row {
+                    flex-direction: column;
+                }
+            }
 
-    /* Panchang card */
-    .panch-block {
-        background: var(--card);
-        border: 1.5px solid rgba(0,180,70,.3);
-        border-radius: var(--radius);
-        padding: 1.3rem 1.1rem;
-        box-shadow: 0 4px 20px rgba(0,180,70,.08);
-    }
-    .panch-block h3 { font-size: 1.3rem; color: #1B6B00; margin-bottom: .9rem; font-family: var(--serif); text-align: center; }
-    .panch-inner-row { display: flex; gap: .9rem; align-items: flex-start; }
-    .panch-col { flex: 1; min-width: 0; }
-    .panch-col-astro { border-left: 1px solid rgba(0,180,70,.2); padding-left: .9rem; }
-    .panch-col-head {
-        font-size: .66rem; color: #1B6B00; font-weight: 700;
-        letter-spacing: .1em; text-transform: uppercase;
-        margin-bottom: .45rem; text-align: center;
-    }
-    @media(max-width:600px) {
-        .panch-inner-row { flex-direction: column; gap: .5rem; }
-        .panch-col-astro { border-left: none; padding-left: 0; border-top: 1px solid rgba(0,180,70,.2); padding-top: .5rem; }
-    }
+            /* Panchang card */
+            .panch-block {
+                background: var(--card);
+                border: 1.5px solid rgba(0, 180, 70, 0.3);
+                border-radius: var(--radius);
+                padding: 1.3rem 1.1rem;
+                box-shadow: 0 4px 20px rgba(0, 180, 70, 0.08);
+            }
+            .panch-block h3 {
+                font-size: 1.3rem;
+                color: #1b6b00;
+                margin-bottom: 0.9rem;
+                font-family: var(--serif);
+                text-align: center;
+            }
+            .panch-inner-row {
+                display: flex;
+                gap: 0.9rem;
+                align-items: flex-start;
+            }
+            .panch-col {
+                flex: 1;
+                min-width: 0;
+            }
+            .panch-col-astro {
+                border-left: 1px solid rgba(0, 180, 70, 0.2);
+                padding-left: 0.9rem;
+            }
+            .panch-col-head {
+                font-size: 0.66rem;
+                color: #1b6b00;
+                font-weight: 700;
+                letter-spacing: 0.1em;
+                text-transform: uppercase;
+                margin-bottom: 0.45rem;
+                text-align: center;
+            }
+            @media (max-width: 600px) {
+                .panch-inner-row {
+                    flex-direction: column;
+                    gap: 0.5rem;
+                }
+                .panch-col-astro {
+                    border-left: none;
+                    padding-left: 0;
+                    border-top: 1px solid rgba(0, 180, 70, 0.2);
+                    padding-top: 0.5rem;
+                }
+            }
 
-    /* Vrat card — warm kumkum theme */
-    .vrat-block {
-        background: var(--card);
-        border: 1.5px solid rgba(198,40,40,.25);
-        border-radius: var(--radius);
-        padding: 1.3rem 1.1rem;
-        box-shadow: 0 4px 20px rgba(198,40,40,.06);
-    }
-    .vrat-block h3 { font-size: 1.3rem; color: var(--kumkum); margin-bottom: .9rem; font-family: var(--serif); text-align: center; }
+            /* Vrat card — warm kumkum theme */
+            .vrat-block {
+                background: var(--card);
+                border: 1.5px solid rgba(198, 40, 40, 0.25);
+                border-radius: var(--radius);
+                padding: 1.3rem 1.1rem;
+                box-shadow: 0 4px 20px rgba(198, 40, 40, 0.06);
+            }
+            .vrat-block h3 {
+                font-size: 1.3rem;
+                color: var(--kumkum);
+                margin-bottom: 0.9rem;
+                font-family: var(--serif);
+                text-align: center;
+            }
 
-    /* Shared row style used in panchang + vrat */
-    .vrat-row {
-        display: flex; align-items: baseline; gap: .7rem; flex-wrap: wrap;
-        padding: .7rem .85rem; border-radius: 10px;
-        background: rgba(255,109,0,.04); border: 1px solid rgba(255,109,0,.1);
-        margin-bottom: .5rem;
-    }
-    .vrat-row:last-child { margin-bottom: 0; }
-    .vrat-icon  { font-size: 1.25rem; flex-shrink: 0; }
-    .vrat-label { font-size: .8rem; color: var(--txt3); white-space: nowrap; flex-shrink: 0; }
-    .vrat-name  { font-size: 1rem; font-weight: 700; color: var(--txt); min-width: 0; word-break: break-word; }
-    .vrat-date  { font-size: .88rem; color: var(--txt2); margin-left: auto; white-space: nowrap; flex-shrink: 0; }
-    @media(max-width:480px) {
-        .vrat-row   { flex-wrap: wrap; }
-        .vrat-date  { margin-left: 0; width: 100%; color: var(--txt3); font-size: .82rem; }
-    }
+            /* Shared row style used in panchang + vrat */
+            .vrat-row {
+                display: flex;
+                align-items: baseline;
+                gap: 0.7rem;
+                flex-wrap: wrap;
+                padding: 0.7rem 0.85rem;
+                border-radius: 10px;
+                background: rgba(255, 109, 0, 0.04);
+                border: 1px solid rgba(255, 109, 0, 0.1);
+                margin-bottom: 0.5rem;
+            }
+            .vrat-row:last-child {
+                margin-bottom: 0;
+            }
+            .vrat-icon {
+                font-size: 1.25rem;
+                flex-shrink: 0;
+            }
+            .vrat-label {
+                font-size: 0.8rem;
+                color: var(--txt3);
+                white-space: nowrap;
+                flex-shrink: 0;
+            }
+            .vrat-name {
+                font-size: 1rem;
+                font-weight: 700;
+                color: var(--txt);
+                min-width: 0;
+                word-break: break-word;
+            }
+            .vrat-date {
+                font-size: 0.88rem;
+                color: var(--txt2);
+                margin-left: auto;
+                white-space: nowrap;
+                flex-shrink: 0;
+            }
+            @media (max-width: 480px) {
+                .vrat-row {
+                    flex-wrap: wrap;
+                }
+                .vrat-date {
+                    margin-left: 0;
+                    width: 100%;
+                    color: var(--txt3);
+                    font-size: 0.82rem;
+                }
+            }
 
-    /* Shastriya Ghatna */
-    .shastr-block {
-        background: var(--card);
-        border: 1.5px solid rgba(233,30,99,.2);
-        border-radius: var(--radius);
-        padding: 1.4rem 1.2rem; margin-top: 1.2rem;
-        box-shadow: 0 4px 20px rgba(233,30,99,.06);
-    }
-    .shastr-block h3 { font-size: 1.3rem; color: var(--lotus); margin-bottom: .25rem; font-family: var(--serif); text-align: center; }
-    .shastr-subtitle { text-align: center; font-size: .84rem; color: var(--txt3); margin-bottom: 1rem; }
-    .shastr-cards { display: flex; flex-direction: column; gap: .75rem; }
-    .shastr-card {
-        background: rgba(233,30,99,.03);
-        border-left: 4px solid var(--lotus);
-        border-radius: 0 10px 10px 0;
-        padding: .9rem 1rem;
-        border-top: 1px solid rgba(233,30,99,.1);
-        border-right: 1px solid rgba(233,30,99,.1);
-        border-bottom: 1px solid rgba(233,30,99,.1);
-    }
-    .shastr-badge {
-        display: inline-flex; align-items: center; gap: .35rem;
-        font-size: .73rem; font-weight: 700; letter-spacing: .03em;
-        background: rgba(233,30,99,.1); color: var(--lotus);
-        border-radius: 20px; padding: 2px 9px; margin-bottom: .5rem;
-    }
-    .shastr-badge.strong { background: rgba(0,200,83,.12); color: #1B6B00; }
-    .shastr-granth { font-size: .78rem; color: var(--txt3); margin-bottom: .28rem; }
-    .shastr-event { font-size: 1rem; font-weight: 700; color: var(--kumkum); line-height: 1.3; margin-bottom: .35rem; }
-    .shastr-vivran { font-size: .86rem; color: var(--txt2); line-height: 1.65; }
-    .shastr-vivran.collapsed { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
-    .shastr-more { font-size: .8rem; color: var(--saff); cursor: pointer; margin-top: .28rem; text-decoration: underline; text-underline-offset: 2px; }
-    .shastr-tags { display: flex; flex-wrap: wrap; gap: .28rem; margin-top: .45rem; }
-    .shastr-tag { font-size: .7rem; background: rgba(255,109,0,.08); color: var(--txt3); border-radius: 12px; padding: 1px 8px; }
-    .shastr-empty { text-align: center; color: var(--txt3); font-size: .92rem; padding: 1rem 0; }
+            /* Shastriya Ghatna */
+            .shastr-block {
+                background: var(--card);
+                border: 1.5px solid rgba(233, 30, 99, 0.2);
+                border-radius: var(--radius);
+                padding: 1.4rem 1.2rem;
+                margin-top: 1.2rem;
+                box-shadow: 0 4px 20px rgba(233, 30, 99, 0.06);
+            }
+            .shastr-block h3 {
+                font-size: 1.3rem;
+                color: var(--lotus);
+                margin-bottom: 0.25rem;
+                font-family: var(--serif);
+                text-align: center;
+            }
+            .shastr-subtitle {
+                text-align: center;
+                font-size: 0.84rem;
+                color: var(--txt3);
+                margin-bottom: 1rem;
+            }
+            .shastr-cards {
+                display: flex;
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+            .shastr-card {
+                background: rgba(233, 30, 99, 0.03);
+                border-left: 4px solid var(--lotus);
+                border-radius: 0 10px 10px 0;
+                padding: 0.9rem 1rem;
+                border-top: 1px solid rgba(233, 30, 99, 0.1);
+                border-right: 1px solid rgba(233, 30, 99, 0.1);
+                border-bottom: 1px solid rgba(233, 30, 99, 0.1);
+            }
+            .shastr-badge {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.35rem;
+                font-size: 0.73rem;
+                font-weight: 700;
+                letter-spacing: 0.03em;
+                background: rgba(233, 30, 99, 0.1);
+                color: var(--lotus);
+                border-radius: 20px;
+                padding: 2px 9px;
+                margin-bottom: 0.5rem;
+            }
+            .shastr-badge.strong {
+                background: rgba(0, 200, 83, 0.12);
+                color: #1b6b00;
+            }
+            .shastr-granth {
+                font-size: 0.78rem;
+                color: var(--txt3);
+                margin-bottom: 0.28rem;
+            }
+            .shastr-event {
+                font-size: 1rem;
+                font-weight: 700;
+                color: var(--kumkum);
+                line-height: 1.3;
+                margin-bottom: 0.35rem;
+            }
+            .shastr-vivran {
+                font-size: 0.86rem;
+                color: var(--txt2);
+                line-height: 1.65;
+            }
+            .shastr-vivran.collapsed {
+                display: -webkit-box;
+                -webkit-line-clamp: 3;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+            }
+            .shastr-more {
+                font-size: 0.8rem;
+                color: var(--saff);
+                cursor: pointer;
+                margin-top: 0.28rem;
+                text-decoration: underline;
+                text-underline-offset: 2px;
+            }
+            .shastr-tags {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.28rem;
+                margin-top: 0.45rem;
+            }
+            .shastr-tag {
+                font-size: 0.7rem;
+                background: rgba(255, 109, 0, 0.08);
+                color: var(--txt3);
+                border-radius: 12px;
+                padding: 1px 8px;
+            }
+            .shastr-empty {
+                text-align: center;
+                color: var(--txt3);
+                font-size: 0.92rem;
+                padding: 1rem 0;
+            }
 
-    /* Festival swiper cards */
-    .fest-card {
-        background: var(--card);
-        border: 1px solid var(--border);
-        border-radius: 14px; padding: 1rem .9rem; text-align: center; min-width: 148px;
-        transition: transform .18s, box-shadow .18s;
-        box-shadow: var(--shadow);
-    }
-    .fest-card:hover { transform: translateY(-3px); box-shadow: rgba(180,80,0,0.2) 0 8px 24px; }
-    .fest-icon { font-size: 2.2rem; margin-bottom: .35rem; }
-    .fest-name { font-size: .94rem; font-weight: 700; color: var(--kumkum); line-height: 1.25; }
-    .fest-desc { font-size: .79rem; color: var(--txt3); margin-top: .18rem; }
-    .fest-tag  {
-        display: inline-block; margin-top: .4rem;
-        background: rgba(255,109,0,.12); color: var(--saff);
-        font-size: .77rem; font-weight: 700; border-radius: 20px; padding: 2px 9px;
-    }
-    .fest-tag.today-tag { background: rgba(0,200,83,.12); color: #1B6B00; }
+            /* Festival swiper cards */
+            .fest-card {
+                background: var(--card);
+                border: 1px solid var(--border);
+                border-radius: 14px;
+                padding: 1rem 0.9rem;
+                text-align: center;
+                min-width: 148px;
+                transition:
+                    transform 0.18s,
+                    box-shadow 0.18s;
+                box-shadow: var(--shadow);
+            }
+            .fest-card:hover {
+                transform: translateY(-3px);
+                box-shadow: rgba(180, 80, 0, 0.2) 0 8px 24px;
+            }
+            .fest-icon {
+                font-size: 2.2rem;
+                margin-bottom: 0.35rem;
+            }
+            .fest-name {
+                font-size: 0.94rem;
+                font-weight: 700;
+                color: var(--kumkum);
+                line-height: 1.25;
+            }
+            .fest-desc {
+                font-size: 0.79rem;
+                color: var(--txt3);
+                margin-top: 0.18rem;
+            }
+            .fest-tag {
+                display: inline-block;
+                margin-top: 0.4rem;
+                background: rgba(255, 109, 0, 0.12);
+                color: var(--saff);
+                font-size: 0.77rem;
+                font-weight: 700;
+                border-radius: 20px;
+                padding: 2px 9px;
+            }
+            .fest-tag.today-tag {
+                background: rgba(0, 200, 83, 0.12);
+                color: #1b6b00;
+            }
 
-    /* ── QUOTE BAND ─────────────────────────── */
-    .quote-band {
-        background: var(--card);
-        border-top: 3px solid var(--saff);
-        border-bottom: 3px solid var(--saff);
-        text-align: center; padding: 3rem 1.5rem;
-        position: relative; overflow: hidden;
-    }
-    .quote-band::before {
-        content: ''; position: absolute; inset: 0;
-        background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(255,109,0,.05) 0%, transparent 70%);
-        pointer-events: none;
-    }
-    .q-om { font-size: 2.5rem; color: var(--saff); margin-bottom: .5rem; filter: drop-shadow(0 0 8px rgba(255,145,0,0.4)); }
-    .q-text {
-        font-family: var(--serif); font-size: clamp(1.1rem, 2.3vw, 1.4rem);
-        color: var(--txt); font-style: italic; line-height: 2;
-        max-width: 660px; margin: 0 auto .7rem; position: relative;
-    }
-    .q-src { font-size: .9rem; color: var(--saff); font-weight: 600; position: relative; }
+            /* ── QUOTE BAND ─────────────────────────── */
+            .quote-band {
+                background: var(--card);
+                border-top: 3px solid var(--saff);
+                border-bottom: 3px solid var(--saff);
+                text-align: center;
+                padding: 3rem 1.5rem;
+                position: relative;
+                overflow: hidden;
+            }
+            .quote-band::before {
+                content: "";
+                position: absolute;
+                inset: 0;
+                background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(255, 109, 0, 0.05) 0%, transparent 70%);
+                pointer-events: none;
+            }
+            .q-om {
+                font-size: 2.5rem;
+                color: var(--saff);
+                margin-bottom: 0.5rem;
+                filter: drop-shadow(0 0 8px rgba(255, 145, 0, 0.4));
+            }
+            .q-text {
+                font-family: var(--serif);
+                font-size: clamp(1.1rem, 2.3vw, 1.4rem);
+                color: var(--txt);
+                font-style: italic;
+                line-height: 2;
+                max-width: 660px;
+                margin: 0 auto 0.7rem;
+                position: relative;
+            }
+            .q-src {
+                font-size: 0.9rem;
+                color: var(--saff);
+                font-weight: 600;
+                position: relative;
+            }
 
-    /* ── FOOTER ─────────────────────────────── */
-    footer {
-        background: var(--dark-hdr);
-        border-top: 3px solid var(--saff);
-        text-align: center; padding: 2.5rem 1rem;
-    }
-    .ft-om   { font-size: 2.2rem; color: #FFD740; filter: drop-shadow(0 0 8px rgba(255,215,0,.5)); }
-    .ft-name { font-family: var(--serif); font-size: 1.2rem; font-weight: 700; color: #FFD740; margin-top: .28rem; }
-    .ft-desc { font-size: .88rem; color: rgba(255,255,255,.6); margin-top: .18rem; }
-    .ft-links { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; margin: .9rem 0; }
-    .ft-links a { color: rgba(255,255,255,.75); text-decoration: none; font-size: .95rem; transition: color .2s; }
-    .ft-links a:hover { color: #FFD740; }
-    .ft-copy { font-size: .84rem; color: rgba(255,255,255,.4); }
-    </style>
-</head>
-<body>
-
-<!-- NAV -->
-<nav class="nav">
-    <a class="nav-brand" href="index.html">स्वाध्याय</a>
-    <div class="nav-links">
-        <!--
+            /* ── FOOTER ─────────────────────────────── */
+            footer {
+                background: var(--dark-hdr);
+                border-top: 3px solid var(--saff);
+                text-align: center;
+                padding: 2.5rem 1rem;
+            }
+            .ft-om {
+                font-size: 2.2rem;
+                color: #ffd740;
+                filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.5));
+            }
+            .ft-name {
+                font-family: var(--serif);
+                font-size: 1.2rem;
+                font-weight: 700;
+                color: #ffd740;
+                margin-top: 0.28rem;
+            }
+            .ft-desc {
+                font-size: 0.88rem;
+                color: rgba(255, 255, 255, 0.6);
+                margin-top: 0.18rem;
+            }
+            .ft-links {
+                display: flex;
+                justify-content: center;
+                gap: 1.5rem;
+                flex-wrap: wrap;
+                margin: 0.9rem 0;
+            }
+            .ft-links a {
+                color: rgba(255, 255, 255, 0.75);
+                text-decoration: none;
+                font-size: 0.95rem;
+                transition: color 0.2s;
+            }
+            .ft-links a:hover {
+                color: #ffd740;
+            }
+            .ft-copy {
+                font-size: 0.84rem;
+                color: rgba(255, 255, 255, 0.4);
+            }
+        </style>
+    </head>
+    <body>
+        <!-- NAV -->
+        <nav class="nav">
+            <a class="nav-brand" href="index.html">स्वाध्याय</a>
+            <div class="nav-links">
+                <!--
         <a href="tithi.html"><i class="fas fa-calendar-alt"></i>&nbsp;तिथि</a>
         <a href="clock.html"><i class="far fa-clock"></i>&nbsp;घड़ी</a>
         <a href="about.html"><i class="fas fa-info-circle"></i>&nbsp;परिचय</a>
@@ -493,867 +1009,1276 @@
             <i class="fas fa-search"></i>
         </button>
         -->
-    </div>
-</nav>
+            </div>
+        </nav>
 
-<!-- ════════════════════════════════════
+        <!-- ════════════════════════════════════
      HERO — saffron/kumkum gradient banner
 ════════════════════════════════════ -->
-<section class="hero">
-    <div class="hero-pattern"></div>
-    <div class="hero-lotus">🪷</div>
+        <section class="hero">
+            <div class="hero-pattern"></div>
+            <div class="hero-lotus">🪷</div>
 
-    <div class="hero-inner">
-        <div class="hero-om">ॐ</div>
-        <h1 class="hero-title">स्वाध्याय</h1>
-        <div class="hero-tagline">📚&nbsp; हिन्दू शास्त्रों का डिजिटल पुस्तकालय</div>
-        <div class="hero-verse">"स्वाध्यायान्मा प्रमदः" — तैत्तिरीयोपनिषद्</div>
+            <div class="hero-inner">
+                <div class="hero-om">ॐ</div>
+                <h1 class="hero-title">स्वाध्याय</h1>
+                <div class="hero-tagline">📚&nbsp; हिन्दू शास्त्रों का डिजिटल पुस्तकालय</div>
+                <div class="hero-verse">"स्वाध्यायान्मा प्रमदः" — तैत्तिरीयोपनिषद्</div>
 
-        <div class="hero-stats">
-            <div class="stat"><div class="stat-n">४</div><div class="stat-l">वेद</div></div>
-            <div class="stat"><div class="stat-n">१८+</div><div class="stat-l">पुराण</div></div>
-            <div class="stat"><div class="stat-n">१०+</div><div class="stat-l">उपनिषद्</div></div>
-            <div class="stat"><div class="stat-n">४०+</div><div class="stat-l">ग्रंथ</div></div>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <div class="stat-n">४</div>
+                        <div class="stat-l">वेद</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-n">१८+</div>
+                        <div class="stat-l">पुराण</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-n">१०+</div>
+                        <div class="stat-l">उपनिषद्</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-n">४०+</div>
+                        <div class="stat-l">ग्रंथ</div>
+                    </div>
+                </div>
+
+                <div class="today-bar">
+                    <div class="td-item"><span class="td-lbl">वार</span><span class="td-val" id="h-vara">—</span></div>
+                    <span class="td-sep">·</span>
+                    <div class="td-item">
+                        <span class="td-lbl">तिथि</span><span class="td-val" id="h-tithi">—</span>
+                    </div>
+                    <span class="td-sep">·</span>
+                    <div class="td-item">
+                        <span class="td-lbl">पक्ष</span><span class="td-val" id="h-paksha">—</span>
+                    </div>
+                    <span class="td-sep">·</span>
+                    <div class="td-item"><span class="td-lbl">समय</span><span class="td-val" id="h-time">—</span></div>
+                </div>
+
+                <a class="hero-cta" href="#library"> <i class="fas fa-book-open"></i>&nbsp; ग्रंथ पढ़ना शुरू करें </a>
+            </div>
+        </section>
+
+        <!-- SEARCH BAR -->
+        <div class="search-wrap">
+            <div class="search-inner">
+                <span class="search-icon"><i class="fas fa-search"></i></span>
+                <input type="text" placeholder="ग्रंथ खोजें — वेद, उपनिषद्, पुराण…" aria-label="ग्रंथ खोजें" />
+            </div>
         </div>
 
-        <div class="today-bar">
-            <div class="td-item"><span class="td-lbl">वार</span><span class="td-val" id="h-vara">—</span></div>
-            <span class="td-sep">·</span>
-            <div class="td-item"><span class="td-lbl">तिथि</span><span class="td-val" id="h-tithi">—</span></div>
-            <span class="td-sep">·</span>
-            <div class="td-item"><span class="td-lbl">पक्ष</span><span class="td-val" id="h-paksha">—</span></div>
-            <span class="td-sep">·</span>
-            <div class="td-item"><span class="td-lbl">समय</span><span class="td-val" id="h-time">—</span></div>
-        </div>
-
-        <a class="hero-cta" href="#library">
-            <i class="fas fa-book-open"></i>&nbsp; ग्रंथ पढ़ना शुरू करें
-        </a>
-    </div>
-</section>
-
-
-<!-- SEARCH BAR -->
-<div class="search-wrap">
-    <div class="search-inner">
-        <span class="search-icon"><i class="fas fa-search"></i></span>
-        <input type="text" placeholder="ग्रंथ खोजें — वेद, उपनिषद्, पुराण…" aria-label="ग्रंथ खोजें">
-    </div>
-</div>
-
-
-<!-- ════════════════════════════════════
+        <!-- ════════════════════════════════════
      LIBRARY — the main purpose of the site
 ════════════════════════════════════ -->
-<div id="library" class="wrap section">
-    <div class="sec-head">
-        <h2>📚 शास्त्र-भण्डार</h2>
-        <p>किसी वर्ग पर क्लिक करें — ग्रंथ देखें और पढ़ें</p>
-        <div class="rangoli-div"><span>✦ ✦ ✦</span></div>
-    </div>
+        <div id="library" class="wrap section">
+            <div class="sec-head">
+                <h2>📚 शास्त्र-भण्डार</h2>
+                <p>किसी वर्ग पर क्लिक करें — ग्रंथ देखें और पढ़ें</p>
+                <div class="rangoli-div"><span>✦ ✦ ✦</span></div>
+            </div>
 
-    <div class="cat-grid" id="cat-grid">
-        <div class="cat-card" data-cat="ved">
-            <div class="cat-icon" style="background:#FFF3E0;color:#E65100">📖</div>
-            <div class="cat-text"><h3>वेद</h3><p>ऋग् · साम · यजुर् · अथर्व</p></div>
-            <span class="cat-count">४ ग्रंथ</span>
-        </div>
-        <div class="cat-card" data-cat="upanishad">
-            <div class="cat-icon" style="background:#E8F5E9;color:#2E7D32">📜</div>
-            <div class="cat-text"><h3>उपनिषद्</h3><p>वेदांत के आधार-ग्रंथ</p></div>
-            <span class="cat-count">१०+ ग्रंथ</span>
-        </div>
-        <div class="cat-card" data-cat="puran">
-            <div class="cat-icon" style="background:#FCE4EC;color:#AD1457">🏛️</div>
-            <div class="cat-text"><h3>पुराण</h3><p>अठारह महापुराण</p></div>
-            <span class="cat-count">१८+ ग्रंथ</span>
-        </div>
-        <div class="cat-card" data-cat="itihas">
-            <div class="cat-icon" style="background:#FBE9E7;color:#BF360C">⚔️</div>
-            <div class="cat-text"><h3>इतिहास</h3><p>रामायण · महाभारत</p></div>
-            <span class="cat-count">४ ग्रंथ</span>
-        </div>
-        <div class="cat-card" data-cat="gita">
-            <div class="cat-icon" style="background:#E0F2F1;color:#00695C">🕊️</div>
-            <div class="cat-text"><h3>गीता संहिता</h3><p>भगवद्गीता एवं अन्य गीता</p></div>
-            <span class="cat-count">२७+ गीता</span>
-        </div>
-        <div class="cat-card" data-cat="vedant">
-            <div class="cat-icon" style="background:#EDE7F6;color:#4527A0">🧘</div>
-            <div class="cat-text"><h3>वेदान्त</h3><p>ब्रह्मसूत्र · शंकरभाष्य</p></div>
-            <span class="cat-count">५+ ग्रंथ</span>
-        </div>
-        <div class="cat-card" data-cat="stotra">
-            <div class="cat-icon" style="background:#FFF9C4;color:#F57F17">🙏</div>
-            <div class="cat-text"><h3>स्तोत्र</h3><p>दुर्गासप्तशती · नित्य पूजा</p></div>
-            <span class="cat-count">४+ ग्रंथ</span>
-        </div>
-    </div>
+            <div class="cat-grid" id="cat-grid">
+                <div class="cat-card" data-cat="ved">
+                    <div class="cat-icon" style="background: #fff3e0; color: #e65100">📖</div>
+                    <div class="cat-text">
+                        <h3>वेद</h3>
+                        <p>ऋग् · साम · यजुर् · अथर्व</p>
+                    </div>
+                    <span class="cat-count">४ ग्रंथ</span>
+                </div>
+                <div class="cat-card" data-cat="upanishad">
+                    <div class="cat-icon" style="background: #e8f5e9; color: #2e7d32">📜</div>
+                    <div class="cat-text">
+                        <h3>उपनिषद्</h3>
+                        <p>वेदांत के आधार-ग्रंथ</p>
+                    </div>
+                    <span class="cat-count">१०+ ग्रंथ</span>
+                </div>
+                <div class="cat-card" data-cat="puran">
+                    <div class="cat-icon" style="background: #fce4ec; color: #ad1457">🏛️</div>
+                    <div class="cat-text">
+                        <h3>पुराण</h3>
+                        <p>अठारह महापुराण</p>
+                    </div>
+                    <span class="cat-count">१८+ ग्रंथ</span>
+                </div>
+                <div class="cat-card" data-cat="itihas">
+                    <div class="cat-icon" style="background: #fbe9e7; color: #bf360c">⚔️</div>
+                    <div class="cat-text">
+                        <h3>इतिहास</h3>
+                        <p>रामायण · अध्यात्मरामायण · महाभारत</p>
+                    </div>
+                    <span class="cat-count">४ ग्रंथ</span>
+                </div>
+                <div class="cat-card" data-cat="gita">
+                    <div class="cat-icon" style="background: #e0f2f1; color: #00695c">🕊️</div>
+                    <div class="cat-text">
+                        <h3>गीता संहिता</h3>
+                        <p>भगवद्गीता एवं अन्य गीता</p>
+                    </div>
+                    <span class="cat-count">२७+ गीता</span>
+                </div>
+                <div class="cat-card" data-cat="vedant">
+                    <div class="cat-icon" style="background: #ede7f6; color: #4527a0">🧘</div>
+                    <div class="cat-text">
+                        <h3>वेदान्त</h3>
+                        <p>ब्रह्मसूत्र · शंकरभाष्य</p>
+                    </div>
+                    <span class="cat-count">५+ ग्रंथ</span>
+                </div>
+                <div class="cat-card" data-cat="stotra">
+                    <div class="cat-icon" style="background: #fff9c4; color: #f57f17">🙏</div>
+                    <div class="cat-text">
+                        <h3>स्तोत्र</h3>
+                        <p>दुर्गासप्तशती · नित्य पूजा</p>
+                    </div>
+                    <span class="cat-count">४+ ग्रंथ</span>
+                </div>
+            </div>
 
-    <!-- book-panel injected dynamically inside the grid by JS -->
-</div>
+            <!-- book-panel injected dynamically inside the grid by JS -->
+        </div>
 
-
-<!-- ════════════════════════════════════
+        <!-- ════════════════════════════════════
      PANCHANG + EKADASI + FESTIVALS
 ════════════════════════════════════ -->
-<div class="band">
-<div class="wrap section">
+        <div class="band">
+            <div class="wrap section">
+                <div class="sec-head">
+                    <h2>🪔 आज का पञ्चाङ्ग</h2>
+                    <p id="full-date">—</p>
+                    <div class="rangoli-div"><span>✦ ✦ ✦</span></div>
+                </div>
 
-    <div class="sec-head">
-        <h2>🪔 आज का पञ्चाङ्ग</h2>
-        <p id="full-date">—</p>
-        <div class="rangoli-div"><span>✦ ✦ ✦</span></div>
-    </div>
+                <div class="panch-vrat-row">
+                    <div class="panch-block">
+                        <h3>🌿 पञ्चाङ्ग</h3>
+                        <div class="panch-inner-row">
+                            <!-- Left sub-col: पाँच अंग -->
+                            <div class="panch-col">
+                                <div class="panch-col-head">पञ्चाङ्ग</div>
+                                <div class="vrat-row">
+                                    <span class="vrat-icon">☀️</span>
+                                    <span class="vrat-label">वार</span>
+                                    <span class="vrat-name" id="p-vara">—</span>
+                                    <span class="vrat-date" id="p-vara-d">—</span>
+                                </div>
+                                <div class="vrat-row">
+                                    <span class="vrat-icon">🌙</span>
+                                    <span class="vrat-label">तिथि</span>
+                                    <span class="vrat-name" id="p-tithi">—</span>
+                                    <span class="vrat-date" id="p-paksha">—</span>
+                                </div>
+                                <div class="vrat-row">
+                                    <span class="vrat-icon">⭐</span>
+                                    <span class="vrat-label">नक्षत्र</span>
+                                    <span class="vrat-name" id="p-naks">—</span>
+                                    <span class="vrat-date" id="p-naks-d">—</span>
+                                </div>
+                                <div class="vrat-row">
+                                    <span class="vrat-icon">🔮</span>
+                                    <span class="vrat-label">योग</span>
+                                    <span class="vrat-name" id="p-yoga">—</span>
+                                    <span class="vrat-date" id="p-yoga-q">—</span>
+                                </div>
+                                <div class="vrat-row" style="margin-bottom: 0">
+                                    <span class="vrat-icon">📅</span>
+                                    <span class="vrat-label">हिन्दू मास</span>
+                                    <span class="vrat-name" id="p-masa">—</span>
+                                    <span class="vrat-date">विक्रम सं. २०८२</span>
+                                </div>
+                            </div>
 
-    <div class="panch-vrat-row">
-    <div class="panch-block">
-        <h3>🌿 पञ्चाङ्ग</h3>
-        <div class="panch-inner-row">
+                            <!-- Right sub-col: खगोलीय समय -->
+                            <div class="panch-col panch-col-astro">
+                                <div class="panch-col-head">खगोलीय समय</div>
+                                <div class="vrat-row">
+                                    <span class="vrat-icon">🌅</span>
+                                    <span class="vrat-label">सूर्योदय</span>
+                                    <span class="vrat-name" id="p-sunrise">—</span>
+                                </div>
+                                <div class="vrat-row">
+                                    <span class="vrat-icon">🌇</span>
+                                    <span class="vrat-label">सूर्यास्त</span>
+                                    <span class="vrat-name" id="p-sunset">—</span>
+                                </div>
+                                <div class="vrat-row">
+                                    <span class="vrat-icon">🌕</span>
+                                    <span class="vrat-label">चन्द्रोदय</span>
+                                    <span class="vrat-name" id="p-moonrise">—</span>
+                                </div>
+                                <div class="vrat-row">
+                                    <span class="vrat-icon">🌑</span>
+                                    <span class="vrat-label">चन्द्रास्त</span>
+                                    <span class="vrat-name" id="p-moonset">—</span>
+                                </div>
+                                <div class="vrat-row">
+                                    <span class="vrat-icon">⚠️</span>
+                                    <span class="vrat-label">राहुकाल</span>
+                                    <span class="vrat-name" id="p-rahu">—</span>
+                                </div>
+                                <div class="vrat-row" style="margin-bottom: 0">
+                                    <span class="vrat-icon">🧿</span>
+                                    <span class="vrat-label">सम्वत्सर</span>
+                                    <span class="vrat-name">क्रोधी</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /panch-inner-row -->
+                    </div>
+                    <!-- /panch-block -->
 
-            <!-- Left sub-col: पाँच अंग -->
-            <div class="panch-col">
-                <div class="panch-col-head">पञ्चाङ्ग</div>
-                <div class="vrat-row">
-                    <span class="vrat-icon">☀️</span>
-                    <span class="vrat-label">वार</span>
-                    <span class="vrat-name" id="p-vara">—</span>
-                    <span class="vrat-date" id="p-vara-d">—</span>
+                    <!-- Right column: vrat + festivals -->
+                    <div class="panch-right-col">
+                        <!-- Upcoming Vrats -->
+                        <div class="vrat-block">
+                            <h3>🌙 आगामी व्रत</h3>
+                            <div class="vrat-row">
+                                <span class="vrat-icon">🌿</span>
+                                <span class="vrat-label">एकादशी</span>
+                                <span class="vrat-name" id="vrat-ek-name">—</span>
+                                <span class="vrat-date" id="vrat-ek-date">—</span>
+                            </div>
+                            <div class="vrat-row">
+                                <span class="vrat-icon">🔱</span>
+                                <span class="vrat-label">शिवरात्रि</span>
+                                <span class="vrat-name" id="vrat-shiv-name">—</span>
+                                <span class="vrat-date" id="vrat-shiv-date">—</span>
+                            </div>
+                            <div class="vrat-row">
+                                <span class="vrat-icon">🐘</span>
+                                <span class="vrat-label">संकष्टी चतुर्थी</span>
+                                <span class="vrat-name" id="vrat-chat-name">—</span>
+                                <span class="vrat-date" id="vrat-chat-date">—</span>
+                            </div>
+                        </div>
+                        <!-- /vrat-block -->
+
+                        <!-- Festivals -->
+                        <div class="fest-inner">
+                            <div class="fest-inner-head">🎊 आगामी पर्व एवं उत्सव</div>
+                            <div class="swiper fest-swiper" style="padding-bottom: 1rem">
+                                <div class="swiper-wrapper" id="fest-list"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /panch-right-col -->
                 </div>
-                <div class="vrat-row">
-                    <span class="vrat-icon">🌙</span>
-                    <span class="vrat-label">तिथि</span>
-                    <span class="vrat-name" id="p-tithi">—</span>
-                    <span class="vrat-date" id="p-paksha">—</span>
-                </div>
-                <div class="vrat-row">
-                    <span class="vrat-icon">⭐</span>
-                    <span class="vrat-label">नक्षत्र</span>
-                    <span class="vrat-name" id="p-naks">—</span>
-                    <span class="vrat-date" id="p-naks-d">—</span>
-                </div>
-                <div class="vrat-row">
-                    <span class="vrat-icon">🔮</span>
-                    <span class="vrat-label">योग</span>
-                    <span class="vrat-name" id="p-yoga">—</span>
-                    <span class="vrat-date" id="p-yoga-q">—</span>
-                </div>
-                <div class="vrat-row" style="margin-bottom:0">
-                    <span class="vrat-icon">📅</span>
-                    <span class="vrat-label">हिन्दू मास</span>
-                    <span class="vrat-name" id="p-masa">—</span>
-                    <span class="vrat-date">विक्रम सं. २०८२</span>
+                <!-- /panch-vrat-row -->
+
+                <!-- Shastriya Ghatna -->
+                <div class="shastr-block" id="shastr-block" style="display: none">
+                    <h3>📜 आज की शास्त्रीय घटना</h3>
+                    <div class="shastr-subtitle" id="shastr-subtitle">आज की तिथि से संबंधित शास्त्रीय प्रसंग</div>
+                    <div class="shastr-cards" id="shastr-list"></div>
                 </div>
             </div>
-
-            <!-- Right sub-col: खगोलीय समय -->
-            <div class="panch-col panch-col-astro">
-                <div class="panch-col-head">खगोलीय समय</div>
-                <div class="vrat-row">
-                    <span class="vrat-icon">🌅</span>
-                    <span class="vrat-label">सूर्योदय</span>
-                    <span class="vrat-name" id="p-sunrise">—</span>
-                </div>
-                <div class="vrat-row">
-                    <span class="vrat-icon">🌇</span>
-                    <span class="vrat-label">सूर्यास्त</span>
-                    <span class="vrat-name" id="p-sunset">—</span>
-                </div>
-                <div class="vrat-row">
-                    <span class="vrat-icon">🌕</span>
-                    <span class="vrat-label">चन्द्रोदय</span>
-                    <span class="vrat-name" id="p-moonrise">—</span>
-                </div>
-                <div class="vrat-row">
-                    <span class="vrat-icon">🌑</span>
-                    <span class="vrat-label">चन्द्रास्त</span>
-                    <span class="vrat-name" id="p-moonset">—</span>
-                </div>
-                <div class="vrat-row">
-                    <span class="vrat-icon">⚠️</span>
-                    <span class="vrat-label">राहुकाल</span>
-                    <span class="vrat-name" id="p-rahu">—</span>
-                </div>
-                <div class="vrat-row" style="margin-bottom:0">
-                    <span class="vrat-icon">🧿</span>
-                    <span class="vrat-label">सम्वत्सर</span>
-                    <span class="vrat-name">क्रोधी</span>
-                </div>
-            </div>
-
-        </div><!-- /panch-inner-row -->
-    </div><!-- /panch-block -->
-
-    <!-- Right column: vrat + festivals -->
-    <div class="panch-right-col">
-    <!-- Upcoming Vrats -->
-    <div class="vrat-block">
-        <h3>🌙 आगामी व्रत</h3>
-        <div class="vrat-row">
-            <span class="vrat-icon">🌿</span>
-            <span class="vrat-label">एकादशी</span>
-            <span class="vrat-name" id="vrat-ek-name">—</span>
-            <span class="vrat-date" id="vrat-ek-date">—</span>
         </div>
-        <div class="vrat-row">
-            <span class="vrat-icon">🔱</span>
-            <span class="vrat-label">शिवरात्रि</span>
-            <span class="vrat-name" id="vrat-shiv-name">—</span>
-            <span class="vrat-date" id="vrat-shiv-date">—</span>
-        </div>
-        <div class="vrat-row">
-            <span class="vrat-icon">🐘</span>
-            <span class="vrat-label">संकष्टी चतुर्थी</span>
-            <span class="vrat-name" id="vrat-chat-name">—</span>
-            <span class="vrat-date" id="vrat-chat-date">—</span>
-        </div>
-    </div><!-- /vrat-block -->
 
-    <!-- Festivals -->
-    <div class="fest-inner">
-        <div class="fest-inner-head">🎊 आगामी पर्व एवं उत्सव</div>
-        <div class="swiper fest-swiper" style="padding-bottom:1rem">
-            <div class="swiper-wrapper" id="fest-list"></div>
-        </div>
-    </div>
-
-    </div><!-- /panch-right-col -->
-    </div><!-- /panch-vrat-row -->
-
-    <!-- Shastriya Ghatna -->
-    <div class="shastr-block" id="shastr-block" style="display:none">
-        <h3>📜 आज की शास्त्रीय घटना</h3>
-        <div class="shastr-subtitle" id="shastr-subtitle">आज की तिथि से संबंधित शास्त्रीय प्रसंग</div>
-        <div class="shastr-cards" id="shastr-list"></div>
-    </div>
-
-</div>
-</div>
-
-
-<!-- ════════════════════════════════════
+        <!-- ════════════════════════════════════
      DAILY VERSE
 ════════════════════════════════════ -->
-<div class="quote-band">
-    <div class="q-om">ॐ</div>
-    <div class="q-text" id="q-text">—</div>
-    <div class="q-src"  id="q-src">—</div>
-</div>
+        <div class="quote-band">
+            <div class="q-om">ॐ</div>
+            <div class="q-text" id="q-text">—</div>
+            <div class="q-src" id="q-src">—</div>
+        </div>
 
+        <!-- FOOTER -->
+        <footer>
+            <div class="ft-om">ॐ</div>
+            <div class="ft-name">स्वाध्याय</div>
+            <div class="ft-desc">हिन्दू शास्त्रों का डिजिटल पुस्तकालय</div>
+            <div class="ft-links">
+                <a href="tithi.html">तिथि</a>
+                <a href="clock.html">घड़ी</a>
+                <a href="puli_meka.html">पुलिमेका</a>
+                <a href="story.html">कथा</a>
+                <a href="about.html">परिचय</a>
+            </div>
+            <div class="ft-copy">© २०२५ स्वाध्याय &nbsp;·&nbsp; ज्ञान निःशुल्क है, इसे बाँटिए</div>
+        </footer>
 
-<!-- FOOTER -->
-<footer>
-    <div class="ft-om">ॐ</div>
-    <div class="ft-name">स्वाध्याय</div>
-    <div class="ft-desc">हिन्दू शास्त्रों का डिजिटल पुस्तकालय</div>
-    <div class="ft-links">
-        <a href="tithi.html">तिथि</a>
-        <a href="clock.html">घड़ी</a>
-        <a href="puli_meka.html">पुलिमेका</a>
-        <a href="story.html">कथा</a>
-        <a href="about.html">परिचय</a>
-    </div>
-    <div class="ft-copy">© २०२५ स्वाध्याय &nbsp;·&nbsp; ज्ञान निःशुल्क है, इसे बाँटिए</div>
-</footer>
-
-
-<script>
-/* ============================================================
+        <script>
+            /* ============================================================
    DATA
 ============================================================ */
-const VARAS    = ["रविवार","सोमवार","मंगलवार","बुधवार","गुरुवार","शुक्रवार","शनिवार"];
-const VARA_DEV = ["सूर्य","चन्द्र","मंगल","बुध","बृहस्पति","शुक्र","शनि"];
-const TITHIS   = [
-    "प्रतिपदा","द्वितीया","तृतीया","चतुर्थी","पञ्चमी","षष्ठी","सप्तमी",
-    "अष्टमी","नवमी","दशमी","एकादशी","द्वादशी","त्रयोदशी","चतुर्दशी","पूर्णिमा",
-    "प्रतिपदा","द्वितीया","तृतीया","चतुर्थी","पञ्चमी","षष्ठी","सप्तमी",
-    "अष्टमी","नवमी","दशमी","एकादशी","द्वादशी","त्रयोदशी","चतुर्दशी","अमावस्या"
-];
-const NAKS = [
-    {n:"अश्विनी",d:"अश्विनीकुमार"},{n:"भरणी",d:"यम"},{n:"कृत्तिका",d:"अग्नि"},
-    {n:"रोहिणी",d:"ब्रह्मा"},{n:"मृगशिरा",d:"चन्द्र"},{n:"आर्द्रा",d:"रुद्र"},
-    {n:"पुनर्वसु",d:"अदिति"},{n:"पुष्य",d:"बृहस्पति"},{n:"आश्लेषा",d:"सर्प"},
-    {n:"मघा",d:"पितृ"},{n:"पूर्वाफाल्गुनी",d:"भग"},{n:"उत्तराफाल्गुनी",d:"अर्यमा"},
-    {n:"हस्त",d:"सूर्य"},{n:"चित्रा",d:"विश्वकर्मा"},{n:"स्वाती",d:"वायु"},
-    {n:"विशाखा",d:"इन्द्राग्नि"},{n:"अनुराधा",d:"मित्र"},{n:"ज्येष्ठा",d:"इन्द्र"},
-    {n:"मूल",d:"निरृति"},{n:"पूर्वाषाढ़ा",d:"अपः"},{n:"उत्तराषाढ़ा",d:"विश्वेदेव"},
-    {n:"श्रवण",d:"विष्णु"},{n:"धनिष्ठा",d:"वसव"},{n:"शतभिषा",d:"वरुण"},
-    {n:"पूर्वाभाद्रपद",d:"अजैकपाद"},{n:"उत्तराभाद्रपद",d:"अहिर्बुध्न्य"},{n:"रेवती",d:"पूषा"}
-];
-const YOGAS = [
-    {n:"विष्कम्भ",q:"अशुभ"},{n:"प्रीति",q:"शुभ"},{n:"आयुष्मान्",q:"शुभ"},{n:"सौभाग्य",q:"शुभ"},
-    {n:"शोभन",q:"शुभ"},{n:"अतिगण्ड",q:"अशुभ"},{n:"सुकर्मा",q:"शुभ"},{n:"धृति",q:"शुभ"},
-    {n:"शूल",q:"अशुभ"},{n:"गण्ड",q:"अशुभ"},{n:"वृद्धि",q:"शुभ"},{n:"ध्रुव",q:"शुभ"},
-    {n:"व्याघात",q:"अशुभ"},{n:"हर्षण",q:"शुभ"},{n:"वज्र",q:"अशुभ"},{n:"सिद्धि",q:"शुभ"},
-    {n:"व्यतीपात",q:"अशुभ"},{n:"वरीयान्",q:"शुभ"},{n:"परिघ",q:"अशुभ"},{n:"शिव",q:"शुभ"},
-    {n:"सिद्ध",q:"शुभ"},{n:"साध्य",q:"शुभ"},{n:"शुभ",q:"शुभ"},{n:"शुक्ल",q:"शुभ"},
-    {n:"ब्रह्म",q:"शुभ"},{n:"इन्द्र",q:"शुभ"},{n:"वैधृति",q:"अशुभ"}
-];
-const MASAS = ["चैत्र","वैशाख","ज्येष्ठ","आषाढ़","श्रावण","भाद्रपद","आश्विन","कार्तिक","मार्गशीर्ष","पौष","माघ","फाल्गुन"];
-const RAHU  = ["१५:०० – १६:३०","७:३० – ९:००","१५:०० – १६:३०","१२:०० – १३:३०","१०:३० – १२:००","१०:३० – १२:००","९:०० – १०:३०"];
+            const VARAS = ["रविवार", "सोमवार", "मंगलवार", "बुधवार", "गुरुवार", "शुक्रवार", "शनिवार"];
+            const VARA_DEV = ["सूर्य", "चन्द्र", "मंगल", "बुध", "बृहस्पति", "शुक्र", "शनि"];
+            const TITHIS = [
+                "प्रतिपदा",
+                "द्वितीया",
+                "तृतीया",
+                "चतुर्थी",
+                "पञ्चमी",
+                "षष्ठी",
+                "सप्तमी",
+                "अष्टमी",
+                "नवमी",
+                "दशमी",
+                "एकादशी",
+                "द्वादशी",
+                "त्रयोदशी",
+                "चतुर्दशी",
+                "पूर्णिमा",
+                "प्रतिपदा",
+                "द्वितीया",
+                "तृतीया",
+                "चतुर्थी",
+                "पञ्चमी",
+                "षष्ठी",
+                "सप्तमी",
+                "अष्टमी",
+                "नवमी",
+                "दशमी",
+                "एकादशी",
+                "द्वादशी",
+                "त्रयोदशी",
+                "चतुर्दशी",
+                "अमावस्या"
+            ];
+            const NAKS = [
+                { n: "अश्विनी", d: "अश्विनीकुमार" },
+                { n: "भरणी", d: "यम" },
+                { n: "कृत्तिका", d: "अग्नि" },
+                { n: "रोहिणी", d: "ब्रह्मा" },
+                { n: "मृगशिरा", d: "चन्द्र" },
+                { n: "आर्द्रा", d: "रुद्र" },
+                { n: "पुनर्वसु", d: "अदिति" },
+                { n: "पुष्य", d: "बृहस्पति" },
+                { n: "आश्लेषा", d: "सर्प" },
+                { n: "मघा", d: "पितृ" },
+                { n: "पूर्वाफाल्गुनी", d: "भग" },
+                { n: "उत्तराफाल्गुनी", d: "अर्यमा" },
+                { n: "हस्त", d: "सूर्य" },
+                { n: "चित्रा", d: "विश्वकर्मा" },
+                { n: "स्वाती", d: "वायु" },
+                { n: "विशाखा", d: "इन्द्राग्नि" },
+                { n: "अनुराधा", d: "मित्र" },
+                { n: "ज्येष्ठा", d: "इन्द्र" },
+                { n: "मूल", d: "निरृति" },
+                { n: "पूर्वाषाढ़ा", d: "अपः" },
+                { n: "उत्तराषाढ़ा", d: "विश्वेदेव" },
+                { n: "श्रवण", d: "विष्णु" },
+                { n: "धनिष्ठा", d: "वसव" },
+                { n: "शतभिषा", d: "वरुण" },
+                { n: "पूर्वाभाद्रपद", d: "अजैकपाद" },
+                { n: "उत्तराभाद्रपद", d: "अहिर्बुध्न्य" },
+                { n: "रेवती", d: "पूषा" }
+            ];
+            const YOGAS = [
+                { n: "विष्कम्भ", q: "अशुभ" },
+                { n: "प्रीति", q: "शुभ" },
+                { n: "आयुष्मान्", q: "शुभ" },
+                { n: "सौभाग्य", q: "शुभ" },
+                { n: "शोभन", q: "शुभ" },
+                { n: "अतिगण्ड", q: "अशुभ" },
+                { n: "सुकर्मा", q: "शुभ" },
+                { n: "धृति", q: "शुभ" },
+                { n: "शूल", q: "अशुभ" },
+                { n: "गण्ड", q: "अशुभ" },
+                { n: "वृद्धि", q: "शुभ" },
+                { n: "ध्रुव", q: "शुभ" },
+                { n: "व्याघात", q: "अशुभ" },
+                { n: "हर्षण", q: "शुभ" },
+                { n: "वज्र", q: "अशुभ" },
+                { n: "सिद्धि", q: "शुभ" },
+                { n: "व्यतीपात", q: "अशुभ" },
+                { n: "वरीयान्", q: "शुभ" },
+                { n: "परिघ", q: "अशुभ" },
+                { n: "शिव", q: "शुभ" },
+                { n: "सिद्ध", q: "शुभ" },
+                { n: "साध्य", q: "शुभ" },
+                { n: "शुभ", q: "शुभ" },
+                { n: "शुक्ल", q: "शुभ" },
+                { n: "ब्रह्म", q: "शुभ" },
+                { n: "इन्द्र", q: "शुभ" },
+                { n: "वैधृति", q: "अशुभ" }
+            ];
+            const MASAS = [
+                "चैत्र",
+                "वैशाख",
+                "ज्येष्ठ",
+                "आषाढ़",
+                "श्रावण",
+                "भाद्रपद",
+                "आश्विन",
+                "कार्तिक",
+                "मार्गशीर्ष",
+                "पौष",
+                "माघ",
+                "फाल्गुन"
+            ];
+            const RAHU = [
+                "१५:०० – १६:३०",
+                "७:३० – ९:००",
+                "१५:०० – १६:३०",
+                "१२:०० – १३:३०",
+                "१०:३० – १२:००",
+                "१०:३० – १२:००",
+                "९:०० – १०:३०"
+            ];
 
-const FESTIVALS = [
-    {n:"गुरु पूर्णिमा",   dt:"2025-07-10",ico:"🪔",d:"आषाढ़ पूर्णिमा"},
-    {n:"नाग पञ्चमी",     dt:"2025-07-29",ico:"🐍",d:"श्रावण शुक्ल पञ्चमी"},
-    {n:"रक्षाबन्धन",     dt:"2025-08-09",ico:"🎀",d:"श्रावण पूर्णिमा"},
-    {n:"जन्माष्टमी",     dt:"2025-08-16",ico:"🦚",d:"भाद्र कृष्ण अष्टमी"},
-    {n:"गणेश चतुर्थी",   dt:"2025-08-27",ico:"🐘",d:"भाद्र शुक्ल चतुर्थी"},
-    {n:"नवरात्रि",        dt:"2025-10-02",ico:"🌺",d:"आश्विन शुक्ल प्रतिपदा"},
-    {n:"दशहरा",           dt:"2025-10-02",ico:"🏹",d:"विजयादशमी"},
-    {n:"दीपावली",         dt:"2025-10-20",ico:"🪔",d:"कार्तिक अमावस्या"},
-    {n:"कार्तिक पूर्णिमा",dt:"2025-11-05",ico:"🌕",d:"देव दीपावली"},
-    {n:"मकर संक्रान्ति", dt:"2026-01-14",ico:"☀️",d:"सूर्य का मकर में प्रवेश"},
-    {n:"महाशिवरात्रि",   dt:"2026-02-26",ico:"🔱",d:"फाल्गुन कृष्ण चतुर्दशी"},
-    {n:"होली",            dt:"2026-03-13",ico:"🎨",d:"फाल्गुन पूर्णिमा"},
-    {n:"राम नवमी",        dt:"2026-03-28",ico:"🏹",d:"चैत्र शुक्ल नवमी"},
-    {n:"अक्षय तृतीया",   dt:"2026-04-21",ico:"✨",d:"वैशाख शुक्ल तृतीया"},
-];
+            const FESTIVALS = [
+                { n: "गुरु पूर्णिमा", dt: "2025-07-10", ico: "🪔", d: "आषाढ़ पूर्णिमा" },
+                { n: "नाग पञ्चमी", dt: "2025-07-29", ico: "🐍", d: "श्रावण शुक्ल पञ्चमी" },
+                { n: "रक्षाबन्धन", dt: "2025-08-09", ico: "🎀", d: "श्रावण पूर्णिमा" },
+                { n: "जन्माष्टमी", dt: "2025-08-16", ico: "🦚", d: "भाद्र कृष्ण अष्टमी" },
+                { n: "गणेश चतुर्थी", dt: "2025-08-27", ico: "🐘", d: "भाद्र शुक्ल चतुर्थी" },
+                { n: "नवरात्रि", dt: "2025-10-02", ico: "🌺", d: "आश्विन शुक्ल प्रतिपदा" },
+                { n: "दशहरा", dt: "2025-10-02", ico: "🏹", d: "विजयादशमी" },
+                { n: "दीपावली", dt: "2025-10-20", ico: "🪔", d: "कार्तिक अमावस्या" },
+                { n: "कार्तिक पूर्णिमा", dt: "2025-11-05", ico: "🌕", d: "देव दीपावली" },
+                { n: "मकर संक्रान्ति", dt: "2026-01-14", ico: "☀️", d: "सूर्य का मकर में प्रवेश" },
+                { n: "महाशिवरात्रि", dt: "2026-02-26", ico: "🔱", d: "फाल्गुन कृष्ण चतुर्दशी" },
+                { n: "होली", dt: "2026-03-13", ico: "🎨", d: "फाल्गुन पूर्णिमा" },
+                { n: "राम नवमी", dt: "2026-03-28", ico: "🏹", d: "चैत्र शुक्ल नवमी" },
+                { n: "अक्षय तृतीया", dt: "2026-04-21", ico: "✨", d: "वैशाख शुक्ल तृतीया" }
+            ];
 
-const LIBRARY = {
-    ved:{desc:"वेद हिन्दू धर्म के प्राचीनतम श्रुति-ग्रंथ हैं। 'वेद' शब्द संस्कृत 'विद्' धातु से बना है जिसका अर्थ है 'जानना'। इनमें यज्ञ, दर्शन, विज्ञान और आध्यात्म का अद्भुत संगम है।",
-        books:[
-            {id:"rigveda",  t:"ऋग्वेद",   s:"१०,५५२ ऋचाएँ",         bg:"#0d1b3e",fg:"#6ea8ff"},
-            {id:"vedasama", t:"सामवेद",   s:"१,८७५ साम · संगीत वेद",bg:"#0d2a18",fg:"#60ffaa"},
-            {id:"vedayajur",t:"यजुर्वेद", s:"यज्ञ-विधि · कर्मकाण्ड",bg:"#1e0830",fg:"#c080ff"},
-            {id:null,       t:"अथर्ववेद", s:"औषधि · विज्ञान",       bg:"#261206",fg:"#ffa060",na:1},
-        ]},
-    upanishad:{desc:"उपनिषद् वेदांत के मूल ग्रंथ हैं। 'उप' (निकट) + 'नि' (नीचे) + 'षद्' (बैठना) — गुरु के चरणों में बैठकर प्राप्त ज्ञान। इनमें आत्मा, ब्रह्म और मोक्ष का परम रहस्य है।",
-        books:[
-            {id:"upa_ishavas",           t:"ईशावास्योपनिषद्",   s:"४० मंत्र",           bg:"#0f2a1a",fg:"#60ffaa"},
-            {id:"u_केनोपनिषद्",          t:"केनोपनिषद्",        s:"ब्रह्म-जिज्ञासा",  bg:"#0a1e2e",fg:"#60c0ff"},
-            {id:"u_कठोपनिषद्",           t:"कठोपनिषद्",         s:"नचिकेता-यम संवाद", bg:"#1c0830",fg:"#b060ff"},
-            {id:"u_माण्डूक्योपनिषद्",    t:"माण्डूक्योपनिषद्", s:"ॐकार की व्याख्या", bg:"#261806",fg:"#ffaa40"},
-            {id:"u_तैत्तिरीयोपनिषद्",   t:"तैत्तिरीयोपनिषद्", s:"आनन्दवल्ली",        bg:"#0e2608",fg:"#80ff60"},
-            {id:"u_प्रश्नोपनिषद्",       t:"प्रश्नोपनिषद्",    s:"षट् प्रश्न",        bg:"#182606",fg:"#c0ff60"},
-            {id:null,                    t:"ऐतरेयोपनिषद्",    s:"सृष्टि-रहस्य",      bg:"#280a0a",fg:"#ff7070",na:1},
-            {id:null,                    t:"बृहदारण्यकोपनिषद्",s:"सबसे विस्तृत",      bg:"#08082a",fg:"#6060ff",na:1},
-            {id:null,                    t:"छान्दोग्योपनिषद्", s:"सामवेद-जात",        bg:"#1e0a1e",fg:"#ff60ff",na:1},
-            {id:null,                    t:"मुण्डकोपनिषद्",    s:"परा-अपरा विद्या",   bg:"#081e1e",fg:"#60ffff",na:1},
-        ]},
-    puran:{desc:"पुराण वेदों के ज्ञान को कथाओं द्वारा जन-जन तक पहुँचाते हैं। इनमें सृष्टि, वंशावली और धर्म का विस्तृत वर्णन है। अठारह महापुराण हैं।",
-        books:[
-            {id:"puran_matsya",      t:"मत्स्य पुराण",        s:"मत्स्य अवतार",        bg:"#081830",fg:"#60aaff"},
-            {id:"puran_brahma",      t:"ब्रह्म पुराण",         s:"आदि पुराण",           bg:"#251808",fg:"#c8902a"},
-            {id:"puran_vishnu",      t:"विष्णु पुराण",         s:"वैष्णव महापुराण",     bg:"#06103a",fg:"#5090ff"},
-            {id:"puran_shiva",       t:"शिव पुराण",           s:"संक्षिप्त संस्करण",   bg:"#200606",fg:"#ff6050"},
-            {id:"puran_padma",       t:"पद्म पुराण",           s:"सृष्टि-लीला",         bg:"#1e0a1e",fg:"#ff80ff"},
-            {id:"puran_bhagavat",    t:"भागवत महापुराण",      s:"कृष्ण-लीला · १२ स्कन्ध",bg:"#060e30",fg:"#7090ff"},
-            {id:"puran_varaha",      t:"वराह पुराण",           s:"वराह अवतार",          bg:"#101e06",fg:"#90ff60"},
-            {id:"puran_narad",       t:"नारद पुराण",           s:"भक्तिशास्त्र",        bg:"#201006",fg:"#ffaa50"},
-            {id:"puran_garud",       t:"गरुड पुराण",           s:"मृत्यु-रहस्य",        bg:"#061a10",fg:"#50ffaa"},
-            {id:"puran_agni",        t:"अग्नि पुराण",          s:"सर्वविद्या-संग्रह",   bg:"#260e04",fg:"#ff8840"},
-            {id:"puran_markandey",   t:"मार्कण्डेय पुराण",    s:"देवीमाहात्म्य सहित",  bg:"#14062a",fg:"#b060ff"},
-            {id:"puran_brahmvaivart",t:"ब्रह्मवैवर्त पुराण", s:"राधा-कृष्ण लीला",     bg:"#08081e",fg:"#7060ff"},
-            {id:null,               t:"भविष्य पुराण",          s:"शीघ्र आएगा",          bg:"#1e1e06",fg:"#d0cc40",na:1},
-            {id:null,               t:"लिङ्ग पुराण",           s:"शीघ्र आएगा",          bg:"#1a0404",fg:"#ff5040",na:1},
-            {id:null,               t:"स्कन्द पुराण",          s:"शीघ्र आएगा",          bg:"#081808",fg:"#60ee60",na:1},
-            {id:null,               t:"वामन पुराण",            s:"शीघ्र आएगा",          bg:"#06101e",fg:"#40aaff",na:1},
-            {id:null,               t:"कूर्म पुराण",            s:"शीघ्र आएगा",          bg:"#1e1006",fg:"#ffaa40",na:1},
-            {id:null,               t:"ब्रह्माण्ड पुराण",     s:"शीघ्र आएगा",          bg:"#100618",fg:"#e060ff",na:1},
-        ]},
-    itihas:{desc:"रामायण और महाभारत हिन्दू धर्म के दो महाकाव्य हैं। ये केवल कथाएँ नहीं — जीवन-दर्शन, नीति, प्रेम और धर्म का सम्पूर्ण ज्ञान इनमें समाहित है।",
-        books:[
-            {id:"valmiki",            t:"वाल्मीकि रामायण",  s:"७ काण्ड · २४,०००+ श्लोक",bg:"#2a0806",fg:"#ff8840"},
-            {id:"ramcharitmanas",      t:"रामचरितमानस",      s:"तुलसीदास · अवधी भाषा",   bg:"#1c1006",fg:"#d4a030"},
-            {id:"संक्षिप्तमहाभारत",    t:"संक्षिप्त महाभारत",s:"गीताप्रेस संस्करण",      bg:"#081430",fg:"#60a0ff"},
-            {id:"mahabharat_full",      t:"महाभारत पूर्ण",   s:"१८ पर्व · दस लाख श्लोक", bg:"#120628",fg:"#b060ff"},
-        ]},
-    gita:{desc:"गीता भगवान का साक्षात् उपदेश है। श्रीमद्भगवद्गीता इनमें सर्वोच्च है। गीता-संग्रहमें पच्चीस विभिन्न गीता-ग्रन्थों का सानुवाद संकलन है — प्रत्येक गीता अपने विशेष दर्शन के साथ जीवन-पथ प्रकाशित करती है।",
-        books:[
-            {id:"श्रीमद्भगवद्‍गीतासुगमपाठ",t:"श्रीमद्भगवद्‍गीता",  s:"१८ अध्याय · ७०० श्लोक",  bg:"#061e28",fg:"#40e0c0"},
-            {id:"अष्टावक्रगीता",             t:"अष्टावक्र गीता",    s:"अद्वैत का शिखर · २० अध्याय",bg:"#0a1628",fg:"#60b0ff"},
-            {id:"gita_srirama",             t:"श्रीराम गीता",      s:"उत्तरकाण्ड",             bg:"#280c06",fg:"#ff9050"},
-            {id:"गणेशगीता",                 t:"गणेश गीता",         s:"गणेश-पुराण-जात",         bg:"#1c1006",fg:"#d0a030"},
-            {id:"परमहंसगीता",               t:"परमहंस गीता",       s:"भागवत एकादश स्कन्ध",     bg:"#061e12",fg:"#40ee80"},
-            {id:"भिक्षुगीता",               t:"भिक्षु गीता",       s:"मनोजय का उपाय",          bg:"#180818",fg:"#d060e0"},
-            {id:"षड्जगीता",                 t:"षड्ज गीता",         s:"षड्ज राजाको उपदेश",      bg:"#0a1e10",fg:"#60ffb0"},
-            {id:"पिंगलागीता",               t:"पिंगला गीता",       s:"वेश्याका वैराग्य",        bg:"#28081e",fg:"#ff80c0"},
-            {id:"शम्पाकगीता",               t:"शम्पाक गीता",       s:"शम्पाकका उपदेश",         bg:"#1a1008",fg:"#ffb060"},
-            {id:"मङ्किगीता",                t:"मङ्कि गीता",        s:"मङ्कि मुनिका उपदेश",     bg:"#1e1408",fg:"#ffcc60"},
-            {id:"आजगरगीता",                 t:"आजगर गीता",         s:"अजगर-वृत्ति दर्शन",      bg:"#0a1a0a",fg:"#80ff80"},
-            {id:"हारीतगीता",                t:"हारीत गीता",        s:"हारीत मुनिका उपदेश",     bg:"#061810",fg:"#60e8a0"},
-            {id:"वृत्रगीता",                t:"वृत्र गीता",        s:"वृत्रासुरका वैराग्य",     bg:"#200808",fg:"#ff8060"},
-            {id:"पुत्रगीता",                t:"पुत्र गीता",        s:"पितृ-पुत्र संवाद",        bg:"#081428",fg:"#60b0ff"},
-            {id:"कामगीता",                  t:"काम गीता",          s:"कामदेवका उपदेश",         bg:"#200618",fg:"#ff70c0"},
-            {id:"यमगीता-1",                 t:"यमगीता (१)",        s:"यमराजका उपदेश · प्रथम",  bg:"#1a0a0a",fg:"#ff6060"},
-            {id:"यमगीता-2",                 t:"यमगीता (२)",        s:"यमराजका उपदेश · द्वितीय",bg:"#220808",fg:"#ff7070"},
-            {id:"हंसगीता-1",                t:"हंसगीता (१)",       s:"हंसरूप भगवान् · प्रथम",  bg:"#101828",fg:"#a0c8ff"},
-            {id:"हंसगीता-2",                t:"हंसगीता (२)",       s:"हंसरूप भगवान् · द्वितीय",bg:"#0c1830",fg:"#80b0ff"},
-            {id:"नारदगीता",                 t:"नारद गीता",         s:"नारदजीका ज्ञानोपदेश",    bg:"#1e1a06",fg:"#ffe060"},
-            {id:"उत्तरगीता",                t:"उत्तर गीता",        s:"अर्जुनको पुन: उपदेश",    bg:"#061e20",fg:"#40e0d0"},
-            {id:"रामगीता-1",                t:"रामगीता (१)",       s:"श्रीरामजीका उपदेश · प्रथम",bg:"#280e06",fg:"#ff9060"},
-            {id:"रामगीता-2",                t:"रामगीता (२)",       s:"श्रीरामजीका उपदेश · द्वितीय",bg:"#301006",fg:"#ffa060"},
-            {id:"भगवतीगीता",                t:"भगवती गीता",        s:"देवीका ज्ञानोपदेश",      bg:"#220828",fg:"#ff80e0"},
-            {id:"अवधूतगीता-1",              t:"अवधूतगीता (१)",     s:"दत्तात्रेय · अद्वैत · प्रथम",bg:"#160828",fg:"#c080ff"},
-            {id:"अवधूतगीता-2",              t:"अवधूतगीता (२)",     s:"दत्तात्रेय · अद्वैत · द्वितीय",bg:"#1a0a30",fg:"#b070ff"},
-            {id:"जीवन्मुक्तगीता",           t:"जीवन्मुक्त गीता",  s:"जीवन्मुक्तिका मार्ग",   bg:"#081e18",fg:"#40ffcc"},
-        ]},
-    vedant:{desc:"वेदान्त दर्शन के ग्रंथ आत्मा और ब्रह्म के अद्वैत सत्य का निरूपण करते हैं। शंकराचार्य ने इन ग्रंथों की अद्वैत-दृष्टि से व्याख्या की है।",
-        books:[
-            {id:"vedant_ब्रह्मसूत्र",    t:"ब्रह्मसूत्र",       s:"वेदांत का आधार",        bg:"#0a1830",fg:"#60a8ff"},
-            {id:"Vedant_vivekachudamani", t:"विवेकचूडामणि",      s:"शंकराचार्य · अद्वैत",   bg:"#102008",fg:"#80e840"},
-            {id:"vedant_atmabodha",       t:"आत्मबोध",           s:"शंकराचार्य रचित",       bg:"#201806",fg:"#d0a030"},
-            {id:"पातञ्जलयोगदर्शन",       t:"पातञ्जल योगदर्शन", s:"१९६ सूत्र · अष्टांग",   bg:"#061818",fg:"#40e0c0"},
-            {id:"shankarbhashya",         t:"शांकरभाष्य",        s:"उपनिषद् भाष्य",         bg:"#180610",fg:"#e060c0"},
-            {id:"साधक-संजीवनी",          t:"साधक-संजीवनी",      s:"गीता की व्याख्या",      bg:"#0c0c20",fg:"#8080ff"},
-        ]},
-    stotra:{desc:"स्तोत्र भक्ति की सरिता हैं। देवताओं की स्तुति के ये काव्य-रत्न मन को शान्ति और आत्मा को उन्नति प्रदान करते हैं।",
-        books:[
-            {id:"durga_saptasahi",  t:"दुर्गा सप्तशती",   s:"७०० श्लोक · देवी-माहात्म्य",bg:"#280820",fg:"#ff60e0"},
-            {id:"स्तोत्ररत्नावली",  t:"स्तोत्ररत्नावली",  s:"विविध स्तोत्र-संग्रह",       bg:"#1c1006",fg:"#d0a030"},
-            {id:"nitya_puja",       t:"नित्य पूजा",       s:"दैनिक पूजन-विधि",            bg:"#061808",fg:"#60ee80"},
-            {id:"bhaktcharitavali", t:"भक्त चरितावली",    s:"भक्तों की जीवन-कथाएँ",      bg:"#100820",fg:"#b080ff"},
-        ]},
-};
+            const LIBRARY = {
+                ved: {
+                    desc: "वेद हिन्दू धर्म के प्राचीनतम श्रुति-ग्रंथ हैं। 'वेद' शब्द संस्कृत 'विद्' धातु से बना है जिसका अर्थ है 'जानना'। इनमें यज्ञ, दर्शन, विज्ञान और आध्यात्म का अद्भुत संगम है।",
+                    books: [
+                        { id: "rigveda", t: "ऋग्वेद", s: "१०,५५२ ऋचाएँ", bg: "#0d1b3e", fg: "#6ea8ff" },
+                        { id: "vedasama", t: "सामवेद", s: "१,८७५ साम · संगीत वेद", bg: "#0d2a18", fg: "#60ffaa" },
+                        { id: "vedayajur", t: "यजुर्वेद", s: "यज्ञ-विधि · कर्मकाण्ड", bg: "#1e0830", fg: "#c080ff" },
+                        { id: null, t: "अथर्ववेद", s: "औषधि · विज्ञान", bg: "#261206", fg: "#ffa060", na: 1 }
+                    ]
+                },
+                upanishad: {
+                    desc: "उपनिषद् वेदांत के मूल ग्रंथ हैं। 'उप' (निकट) + 'नि' (नीचे) + 'षद्' (बैठना) — गुरु के चरणों में बैठकर प्राप्त ज्ञान। इनमें आत्मा, ब्रह्म और मोक्ष का परम रहस्य है।",
+                    books: [
+                        { id: "upa_ishavas", t: "ईशावास्योपनिषद्", s: "४० मंत्र", bg: "#0f2a1a", fg: "#60ffaa" },
+                        { id: "u_केनोपनिषद्", t: "केनोपनिषद्", s: "ब्रह्म-जिज्ञासा", bg: "#0a1e2e", fg: "#60c0ff" },
+                        { id: "u_कठोपनिषद्", t: "कठोपनिषद्", s: "नचिकेता-यम संवाद", bg: "#1c0830", fg: "#b060ff" },
+                        {
+                            id: "u_माण्डूक्योपनिषद्",
+                            t: "माण्डूक्योपनिषद्",
+                            s: "ॐकार की व्याख्या",
+                            bg: "#261806",
+                            fg: "#ffaa40"
+                        },
+                        {
+                            id: "u_तैत्तिरीयोपनिषद्",
+                            t: "तैत्तिरीयोपनिषद्",
+                            s: "आनन्दवल्ली",
+                            bg: "#0e2608",
+                            fg: "#80ff60"
+                        },
+                        { id: "u_प्रश्नोपनिषद्", t: "प्रश्नोपनिषद्", s: "षट् प्रश्न", bg: "#182606", fg: "#c0ff60" },
+                        { id: null, t: "ऐतरेयोपनिषद्", s: "सृष्टि-रहस्य", bg: "#280a0a", fg: "#ff7070", na: 1 },
+                        { id: null, t: "बृहदारण्यकोपनिषद्", s: "सबसे विस्तृत", bg: "#08082a", fg: "#6060ff", na: 1 },
+                        { id: null, t: "छान्दोग्योपनिषद्", s: "सामवेद-जात", bg: "#1e0a1e", fg: "#ff60ff", na: 1 },
+                        { id: null, t: "मुण्डकोपनिषद्", s: "परा-अपरा विद्या", bg: "#081e1e", fg: "#60ffff", na: 1 }
+                    ]
+                },
+                puran: {
+                    desc: "पुराण वेदों के ज्ञान को कथाओं द्वारा जन-जन तक पहुँचाते हैं। इनमें सृष्टि, वंशावली और धर्म का विस्तृत वर्णन है। अठारह महापुराण हैं।",
+                    books: [
+                        { id: "puran_matsya", t: "मत्स्य पुराण", s: "मत्स्य अवतार", bg: "#081830", fg: "#60aaff" },
+                        { id: "puran_brahma", t: "ब्रह्म पुराण", s: "आदि पुराण", bg: "#251808", fg: "#c8902a" },
+                        { id: "puran_vishnu", t: "विष्णु पुराण", s: "वैष्णव महापुराण", bg: "#06103a", fg: "#5090ff" },
+                        { id: "puran_shiva", t: "शिव पुराण", s: "संक्षिप्त संस्करण", bg: "#200606", fg: "#ff6050" },
+                        { id: "puran_padma", t: "पद्म पुराण", s: "सृष्टि-लीला", bg: "#1e0a1e", fg: "#ff80ff" },
+                        {
+                            id: "puran_bhagavat",
+                            t: "भागवत महापुराण",
+                            s: "कृष्ण-लीला · १२ स्कन्ध",
+                            bg: "#060e30",
+                            fg: "#7090ff"
+                        },
+                        { id: "puran_varaha", t: "वराह पुराण", s: "वराह अवतार", bg: "#101e06", fg: "#90ff60" },
+                        { id: "puran_narad", t: "नारद पुराण", s: "भक्तिशास्त्र", bg: "#201006", fg: "#ffaa50" },
+                        { id: "puran_garud", t: "गरुड पुराण", s: "मृत्यु-रहस्य", bg: "#061a10", fg: "#50ffaa" },
+                        { id: "puran_agni", t: "अग्नि पुराण", s: "सर्वविद्या-संग्रह", bg: "#260e04", fg: "#ff8840" },
+                        {
+                            id: "puran_markandey",
+                            t: "मार्कण्डेय पुराण",
+                            s: "देवीमाहात्म्य सहित",
+                            bg: "#14062a",
+                            fg: "#b060ff"
+                        },
+                        {
+                            id: "puran_brahmvaivart",
+                            t: "ब्रह्मवैवर्त पुराण",
+                            s: "राधा-कृष्ण लीला",
+                            bg: "#08081e",
+                            fg: "#7060ff"
+                        },
+                        { id: null, t: "भविष्य पुराण", s: "शीघ्र आएगा", bg: "#1e1e06", fg: "#d0cc40", na: 1 },
+                        { id: null, t: "लिङ्ग पुराण", s: "शीघ्र आएगा", bg: "#1a0404", fg: "#ff5040", na: 1 },
+                        { id: null, t: "स्कन्द पुराण", s: "शीघ्र आएगा", bg: "#081808", fg: "#60ee60", na: 1 },
+                        { id: null, t: "वामन पुराण", s: "शीघ्र आएगा", bg: "#06101e", fg: "#40aaff", na: 1 },
+                        { id: null, t: "कूर्म पुराण", s: "शीघ्र आएगा", bg: "#1e1006", fg: "#ffaa40", na: 1 },
+                        { id: null, t: "ब्रह्माण्ड पुराण", s: "शीघ्र आएगा", bg: "#100618", fg: "#e060ff", na: 1 }
+                    ]
+                },
+                itihas: {
+                    desc: "रामायण और महाभारत हिन्दू धर्म के दो महाकाव्य हैं। ये केवल कथाएँ नहीं — जीवन-दर्शन, नीति, प्रेम और धर्म का सम्पूर्ण ज्ञान इनमें समाहित है।",
+                    books: [
+                        {
+                            id: "valmiki",
+                            t: "वाल्मीकि रामायण",
+                            s: "७ काण्ड · २४,०००+ श्लोक",
+                            bg: "#2a0806",
+                            fg: "#ff8840"
+                        },
+                        {
+                            id: "ramcharitmanas",
+                            t: "रामचरितमानस",
+                            s: "तुलसीदास · अवधी भाषा",
+                            bg: "#1c1006",
+                            fg: "#d4a030"
+                        },
+                        {
+                            id: "अध्यात्मरामायण",
+                            t: "अध्यात्मरामायण",
+                            s: "ब्रह्माण्डपुराणान्तर्गत · ७१ खण्ड",
+                            bg: "#200404",
+                            fg: "#ff9060"
+                        },
+                        {
+                            id: "संक्षिप्तमहाभारत",
+                            t: "संक्षिप्त महाभारत",
+                            s: "गीताप्रेस संस्करण",
+                            bg: "#1e0a00",
+                            fg: "#ffaa40"
+                        },
+                        {
+                            id: "mahabharat_full",
+                            t: "महाभारत पूर्ण",
+                            s: "१८ पर्व · दस लाख श्लोक",
+                            bg: "#160a00",
+                            fg: "#ff8030"
+                        }
+                    ]
+                },
+                gita: {
+                    desc: "गीता भगवान का साक्षात् उपदेश है। श्रीमद्भगवद्गीता इनमें सर्वोच्च है। गीता-संग्रहमें पच्चीस विभिन्न गीता-ग्रन्थों का सानुवाद संकलन है — प्रत्येक गीता अपने विशेष दर्शन के साथ जीवन-पथ प्रकाशित करती है।",
+                    books: [
+                        {
+                            id: "श्रीमद्भगवद्‍गीतासुगमपाठ",
+                            t: "श्रीमद्भगवद्‍गीता",
+                            s: "१८ अध्याय · ७०० श्लोक",
+                            bg: "#061e28",
+                            fg: "#40e0c0"
+                        },
+                        {
+                            id: "अष्टावक्रगीता",
+                            t: "अष्टावक्र गीता",
+                            s: "अद्वैत का शिखर · २० अध्याय",
+                            bg: "#0a1628",
+                            fg: "#60b0ff"
+                        },
+                        { id: "gita_srirama", t: "श्रीराम गीता", s: "उत्तरकाण्ड", bg: "#280c06", fg: "#ff9050" },
+                        { id: "गणेशगीता", t: "गणेश गीता", s: "गणेश-पुराण-जात", bg: "#1c1006", fg: "#d0a030" },
+                        { id: "परमहंसगीता", t: "परमहंस गीता", s: "भागवत एकादश स्कन्ध", bg: "#061e12", fg: "#40ee80" },
+                        { id: "भिक्षुगीता", t: "भिक्षु गीता", s: "मनोजय का उपाय", bg: "#180818", fg: "#d060e0" },
+                        { id: "षड्जगीता", t: "षड्ज गीता", s: "षड्ज राजाको उपदेश", bg: "#0a1e10", fg: "#60ffb0" },
+                        { id: "पिंगलागीता", t: "पिंगला गीता", s: "वेश्याका वैराग्य", bg: "#28081e", fg: "#ff80c0" },
+                        { id: "शम्पाकगीता", t: "शम्पाक गीता", s: "शम्पाकका उपदेश", bg: "#1a1008", fg: "#ffb060" },
+                        { id: "मङ्किगीता", t: "मङ्कि गीता", s: "मङ्कि मुनिका उपदेश", bg: "#1e1408", fg: "#ffcc60" },
+                        { id: "आजगरगीता", t: "आजगर गीता", s: "अजगर-वृत्ति दर्शन", bg: "#0a1a0a", fg: "#80ff80" },
+                        { id: "हारीतगीता", t: "हारीत गीता", s: "हारीत मुनिका उपदेश", bg: "#061810", fg: "#60e8a0" },
+                        { id: "वृत्रगीता", t: "वृत्र गीता", s: "वृत्रासुरका वैराग्य", bg: "#200808", fg: "#ff8060" },
+                        { id: "पुत्रगीता", t: "पुत्र गीता", s: "पितृ-पुत्र संवाद", bg: "#081428", fg: "#60b0ff" },
+                        { id: "कामगीता", t: "काम गीता", s: "कामदेवका उपदेश", bg: "#200618", fg: "#ff70c0" },
+                        { id: "यमगीता-1", t: "यमगीता (१)", s: "यमराजका उपदेश · प्रथम", bg: "#1a0a0a", fg: "#ff6060" },
+                        { id: "यमगीता-2", t: "यमगीता (२)", s: "यमराजका उपदेश · द्वितीय", bg: "#220808", fg: "#ff7070" },
+                        { id: "हंसगीता-1", t: "हंसगीता (१)", s: "हंसरूप भगवान् · प्रथम", bg: "#101828", fg: "#a0c8ff" },
+                        {
+                            id: "हंसगीता-2",
+                            t: "हंसगीता (२)",
+                            s: "हंसरूप भगवान् · द्वितीय",
+                            bg: "#0c1830",
+                            fg: "#80b0ff"
+                        },
+                        { id: "नारदगीता", t: "नारद गीता", s: "नारदजीका ज्ञानोपदेश", bg: "#1e1a06", fg: "#ffe060" },
+                        { id: "उत्तरगीता", t: "उत्तर गीता", s: "अर्जुनको पुन: उपदेश", bg: "#061e20", fg: "#40e0d0" },
+                        {
+                            id: "रामगीता-1",
+                            t: "रामगीता (१)",
+                            s: "श्रीरामजीका उपदेश · प्रथम",
+                            bg: "#280e06",
+                            fg: "#ff9060"
+                        },
+                        {
+                            id: "रामगीता-2",
+                            t: "रामगीता (२)",
+                            s: "श्रीरामजीका उपदेश · द्वितीय",
+                            bg: "#301006",
+                            fg: "#ffa060"
+                        },
+                        { id: "भगवतीगीता", t: "भगवती गीता", s: "देवीका ज्ञानोपदेश", bg: "#220828", fg: "#ff80e0" },
+                        {
+                            id: "अवधूतगीता-1",
+                            t: "अवधूतगीता (१)",
+                            s: "दत्तात्रेय · अद्वैत · प्रथम",
+                            bg: "#160828",
+                            fg: "#c080ff"
+                        },
+                        {
+                            id: "अवधूतगीता-2",
+                            t: "अवधूतगीता (२)",
+                            s: "दत्तात्रेय · अद्वैत · द्वितीय",
+                            bg: "#1a0a30",
+                            fg: "#b070ff"
+                        },
+                        {
+                            id: "जीवन्मुक्तगीता",
+                            t: "जीवन्मुक्त गीता",
+                            s: "जीवन्मुक्तिका मार्ग",
+                            bg: "#081e18",
+                            fg: "#40ffcc"
+                        }
+                    ]
+                },
+                vedant: {
+                    desc: "वेदान्त दर्शन के ग्रंथ आत्मा और ब्रह्म के अद्वैत सत्य का निरूपण करते हैं। शंकराचार्य ने इन ग्रंथों की अद्वैत-दृष्टि से व्याख्या की है।",
+                    books: [
+                        {
+                            id: "vedant_ब्रह्मसूत्र",
+                            t: "ब्रह्मसूत्र",
+                            s: "वेदांत का आधार",
+                            bg: "#0a1830",
+                            fg: "#60a8ff"
+                        },
+                        {
+                            id: "Vedant_vivekachudamani",
+                            t: "विवेकचूडामणि",
+                            s: "शंकराचार्य · अद्वैत",
+                            bg: "#102008",
+                            fg: "#80e840"
+                        },
+                        { id: "vedant_atmabodha", t: "आत्मबोध", s: "शंकराचार्य रचित", bg: "#201806", fg: "#d0a030" },
+                        {
+                            id: "पातञ्जलयोगदर्शन",
+                            t: "पातञ्जल योगदर्शन",
+                            s: "१९६ सूत्र · अष्टांग",
+                            bg: "#061818",
+                            fg: "#40e0c0"
+                        },
+                        { id: "shankarbhashya", t: "शांकरभाष्य", s: "उपनिषद् भाष्य", bg: "#180610", fg: "#e060c0" },
+                        { id: "साधक-संजीवनी", t: "साधक-संजीवनी", s: "गीता की व्याख्या", bg: "#0c0c20", fg: "#8080ff" }
+                    ]
+                },
+                stotra: {
+                    desc: "स्तोत्र भक्ति की सरिता हैं। देवताओं की स्तुति के ये काव्य-रत्न मन को शान्ति और आत्मा को उन्नति प्रदान करते हैं।",
+                    books: [
+                        {
+                            id: "durga_saptasahi",
+                            t: "दुर्गा सप्तशती",
+                            s: "७०० श्लोक · देवी-माहात्म्य",
+                            bg: "#280820",
+                            fg: "#ff60e0"
+                        },
+                        {
+                            id: "स्तोत्ररत्नावली",
+                            t: "स्तोत्ररत्नावली",
+                            s: "विविध स्तोत्र-संग्रह",
+                            bg: "#1c1006",
+                            fg: "#d0a030"
+                        },
+                        { id: "nitya_puja", t: "नित्य पूजा", s: "दैनिक पूजन-विधि", bg: "#061808", fg: "#60ee80" },
+                        {
+                            id: "bhaktcharitavali",
+                            t: "भक्त चरितावली",
+                            s: "भक्तों की जीवन-कथाएँ",
+                            bg: "#100820",
+                            fg: "#b080ff"
+                        }
+                    ]
+                }
+            };
 
-const QUOTES = [
-    {t:"सर्वे भवन्तु सुखिनः। सर्वे सन्तु निरामयाः।\nसर्वे भद्राणि पश्यन्तु। मा कश्चिद् दुःखभाग्भवेत्॥",s:"बृहदारण्यकोपनिषद्"},
-    {t:"अहं ब्रह्मास्मि — मैं ब्रह्म हूँ।",s:"बृहदारण्यकोपनिषद् १.४.१०"},
-    {t:"तत् त्वम् असि — वह तुम ही हो।",s:"छान्दोग्योपनिषद् ६.८.७"},
-    {t:"योगः कर्मसु कौशलम् — कर्म में कुशलता ही योग है।",s:"श्रीमद्भगवद्‍गीता २.५०"},
-    {t:"सत्यमेव जयते नानृतम् — सत्य की ही जीत होती है।",s:"मुण्डकोपनिषद् ३.१.६"},
-    {t:"स्वाध्यायान्मा प्रमदः — अध्ययन में कभी प्रमाद मत करो।",s:"तैत्तिरीयोपनिषद्"},
-    {t:"एकं सद्विप्रा बहुधा वदन्ति — सत्य एक है, ज्ञानी उसे अनेक नामों से कहते हैं।",s:"ऋग्वेद १.१६४.४६"},
-    {t:"कर्मण्येवाधिकारस्ते मा फलेषु कदाचन।",s:"श्रीमद्भगवद्‍गीता २.४७"},
-    {t:"आत्मा वा अरे द्रष्टव्यः — आत्मा को देखना चाहिए।",s:"बृहदारण्यकोपनिषद्"},
-    {t:"नायमात्मा बलहीनेन लभ्यः — आत्मा दुर्बल को नहीं मिलती।",s:"मुण्डकोपनिषद्"},
-    {t:"प्रज्ञानं ब्रह्म — ज्ञान ही ब्रह्म है।",s:"ऐतरेयोपनिषद् ३.३"},
-    {t:"नेह नानास्ति किञ्चन — यहाँ नानात्व कुछ भी नहीं है।",s:"कठोपनिषद्"},
-];
+            const QUOTES = [
+                {
+                    t: "सर्वे भवन्तु सुखिनः। सर्वे सन्तु निरामयाः।\nसर्वे भद्राणि पश्यन्तु। मा कश्चिद् दुःखभाग्भवेत्॥",
+                    s: "बृहदारण्यकोपनिषद्"
+                },
+                { t: "अहं ब्रह्मास्मि — मैं ब्रह्म हूँ।", s: "बृहदारण्यकोपनिषद् १.४.१०" },
+                { t: "तत् त्वम् असि — वह तुम ही हो।", s: "छान्दोग्योपनिषद् ६.८.७" },
+                { t: "योगः कर्मसु कौशलम् — कर्म में कुशलता ही योग है।", s: "श्रीमद्भगवद्‍गीता २.५०" },
+                { t: "सत्यमेव जयते नानृतम् — सत्य की ही जीत होती है।", s: "मुण्डकोपनिषद् ३.१.६" },
+                { t: "स्वाध्यायान्मा प्रमदः — अध्ययन में कभी प्रमाद मत करो।", s: "तैत्तिरीयोपनिषद्" },
+                {
+                    t: "एकं सद्विप्रा बहुधा वदन्ति — सत्य एक है, ज्ञानी उसे अनेक नामों से कहते हैं।",
+                    s: "ऋग्वेद १.१६४.४६"
+                },
+                { t: "कर्मण्येवाधिकारस्ते मा फलेषु कदाचन।", s: "श्रीमद्भगवद्‍गीता २.४७" },
+                { t: "आत्मा वा अरे द्रष्टव्यः — आत्मा को देखना चाहिए।", s: "बृहदारण्यकोपनिषद्" },
+                { t: "नायमात्मा बलहीनेन लभ्यः — आत्मा दुर्बल को नहीं मिलती।", s: "मुण्डकोपनिषद्" },
+                { t: "प्रज्ञानं ब्रह्म — ज्ञान ही ब्रह्म है।", s: "ऐतरेयोपनिषद् ३.३" },
+                { t: "नेह नानास्ति किञ्चन — यहाँ नानात्व कुछ भी नहीं है।", s: "कठोपनिषद्" }
+            ];
 
-/* ============================================================
+            /* ============================================================
    ASTRONOMY (simplified Jean Meeus)
 ============================================================ */
-function jdn(d){
-    const y=d.getUTCFullYear(),m=d.getUTCMonth()+1;
-    const day=d.getUTCDate()+d.getUTCHours()/24+d.getUTCMinutes()/1440;
-    let Y=y,M=m; if(M<=2){Y--;M+=12;}
-    const A=Math.floor(Y/100),B=2-A+Math.floor(A/4);
-    return Math.floor(365.25*(Y+4716))+Math.floor(30.6001*(M+1))+day+B-1524.5;
-}
-function n360(x){return((x%360)+360)%360;}
-function sunL(j){const n=j-2451545,g=n360(357.528+0.9856003*n)*Math.PI/180;return n360(280.46+0.9856474*n+1.915*Math.sin(g)+0.02*Math.sin(2*g));}
-function moonL(j){const n=j-2451545,M=n360(134.963+13.064993*n)*Math.PI/180,F=n360(93.272+13.229350*n)*Math.PI/180;return n360(218.316+13.176396*n+6.289*Math.sin(M)-1.274*Math.sin(2*F-M)+0.658*Math.sin(2*F));}
-function getTithi(d){return Math.floor(n360(moonL(jdn(d))-sunL(jdn(d)))/12)+1;}
-function getNaks(d) {return Math.floor(n360(moonL(jdn(d)))/(360/27));}
-function getYoga(d) {return Math.floor(n360(sunL(jdn(d))+moonL(jdn(d)))/(360/27));}
-function getMasa(d) {return Math.floor(sunL(jdn(d))/30)%12;}
-/* Ekadasi names: [masa][0=Shukla, 1=Krishna] */
-const EKADASI_NAMES = {
-    0:  {0:"कामदा एकादशी",      1:"पापमोचिनी एकादशी"},
-    1:  {0:"मोहिनी एकादशी",     1:"वरूथिनी एकादशी"},
-    2:  {0:"निर्जला एकादशी",    1:"अपरा एकादशी"},
-    3:  {0:"देवशयनी एकादशी",   1:"योगिनी एकादशी"},
-    4:  {0:"पुत्रदा एकादशी",    1:"कामिका एकादशी"},
-    5:  {0:"परिवर्तिनी एकादशी", 1:"अजा एकादशी"},
-    6:  {0:"पाशाङ्कुशा एकादशी", 1:"इन्दिरा एकादशी"},
-    7:  {0:"प्रबोधिनी एकादशी",  1:"रमा एकादशी"},
-    8:  {0:"मोक्षदा एकादशी",    1:"उत्पन्ना एकादशी"},
-    9:  {0:"पुत्रदा एकादशी",    1:"सफला एकादशी"},
-    10: {0:"जया एकादशी",        1:"षट्तिला एकादशी"},
-    11: {0:"आमलकी एकादशी",      1:"विजया एकादशी"},
-};
+            function jdn(d) {
+                const y = d.getUTCFullYear(),
+                    m = d.getUTCMonth() + 1;
+                const day = d.getUTCDate() + d.getUTCHours() / 24 + d.getUTCMinutes() / 1440;
+                let Y = y,
+                    M = m;
+                if (M <= 2) {
+                    Y--;
+                    M += 12;
+                }
+                const A = Math.floor(Y / 100),
+                    B = 2 - A + Math.floor(A / 4);
+                return Math.floor(365.25 * (Y + 4716)) + Math.floor(30.6001 * (M + 1)) + day + B - 1524.5;
+            }
+            function n360(x) {
+                return ((x % 360) + 360) % 360;
+            }
+            function sunL(j) {
+                const n = j - 2451545,
+                    g = (n360(357.528 + 0.9856003 * n) * Math.PI) / 180;
+                return n360(280.46 + 0.9856474 * n + 1.915 * Math.sin(g) + 0.02 * Math.sin(2 * g));
+            }
+            function moonL(j) {
+                const n = j - 2451545,
+                    M = (n360(134.963 + 13.064993 * n) * Math.PI) / 180,
+                    F = (n360(93.272 + 13.22935 * n) * Math.PI) / 180;
+                return n360(
+                    218.316 +
+                        13.176396 * n +
+                        6.289 * Math.sin(M) -
+                        1.274 * Math.sin(2 * F - M) +
+                        0.658 * Math.sin(2 * F)
+                );
+            }
+            function getTithi(d) {
+                return Math.floor(n360(moonL(jdn(d)) - sunL(jdn(d))) / 12) + 1;
+            }
+            function getNaks(d) {
+                return Math.floor(n360(moonL(jdn(d))) / (360 / 27));
+            }
+            function getYoga(d) {
+                return Math.floor(n360(sunL(jdn(d)) + moonL(jdn(d))) / (360 / 27));
+            }
+            function getMasa(d) {
+                return Math.floor(sunL(jdn(d)) / 30) % 12;
+            }
+            /* Ekadasi names: [masa][0=Shukla, 1=Krishna] */
+            const EKADASI_NAMES = {
+                0: { 0: "कामदा एकादशी", 1: "पापमोचिनी एकादशी" },
+                1: { 0: "मोहिनी एकादशी", 1: "वरूथिनी एकादशी" },
+                2: { 0: "निर्जला एकादशी", 1: "अपरा एकादशी" },
+                3: { 0: "देवशयनी एकादशी", 1: "योगिनी एकादशी" },
+                4: { 0: "पुत्रदा एकादशी", 1: "कामिका एकादशी" },
+                5: { 0: "परिवर्तिनी एकादशी", 1: "अजा एकादशी" },
+                6: { 0: "पाशाङ्कुशा एकादशी", 1: "इन्दिरा एकादशी" },
+                7: { 0: "प्रबोधिनी एकादशी", 1: "रमा एकादशी" },
+                8: { 0: "मोक्षदा एकादशी", 1: "उत्पन्ना एकादशी" },
+                9: { 0: "पुत्रदा एकादशी", 1: "सफला एकादशी" },
+                10: { 0: "जया एकादशी", 1: "षट्तिला एकादशी" },
+                11: { 0: "आमलकी एकादशी", 1: "विजया एकादशी" }
+            };
 
-/* Shivaratri names by masa (Krishna Chaturdashi = tithi 29) */
-const SHIVRATRI_NAMES = {
-    0:"चैत्र शिवरात्रि", 1:"वैशाख शिवरात्रि", 2:"ज्येष्ठ शिवरात्रि",
-    3:"आषाढ़ शिवरात्रि", 4:"श्रावण शिवरात्रि", 5:"भाद्रपद शिवरात्रि",
-    6:"आश्विन शिवरात्रि", 7:"कार्तिक शिवरात्रि", 8:"मार्गशीर्ष शिवरात्रि",
-    9:"पौष शिवरात्रि", 10:"माघ शिवरात्रि", 11:"महाशिवरात्रि",
-};
+            /* Shivaratri names by masa (Krishna Chaturdashi = tithi 29) */
+            const SHIVRATRI_NAMES = {
+                0: "चैत्र शिवरात्रि",
+                1: "वैशाख शिवरात्रि",
+                2: "ज्येष्ठ शिवरात्रि",
+                3: "आषाढ़ शिवरात्रि",
+                4: "श्रावण शिवरात्रि",
+                5: "भाद्रपद शिवरात्रि",
+                6: "आश्विन शिवरात्रि",
+                7: "कार्तिक शिवरात्रि",
+                8: "मार्गशीर्ष शिवरात्रि",
+                9: "पौष शिवरात्रि",
+                10: "माघ शिवरात्रि",
+                11: "महाशिवरात्रि"
+            };
 
-/* Sankashti Chaturthi names by masa (Krishna Chaturthi = tithi 19) */
-const SANKASHTI_NAMES = {
-    0:"विकट संकष्टी", 1:"भालचन्द्र संकष्टी", 2:"वक्रतुण्ड संकष्टी",
-    3:"एकदन्त संकष्टी", 4:"कृष्णपिङ्गल संकष्टी", 5:"गजानन संकष्टी",
-    6:"हेरम्ब संकष्टी", 7:"विघ्नराज संकष्टी", 8:"अवनी संकष्टी",
-    9:"वरद संकष्टी", 10:"सङ्कटहर संकष्टी", 11:"द्विजप्रिय संकष्टी",
-};
+            /* Sankashti Chaturthi names by masa (Krishna Chaturthi = tithi 19) */
+            const SANKASHTI_NAMES = {
+                0: "विकट संकष्टी",
+                1: "भालचन्द्र संकष्टी",
+                2: "वक्रतुण्ड संकष्टी",
+                3: "एकदन्त संकष्टी",
+                4: "कृष्णपिङ्गल संकष्टी",
+                5: "गजानन संकष्टी",
+                6: "हेरम्ब संकष्टी",
+                7: "विघ्नराज संकष्टी",
+                8: "अवनी संकष्टी",
+                9: "वरद संकष्टी",
+                10: "सङ्कटहर संकष्टी",
+                11: "द्विजप्रिय संकष्टी"
+            };
 
-function nextTithiDate(from, target) {
-    const d = new Date(from);
-    for (let i = 0; i < 35; i++) {
-        if (getTithi(d) === target) return new Date(d);
-        d.setDate(d.getDate() + 1);
-    }
-    return null;
-}
-function nextEkadasi(from) {
-    const d = new Date(from);
-    for (let i = 0; i < 35; i++) {
-        const t = getTithi(d);
-        if (t === 11 || t === 26) return new Date(d);
-        d.setDate(d.getDate() + 1);
-    }
-    return null;
-}
-/* User location — updated by geolocation */
-let USER_LAT = 17.385;  // fallback: Hyderabad
-let USER_LNG = 78.486;
+            function nextTithiDate(from, target) {
+                const d = new Date(from);
+                // Normalize to 6 AM local (sunrise proxy) for consistent
+                // tithi determination — avoids showing different dates
+                // depending on what time of day the page is loaded.
+                d.setHours(6, 0, 0, 0);
+                for (let i = 0; i < 40; i++) {
+                    if (getTithi(d) === target) return new Date(d);
+                    d.setDate(d.getDate() + 1);
+                }
+                return null;
+            }
+            function nextEkadasi(from) {
+                const d = new Date(from);
+                d.setHours(6, 0, 0, 0);
+                for (let i = 0; i < 40; i++) {
+                    const t = getTithi(d);
+                    if (t === 11 || t === 26) return new Date(d);
+                    d.setDate(d.getDate() + 1);
+                }
+                return null;
+            }
+            /* User location — updated by geolocation */
+            let USER_LAT = 17.385; // fallback: Hyderabad
+            let USER_LNG = 78.486;
 
-/*
+            /*
    USNO Sunrise/Sunset Algorithm
    Source: https://edwilliams.org/sunrise_sunset_algorithm.htm
    Returns local clock hours (float) for sunrise and sunset.
 */
-function sunriseSunset(date) {
-    const D2R = Math.PI / 180;
-    const R2D = 180 / Math.PI;
-    const lat = USER_LAT, lng = USER_LNG;
-    const utcOff = -date.getTimezoneOffset() / 60;
+            function sunriseSunset(date) {
+                const D2R = Math.PI / 180;
+                const R2D = 180 / Math.PI;
+                const lat = USER_LAT,
+                    lng = USER_LNG;
+                const utcOff = -date.getTimezoneOffset() / 60;
 
-    // Day of year
-    const start = new Date(date.getFullYear(), 0, 0);
-    const N = Math.floor((date - start) / 86400000);
+                // Day of year
+                const start = new Date(date.getFullYear(), 0, 0);
+                const N = Math.floor((date - start) / 86400000);
 
-    const lngHour = lng / 15;
+                const lngHour = lng / 15;
 
-    function calc(rising) {
-        const t = N + ((rising ? 6 : 18) - lngHour) / 24;
+                function calc(rising) {
+                    const t = N + ((rising ? 6 : 18) - lngHour) / 24;
 
-        // Sun's mean anomaly
-        const M = 0.9856 * t - 3.289;
+                    // Sun's mean anomaly
+                    const M = 0.9856 * t - 3.289;
 
-        // Sun's true longitude
-        let L = M + 1.916 * Math.sin(M * D2R) + 0.020 * Math.sin(2 * M * D2R) + 282.634;
-        L = ((L % 360) + 360) % 360;
+                    // Sun's true longitude
+                    let L = M + 1.916 * Math.sin(M * D2R) + 0.02 * Math.sin(2 * M * D2R) + 282.634;
+                    L = ((L % 360) + 360) % 360;
 
-        // Right ascension
-        let RA = R2D * Math.atan(0.91764 * Math.tan(L * D2R));
-        RA = ((RA % 360) + 360) % 360;
-        RA += (Math.floor(L / 90) * 90) - (Math.floor(RA / 90) * 90);
-        RA /= 15;
+                    // Right ascension
+                    let RA = R2D * Math.atan(0.91764 * Math.tan(L * D2R));
+                    RA = ((RA % 360) + 360) % 360;
+                    RA += Math.floor(L / 90) * 90 - Math.floor(RA / 90) * 90;
+                    RA /= 15;
 
-        // Declination
-        const sinDec = 0.39782 * Math.sin(L * D2R);
-        const cosDec = Math.cos(Math.asin(sinDec));
+                    // Declination
+                    const sinDec = 0.39782 * Math.sin(L * D2R);
+                    const cosDec = Math.cos(Math.asin(sinDec));
 
-        // Hour angle (zenith = 90°50' for sunrise/sunset)
-        const cosH = (Math.cos(90.833 * D2R) - sinDec * Math.sin(lat * D2R))
-                   / (cosDec * Math.cos(lat * D2R));
-        if (cosH > 1 || cosH < -1) return null; // polar day/night
+                    // Hour angle (zenith = 90°50' for sunrise/sunset)
+                    const cosH =
+                        (Math.cos(90.833 * D2R) - sinDec * Math.sin(lat * D2R)) / (cosDec * Math.cos(lat * D2R));
+                    if (cosH > 1 || cosH < -1) return null; // polar day/night
 
-        let H = R2D * Math.acos(cosH);
-        if (rising) H = 360 - H;
-        H /= 15;
+                    let H = R2D * Math.acos(cosH);
+                    if (rising) H = 360 - H;
+                    H /= 15;
 
-        // Local mean time
-        const T = H + RA - 0.06571 * t - 6.622;
+                    // Local mean time
+                    const T = H + RA - 0.06571 * t - 6.622;
 
-        // UTC → local
-        return (((T - lngHour) % 24 + 24) % 24) + utcOff;
-    }
+                    // UTC → local
+                    return ((((T - lngHour) % 24) + 24) % 24) + utcOff;
+                }
 
-    return { sr: calc(true), ss: calc(false) };
-}
+                return { sr: calc(true), ss: calc(false) };
+            }
 
-/* ── MOON RISE / SET (Paul Schlyter lunar ephemeris + lat/lng) ──────────────
+            /* ── MOON RISE / SET (Paul Schlyter lunar ephemeris + lat/lng) ──────────────
    Uses the same USER_LAT / USER_LNG as the USNO sunrise algorithm.
    Accurate to ±10–30 min for most dates/locations.
 ─────────────────────────────────────────────────────────────────────────── */
-function moonRiseSet(date) {
-    const D2R = Math.PI / 180, R2D = 180 / Math.PI;
-    const lat = USER_LAT, lng = USER_LNG;
-    const utcOff = -date.getTimezoneOffset() / 60;
+            function moonRiseSet(date) {
+                const D2R = Math.PI / 180,
+                    R2D = 180 / Math.PI;
+                const lat = USER_LAT,
+                    lng = USER_LNG;
+                const utcOff = -date.getTimezoneOffset() / 60;
 
-    // Days from J2000.0
-    const d = (Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) - Date.UTC(2000,0,1)) / 86400000;
+                // Days from J2000.0
+                const d =
+                    (Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) - Date.UTC(2000, 0, 1)) / 86400000;
 
-    // ── Moon orbital elements ──────────────────────────────────────────────
-    const N  = ((125.1228 - 0.0529538083 * d) % 360 + 360) % 360;  // ascending node lon
-    const w  = ((318.0634 + 0.1643573223 * d) % 360 + 360) % 360;  // arg of perigee
-    const e  = 0.054900;                                              // eccentricity
-    const a  = 60.2666;                                               // semi-major (earth radii)
-    let   Mm = ((115.3654 + 13.0649929509 * d) % 360 + 360) % 360;  // mean anomaly
+                // ── Moon orbital elements ──────────────────────────────────────────────
+                const N = (((125.1228 - 0.0529538083 * d) % 360) + 360) % 360; // ascending node lon
+                const w = (((318.0634 + 0.1643573223 * d) % 360) + 360) % 360; // arg of perigee
+                const e = 0.0549; // eccentricity
+                const a = 60.2666; // semi-major (earth radii)
+                let Mm = (((115.3654 + 13.0649929509 * d) % 360) + 360) % 360; // mean anomaly
 
-    // Eccentric anomaly (Newton–Raphson)
-    let E = Mm + R2D * e * Math.sin(Mm * D2R) * (1 + e * Math.cos(Mm * D2R));
-    for (let i = 0; i < 5; i++)
-        E -= (E - R2D * e * Math.sin(E * D2R) - Mm) / (1 - e * Math.cos(E * D2R));
+                // Eccentric anomaly (Newton–Raphson)
+                let E = Mm + R2D * e * Math.sin(Mm * D2R) * (1 + e * Math.cos(Mm * D2R));
+                for (let i = 0; i < 5; i++) E -= (E - R2D * e * Math.sin(E * D2R) - Mm) / (1 - e * Math.cos(E * D2R));
 
-    // Heliocentric rectangular
-    const xv = a * (Math.cos(E * D2R) - e);
-    const yv = a * Math.sqrt(1 - e * e) * Math.sin(E * D2R);
-    const v   = R2D * Math.atan2(yv, xv);   // true anomaly
-    const r   = Math.sqrt(xv * xv + yv * yv);
+                // Heliocentric rectangular
+                const xv = a * (Math.cos(E * D2R) - e);
+                const yv = a * Math.sqrt(1 - e * e) * Math.sin(E * D2R);
+                const v = R2D * Math.atan2(yv, xv); // true anomaly
+                const r = Math.sqrt(xv * xv + yv * yv);
 
-    const inc = 5.1454 * D2R;
-    const vw  = (v + w) * D2R;
-    const xh  = r * (Math.cos(N*D2R)*Math.cos(vw) - Math.sin(N*D2R)*Math.sin(vw)*Math.cos(inc));
-    const yh  = r * (Math.sin(N*D2R)*Math.cos(vw) + Math.cos(N*D2R)*Math.sin(vw)*Math.cos(inc));
-    const zh  = r * Math.sin(vw) * Math.sin(inc);
+                const inc = 5.1454 * D2R;
+                const vw = (v + w) * D2R;
+                const xh = r * (Math.cos(N * D2R) * Math.cos(vw) - Math.sin(N * D2R) * Math.sin(vw) * Math.cos(inc));
+                const yh = r * (Math.sin(N * D2R) * Math.cos(vw) + Math.cos(N * D2R) * Math.sin(vw) * Math.cos(inc));
+                const zh = r * Math.sin(vw) * Math.sin(inc);
 
-    // ── Perturbations (main terms) ─────────────────────────────────────────
-    const Ms = ((356.0470 + 0.9856002585 * d) % 360 + 360) % 360;  // Sun mean anomaly
-    const Ls = ((Ms + 282.9404 + 4.70935e-5 * d) % 360 + 360) % 360; // Sun mean lon
-    const Lm = ((Mm + w + N) % 360 + 360) % 360;  // Moon mean lon
-    const Dm = Lm - Ls;   // elongation
-    const Fm = Lm - N;    // arg of latitude
+                // ── Perturbations (main terms) ─────────────────────────────────────────
+                const Ms = (((356.047 + 0.9856002585 * d) % 360) + 360) % 360; // Sun mean anomaly
+                const Ls = (((Ms + 282.9404 + 4.70935e-5 * d) % 360) + 360) % 360; // Sun mean lon
+                const Lm = (((Mm + w + N) % 360) + 360) % 360; // Moon mean lon
+                const Dm = Lm - Ls; // elongation
+                const Fm = Lm - N; // arg of latitude
 
-    const dlon = -1.274*Math.sin((Mm - 2*Dm)*D2R) + 0.658*Math.sin(2*Dm*D2R)
-               - 0.186*Math.sin(Ms*D2R)            - 0.059*Math.sin((2*Mm - 2*Dm)*D2R)
-               - 0.057*Math.sin((Mm - 2*Dm + Ms)*D2R) + 0.053*Math.sin((Mm + 2*Dm)*D2R)
-               + 0.046*Math.sin((2*Dm - Ms)*D2R)   + 0.041*Math.sin((Mm - Ms)*D2R)
-               - 0.035*Math.sin(Dm*D2R)             - 0.031*Math.sin((Mm + Ms)*D2R)
-               - 0.015*Math.sin((2*Fm - 2*Dm)*D2R) + 0.011*Math.sin((Mm - 4*Dm)*D2R);
-    const dlat = -0.173*Math.sin((Fm - 2*Dm)*D2R)  - 0.055*Math.sin((Mm - Fm - 2*Dm)*D2R)
-               - 0.046*Math.sin((Mm + Fm - 2*Dm)*D2R) + 0.033*Math.sin((Fm + 2*Dm)*D2R)
-               + 0.017*Math.sin((2*Mm + Fm)*D2R);
+                const dlon =
+                    -1.274 * Math.sin((Mm - 2 * Dm) * D2R) +
+                    0.658 * Math.sin(2 * Dm * D2R) -
+                    0.186 * Math.sin(Ms * D2R) -
+                    0.059 * Math.sin((2 * Mm - 2 * Dm) * D2R) -
+                    0.057 * Math.sin((Mm - 2 * Dm + Ms) * D2R) +
+                    0.053 * Math.sin((Mm + 2 * Dm) * D2R) +
+                    0.046 * Math.sin((2 * Dm - Ms) * D2R) +
+                    0.041 * Math.sin((Mm - Ms) * D2R) -
+                    0.035 * Math.sin(Dm * D2R) -
+                    0.031 * Math.sin((Mm + Ms) * D2R) -
+                    0.015 * Math.sin((2 * Fm - 2 * Dm) * D2R) +
+                    0.011 * Math.sin((Mm - 4 * Dm) * D2R);
+                const dlat =
+                    -0.173 * Math.sin((Fm - 2 * Dm) * D2R) -
+                    0.055 * Math.sin((Mm - Fm - 2 * Dm) * D2R) -
+                    0.046 * Math.sin((Mm + Fm - 2 * Dm) * D2R) +
+                    0.033 * Math.sin((Fm + 2 * Dm) * D2R) +
+                    0.017 * Math.sin((2 * Mm + Fm) * D2R);
 
-    const moonLon = (R2D * Math.atan2(yh, xh) + dlon + 360) % 360;
-    const moonLat = R2D * Math.atan2(zh, Math.sqrt(xh*xh + yh*yh)) + dlat;
+                const moonLon = (R2D * Math.atan2(yh, xh) + dlon + 360) % 360;
+                const moonLat = R2D * Math.atan2(zh, Math.sqrt(xh * xh + yh * yh)) + dlat;
 
-    // ── Ecliptic → Equatorial ─────────────────────────────────────────────
-    const eps = 23.4393 - 3.563e-7 * d;
-    const sinEps = Math.sin(eps*D2R), cosEps = Math.cos(eps*D2R);
-    const sinLon = Math.sin(moonLon*D2R), cosLon = Math.cos(moonLon*D2R);
-    const sinLat = Math.sin(moonLat*D2R), cosLat = Math.cos(moonLat*D2R);
+                // ── Ecliptic → Equatorial ─────────────────────────────────────────────
+                const eps = 23.4393 - 3.563e-7 * d;
+                const sinEps = Math.sin(eps * D2R),
+                    cosEps = Math.cos(eps * D2R);
+                const sinLon = Math.sin(moonLon * D2R),
+                    cosLon = Math.cos(moonLon * D2R);
+                const sinLat = Math.sin(moonLat * D2R),
+                    cosLat = Math.cos(moonLat * D2R);
 
-    const RA  = ((R2D * Math.atan2(sinLon*cosEps - Math.tan(moonLat*D2R)*sinEps, cosLon) / 15) % 24 + 24) % 24;
-    const Dec = R2D * Math.asin(sinLat*cosEps + cosLat*sinEps*sinLon);
+                const RA =
+                    ((((R2D * Math.atan2(sinLon * cosEps - Math.tan(moonLat * D2R) * sinEps, cosLon)) / 15) % 24) +
+                        24) %
+                    24;
+                const Dec = R2D * Math.asin(sinLat * cosEps + cosLat * sinEps * sinLon);
 
-    // ── Hour angle at rise / set (zenith 90.833° — refraction + semi-diameter) ──
-    const cosH = (Math.cos(90.833*D2R) - Math.sin(Dec*D2R)*Math.sin(lat*D2R))
-               / (Math.cos(Dec*D2R) * Math.cos(lat*D2R));
-    if (cosH > 1 || cosH < -1) return { rise: null, set: null };
+                // ── Hour angle at rise / set (zenith 90.833° — refraction + semi-diameter) ──
+                const cosH =
+                    (Math.cos(90.833 * D2R) - Math.sin(Dec * D2R) * Math.sin(lat * D2R)) /
+                    (Math.cos(Dec * D2R) * Math.cos(lat * D2R));
+                if (cosH > 1 || cosH < -1) return { rise: null, set: null };
 
-    const H        = R2D * Math.acos(cosH) / 15;
-    const lngHour  = lng / 15;
-    const rise = (((RA - lngHour - H) % 24 + 24) % 24) + utcOff;
-    const set  = (((RA - lngHour + H) % 24 + 24) % 24) + utcOff;
-    return { rise: ((rise % 24 + 24) % 24), set: ((set % 24 + 24) % 24) };
-}
+                const H = (R2D * Math.acos(cosH)) / 15;
+                const lngHour = lng / 15;
+                const rise = ((((RA - lngHour - H) % 24) + 24) % 24) + utcOff;
+                const set = ((((RA - lngHour + H) % 24) + 24) % 24) + utcOff;
+                return { rise: ((rise % 24) + 24) % 24, set: ((set % 24) + 24) % 24 };
+            }
 
-function fetchLocation() {
-    if (!navigator.geolocation) return;
-    navigator.geolocation.getCurrentPosition(
-        pos => {
-            USER_LAT = pos.coords.latitude;
-            USER_LNG = pos.coords.longitude;
-            buildPanchang();
-        },
-        () => {},
-        { timeout: 8000, maximumAge: 3600000 }
-    );
-}
-function toHM(h){h=((h%24)+24)%24;const hr=Math.floor(h),mn=Math.round((h-hr)*60)%60;return`${String(hr).padStart(2,"0")}:${String(mn).padStart(2,"0")}`;}
-function pad2(n){return String(n).padStart(2,"0");}
+            function fetchLocation() {
+                if (!navigator.geolocation) return;
+                navigator.geolocation.getCurrentPosition(
+                    (pos) => {
+                        USER_LAT = pos.coords.latitude;
+                        USER_LNG = pos.coords.longitude;
+                        buildPanchang();
+                    },
+                    () => {},
+                    { timeout: 8000, maximumAge: 3600000 }
+                );
+            }
+            function toHM(h) {
+                h = ((h % 24) + 24) % 24;
+                const hr = Math.floor(h),
+                    mn = Math.round((h - hr) * 60) % 60;
+                return `${String(hr).padStart(2, "0")}:${String(mn).padStart(2, "0")}`;
+            }
+            function pad2(n) {
+                return String(n).padStart(2, "0");
+            }
 
-/* ============================================================
+            /* ============================================================
    STARS
 ============================================================ */
-(()=>{
-    const c=document.getElementById("stars");
-    if(!c)return;
-    for(let i=0;i<160;i++){
-        const s=document.createElement("div");s.className="star";
-        const sz=Math.random()*2+.4;
-        s.style.cssText=`width:${sz}px;height:${sz}px;top:${Math.random()*100}%;left:${Math.random()*100}%;--d:${2+Math.random()*5}s;--dl:${Math.random()*5}s;`;
-        c.appendChild(s);
-    }
-})();
+            (() => {
+                const c = document.getElementById("stars");
+                if (!c) return;
+                for (let i = 0; i < 160; i++) {
+                    const s = document.createElement("div");
+                    s.className = "star";
+                    const sz = Math.random() * 2 + 0.4;
+                    s.style.cssText = `width:${sz}px;height:${sz}px;top:${Math.random() * 100}%;left:${Math.random() * 100}%;--d:${2 + Math.random() * 5}s;--dl:${Math.random() * 5}s;`;
+                    c.appendChild(s);
+                }
+            })();
 
-/* ============================================================
+            /* ============================================================
    CLOCK + EKADASI (every second)
 ============================================================ */
-function fmtDate(d) {
-    return d.toLocaleDateString("hi-IN", {weekday:"long", day:"numeric", month:"long"});
-}
+            function fmtDate(d) {
+                return d.toLocaleDateString("hi-IN", { weekday: "long", day: "numeric", month: "long" });
+            }
 
-function buildVrats() {
-    const now = new Date();
+            function buildVrats() {
+                const now = new Date();
 
-    // Ekadasi
-    const ekDate = nextEkadasi(now);
-    if (ekDate) {
-        const t = getTithi(ekDate);
-        const paksha = t <= 15 ? 0 : 1;
-        const masa = getMasa(ekDate);
-        const name = (EKADASI_NAMES[masa] || {})[paksha] || (paksha===0?"शुक्ल एकादशी":"कृष्ण एकादशी");
-        document.getElementById("vrat-ek-name").textContent = name;
-        document.getElementById("vrat-ek-date").textContent = fmtDate(ekDate);
-    }
+                // Ekadasi
+                const ekDate = nextEkadasi(now);
+                if (ekDate) {
+                    const t = getTithi(ekDate);
+                    const paksha = t <= 15 ? 0 : 1;
+                    const masa = getMasa(ekDate);
+                    const name =
+                        (EKADASI_NAMES[masa] || {})[paksha] || (paksha === 0 ? "शुक्ल एकादशी" : "कृष्ण एकादशी");
+                    document.getElementById("vrat-ek-name").textContent = name;
+                    document.getElementById("vrat-ek-date").textContent = fmtDate(ekDate);
+                }
 
-    // Shivaratri (Krishna Chaturdashi = tithi 29)
-    const shivDate = nextTithiDate(now, 29);
-    if (shivDate) {
-        const masa = getMasa(shivDate);
-        document.getElementById("vrat-shiv-name").textContent = SHIVRATRI_NAMES[masa] || "मासिक शिवरात्रि";
-        document.getElementById("vrat-shiv-date").textContent = fmtDate(shivDate);
-    }
+                // Shivaratri (Krishna Chaturdashi = tithi 29)
+                const shivDate = nextTithiDate(now, 29);
+                if (shivDate) {
+                    const masa = getMasa(shivDate);
+                    document.getElementById("vrat-shiv-name").textContent = SHIVRATRI_NAMES[masa] || "मासिक शिवरात्रि";
+                    document.getElementById("vrat-shiv-date").textContent = fmtDate(shivDate);
+                }
 
-    // Sankashti Chaturthi (Krishna Chaturthi = tithi 19)
-    const chatDate = nextTithiDate(now, 19);
-    if (chatDate) {
-        const masa = getMasa(chatDate);
-        document.getElementById("vrat-chat-name").textContent = SANKASHTI_NAMES[masa] || "संकष्टी चतुर्थी";
-        document.getElementById("vrat-chat-date").textContent = fmtDate(chatDate);
-    }
-}
+                // Sankashti Chaturthi (Krishna Chaturthi = tithi 19)
+                const chatDate = nextTithiDate(now, 19);
+                if (chatDate) {
+                    const masa = getMasa(chatDate);
+                    document.getElementById("vrat-chat-name").textContent = SANKASHTI_NAMES[masa] || "संकष्टी चतुर्थी";
+                    document.getElementById("vrat-chat-date").textContent = fmtDate(chatDate);
+                }
+            }
 
-function tick(){
-    const now = new Date();
-    document.getElementById("h-time").textContent =
-        [now.getHours(), now.getMinutes(), now.getSeconds()].map(pad2).join(":");
-}
+            function tick() {
+                const now = new Date();
+                document.getElementById("h-time").textContent = [now.getHours(), now.getMinutes(), now.getSeconds()]
+                    .map(pad2)
+                    .join(":");
+            }
 
-/* ============================================================
+            /* ============================================================
    PANCHANG (every minute)
 ============================================================ */
-function buildPanchang(){
-    const now=new Date();
-    const t=getTithi(now),tithi=TITHIS[t-1]||"—",paksha=t<=15?"शुक्ल पक्ष":"कृष्ण पक्ष";
-    const naks=NAKS[getNaks(now)],yoga=YOGAS[getYoga(now)],vara=now.getDay(),masa=getMasa(now);
-    // hero bar
-    document.getElementById("h-vara").textContent=VARAS[vara];
-    document.getElementById("h-tithi").textContent=tithi;
-    document.getElementById("h-paksha").textContent=paksha;
-    // dashboard
-    document.getElementById("full-date").textContent=now.toLocaleDateString("hi-IN",{weekday:"long",day:"numeric",month:"long",year:"numeric"});
-    document.getElementById("p-vara").textContent=VARAS[vara];
-    document.getElementById("p-vara-d").textContent=VARA_DEV[vara]+" वार";
-    document.getElementById("p-tithi").textContent=tithi;
-    document.getElementById("p-paksha").textContent=paksha;
-    document.getElementById("p-naks").textContent=naks.n;
-    document.getElementById("p-naks-d").textContent="देवता: "+naks.d;
-    document.getElementById("p-yoga").textContent=yoga.n;
-    document.getElementById("p-yoga-q").textContent=yoga.q+" योग";
-    document.getElementById("p-masa").textContent=MASAS[masa];
-    document.getElementById("p-rahu").textContent=RAHU[vara];
-    const{sr,ss}=sunriseSunset(now);
-    document.getElementById("p-sunrise").textContent=toHM(sr);
-    document.getElementById("p-sunset").textContent=toHM(ss);
-    const moon = moonRiseSet(now);
-    document.getElementById("p-moonrise").textContent = moon.rise != null ? toHM(moon.rise) : "—";
-    document.getElementById("p-moonset").textContent  = moon.set  != null ? toHM(moon.set)  : "—";
-}
+            function buildPanchang() {
+                const now = new Date();
+                const t = getTithi(now),
+                    tithi = TITHIS[t - 1] || "—",
+                    paksha = t <= 15 ? "शुक्ल पक्ष" : "कृष्ण पक्ष";
+                const naks = NAKS[getNaks(now)],
+                    yoga = YOGAS[getYoga(now)],
+                    vara = now.getDay(),
+                    masa = getMasa(now);
+                // hero bar
+                document.getElementById("h-vara").textContent = VARAS[vara];
+                document.getElementById("h-tithi").textContent = tithi;
+                document.getElementById("h-paksha").textContent = paksha;
+                // dashboard
+                document.getElementById("full-date").textContent = now.toLocaleDateString("hi-IN", {
+                    weekday: "long",
+                    day: "numeric",
+                    month: "long",
+                    year: "numeric"
+                });
+                document.getElementById("p-vara").textContent = VARAS[vara];
+                document.getElementById("p-vara-d").textContent = VARA_DEV[vara] + " वार";
+                document.getElementById("p-tithi").textContent = tithi;
+                document.getElementById("p-paksha").textContent = paksha;
+                document.getElementById("p-naks").textContent = naks.n;
+                document.getElementById("p-naks-d").textContent = "देवता: " + naks.d;
+                document.getElementById("p-yoga").textContent = yoga.n;
+                document.getElementById("p-yoga-q").textContent = yoga.q + " योग";
+                document.getElementById("p-masa").textContent = MASAS[masa];
+                document.getElementById("p-rahu").textContent = RAHU[vara];
+                const { sr, ss } = sunriseSunset(now);
+                document.getElementById("p-sunrise").textContent = toHM(sr);
+                document.getElementById("p-sunset").textContent = toHM(ss);
+                const moon = moonRiseSet(now);
+                document.getElementById("p-moonrise").textContent = moon.rise != null ? toHM(moon.rise) : "—";
+                document.getElementById("p-moonset").textContent = moon.set != null ? toHM(moon.set) : "—";
+            }
 
-/* ============================================================
+            /* ============================================================
    SHASTRIYA GHATNA — match today's panchang vs dates.json
 ============================================================ */
-function buildShaastriyaGhatna(){
-    const now = new Date();
-    const t = getTithi(now);
-    const todayTithiName  = TITHIS[t - 1] || "";      // e.g. "नवमी"
-    const todayPaksha     = t <= 15 ? "शुक्लपक्ष" : "कृष्णपक्ष"; // no space
-    const todayMaas       = MASAS[getMasa(now)];       // e.g. "चैत्र"
+            function buildShaastriyaGhatna() {
+                const now = new Date();
+                const t = getTithi(now);
+                const todayTithiName = TITHIS[t - 1] || ""; // e.g. "नवमी"
+                const todayPaksha = t <= 15 ? "शुक्लपक्ष" : "कृष्णपक्ष"; // no space
+                const todayMaas = MASAS[getMasa(now)]; // e.g. "चैत्र"
 
-    fetch("database/dates.json")
-        .then(r => r.json())
-        .then(json => {
-            const entries = json.data || [];
+                fetch("database/dates.json")
+                    .then((r) => r.json())
+                    .then((json) => {
+                        const entries = json.data || [];
 
-            // Scoring rules:
-            // - maas = today's exact maas  → eligible (score 3 or 2)
-            // - maas = "वर्षभर"            → eligible (applies all year, score 3 or 2)
-            // - maas = "अनिर्दिष्ट"        → SKIP
-            // - maas = any other month     → SKIP
-            // Score 3: tithi + paksha match (maas = today or वर्षभर)
-            // Score 2: tithi matches, paksha = दोनों (maas = today or वर्षभर)
-            function score(e) {
-                if (!e.tithi || e.tithi === "अनिर्दिष्ट") return 0;
-                const maasOk = e.maas === todayMaas || e.maas === "वर्षभर";
-                if (!maasOk) return 0;                            // wrong month or अनिर्दिष्ट → skip
-                if (!e.tithi.includes(todayTithiName)) return 0;  // tithi must appear
-                const pkMatch = e.paksh === todayPaksha || e.paksh === "दोनों";
-                return pkMatch ? 3 : 2;
-            }
+                        // Scoring rules:
+                        // - maas = today's exact maas  → eligible (score 3 or 2)
+                        // - maas = "वर्षभर"            → eligible (applies all year, score 3 or 2)
+                        // - maas = "अनिर्दिष्ट"        → SKIP
+                        // - maas = any other month     → SKIP
+                        // Score 3: tithi + paksha match (maas = today or वर्षभर)
+                        // Score 2: tithi matches, paksha = दोनों (maas = today or वर्षभर)
+                        function score(e) {
+                            if (!e.tithi || e.tithi === "अनिर्दिष्ट") return 0;
+                            const maasOk = e.maas === todayMaas || e.maas === "वर्षभर";
+                            if (!maasOk) return 0; // wrong month or अनिर्दिष्ट → skip
+                            if (!e.tithi.includes(todayTithiName)) return 0; // tithi must appear
+                            const pkMatch = e.paksh === todayPaksha || e.paksh === "दोनों";
+                            return pkMatch ? 3 : 2;
+                        }
 
-            const scored = entries.map(e => ({e, s: score(e)}))
-                                  .filter(x => x.s > 0)
-                                  .sort((a, b) => b.s - a.s);
+                        const scored = entries
+                            .map((e) => ({ e, s: score(e) }))
+                            .filter((x) => x.s > 0)
+                            .sort((a, b) => b.s - a.s);
 
-            // No fallback — only show exact-month matches; cap at 4 cards
-            const shown = scored.slice(0, 4);
+                        // No fallback — only show exact-month matches; cap at 4 cards
+                        const shown = scored.slice(0, 4);
 
-            const block = document.getElementById("shastr-block");
-            const list  = document.getElementById("shastr-list");
-            const sub   = document.getElementById("shastr-subtitle");
-            list.innerHTML = "";
+                        const block = document.getElementById("shastr-block");
+                        const list = document.getElementById("shastr-list");
+                        const sub = document.getElementById("shastr-subtitle");
+                        list.innerHTML = "";
 
-            if (!shown.length) {
-                // No exact maas+tithi match — keep block hidden
-                return;
-            }
+                        if (!shown.length) {
+                            // No exact maas+tithi match — keep block hidden
+                            return;
+                        }
 
-            block.style.display = "block";
-            sub.textContent = todayTithiName + " · " + todayPaksha + " · " + todayMaas;
+                        block.style.display = "block";
+                        sub.textContent = todayTithiName + " · " + todayPaksha + " · " + todayMaas;
 
-            shown.forEach(({e, s}) => {
-                const card = document.createElement("div");
-                card.className = "shastr-card";
+                        shown.forEach(({ e, s }) => {
+                            const card = document.createElement("div");
+                            card.className = "shastr-card";
 
-                const badgeClass = s === 3 ? "shastr-badge strong" : "shastr-badge";
-                const badgeText  = s === 3 ? "✦ तिथि · पक्ष · मास — पूर्ण मिलान"
-                                           : "✦ तिथि · मास मिलान";
+                            const badgeClass = s === 3 ? "shastr-badge strong" : "shastr-badge";
+                            const badgeText = s === 3 ? "✦ तिथि · पक्ष · मास — पूर्ण मिलान" : "✦ तिथि · मास मिलान";
 
-                const vivran = e.vivraN || "";
-                const shortV = vivran.length > 240 ? vivran.slice(0, 240) + "…" : vivran;
-                const hasMore = vivran.length > 240;
-                const vivId = "viv-" + e.id;
+                            const vivran = e.vivraN || "";
+                            const shortV = vivran.length > 240 ? vivran.slice(0, 240) + "…" : vivran;
+                            const hasMore = vivran.length > 240;
+                            const vivId = "viv-" + e.id;
 
-                const tags = (e.tags || []).slice(0, 5)
-                    .map(tg => `<span class="shastr-tag">${tg}</span>`).join("");
+                            const tags = (e.tags || [])
+                                .slice(0, 5)
+                                .map((tg) => `<span class="shastr-tag">${tg}</span>`)
+                                .join("");
 
-                card.innerHTML = `
+                            card.innerHTML = `
                     <div class="${badgeClass}">${badgeText}</div>
                     <div class="shastr-granth">📖 ${e.granth} · ${e.skandh_kand} · ${e.sarg_adhyay}</div>
                     <div class="shastr-event">${e.parv_vrat_naam || e.ghatna}</div>
                     ${e.ghatna && e.parv_vrat_naam ? `<div style="font-size:.84rem;color:var(--txt3);margin-bottom:.3rem">🔹 ${e.ghatna}</div>` : ""}
                     <div class="shastr-vivran collapsed" id="${vivId}">${shortV}</div>
-                    ${hasMore ? `<div class="shastr-more" onclick="
+                    ${
+                        hasMore
+                            ? `<div class="shastr-more" onclick="
                         var el=document.getElementById('${vivId}');
                         var full=${JSON.stringify(vivran)};
                         if(el.classList.contains('collapsed')){el.textContent=full;el.classList.remove('collapsed');this.textContent='… कम करें';}
                         else{el.textContent=${JSON.stringify(shortV)};el.classList.add('collapsed');this.textContent='… और पढ़ें';}
-                    ">… और पढ़ें</div>` : ""}
+                    ">… और पढ़ें</div>`
+                            : ""
+                    }
                     ${e.phal ? `<div style="font-size:.82rem;color:var(--saff);margin-top:.45rem">🌸 फल: ${e.phal}</div>` : ""}
                     <div class="shastr-tags">${tags}</div>
                 `;
-                list.appendChild(card);
-            });
-        })
-        .catch(() => {
-            // silently skip if JSON not found
-        });
-}
+                            list.appendChild(card);
+                        });
+                    })
+                    .catch(() => {
+                        // silently skip if JSON not found
+                    });
+            }
 
-/* ============================================================
+            /* ============================================================
    FESTIVALS
 ============================================================ */
-function buildFestivals(){
-    const now=new Date();now.setHours(0,0,0,0);
-    const list=document.getElementById("fest-list");list.innerHTML="";
-    FESTIVALS.forEach(f=>{
-        const fd=new Date(f.dt+"T00:00:00"),diff=Math.round((fd-now)/86400000);
-        if(diff<-1)return;
-        const slide=document.createElement("div");slide.className="swiper-slide";
-        let badge,cls="fest-tag";
-        if(diff<0)badge="बीत गया";
-        else if(diff===0){badge="आज! 🎉";cls+=" today-tag";}
-        else badge=diff+" दिन शेष";
-        slide.innerHTML=`<div class="fest-card"><div class="fest-icon">${f.ico}</div><div class="fest-name">${f.n}</div><div class="fest-desc">${f.d}</div><div class="${cls}">${badge}</div></div>`;
-        list.appendChild(slide);
-    });
-    new Swiper(".fest-swiper",{slidesPerView:"auto",spaceBetween:14,freeMode:true});
-}
+            function buildFestivals() {
+                const now = new Date();
+                now.setHours(0, 0, 0, 0);
+                const list = document.getElementById("fest-list");
+                list.innerHTML = "";
+                FESTIVALS.forEach((f) => {
+                    const fd = new Date(f.dt + "T00:00:00"),
+                        diff = Math.round((fd - now) / 86400000);
+                    if (diff < -1) return;
+                    const slide = document.createElement("div");
+                    slide.className = "swiper-slide";
+                    let badge,
+                        cls = "fest-tag";
+                    if (diff < 0) badge = "बीत गया";
+                    else if (diff === 0) {
+                        badge = "आज! 🎉";
+                        cls += " today-tag";
+                    } else badge = diff + " दिन शेष";
+                    slide.innerHTML = `<div class="fest-card"><div class="fest-icon">${f.ico}</div><div class="fest-name">${f.n}</div><div class="fest-desc">${f.d}</div><div class="${cls}">${badge}</div></div>`;
+                    list.appendChild(slide);
+                });
+                new Swiper(".fest-swiper", { slidesPerView: "auto", spaceBetween: 14, freeMode: true });
+            }
 
-/* ============================================================
+            /* ============================================================
    BOOK COVER SVG
 ============================================================ */
-function mkCover(bk){
-    const{bg,fg,t:title}=bk;
-    const uid="u"+Math.random().toString(36).slice(2,7);
-    const words=title.split(/\s+/);
-    const lines=[];let cur="";
-    words.forEach(w=>{if(cur.length&&(cur+w).length>9){lines.push(cur.trim());cur=w+" ";}else cur+=w+" ";});
-    if(cur.trim())lines.push(cur.trim());
-    const lh=13,fs=lines.length>3?8:lines.length>2?9:10,sy=Math.max(82,100-(lines.length-1)*lh/2);
-    const tsvg=lines.map((l,i)=>`<text x="70" y="${sy+i*lh}" text-anchor="middle" font-size="${fs}" fill="${fg}" font-family="Noto Serif Devanagari,serif" font-weight="700">${l}</text>`).join("");
-    // lighten bg
-    const lighter="#"+parseInt(bg.slice(1),16).toString(16).padStart(6,"0").replace(/(..)/g,(_,h)=>Math.min(255,parseInt(h,16)+28).toString(16).padStart(2,"0"));
-    return "data:image/svg+xml;charset=utf-8,"+encodeURIComponent(
-`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 200">
+            function mkCover(bk) {
+                const { bg, fg, t: title } = bk;
+                const uid = "u" + Math.random().toString(36).slice(2, 7);
+                const words = title.split(/\s+/);
+                const lines = [];
+                let cur = "";
+                words.forEach((w) => {
+                    if (cur.length && (cur + w).length > 9) {
+                        lines.push(cur.trim());
+                        cur = w + " ";
+                    } else cur += w + " ";
+                });
+                if (cur.trim()) lines.push(cur.trim());
+                const lh = 13,
+                    fs = lines.length > 3 ? 8 : lines.length > 2 ? 9 : 10,
+                    sy = Math.max(82, 100 - ((lines.length - 1) * lh) / 2);
+                const tsvg = lines
+                    .map(
+                        (l, i) =>
+                            `<text x="70" y="${sy + i * lh}" text-anchor="middle" font-size="${fs}" fill="${fg}" font-family="Noto Serif Devanagari,serif" font-weight="700">${l}</text>`
+                    )
+                    .join("");
+                // lighten bg
+                const lighter =
+                    "#" +
+                    parseInt(bg.slice(1), 16)
+                        .toString(16)
+                        .padStart(6, "0")
+                        .replace(/(..)/g, (_, h) =>
+                            Math.min(255, parseInt(h, 16) + 28)
+                                .toString(16)
+                                .padStart(2, "0")
+                        );
+                return (
+                    "data:image/svg+xml;charset=utf-8," +
+                    encodeURIComponent(
+                        `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 200">
 <defs><linearGradient id="${uid}" x1="0" y1="0" x2=".4" y2="1"><stop offset="0%" stop-color="${lighter}"/><stop offset="100%" stop-color="${bg}"/></linearGradient></defs>
 <rect width="140" height="200" fill="url(#${uid})"/>
 <rect width="11" height="200" fill="${fg}" opacity=".6"/>
@@ -1370,89 +2295,101 @@ ${tsvg}
 <circle cx="29" cy="14" r="1.8" fill="${fg}" opacity=".35"/>
 <circle cx="70" cy="14" r="1.8" fill="${fg}" opacity=".35"/>
 <circle cx="111" cy="14" r="1.8" fill="${fg}" opacity=".35"/>
-</svg>`);
-}
+</svg>`
+                    )
+                );
+            }
 
-/* ============================================================
+            /* ============================================================
    LIBRARY
 ============================================================ */
-let openCat=null;
+            let openCat = null;
 
-function renderBooks(catId, clickedCard){
-    const cat=LIBRARY[catId];
-    const grid=document.getElementById("cat-grid");
+            function renderBooks(catId, clickedCard) {
+                const cat = LIBRARY[catId];
+                const grid = document.getElementById("cat-grid");
 
-    /* remove any existing panel from the grid */
-    const old=document.getElementById("book-panel");
-    if(old) old.remove();
+                /* remove any existing panel from the grid */
+                const old = document.getElementById("book-panel");
+                if (old) old.remove();
 
-    /* find the last card in the same visual row as clickedCard */
-    const cards=Array.from(grid.querySelectorAll(".cat-card"));
-    const rowTop=clickedCard.getBoundingClientRect().top;
-    let lastInRow=clickedCard;
-    cards.forEach(c=>{
-        if(Math.abs(c.getBoundingClientRect().top - rowTop) < 10){
-            if(cards.indexOf(c) > cards.indexOf(lastInRow)) lastInRow=c;
-        }
-    });
+                /* find the last card in the same visual row as clickedCard */
+                const cards = Array.from(grid.querySelectorAll(".cat-card"));
+                const rowTop = clickedCard.getBoundingClientRect().top;
+                let lastInRow = clickedCard;
+                cards.forEach((c) => {
+                    if (Math.abs(c.getBoundingClientRect().top - rowTop) < 10) {
+                        if (cards.indexOf(c) > cards.indexOf(lastInRow)) lastInRow = c;
+                    }
+                });
 
-    /* build panel */
-    const panel=document.createElement("div");
-    panel.id="book-panel";
-    panel.className="book-panel";
+                /* build panel */
+                const panel = document.createElement("div");
+                panel.id = "book-panel";
+                panel.className = "book-panel";
 
-    let html=`<div class="panel-desc">${cat.desc}</div><div class="book-grid">`;
-    cat.books.forEach(bk=>{
-        const cover=mkCover(bk),cls="bk"+(bk.na?" dim":""),tag=bk.na?'<span class="bk-cs">शीघ्र आएगा</span>':"";
-        if(bk.id){
-            html+=`<a class="${cls}" href="book.html?${bk.id}"><div class="bk-cover"><img src="${cover}" alt="${bk.t}" loading="lazy"></div><div class="bk-name">${bk.t}</div><div class="bk-sub">${bk.s}</div>${tag}</a>`;
-        }else{
-            html+=`<div class="${cls}"><div class="bk-cover"><img src="${cover}" alt="${bk.t}" loading="lazy"></div><div class="bk-name">${bk.t}</div><div class="bk-sub">${bk.s}</div>${tag}</div>`;
-        }
-    });
-    html+="</div>";
-    panel.innerHTML=html;
+                let html = `<div class="panel-desc">${cat.desc}</div><div class="book-grid">`;
+                cat.books.forEach((bk) => {
+                    const cover = mkCover(bk),
+                        cls = "bk" + (bk.na ? " dim" : ""),
+                        tag = bk.na ? '<span class="bk-cs">शीघ्र आएगा</span>' : "";
+                    if (bk.id) {
+                        html += `<a class="${cls}" href="book.html?${bk.id}"><div class="bk-cover"><img src="${cover}" alt="${bk.t}" loading="lazy"></div><div class="bk-name">${bk.t}</div><div class="bk-sub">${bk.s}</div>${tag}</a>`;
+                    } else {
+                        html += `<div class="${cls}"><div class="bk-cover"><img src="${cover}" alt="${bk.t}" loading="lazy"></div><div class="bk-name">${bk.t}</div><div class="bk-sub">${bk.s}</div>${tag}</div>`;
+                    }
+                });
+                html += "</div>";
+                panel.innerHTML = html;
 
-    /* insert right after the last card in that row */
-    lastInRow.insertAdjacentElement("afterend", panel);
-    panel.scrollIntoView({behavior:"smooth", block:"nearest"});
-}
-
-function initLibrary(){
-    document.querySelectorAll(".cat-card").forEach(card=>{
-        card.addEventListener("click",()=>{
-            const id=card.dataset.cat;
-            if(openCat===id){
-                card.classList.remove("open");
-                const p=document.getElementById("book-panel");
-                if(p) p.remove();
-                openCat=null; return;
+                /* insert right after the last card in that row */
+                lastInRow.insertAdjacentElement("afterend", panel);
+                panel.scrollIntoView({ behavior: "smooth", block: "nearest" });
             }
-            document.querySelectorAll(".cat-card").forEach(c=>c.classList.remove("open"));
-            card.classList.add("open"); openCat=id;
-            renderBooks(id, card);
-        });
-    });
-}
 
-/* ============================================================
+            function initLibrary() {
+                document.querySelectorAll(".cat-card").forEach((card) => {
+                    card.addEventListener("click", () => {
+                        const id = card.dataset.cat;
+                        if (openCat === id) {
+                            card.classList.remove("open");
+                            const p = document.getElementById("book-panel");
+                            if (p) p.remove();
+                            openCat = null;
+                            return;
+                        }
+                        document.querySelectorAll(".cat-card").forEach((c) => c.classList.remove("open"));
+                        card.classList.add("open");
+                        openCat = id;
+                        renderBooks(id, card);
+                    });
+                });
+            }
+
+            /* ============================================================
    QUOTE
 ============================================================ */
-function setQuote(){
-    const q=QUOTES[new Date().getDate()%QUOTES.length];
-    document.getElementById("q-text").innerHTML=q.t.replace("\n","<br>");
-    document.getElementById("q-src").textContent="— "+q.s;
-}
+            function setQuote() {
+                const q = QUOTES[new Date().getDate() % QUOTES.length];
+                document.getElementById("q-text").innerHTML = q.t.replace("\n", "<br>");
+                document.getElementById("q-src").textContent = "— " + q.s;
+            }
 
-/* ============================================================
+            /* ============================================================
    INIT
 ============================================================ */
-document.addEventListener("DOMContentLoaded",()=>{
-    tick(); buildPanchang(); buildVrats(); buildShaastriyaGhatna(); buildFestivals(); initLibrary(); setQuote();
-    fetchLocation();
-    setInterval(tick,1000);
-    setInterval(buildPanchang,60000);
-});
-</script>
-</body>
+            document.addEventListener("DOMContentLoaded", () => {
+                tick();
+                buildPanchang();
+                buildVrats();
+                buildShaastriyaGhatna();
+                buildFestivals();
+                initLibrary();
+                setQuote();
+                fetchLocation();
+                setInterval(tick, 1000);
+                setInterval(buildPanchang, 60000);
+            });
+        </script>
+    </body>
 </html>
