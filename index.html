@@ -2138,10 +2138,30 @@
                         // - maas = any other month     → SKIP
                         // Score 3: tithi + paksha match (maas = today or वर्षभर)
                         // Score 2: tithi matches, paksha = दोनों (maas = today or वर्षभर)
+
+                        // Strip Unicode nukta (़ U+093C) for loose Devanagari comparison
+                        // e.g. "आषाढ़" == "आषाढ" after stripping
+                        function stripNukta(s){ return (s||"").replace(/़/g,""); }
+
+                        const todayMaasNorm = stripNukta(todayMaas);
+
+                        function maasMatch(dbMaas) {
+                            if (!dbMaas) return false;
+                            // Year-round applies always
+                            if (dbMaas === "वर्षभर" || dbMaas === "प्रत्येक मास") return true;
+                            // Skip deliberately unspecified
+                            if (dbMaas.startsWith("अनिर्दिष्ट")) return false;
+                            // Extract base month name before any parenthesis, slash, dash
+                            // e.g. "भाद्रपद (प्रौष्ठपदी)" → "भाद्रपद"
+                            //      "कार्तिक (अनुमानित)"  → "कार्तिक"
+                            //      "आषाढ"               → "आषाढ"  (matches आषाढ़)
+                            const base = stripNukta(dbMaas.split(/[\(\[\/\-]/)[0].trim());
+                            return base === todayMaasNorm;
+                        }
+
                         function score(e) {
                             if (!e.tithi || e.tithi === "अनिर्दिष्ट") return 0;
-                            const maasOk = e.maas === todayMaas || e.maas === "वर्षभर";
-                            if (!maasOk) return 0; // wrong month or अनिर्दिष्ट → skip
+                            if (!maasMatch(e.maas)) return 0;
                             if (!e.tithi.includes(todayTithiName)) return 0; // tithi must appear
                             const pkMatch = e.paksh === todayPaksha || e.paksh === "दोनों";
                             return pkMatch ? 3 : 2;
