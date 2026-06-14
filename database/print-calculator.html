@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prince Graphics Limited — Quotation Calculator</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --pink:#e91e8c;--pink-light:#fce4f3;--pink-dark:#ad1571;
+  --ink:#1a1a2e;--muted:#6b7280;--border:#e5e7eb;
+  --bg:#f8f9fc;--white:#ffffff;--green:#059669;
+  --radius:10px;--shadow:0 2px 12px rgba(0,0,0,0.08);
+}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--ink);min-height:100vh}
+
+/* NAV */
+.nav{background:var(--white);border-bottom:2px solid var(--pink);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:58px;box-shadow:0 1px 8px rgba(233,30,140,0.08)}
+.nav-brand{font-size:17px;font-weight:800;color:var(--pink);letter-spacing:-0.3px}
+.nav-brand span{color:var(--ink)}
+.nav-tabs{display:flex;gap:0}
+.nav-tab{background:transparent;border:none;color:var(--muted);padding:0 18px;height:58px;cursor:pointer;font-size:13.5px;font-weight:500;border-bottom:3px solid transparent;transition:all .2s}
+.nav-tab.active,.nav-tab:hover{color:var(--pink);border-bottom-color:var(--pink)}
+
+/* PAGES */
+.page{display:none;max-width:1080px;margin:0 auto;padding:2rem 1.5rem}
+.page.active{display:block}
+
+/* SECTION CARD */
+.card{background:var(--white);border-radius:var(--radius);border:1px solid var(--border);padding:1.5rem;margin-bottom:1.25rem}
+.sec-head{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--pink);margin-bottom:1rem;display:flex;align-items:center;gap:8px}
+.sec-head::after{content:'';flex:1;height:1px;background:var(--pink-light)}
+
+/* FORM GRID */
+.form-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem}
+.form-group{display:flex;flex-direction:column;gap:5px}
+.form-group label{font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:0.4px}
+.form-group input,.form-group select{padding:9px 12px;border:1.5px solid var(--border);border-radius:8px;font-size:14px;color:var(--ink);background:var(--white);outline:none;transition:border .15s}
+.form-group input:focus,.form-group select:focus{border-color:var(--pink)}
+
+/* RADIO PILLS */
+.pill-group{display:flex;flex-wrap:wrap;gap:8px;margin-top:2px}
+.pill{display:flex;align-items:center;gap:6px;background:#f7f8fc;border:1.5px solid var(--border);border-radius:20px;padding:7px 14px;cursor:pointer;font-size:13px;transition:all .17s;user-select:none}
+.pill:hover{border-color:var(--pink);background:var(--pink-light)}
+.pill input[type=radio]{accent-color:var(--pink);width:14px;height:14px}
+.pill.sel{border-color:var(--pink);background:var(--pink-light);color:var(--pink);font-weight:600}
+
+/* OPTIONS STRIP */
+.options-strip{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:1.25rem}
+.opt-card{flex:1;min-width:180px;border:2px solid var(--border);border-radius:var(--radius);padding:1rem;cursor:pointer;transition:all .18s;position:relative}
+.opt-card:hover{border-color:var(--pink);background:var(--pink-light)}
+.opt-card.active-opt{border-color:var(--pink);background:var(--pink-light)}
+.opt-card .opt-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:var(--pink)}
+.opt-card input[type=checkbox]{position:absolute;top:10px;right:10px;accent-color:var(--pink);width:16px;height:16px}
+
+/* QUOTE TABLE */
+.quote-wrap{overflow-x:auto;margin-top:1.5rem}
+.quote-table{width:100%;border-collapse:collapse;min-width:600px}
+.quote-table th{background:var(--pink-light);color:var(--pink);font-size:13px;font-weight:700;padding:12px 16px;text-align:left;border-bottom:2px solid var(--pink)}
+.quote-table th:first-child{color:var(--ink);background:#f1f3f8}
+.quote-table td{padding:10px 16px;border-bottom:1px solid var(--border);font-size:13.5px;vertical-align:top}
+.quote-table tr:last-child td{border:none}
+.quote-table td:first-child{color:var(--muted);font-weight:500;font-size:12.5px;background:#fafbfd;min-width:140px}
+.quote-table .total-row td{color:var(--pink);font-weight:800;font-size:15px;background:var(--pink-light);border-top:2px solid var(--pink)}
+.quote-table .rate-row td{color:var(--pink-dark);font-weight:700;font-size:13px;background:#fdf0f9}
+
+/* BUTTONS */
+.btn-primary{background:var(--pink);color:#fff;border:none;border-radius:8px;padding:11px 26px;font-size:14px;font-weight:700;cursor:pointer;transition:background .18s}
+.btn-primary:hover{background:var(--pink-dark)}
+.btn-outline{background:transparent;color:var(--pink);border:2px solid var(--pink);border-radius:8px;padding:9px 22px;font-size:13px;font-weight:600;cursor:pointer;transition:all .18s;margin-left:8px}
+.btn-outline:hover{background:var(--pink-light)}
+.btn-row{display:flex;align-items:center;gap:8px;margin-top:1rem;flex-wrap:wrap}
+
+/* PRINT LAYOUT */
+.print-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:2px solid var(--pink)}
+.ph-left .brand{font-size:22px;font-weight:800;color:var(--pink)}
+.ph-left .tagline{font-size:12px;color:var(--muted);margin-top:2px}
+.ph-right{text-align:right;font-size:12px;color:var(--muted);line-height:1.7}
+.ph-right strong{color:var(--ink)}
+
+/* ADMIN */
+.admin-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
+@media(max-width:640px){.admin-grid{grid-template-columns:1fr}}
+.admin-sec-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:var(--pink);margin-bottom:.75rem;padding-bottom:6px;border-bottom:2px solid var(--pink-light)}
+.price-row{display:flex;align-items:center;justify-content:space-between;padding:7px 0;border-bottom:1px solid #f0f2f8}
+.price-row:last-child{border:none}
+.price-row label{font-size:13px;color:#444;flex:1}
+.price-input-wrap{display:flex;align-items:center;gap:4px}
+.price-input-wrap span{font-size:12px;color:#999}
+.price-inp{width:86px;padding:6px 8px;border:1.5px solid var(--border);border-radius:6px;font-size:13px;text-align:right;outline:none}
+.price-inp:focus{border-color:var(--pink)}
+.save-msg{display:none;color:var(--green);font-size:13px;margin-top:8px;font-weight:600}
+.info-box{background:#fff8e1;border:1px solid #fbbf24;border-radius:8px;padding:.9rem 1rem;font-size:12.5px;color:#92400e;line-height:1.6;margin-bottom:1rem}
+
+/* BREAKDOWN ACCORDION */
+.breakdown{background:#f8f9fc;border:1px solid var(--border);border-radius:8px;padding:1rem;margin-top:1rem;font-size:12.5px;display:none}
+.breakdown.show{display:block}
+.bk-row{display:flex;justify-content:space-between;padding:3px 0;color:var(--muted)}
+.bk-row.sub{font-weight:600;color:var(--ink);border-top:1px solid var(--border);margin-top:4px;padding-top:6px}
+
+@media print{
+  .nav,.card:not(.print-card),.btn-row,.options-strip,.breakdown{display:none!important}
+  .print-card{display:block!important;border:none;padding:0}
+  .page{padding:0}
+}
+</style>
+</head>
+<body>
+
+<div class="nav">
+  <div class="nav-brand">🖨️ Prince Graphics<span> Limited</span></div>
+  <div class="nav-tabs">
+    <button class="nav-tab active" onclick="showPage('calc',this)">Quotation Builder</button>
+    <button class="nav-tab" onclick="showPage('admin',this)">Admin — Prices</button>
+  </div>
+</div>
+
+<!-- ═══════════ CALCULATOR PAGE ═══════════ -->
+<div class="page active" id="page-calc">
+
+  <!-- Client Info -->
+  <div class="card">
+    <div class="sec-head">Client & Job Details</div>
+    <div class="form-grid">
+      <div class="form-group"><label>Client Name</label><input type="text" id="clientName" placeholder="e.g. ABC Pvt Ltd"></div>
+      <div class="form-group"><label>Job / Product Name</label><input type="text" id="jobName" placeholder="e.g. Product Catalogue"></div>
+      <div class="form-group"><label>Quotation No.</label><input type="text" id="quoteNo" placeholder="e.g. 6977" value=""></div>
+      <div class="form-group"><label>Date</label><input type="date" id="quoteDate"></div>
+    </div>
+  </div>
+
+  <!-- Finished Size -->
+  <div class="card">
+    <div class="sec-head">Finished Size</div>
+    <div class="pill-group" id="rg-size">
+      <label class="pill"><input type="radio" name="fsize" value='8.27x11.69'> A4 — 8.27" × 11.69"</label>
+      <label class="pill"><input type="radio" name="fsize" value='5.83x8.27'> A5 — 5.83" × 8.27"</label>
+      <label class="pill"><input type="radio" name="fsize" value='8.27x8.27'> Square — 8.27" × 8.27"</label>
+      <label class="pill"><input type="radio" name="fsize" value='5.5x8.5'> Half Letter — 5.5" × 8.5"</label>
+      <label class="pill"><input type="radio" name="fsize" value='6x9'> 6" × 9"</label>
+      <label class="pill"><input type="radio" name="fsize" value='custom'>Custom</label>
+    </div>
+    <div id="custom-size-row" style="display:none;margin-top:.75rem;display:none">
+      <div class="form-grid" style="max-width:380px">
+        <div class="form-group"><label>Width (inches)</label><input type="number" id="cW" step="0.01" placeholder="e.g. 7"></div>
+        <div class="form-group"><label>Height (inches)</label><input type="number" id="cH" step="0.01" placeholder="e.g. 10"></div>
+      </div>
+    </div>
+    <div id="imposition-info" style="margin-top:.8rem;font-size:12.5px;color:var(--muted);min-height:18px"></div>
+  </div>
+
+  <!-- Inner Pages -->
+  <div class="card">
+    <div class="sec-head">Inner Pages</div>
+    <div class="form-grid">
+      <div class="form-group">
+        <label>Inner Leaves (designs/pages)</label>
+        <input type="number" id="innerLeaves" min="1" value="36" oninput="recalc()">
+        <span style="font-size:11px;color:var(--muted);margin-top:3px">1 leaf = 2 printed sides (front+back)</span>
+      </div>
+      <div class="form-group">
+        <label>Inner Paper GSM</label>
+        <select id="innerGSM" onchange="recalc()">
+          <option value="70">70 GSM ArtPaper</option>
+          <option value="90">90 GSM ArtPaper</option>
+          <option value="100">100 GSM ArtPaper</option>
+          <option value="130">130 GSM ArtPaper</option>
+          <option value="150">150 GSM ArtPaper</option>
+          <option value="170" selected>170 GSM ArtPaper</option>
+          <option value="200">200 GSM ArtPaper</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Inner Printing</label>
+        <select id="innerPrinting" onchange="recalc()">
+          <option value="4+4" selected>Both Sides (4+4) Full Colour</option>
+          <option value="4+0">Single Side (4+0) Full Colour</option>
+          <option value="1+1">Both Sides (1+1) B&W</option>
+          <option value="1+0">Single Side (1+0) B&W</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Inner Lamination</label>
+        <select id="innerLam" onchange="recalc()">
+          <option value="none">None</option>
+          <option value="matt">Matt Lamination O/S</option>
+          <option value="gloss">Gloss Lamination O/S</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cover -->
+  <div class="card">
+    <div class="sec-head">Cover (4 pages unless noted)</div>
+    <div class="form-grid">
+      <div class="form-group">
+        <label>Cover Leaves</label>
+        <input type="number" id="coverLeaves" min="1" value="4" oninput="recalc()">
+      </div>
+      <div class="form-group">
+        <label>Cover Paper GSM</label>
+        <select id="coverGSM" onchange="recalc()">
+          <option value="250">250 GSM ArtCard</option>
+          <option value="300" selected>300 GSM ArtCard</option>
+          <option value="350">350 GSM ArtCard</option>
+          <option value="400">400 GSM ArtCard</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Cover Printing</label>
+        <select id="coverPrinting" onchange="recalc()">
+          <option value="4+4" selected>Both Sides (4+4) Full Colour</option>
+          <option value="4+0">Single Side (4+0) Full Colour</option>
+          <option value="1+1">Both Sides (1+1) B&W</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Cover Lamination</label>
+        <select id="coverLam" onchange="recalc()">
+          <option value="none">None</option>
+          <option value="matt" selected>Matt Lamination O/S</option>
+          <option value="gloss">Gloss Lamination O/S</option>
+          <option value="matte_both">Matt Lamination Both Sides</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- Binding -->
+  <div class="card">
+    <div class="sec-head">Binding</div>
+    <div class="pill-group" id="rg-binding">
+      <label class="pill"><input type="radio" name="binding" value="center_pin" checked> Center Pinning Booklet</label>
+      <label class="pill"><input type="radio" name="binding" value="perfect"> Perfect Binding (Glue)</label>
+      <label class="pill"><input type="radio" name="binding" value="spiral"> Spiral Binding</label>
+      <label class="pill"><input type="radio" name="binding" value="wiro"> Wiro Binding</label>
+      <label class="pill"><input type="radio" name="binding" value="staple"> Corner Staple</label>
+      <label class="pill"><input type="radio" name="binding" value="none"> No Binding</label>
+    </div>
+  </div>
+
+  <!-- Quantity Options -->
+  <div class="card">
+    <div class="sec-head">Quantity Options (up to 3 options for comparison)</div>
+    <div class="options-strip" id="qty-options">
+      <div class="opt-card active-opt" id="opt0">
+        <div class="opt-label">Option 1</div>
+        <input type="checkbox" checked onchange="toggleOpt(0,this)">
+        <div class="form-group" style="margin-top:.5rem"><label>Qty</label><input type="number" id="qty0" value="300" min="1" oninput="recalc()"></div>
+      </div>
+      <div class="opt-card active-opt" id="opt1">
+        <div class="opt-label">Option 2</div>
+        <input type="checkbox" checked onchange="toggleOpt(1,this)">
+        <div class="form-group" style="margin-top:.5rem"><label>Qty</label><input type="number" id="qty1" value="500" min="1" oninput="recalc()"></div>
+      </div>
+      <div class="opt-card active-opt" id="opt2">
+        <div class="opt-label">Option 3</div>
+        <input type="checkbox" checked onchange="toggleOpt(2,this)">
+        <div class="form-group" style="margin-top:.5rem"><label>Qty</label><input type="number" id="qty2" value="3000" min="1" oninput="recalc()"></div>
+      </div>
+    </div>
+    <div class="btn-row">
+      <button class="btn-primary" onclick="generateQuote()">Generate Quotation</button>
+      <button class="btn-outline" onclick="clearForm()">Clear</button>
+    </div>
+  </div>
+
+  <!-- QUOTE OUTPUT -->
+  <div class="card print-card" id="quote-output" style="display:none">
+    <div class="print-header" id="print-header"></div>
+    <div class="quote-wrap">
+      <table class="quote-table" id="quote-table"></table>
+    </div>
+    <div style="margin-top:1rem;font-size:11.5px;color:var(--muted);border-top:1px solid var(--border);padding-top:.75rem">
+      ⚠️ This is a computer-generated estimate. Prices are indicative and subject to change. Valid for 7 days. Taxes as applicable.
+    </div>
+    <div class="btn-row" style="margin-top:.75rem">
+      <button class="btn-primary" onclick="window.print()">🖨️ Print / Save PDF</button>
+      <button class="btn-outline" onclick="toggleBreakdown()">Show Cost Breakdown</button>
+    </div>
+    <div class="breakdown" id="breakdown-box"></div>
+  </div>
+
+</div>
+
+<!-- ═══════════ ADMIN PAGE ═══════════ -->
+<div class="page" id="page-admin">
+  <div class="info-box">
+    💡 <strong>Offset Imposition Logic:</strong> Your press sheet is <strong id="pressInfo">18" × 25"</strong>. The system automatically calculates how many finished-size pages fit per sheet (both sides counted), then determines total sheets needed. Paper cost = sheets × GSM paper rate. Adjust your press size and all rates below.<br><br>
+    📊 <strong>Prices last updated: June 2026</strong> — Paper rates sourced from Indian Printer &amp; Publisher market reports &amp; IndiaMART wholesale listings (ex-godown, excl. GST). Printing/plate/lamination/binding rates based on India commercial press market averages. Adjust to match your actual supplier quotes.
+  </div>
+
+  <div class="card">
+    <div class="sec-head">Press & Plate Setup</div>
+    <div class="form-grid">
+      <div class="form-group"><label>Press Sheet Width (inches)</label><input type="number" class="price-inp" id="pressW" step="0.1" value="18" style="width:100%" oninput="updatePressInfo()"></div>
+      <div class="form-group"><label>Press Sheet Height (inches)</label><input type="number" class="price-inp" id="pressH" step="0.1" value="25" style="width:100%" oninput="updatePressInfo()"></div>
+      <div class="form-group"><label>Bleed / Margin per side (inches)</label><input type="number" class="price-inp" id="bleed" step="0.05" value="0.15" style="width:100%"></div>
+      <div class="form-group"><label>Makeready Waste (sheets per run)</label><input type="number" class="price-inp" id="makeready" step="10" value="50" style="width:100%"></div>
+    </div>
+  </div>
+
+  <div class="admin-grid">
+
+    <div class="card">
+      <div class="admin-sec-title">Paper Rates (₹ per kg)</div>
+      <div class="price-row"><label>70 GSM ArtPaper</label><div class="price-input-wrap"><span>₹/kg</span><input type="number" class="price-inp" id="r_paper_70" step="1" value="98"></div></div>
+      <div class="price-row"><label>90 GSM ArtPaper</label><div class="price-input-wrap"><span>₹/kg</span><input type="number" class="price-inp" id="r_paper_90" step="1" value="105"></div></div>
+      <div class="price-row"><label>100 GSM ArtPaper</label><div class="price-input-wrap"><span>₹/kg</span><input type="number" class="price-inp" id="r_paper_100" step="1" value="112"></div></div>
+      <div class="price-row"><label>130 GSM ArtPaper</label><div class="price-input-wrap"><span>₹/kg</span><input type="number" class="price-inp" id="r_paper_130" step="1" value="122"></div></div>
+      <div class="price-row"><label>150 GSM ArtPaper</label><div class="price-input-wrap"><span>₹/kg</span><input type="number" class="price-inp" id="r_paper_150" step="1" value="135"></div></div>
+      <div class="price-row"><label>170 GSM ArtPaper</label><div class="price-input-wrap"><span>₹/kg</span><input type="number" class="price-inp" id="r_paper_170" step="1" value="148"></div></div>
+      <div class="price-row"><label>200 GSM ArtPaper</label><div class="price-input-wrap"><span>₹/kg</span><input type="number" class="price-inp" id="r_paper_200" step="1" value="162"></div></div>
+      <div class="price-row"><label>250 GSM ArtCard</label><div class="price-input-wrap"><span>₹/kg</span><input type="number" class="price-inp" id="r_paper_250" step="1" value="175"></div></div>
+      <div class="price-row"><label>300 GSM ArtCard</label><div class="price-input-wrap"><span>₹/kg</span><input type="number" class="price-inp" id="r_paper_300" step="1" value="188"></div></div>
+      <div class="price-row"><label>350 GSM ArtCard</label><div class="price-input-wrap"><span>₹/kg</span><input type="number" class="price-inp" id="r_paper_350" step="1" value="198"></div></div>
+      <div class="price-row"><label>400 GSM ArtCard</label><div class="price-input-wrap"><span>₹/kg</span><input type="number" class="price-inp" id="r_paper_400" step="1" value="210"></div></div>
+    </div>
+
+    <div class="card">
+      <div class="admin-sec-title">Printing (₹ per 1000 impressions)</div>
+      <div class="price-row"><label>4+4 Full Colour (per 1000 imp)</label><div class="price-input-wrap"><span>₹</span><input type="number" class="price-inp" id="r_print_44" step="10" value="2200"></div></div>
+      <div class="price-row"><label>4+0 Single Side Colour</label><div class="price-input-wrap"><span>₹</span><input type="number" class="price-inp" id="r_print_40" step="10" value="1400"></div></div>
+      <div class="price-row"><label>1+1 B&W Both Sides</label><div class="price-input-wrap"><span>₹</span><input type="number" class="price-inp" id="r_print_11" step="10" value="450"></div></div>
+      <div class="price-row"><label>1+0 B&W Single Side</label><div class="price-input-wrap"><span>₹</span><input type="number" class="price-inp" id="r_print_10" step="10" value="280"></div></div>
+      <div style="margin-top:.75rem" class="admin-sec-title">Plate Making (₹ per plate)</div>
+      <div class="price-row"><label>Colour Plate (per plate)</label><div class="price-input-wrap"><span>₹</span><input type="number" class="price-inp" id="r_plate_color" step="50" value="480"></div></div>
+      <div class="price-row"><label>B&W Plate (per plate)</label><div class="price-input-wrap"><span>₹</span><input type="number" class="price-inp" id="r_plate_bw" step="50" value="250"></div></div>
+      <div class="price-row"><label>Min Plates Per Side (colour)</label><div class="price-input-wrap"><span>nos</span><input type="number" class="price-inp" id="r_plates_per_color" step="1" value="4"></div></div>
+    </div>
+
+    <div class="card">
+      <div class="admin-sec-title">Lamination (₹ per sq.ft)</div>
+      <div class="price-row"><label>Matt Lamination O/S</label><div class="price-input-wrap"><span>₹/sqft</span><input type="number" class="price-inp" id="r_lam_matt" step="0.5" value="6.5"></div></div>
+      <div class="price-row"><label>Gloss Lamination O/S</label><div class="price-input-wrap"><span>₹/sqft</span><input type="number" class="price-inp" id="r_lam_gloss" step="0.5" value="5.5"></div></div>
+      <div class="price-row"><label>Matt Lamination Both Sides</label><div class="price-input-wrap"><span>₹/sqft</span><input type="number" class="price-inp" id="r_lam_matt_both" step="0.5" value="12.0"></div></div>
+    </div>
+
+    <div class="card">
+      <div class="admin-sec-title">Binding (₹ per piece)</div>
+      <div class="price-row"><label>No Binding</label><div class="price-input-wrap"><span>₹</span><input type="number" class="price-inp" id="r_bind_none" step="0.5" value="0"></div></div>
+      <div class="price-row"><label>Staple / Corner Staple</label><div class="price-input-wrap"><span>₹</span><input type="number" class="price-inp" id="r_bind_staple" step="0.5" value="2.0"></div></div>
+      <div class="price-row"><label>Spiral Binding</label><div class="price-input-wrap"><span>₹</span><input type="number" class="price-inp" id="r_bind_spiral" step="0.5" value="28.0"></div></div>
+      <div class="price-row"><label>Wiro Binding</label><div class="price-input-wrap"><span>₹</span><input type="number" class="price-inp" id="r_bind_wiro" step="0.5" value="32.0"></div></div>
+      <div class="price-row"><label>Glue Binding</label><div class="price-input-wrap"><span>₹</span><input type="number" class="price-inp" id="r_bind_glue" step="0.5" value="18.0"></div></div>
+      <div class="price-row"><label>Soft Cover Binding</label><div class="price-input-wrap"><span>₹</span><input type="number" class="price-inp" id="r_bind_soft_cover" step="0.5" value="22.0"></div></div>
+      <div class="price-row"><label>Hard Cover Binding</label><div class="price-input-wrap"><span>₹</span><input type="number" class="price-inp" id="r_bind_hard_cover" step="0.5" value="55.0"></div></div>
+      <div class="price-row"><label>Center Pinning</label><div class="price-input-wrap"><span>₹</span><input type="number" class="price-inp" id="r_bind_center_pin" step="0.5" value="5.5"></div></div>
+      <div class="price-row"><label>Perfect Binding</label><div class="price-input-wrap"><span>₹</span><input type="number" class="price-inp" id="r_bind_perfect" step="0.5" value="18.0"></div></div>
+      <div style="margin-top:.75rem" class="admin-sec-title">Other</div>
+      <div class="price-row"><label>Cutting Charges (₹ per 1000 cuts)</label><div class="price-input-wrap"><span>₹</span><input type="number" class="price-inp" id="r_cutting" step="5" value="60"></div></div>
+      <div class="price-row"><label>Packing & Handling (per job)</label><div class="price-input-wrap"><span>₹</span><input type="number" class="price-inp" id="r_packing" step="10" value="250"></div></div>
+      <div class="price-row"><label>Profit Margin %</label><div class="price-input-wrap"><span>%</span><input type="number" class="price-inp" id="r_margin" step="1" value="22"></div></div>
+      <div class="price-row"><label>GST %</label><div class="price-input-wrap"><span>%</span><input type="number" class="price-inp" id="r_gst" step="0.5" value="18"></div></div>
+    </div>
+
+  </div>
+
+  <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+    <button class="btn-primary" onclick="saveAdminPrices()">💾 Save All Prices</button>
+    <button class="btn-outline" onclick="resetAdminPrices()">Reset to Defaults</button>
+    <div class="save-msg" id="save-msg">✅ Prices saved!</div>
+  </div>
+</div>
+
+<script>
+// ─── DEFAULTS ────────────────────────────────────────────────────
+const DEFAULTS = {
+  // Press setup
+  pressW:18, pressH:25, bleed:0.15, makeready:50,
+  // Art paper rates ₹/kg — coated C2S, ex-godown excl. GST (India market June 2026)
+  paper_70:98,   // 70 GSM coated art paper
+  paper_90:105,  // 90 GSM coated art paper
+  paper_100:112, // 100 GSM coated art paper
+  paper_130:122, // 130 GSM coated art paper
+  paper_150:135, // 150 GSM coated art paper
+  paper_170:148, // 170 GSM coated art paper (most common booklet inner)
+  paper_200:162, // 200 GSM coated art paper
+  paper_250:175, // 250 GSM artcard (cover stock)
+  paper_300:188, // 300 GSM artcard (most common cover)
+  paper_350:198, // 350 GSM artcard
+  paper_400:210, // 400 GSM artcard (premium cover)
+  // Printing ₹ per 1000 impressions (1 impression = 1 sheet through press, one side)
+  print_44:2200, // 4+4 full colour both sides (Heidelberg / multicolour press)
+  print_40:1400, // 4+0 full colour single side
+  print_11:450,  // 1+1 B&W both sides
+  print_10:280,  // 1+0 B&W single side
+  // Plate making — CTP aluminium plate, per plate (material + imaging + labour)
+  plate_color:480, // colour CTP plate per plate (18×25" size range)
+  plate_bw:250,    // B&W/single-colour plate per plate
+  plates_per_color:4, // 4 colour channels (CMYK) per colour side
+  // Lamination ₹ per sq.ft (thermal BOPP, press-applied, incl. labour)
+  lam_matt:6.5,       // matt BOPP lamination one side
+  lam_gloss:5.5,      // gloss BOPP lamination one side
+  lam_matt_both:12.0, // matt both sides
+  // Binding ₹ per piece (post-press, incl. labour)
+  bind_center_pin:5.5,  // center pin / saddle stitch booklet
+  bind_perfect:18.0,    // perfect binding (glue + cover)
+  bind_spiral:28.0,     // spiral / coil binding
+  bind_wiro:32.0,       // wiro / twin-loop binding
+  bind_staple:2.0,      // corner staple
+  bind_none:0,
+  // Miscellaneous
+  cutting:60,   // ₹ per 1000 cuts (guillotine)
+  packing:250,  // ₹ per job (packing + handling)
+  margin:22,    // profit margin %
+  gst:18        // GST %
+};
+
+let P = JSON.parse(localStorage.getItem('offsetcalc_prices') || 'null') || {...DEFAULTS};
+
+// ─── RADIO PILL STYLING ───────────────────────────────────────────
+document.querySelectorAll('.pill input[type=radio]').forEach(r => {
+  r.addEventListener('change', function(){
+    document.querySelectorAll(`input[name="${this.name}"]`).forEach(x => x.closest('.pill').classList.toggle('sel', x.checked));
+    if(this.name === 'fsize'){
+      document.getElementById('custom-size-row').style.display = this.value === 'custom' ? 'block' : 'none';
+      updateImpositionInfo();
+    }
+    recalc();
+  });
+});
+document.querySelectorAll('#cW,#cH').forEach(e => e.addEventListener('input', () => { updateImpositionInfo(); recalc(); }));
+
+// ─── IMPOSITION LOGIC ─────────────────────────────────────────────
+// Sheet size from admin
+function pressW(){ return parseFloat(document.getElementById('pressW')?.value||18); }
+function pressH(){ return parseFloat(document.getElementById('pressH')?.value||25); }
+function bleed(){ return parseFloat(document.getElementById('bleed')?.value||0.15); }
+
+function getFinishedSize(){
+  const sel = document.querySelector('input[name="fsize"]:checked');
+  if(!sel) return null;
+  if(sel.value === 'custom'){
+    const w = parseFloat(document.getElementById('cW').value)||0;
+    const h = parseFloat(document.getElementById('cH').value)||0;
+    return w && h ? {w,h} : null;
+  }
+  const [w,h] = sel.value.split('x').map(Number);
+  return {w,h};
+}
+
+// How many finished pages (with bleed) fit on one press sheet?
+// Try both orientations for each page
+function calcImposition(fw, fh){
+  const pw = pressW(), ph = pressH(), b = bleed();
+  const pw_eff = fw + 2*b, ph_eff = fh + 2*b;
+  // Portrait orientation
+  const cols_p = Math.floor(pw / pw_eff), rows_p = Math.floor(ph / ph_eff);
+  // Landscape orientation
+  const cols_l = Math.floor(pw / ph_eff), rows_l = Math.floor(ph / pw_eff);
+  const up_p = cols_p * rows_p, up_l = cols_l * rows_l;
+  return Math.max(up_p, up_l, 1);
+}
+
+function updateImpositionInfo(){
+  const fs = getFinishedSize();
+  if(!fs){ document.getElementById('imposition-info').textContent = ''; return; }
+  const up = calcImposition(fs.w, fs.h);
+  document.getElementById('imposition-info').innerHTML =
+    `📐 On your <strong>${pressW()}" × ${pressH()}"</strong> press sheet — <strong>${up} pages fit per sheet</strong> (both sides used, so 1 sheet = ${up*2} printed sides)`;
+}
+
+// ─── PAPER WEIGHT FORMULA ─────────────────────────────────────────
+// Weight (kg) = (L×W in cm²) × GSM / 10000000 × sheets
+// 1 inch = 2.54 cm; sheet area in cm²
+function sheetWeightKg(sheets, gsm){
+  const w_cm = pressW()*2.54, h_cm = pressH()*2.54;
+  return (w_cm * h_cm * gsm * sheets) / 10000000;
+}
+
+// ─── CALC FOR ONE OPTION ──────────────────────────────────────────
+function calcOption(qty){
+  const fs = getFinishedSize();
+  if(!fs) return null;
+
+  const innerLeaves = parseInt(document.getElementById('innerLeaves').value)||0;
+  const coverLeaves = parseInt(document.getElementById('coverLeaves').value)||4;
+  const innerGSM    = parseInt(document.getElementById('innerGSM').value)||170;
+  const coverGSM    = parseInt(document.getElementById('coverGSM').value)||300;
+  const innerPrint  = document.getElementById('innerPrinting').value;
+  const coverPrint  = document.getElementById('coverPrinting').value;
+  const innerLam    = document.getElementById('innerLam').value;
+  const coverLam    = document.getElementById('coverLam').value;
+  const bindType    = document.querySelector('input[name="binding"]:checked')?.value||'center_pin';
+  const makeready   = parseInt(document.getElementById('makeready')?.value||50);
+
+  const pagesPerSheet = calcImposition(fs.w, fs.h);
+  const pagesPerSheetDouble = pagesPerSheet * 2; // both sides
+
+  // ── Inner paper ──
+  const innerSheetsPerCopy = Math.ceil(innerLeaves / pagesPerSheetDouble);
+  const innerTotalSheets   = innerSheetsPerCopy * qty + makeready;
+  const innerPaperKg       = sheetWeightKg(innerTotalSheets, innerGSM);
+  const innerPaperCost     = innerPaperKg * (P['paper_'+innerGSM]||120);
+
+  // ── Cover paper ──
+  const coverPagesPerSheet = calcImposition(fs.w, fs.h); // covers usually 1-up on heavier stock
+  const coverSheetsPerCopy = Math.ceil(coverLeaves / pagesPerSheetDouble);
+  const coverTotalSheets   = coverSheetsPerCopy * qty + makeready;
+  const coverPaperKg       = sheetWeightKg(coverTotalSheets, coverGSM);
+  const coverPaperCost     = coverPaperKg * (P['paper_'+coverGSM]||155);
+
+  const totalPaperCost = innerPaperCost + coverPaperCost;
+
+  // ── Plates ──
+  // One "run" = all inner sheets; plates per run = colour channels × 2 sides (or 1 for single)
+  function plateCount(printMode){
+    if(printMode==='4+4') return P.plates_per_color * 2; // 4 colours × 2 sides
+    if(printMode==='4+0') return P.plates_per_color;
+    if(printMode==='1+1') return 2;
+    return 1;
+  }
+  const innerPlates = plateCount(innerPrint);
+  const coverPlates = plateCount(coverPrint);
+  const plateRate_inner = innerPrint.startsWith('4') ? P.plate_color : P.plate_bw;
+  const plateRate_cover = coverPrint.startsWith('4') ? P.plate_color : P.plate_bw;
+  const plateCost = (innerPlates * plateRate_inner) + (coverPlates * plateRate_cover);
+
+  // ── Printing cost (per 1000 impressions) ──
+  // 1 impression = pressing 1 sheet through press once (one side)
+  const innerImpressions = innerTotalSheets; // 1 pass for both sides on perfector (simplify: 1 side counted once per 1000 formula)
+  const coverImpressions = coverTotalSheets;
+  const printRateInner = P['print_'+innerPrint.replace('+','')]||800;
+  const printRateCover = P['print_'+coverPrint.replace('+','')]||800;
+  const printCost = (innerImpressions/1000 * printRateInner) + (coverImpressions/1000 * printRateCover);
+
+  // ── Lamination ──
+  const sqftPerCopy = (fs.w * fs.h) / 144; // sq feet
+  function lamRate(lam){ return lam==='matt'?P.lam_matt:lam==='gloss'?P.lam_gloss:lam==='matte_both'?P.lam_matt_both:0; }
+  const innerLamCost = qty * innerLeaves * sqftPerCopy * lamRate(innerLam);
+  const coverLamCost = qty * coverLeaves * sqftPerCopy * lamRate(coverLam);
+  const lamCost = innerLamCost + coverLamCost;
+
+  // ── Binding ──
+  const bindRateKey = 'bind_'+bindType;
+  const bindCost = qty * (P[bindRateKey]||0);
+
+  // ── Cutting ──
+  const cuttingCost = (qty / 1000) * P.cutting;
+
+  // ── Packing ──
+  const packCost = P.packing;
+
+  const subtotal = totalPaperCost + plateCost + printCost + lamCost + bindCost + cuttingCost + packCost;
+  const withMargin = subtotal * (1 + P.margin/100);
+  const gstAmt = withMargin * (P.gst/100);
+  const grandTotal = withMargin + gstAmt;
+  const ratePerPiece = grandTotal / qty;
+
+  return {
+    qty, innerLeaves, coverLeaves,
+    size: `${fs.w}" × ${fs.h}"`,
+    innerGSM, coverGSM, innerPrint, coverPrint, innerLam, coverLam, bindType,
+    paperCost: totalPaperCost, plateCost, printCost, lamCost, bindCost,
+    cuttingCost, packCost, subtotal, withMargin, gstAmt, grandTotal, ratePerPiece,
+    innerSheetsPerCopy, coverSheetsPerCopy, pagesPerSheet,
+    innerPaperKg, coverPaperKg
+  };
+}
+
+// ─── GENERATE QUOTE TABLE ─────────────────────────────────────────
+let lastResults = [];
+
+function generateQuote(){
+  const fs = getFinishedSize();
+  if(!fs){ alert('Please select a finished size.'); return; }
+  if(!document.querySelector('input[name="fsize"]:checked')){ alert('Select a size.'); return; }
+
+  loadAdminToP();
+
+  const opts = [0,1,2].filter(i => document.getElementById('opt'+i).classList.contains('active-opt'));
+  if(!opts.length){ alert('Enable at least one quantity option.'); return; }
+
+  const qtys = opts.map(i => parseInt(document.getElementById('qty'+i).value)||100);
+  lastResults = qtys.map(q => calcOption(q));
+
+  // Build table
+  const bindLabel = {center_pin:'CENTER PINNING BOOKLET',perfect:'Perfect Binding',spiral:'Spiral Binding',wiro:'Wiro Binding',staple:'Corner Staple',none:'No Binding'};
+  const lamLabel  = {none:'None',matt:'Matt Lamination O/S',gloss:'Gloss Lamination O/S',matte_both:'Matt Lam Both Sides'};
+  const printLabel = {'4+4':'Both Sides (4+4)','4+0':'Single Side (4+0)','1+1':'Both Sides (1+1) B&W','1+0':'Single Side (1+0) B&W'};
+
+  const headers = `<tr><th>Quotation — ${document.getElementById('quoteNo').value||'—'}</th>${lastResults.map((_,i)=>`<th>Option ${i+1}</th>`).join('')}</tr>`;
+
+  const rows = [
+    ['Quantity', r => r.qty.toLocaleString('en-IN')],
+    ['Leaves/Designs', r => `${r.innerLeaves} Inner + ${r.coverLeaves} Cover`],
+    ['Size', r => r.size],
+    ['GSM', r => `${r.innerGSM} GSM ArtPaper`],
+    ['Printing', r => printLabel[r.innerPrint]||r.innerPrint],
+    ['Inner Lamination', r => lamLabel[r.innerLam]],
+    ['Booklet Binding', r => bindLabel[r.bindType]||r.bindType],
+    ['Cover GSM', r => `${r.coverGSM} GSM ArtCard`],
+    ['Cover Printing', r => printLabel[r.coverPrint]||r.coverPrint],
+    ['Cover Lamination', r => lamLabel[r.coverLam]],
+  ];
+
+  const bodyRows = rows.map(([label, fn]) =>
+    `<tr><td>${label}</td>${lastResults.map(r=>`<td>${fn(r)}</td>`).join('')}</tr>`
+  ).join('');
+
+  const totalRow = `<tr class="total-row"><td>Total Amt</td>${lastResults.map(r=>`<td>₹${r.grandTotal.toFixed(2)}</td>`).join('')}</tr>`;
+  const rateRow  = `<tr class="rate-row"><td>Rate (per piece)</td>${lastResults.map(r=>`<td>₹${r.ratePerPiece.toFixed(2)}</td>`).join('')}</tr>`;
+  const actionRow = `<tr><td>Action</td>${lastResults.map(()=>`<td>—</td>`).join('')}</tr>`;
+
+  document.getElementById('quote-table').innerHTML = `<thead>${headers}</thead><tbody>${bodyRows}${totalRow}${rateRow}${actionRow}</tbody>`;
+
+  // Print header
+  const d = new Date(); const ds = d.toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'});
+  document.getElementById('print-header').innerHTML = `
+    <div class="ph-left"><div class="brand">Prince Graphics Limited</div><div class="tagline">Professional Offset Printing Quotation</div></div>
+    <div class="ph-right">
+      <strong>Quotation No:</strong> ${document.getElementById('quoteNo').value||'—'}<br>
+      <strong>Date:</strong> ${document.getElementById('quoteDate').value ? new Date(document.getElementById('quoteDate').value).toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'}) : ds}<br>
+      <strong>Client:</strong> ${document.getElementById('clientName').value||'—'}<br>
+      <strong>Job:</strong> ${document.getElementById('jobName').value||'—'}
+    </div>`;
+
+  document.getElementById('quote-output').style.display = 'block';
+  document.getElementById('breakdown-box').classList.remove('show');
+  document.getElementById('quote-output').scrollIntoView({behavior:'smooth'});
+}
+
+function toggleBreakdown(){
+  if(!lastResults.length) return;
+  const box = document.getElementById('breakdown-box');
+  box.classList.toggle('show');
+  if(box.classList.contains('show')) renderBreakdown();
+}
+
+function renderBreakdown(){
+  const box = document.getElementById('breakdown-box');
+  let html = '';
+  lastResults.forEach((r,i) => {
+    html += `<div style="margin-bottom:1rem"><strong style="color:var(--pink)">Option ${i+1} — Qty ${r.qty.toLocaleString('en-IN')}</strong>`;
+    html += `<div class="bk-row"><span>Inner paper (${r.innerPaperKg.toFixed(2)} kg)</span><span>₹${r.paperCost.toFixed(2)}</span></div>`;
+    html += `<div class="bk-row"><span>Cover paper (${r.coverPaperKg.toFixed(2)} kg)</span><span>—</span></div>`;
+    html += `<div class="bk-row"><span>Plate making</span><span>₹${r.plateCost.toFixed(2)}</span></div>`;
+    html += `<div class="bk-row"><span>Printing</span><span>₹${r.printCost.toFixed(2)}</span></div>`;
+    html += `<div class="bk-row"><span>Lamination</span><span>₹${r.lamCost.toFixed(2)}</span></div>`;
+    html += `<div class="bk-row"><span>Binding</span><span>₹${r.bindCost.toFixed(2)}</span></div>`;
+    html += `<div class="bk-row"><span>Cutting</span><span>₹${r.cuttingCost.toFixed(2)}</span></div>`;
+    html += `<div class="bk-row"><span>Packing</span><span>₹${r.packCost.toFixed(2)}</span></div>`;
+    html += `<div class="bk-row sub"><span>Subtotal (before margin)</span><span>₹${r.subtotal.toFixed(2)}</span></div>`;
+    html += `<div class="bk-row"><span>Profit margin (${P.margin}%)</span><span>₹${(r.withMargin-r.subtotal).toFixed(2)}</span></div>`;
+    html += `<div class="bk-row"><span>GST (${P.gst}%)</span><span>₹${r.gstAmt.toFixed(2)}</span></div>`;
+    html += `<div class="bk-row sub"><span>Grand Total</span><span>₹${r.grandTotal.toFixed(2)}</span></div></div>`;
+  });
+  box.innerHTML = html;
+}
+
+function recalc(){
+  updateImpositionInfo();
+  if(document.getElementById('quote-output').style.display !== 'none') generateQuote();
+}
+
+// ─── TOGGLE OPTION ───────────────────────────────────────────────
+function toggleOpt(i, cb){
+  document.getElementById('opt'+i).classList.toggle('active-opt', cb.checked);
+}
+
+// ─── ADMIN ───────────────────────────────────────────────────────
+function loadAdminToP(){
+  const map = {
+    pressW:'pressW',pressH:'pressH',bleed:'bleed',makeready:'makeready',
+    paper_70:'r_paper_70',paper_90:'r_paper_90',paper_100:'r_paper_100',
+    paper_130:'r_paper_130',paper_150:'r_paper_150',paper_170:'r_paper_170',
+    paper_200:'r_paper_200',paper_250:'r_paper_250',paper_300:'r_paper_300',
+    paper_350:'r_paper_350',paper_400:'r_paper_400',
+    print_44:'r_print_44',print_40:'r_print_40',print_11:'r_print_11',print_10:'r_print_10',
+    plate_color:'r_plate_color',plate_bw:'r_plate_bw',plates_per_color:'r_plates_per_color',
+    lam_matt:'r_lam_matt',lam_gloss:'r_lam_gloss',lam_matt_both:'r_lam_matt_both',
+    bind_center_pin:'r_bind_center_pin',bind_perfect:'r_bind_perfect',
+    bind_spiral:'r_bind_spiral',bind_wiro:'r_bind_wiro',
+    bind_staple:'r_bind_staple',bind_none:'r_bind_none',
+    cutting:'r_cutting',packing:'r_packing',margin:'r_margin',gst:'r_gst'
+  };
+  Object.entries(map).forEach(([key,id])=>{
+    const el = document.getElementById(id);
+    if(el) P[key] = parseFloat(el.value)||0;
+  });
+}
+
+function saveAdminPrices(){
+  loadAdminToP();
+  localStorage.setItem('offsetcalc_prices', JSON.stringify(P));
+  const m = document.getElementById('save-msg');
+  m.style.display='block'; setTimeout(()=>m.style.display='none',2500);
+  updatePressInfo();
+}
+
+function resetAdminPrices(){
+  if(!confirm('Reset all prices to defaults?')) return;
+  P = {...DEFAULTS};
+  loadAdminInputs();
+  localStorage.removeItem('offsetcalc_prices');
+}
+
+function loadAdminInputs(){
+  const map = {
+    pressW:'pressW',pressH:'pressH',bleed:'bleed',makeready:'makeready',
+    paper_70:'r_paper_70',paper_90:'r_paper_90',paper_100:'r_paper_100',
+    paper_130:'r_paper_130',paper_150:'r_paper_150',paper_170:'r_paper_170',
+    paper_200:'r_paper_200',paper_250:'r_paper_250',paper_300:'r_paper_300',
+    paper_350:'r_paper_350',paper_400:'r_paper_400',
+    print_44:'r_print_44',print_40:'r_print_40',print_11:'r_print_11',print_10:'r_print_10',
+    plate_color:'r_plate_color',plate_bw:'r_plate_bw',plates_per_color:'r_plates_per_color',
+    lam_matt:'r_lam_matt',lam_gloss:'r_lam_gloss',lam_matt_both:'r_lam_matt_both',
+    bind_center_pin:'r_bind_center_pin',bind_perfect:'r_bind_perfect',
+    bind_spiral:'r_bind_spiral',bind_wiro:'r_bind_wiro',
+    bind_staple:'r_bind_staple',bind_none:'r_bind_none',
+    cutting:'r_cutting',packing:'r_packing',margin:'r_margin',gst:'r_gst'
+  };
+  Object.entries(map).forEach(([key,id])=>{
+    const el = document.getElementById(id);
+    if(el) el.value = P[key] ?? DEFAULTS[key];
+  });
+}
+
+function updatePressInfo(){
+  const w = document.getElementById('pressW')?.value||18;
+  const h = document.getElementById('pressH')?.value||25;
+  const el = document.getElementById('pressInfo');
+  if(el) el.textContent = `${w}" × ${h}"`;
+}
+
+function showPage(name, btn){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('page-'+name).classList.add('active');
+  if(btn) btn.classList.add('active');
+  if(name==='admin'){ loadAdminInputs(); updatePressInfo(); }
+}
+
+function clearForm(){
+  document.querySelectorAll('input[type=radio]').forEach(r=>r.checked=false);
+  document.querySelectorAll('.pill').forEach(p=>p.classList.remove('sel'));
+  ['innerLeaves','coverLeaves'].forEach(id=>document.getElementById(id).value = id==='innerLeaves'?36:4);
+  document.getElementById('quote-output').style.display='none';
+  document.getElementById('imposition-info').textContent='';
+  [0,1,2].forEach(i=>{ document.getElementById('qty'+i).value=[300,500,3000][i]; document.getElementById('opt'+i).classList.add('active-opt'); document.getElementById('opt'+i).querySelector('input[type=checkbox]').checked=true; });
+}
+
+// ─── INIT ─────────────────────────────────────────────────────────
+document.getElementById('quoteDate').value = new Date().toISOString().split('T')[0];
+loadAdminInputs();
+updatePressInfo();
+</script>
+</body>
+</html>
