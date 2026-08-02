@@ -1683,21 +1683,27 @@
                 "९:०० – १०:३०"
             ];
 
+            /* Dates sourced from Drikpanchang (verified via web search), not this
+   page's own simplified tithi engine — that engine uses mean-motion-only
+   formulas without full lunar perturbations/ayanamsa, which drift by
+   several tithis when projected months ahead. Getting a religious
+   observance date wrong is worse than an empty list, so these are
+   hardcoded from an authoritative source and need a yearly refresh. */
             const FESTIVALS = [
-                { n: "गुरु पूर्णिमा", dt: "2025-07-10", ico: "🪔", d: "आषाढ़ पूर्णिमा" },
-                { n: "नाग पञ्चमी", dt: "2025-07-29", ico: "🐍", d: "श्रावण शुक्ल पञ्चमी" },
-                { n: "रक्षाबन्धन", dt: "2025-08-09", ico: "🎀", d: "श्रावण पूर्णिमा" },
-                { n: "जन्माष्टमी", dt: "2025-08-16", ico: "🦚", d: "भाद्र कृष्ण अष्टमी" },
-                { n: "गणेश चतुर्थी", dt: "2025-08-27", ico: "🐘", d: "भाद्र शुक्ल चतुर्थी" },
-                { n: "नवरात्रि", dt: "2025-10-02", ico: "🌺", d: "आश्विन शुक्ल प्रतिपदा" },
-                { n: "दशहरा", dt: "2025-10-02", ico: "🏹", d: "विजयादशमी" },
-                { n: "दीपावली", dt: "2025-10-20", ico: "🪔", d: "कार्तिक अमावस्या" },
-                { n: "कार्तिक पूर्णिमा", dt: "2025-11-05", ico: "🌕", d: "देव दीपावली" },
-                { n: "मकर संक्रान्ति", dt: "2026-01-14", ico: "☀️", d: "सूर्य का मकर में प्रवेश" },
-                { n: "महाशिवरात्रि", dt: "2026-02-26", ico: "🔱", d: "फाल्गुन कृष्ण चतुर्दशी" },
-                { n: "होली", dt: "2026-03-13", ico: "🎨", d: "फाल्गुन पूर्णिमा" },
-                { n: "राम नवमी", dt: "2026-03-28", ico: "🏹", d: "चैत्र शुक्ल नवमी" },
-                { n: "अक्षय तृतीया", dt: "2026-04-21", ico: "✨", d: "वैशाख शुक्ल तृतीया" }
+                { n: "नाग पञ्चमी", dt: "2026-08-17", ico: "🐍", d: "श्रावण शुक्ल पञ्चमी" },
+                { n: "रक्षाबन्धन", dt: "2026-08-28", ico: "🎀", d: "श्रावण पूर्णिमा" },
+                { n: "जन्माष्टमी", dt: "2026-09-04", ico: "🦚", d: "भाद्र कृष्ण अष्टमी" },
+                { n: "गणेश चतुर्थी", dt: "2026-09-14", ico: "🐘", d: "भाद्र शुक्ल चतुर्थी" },
+                { n: "नवरात्रि", dt: "2026-10-11", ico: "🌺", d: "आश्विन शुक्ल प्रतिपदा" },
+                { n: "दशहरा", dt: "2026-10-20", ico: "🏹", d: "विजयादशमी" },
+                { n: "दीपावली", dt: "2026-11-08", ico: "🪔", d: "कार्तिक अमावस्या" },
+                { n: "कार्तिक पूर्णिमा", dt: "2026-11-24", ico: "🌕", d: "देव दीपावली" },
+                { n: "मकर संक्रान्ति", dt: "2027-01-14", ico: "☀️", d: "सूर्य का मकर में प्रवेश" },
+                { n: "महाशिवरात्रि", dt: "2027-03-06", ico: "🔱", d: "फाल्गुन कृष्ण चतुर्दशी" },
+                { n: "होली", dt: "2027-03-23", ico: "🎨", d: "फाल्गुन पूर्णिमा" },
+                { n: "राम नवमी", dt: "2027-04-15", ico: "🏹", d: "चैत्र शुक्ल नवमी" },
+                { n: "अक्षय तृतीया", dt: "2027-05-09", ico: "✨", d: "वैशाख शुक्ल तृतीया" },
+                { n: "गुरु पूर्णिमा", dt: "2027-07-18", ico: "🪔", d: "आषाढ़ पूर्णिमा" }
             ];
 
             const LIBRARY = {
@@ -2645,22 +2651,22 @@
                 now.setHours(0, 0, 0, 0);
                 const list = document.getElementById("fest-list");
                 list.innerHTML = "";
-                FESTIVALS.forEach((f) => {
-                    const fd = new Date(f.dt + "T00:00:00"),
-                        diff = Math.round((fd - now) / 86400000);
-                    if (diff < -1) return;
-                    const slide = document.createElement("div");
-                    slide.className = "swiper-slide";
-                    let badge,
-                        cls = "fest-tag";
-                    if (diff < 0) badge = "बीत गया";
-                    else if (diff === 0) {
-                        badge = "आज! 🎉";
-                        cls += " today-tag";
-                    } else badge = diff + " दिन शेष";
-                    slide.innerHTML = `<div class="fest-card"><div class="fest-icon">${f.ico}</div><div class="fest-name">${f.n}</div><div class="fest-desc">${f.d}</div><div class="${cls}">${badge}</div></div>`;
-                    list.appendChild(slide);
-                });
+                FESTIVALS.map((f) => ({ f, diff: Math.round((new Date(f.dt + "T00:00:00") - now) / 86400000) }))
+                    .filter((x) => x.diff >= -1)
+                    .sort((a, b) => a.diff - b.diff)
+                    .forEach(({ f, diff }) => {
+                        const slide = document.createElement("div");
+                        slide.className = "swiper-slide";
+                        let badge,
+                            cls = "fest-tag";
+                        if (diff < 0) badge = "बीत गया";
+                        else if (diff === 0) {
+                            badge = "आज! 🎉";
+                            cls += " today-tag";
+                        } else badge = diff + " दिन शेष";
+                        slide.innerHTML = `<div class="fest-card"><div class="fest-icon">${f.ico}</div><div class="fest-name">${f.n}</div><div class="fest-desc">${f.d}</div><div class="${cls}">${badge}</div></div>`;
+                        list.appendChild(slide);
+                    });
                 new Swiper(".fest-swiper", { slidesPerView: "auto", spaceBetween: 14, freeMode: true });
             }
 
