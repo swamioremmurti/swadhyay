@@ -1743,7 +1743,7 @@
                         { id: "u_तैत्तिरीयोपनिषद्",   t: "तैत्तिरीयोपनिषद्",       s: "कृ॰यजु॰ · आनन्दवल्ली",        bg: "#0e2608", fg: "#80ff60" },
                         { id: "u_ऐतरेयोपनिषद्",    t: "ऐतरेयोपनिषद्",          s: "ऋग्वेद · सृष्टि-रहस्य · प्रज्ञानं ब्रह्म",  bg: "#280a0a", fg: "#ff7070" },
                         { id: "u_छान्दोग्योपनिषद्", t: "छान्दोग्योपनिषद्", s: "सामवेद · तत्त्वमसि · ८ अध्याय", bg: "#1e0a1e", fg: "#ff60ff" },
-                        { id: null, t: "बृहदारण्यकोपनिषद्",      s: "शु॰यजु॰ · सबसे विस्तृत",      bg: "#08082a", fg: "#6060ff", na: 1 },
+                        { id: "u_बृहदारण्यकोपनिषद्", t: "बृहदारण्यकोपनिषद्",      s: "शु॰यजु॰ · सबसे विस्तृत",      bg: "#08082a", fg: "#6060ff" },
                         /* ── अन्य प्रमुख ── */
                         { id: "u_श्वेताश्वतरोपनिषद्",  t: "श्वेताश्वतरोपनिषद्",     s: "कृ॰यजु॰ · शिव-वेदान्त",       bg: "#200a20", fg: "#ff80c0" },
                         { id: null, t: "कौषीतकि उपनिषद्",       s: "ऋग्वेद · प्राण-विज्ञान",      bg: "#0a1a10", fg: "#60c080", na: 1 },
@@ -2795,7 +2795,7 @@ ${tsvg}
                         cls = "bk" + (bk.na ? " dim" : ""),
                         tag = bk.na ? '<span class="bk-cs">शीघ्र आएगा</span>' : "";
                     if (bk.id) {
-                        html += `<a class="${cls}" href="book.html?${bk.id}"><div class="bk-cover"><img src="${cover}" alt="${bk.t}" loading="lazy"></div><div class="bk-name">${bk.t}</div><div class="bk-sub">${bk.s}</div>${tag}</a>`;
+                        html += `<a class="${cls}" href="book?${bk.id}"><div class="bk-cover"><img src="${cover}" alt="${bk.t}" loading="lazy"></div><div class="bk-name">${bk.t}</div><div class="bk-sub">${bk.s}</div>${tag}</a>`;
                     } else {
                         html += `<div class="${cls}"><div class="bk-cover"><img src="${cover}" alt="${bk.t}" loading="lazy"></div><div class="bk-name">${bk.t}</div><div class="bk-sub">${bk.s}</div>${tag}</div>`;
                     }
