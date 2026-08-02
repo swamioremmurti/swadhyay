@@ -799,12 +799,12 @@
                 flex: 3;
                 min-width: 0;
             }
-            .panch-right-col {
+            .panch-vrat-row .vrat-block {
                 flex: 2;
                 min-width: 0;
                 display: flex;
                 flex-direction: column;
-                gap: 1.1rem;
+                overflow: hidden;
             }
             .fest-inner-head {
                 font-family: var(--serif);
@@ -821,7 +821,6 @@
                     width: 100%;
                 }
                 .panch-vrat-row .panch-block,
-                .panch-right-col,
                 .vrat-block,
                 .fest-inner {
                     width: 100%;
@@ -896,6 +895,19 @@
                 margin-bottom: 0.9rem;
                 font-family: var(--serif);
                 text-align: center;
+            }
+            .vrat-rows {
+                flex: 1;
+                min-height: 0;
+                overflow-y: auto;
+                padding-right: 0.2rem;
+            }
+            .vrat-rows::-webkit-scrollbar {
+                width: 6px;
+            }
+            .vrat-rows::-webkit-scrollbar-thumb {
+                background: rgba(198, 40, 40, 0.25);
+                border-radius: 6px;
             }
 
             /* Shared row style used in panchang + vrat */
@@ -1439,11 +1451,10 @@
                     </div>
                     <!-- /panch-block -->
 
-                    <!-- Right column: vrat + festivals -->
-                    <div class="panch-right-col">
-                        <!-- Upcoming Vrats -->
-                        <div class="vrat-block">
-                            <h3>🌙 आगामी व्रत</h3>
+                    <!-- Upcoming Vrats -->
+                    <div class="vrat-block">
+                        <h3>🌙 आगामी व्रत</h3>
+                        <div class="vrat-rows" id="vrat-rows">
                             <div class="vrat-row">
                                 <span class="vrat-icon">🌿</span>
                                 <span class="vrat-label">एकादशी</span>
@@ -1462,20 +1473,62 @@
                                 <span class="vrat-name" id="vrat-chat-name">—</span>
                                 <span class="vrat-date" id="vrat-chat-date">—</span>
                             </div>
-                        </div>
-                        <!-- /vrat-block -->
-
-                        <!-- Festivals -->
-                        <div class="fest-inner">
-                            <div class="fest-inner-head">🎊 आगामी पर्व एवं उत्सव</div>
-                            <div class="swiper fest-swiper" style="padding-bottom: 1rem">
-                                <div class="swiper-wrapper" id="fest-list"></div>
+                            <div class="vrat-row">
+                                <span class="vrat-icon">🪷</span>
+                                <span class="vrat-label">विनायक चतुर्थी</span>
+                                <span class="vrat-name" id="vrat-vinayak-name">—</span>
+                                <span class="vrat-date" id="vrat-vinayak-date">—</span>
+                            </div>
+                            <div class="vrat-row">
+                                <span class="vrat-icon">🌺</span>
+                                <span class="vrat-label">दुर्गाष्टमी</span>
+                                <span class="vrat-name" id="vrat-durgashtami-name">—</span>
+                                <span class="vrat-date" id="vrat-durgashtami-date">—</span>
+                            </div>
+                            <div class="vrat-row">
+                                <span class="vrat-icon">🖤</span>
+                                <span class="vrat-label">मासिक काली पूजा</span>
+                                <span class="vrat-name" id="vrat-kali-name">—</span>
+                                <span class="vrat-date" id="vrat-kali-date">—</span>
+                            </div>
+                            <div class="vrat-row">
+                                <span class="vrat-icon">⚔️</span>
+                                <span class="vrat-label">षष्ठी</span>
+                                <span class="vrat-name" id="vrat-shashthi-name">—</span>
+                                <span class="vrat-date" id="vrat-shashthi-date">—</span>
+                            </div>
+                            <div class="vrat-row">
+                                <span class="vrat-icon">🌕</span>
+                                <span class="vrat-label">पूर्णिमा</span>
+                                <span class="vrat-name" id="vrat-purnima-name">—</span>
+                                <span class="vrat-date" id="vrat-purnima-date">—</span>
+                            </div>
+                            <div class="vrat-row">
+                                <span class="vrat-icon">☀️</span>
+                                <span class="vrat-label">मासिक सप्तमी</span>
+                                <span class="vrat-name" id="vrat-saptami-name">—</span>
+                                <span class="vrat-date" id="vrat-saptami-date">—</span>
+                            </div>
+                            <div class="vrat-row">
+                                <span class="vrat-icon">🪴</span>
+                                <span class="vrat-label">द्वादशी</span>
+                                <span class="vrat-name" id="vrat-dwadashi-name">—</span>
+                                <span class="vrat-date" id="vrat-dwadashi-date">—</span>
                             </div>
                         </div>
                     </div>
-                    <!-- /panch-right-col -->
+                    <!-- /vrat-block -->
                 </div>
                 <!-- /panch-vrat-row -->
+
+                <!-- Festivals -->
+                <div class="fest-inner">
+                    <div class="fest-inner-head">🎊 आगामी पर्व एवं उत्सव</div>
+                    <div class="swiper fest-swiper" style="padding-bottom: 1rem">
+                        <div class="swiper-wrapper" id="fest-list"></div>
+                    </div>
+                </div>
+                <!-- /fest-inner -->
 
                 <!-- Shastriya Ghatna -->
                 <div class="shastr-block" id="shastr-block" style="display: none">
@@ -2373,6 +2426,50 @@
                     document.getElementById("vrat-chat-name").textContent = SANKASHTI_NAMES[masa] || "संकष्टी चतुर्थी";
                     document.getElementById("vrat-chat-date").textContent = fmtDate(chatDate);
                 }
+
+                function setVratRow(prefix, name, date) {
+                    if (!date) return;
+                    document.getElementById(`vrat-${prefix}-name`).textContent = name;
+                    document.getElementById(`vrat-${prefix}-date`).textContent = fmtDate(date);
+                }
+
+                // Vinayaka Chaturthi (Shukla Chaturthi = tithi 4) — गणेश
+                setVratRow("vinayak", "विनायक चतुर्थी", nextTithiDate(now, 4));
+
+                // Durga Ashtami (Shukla Ashtami = tithi 8) — दुर्गा
+                setVratRow("durgashtami", "दुर्गाष्टमी", nextTithiDate(now, 8));
+
+                // Masik Kali Puja (Amavasya = tithi 30) — काली
+                setVratRow("kali", "मासिक काली पूजा", nextTithiDate(now, 30));
+
+                // Shashthi (Shukla Shashthi = tithi 6) — कार्तिकेय
+                setVratRow("shashthi", "षष्ठी", nextTithiDate(now, 6));
+
+                // Purnima (tithi 15) — दत्तात्रेय / चन्द्र
+                setVratRow("purnima", "पूर्णिमा", nextTithiDate(now, 15));
+
+                // Monthly Saptami (Shukla Saptami = tithi 7) — सूर्य
+                setVratRow("saptami", "मासिक सप्तमी", nextTithiDate(now, 7));
+
+                // Dwadashi — day after Ekadashi, either paksha — तुलसी
+                if (ekDate) {
+                    const dwadashiDate = new Date(ekDate);
+                    dwadashiDate.setDate(dwadashiDate.getDate() + 1);
+                    setVratRow("dwadashi", "द्वादशी", dwadashiDate);
+                }
+            }
+
+            /* पञ्चाङ्ग card sets its own height from content; vrat-block
+   is pinned to match it and scrolls internally beyond that. */
+            function syncVratHeight() {
+                const panch = document.querySelector(".panch-block");
+                const vrat = document.querySelector(".vrat-block");
+                if (!panch || !vrat) return;
+                if (window.innerWidth <= 780) {
+                    vrat.style.height = "";
+                    return;
+                }
+                vrat.style.height = panch.offsetHeight + "px";
             }
 
             function tick() {
@@ -2489,6 +2586,7 @@
 
                         if (!shown.length) {
                             // No exact maas+tithi match — keep block hidden
+                            block.style.display = "none";
                             return;
                         }
 
@@ -2730,8 +2828,10 @@ ${tsvg}
                 initLibrary();
                 setQuote();
                 fetchLocation();
+                syncVratHeight();
                 setInterval(tick, 1000);
                 setInterval(buildPanchang, 60000);
+                window.addEventListener("resize", syncVratHeight);
             });
         </script>
     </body>
