@@ -1087,6 +1087,13 @@
                 font-size: 2.2rem;
                 margin-bottom: 0.35rem;
             }
+            .fest-icon-img {
+                width: 56px;
+                height: 56px;
+                border-radius: 50%;
+                object-fit: cover;
+                border: 1.5px solid rgba(255, 109, 0, 0.35);
+            }
             .fest-name {
                 font-size: 0.94rem;
                 font-weight: 700;
@@ -1696,12 +1703,12 @@
    observance date wrong is worse than an empty list, so these are
    hardcoded from an authoritative source and need a yearly refresh. */
             const FESTIVALS = [
-                { n: "नाग पञ्चमी", dt: "2026-08-17", ico: "🐍", d: "श्रावण शुक्ल पञ्चमी" },
-                { n: "रक्षाबन्धन", dt: "2026-08-28", ico: "🎀", d: "श्रावण पूर्णिमा" },
-                { n: "जन्माष्टमी", dt: "2026-09-04", ico: "🦚", d: "भाद्र कृष्ण अष्टमी" },
-                { n: "गणेश चतुर्थी", dt: "2026-09-14", ico: "🐘", d: "भाद्र शुक्ल चतुर्थी" },
-                { n: "नवरात्रि", dt: "2026-10-11", ico: "🌺", d: "आश्विन शुक्ल प्रतिपदा" },
-                { n: "दशहरा", dt: "2026-10-20", ico: "🏹", d: "विजयादशमी" },
+                { n: "नाग पञ्चमी", dt: "2026-08-17", ico: "🐍", img: "images/festivals/nag-panchami.png", d: "श्रावण शुक्ल पञ्चमी" },
+                { n: "रक्षाबन्धन", dt: "2026-08-28", ico: "🎀", img: "images/festivals/raksha-bandhan.png", d: "श्रावण पूर्णिमा" },
+                { n: "जन्माष्टमी", dt: "2026-09-04", ico: "🦚", img: "images/festivals/janmashtami.png", d: "भाद्र कृष्ण अष्टमी" },
+                { n: "गणेश चतुर्थी", dt: "2026-09-14", ico: "🐘", img: "images/festivals/ganesh-chaturthi.png", d: "भाद्र शुक्ल चतुर्थी" },
+                { n: "नवरात्रि", dt: "2026-10-11", ico: "🌺", img: "images/festivals/navaratri.png", d: "आश्विन शुक्ल प्रतिपदा" },
+                { n: "दशहरा", dt: "2026-10-20", ico: "🏹", img: "images/festivals/dussehra.png", d: "विजयादशमी" },
                 { n: "दीपावली", dt: "2026-11-08", ico: "🪔", d: "कार्तिक अमावस्या" },
                 { n: "कार्तिक पूर्णिमा", dt: "2026-11-24", ico: "🌕", d: "देव दीपावली" },
                 { n: "मकर संक्रान्ति", dt: "2027-01-14", ico: "☀️", d: "सूर्य का मकर में प्रवेश" },
@@ -2674,7 +2681,10 @@
                             cls += " today-tag";
                         } else badge = diff + " दिन शेष";
                         const dateStr = fd.toLocaleDateString("hi-IN", { day: "numeric", month: "long", year: "numeric" });
-                        slide.innerHTML = `<div class="fest-card"><div class="fest-icon">${f.ico}</div><div class="fest-name">${f.n}</div><div class="fest-desc">${f.d}</div><div class="fest-date">${dateStr}</div><div class="${cls}">${badge}</div></div>`;
+                        const iconHtml = f.img
+                            ? `<img class="fest-icon-img" src="${f.img}" alt="${f.n}">`
+                            : f.ico;
+                        slide.innerHTML = `<div class="fest-card"><div class="fest-icon">${iconHtml}</div><div class="fest-name">${f.n}</div><div class="fest-desc">${f.d}</div><div class="fest-date">${dateStr}</div><div class="${cls}">${badge}</div></div>`;
                         list.appendChild(slide);
                     });
                 new Swiper(".fest-swiper", {
