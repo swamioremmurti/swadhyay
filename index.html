@@ -1072,7 +1072,8 @@
                 border-radius: 14px;
                 padding: 1rem 0.9rem;
                 text-align: center;
-                min-width: 148px;
+                width: 100%;
+                min-width: 128px;
                 transition:
                     transform 0.18s,
                     box-shadow 0.18s;
@@ -1096,6 +1097,11 @@
                 font-size: 0.79rem;
                 color: var(--txt3);
                 margin-top: 0.18rem;
+            }
+            .fest-date {
+                font-size: 0.75rem;
+                color: var(--txt2);
+                margin-top: 0.3rem;
             }
             .fest-tag {
                 display: inline-block;
@@ -2651,10 +2657,13 @@
                 now.setHours(0, 0, 0, 0);
                 const list = document.getElementById("fest-list");
                 list.innerHTML = "";
-                FESTIVALS.map((f) => ({ f, diff: Math.round((new Date(f.dt + "T00:00:00") - now) / 86400000) }))
+                FESTIVALS.map((f) => {
+                    const fd = new Date(f.dt + "T00:00:00");
+                    return { f, fd, diff: Math.round((fd - now) / 86400000) };
+                })
                     .filter((x) => x.diff >= -1)
                     .sort((a, b) => a.diff - b.diff)
-                    .forEach(({ f, diff }) => {
+                    .forEach(({ f, fd, diff }) => {
                         const slide = document.createElement("div");
                         slide.className = "swiper-slide";
                         let badge,
@@ -2664,10 +2673,16 @@
                             badge = "आज! 🎉";
                             cls += " today-tag";
                         } else badge = diff + " दिन शेष";
-                        slide.innerHTML = `<div class="fest-card"><div class="fest-icon">${f.ico}</div><div class="fest-name">${f.n}</div><div class="fest-desc">${f.d}</div><div class="${cls}">${badge}</div></div>`;
+                        const dateStr = fd.toLocaleDateString("hi-IN", { day: "numeric", month: "long", year: "numeric" });
+                        slide.innerHTML = `<div class="fest-card"><div class="fest-icon">${f.ico}</div><div class="fest-name">${f.n}</div><div class="fest-desc">${f.d}</div><div class="fest-date">${dateStr}</div><div class="${cls}">${badge}</div></div>`;
                         list.appendChild(slide);
                     });
-                new Swiper(".fest-swiper", { slidesPerView: "auto", spaceBetween: 14, freeMode: true });
+                new Swiper(".fest-swiper", {
+                    spaceBetween: 14,
+                    slidesPerView: 2.5,
+                    freeMode: true,
+                    breakpoints: { 780: { slidesPerView: 4.5 } },
+                });
             }
 
             /* ============================================================
