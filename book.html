@@ -592,6 +592,27 @@ function setBreadcrumb(book,chapter,sub){
    TTS
 ═══════════════════════════════════════════════ */
 let isSpeaking=false;
+/* Many TTS engines silently stall (no onend, no onerror) or hard-error on
+   very long utterances - the पदार्थः/भावार्थः paragraphs can run 1000+
+   characters. Split each paragraph into shorter chunks at natural
+   boundaries so long text keeps reading instead of stopping after the
+   first long paragraph. */
+function splitForSpeech(text,maxLen=180){
+    if(text.length<=maxLen)return[text];
+    const chunks=[];let rest=text;
+    while(rest.length>maxLen){
+        let cut=-1;
+        for(const sep of["। ","; ",", "," "]){
+            const idx=rest.lastIndexOf(sep,maxLen);
+            if(idx>0){cut=idx+sep.length;break}
+        }
+        if(cut<=0)cut=maxLen;
+        chunks.push(rest.slice(0,cut).trim());
+        rest=rest.slice(cut);
+    }
+    if(rest.trim())chunks.push(rest.trim());
+    return chunks;
+}
 async function speakContent(){
     const synth=window.speechSynthesis;
     if(isSpeaking){synth.cancel();return}
@@ -602,7 +623,12 @@ async function speakContent(){
         if(p)return !p.className.toLowerCase().includes("shlok");
         return true;
     });
-    const lines=nodes.map(n=>n.textContent.trim()).filter(l=>l.length>0);
+    const queue=[];
+    nodes.forEach(node=>{
+        const text=node.textContent.trim();
+        if(!text)return;
+        splitForSpeech(text).forEach((chunk,ci)=>queue.push({node,chunk,isFirst:ci===0}));
+    });
     function getHindiVoice(){
         return new Promise(resolve=>{
             let v=synth.getVoices();
@@ -618,14 +644,25 @@ async function speakContent(){
     document.getElementById("read-icon-play").style.display="none";
     document.getElementById("read-icon-stop").style.display="";
     function clearHL(){contentDiv.querySelectorAll(".highlight").forEach(el=>{el.parentNode.replaceChild(document.createTextNode(el.textContent),el);el.parentNode.normalize()})}
+    function stop(){clearHL();isSpeaking=false;btn.classList.remove("speaking");document.getElementById("read-icon-play").style.display="";document.getElementById("read-icon-stop").style.display="none"}
     function speakLine(i){
-        if(i>=lines.length||!isSpeaking){clearHL();isSpeaking=false;btn.classList.remove("speaking");document.getElementById("read-icon-play").style.display="";document.getElementById("read-icon-stop").style.display="none";return}
-        clearHL();
-        const node=nodes[i],line=lines[i];
-        if(node.nodeType===Node.TEXT_NODE){const sp=document.createElement("span");sp.textContent=node.textContent;sp.className="highlight";contentDiv.replaceChild(sp,node);nodes[i]=sp;sp.scrollIntoView({behavior:"smooth",block:"center"})}
-        else if(node.nodeType===Node.ELEMENT_NODE){const esc=line.replace(/[.*+?^${}()|[\]\\]/g,"\\$&");node.innerHTML=node.innerHTML.replace(new RegExp(esc,"g"),`<span class="highlight">$&</span>`);const hl=node.querySelector(".highlight");if(hl)hl.scrollIntoView({behavior:"smooth",block:"center"})}
-        const utt=new SpeechSynthesisUtterance(line);utt.voice=voice;
-        utt.onend=()=>speakLine(i+1);synth.speak(utt);
+        if(i>=queue.length||!isSpeaking){stop();return}
+        const{node,chunk,isFirst}=queue[i];
+        if(isFirst){
+            clearHL();
+            if(node.nodeType===Node.TEXT_NODE){const sp=document.createElement("span");sp.textContent=node.textContent;sp.className="highlight";contentDiv.replaceChild(sp,node);sp.scrollIntoView({behavior:"smooth",block:"center"})}
+            else if(node.nodeType===Node.ELEMENT_NODE){
+                const full=node.textContent.trim();
+                const esc=full.replace(/[.*+?^${}()|[\]\\]/g,"\\$&");
+                node.innerHTML=node.innerHTML.replace(new RegExp(esc,"g"),`<span class="highlight">$&</span>`);
+                const hl=node.querySelector(".highlight");
+                (hl||node).scrollIntoView({behavior:"smooth",block:"center"});
+            }
+        }
+        const utt=new SpeechSynthesisUtterance(chunk);utt.voice=voice;
+        const advance=()=>speakLine(i+1);
+        utt.onend=advance;utt.onerror=advance;
+        synth.speak(utt);
     }
     speakLine(0);
 }
