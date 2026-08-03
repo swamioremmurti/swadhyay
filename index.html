@@ -398,6 +398,21 @@
                 font-size: 1.05rem;
                 pointer-events: none;
             }
+            .search-results-wrap {
+                max-width: 900px;
+                margin: 1rem auto 0;
+            }
+            .search-results-count {
+                font-size: 0.85rem;
+                color: var(--txt3);
+                margin-bottom: 0.7rem;
+            }
+            .search-results-empty {
+                font-size: 0.92rem;
+                color: var(--txt3);
+                text-align: center;
+                padding: 1.4rem 0.5rem;
+            }
 
             /* ── LIBRARY ────────────────────────────── */
             #library {
@@ -1282,7 +1297,11 @@
         <div class="search-wrap">
             <div class="search-inner">
                 <span class="search-icon"><i class="fas fa-search"></i></span>
-                <input type="text" placeholder="ग्रंथ खोजें — वेद, उपनिषद्, पुराण…" aria-label="ग्रंथ खोजें" />
+                <input type="text" id="search-input" placeholder="ग्रंथ खोजें — Hindi या English में (e.g. Gita, Upanishad, Purana)…" aria-label="ग्रंथ खोजें" autocomplete="off" />
+            </div>
+            <div class="search-results-wrap" id="search-results-wrap" style="display: none">
+                <div class="search-results-count" id="search-results-count"></div>
+                <div class="book-grid" id="search-results-grid"></div>
             </div>
         </div>
 
@@ -2075,6 +2094,153 @@
                 }
             };
 
+            /* ============================================================
+   SEARCH — Devanagari → Latin transliteration so book titles can be
+   found by typing in English (e.g. "kaushitaki", "brihadaranyaka")
+============================================================ */
+            const DEVANAGARI_VOWELS = {
+                "अ": "a", "आ": "a", "इ": "i", "ई": "i", "उ": "u", "ऊ": "u",
+                "ऋ": "ri", "ॠ": "ri", "ऌ": "li", "ॡ": "li",
+                "ए": "e", "ऐ": "ai", "ओ": "o", "औ": "au", "ॐ": "om",
+            };
+            const DEVANAGARI_MATRAS = {
+                "ा": "a", "ि": "i", "ी": "i", "ु": "u", "ू": "u",
+                "ृ": "ri", "ॄ": "ri", "ॢ": "li", "ॣ": "li",
+                "े": "e", "ै": "ai", "ो": "o", "ौ": "au",
+            };
+            const DEVANAGARI_CONSONANTS = {
+                "क": "ka", "ख": "kha", "ग": "ga", "घ": "gha", "ङ": "nga",
+                "च": "cha", "छ": "chha", "ज": "ja", "झ": "jha", "ञ": "nya",
+                "ट": "ta", "ठ": "tha", "ड": "da", "ढ": "dha", "ण": "na",
+                "त": "ta", "थ": "tha", "द": "da", "ध": "dha", "न": "na",
+                "प": "pa", "फ": "pha", "ब": "ba", "भ": "bha", "म": "ma",
+                "य": "ya", "र": "ra", "ल": "la", "व": "va",
+                "श": "sha", "ष": "sha", "स": "sa", "ह": "ha", "ळ": "la",
+            };
+            const DEVANAGARI_DIGITS = "०१२३४५६७८९";
+
+            function transliterate(str) {
+                if (!str) return "";
+                const chars = Array.from(str);
+                let out = "";
+                for (let i = 0; i < chars.length; i++) {
+                    const c = chars[i],
+                        next = chars[i + 1];
+                    if (DEVANAGARI_CONSONANTS[c]) {
+                        const base = DEVANAGARI_CONSONANTS[c].slice(0, -1);
+                        if (next === "्") {
+                            out += base;
+                            i++;
+                        } else if (next && DEVANAGARI_MATRAS[next]) {
+                            out += base + DEVANAGARI_MATRAS[next];
+                            i++;
+                        } else {
+                            out += base + "a";
+                        }
+                    } else if (DEVANAGARI_VOWELS[c]) {
+                        out += DEVANAGARI_VOWELS[c];
+                    } else if (c === "ं") {
+                        out += "n";
+                    } else if (c === "ः") {
+                        out += "h";
+                    } else if (c === "ँ" || c === "ऽ" || c === "्") {
+                        /* nasalisation / avagraha / stray virama — skip */
+                    } else if (c === "‍" || c === "‌") {
+                        /* zero-width joiner/non-joiner used for conjunct rendering — skip */
+                    } else if (DEVANAGARI_DIGITS.includes(c)) {
+                        out += DEVANAGARI_DIGITS.indexOf(c);
+                    } else if (c >= "ऀ" && c <= "ॿ") {
+                        /* other devanagari punctuation (॰ etc.) — skip */
+                    } else {
+                        out += c;
+                    }
+                }
+                return out.toLowerCase();
+            }
+
+            /* smooth over sandhi joins ("...opanishad" -> "...a upanishad") and
+               aspirate spelling variants ("chh" -> "ch") so common English
+               spellings of compound Sanskrit titles still match */
+            function normalizeForSearch(s) {
+                return s.replace(/opanishad/g, "a upanishad").replace(/chh/g, "ch");
+            }
+
+            /* flat, searchable index of every book across all categories */
+            let SEARCH_INDEX = null;
+            function buildSearchIndex() {
+                if (SEARCH_INDEX) return SEARCH_INDEX;
+                SEARCH_INDEX = [];
+                Object.keys(LIBRARY).forEach((catId) => {
+                    LIBRARY[catId].books.forEach((bk) => {
+                        if (!bk.t) return; // skip group-header markers
+                        const tEn = normalizeForSearch(transliterate(bk.t));
+                        SEARCH_INDEX.push({
+                            bk,
+                            catId,
+                            tDeva: bk.t.toLowerCase(),
+                            sDeva: (bk.s || "").toLowerCase(),
+                            tEn,
+                            tEnFlat: tEn.replace(/\s+/g, ""),
+                        });
+                    });
+                });
+                return SEARCH_INDEX;
+            }
+
+            function searchBooks(query) {
+                const q = query.trim().toLowerCase();
+                if (!q) return [];
+                const qEn = normalizeForSearch(transliterate(q)),
+                    qEnFlat = qEn.replace(/\s+/g, "");
+                /* English/romanized matching is checked only against the title
+                   (not the subtitle) — subtitles carry generic Sanskrit words
+                   (e.g. कथा "story") whose transliteration would otherwise
+                   false-match unrelated books. Devanagari subtitle matching
+                   stays on, since an exact Devanagari substring is precise. */
+                return buildSearchIndex().filter(
+                    (e) =>
+                        e.tDeva.includes(q) ||
+                        e.sDeva.includes(q) ||
+                        e.tEn.includes(qEn) ||
+                        qEn.includes(e.tEn) ||
+                        e.tEnFlat.includes(qEnFlat) ||
+                        qEnFlat.includes(e.tEnFlat)
+                );
+            }
+
+            function renderSearchResults(query) {
+                const wrap = document.getElementById("search-results-wrap"),
+                    grid = document.getElementById("search-results-grid"),
+                    count = document.getElementById("search-results-count");
+                if (!query.trim()) {
+                    wrap.style.display = "none";
+                    grid.innerHTML = "";
+                    return;
+                }
+                const matches = searchBooks(query);
+                wrap.style.display = "block";
+                count.textContent = matches.length ? `${matches.length} ग्रंथ मिले` : "";
+                if (!matches.length) {
+                    grid.innerHTML = `<div class="search-results-empty">कोई ग्रंथ नहीं मिला — कृपया अन्य शब्द आज़माएँ</div>`;
+                    return;
+                }
+                grid.innerHTML = matches
+                    .map(({ bk }) => {
+                        const cover = mkCover(bk),
+                            cls = "bk" + (bk.na ? " dim" : ""),
+                            tag = bk.na ? '<span class="bk-cs">शीघ्र आएगा</span>' : "";
+                        return bk.id
+                            ? `<a class="${cls}" href="book.html?${bk.id}"><div class="bk-cover"><img src="${cover}" alt="${bk.t}" loading="lazy"></div><div class="bk-name">${bk.t}</div><div class="bk-sub">${bk.s}</div>${tag}</a>`
+                            : `<div class="${cls}"><div class="bk-cover"><img src="${cover}" alt="${bk.t}" loading="lazy"></div><div class="bk-name">${bk.t}</div><div class="bk-sub">${bk.s}</div>${tag}</div>`;
+                    })
+                    .join("");
+            }
+
+            function initSearch() {
+                const input = document.getElementById("search-input");
+                input.addEventListener("input", () => renderSearchResults(input.value));
+            }
+
             const QUOTES = [
                 {
                     t: "सर्वे भवन्तु सुखिनः। सर्वे सन्तु निरामयाः।\nसर्वे भद्राणि पश्यन्तु। मा कश्चिद् दुःखभाग्भवेत्॥",
@@ -2858,6 +3024,7 @@ ${tsvg}
                 buildShaastriyaGhatna();
                 buildFestivals();
                 initLibrary();
+                initSearch();
                 setQuote();
                 fetchLocation();
                 syncVratHeight();
