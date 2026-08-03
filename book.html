@@ -597,8 +597,9 @@ async function speakContent(){
     if(isSpeaking){synth.cancel();return}
     const contentDiv=document.getElementById("display");
     const nodes=Array.from(contentDiv.childNodes).filter(n=>{
-        if(n.nodeType===Node.ELEMENT_NODE&&n.tagName==="P")
-            return !n.className.toLowerCase().includes("shlok");
+        if(n.nodeType!==Node.ELEMENT_NODE)return true;
+        const p=n.matches("p")?n:n.querySelector("p");
+        if(p)return !p.className.toLowerCase().includes("shlok");
         return true;
     });
     const lines=nodes.map(n=>n.textContent.trim()).filter(l=>l.length>0);
