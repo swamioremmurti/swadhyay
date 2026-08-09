@@ -2680,13 +2680,19 @@
 ============================================================ */
             function buildPanchang() {
                 const now = new Date();
-                const t = getTithi(now),
+                // तिथि/नक्षत्र/योग/मास "today" is reckoned from the sunrise-proxy
+                // (6 AM local), matching nextTithiDate/nextEkadasi — otherwise the
+                // hero tithi (literal current moment) can disagree with आगामी व्रत
+                // (sunrise-based) whenever the tithi changes partway through the day.
+                const now6 = new Date(now);
+                now6.setHours(6, 0, 0, 0);
+                const t = getTithi(now6),
                     tithi = TITHIS[t - 1] || "—",
                     paksha = t <= 15 ? "शुक्ल पक्ष" : "कृष्ण पक्ष";
-                const naks = NAKS[getNaks(now)],
-                    yoga = YOGAS[getYoga(now)],
+                const naks = NAKS[getNaks(now6)],
+                    yoga = YOGAS[getYoga(now6)],
                     vara = now.getDay(),
-                    masa = getMasa(now);
+                    masa = getMasa(now6);
                 // hero bar
                 document.getElementById("h-vara").textContent = VARAS[vara];
                 document.getElementById("h-tithi").textContent = tithi;
@@ -2721,10 +2727,14 @@
 ============================================================ */
             function buildShaastriyaGhatna() {
                 const now = new Date();
-                const t = getTithi(now);
+                // Sunrise-proxy, matching buildPanchang() / nextEkadasi — see
+                // comment there for why "today's" tithi isn't the literal-now tithi.
+                const now6 = new Date(now);
+                now6.setHours(6, 0, 0, 0);
+                const t = getTithi(now6);
                 const todayTithiName = TITHIS[t - 1] || ""; // e.g. "नवमी"
                 const todayPaksha = t <= 15 ? "शुक्लपक्ष" : "कृष्णपक्ष"; // no space
-                const todayMaas = MASAS[getMasa(now)]; // e.g. "चैत्र"
+                const todayMaas = MASAS[getMasa(now6)]; // e.g. "चैत्र"
 
                 fetch("database/dates.json")
                     .then((r) => r.json())
