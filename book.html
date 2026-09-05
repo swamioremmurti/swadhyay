@@ -4,442 +4,309 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>स्वाध्याय — पाठक</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Devanagari:wght@400;600;700&family=Noto+Sans+Devanagari:wght@400;500;600&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
-    <!--<link href="style.css" rel="stylesheet">-->
+    <script src="includes/hammer.min.js"></script>
     <style>
     /* ═══════════════════════════════════════════
-       DESIGN TOKENS — mirrors index.html
+       FONT — Chanakya Unicode only, used for every
+       piece of text in this reader.
+    ═══════════════════════════════════════════ */
+    @font-face{
+        font-family:'ChanakyaBBTUni';
+        src:url('fonts/chanakya/ChanakyaBBTUni.ttf') format('truetype');
+        font-weight:normal;font-style:normal;font-display:swap;
+    }
+
+    /* ═══════════════════════════════════════════
+       DESIGN TOKENS — neutral, paper-first reader
+       palette (White / Sepia / Dark), the pattern
+       used by Kindle, Apple Books, Play Books.
+       Every font-size below is rem/em, anchored to
+       <html>'s font-size, so the size control scales
+       the header, TOC, footer and content together.
     ═══════════════════════════════════════════ */
     :root {
-        --bg:      #08040f;
-        --surface: #110920;
-        --card:    #1a1030;
-        --border:  rgba(200,145,45,0.22);
-        --gold:    #c89230;
-        --gold-lt: #f0bf60;
-        --gold-dk: #7a5510;
-        --saff:    #dd6010;
-        --saff-lt: #ff8040;
-        --txt:     #ede0c5;
-        --txt2:    #c0a070;
-        --txt3:    #7a6040;
-        --radius:  14px;
-        --serif:   "Noto Serif Devanagari", serif;
-        --sans:    "Noto Sans Devanagari", sans-serif;
-        --sidebar-w: 300px;
-        --header-h:  58px;
-        --footer-h:  60px;
-        --fs:        1.1rem;
+        --bg:      #ffffff;
+        --surface: #f6f5f2;
+        --border:  #e4e1d8;
+        --text:    #1c1b19;
+        --text2:   #5c584e;
+        --text3:   #948f80;
+        --accent:  #a8571e;
+        --accent-bg: rgba(168,87,30,.08);
+        --danger:  #c0392b;
+        --radius:  10px;
+        --font:    'ChanakyaBBTUni', 'Noto Sans Devanagari', sans-serif;
+        --header-h: 3.4rem;
+        --footer-h: 3.7rem;
+    }
+    body.mode-sepia{
+        --bg:#f4ecd8; --surface:#ece0c2; --border:#ddcda0;
+        --text:#3a2f1c; --text2:#6b5a3a; --text3:#a08f68;
+    }
+    body.mode-dark{
+        --bg:#141413; --surface:#1e1d1b; --border:#333230;
+        --text:#e9e6df; --text2:#a8a399; --text3:#726d63;
+        --accent:#d98a44; --accent-bg:rgba(217,138,68,.14);
     }
     *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
     html { font-size:16px; scroll-behavior:smooth; }
     body {
-        font-family:var(--sans); background:var(--bg); color:var(--txt);
+        font-family:var(--font); background:var(--bg); color:var(--text);
         height:100vh; overflow:hidden; display:flex; flex-direction:column;
+        transition:background .2s,color .2s;
     }
-    ::-webkit-scrollbar{width:5px}
-    ::-webkit-scrollbar-track{background:var(--bg)}
-    ::-webkit-scrollbar-thumb{background:var(--gold-dk);border-radius:4px}
+    button,input{font-family:var(--font)}
+    ::-webkit-scrollbar{width:6px}
+    ::-webkit-scrollbar-track{background:transparent}
+    ::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px}
+
+    .icon-btn{
+        background:none;border:none;cursor:pointer;color:var(--text2);
+        width:2.2rem;height:2.2rem;border-radius:50%;
+        display:flex;align-items:center;justify-content:center;flex-shrink:0;
+        transition:color .15s,background .15s;
+    }
+    .icon-btn:hover{color:var(--text);background:var(--accent-bg)}
+    .icon-btn:disabled{opacity:.3;cursor:not-allowed}
+    .icon-btn:disabled:hover{background:none;color:var(--text2)}
+    .icon-btn svg{width:1.15rem;height:1.15rem}
 
     /* ── Loader ── */
     #loader-overlay{
-        position:fixed;inset:0;z-index:9000;
-        background:rgba(8,4,15,.93);
-        display:flex;flex-direction:column;
-        align-items:center;justify-content:center;gap:1.2rem;
-        transition:opacity .35s,visibility .35s;
+        position:fixed;inset:0;z-index:9000;background:var(--bg);
+        display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;
+        transition:opacity .3s,visibility .3s;
     }
     #loader-overlay.hidden{opacity:0;visibility:hidden;pointer-events:none}
-    .loader-om{font-size:3.5rem;color:var(--gold);animation:omPulse 1.4s ease-in-out infinite}
-    @keyframes omPulse{0%,100%{opacity:.4;transform:scale(.9)}50%{opacity:1;transform:scale(1.06)}}
-    #loader-text{font-size:1rem;color:var(--txt2);letter-spacing:.06em}
-    .loader-bar-wrap{width:220px;height:4px;background:rgba(200,145,45,.15);border-radius:2px;overflow:hidden}
-    #loader-bar{height:100%;width:0%;background:linear-gradient(90deg,var(--saff),var(--gold));border-radius:2px;transition:width .3s}
+    .loader-mark{font-size:1.8rem;color:var(--accent);opacity:.85}
+    #loader-text{font-size:.85rem;color:var(--text3)}
+    .loader-bar-wrap{width:180px;height:3px;background:var(--border);border-radius:2px;overflow:hidden}
+    #loader-bar{height:100%;width:0%;background:var(--accent);transition:width .3s}
 
-    /* ── Scroll progress ── */
-    #scroll-prog{position:fixed;top:var(--header-h);left:0;right:0;height:3px;z-index:400;background:rgba(200,145,45,.1)}
-    #scroll-prog-bar{height:100%;width:0%;background:linear-gradient(90deg,var(--saff),var(--gold));transition:width .1s}
+    /* ── Top progress ── */
+    #scroll-prog{position:fixed;top:var(--header-h);left:0;right:0;height:2px;z-index:400;background:transparent}
+    #scroll-prog-bar{height:100%;width:0%;background:var(--accent);transition:width .1s}
 
     /* ── Header ── */
     .rd-hdr{
-        position:fixed;top:0;left:0;right:0;z-index:600;
-        height:var(--header-h);
-        background:rgba(8,4,15,.92);backdrop-filter:blur(16px);
-        border-bottom:1px solid var(--border);
-        display:flex;align-items:center;gap:.6rem;padding:0 .9rem;
+        position:fixed;top:0;left:0;right:0;z-index:600;height:var(--header-h);
+        background:var(--bg);border-bottom:1px solid var(--border);
+        display:flex;align-items:center;gap:.2rem;padding:0 .6rem;
     }
-    .rd-icon-btn{
-        background:none;border:none;cursor:pointer;color:var(--txt2);
-        padding:.4rem;border-radius:8px;display:flex;align-items:center;justify-content:center;
-        transition:color .2s,background .2s;font-size:1rem;flex-shrink:0;
-    }
-    .rd-icon-btn:hover{color:var(--gold-lt);background:rgba(200,145,45,.1)}
-    .rd-icon-btn svg{width:20px;height:20px;fill:currentColor}
-    .rd-brand{font-family:var(--serif);font-size:1.1rem;font-weight:700;color:var(--gold-lt);text-decoration:none;letter-spacing:.04em;white-space:nowrap;flex-shrink:0}
-    .rd-sep{color:var(--gold-dk);margin:0 .1rem;font-size:.9rem;flex-shrink:0}
     #hdr-breadcrumb{
-        flex:1;overflow:hidden;
-        display:flex;align-items:center;gap:.3rem;
-        font-size:.82rem;color:var(--txt3);
-        white-space:nowrap;min-width:0;
+        flex:1;overflow:hidden;display:flex;align-items:center;gap:.35rem;
+        font-size:.82rem;color:var(--text3);white-space:nowrap;min-width:0;padding:0 .4rem;
     }
     #hdr-breadcrumb .hbc{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-    .hbc-chapter{color:var(--txt2)}
-    .hbc-sub{color:var(--gold-lt)!important;font-weight:600}
-    .rd-back{font-size:.8rem;color:var(--txt3);text-decoration:none;border:1px solid var(--border);border-radius:20px;padding:.22rem .7rem;white-space:nowrap;transition:color .2s,border-color .2s;flex-shrink:0}
-    .rd-back:hover{color:var(--gold-lt);border-color:var(--gold-dk)}
+    .hbc-book{color:var(--text2);font-weight:600}
+    .hbc-sub{color:var(--accent)!important}
 
-    /* ── Search bar ── */
+    /* ── Search ── */
     #search-bar{
         position:fixed;top:var(--header-h);left:0;right:0;z-index:590;
-        background:rgba(17,9,32,.97);backdrop-filter:blur(12px);
-        border-bottom:1px solid var(--border);
-        padding:.5rem 1rem;display:none;align-items:center;gap:.6rem;
+        background:var(--bg);border-bottom:1px solid var(--border);
+        padding:.6rem .9rem;display:none;align-items:center;gap:.5rem;
     }
     #search-bar.open{display:flex}
     #search-input{
-        flex:1;background:var(--card);border:1px solid var(--border);
-        color:var(--txt);border-radius:8px;padding:.4rem .8rem;
-        font-family:var(--sans);font-size:.95rem;outline:none;
+        flex:1;background:var(--surface);border:1px solid var(--border);
+        color:var(--text);border-radius:8px;padding:.45rem .8rem;
+        font-size:.92rem;outline:none;
     }
-    #search-input:focus{border-color:var(--gold-dk)}
-    #search-close{background:none;border:none;cursor:pointer;color:var(--txt3);font-size:1.2rem;padding:.1rem .3rem;transition:color .2s}
-    #search-close:hover{color:var(--gold-lt)}
+    #search-input:focus{border-color:var(--accent)}
     #search-results{
-        position:fixed;top:calc(var(--header-h) + 46px);left:0;right:0;z-index:580;
-        background:rgba(17,9,32,.98);border-bottom:1px solid var(--border);
+        position:fixed;top:calc(var(--header-h) + 3rem);left:0;right:0;z-index:580;
+        background:var(--bg);border-bottom:1px solid var(--border);
         max-height:280px;overflow-y:auto;display:none;
     }
     #search-results.open{display:block}
-    .sr-item{padding:.55rem 1.2rem;cursor:pointer;border-bottom:1px solid rgba(200,145,45,.07);font-size:.88rem;color:var(--txt2);transition:background .15s,color .15s}
-    .sr-item:hover{background:rgba(200,145,45,.09);color:var(--gold-lt)}
-    .sr-item .sr-ctx{font-size:.75rem;color:var(--txt3);margin-top:.15rem}
-    .sr-match{color:var(--gold-lt);font-weight:700}
-    .sr-empty{padding:.8rem 1.2rem;color:var(--txt3);font-size:.9rem;text-align:center}
-    mark.search-hl{background:rgba(221,96,16,.3);color:var(--gold-lt);border-radius:3px;padding:0 2px}
+    .sr-item{padding:.6rem 1.1rem;cursor:pointer;border-bottom:1px solid var(--border);font-size:.88rem;color:var(--text2)}
+    .sr-item:hover{background:var(--surface)}
+    .sr-item .sr-ctx{font-size:.74rem;color:var(--text3);margin-top:.15rem}
+    .sr-match{color:var(--accent);font-weight:700}
+    .sr-empty{padding:.9rem 1.1rem;color:var(--text3);font-size:.88rem;text-align:center}
+    mark.search-hl{background:var(--accent-bg);color:var(--accent);border-radius:3px;padding:0 2px}
 
     /* ── Shortcut modal ── */
-    .shortcut-modal{
-        position:fixed;inset:0;z-index:800;
-        background:rgba(0,0,0,.6);backdrop-filter:blur(4px);
-        display:none;align-items:center;justify-content:center;
-    }
+    .shortcut-modal{position:fixed;inset:0;z-index:800;background:rgba(0,0,0,.35);display:none;align-items:center;justify-content:center}
     .shortcut-modal.open{display:flex}
-    .sc-box{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;min-width:260px;max-width:340px}
-    .sc-title{font-family:var(--serif);color:var(--gold-lt);font-size:1.1rem;margin-bottom:1rem;text-align:center}
-    .sc-row{display:flex;justify-content:space-between;align-items:center;padding:.35rem 0;border-bottom:1px solid rgba(200,145,45,.1);font-size:.88rem}
+    .sc-box{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:1.3rem 1.5rem;min-width:250px;max-width:320px}
+    .sc-title{font-size:1rem;font-weight:700;margin-bottom:.9rem;text-align:center;color:var(--text)}
+    .sc-row{display:flex;justify-content:space-between;align-items:center;padding:.35rem 0;border-bottom:1px solid var(--border);font-size:.85rem}
     .sc-row:last-of-type{border:none}
-    .sc-key{background:var(--card);color:var(--txt2);border:1px solid var(--border);border-radius:5px;padding:.1rem .5rem;font-size:.78rem;font-family:monospace}
-    .sc-action{color:var(--txt3)}
-    .sc-close-btn{display:block;margin:.9rem auto 0;background:var(--card);border:1px solid var(--border);color:var(--txt2);border-radius:8px;padding:.4rem 1.4rem;cursor:pointer;font-size:.9rem;transition:color .2s}
-    .sc-close-btn:hover{color:var(--gold-lt)}
+    .sc-key{background:var(--surface);color:var(--text2);border:1px solid var(--border);border-radius:5px;padding:.1rem .5rem;font-size:.75rem;font-family:monospace}
+    .sc-action{color:var(--text3)}
+    .sc-close-btn{display:block;margin:.9rem auto 0;background:var(--surface);border:1px solid var(--border);color:var(--text2);border-radius:8px;padding:.4rem 1.4rem;cursor:pointer;font-size:.88rem}
+    .sc-close-btn:hover{color:var(--text)}
 
-    /* ── Layout ── */
-    .rd-body{
-        display:flex;flex:1;
-        margin-top:var(--header-h);
-        height:calc(100vh - var(--header-h) - var(--footer-h));
-        overflow:hidden;
-    }
+    /* ── Body / main reading column ── */
+    .rd-body{margin-top:var(--header-h);height:calc(100vh - var(--header-h) - var(--footer-h));overflow:hidden}
+    .rd-main{height:100%;overflow-y:auto;overflow-x:hidden;background:var(--bg)}
+    .rd-content-wrap{max-width:680px;width:100%;margin:0 auto;padding:2.4rem 1.4rem 4rem}
+    @media(max-width:640px){.rd-content-wrap{padding:1.6rem 1.1rem 3rem}}
 
-    /* ── Sidebar ── */
-    .rd-sidebar{
-        width:var(--sidebar-w);flex-shrink:0;
-        background:var(--surface);border-right:1px solid var(--border);
-        display:flex;flex-direction:column;overflow:hidden;
-        transition:width .25s,border .25s;
-    }
-    .rd-sidebar.collapsed{width:0;border-right:none}
-    .sb-tabs{display:flex;border-bottom:1px solid var(--border);flex-shrink:0}
-    .sb-tab{
-        flex:1;background:none;border:none;cursor:pointer;
-        padding:.55rem .3rem;font-size:.78rem;font-weight:600;
-        color:var(--txt3);letter-spacing:.04em;
-        border-bottom:2px solid transparent;transition:color .2s,border-color .2s;
-    }
-    .sb-tab:hover{color:var(--txt2)}
-    .sb-tab.active{color:var(--gold-lt);border-bottom-color:var(--saff)}
-    .sb-panel{display:none;flex:1;overflow-y:auto;flex-direction:column}
-    .sb-panel.active{display:flex}
-    .sb-head{padding:.55rem 1rem;font-size:.68rem;color:var(--gold);letter-spacing:.12em;text-transform:uppercase;border-bottom:1px solid var(--border);background:rgba(200,145,45,.06);flex-shrink:0}
-
-    /* chapters accordion */
-    .rd-chapter{border-bottom:1px solid rgba(200,145,45,.1)}
-    .rd-ch-btn{
-        width:100%;background:none;border:none;cursor:pointer;
-        display:flex;align-items:flex-start;gap:.5rem;
-        padding:.65rem 1rem;color:var(--txt2);font-family:var(--sans);
-        font-size:.86rem;text-align:left;line-height:1.35;
-        transition:background .15s,color .15s;
-    }
-    .rd-ch-btn:hover{background:rgba(200,145,45,.07);color:var(--gold-lt)}
-    .rd-ch-btn.open,.rd-ch-btn.active{color:var(--gold-lt);background:rgba(200,145,45,.09)}
-    .rd-ch-arrow{margin-left:auto;flex-shrink:0;font-size:.6rem;color:var(--gold-dk);transition:transform .2s;margin-top:.28rem}
-    .rd-ch-btn.open .rd-ch-arrow{transform:rotate(90deg)}
-    .rd-ch-time{font-size:.68rem;color:var(--txt3);display:block;margin-top:.1rem}
-    .rd-sub-list{display:none;background:rgba(0,0,0,.2)}
-    .rd-sub-list.open{display:block}
-    .rd-sub-btn{
-        display:block;width:100%;background:none;border:none;cursor:pointer;
-        padding:.5rem 1rem .5rem 2rem;
-        font-family:var(--sans);font-size:.82rem;color:var(--txt3);text-align:left;
-        line-height:1.4;border-left:2px solid transparent;
-        transition:color .15s,border-color .15s,background .15s;
-    }
-    .rd-sub-btn:hover{color:var(--txt);background:rgba(200,145,45,.05)}
-    .rd-sub-btn.active{color:var(--gold-lt);border-left-color:var(--saff);background:rgba(221,96,16,.08);font-weight:600}
-    .rd-sub-time{display:block;font-size:.68rem;color:var(--txt3);font-weight:400;margin-top:.1rem}
-
-    /* bookmarks panel */
-    .bm-empty{padding:1.5rem 1rem;text-align:center;color:var(--txt3);font-size:.9rem}
-    .bm-item{display:flex;align-items:flex-start;gap:.5rem;padding:.6rem .8rem;border-bottom:1px solid rgba(200,145,45,.07);cursor:pointer;transition:background .15s}
-    .bm-item:hover{background:rgba(200,145,45,.07)}
-    .bm-text{flex:1;font-size:.82rem;color:var(--txt2);line-height:1.4;overflow:hidden;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical}
-    .bm-ctx{font-size:.7rem;color:var(--gold-dk);margin-bottom:.18rem;font-weight:600;letter-spacing:.02em}
-    @keyframes bmFlash{0%{background:rgba(200,145,45,.35)}100%{background:transparent}}
-    .bm-flash{animation:bmFlash 1.6s ease-out forwards;border-radius:4px}
-    .bm-del{background:none;border:none;cursor:pointer;color:var(--txt3);font-size:1rem;padding:.1rem .3rem;transition:color .2s;flex-shrink:0}
-    .bm-del:hover{color:var(--saff-lt)}
-
-    /* ── Main reading area ── */
-    .rd-main{flex:1;overflow-y:auto;overflow-x:hidden;background:var(--bg);display:flex;flex-direction:column}
-    .rd-content-wrap{max-width:740px;width:100%;margin:0 auto;padding:2rem 1.8rem 5rem}
+    .chapter-label{font-size:.76rem;letter-spacing:.08em;color:var(--text3);text-align:center;margin-bottom:.6rem}
 
     /* ── Reading typography ── */
-    #display{
-        font-family:var(--serif);
-        font-size:var(--fs);
-        color:var(--txt);
-        line-height:1.95;
-        user-select:text;-webkit-user-select:text;
-    }
-    #display p{margin-bottom:.85rem}
-    #display .Heading{
-        font-family:var(--serif);font-size:1.35em;font-weight:700;color:var(--gold-lt);
-        text-align:center;margin:1.6rem 0 .9rem;padding-bottom:.45rem;
-        border-bottom:1px solid var(--border);
-    }
-    #display .Sub-Heading,#display .Sub-Heading-2{
-        font-family:var(--serif);font-size:1.05em;font-weight:600;
-        color:var(--saff-lt);text-align:center;margin:1.2rem 0 .5rem;
-    }
-    #display [class*="Shlok"],#display [class*="SHLOK"],#display [class*="shlok"]{
-        color:var(--gold-lt)!important;text-align:center;line-height:2.1;font-style:italic;margin:.5rem 0;
-    }
-    /* Shlok layout without colour override — author lines etc. */
-    #display .shlok-layout{
-        text-align:center;line-height:2.1;font-style:italic;margin:.5rem 0;
-    }
-    #display .Gadya{color:var(--txt);text-align:justify}
-    #display .Uwach,#display .Uvach{text-align:center;font-style:italic;color:var(--txt3)}
-    #display .Title,#display .Title-Page---Book-Name-Hindi,#display .Title-Page---Book-Name{
-        text-align:center;font-size:1.55em;font-weight:700;color:var(--gold-lt);margin:1rem 0;
-    }
-    #display .Sub-Title{text-align:center;color:var(--saff-lt);font-size:1.05em}
-    #display .Numbers{color:var(--txt2);text-align:center}
-    #display .author{text-align:center;font-weight:600;color:var(--txt2)}
-    #display .end_ch,#display .chapterEnd,#display .chapterend{text-align:center;font-style:italic;color:var(--gold-dk)}
-    #display .Page-Break,#display .Page-Break-1{text-align:center;color:var(--gold-dk);opacity:.5;border-bottom:1px solid var(--border);padding:.3rem 0;margin:1rem 0}
-    #display .Footnotes{color:var(--txt3);font-size:.85em}
-    #display .Footnotes-Right{text-align:right;color:var(--txt3);font-size:.85em}
+    #display{font-size:1.18rem;color:var(--text);line-height:2;}
+    #display p{margin-bottom:.9rem}
+    #display .Heading{font-size:1.3em;font-weight:700;color:var(--text);text-align:center;margin:1.7rem 0 .9rem;padding-bottom:.5rem;border-bottom:1px solid var(--border)}
+    #display .Heading:first-child{margin-top:0}
+    #display .Sub-Heading,#display .Sub-Heading-2{font-size:1.05em;font-weight:600;color:var(--accent);text-align:center;margin:1.2rem 0 .5rem}
+    #display [class*="Shlok"],#display [class*="SHLOK"],#display [class*="shlok"]{color:var(--accent)!important;text-align:center;line-height:2.15;font-style:italic;margin:.5rem 0}
+    #display .shlok-layout{text-align:center;line-height:2.15;font-style:italic;margin:.5rem 0}
+    #display .Gadya{color:var(--text);text-align:justify}
+    #display .Uwach,#display .Uvach{text-align:center;font-style:italic;color:var(--text3)}
+    #display .Title,#display .Title-Page---Book-Name-Hindi,#display .Title-Page---Book-Name{text-align:center;font-size:1.5em;font-weight:700;color:var(--text);margin:1rem 0}
+    #display .Sub-Title{text-align:center;color:var(--accent);font-size:1.05em}
+    #display .Numbers{color:var(--text2);text-align:center}
+    #display .author{text-align:center;font-weight:600;color:var(--text2)}
+    #display .end_ch,#display .chapterEnd,#display .chapterend{text-align:center;font-style:italic;color:var(--text3)}
+    #display .Page-Break,#display .Page-Break-1{text-align:center;color:var(--text3);opacity:.6;border-bottom:1px solid var(--border);padding:.3rem 0;margin:1rem 0}
+    #display .Footnotes{color:var(--text3);font-size:.85em}
+    #display .Footnotes-Right{text-align:right;color:var(--text3);font-size:.85em}
     #display .Image{text-align:center}
     #display .Image img{max-width:100%;border-radius:8px}
     #display .bold,#display .Bold,#display .TXT-Bold{font-weight:700}
-    #display .Padartha{text-align:justify;font-size:.94em;color:var(--txt3);margin-bottom:.4rem}
+    #display .Padartha{text-align:justify;font-size:.94em;color:var(--text2);margin-bottom:.4rem}
     #display .Bhavartha{text-align:justify}
     #display .italic,#display .char-style-override-7{font-style:italic}
     #display .Center,#display .center{text-align:center}
     #display .Right,#display .right,#display .TXT-Right,#display .para-style-override-3{text-align:right}
     #display .justify{text-align:justify}
-    #display .blue{color:#88ccff}
-    #display .pink{color:var(--saff-lt)}
-    #display .ocean-blue{color:#c080ff}
+    #display .blue{color:#2266aa}
+    #display .pink{color:var(--accent)}
+    #display .ocean-blue{color:#7a4fbf}
     #display .Sub-Heading-1{display:none}
-    #display .parent-heading{color:var(--gold-dk)!important;font-size:.95em!important;font-style:italic;margin-bottom:.6rem!important;text-align:center}
-    .highlight{background:rgba(221,96,16,.28);color:var(--gold-lt);border-radius:3px;padding:0 2px}
+    #display .parent-heading{color:var(--text3)!important;font-size:.8em!important;font-weight:600;letter-spacing:.04em;font-style:normal;margin-bottom:1.1rem!important;text-align:center}
+    #display .WordByWord{background:var(--surface);border-left:3px solid var(--accent);padding:.6em .9em;margin:.8em 0;font-size:.9em;line-height:1.75;color:var(--text2)}
+    #display .wbw-label{font-weight:700;color:var(--accent)}
+    .highlight{background:var(--accent-bg);color:var(--accent);border-radius:3px;padding:0 2px}
 
-    /* paragraph wrapper + bookmark star */
     .para-wrap{position:relative;display:block}
-    .bm-star{
-        position:absolute;right:-22px;top:2px;
-        background:none;border:none;cursor:pointer;
-        color:var(--txt3);font-size:.9rem;
-        opacity:0;transition:opacity .15s,color .15s;line-height:1;padding:0;
-    }
+    .bm-star{position:absolute;right:-1.7em;top:.3em;background:none;border:none;cursor:pointer;color:var(--text3);opacity:0;transition:opacity .15s,color .15s;padding:0;line-height:1}
+    .bm-star svg{width:1em;height:1em;stroke:currentColor;fill:none;stroke-width:1.6}
     .para-wrap:hover .bm-star{opacity:1}
-    .bm-star.saved{opacity:1;color:var(--gold)}
+    .bm-star.saved{opacity:1;color:var(--accent)}
+    .bm-star.saved svg{fill:currentColor}
     #display p{cursor:pointer}
-    #display p:hover{background:rgba(200,145,45,.04);border-radius:4px}
-
-    /* ── Reading modes ── */
-    body.mode-sepia{--bg:#f5ead4;--surface:#e8d7b0;--txt:#3a2008;--txt2:#7a4a10;--txt3:#a07838;--card:#ecdfc0;--border:rgba(120,80,20,.25)}
-    body.mode-sepia .rd-main,.rd-sidebar{background:var(--bg)}
-    body.mode-sepia #display .Heading{color:#7a2800}
-    body.mode-sepia #display [class*="Shlok"]{color:#7a2800!important}
-    body.mode-sepia #display .Sub-Heading,body.mode-sepia #display .Sub-Heading-2{color:#994400}
-    body.mode-light{--bg:#f8f6f0;--surface:#eceae2;--txt:#1a1208;--txt2:#5a4020;--txt3:#9a8060;--card:#f0ece0;--border:rgba(80,60,20,.2)}
-    body.mode-light .rd-main,.rd-sidebar{background:var(--bg)}
-    body.mode-light #display .Heading{color:#8b0000}
-    body.mode-light #display [class*="Shlok"]{color:#8b0000!important}
-    body.mode-light #display .Sub-Heading,body.mode-light #display .Sub-Heading-2{color:#cc4400}
+    #display p:hover{background:var(--surface);border-radius:4px}
 
     /* ── Footer ── */
     .rd-footer{
-        position:fixed;bottom:0;left:0;right:0;z-index:500;
-        height:var(--footer-h);
-        background:rgba(8,4,15,.95);backdrop-filter:blur(16px);
-        border-top:1px solid var(--border);
-        display:flex;align-items:center;padding:0 1.2rem;
+        position:fixed;bottom:0;left:0;right:0;z-index:500;height:var(--footer-h);
+        background:var(--bg);border-top:1px solid var(--border);
+        display:flex;align-items:center;justify-content:center;gap:1.6rem;padding:0 1rem;
     }
-    .rd-ft-left{width:var(--sidebar-w);flex-shrink:0}
-    .rd-ft-main{flex:1;display:flex;align-items:center;justify-content:center;gap:1.4rem}
-    /* nav chevron buttons */
-    .rd-btn-nav{
-        width:40px;height:40px;border-radius:50%;
-        background:rgba(200,145,45,.1);border:1px solid var(--border);
-        color:var(--gold-lt);cursor:pointer;
-        display:flex;align-items:center;justify-content:center;
-        transition:background .2s,border-color .2s,transform .18s,opacity .2s;
-        flex-shrink:0;
-    }
-    .rd-btn-nav:hover{background:rgba(200,145,45,.22);border-color:var(--gold-dk);transform:scale(1.08)}
-    .rd-btn-nav:disabled{opacity:.25;cursor:not-allowed;transform:none}
-    .rd-btn-nav svg{width:16px;height:16px;fill:currentColor}
-    /* centre play/stop button */
-    .rd-btn-read{
-        width:50px;height:50px;border-radius:50%;border:none;cursor:pointer;
-        background:conic-gradient(from 135deg,var(--saff),var(--gold),var(--saff));
-        display:flex;align-items:center;justify-content:center;
-        box-shadow:0 0 18px rgba(221,96,16,.35);
-        transition:transform .18s,box-shadow .2s,background .3s;
-        flex-shrink:0;
-    }
-    .rd-btn-read:hover{transform:scale(1.1);box-shadow:0 0 28px rgba(221,96,16,.55)}
-    .rd-btn-read svg{width:20px;height:20px;fill:#1a0800;transition:fill .2s}
-    .rd-btn-read.speaking{
-        background:conic-gradient(from 135deg,#c02020,#e04020,#c02020);
-        box-shadow:0 0 18px rgba(200,30,30,.4);
-    }
-    .rd-btn-read.speaking svg{fill:#fff}
-    /* shortcut icon */
-    .rd-ft-right{display:flex;align-items:center;flex-shrink:0}
-    .rd-ft-icon{background:none;border:none;cursor:pointer;color:var(--txt3);font-size:1rem;padding:.3rem .4rem;border-radius:6px;transition:color .2s,background .2s}
-    .rd-ft-icon:hover{color:var(--gold-lt);background:rgba(200,145,45,.1)}
+    .rd-ft-pos{font-size:.8rem;color:var(--text3);min-width:3rem;text-align:center}
+    .rd-ft-right{position:absolute;right:.8rem;display:flex;gap:.2rem}
 
     /* ── Toast ── */
     .toast{
-        position:fixed;bottom:calc(var(--footer-h)+12px);left:50%;
-        transform:translateX(-50%) translateY(20px);
-        background:var(--card);border:1px solid var(--border);
-        border-radius:8px;padding:.45rem 1rem;
-        font-size:.85rem;color:var(--txt2);
-        z-index:700;opacity:0;transition:opacity .3s,transform .3s;
+        position:fixed;bottom:calc(var(--footer-h)+12px);left:50%;transform:translateX(-50%) translateY(10px);
+        background:var(--text);color:var(--bg);border-radius:8px;padding:.5rem 1.1rem;
+        font-size:.85rem;z-index:700;opacity:0;transition:opacity .25s,transform .25s;
         pointer-events:none;white-space:nowrap;
     }
     .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
-    /* ── Mobile offcanvas ── */
-    .rd-offcanvas{
-        position:fixed;top:0;left:0;bottom:0;z-index:800;
-        width:min(var(--sidebar-w),85vw);
-        background:var(--surface);border-right:1px solid var(--border);
-        transform:translateX(-100%);transition:transform .28s cubic-bezier(.4,0,.2,1);
+    /* ── TOC drawer (single implementation, all screen sizes) ── */
+    .rd-overlay{display:none;position:fixed;inset:0;z-index:700;background:rgba(0,0,0,.4)}
+    .rd-overlay.open{display:block}
+    .rd-drawer{
+        position:fixed;top:0;left:0;bottom:0;z-index:800;width:min(320px,86vw);
+        background:var(--bg);border-right:1px solid var(--border);
+        transform:translateX(-100%);transition:transform .25s cubic-bezier(.4,0,.2,1);
         display:flex;flex-direction:column;overflow:hidden;
     }
-    .rd-offcanvas.open{transform:translateX(0)}
-    .rd-oc-head{display:flex;align-items:center;justify-content:space-between;padding:.7rem 1rem;border-bottom:1px solid var(--border);background:rgba(200,145,45,.07);flex-shrink:0}
-    .rd-oc-title{font-family:var(--serif);font-size:1rem;color:var(--gold-lt);font-weight:700}
-    .rd-close-btn{background:none;border:none;cursor:pointer;color:var(--txt3);font-size:1.3rem;line-height:1;padding:.2rem .4rem;transition:color .2s}
-    .rd-close-btn:hover{color:var(--gold-lt)}
-    .rd-oc-body{overflow-y:auto;flex:1;display:flex;flex-direction:column}
-    .rd-overlay{display:none;position:fixed;inset:0;z-index:700;background:rgba(0,0,0,.55)}
-    .rd-overlay.open{display:block}
+    .rd-drawer.open{transform:translateX(0)}
+    .rd-drawer-head{padding:1rem 1rem .7rem;border-bottom:1px solid var(--border);flex-shrink:0;display:flex;align-items:flex-start;justify-content:space-between;gap:.5rem}
+    .rd-drawer-title{font-size:1rem;font-weight:700;color:var(--text);line-height:1.35}
+    .tabs{display:flex;border-bottom:1px solid var(--border);flex-shrink:0}
+    .tab-btn{flex:1;background:none;border:none;cursor:pointer;padding:.65rem .3rem;font-size:.82rem;font-weight:600;color:var(--text3);border-bottom:2px solid transparent}
+    .tab-btn:hover{color:var(--text2)}
+    .tab-btn.active{color:var(--accent);border-bottom-color:var(--accent)}
+    .tab-panel{display:none;flex:1;overflow-y:auto;flex-direction:column}
+    .tab-panel.active{display:flex}
 
-    /* ── Floating settings button ── */
-    #settings-fab{
-        position:fixed;right:1rem;bottom:calc(var(--footer-h) + .9rem);z-index:490;
-        width:42px;height:42px;border-radius:50%;
-        background:linear-gradient(135deg,var(--card),var(--surface));
-        border:1px solid var(--border);cursor:pointer;
-        display:flex;align-items:center;justify-content:center;
-        font-size:1.15rem;color:var(--txt2);
-        box-shadow:0 4px 16px rgba(0,0,0,.5);
-        transition:color .2s,border-color .2s,transform .2s;
-    }
-    #settings-fab:hover{color:var(--gold-lt);border-color:var(--gold-dk);transform:scale(1.08)}
+    .rd-chapter{border-bottom:1px solid var(--border)}
+    .rd-ch-btn{width:100%;background:none;border:none;cursor:pointer;display:flex;align-items:flex-start;gap:.7rem;padding:.7rem 1rem;color:var(--text2);font-size:.9rem;text-align:left;line-height:1.4}
+    .rd-ch-btn:hover{background:var(--surface);color:var(--text)}
+    .rd-ch-btn.open,.rd-ch-btn.active{color:var(--text);background:var(--accent-bg)}
+    .rd-ch-num{flex-shrink:0;width:1.6em;height:1.6em;border-radius:50%;border:1px solid var(--border);color:var(--text3);display:flex;align-items:center;justify-content:center;font-size:.76em;font-weight:700;margin-top:.05em}
+    .rd-ch-btn.open .rd-ch-num,.rd-ch-btn.active .rd-ch-num{border-color:var(--accent);color:var(--accent)}
+    .rd-ch-body{flex:1;min-width:0}
+    .rd-ch-arrow{margin-left:auto;flex-shrink:0;font-size:.65rem;color:var(--text3);transition:transform .2s;margin-top:.35em}
+    .rd-ch-btn.open .rd-ch-arrow{transform:rotate(90deg)}
+    .rd-ch-time{font-size:.7rem;color:var(--text3);display:block;margin-top:.12rem}
+    .rd-sub-list{display:none;background:var(--surface)}
+    .rd-sub-list.open{display:block}
+    .rd-sub-btn{display:flex;width:100%;background:none;border:none;cursor:pointer;padding:.55rem 1rem .55rem 1.15rem;gap:.5rem;align-items:flex-start;font-size:.85rem;color:var(--text3);text-align:left;line-height:1.4;border-left:2px solid transparent}
+    .rd-sub-btn:hover{color:var(--text)}
+    .rd-sub-btn.active{color:var(--accent);border-left-color:var(--accent);font-weight:600}
+    .rd-sub-num{flex-shrink:0;color:var(--text3);font-weight:700}
+    .rd-sub-time{display:block;font-size:.7rem;color:var(--text3);font-weight:400;margin-top:.1rem}
 
-    /* ── Settings panel (bottom sheet on mobile, popover on desktop) ── */
+    .bm-empty{padding:1.5rem 1rem;text-align:center;color:var(--text3);font-size:.88rem}
+    .bm-item{display:flex;align-items:flex-start;gap:.5rem;padding:.65rem .9rem;border-bottom:1px solid var(--border);cursor:pointer}
+    .bm-item:hover{background:var(--surface)}
+    .bm-text{flex:1;font-size:.84rem;color:var(--text2);line-height:1.45;overflow:hidden;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical}
+    .bm-ctx{font-size:.72rem;color:var(--accent);margin-bottom:.2rem;font-weight:600}
+    @keyframes bmFlash{0%{background:var(--accent-bg)}100%{background:transparent}}
+    .bm-flash{animation:bmFlash 1.6s ease-out forwards;border-radius:4px}
+    .bm-del{background:none;border:none;cursor:pointer;color:var(--text3);padding:.1rem .3rem;flex-shrink:0}
+    .bm-del:hover{color:var(--danger)}
+
+    /* ── Aa display-settings panel ── */
     #settings-panel{
-        position:fixed;right:1rem;bottom:calc(var(--footer-h) + 62px);z-index:700;
-        background:var(--surface);border:1px solid var(--border);
-        border-radius:var(--radius);padding:1rem 1.1rem;min-width:220px;
-        box-shadow:0 8px 32px rgba(0,0,0,.6);
+        position:fixed;top:calc(var(--header-h) + .4rem);right:.6rem;z-index:700;
+        background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);
+        padding:1rem 1.1rem;min-width:230px;box-shadow:0 8px 28px rgba(0,0,0,.15);
         display:none;flex-direction:column;gap:.85rem;
-        transform:translateY(10px);opacity:0;
-        transition:opacity .2s,transform .2s;
     }
-    #settings-panel.open{display:flex;opacity:1;transform:translateY(0)}
-    .sp-head{font-size:.7rem;color:var(--gold);letter-spacing:.1em;text-transform:uppercase;margin-bottom:-.2rem}
-    .sp-row{display:flex;align-items:center;gap:.5rem}
-    .sp-btn{
-        flex:1;height:34px;background:none;border:1px solid var(--border);
-        color:var(--txt2);border-radius:8px;cursor:pointer;font-family:var(--sans);
-        font-size:.85rem;transition:all .15s;
-    }
-    .sp-btn:hover{border-color:var(--gold-dk);color:var(--gold-lt)}
-    .sp-btn.active{border-color:var(--gold);color:var(--gold-lt);background:rgba(200,145,45,.12)}
-    .sp-mode-row{display:flex;gap:.5rem}
-    .sp-mode-btn{
-        flex:1;height:36px;background:none;border:1px solid var(--border);
-        border-radius:8px;cursor:pointer;font-size:.95rem;
-        transition:all .15s;display:flex;align-items:center;justify-content:center;gap:.3rem;
-    }
-    .sp-mode-btn:hover{border-color:var(--gold-dk)}
-    .sp-mode-btn.active{border-color:var(--gold);background:rgba(200,145,45,.12)}
-    .sp-font-label{font-size:.8rem;color:var(--txt3);text-align:center;min-width:40px}
+    #settings-panel.open{display:flex}
+    .sp-head{font-size:.7rem;color:var(--text3);letter-spacing:.08em;text-transform:uppercase}
+    .sp-font-row{display:flex;align-items:center;gap:.5rem}
+    .sp-font-btn{flex-shrink:0;width:1.9rem;height:1.9rem;background:none;border:1px solid var(--border);color:var(--text2);border-radius:8px;cursor:pointer;font-size:.85rem}
+    .sp-font-btn:hover{border-color:var(--accent);color:var(--accent)}
+    #font-range{flex:1;accent-color:var(--accent);cursor:pointer;height:4px}
+    .sp-font-label{font-size:.76rem;color:var(--text3);text-align:center;min-width:2.6em;flex-shrink:0}
+    .sp-mode-row{display:flex;gap:.6rem}
+    .sp-mode-btn{flex:1;display:flex;flex-direction:column;align-items:center;gap:.3rem;background:none;border:none;cursor:pointer}
+    .sp-mode-swatch{width:100%;height:1.9rem;border-radius:7px;border:1px solid var(--border)}
+    .sp-mode-btn.active .sp-mode-swatch{border-color:var(--accent);border-width:2px}
+    .sp-mode-lbl{font-size:.72rem;color:var(--text3)}
+    .sp-mode-btn.active .sp-mode-lbl{color:var(--accent)}
 
-    /* ── Responsive ── */
-    @media(max-width:768px){
-        .rd-sidebar,.rd-ft-left{display:none}
-        .rd-content-wrap{padding:1.4rem .9rem 5rem}
-        #sidebar-toggle-btn{display:none!important}
-        #settings-panel{right:.5rem;left:.5rem;min-width:unset}
-    }
-    @media(min-width:769px){
-        .rd-offcanvas,.rd-overlay{display:none!important}
-        #mobile-menu-btn{display:none!important}
-    }
+    @media(min-width:769px){.rd-content-wrap{padding-top:3rem}}
     </style>
 </head>
 <body>
 
 <!-- LOADER -->
 <div id="loader-overlay">
-    <div class="loader-om">ॐ</div>
+    <div class="loader-mark">ॐ</div>
     <div class="loader-bar-wrap"><div id="loader-bar"></div></div>
-    <div id="loader-text">Loading…</div>
+    <div id="loader-text">लोड हो रहा है…</div>
 </div>
 
-<!-- SCROLL PROGRESS -->
 <div id="scroll-prog"><div id="scroll-prog-bar"></div></div>
 
-<!-- SEARCH BAR -->
 <div id="search-bar">
-    <input type="search" id="search-input" placeholder="खोजें… (ग्रन्थ में)" autocomplete="off">
-    <button id="search-close">✕</button>
+    <input type="search" id="search-input" placeholder="ग्रन्थ में खोजें…" autocomplete="off">
+    <button class="icon-btn" id="search-close" aria-label="बंद करें">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
 </div>
 <div id="search-results"></div>
 
-<!-- SHORTCUT MODAL -->
 <div class="shortcut-modal" id="shortcut-modal">
     <div class="sc-box">
-        <div class="sc-title">⌨ कुंजी-संक्षेप</div>
-        <div class="sc-row"><span class="sc-action">← पूर्व अनुभाग</span><span class="sc-key">←</span></div>
-        <div class="sc-row"><span class="sc-action">→ अगला अनुभाग</span><span class="sc-key">→</span></div>
+        <div class="sc-title">कुंजी-संक्षेप</div>
+        <div class="sc-row"><span class="sc-action">पूर्व अनुभाग</span><span class="sc-key">←</span></div>
+        <div class="sc-row"><span class="sc-action">अगला अनुभाग</span><span class="sc-key">→</span></div>
         <div class="sc-row"><span class="sc-action">खोज खोलें</span><span class="sc-key">Ctrl+F</span></div>
-        <div class="sc-row"><span class="sc-action">अक्षर बड़ा</span><span class="sc-key">Ctrl++</span></div>
-        <div class="sc-row"><span class="sc-action">अक्षर छोटा</span><span class="sc-key">Ctrl+−</span></div>
+        <div class="sc-row"><span class="sc-action">अक्षर बड़ा / छोटा</span><span class="sc-key">Ctrl +/−</span></div>
         <div class="sc-row"><span class="sc-action">स्वाइप बाएँ/दाएँ</span><span class="sc-key">Swipe</span></div>
         <button class="sc-close-btn" id="sc-close">बंद करें</button>
     </div>
@@ -447,44 +314,70 @@
 
 <!-- HEADER -->
 <header class="rd-hdr">
-    <button class="rd-icon-btn" id="mobile-menu-btn" aria-label="मेनू">
-        <svg viewBox="0 0 16 16"><path d="M2.5 12a.5.5 0 0 1 0-1h11a.5.5 0 0 1 0 1h-11zm0-4a.5.5 0 0 1 0-1h11a.5.5 0 0 1 0 1h-11zm0-4a.5.5 0 0 1 0-1h11a.5.5 0 0 1 0 1h-11z"/></svg>
+    <button class="icon-btn" id="toc-btn" aria-label="अनुक्रमणिका">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h10"/></svg>
     </button>
-    <button class="rd-icon-btn" id="sidebar-toggle-btn" aria-label="Sidebar">
-        <svg viewBox="0 0 16 16"><path d="M2.5 12a.5.5 0 0 1 0-1h11a.5.5 0 0 1 0 1h-11zm0-4a.5.5 0 0 1 0-1h11a.5.5 0 0 1 0 1h-11zm0-4a.5.5 0 0 1 0-1h11a.5.5 0 0 1 0 1h-11z"/></svg>
+    <button class="icon-btn" id="back-btn" aria-label="पुस्तकालय" onclick="location.href='index.html'">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
     </button>
-    <a href="index.html" class="rd-brand">स्वाध्याय</a>
-    <span class="rd-sep">›</span>
     <div id="hdr-breadcrumb">
-        <span class="hbc" id="hbc-book"></span>
-        <span class="rd-sep hbc-mid" style="display:none">›</span>
+        <span class="hbc hbc-book" id="hbc-book"></span>
+        <span class="hbc hbc-mid" id="hbc-mid" style="display:none">›</span>
         <span class="hbc hbc-chapter" id="hbc-chapter" style="display:none"></span>
-        <span class="rd-sep hbc-sub-sep" style="display:none">›</span>
+        <span class="hbc hbc-sub-sep" id="hbc-sub-sep" style="display:none">›</span>
         <span class="hbc hbc-sub" id="hbc-sub" style="display:none"></span>
     </div>
-    <button class="rd-icon-btn" id="search-btn" title="खोजें (Ctrl+F)" style="font-size:1.05rem">🔍</button>
-    <a href="index.html" class="rd-back">← पुस्तकालय</a>
+    <button class="icon-btn" id="search-btn" aria-label="खोजें">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.3-4.3" stroke-linecap="round"/></svg>
+    </button>
+    <button class="icon-btn" id="settings-btn" aria-label="प्रदर्शन सेटिंग" style="font-size:.85rem;font-weight:700">Aa</button>
 </header>
 
-<!-- LAYOUT -->
-<div class="rd-body">
-    <!-- SIDEBAR (desktop) -->
-    <aside class="rd-sidebar" id="rd-sidebar">
-        <div class="sb-tabs">
-            <button class="sb-tab active" data-tab="chapters" data-ctx="desktop">📖 अध्याय</button>
-            <button class="sb-tab"        data-tab="bookmarks" data-ctx="desktop">🔖 बुकमार्क</button>
-        </div>
-        <div class="sb-panel active" id="panel-chapters">
-            <div class="sb-head">अध्याय-सूची</div>
-            <div id="desktop-chapters"></div>
-        </div>
-        <div class="sb-panel" id="panel-bookmarks">
-            <div class="sb-head">सहेजे गए अनुच्छेद</div>
-            <div id="desktop-bookmarks"></div>
-        </div>
-    </aside>
+<div id="settings-panel">
+    <div class="sp-head">अक्षर-आकार</div>
+    <div class="sp-font-row">
+        <button class="sp-font-btn" id="font-down">A−</button>
+        <input type="range" id="font-range" min="0.8" max="1.6" step="0.05" value="1">
+        <button class="sp-font-btn" id="font-up">A+</button>
+    </div>
+    <div class="sp-font-label" id="font-size-label">100%</div>
+    <div class="sp-head">थीम</div>
+    <div class="sp-mode-row">
+        <button class="sp-mode-btn active" id="mode-white" title="White">
+            <span class="sp-mode-swatch" style="background:#ffffff"></span><span class="sp-mode-lbl">White</span>
+        </button>
+        <button class="sp-mode-btn" id="mode-sepia" title="Sepia">
+            <span class="sp-mode-swatch" style="background:#f4ecd8"></span><span class="sp-mode-lbl">Sepia</span>
+        </button>
+        <button class="sp-mode-btn" id="mode-dark" title="Dark">
+            <span class="sp-mode-swatch" style="background:#141413"></span><span class="sp-mode-lbl">Dark</span>
+        </button>
+    </div>
+</div>
 
-    <!-- MAIN -->
+<!-- TOC DRAWER -->
+<div class="rd-overlay" id="rd-overlay"></div>
+<div class="rd-drawer" id="rd-drawer">
+    <div class="rd-drawer-head">
+        <div class="rd-drawer-title" id="drawer-book-title"></div>
+        <button class="icon-btn" id="drawer-close" aria-label="बंद करें">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+    </div>
+    <div class="tabs">
+        <button class="tab-btn active" data-tab="chapters">अध्याय</button>
+        <button class="tab-btn" data-tab="bookmarks">बुकमार्क</button>
+    </div>
+    <div class="tab-panel active" id="panel-chapters">
+        <div id="toc-chapters"></div>
+    </div>
+    <div class="tab-panel" id="panel-bookmarks">
+        <div id="toc-bookmarks"></div>
+    </div>
+</div>
+
+<!-- MAIN -->
+<div class="rd-body">
     <main class="rd-main" id="rd-main">
         <div class="rd-content-wrap">
             <div id="display"></div>
@@ -494,75 +387,25 @@
 
 <!-- FOOTER -->
 <footer class="rd-footer">
-    <div class="rd-ft-left"></div>
-    <div class="rd-ft-main">
-        <!-- prev -->
-        <button class="rd-btn-nav" id="prev-btn" disabled aria-label="पूर्व अनुभाग">
-            <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
-        </button>
-        <!-- play / stop -->
-        <button class="rd-btn-read" id="read-btn" aria-label="सुनें">
-            <!-- speaker icon (default) -->
-            <svg id="read-icon-play" viewBox="0 0 24 24">
-                <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 7.97v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
-            </svg>
-            <!-- stop icon (while speaking) -->
-            <svg id="read-icon-stop" viewBox="0 0 24 24" style="display:none">
-                <path d="M6 6h12v12H6z"/>
-            </svg>
-        </button>
-        <!-- next -->
-        <button class="rd-btn-nav" id="next-btn" aria-label="अगला अनुभाग">
-            <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
-        </button>
-    </div>
+    <button class="icon-btn" id="prev-btn" disabled aria-label="पूर्व अनुभाग">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
+    <button class="icon-btn" id="read-btn" aria-label="सुनें">
+        <svg id="read-icon-play" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 9v6h4l5 5V4L8 9H4z"/><path d="M16.5 8a4.5 4.5 0 010 8"/>
+        </svg>
+        <svg id="read-icon-stop" viewBox="0 0 24 24" fill="currentColor" style="display:none"><rect x="6" y="6" width="12" height="12" rx="2"/></svg>
+    </button>
+    <span class="rd-ft-pos" id="rd-ft-pos">—</span>
+    <button class="icon-btn" id="next-btn" aria-label="अगला अनुभाग">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+    </button>
     <div class="rd-ft-right">
-        <button class="rd-ft-icon" id="shortcut-btn" title="कुंजी-संक्षेप">⌨</button>
+        <button class="icon-btn" id="shortcut-btn" aria-label="कुंजी-संक्षेप" style="font-size:.85rem;font-weight:700">?</button>
     </div>
 </footer>
 
-<!-- TOAST -->
 <div class="toast" id="toast"></div>
-
-<!-- FLOATING SETTINGS -->
-<button id="settings-fab" title="प्रदर्शन सेटिंग">⚙️</button>
-<div id="settings-panel">
-    <div class="sp-head">अक्षर-आकार</div>
-    <div class="sp-row">
-        <button class="sp-btn" id="font-down">A−</button>
-        <span class="sp-font-label" id="font-size-label">1.1×</span>
-        <button class="sp-btn" id="font-up">A+</button>
-    </div>
-    <div class="sp-head">पृष्ठभूमि</div>
-    <div class="sp-mode-row">
-        <button class="sp-mode-btn active" id="mode-dark"  title="रात्रि">🌙<span style="font-size:.72rem;color:var(--txt3)">रात</span></button>
-        <button class="sp-mode-btn"        id="mode-sepia" title="सेपिया">📜<span style="font-size:.72rem;color:var(--txt3)">सेपिया</span></button>
-        <button class="sp-mode-btn"        id="mode-light" title="दिन">☀️<span style="font-size:.72rem;color:var(--txt3)">दिन</span></button>
-    </div>
-</div>
-
-<!-- MOBILE OFFCANVAS -->
-<div class="rd-overlay" id="rd-overlay"></div>
-<div class="rd-offcanvas" id="rd-offcanvas">
-    <div class="rd-oc-head">
-        <span class="rd-oc-title">ॐ अध्याय-सूची</span>
-        <button class="rd-close-btn" id="offcanvas-close">✕</button>
-    </div>
-    <div class="rd-oc-body">
-        <div class="sb-tabs">
-            <button class="sb-tab active" data-tab="chapters" data-ctx="mobile">📖 अध्याय</button>
-            <button class="sb-tab"        data-tab="bookmarks" data-ctx="mobile">🔖 बुकमार्क</button>
-        </div>
-        <div class="sb-panel active" id="mobile-panel-chapters">
-            <div class="sb-head">अध्याय-सूची</div>
-            <div id="mobile-chapters"></div>
-        </div>
-        <div class="sb-panel" id="mobile-panel-bookmarks">
-            <div class="sb-head">सहेजे गए</div>
-            <div id="mobile-bookmarks"></div>
-        </div>
-    </div>
-</div>
 
 <script>
 /* ═══════════════════════════════════════════════
@@ -578,17 +421,46 @@ function showToast(msg){
     clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove("show"),2200);
 }
 
-/* ── Breadcrumb ── */
 function setBreadcrumb(book,chapter,sub){
     document.getElementById("hbc-book").textContent=book||"";
     const elCh=document.getElementById("hbc-chapter");
     const elSub=document.getElementById("hbc-sub");
-    const sepMid=document.querySelector(".hbc-mid");
-    const sepSub=document.querySelector(".hbc-sub-sep");
     elCh.textContent=chapter||""; elSub.textContent=sub||"";
-    sepMid.style.display=chapter?"":"none"; elCh.style.display=chapter?"":"none";
-    sepSub.style.display=sub?"":"none"; elSub.style.display=sub?"":"none";
+    document.getElementById("hbc-mid").style.display=chapter?"":"none";
+    elCh.style.display=chapter?"":"none";
+    document.getElementById("hbc-sub-sep").style.display=sub?"":"none";
+    elSub.style.display=sub?"":"none";
 }
+
+/* ═══════════════════════════════════════════════
+   FONT SIZE + READING MODE
+   Scaling <html>'s own font-size (not an isolated
+   variable used by only one element) is what makes
+   header/TOC/bookmarks/footer/content all resize
+   together as one book.
+═══════════════════════════════════════════════ */
+const FS_MIN=0.8, FS_MAX=1.6, FS_STEP=0.05, FS_BASE=16;
+let fontScale=parseFloat(localStorage.getItem("sv_fontScale"))||1;
+function applyFontScale(){
+    fontScale=Math.min(FS_MAX,Math.max(FS_MIN,+fontScale.toFixed(2)));
+    document.documentElement.style.fontSize=(FS_BASE*fontScale)+"px";
+    document.getElementById("font-size-label").textContent=Math.round(fontScale*100)+"%";
+    document.getElementById("font-range").value=fontScale;
+    localStorage.setItem("sv_fontScale",fontScale);
+}
+function setFontScale(v){fontScale=+v;applyFontScale()}
+function nudgeFontScale(d){fontScale=Math.min(FS_MAX,Math.max(FS_MIN,+(fontScale+d).toFixed(2)));applyFontScale()}
+applyFontScale();
+
+const READ_MODES=["white","sepia","dark"];
+function applyReadMode(m){
+    document.body.classList.remove("mode-sepia","mode-dark");
+    if(m!=="white")document.body.classList.add("mode-"+m);
+    document.querySelectorAll(".sp-mode-btn").forEach(b=>b.classList.remove("active"));
+    document.getElementById("mode-"+m)?.classList.add("active");
+    localStorage.setItem("sv_readMode",m);
+}
+applyReadMode(READ_MODES.includes(localStorage.getItem("sv_readMode"))?localStorage.getItem("sv_readMode"):"white");
 
 /* ═══════════════════════════════════════════════
    TTS
@@ -642,11 +514,10 @@ async function speakContent(){
     if(!voice){alert("Hindi TTS voice not found.\nAndroid: Settings › System › Languages & input › TTS\niOS: Settings › Accessibility › Spoken Content › Voices › Hindi");return}
     isSpeaking=true;
     const btn=document.getElementById("read-btn");
-    btn.classList.add("speaking");
     document.getElementById("read-icon-play").style.display="none";
     document.getElementById("read-icon-stop").style.display="";
     function clearHL(){contentDiv.querySelectorAll(".highlight").forEach(el=>{el.parentNode.replaceChild(document.createTextNode(el.textContent),el);el.parentNode.normalize()})}
-    function stop(){clearHL();isSpeaking=false;btn.classList.remove("speaking");document.getElementById("read-icon-play").style.display="";document.getElementById("read-icon-stop").style.display="none"}
+    function stop(){clearHL();isSpeaking=false;document.getElementById("read-icon-play").style.display="";document.getElementById("read-icon-stop").style.display="none"}
     function speakLine(i){
         if(i>=queue.length||!isSpeaking){stop();return}
         const{node,chunk,isFirst}=queue[i];
@@ -676,13 +547,14 @@ const BM_KEY="sv_bookmarks";
 let bookFileParam="";
 function getBMs(){return JSON.parse(localStorage.getItem(BM_KEY)||"{}")}
 function saveBMs(bm){localStorage.setItem(BM_KEY,JSON.stringify(bm))}
+function starIcon(saved){return `<svg viewBox="0 0 24 24"><path d="M12 3.5l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17.4 6.6 20.4l1-6.1-4.4-4.3 6.1-.9L12 3.5z"/></svg>`}
 
 function addBM(pid,text,chT,shT,cidx){
     const bm=getBMs();
     if(!bm[bookFileParam])bm[bookFileParam]=[];
     if(!bm[bookFileParam].find(b=>b.pid===pid)){
         bm[bookFileParam].push({pid,text:text.slice(0,160),chT,shT,cidx,ts:Date.now()});
-        saveBMs(bm);showToast("🔖 बुकमार्क सहेजा");
+        saveBMs(bm);showToast("बुकमार्क सहेजा गया");
     }
     renderBMPanel();
 }
@@ -690,42 +562,40 @@ function removeBM(pid){
     const bm=getBMs();
     if(bm[bookFileParam])bm[bookFileParam]=bm[bookFileParam].filter(b=>b.pid!==pid);
     saveBMs(bm);renderBMPanel();
-    document.querySelectorAll(`.bm-star[data-pid="${pid}"]`).forEach(s=>{s.classList.remove("saved");s.textContent="☆";s.title="बुकमार्क करें"});
+    document.querySelectorAll(`.bm-star[data-pid="${pid}"]`).forEach(s=>{s.classList.remove("saved");s.title="बुकमार्क करें"});
     showToast("बुकमार्क हटाया");
 }
 function renderBMPanel(){
     const bm=getBMs()[bookFileParam]||[];
-    ["desktop-bookmarks","mobile-bookmarks"].forEach(id=>{
-        const el=document.getElementById(id);if(!el)return;
-        el.innerHTML="";
-        if(!bm.length){el.innerHTML='<div class="bm-empty">कोई बुकमार्क नहीं</div>';return}
-        bm.slice().reverse().forEach(b=>{
-            const div=document.createElement("div");div.className="bm-item";
-            div.innerHTML=
-                `<div class="bm-text"><div class="bm-ctx">${b.chT}${b.shT?" › "+b.shT:""}</div>${b.text}</div>`+
-                `<button class="bm-del" title="हटाएँ" data-pid="${b.pid}">✕</button>`;
-            div.querySelector(".bm-del").addEventListener("click",e=>{e.stopPropagation();removeBM(b.pid)});
-            div.addEventListener("click",()=>{
-                if(typeof window._svNavigate!=="function"){showToast("पुस्तक लोड हो रही है…");return}
-                let cidx=(b.cidx!=null)?b.cidx:(window._svFindSection?.(b.chT,b.shT)??-1);
-                if(cidx<0){showToast("अनुभाग नहीं मिला");return}
-                window._svNavigate(cidx);
-                /* after render, find & scroll to the exact paragraph */
-                setTimeout(()=>{
-                    const needle=b.text.slice(0,40).trim();
-                    const paras=document.querySelectorAll("#display p");
-                    for(const p of paras){
-                        if(p.textContent.trim().startsWith(needle.slice(0,30))){
-                            p.scrollIntoView({behavior:"smooth",block:"center"});
-                            p.classList.add("bm-flash");
-                            setTimeout(()=>p.classList.remove("bm-flash"),1600);
-                            break;
-                        }
+    const el=document.getElementById("toc-bookmarks");if(!el)return;
+    el.innerHTML="";
+    if(!bm.length){el.innerHTML='<div class="bm-empty">कोई बुकमार्क नहीं</div>';return}
+    bm.slice().reverse().forEach(b=>{
+        const div=document.createElement("div");div.className="bm-item";
+        div.innerHTML=
+            `<div class="bm-text"><div class="bm-ctx">${b.chT}${b.shT?" › "+b.shT:""}</div>${b.text}</div>`+
+            `<button class="bm-del" title="हटाएँ" data-pid="${b.pid}">✕</button>`;
+        div.querySelector(".bm-del").addEventListener("click",e=>{e.stopPropagation();removeBM(b.pid)});
+        div.addEventListener("click",()=>{
+            if(typeof window._svNavigate!=="function"){showToast("पुस्तक लोड हो रही है…");return}
+            let cidx=(b.cidx!=null)?b.cidx:(window._svFindSection?.(b.chT,b.shT)??-1);
+            if(cidx<0){showToast("अनुभाग नहीं मिला");return}
+            window._svNavigate(cidx);
+            closeDrawer();
+            setTimeout(()=>{
+                const needle=b.text.slice(0,40).trim();
+                const paras=document.querySelectorAll("#display p");
+                for(const p of paras){
+                    if(p.textContent.trim().startsWith(needle.slice(0,30))){
+                        p.scrollIntoView({behavior:"smooth",block:"center"});
+                        p.classList.add("bm-flash");
+                        setTimeout(()=>p.classList.remove("bm-flash"),1600);
+                        break;
                     }
-                },300);
-            });
-            el.appendChild(div);
+                }
+            },300);
         });
+        el.appendChild(div);
     });
 }
 
@@ -786,12 +656,18 @@ function doSearch(q,navFn){
 }
 
 /* ═══════════════════════════════════════════════
+   DRAWER
+═══════════════════════════════════════════════ */
+function openDrawer(){document.getElementById("rd-drawer").classList.add("open");document.getElementById("rd-overlay").classList.add("open")}
+function closeDrawer(){document.getElementById("rd-drawer").classList.remove("open");document.getElementById("rd-overlay").classList.remove("open")}
+
+/* ═══════════════════════════════════════════════
    MAIN APP
 ═══════════════════════════════════════════════ */
 document.addEventListener("DOMContentLoaded",function(){
 
     const displayDiv=document.getElementById("display");
-    const rdMain   =document.getElementById("rd-main");
+    const rdMain=document.getElementById("rd-main");
 
     /* URL param */
     const params=new URLSearchParams(window.location.search);
@@ -810,8 +686,12 @@ document.addEventListener("DOMContentLoaded",function(){
     let paragraphs=[], chapters=[], conceptualItems=[];
     let currentCIdx=-1, bookTitle="";
 
-    /* Helpers */
     function scrollTop(){rdMain.scrollTo({top:0,behavior:"smooth"})}
+
+    function updatePosLabel(){
+        document.getElementById("rd-ft-pos").textContent=
+            currentCIdx<0?"—":`${toHindiNum(currentCIdx+1)} / ${toHindiNum(conceptualItems.length)}`;
+    }
 
     function showIntro(){
         displayDiv.innerHTML="";
@@ -819,7 +699,7 @@ document.addEventListener("DOMContentLoaded",function(){
         if(end===-1)end=paragraphs.length;
         for(let i=0;i<end;i++)displayDiv.appendChild(paragraphs[i].cloneNode(true));
         applyShlokClasses();
-        currentCIdx=-1;setBreadcrumb(bookTitle,"","");scrollTop();updateNavBtns();
+        currentCIdx=-1;setBreadcrumb(bookTitle,"","");scrollTop();updateNavBtns();updatePosLabel();
     }
 
     function loadItem(idx){
@@ -827,6 +707,12 @@ document.addEventListener("DOMContentLoaded",function(){
         currentCIdx=idx;
         const item=conceptualItems[idx];
         displayDiv.innerHTML="";
+        const chIdx=chapters.indexOf(item.ch);
+        if(chapters.length>1){
+            const lbl=document.createElement("div");lbl.className="chapter-label";
+            lbl.textContent=`अध्याय ${toHindiNum(chIdx+1)}`;
+            displayDiv.appendChild(lbl);
+        }
         if(item.type==="heading"){
             for(let i=item.ch.startIdx;i<item.ch.endIdx;i++)
                 displayDiv.appendChild(paragraphs[i].cloneNode(true));
@@ -839,46 +725,38 @@ document.addEventListener("DOMContentLoaded",function(){
         }
         allProg[bookFileParam]={conceptualIdx:idx};
         localStorage.setItem(PROG_KEY,JSON.stringify(allProg));
-        applyShlokClasses();decorateParas(item);scrollTop();updateNavBtns();syncActive(idx);
+        applyShlokClasses();decorateParas(item);scrollTop();updateNavBtns();syncActive(idx);updatePosLabel();
     }
 
-    /* Classes that should render as full Shlok (gold + centred + italic) */
     const SHLOK_LIKE=["Title-Page---Tvamev-mata","Titel-Page---Shri-Hari"];
-    /* Classes that get shlok layout only — colour stays as normal text */
     const SHLOK_LAYOUT_LIKE=["Title-Page---Author-Name"];
     function applyShlokClasses(){
         displayDiv.querySelectorAll("p").forEach(p=>{
-            if(SHLOK_LIKE.some(c=>p.classList.contains(c)))
-                p.classList.add("Shlok");
-            if(SHLOK_LAYOUT_LIKE.some(c=>p.classList.contains(c)))
-                p.classList.add("shlok-layout");
+            if(SHLOK_LIKE.some(c=>p.classList.contains(c)))p.classList.add("Shlok");
+            if(SHLOK_LAYOUT_LIKE.some(c=>p.classList.contains(c)))p.classList.add("shlok-layout");
         });
     }
 
-    /* Decorate: copy on click + bookmark star */
     function decorateParas(item){
         let pid=0;
         displayDiv.querySelectorAll("p").forEach(p=>{
             const id=`p_${currentCIdx}_${pid++}`;
-            const chT=item.ch.headingEl.textContent.trim();   // always the chapter title
+            const chT=item.ch.headingEl.textContent.trim();
             const shT=item.type==="sub"?item.sh.el.textContent.trim():"";
-            // copy
             p.addEventListener("click",()=>{
                 navigator.clipboard?.writeText(p.textContent+`\n— ${bookTitle}${shT?" › "+shT:""}`)
-                    .then(()=>showToast("📋 कॉपी हो गया")).catch(()=>{});
+                    .then(()=>showToast("कॉपी हो गया")).catch(()=>{});
             });
-            // bookmark star
             const star=document.createElement("button");
-            star.className="bm-star";star.dataset.pid=id;star.title="बुकमार्क करें";star.textContent="☆";
+            star.className="bm-star";star.dataset.pid=id;star.title="बुकमार्क करें";star.innerHTML=starIcon(false);
             const bm=getBMs()[bookFileParam]||[];
-            if(bm.find(b=>b.pid===id)){star.classList.add("saved");star.textContent="★"}
+            if(bm.find(b=>b.pid===id))star.classList.add("saved");
             star.addEventListener("click",e=>{
                 e.stopPropagation();
                 const cur=getBMs()[bookFileParam]||[];
                 if(cur.find(b=>b.pid===id)){removeBM(id)}
-                else{addBM(id,p.textContent,chT,shT,currentCIdx);star.classList.add("saved");star.textContent="★"}
+                else{addBM(id,p.textContent,chT,shT,currentCIdx);star.classList.add("saved")}
             });
-            // wrap
             const wrap=document.createElement("span");wrap.className="para-wrap";
             p.parentNode.insertBefore(wrap,p);wrap.appendChild(p);wrap.appendChild(star);
         });
@@ -886,9 +764,7 @@ document.addEventListener("DOMContentLoaded",function(){
     }
 
     function syncActive(idx){
-        /* clear only active markers, leave open/closed accordion state untouched */
         document.querySelectorAll(".rd-ch-btn.active,.rd-sub-btn.active").forEach(b=>b.classList.remove("active"));
-        /* mark the newly active item and ensure its chapter is open */
         document.querySelectorAll(`[data-cidx="${idx}"]`).forEach(b=>{
             b.classList.add("active");
             const sl=b.closest(".rd-chapter")?.querySelector(".rd-sub-list");
@@ -899,13 +775,10 @@ document.addEventListener("DOMContentLoaded",function(){
     }
 
     function updateNavBtns(){
-        document.getElementById("prev-btn").disabled=currentCIdx<=0&&currentCIdx!==-1?false:currentCIdx<0;
-        // simpler:
         document.getElementById("prev-btn").disabled=(currentCIdx<0);
         document.getElementById("next-btn").disabled=(currentCIdx>=conceptualItems.length-1);
     }
 
-    /* Parse structure */
     function parseStructure(){
         chapters=[];let curCh=null;
         paragraphs.forEach((p,idx)=>{
@@ -936,21 +809,20 @@ document.addEventListener("DOMContentLoaded",function(){
         });
     }
 
-    /* Build menu DOM for ONE container — no shared state issues */
     function buildMenuDOM(container){
         container.innerHTML="";
-        chapters.forEach(ch=>{
+        chapters.forEach((ch,chIdx)=>{
+            let chText="";
             const chDiv=document.createElement("div");chDiv.className="rd-chapter";
             const chBtn=document.createElement("button");chBtn.className="rd-ch-btn";
-            let chText="";
             for(let i=ch.startIdx;i<ch.endIdx;i++)chText+=paragraphs[i].textContent+" ";
-            chBtn.innerHTML=`<span>${ch.headingEl.textContent}<span class="rd-ch-time">~${toHindiNum(readMins(wordCount(chText)))} मिनट</span></span><span class="rd-ch-arrow">▶</span>`;
+            chBtn.innerHTML=`<span class="rd-ch-num">${toHindiNum(chIdx+1)}</span><span class="rd-ch-body">${ch.headingEl.textContent}<span class="rd-ch-time">~${toHindiNum(readMins(wordCount(chText)))} मिनट</span></span><span class="rd-ch-arrow">▶</span>`;
             const subList=document.createElement("div");subList.className="rd-sub-list";
             chDiv.appendChild(chBtn);chDiv.appendChild(subList);container.appendChild(chDiv);
 
             if(ch.subHeadings.length===0){
                 chBtn.dataset.cidx=String(ch.conceptualIdx);
-                chBtn.addEventListener("click",()=>loadItem(ch.conceptualIdx));
+                chBtn.addEventListener("click",()=>{loadItem(ch.conceptualIdx);closeDrawer()});
             } else {
                 chBtn.addEventListener("click",()=>{
                     const open=subList.classList.toggle("open");
@@ -961,11 +833,8 @@ document.addEventListener("DOMContentLoaded",function(){
                     for(let i=sh.startIdx;i<sh.endIdx;i++)shText+=paragraphs[i].textContent+" ";
                     const subBtn=document.createElement("button");subBtn.className="rd-sub-btn";
                     subBtn.dataset.cidx=String(sh.conceptualIdx);
-                    subBtn.innerHTML=`${toHindiNum(si+1)}. ${sh.text}<span class="rd-sub-time">~${toHindiNum(readMins(wordCount(shText)))} मिनट</span>`;
-                    subBtn.addEventListener("click",()=>{
-                        if(window.innerWidth<769)closeOffcanvas();
-                        loadItem(sh.conceptualIdx);
-                    });
+                    subBtn.innerHTML=`<span class="rd-sub-num">${toHindiNum(si+1)}.</span><span>${sh.text}<span class="rd-sub-time">~${toHindiNum(readMins(wordCount(shText)))} मिनट</span></span>`;
+                    subBtn.addEventListener("click",()=>{loadItem(sh.conceptualIdx);closeDrawer()});
                     subList.appendChild(subBtn);
                 });
             }
@@ -973,32 +842,27 @@ document.addEventListener("DOMContentLoaded",function(){
     }
 
     function navigateTo(idx){if(idx>=0&&idx<conceptualItems.length)loadItem(idx)}
-    window._svNavigate=navigateTo;   // expose for bookmark panel (defined outside DOMContentLoaded)
+    window._svNavigate=navigateTo;
     window._svFindSection=function(chT,shT){
-        /* find conceptual index by chapter + sub-heading title (fallback for old bookmarks) */
         const idx=conceptualItems.findIndex(it=>{
             const chMatch=it.ch.headingEl.textContent.trim()===chT;
             if(!shT) return chMatch && it.type==="heading";
             return chMatch && it.type==="sub" && it.sh.el.textContent.trim()===shT;
         });
-        return idx;   // -1 if not found
+        return idx;
     };
-
-    /* Mobile offcanvas */
-    function openOffcanvas(){document.getElementById("rd-offcanvas").classList.add("open");document.getElementById("rd-overlay").classList.add("open")}
-    function closeOffcanvas(){document.getElementById("rd-offcanvas").classList.remove("open");document.getElementById("rd-overlay").classList.remove("open")}
 
     /* XHR */
     const xhr=new XMLHttpRequest();
     xhr.open("GET",fileName,true);
     document.getElementById("loader-overlay").classList.remove("hidden");
     xhr.onprogress=e=>{
-        if(e.lengthComputable){const pct=Math.floor(e.loaded/e.total*100);document.getElementById("loader-bar").style.width=pct+"%";document.getElementById("loader-text").textContent=`Loading… ${pct}%`}
+        if(e.lengthComputable){const pct=Math.floor(e.loaded/e.total*100);document.getElementById("loader-bar").style.width=pct+"%";document.getElementById("loader-text").textContent=`लोड हो रहा है… ${pct}%`}
     };
     xhr.onload=function(){
         document.getElementById("loader-bar").style.width="100%";
         document.getElementById("loader-text").textContent="तैयार है";
-        setTimeout(()=>document.getElementById("loader-overlay").classList.add("hidden"),350);
+        setTimeout(()=>document.getElementById("loader-overlay").classList.add("hidden"),300);
         if(xhr.status!==200)return;
         const tmp=document.createElement("div");tmp.innerHTML=xhr.responseText;
         const contentDiv=tmp.querySelector("#content");if(!contentDiv)return;
@@ -1006,10 +870,10 @@ document.addEventListener("DOMContentLoaded",function(){
         bookTitle=titleEl?titleEl.textContent.trim():bookFileParam;
         document.title=`${bookTitle} — स्वाध्याय`;
         document.getElementById("hbc-book").textContent=bookTitle;
+        document.getElementById("drawer-book-title").textContent=bookTitle;
         paragraphs=Array.from(contentDiv.querySelectorAll("p"));
         parseStructure();
-        buildMenuDOM(document.getElementById("desktop-chapters"));
-        buildMenuDOM(document.getElementById("mobile-chapters"));
+        buildMenuDOM(document.getElementById("toc-chapters"));
         buildSearchIdx(paragraphs,chapters);
         if(resumeIdx>=0&&resumeIdx<conceptualItems.length)loadItem(resumeIdx);
         else showIntro();
@@ -1019,75 +883,46 @@ document.addEventListener("DOMContentLoaded",function(){
     xhr.send();
 
     /* ── Events ── */
-
-    /* scroll progress */
     rdMain.addEventListener("scroll",function(){
         const max=this.scrollHeight-this.clientHeight;
         document.getElementById("scroll-prog-bar").style.width=(max>0?this.scrollTop/max*100:0)+"%";
     });
 
-    /* sidebar toggle (desktop) */
-    document.getElementById("sidebar-toggle-btn").addEventListener("click",()=>{
-        document.getElementById("rd-sidebar").classList.toggle("collapsed");
-    });
+    document.getElementById("toc-btn").addEventListener("click",openDrawer);
+    document.getElementById("drawer-close").addEventListener("click",closeDrawer);
+    document.getElementById("rd-overlay").addEventListener("click",closeDrawer);
 
-    /* mobile menu */
-    document.getElementById("mobile-menu-btn").addEventListener("click",openOffcanvas);
-    document.getElementById("offcanvas-close").addEventListener("click",closeOffcanvas);
-    document.getElementById("rd-overlay").addEventListener("click",closeOffcanvas);
-
-    /* sidebar tabs */
-    document.querySelectorAll(".sb-tab").forEach(tab=>{
+    document.querySelectorAll(".tab-btn").forEach(tab=>{
         tab.addEventListener("click",()=>{
-            const ctx=tab.dataset.ctx;
-            const scope=ctx==="mobile"?document.getElementById("rd-offcanvas"):document.getElementById("rd-sidebar");
-            scope.querySelectorAll(".sb-tab").forEach(t=>t.classList.remove("active"));
-            scope.querySelectorAll(".sb-panel").forEach(p=>p.classList.remove("active"));
+            document.querySelectorAll(".tab-btn").forEach(t=>t.classList.remove("active"));
+            document.querySelectorAll(".tab-panel").forEach(p=>p.classList.remove("active"));
             tab.classList.add("active");
-            const panelId=(ctx==="mobile"?"mobile-panel-":"panel-")+tab.dataset.tab;
-            const panel=document.getElementById(panelId);if(panel)panel.classList.add("active");
+            document.getElementById("panel-"+tab.dataset.tab)?.classList.add("active");
         });
     });
 
-    /* nav buttons */
     document.getElementById("prev-btn").addEventListener("click",()=>navigateTo(currentCIdx-1));
     document.getElementById("next-btn").addEventListener("click",()=>navigateTo(currentCIdx+1));
-
-    /* read aloud */
     document.getElementById("read-btn").addEventListener("click",speakContent);
 
-    /* floating settings FAB */
     const settingsPanel=document.getElementById("settings-panel");
-    document.getElementById("settings-fab").addEventListener("click",e=>{
+    document.getElementById("settings-btn").addEventListener("click",e=>{
         e.stopPropagation();
         settingsPanel.classList.toggle("open");
     });
     document.addEventListener("click",e=>{
-        if(!settingsPanel.contains(e.target)&&e.target.id!=="settings-fab")
+        if(!settingsPanel.contains(e.target)&&e.target.id!=="settings-btn")
             settingsPanel.classList.remove("open");
     });
 
-    /* font size */
-    let fs=1.1;
-    function setFs(v){
-        fs=v;
-        document.documentElement.style.setProperty("--fs",fs+"rem");
-        document.getElementById("font-size-label").textContent=fs.toFixed(1)+"×";
-    }
-    document.getElementById("font-up").addEventListener("click",()=>setFs(Math.min(2.0,+(fs+0.1).toFixed(1))));
-    document.getElementById("font-down").addEventListener("click",()=>setFs(Math.max(0.8,+(fs-0.1).toFixed(1))));
+    document.getElementById("font-up").addEventListener("click",()=>nudgeFontScale(FS_STEP));
+    document.getElementById("font-down").addEventListener("click",()=>nudgeFontScale(-FS_STEP));
+    document.getElementById("font-range").addEventListener("input",e=>setFontScale(e.target.value));
 
-    /* reading mode */
-    ["dark","sepia","light"].forEach(m=>{
-        document.getElementById("mode-"+m).addEventListener("click",()=>{
-            document.body.classList.remove("mode-sepia","mode-light");
-            if(m!=="dark")document.body.classList.add("mode-"+m);
-            document.querySelectorAll(".sp-mode-btn").forEach(b=>b.classList.remove("active"));
-            document.getElementById("mode-"+m).classList.add("active");
-        });
+    READ_MODES.forEach(m=>{
+        document.getElementById("mode-"+m).addEventListener("click",()=>applyReadMode(m));
     });
 
-    /* search */
     const searchBar=document.getElementById("search-bar");
     const searchInput=document.getElementById("search-input");
     const searchResults=document.getElementById("search-results");
@@ -1100,23 +935,20 @@ document.addEventListener("DOMContentLoaded",function(){
     searchInput.addEventListener("input",()=>doSearch(searchInput.value,navigateTo));
     searchInput.addEventListener("keydown",e=>{if(e.key==="Escape"){searchBar.classList.remove("open");searchResults.classList.remove("open")}});
 
-    /* shortcut modal */
     document.getElementById("shortcut-btn").addEventListener("click",()=>document.getElementById("shortcut-modal").classList.add("open"));
     document.getElementById("sc-close").addEventListener("click",()=>document.getElementById("shortcut-modal").classList.remove("open"));
     document.getElementById("shortcut-modal").addEventListener("click",e=>{if(e.target===e.currentTarget)e.currentTarget.classList.remove("open")});
 
-    /* keyboard shortcuts */
     document.addEventListener("keydown",e=>{
         if(e.target===searchInput)return;
         if(e.key==="ArrowLeft")navigateTo(currentCIdx-1);
         if(e.key==="ArrowRight")navigateTo(currentCIdx+1);
         if((e.ctrlKey||e.metaKey)&&e.key==="f"){e.preventDefault();searchBar.classList.add("open");searchInput.focus()}
-        if((e.ctrlKey||e.metaKey)&&(e.key==="+"||e.key==="=")){e.preventDefault();setFs(Math.min(2.0,+(fs+0.1).toFixed(1)))}
-        if((e.ctrlKey||e.metaKey)&&e.key==="-"){e.preventDefault();setFs(Math.max(0.8,+(fs-0.1).toFixed(1)))}
-        if(e.key==="Escape"){document.getElementById("shortcut-modal").classList.remove("open");searchBar.classList.remove("open");searchResults.classList.remove("open")}
+        if((e.ctrlKey||e.metaKey)&&(e.key==="+"||e.key==="=")){e.preventDefault();nudgeFontScale(FS_STEP)}
+        if((e.ctrlKey||e.metaKey)&&e.key==="-"){e.preventDefault();nudgeFontScale(-FS_STEP)}
+        if(e.key==="Escape"){document.getElementById("shortcut-modal").classList.remove("open");searchBar.classList.remove("open");searchResults.classList.remove("open");closeDrawer()}
     });
 
-    /* swipe */
     const hammer=new Hammer(document.body);
     hammer.get("swipe").set({direction:Hammer.DIRECTION_HORIZONTAL,threshold:10,velocity:0.3});
     hammer.on("swipeleft", ()=>navigateTo(currentCIdx+1));
