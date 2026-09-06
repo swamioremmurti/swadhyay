@@ -1,0 +1,2007 @@
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, p, pre, code, blockquote {
+	margin:0;
+	padding:0;
+	border-width:0;
+}
+td, th {
+	border-style:solid;
+	border-width:1px;
+	border-color:#ccc;
+	padding:6px 10px;
+	vertical-align:top;
+	text-align:center;
+	font-size:0.9em;
+	color:#231f20;
+}
+th {
+	font-weight:bold;
+	background:#f2f2f2;
+}
+table {
+	border-collapse:collapse;
+	width:100%;
+	margin:1rem 0;
+}
+li {
+	display:block;
+}
+body {
+	-epub-hyphens:auto;
+	-webkit-hyphens:auto;
+	font-family:ChanakyaUni, serif;
+	max-width:800px;
+	margin:2rem auto;
+	padding:0 1rem;
+	line-height:1.6;
+}
+@page {
+	margin:0px 0px 0px 0px;
+}
+
+/* durga_saptashati: Titel-Page---Shri-Hari | gita_prabodhini: Titel-Page---Shri-Hari */
+.a {
+	color: #c45911;
+	font-family: ChanakyaUni, serif;
+	font-size: 1.167em;
+	font-style: normal;
+	font-weight: bold;
+	line-height: 1.2;
+	text-align: center;
+	text-indent: 0px;
+}
+
+/* durga_saptashati: First-End-Page-text, Numbers | gita_prabodhini: First-End-Page-text, First-End-Page-text-1 | nityakarma_pujaprakash: First-End-Page-text | valmiki_ramayan: First-End-Page-text, First-End-Page-text-1 */
+.b {
+	color: #ff0000;
+	font-family: ChanakyaUni, serif;
+	font-size: 1.167em;
+	font-style: normal;
+	font-weight: bold;
+	line-height: 1.2;
+	text-align: center;
+	text-indent: 0px;
+}
+
+/* gita_prabodhini: Title-Page---Gita-Seva-Trust | nityakarma_pujaprakash: Title-Page---Gita-Seva-Trust | sahasranama_stotra_sangrah: Title-Page---Gita-Seva-Trust | valmiki_ramayan: Title-Page---Gita-Seva-Trust */
+.c {
+	color: #c45911;
+	font-family: ChanakyaUni, serif;
+	font-size: 1.5em;
+	font-style: normal;
+	font-weight: bold;
+	line-height: 1.2;
+	text-align: center;
+	text-indent: 0px;
+}
+
+/* durga_saptashati: Title-Page---Book-Name | gita_prabodhini: Book-Name, Title-Page---Book-Name | sahasranama_stotra_sangrah: Title-Page---Book-Name */
+.d {
+	color: #1066b1;
+	font-family: ChanakyaUni, serif;
+	font-size: 2.5em;
+	font-style: normal;
+	font-weight: bold;
+	line-height: 1.2;
+	text-align: center;
+	text-indent: 0px;
+}
+
+/* gita_prabodhini: Title-Page---Author-Name, Title-Page--Sub-Title */
+.e {
+	color: #231f20;
+	font-family: ChanakyaUni, serif;
+	font-size: 1.667em;
+	font-style: normal;
+	font-weight: bold;
+	line-height: 1.2;
+	text-align: center;
+	text-indent: 0px;
+}
+
+/* durga_saptashati: Image, Title-Page---Tvamev-mata | gita_prabodhini: Title-Page---Tvamev-mata | nityakarma_prayog: Title-Page---Tavmev-Mata--pita | nityakarma_pujaprakash: Image, Tavmev-Mata--pita */
+.f {
+	color: #231f20;
+	font-family: ChanakyaUni, serif;
+	font-size: 1.333em;
+	font-style: normal;
+	font-weight: normal;
+	line-height: 1.2;
+	text-align: center;
+	text-indent: 0px;
+}
+
+/* durga_saptashati: Shlok | gita_prabodhini: Shlok-1, Shlok-Color-2 | nityakarma_pujaprakash: SHLOK | valmiki_ramayan: Shlok-Color-2 */
+.g {
+	color: #a51512;
+	font-family: ChanakyaUni, serif;
+	font-size: 1.333em;
+	font-style: normal;
+	font-weight: bold;
+	line-height: 1.2;
+	text-align: center;
+	text-indent: 0px;
+}
+
+/* durga_saptashati: TXT | gita_prabodhini: Arth, No-Paragraph-Style, TXT, Text, Vyakhya | nityakarma_prayog: TXT | nityakarma_pujaprakash: TXT | sahasranama_stotra_sangrah: Text- */
+.h {
+	color: #231f20;
+	font-family: ChanakyaUni, serif;
+	font-size: 1.333em;
+	font-style: normal;
+	font-weight: normal;
+	line-height: 1.2;
+	text-align: justify;
+	text-indent: 18px;
+}
+
+/* gita_prabodhini: Numbers, Shlok-Number */
+.i {
+	color: #ff0000;
+	font-family: ChanakyaUni, serif;
+	font-size: 1.5em;
+	font-style: normal;
+	font-weight: bold;
+	line-height: 1.2;
+	text-align: center;
+	text-indent: 0px;
+}
+
+/* durga_saptashati: Shlok-Black, Title-Page---Author-Name | gita_prabodhini: Shlok, Sholk-Black, Uwach | nityakarma_prayog: SHLOK-Black, Shlok-Black | nityakarma_pujaprakash: Sub-Head-3 | sahasranama_stotra_sangrah: Shlok-Color-2 */
+.j {
+	color: #231f20;
+	font-family: ChanakyaUni, serif;
+	font-size: 1.333em;
+	font-style: normal;
+	font-weight: bold;
+	line-height: 1.2;
+	text-align: center;
+	text-indent: 0px;
+}
+
+/* durga_saptashati: Page-Break | gita_prabodhini: Page-Break | nityakarma_prayog: Page-Break, Titel-Page---Shri-Hari | nityakarma_pujaprakash: Page-Break, Titel-Page---Shri-Hari | sahasranama_stotra_sangrah: Page-Break | valmiki_ramayan: Page-Break-1, Titel-Page---Shri-Hari */
+.k {
+	color: #c45911;
+	font-family: ChanakyaUni, serif;
+	font-size: 1.167em;
+	font-style: normal;
+	font-weight: normal;
+	line-height: 1.2;
+	text-align: center;
+	text-indent: 0px;
+}
+
+/* durga_saptashati: Heading | gita_prabodhini: Chappter-Heading, Chapter-Heading, Heading | nityakarma_pujaprakash: Heading | sahasranama_stotra_sangrah: Heading */
+.l {
+	color: #1066b1;
+	font-family: ChanakyaUni, serif;
+	font-size: 1.833em;
+	font-style: normal;
+	font-weight: bold;
+	line-height: 1.2;
+	margin-bottom: 7px;
+	text-align: center;
+	text-indent: 0px;
+}
+
+/* durga_saptashati: Sub-Heading | gita_prabodhini: Hindi-Chappter-Heading, Hindi-Chappter-Heading-1, Hindi-Chappter-Heading-2, Hindi-Chaptter-Heading, Sub-Heading | nityakarma_pujaprakash: Sub-Heading | valmiki_ramayan: Sub-Heading */
+.m {
+	color: #2e3192;
+	font-family: ChanakyaUni, serif;
+	font-size: 1.667em;
+	font-style: normal;
+	font-weight: bold;
+	line-height: 1.2;
+	margin-bottom: 7px;
+	text-align: center;
+	text-indent: 0px;
+}
+
+/* durga_saptashati: Footnotes | gita_prabodhini: Footnotes, Footnotes-1, Footnotes-2 | nityakarma_prayog: Footnotes | nityakarma_pujaprakash: Footnotes | sahasranama_stotra_sangrah: Footnotes | valmiki_ramayan: Footnotes */
+.n {
+	color: #760000;
+	font-family: ChanakyaUni, serif;
+	font-size: 1.083em;
+	font-style: normal;
+	font-weight: normal;
+	line-height: 1.2;
+	margin-bottom: 6px;
+	text-align: justify;
+	text-indent: 18px;
+}
+
+/* gita_prabodhini: Footnotes-Bold, Footnotes-Bold-1 | nityakarma_pujaprakash: Footnotes-Bold | valmiki_ramayan: Footnotes-Bold */
+.o {
+	color: #760000;
+	font-family: ChanakyaUni, serif;
+	font-size: 1.083em;
+	font-style: normal;
+	font-weight: bold;
+	line-height: 1.2;
+	text-align: center;
+	text-indent: 0px;
+}
+
+/* durga_saptashati: Chapter-End-Text | gita_prabodhini: Chapter-End-Text, ChapterEnd1 | sahasranama_stotra_sangrah: Chapter-End-Text | valmiki_ramayan: Chapter-End-Text */
+.p {
+	color: #c45911;
+	font-family: ChanakyaUni, serif;
+	font-size: 1.25em;
+	font-style: italic;
+	font-weight: normal;
+	line-height: 1.2;
+	text-align: center;
+	text-indent: 0px;
+}
+
+/* durga_saptashati: para-style-override-1 | gita_prabodhini: Right, para-style-override-1, para-style-override-7 | nityakarma_prayog: para-style-override-1 | nityakarma_pujaprakash: para-style-override-1 | valmiki_ramayan: para-style-override-1 */
+.q {
+	text-align: right;
+}
+
+/* durga_saptashati: para-style-override-2 | gita_prabodhini: para-style-override-2 | nityakarma_prayog: para-style-override-9 | nityakarma_pujaprakash: para-style-override-2 | sahasranama_stotra_sangrah: para-style-override-3 | valmiki_ramayan: para-style-override-2 */
+.r {
+	break-after: page;
+}
+
+/* durga_saptashati: char-style-override-1 | gita_prabodhini: char-style-override-1 | nityakarma_prayog: char-style-override-1 | nityakarma_pujaprakash: char-style-override-1 | valmiki_ramayan: char-style-override-1 */
+.s {
+	color: #000000;
+	font-size: 0.714em;
+	font-style: normal;
+	font-weight: normal;
+}
+
+/* gita_prabodhini: char-style-override-2 */
+.t {
+	color: #231f20;
+	font-size: 0.929em;
+}
+
+/* gita_prabodhini: char-style-override-25, char-style-override-3 */
+.u {
+	font-size: 0.778em;
+}
+
+/* durga_saptashati: char-style-override-4, para-style-override-6 | gita_prabodhini: char-style-override-11, char-style-override-12, char-style-override-20, char-style-override-22, char-style-override-35, char-style-override-36, char-style-override-4 | nityakarma_prayog: char-style-override-5, para-style-override-6 | nityakarma_pujaprakash: char-style-override-4, para-style-override-6 | sahasranama_stotra_sangrah: char-style-override-4 | valmiki_ramayan: char-style-override-11, para-style-override-5 */
+.v {
+	font-style: normal;
+	font-weight: bold;
+}
+
+/* durga_saptashati: char-style-override-3 | gita_prabodhini: char-style-override-5 | nityakarma_prayog: char-style-override-3 | nityakarma_pujaprakash: char-style-override-8 | sahasranama_stotra_sangrah: char-style-override-13, para-style-override-7 | valmiki_ramayan: char-style-override-22 */
+.w {
+	font-style: normal;
+	font-weight: normal;
+}
+
+/* durga_saptashati: char-style-override-10 | gita_prabodhini: char-style-override-6 | nityakarma_prayog: char-style-override-6 | nityakarma_pujaprakash: char-style-override-10 | valmiki_ramayan: char-style-override-6 */
+.x {
+	font-size: 0.583em;
+	vertical-align: super;
+}
+
+/* gita_prabodhini: char-style-override-7 */
+.y {
+	font-size: 0.583em;
+	font-style: normal;
+	font-weight: normal;
+	vertical-align: super;
+}
+
+/* gita_prabodhini: char-style-override-8 */
+.z {
+	color: #ff0000;
+	font-size: 0.818em;
+}
+
+/* gita_prabodhini: char-style-override-9 */
+.aa {
+	font-size: 1.125em;
+	font-style: normal;
+	font-weight: bold;
+}
+
+/* gita_prabodhini: char-style-override-10 | valmiki_ramayan: char-style-override-16 */
+.ab {
+	font-size: 1.125em;
+}
+
+/* _system: Basic-Graphics-Frame, Basic-Text-Frame | durga_saptashati: para-style-override-5 | gita_prabodhini: Basic-Graphics-Frame, char-style-override-13, char-style-override-14, char-style-override-15, char-style-override-16, char-style-override-17, char-style-override-18, char-style-override-19, char-style-override-21, char-style-override-23, char-style-override-24, char-style-override-26, char-style-override-27, char-style-override-28, char-style-override-29, char-style-override-30, char-style-override-31, char-style-override-33, char-style-override-34, para-style-override-10, para-style-override-11, para-style-override-12, para-style-override-13, para-style-override-14, para-style-override-15, para-style-override-8, para-style-override-9 | nityakarma_pujaprakash: para-style-override-7 | sahasranama_stotra_sangrah: para-style-override-11 | valmiki_ramayan: para-style-override-3 */
+.ac {
+
+}
+
+/* durga_saptashati: para-style-override-4 | gita_prabodhini: Image, para-style-override-3, para-style-override-4, para-style-override-5 | nityakarma_prayog: para-style-override-5 */
+.ad {
+	text-align: center;
+}
+
+/* gita_prabodhini: para-style-override-6 */
+.af {
+	margin-bottom: 10px;
+}
+
+/* gita_prabodhini: Shlok-new */
+.ag {
+	color: #a51512;
+	font-family: ChanakyaUni, serif;
+	font-size: 1.333em;
+	font-style: italic;
+	font-weight: bold;
+	line-height: 1.2;
+	text-align: center;
+	text-indent: 0px;
+}
+
+/* gita_prabodhini: char-style-override-32 */
+.ah {
+	font-style: italic;
+}
+
+/* gita_prabodhini: frame-1 */
+.ai {
+	display: block;
+	height: auto;
+	margin: 0 auto;
+	max-width: 100%;
+}
+
+/* _system: epub-page | gita_prabodhini: epub-page */
+.aj {
+	margin-bottom: 1rem;
+}
+
+/* _system: page-break | gita_prabodhini: page-break */
+.ak {
+	margin: 2rem 0;
+	border: none;
+	border-top: 1px dashed #ccc;
+}
+
+/* gita_prabodhini: Footnotes-Right, Footnotes-Right-1 */
+.al {
+	color: #760000;
+	font-family: ChanakyaUni, serif;
+	font-size: 1.083em;
+	font-style: normal;
+	font-weight: normal;
+	line-height: 1.2;
+	margin-bottom: 6px;
+	text-align: right;
+	text-indent: 18px;
+}
+
+/* durga_saptashati: No-Paragraph-Style | nityakarma_pujaprakash: No-Paragraph-Style | sahasranama_stotra_sangrah: No-Paragraph-Style */
+.am {
+	color: #231f20;
+	font-family: "Minion Pro", serif;
+	font-size: 1em;
+	font-style: normal;
+	font-weight: normal;
+	line-height: 1.2;
+	text-align: left;
+	text-indent: 0px;
+}
+
+/* sahasranama_stotra_sangrah: xfootnote, xfootnote-1, xfootnote-2 */
+.an {
+	color: #231f20;
+	font-family: ChanakyaUni, serif;
+	font-size: 1em;
+	font-style: normal;
+	font-weight: normal;
+	line-height: 1.2;
+	text-align: justify;
+	text-indent: 18px;
+}
+
+/* sahasranama_stotra_sangrah: Uwach */
+.ao {
+	color: #00aeef;
+	font-family: ChanakyaUni, serif;
+	font-size: 1.083em;
+	font-style: italic;
+	font-weight: normal;
+	line-height: 1.346;
+	text-align: center;
+	text-indent: 0px;
+}
+
+/* sahasranama_stotra_sangrah: Numbers */
+.ap {
+	color: #ff0000;
+	font-family: ChanakyaUni, serif;
+	font-size: 1.5em;
+	font-style: italic;
+	font-weight: normal;
+	line-height: 1.2;
+	text-align: center;
+	text-indent: 0px;
+}
+
+/* nityakarma_pujaprakash: Uwach | sahasranama_stotra_sangrah: Chapter-end-Text | valmiki_ramayan: Uwach */
+.aq {
+	color: #c45911;
+	font-family: ChanakyaUni, serif;
+	font-size: 1.167em;
+	font-style: italic;
+	font-weight: bold;
+	line-height: 1.2;
+	text-align: center;
+	text-indent: 0px;
+}
+
+/* sahasranama_stotra_sangrah: Man-Had */
+.ar {
+	color: #231f20;
+	font-family: ChanakyaUni, serif;
+	font-size: 2.167em;
+	font-style: normal;
+	font-weight: bold;
+	line-height: 1.2;
+	margin-bottom: 10px;
+	text-align: center;
+	text-indent: 0px;
+}
+
+/* sahasranama_stotra_sangrah: First-End-Page-text */
+.as {
+	color: #ff0000;
+	font-family: ChanakyaUni, serif;
+	font-size: 1.167em;
+	font-style: normal;
+	font-weight: bold;
+	line-height: 1.029;
+	text-align: center;
+	text-indent: 0px;
+}
+
+/* sahasranama_stotra_sangrah: Footnote-New */
+.at {
+	color: #231f20;
+	font-family: ChanakyaUni, serif;
+	font-size: 1em;
+	font-style: normal;
+	font-weight: normal;
+	line-height: 1.083;
+	text-align: justify;
+	text-indent: 18px;
+}
+
+/* sahasranama_stotra_sangrah: Titel-Page---Shri-Hari */
+.au {
+	color: #c45911;
+	font-family: ChanakyaUni, serif;
+	font-size: 1.167em;
+	font-style: normal;
+	font-weight: bold;
+	line-height: 1.029;
+	text-align: center;
+	text-indent: 0px;
+}
+
+/* sahasranama_stotra_sangrah: Title-Page---Tvamev-mata */
+.av {
+	color: #231f20;
+	font-family: ChanakyaUni, serif;
+	font-size: 1.167em;
+	font-style: normal;
+	font-weight: normal;
+	line-height: 1.2;
+	text-align: center;
+	text-indent: 0px;
+}
+
+/* nityakarma_prayog: TXT-Right | sahasranama_stotra_sangrah: TXT-Right */
+.aw {
+	color: #231f20;
+	font-family: ChanakyaUni, serif;
+	font-size: 1.083em;
+	font-style: normal;
+	font-weight: normal;
+	line-height: 1.2;
+	text-align: right;
+	text-indent: 18px;
+}
+
+/* sahasranama_stotra_sangrah: para-style-override-1 */
+.ax {
+	color: #231f20;
+	font-size: 0.917em;
+	font-style: normal;
+	font-weight: normal;
+	text-align: right;
+}
+
+/* sahasranama_stotra_sangrah: para-style-override-2 */
+.ay {
+	font-size: 1.5em;
+}
+
+/* sahasranama_stotra_sangrah: para-style-override-4 */
+.az {
+	font-family: ChanakyaUni, serif;
+	font-style: normal;
+	font-weight: normal;
+	text-align: center;
+}
+
+/* sahasranama_stotra_sangrah: para-style-override-5 */
+.ba {
+	font-family: ChanakyaUni, serif;
+	font-style: normal;
+	font-weight: normal;
+	text-align: justify;
+	text-indent: 18px;
+}
+
+/* sahasranama_stotra_sangrah: para-style-override-6 */
+.bb {
+	font-family: ChanakyaUni, serif;
+	font-size: 1.333em;
+	font-style: normal;
+	font-weight: normal;
+	text-align: center;
+}
+
+/* sahasranama_stotra_sangrah: para-style-override-8 */
+.bc {
+	font-family: ChanakyaUni, serif;
+	font-size: 1.167em;
+	font-style: normal;
+	font-weight: bold;
+	text-align: center;
+}
+
+/* sahasranama_stotra_sangrah: para-style-override-9 */
+.bd {
+	font-family: ChanakyaUni, serif;
+	font-style: normal;
+	font-weight: bold;
+	text-align: center;
+}
+
+/* sahasranama_stotra_sangrah: para-style-override-10 */
+.be {
+	font-family: ChanakyaUni, serif;
+	font-style: normal;
+	font-weight: bold;
+	margin-bottom: 10px;
+	text-align: center;
+}
+
+/* sahasranama_stotra_sangrah: para-style-override-12 */
+.bf {
+	font-family: ChanakyaUni, serif;
+	font-style: italic;
+	font-weight: normal;
+	text-align: center;
+}
+
+/* sahasranama_stotra_sangrah: para-style-override-13 */
+.bg {
+	font-family: ChanakyaUni, serif;
+	font-size: 2.167em;
+	font-style: normal;
+	font-weight: bold;
+	text-align: center;
+}
+
+/* nityakarma_pujaprakash: para-style-override-19 | sahasranama_stotra_sangrah: para-style-override-14 | valmiki_ramayan: para-style-override-6 */
+.bh {
+	text-align: justify;
+}
+
+/* sahasranama_stotra_sangrah: char-style-override-1 | valmiki_ramayan: char-style-override-5 */
+.bi {
+	font-size: 0.636em;
+}
+
+/* durga_saptashati: char-style-override-11 | sahasranama_stotra_sangrah: char-style-override-2 | valmiki_ramayan: char-style-override-13 */
+.bj {
+	font-size: 1.077em;
+	font-style: normal;
+	font-weight: bold;
+}
+
+/* durga_saptashati: char-style-override-30 | nityakarma_pujaprakash: char-style-override-37 | sahasranama_stotra_sangrah: char-style-override-3 */
+.bk {
+	font-size: 0.875em;
+	font-style: normal;
+	font-weight: bold;
+}
+
+/* nityakarma_prayog: char-style-override-12 | nityakarma_pujaprakash: char-style-override-13 | sahasranama_stotra_sangrah: char-style-override-5 */
+.bl {
+	font-size: 0.583em;
+	font-style: normal;
+	font-weight: bold;
+	vertical-align: super;
+}
+
+/* sahasranama_stotra_sangrah: char-style-override-6 | valmiki_ramayan: char-style-override-7 */
+.bm {
+	font-size: 1.077em;
+}
+
+/* sahasranama_stotra_sangrah: char-style-override-7 */
+.bn {
+	font-size: 1.385em;
+}
+
+/* nityakarma_prayog: para-style-override-8 | sahasranama_stotra_sangrah: char-style-override-8 | valmiki_ramayan: char-style-override-18 */
+.bo {
+	font-family: ChanakyaUni, serif;
+	font-style: normal;
+	font-weight: normal;
+}
+
+/* nityakarma_pujaprakash: char-style-override-26 | sahasranama_stotra_sangrah: char-style-override-9 */
+.bp {
+	color: #760000;
+	font-size: 0.813em;
+	font-style: normal;
+	font-weight: normal;
+}
+
+/* durga_saptashati: char-style-override-17 | nityakarma_pujaprakash: char-style-override-27 | sahasranama_stotra_sangrah: char-style-override-10 */
+.bq {
+	color: #231f20;
+	font-style: normal;
+	font-weight: normal;
+}
+
+/* sahasranama_stotra_sangrah: char-style-override-11 */
+.br {
+	font-size: 1.857em;
+}
+
+/* sahasranama_stotra_sangrah: char-style-override-12 */
+.bs {
+	color: #a51512;
+	font-style: normal;
+	font-weight: normal;
+}
+
+/* sahasranama_stotra_sangrah: char-style-override-14 */
+.bt {
+	font-size: 0.929em;
+	font-style: normal;
+	font-weight: bold;
+}
+
+/* sahasranama_stotra_sangrah: char-style-override-15 */
+.bu {
+	font-size: 1em;
+}
+
+/* sahasranama_stotra_sangrah: char-style-override-16 */
+.bv {
+	color: #231f20;
+	font-size: 1.571em;
+	font-style: normal;
+	font-weight: bold;
+}
+
+/* durga_saptashati: Title-Page---Gita-Seva-Trust | nityakarma_prayog: Title-Page---Gita-Seva-Trust */
+.bw {
+	color: #a51512;
+	font-family: ChanakyaUni, serif;
+	font-size: 1.5em;
+	font-style: normal;
+	font-weight: bold;
+	line-height: 1.2;
+	text-align: center;
+	text-indent: 0px;
+}
+
+/* durga_saptashati: Uwach */
+.bx {
+	color: #0070c0;
+	font-family: ChanakyaUni, serif;
+	font-size: 1.167em;
+	font-style: italic;
+	font-weight: normal;
+	line-height: 1.2;
+	text-align: center;
+	text-indent: 0px;
+}
+
+/* durga_saptashati: TXT-Right */
+.by {
+	color: #231f20;
+	font-family: ChanakyaUni, serif;
+	font-size: 1.083em;
+	font-style: normal;
+	font-weight: normal;
+	line-height: 1.2;
+	text-align: right;
+	text-indent: 0px;
+}
+
+/* durga_saptashati: Footnotes-Bold | nityakarma_prayog: Footnotes-Bold */
+.bz {
+	color: #760000;
+	font-family: ChanakyaUni, serif;
+	font-size: 1.083em;
+	font-style: normal;
+	font-weight: bold;
+	line-height: 1.2;
+	text-align: justify;
+	text-indent: 0px;
+}
+
+/* durga_saptashati: Footnotes-Right | nityakarma_prayog: Footnotes-Right */
+.ca {
+	color: #760000;
+	font-family: ChanakyaUni, serif;
+	font-size: 1.083em;
+	font-style: normal;
+	font-weight: normal;
+	line-height: 1.2;
+	text-align: right;
+	text-indent: 0px;
+}
+
+/* durga_saptashati: Nayash */
+.cb {
+	color: #c40075;
+	font-family: ChanakyaUni, serif;
+	font-size: 1.333em;
+	font-style: normal;
+	font-weight: bold;
+	line-height: 1.2;
+	text-align: center;
+	text-indent: 0px;
+}
+
+/* durga_saptashati: mantra */
+.cc {
+	color: #231f20;
+	font-family: ChanakyaUni, serif;
+	font-size: 1.333em;
+	font-style: normal;
+	font-weight: bold;
+	line-height: 1.2;
+	text-align: justify;
+	text-indent: 18px;
+}
+
+/* durga_saptashati: OM */
+.cd {
+	color: #c40075;
+	font-family: ChanakyaUni, serif;
+	font-size: 1.333em;
+	font-style: normal;
+	font-weight: bold;
+	line-height: 1.2;
+	text-align: center;
+	text-indent: 18px;
+}
+
+/* durga_saptashati: Title-Page--Sub-Title | nityakarma_prayog: Title-Page---Author-Name, Title-page---sub-title-2 | nityakarma_pujaprakash: Sub-Head, Title-Page---Author-Name */
+.ce {
+	color: #231f20;
+	font-family: ChanakyaUni, serif;
+	font-size: 1.5em;
+	font-style: normal;
+	font-weight: bold;
+	line-height: 1.2;
+	text-align: center;
+	text-indent: 0px;
+}
+
+/* durga_saptashati: Gadya */
+.cf {
+	color: #a51512;
+	font-family: ChanakyaUni, serif;
+	font-size: 1.333em;
+	font-style: normal;
+	font-weight: bold;
+	line-height: 1.2;
+	text-align: justify;
+	text-indent: 18px;
+}
+
+/* durga_saptashati: para-style-override-3 | nityakarma_prayog: para-style-override-10 */
+.cg {
+	text-align: center;
+	text-indent: 0px;
+}
+
+/* durga_saptashati: para-style-override-7 */
+.ch {
+	font-family: ChanakyaUni, serif;
+	font-size: 1.167em;
+	font-style: normal;
+	font-weight: bold;
+	text-align: justify;
+	text-indent: 18px;
+}
+
+/* durga_saptashati: char-style-override-2 */
+.ci {
+	color: #c45911;
+	font-size: 0.714em;
+	font-style: normal;
+	font-weight: normal;
+}
+
+/* durga_saptashati: char-style-override-5 | nityakarma_pujaprakash: char-style-override-33 */
+.cj {
+	font-size: 1.154em;
+	font-style: normal;
+	font-weight: bold;
+}
+
+/* durga_saptashati: char-style-override-6 */
+.ck {
+	color: #c45911;
+	font-size: 1.077em;
+}
+
+/* durga_saptashati: char-style-override-7 */
+.cl {
+	color: #1066b1;
+	font-size: 1.571em;
+	font-style: normal;
+	font-weight: bold;
+}
+
+/* durga_saptashati: char-style-override-8 */
+.cm {
+	font-size: 0.727em;
+}
+
+/* durga_saptashati: char-style-override-9 | nityakarma_pujaprakash: char-style-override-44 | valmiki_ramayan: char-style-override-14 */
+.cn {
+	font-size: 0.813em;
+}
+
+/* durga_saptashati: char-style-override-12 | nityakarma_prayog: char-style-override-17 */
+.co {
+	font-size: 1.231em;
+}
+
+/* durga_saptashati: char-style-override-13 */
+.cp {
+	color: #0070c0;
+	font-size: 1.333em;
+	font-style: normal;
+	font-weight: bold;
+}
+
+/* durga_saptashati: char-style-override-14 */
+.cq {
+	color: #231f20;
+	font-size: 1.2em;
+	font-style: normal;
+	font-weight: bold;
+}
+
+/* durga_saptashati: char-style-override-15 | nityakarma_pujaprakash: char-style-override-11 */
+.cr {
+	font-size: 0.875em;
+}
+
+/* durga_saptashati: char-style-override-16 */
+.cs {
+	color: #231f20;
+	font-size: 0.733em;
+}
+
+/* durga_saptashati: char-style-override-18 */
+.ct {
+	font-family: "Minion Pro", serif;
+	font-size: 0.75em;
+	font-style: normal;
+	font-weight: normal;
+}
+
+/* durga_saptashati: char-style-override-19 | nityakarma_prayog: char-style-override-16 */
+.cu {
+	color: #760000;
+	font-size: 0.813em;
+}
+
+/* durga_saptashati: char-style-override-20 */
+.cv {
+	color: #231f20;
+	font-size: 0.846em;
+}
+
+/* durga_saptashati: char-style-override-21 | nityakarma_pujaprakash: char-style-override-23 */
+.cw {
+	color: #231f20;
+}
+
+/* durga_saptashati: char-style-override-22 */
+.cx {
+	color: #231f20;
+	font-size: 0.813em;
+	font-style: normal;
+	font-weight: normal;
+}
+
+/* durga_saptashati: char-style-override-23 */
+.cy {
+	font-size: 0.769em;
+}
+
+/* durga_saptashati: char-style-override-24 */
+.cz {
+	color: #231f20;
+	font-size: 0.933em;
+	font-style: normal;
+	font-weight: normal;
+}
+
+/* durga_saptashati: char-style-override-25 */
+.da {
+	color: #231f20;
+	font-size: 0.7em;
+}
+
+/* durga_saptashati: char-style-override-26 */
+.db {
+	color: #231f20;
+	font-size: 1.125em;
+	font-style: normal;
+	font-weight: bold;
+}
+
+/* durga_saptashati: char-style-override-27 */
+.dc {
+	font-size: 13px;
+}
+
+/* durga_saptashati: char-style-override-28 | nityakarma_pujaprakash: char-style-override-6 */
+.dd {
+	color: #231f20;
+	font-size: 0.875em;
+}
+
+/* durga_saptashati: char-style-override-29 */
+.de {
+	color: #1066b1;
+	font-size: 1.467em;
+	font-style: normal;
+	font-weight: bold;
+}
+
+/* durga_saptashati: char-style-override-31 */
+.df {
+	color: #231f20;
+	font-size: 0.933em;
+	font-style: normal;
+	font-weight: bold;
+}
+
+/* durga_saptashati: char-style-override-32 */
+.dg {
+	color: #c45911;
+	font-size: 1.154em;
+	font-style: italic;
+	font-weight: normal;
+}
+
+/* durga_saptashati: char-style-override-33 */
+.dh {
+	color: #231f20;
+	font-size: 1.125em;
+}
+
+/* durga_saptashati: char-style-override-34 */
+.di {
+	font-size: 1.846em;
+	font-style: normal;
+	font-weight: bold;
+}
+
+/* durga_saptashati: char-style-override-35 */
+.dj {
+	font-size: 0.929em;
+}
+
+/* durga_saptashati: frame-1 | nityakarma_pujaprakash: frame-2 */
+.dk {
+	width: 100%;
+}
+
+/* valmiki_ramayan: Eti-Bold */
+.dl {
+	color: #000000;
+	font-family: ChanakyaUni, serif;
+	font-size: 1.083em;
+	font-style: normal;
+	font-weight: bold;
+	line-height: 1.2;
+	text-align: center;
+	text-indent: 0px;
+}
+
+/* valmiki_ramayan: Eti */
+.dm {
+	color: #000000;
+	font-family: ChanakyaUni, serif;
+	font-size: 1.083em;
+	font-style: italic;
+	font-weight: normal;
+	line-height: 1.2;
+	text-align: center;
+	text-indent: 0px;
+}
+
+/* valmiki_ramayan: Heading */
+.dn {
+	color: #c40075;
+	font-family: ChanakyaUni, serif;
+	font-size: 1.833em;
+	font-style: normal;
+	font-weight: bold;
+	line-height: 1.2;
+	margin-bottom: 7px;
+	text-align: center;
+	text-indent: 0px;
+}
+
+/* valmiki_ramayan: Footer */
+.do {
+	color: #000000;
+	font-family: ChanakyaUni, serif;
+	font-size: 1.083em;
+	font-style: normal;
+	font-weight: normal;
+	line-height: 1.2;
+	text-align: justify;
+	text-indent: 24px;
+}
+
+/* valmiki_ramayan: TXT, mantra, mantra-1 */
+.dp {
+	color: #000000;
+	font-family: ChanakyaUni, serif;
+	font-size: 1.333em;
+	font-style: normal;
+	font-weight: normal;
+	line-height: 1.2;
+	text-align: justify;
+	text-indent: 18px;
+}
+
+/* valmiki_ramayan: Numbers */
+.dq {
+	color: #ff0000;
+	font-family: ChanakyaUni, serif;
+	font-size: 1.5em;
+	font-style: normal;
+	font-weight: bold;
+	line-height: 1.2;
+	margin-bottom: 6px;
+	text-align: center;
+	text-indent: 0px;
+}
+
+/* nityakarma_pujaprakash: Footnotes-Right | valmiki_ramayan: Footnotes-Right, Footnotes-Right-1, Footnotes-Right-2 */
+.dr {
+	color: #760000;
+	font-family: ChanakyaUni, serif;
+	font-size: 0.917em;
+	font-style: normal;
+	font-weight: normal;
+	line-height: 1.2;
+	text-align: right;
+	text-indent: 0px;
+}
+
+/* valmiki_ramayan: No-Paragraph-Style, No-Paragraph-Style-1, No-Paragraph-Style-2, No-Paragraph-Style-3, No-Paragraph-Style-4 */
+.ds {
+	color: #000000;
+	font-family: "Minion Pro", serif;
+	font-size: 1em;
+	font-style: normal;
+	font-weight: normal;
+	line-height: 1.2;
+	text-align: left;
+	text-indent: 0px;
+}
+
+/* valmiki_ramayan: Shlok-Color--1 */
+.dt {
+	color: #c40075;
+	font-family: ChanakyaUni, serif;
+	font-size: 1.333em;
+	font-style: normal;
+	font-weight: normal;
+	line-height: 0.9;
+	text-align: center;
+	text-indent: 0px;
+}
+
+/* valmiki_ramayan: SHLOK-Black, SHLOK-Black-1 */
+.du {
+	color: #000000;
+	font-family: ChanakyaUni, serif;
+	font-size: 1.333em;
+	font-style: normal;
+	font-weight: bold;
+	line-height: 1.2;
+	text-align: center;
+	text-indent: 0px;
+}
+
+/* valmiki_ramayan: Suchi-2 */
+.dv {
+	color: #000000;
+	font-family: ChanakyaUni, serif;
+	font-size: 1.083em;
+	font-style: normal;
+	font-weight: normal;
+	line-height: 1.108;
+	text-align: justify;
+	text-indent: 0px;
+}
+
+/* valmiki_ramayan: OM */
+.dw {
+	color: #c40075;
+	font-family: ChanakyaUni, serif;
+	font-size: 1.667em;
+	font-style: normal;
+	font-weight: bold;
+	line-height: 1.2;
+	text-align: center;
+	text-indent: 0px;
+}
+
+/* nityakarma_pujaprakash: Nayash | valmiki_ramayan: Nayash */
+.dx {
+	color: #005599;
+	font-family: ChanakyaUni, serif;
+	font-size: 1.333em;
+	font-style: normal;
+	font-weight: bold;
+	line-height: 1.2;
+	text-align: center;
+	text-indent: 0px;
+}
+
+/* valmiki_ramayan: TXT-Right */
+.dy {
+	color: #000000;
+	font-family: ChanakyaUni, serif;
+	font-size: 1.083em;
+	font-style: normal;
+	font-weight: normal;
+	line-height: 1.108;
+	text-align: right;
+	text-indent: 18px;
+}
+
+/* nityakarma_pujaprakash: Title-Page---Book-Name | valmiki_ramayan: Title-Page---Book-Name */
+.dz {
+	color: #1066b1;
+	font-family: ChanakyaUni, serif;
+	font-size: 2.083em;
+	font-style: normal;
+	font-weight: bold;
+	line-height: 1.2;
+	margin-bottom: 6px;
+	text-align: center;
+	text-indent: 0px;
+}
+
+/* valmiki_ramayan: Tavmev-Mata--pita */
+.ea {
+	color: #000000;
+	font-family: ChanakyaUni, serif;
+	font-size: 1.333em;
+	font-style: normal;
+	font-weight: normal;
+	line-height: 1.2;
+	text-align: center;
+	text-indent: 0px;
+}
+
+/* valmiki_ramayan: Title-page---sub-title */
+.eb {
+	color: #005599;
+	font-family: ChanakyaUni, serif;
+	font-size: 1.667em;
+	font-style: normal;
+	font-weight: normal;
+	line-height: 1.2;
+	text-align: center;
+	text-indent: 0px;
+}
+
+/* valmiki_ramayan: para-style-override-4 */
+.ec {
+	font-family: NalandaTim, serif;
+	font-size: 0.75em;
+	font-style: normal;
+	font-weight: normal;
+}
+
+/* valmiki_ramayan: para-style-override-7 */
+.ed {
+	margin-bottom: 3px;
+}
+
+/* nityakarma_pujaprakash: para-style-override-10 | valmiki_ramayan: para-style-override-8 */
+.ee {
+	margin-bottom: 5px;
+}
+
+/* valmiki_ramayan: para-style-override-9 */
+.ef {
+	margin-right: 48px;
+	text-align: justify;
+	text-indent: 19px;
+}
+
+/* valmiki_ramayan: para-style-override-10 */
+.eg {
+	margin-right: 42px;
+	text-align: justify;
+	text-indent: 19px;
+}
+
+/* valmiki_ramayan: para-style-override-11 */
+.eh {
+	font-family: ChanakyaUni, serif;
+	font-size: 1.083em;
+	font-style: normal;
+	font-weight: normal;
+	margin-right: 42px;
+	text-align: justify;
+	text-indent: 19px;
+}
+
+/* valmiki_ramayan: para-style-override-12 */
+.ei {
+	text-align: right;
+	text-indent: 19px;
+}
+
+/* valmiki_ramayan: para-style-override-13 */
+.ej {
+	font-family: ChanakyaUni, serif;
+	font-size: 1.083em;
+	font-style: normal;
+	font-weight: normal;
+	text-align: justify;
+	text-indent: 19px;
+}
+
+/* valmiki_ramayan: para-style-override-14 */
+.ek {
+	font-family: ChanakyaUni, serif;
+	font-style: normal;
+	font-weight: normal;
+	text-align: right;
+	text-indent: 19px;
+}
+
+/* valmiki_ramayan: para-style-override-15 */
+.el {
+	margin-bottom: 6px;
+}
+
+/* valmiki_ramayan: para-style-override-16 */
+.em {
+	margin-bottom: 2px;
+}
+
+/* valmiki_ramayan: para-style-override-17 */
+.en {
+	text-indent: 12px;
+}
+
+/* valmiki_ramayan: para-style-override-18 */
+.eo {
+	text-align: justify;
+	text-indent: 24px;
+}
+
+/* valmiki_ramayan: para-style-override-19 */
+.ep {
+	font-family: ChanakyaUni, serif;
+	font-size: 1.083em;
+	font-style: normal;
+	font-weight: normal;
+	text-align: justify;
+	text-indent: 24px;
+}
+
+/* nityakarma_pujaprakash: char-style-override-2 | valmiki_ramayan: char-style-override-2 */
+.eq {
+	font-size: 0.714em;
+	font-style: normal;
+	font-weight: normal;
+}
+
+/* valmiki_ramayan: char-style-override-3 */
+.er {
+	color: #2e74b5;
+}
+
+/* valmiki_ramayan: char-style-override-4 */
+.es {
+	color: #c40075;
+}
+
+/* valmiki_ramayan: char-style-override-8 */
+.et {
+	font-size: 1.273em;
+}
+
+/* valmiki_ramayan: char-style-override-9 */
+.eu {
+	font-family: NalandaTim, serif;
+	font-size: 0.846em;
+	font-style: normal;
+	font-weight: normal;
+}
+
+/* valmiki_ramayan: char-style-override-10 */
+.ev {
+	font-size: 1.182em;
+}
+
+/* valmiki_ramayan: char-style-override-12 */
+.ew {
+	font-style: italic;
+	font-weight: normal;
+}
+
+/* nityakarma_pujaprakash: char-style-override-9 | valmiki_ramayan: char-style-override-15 */
+.ex {
+	font-size: 1.154em;
+}
+
+/* valmiki_ramayan: char-style-override-17 */
+.ey {
+	font-family: ChanakyaUni, serif;
+	font-size: 1.083em;
+	font-style: normal;
+	font-weight: normal;
+}
+
+/* valmiki_ramayan: char-style-override-19 */
+.ez {
+	font-family: ChanakyaUni, serif;
+	font-size: 4.333em;
+	font-style: normal;
+	font-weight: normal;
+}
+
+/* valmiki_ramayan: char-style-override-20 */
+.fa {
+	font-size: 1.1em;
+}
+
+/* valmiki_ramayan: char-style-override-21 */
+.fb {
+	color: #000000;
+	font-size: 0.867em;
+	font-style: normal;
+	font-weight: bold;
+}
+
+/* valmiki_ramayan: char-style-override-23 */
+.fc {
+	font-size: 0.923em;
+	font-style: normal;
+	font-weight: bold;
+}
+
+/* valmiki_ramayan: char-style-override-24 */
+.fd {
+	font-size: 0.933em;
+	font-style: normal;
+	font-weight: bold;
+}
+
+/* valmiki_ramayan: char-style-override-25 */
+.fe {
+	font-size: 0.846em;
+	font-style: normal;
+	font-weight: bold;
+}
+
+/* valmiki_ramayan: char-style-override-26 */
+.ff {
+	font-family: ChanakyaUni, serif;
+	font-size: 1.167em;
+	font-style: normal;
+	font-weight: normal;
+}
+
+/* nityakarma_pujaprakash: char-style-override-16 | valmiki_ramayan: char-style-override-27 */
+.fg {
+	font-style: italic;
+	font-weight: bold;
+}
+
+/* valmiki_ramayan: char-style-override-28 */
+.fh {
+	font-family: ChanakyaUni, serif;
+	font-size: 1.077em;
+	font-style: normal;
+	font-weight: normal;
+}
+
+/* valmiki_ramayan: frame-1 */
+.fi {
+	width: 4%;
+}
+
+/* valmiki_ramayan: frame-2 */
+.fj {
+	width: 2%;
+}
+
+/* _system: inline-svg-glyph */
+.fk {
+	vertical-align: middle;
+}
+
+/* nityakarma_pujaprakash: Sub-Head-2 */
+.fl {
+	color: #005599;
+	font-family: ChanakyaUni, serif;
+	font-size: 1.5em;
+	font-style: normal;
+	font-weight: bold;
+	line-height: 1.2;
+	text-align: center;
+	text-indent: 0px;
+}
+
+/* nityakarma_pujaprakash: TXT-Right */
+.fm {
+	color: #231f20;
+	font-family: ChanakyaUni, serif;
+	font-size: 1.083em;
+	font-style: normal;
+	font-weight: normal;
+	line-height: 1.108;
+	text-align: right;
+	text-indent: 18px;
+}
+
+/* nityakarma_pujaprakash: Main-Heading---Book-Name-etc- */
+.fn {
+	color: #c40075;
+	font-family: ChanakyaUni, serif;
+	font-size: 2.083em;
+	font-style: normal;
+	font-weight: bold;
+	line-height: 1.2;
+	margin-bottom: 6px;
+	text-align: center;
+	text-indent: 0px;
+}
+
+/* nityakarma_pujaprakash: para-style-override-3 */
+.fo {
+	color: #231f20;
+	font-size: 1.167em;
+}
+
+/* nityakarma_pujaprakash: para-style-override-4 */
+.fp {
+	font-size: 1.167em;
+}
+
+/* nityakarma_pujaprakash: para-style-override-5 */
+.fq {
+	font-family: ChanakyaUni, serif;
+	font-size: 1.25em;
+	font-style: normal;
+	font-weight: normal;
+	text-align: justify;
+	text-indent: 18px;
+}
+
+/* nityakarma_pujaprakash: para-style-override-8 */
+.fr {
+	margin-left: 36px;
+	margin-right: 39px;
+}
+
+/* nityakarma_pujaprakash: para-style-override-9 */
+.fs {
+	font-family: ChanakyaUni, serif;
+	font-size: 0.917em;
+	font-style: normal;
+	font-weight: bold;
+	margin-left: 18px;
+	text-align: justify;
+}
+
+/* nityakarma_pujaprakash: para-style-override-11 */
+.ft {
+	font-size: 1.083em;
+}
+
+/* nityakarma_pujaprakash: para-style-override-12 */
+.fu {
+	color: #c45911;
+	font-size: 1.167em;
+}
+
+/* nityakarma_pujaprakash: para-style-override-13 */
+.fv {
+	text-indent: 0px;
+}
+
+/* nityakarma_pujaprakash: para-style-override-14 */
+.fw {
+	font-family: ChanakyaUni, serif;
+	font-size: 0.917em;
+	font-style: normal;
+	font-weight: normal;
+	text-align: justify;
+	text-indent: 18px;
+}
+
+/* nityakarma_pujaprakash: para-style-override-15 */
+.fx {
+	font-family: ChanakyaUni, serif;
+	font-size: 1.25em;
+	font-style: normal;
+	font-weight: normal;
+	text-align: justify;
+}
+
+/* nityakarma_pujaprakash: para-style-override-16 */
+.fy {
+	font-family: ChanakyaUni, serif;
+	font-size: 1.25em;
+	font-style: normal;
+	font-weight: bold;
+	text-align: justify;
+}
+
+/* nityakarma_pujaprakash: para-style-override-17 */
+.fz {
+	font-size: 1.167em;
+	font-style: normal;
+	font-weight: bold;
+}
+
+/* nityakarma_pujaprakash: para-style-override-18 */
+.ga {
+	font-family: ChanakyaUni, serif;
+	font-size: 0.917em;
+	font-style: normal;
+	font-weight: normal;
+	text-align: right;
+	text-indent: 18px;
+}
+
+/* nityakarma_pujaprakash: para-style-override-20 */
+.gb {
+	margin-right: 39px;
+}
+
+/* nityakarma_pujaprakash: para-style-override-21 */
+.gc {
+	margin-left: 24px;
+	margin-right: 24px;
+}
+
+/* nityakarma_pujaprakash: para-style-override-22 */
+.gd {
+	font-family: ChanakyaUni, serif;
+	font-size: 1.25em;
+	font-style: normal;
+	font-weight: bold;
+	text-align: justify;
+	text-indent: 18px;
+}
+
+/* nityakarma_pujaprakash: para-style-override-23 */
+.ge {
+	font-family: ChanakyaUni, serif;
+	font-size: 0.917em;
+	font-style: normal;
+	font-weight: normal;
+	margin-left: 60px;
+	margin-right: 36px;
+	text-align: justify;
+}
+
+/* nityakarma_pujaprakash: char-style-override-3 */
+.gf {
+	font-size: 0.722em;
+}
+
+/* nityakarma_prayog: char-style-override-9 | nityakarma_pujaprakash: char-style-override-5 */
+.gg {
+	font-size: 0.75em;
+}
+
+/* nityakarma_prayog: char-style-override-11 | nityakarma_pujaprakash: char-style-override-7 */
+.gh {
+	font-size: 0.938em;
+}
+
+/* nityakarma_pujaprakash: char-style-override-12 */
+.gi {
+	font-size: 0.688em;
+}
+
+/* nityakarma_prayog: char-style-override-18 | nityakarma_pujaprakash: char-style-override-14 */
+.gj {
+	color: #2e3192;
+	font-size: 1.538em;
+	font-style: normal;
+	font-weight: bold;
+}
+
+/* nityakarma_pujaprakash: char-style-override-15 */
+.gk {
+	color: #ffffff;
+}
+
+/* nityakarma_prayog: char-style-override-7 | nityakarma_pujaprakash: char-style-override-17 */
+.gl {
+	color: #231f20;
+	font-size: 1.231em;
+}
+
+/* nityakarma_pujaprakash: char-style-override-18 */
+.gm {
+	color: #760000;
+	font-size: 0.813em;
+	font-style: normal;
+	font-weight: bold;
+}
+
+/* nityakarma_prayog: char-style-override-19 | nityakarma_pujaprakash: char-style-override-19 */
+.gn {
+	font-size: 0.938em;
+	font-style: normal;
+	font-weight: bold;
+}
+
+/* nityakarma_pujaprakash: char-style-override-20 */
+.go {
+	font-size: 0.846em;
+	font-style: normal;
+	font-weight: normal;
+}
+
+/* nityakarma_pujaprakash: char-style-override-21 */
+.gp {
+	font-size: 0.846em;
+}
+
+/* nityakarma_pujaprakash: char-style-override-22 */
+.gq {
+	font-size: 0.583em;
+	text-transform: uppercase;
+	vertical-align: super;
+}
+
+/* nityakarma_pujaprakash: char-style-override-24 */
+.gr {
+	font-size: 0.9em;
+}
+
+/* nityakarma_pujaprakash: char-style-override-25 */
+.gs {
+	font-size: 0.547em;
+	vertical-align: super;
+}
+
+/* nityakarma_pujaprakash: char-style-override-28 */
+.gt {
+	color: #231f20;
+	font-size: 0.846em;
+	font-style: normal;
+	font-weight: normal;
+}
+
+/* nityakarma_pujaprakash: char-style-override-29 */
+.gu {
+	font-size: 0.944em;
+}
+
+/* nityakarma_pujaprakash: char-style-override-30 */
+.gv {
+	color: #a51512;
+}
+
+/* nityakarma_pujaprakash: char-style-override-31 */
+.gw {
+	font-style: normal;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+/* nityakarma_pujaprakash: char-style-override-32 */
+.gx {
+	color: #a51512;
+	font-size: 1.231em;
+	font-style: normal;
+	font-weight: bold;
+}
+
+/* nityakarma_pujaprakash: char-style-override-34 */
+.gy {
+	color: #ffffff;
+	font-style: normal;
+	font-weight: bold;
+}
+
+/* nityakarma_prayog: char-style-override-13 | nityakarma_pujaprakash: char-style-override-35 */
+.gz {
+	font-size: 0.75em;
+	font-style: normal;
+	font-weight: normal;
+}
+
+/* nityakarma_pujaprakash: char-style-override-36 */
+.ha {
+	color: #ffffff;
+	font-size: 0.875em;
+	font-style: normal;
+	font-weight: bold;
+}
+
+/* nityakarma_pujaprakash: char-style-override-38 */
+.hb {
+	color: #c45911;
+	font-size: 0.875em;
+}
+
+/* nityakarma_pujaprakash: char-style-override-39 */
+.hc {
+	font-family: ChanakyaUni, serif;
+	font-size: 1.25em;
+	font-style: normal;
+	font-weight: bold;
+}
+
+/* nityakarma_pujaprakash: char-style-override-40 */
+.hd {
+	font-family: ChanakyaUni, serif;
+	font-size: 1.25em;
+	font-style: normal;
+	font-weight: normal;
+}
+
+/* nityakarma_pujaprakash: char-style-override-41 */
+.he {
+	color: #760000;
+	font-size: 0.65em;
+}
+
+/* nityakarma_pujaprakash: char-style-override-42 */
+.hf {
+	color: #2e3192;
+	font-size: 1.25em;
+}
+
+/* nityakarma_pujaprakash: char-style-override-43 */
+.hg {
+	font-size: 1.071em;
+}
+
+/* nityakarma_pujaprakash: char-style-override-45 */
+.hh {
+	font-size: 1.182em;
+	font-style: normal;
+	font-weight: bold;
+}
+
+/* nityakarma_pujaprakash: char-style-override-46 */
+.hi {
+	font-size: 1.364em;
+	font-style: normal;
+	font-weight: bold;
+}
+
+/* nityakarma_pujaprakash: char-style-override-47 */
+.hj {
+	color: #c45911;
+	font-size: 0.875em;
+	font-style: normal;
+	font-weight: normal;
+}
+
+/* nityakarma_pujaprakash: frame-1 */
+.hk {
+	width: 99%;
+}
+
+/* nityakarma_pujaprakash: frame-3 */
+.hl {
+	width: 94%;
+}
+
+/* nityakarma_pujaprakash: frame-4 */
+.hm {
+	width: 71%;
+}
+
+/* nityakarma_prayog: No-Paragraph-Style */
+.hn {
+	color: #231f20;
+	font-family: Times, sans-serif;
+	font-size: 1em;
+	font-style: normal;
+	font-weight: normal;
+	line-height: 1.2;
+	text-align: left;
+	text-indent: 0px;
+}
+
+/* nityakarma_prayog: Title-Page---Book-Name */
+.ho {
+	color: #1066b1;
+	font-family: ChanakyaUni, serif;
+	font-size: 2.5em;
+	font-style: normal;
+	font-weight: bold;
+	line-height: 1.2;
+	margin-bottom: 6px;
+	text-align: center;
+	text-indent: 0px;
+}
+
+/* nityakarma_prayog: Chapter-End-Text */
+.hp {
+	color: #c45911;
+	font-family: ChanakyaUni, serif;
+	font-size: 1.083em;
+	font-style: normal;
+	font-weight: normal;
+	line-height: 1.2;
+	text-align: center;
+	text-indent: 0px;
+}
+
+/* nityakarma_prayog: Heading */
+.hq {
+	color: #1066b1;
+	font-family: ChanakyaUni, serif;
+	font-size: 1.833em;
+	font-style: normal;
+	font-weight: bold;
+	line-height: 1.2;
+	text-align: center;
+	text-indent: 0px;
+}
+
+/* nityakarma_prayog: Sub-Heading */
+.hr {
+	color: #c45911;
+	font-family: ChanakyaUni, serif;
+	font-size: 1.667em;
+	font-style: normal;
+	font-weight: bold;
+	line-height: 1.2;
+	margin-bottom: 7px;
+	text-align: center;
+	text-indent: 0px;
+}
+
+/* nityakarma_prayog: First-End-Page-text */
+.hs {
+	color: #ff0000;
+	font-family: ChanakyaUni, serif;
+	font-size: 1.167em;
+	font-style: normal;
+	font-weight: normal;
+	line-height: 1.2;
+	text-align: center;
+	text-indent: 0px;
+}
+
+/* nityakarma_prayog: Title-page---sub-title */
+.ht {
+	color: #ec008c;
+	font-family: ChanakyaUni, serif;
+	font-size: 1.667em;
+	font-style: normal;
+	font-weight: bold;
+	line-height: 1.2;
+	text-align: center;
+	text-indent: 0px;
+}
+
+/* nityakarma_prayog: para-style-override-2 */
+.hu {
+	text-align: right;
+	text-indent: 0px;
+}
+
+/* nityakarma_prayog: para-style-override-3 */
+.hv {
+	font-style: normal;
+	font-weight: bold;
+	text-align: right;
+	text-indent: 0px;
+}
+
+/* nityakarma_prayog: para-style-override-4 */
+.hw {
+	break-after: page;
+	text-align: right;
+	text-indent: 0px;
+}
+
+/* nityakarma_prayog: para-style-override-7 */
+.hx {
+	break-after: page;
+	text-align: right;
+}
+
+/* nityakarma_prayog: char-style-override-2 */
+.hy {
+	color: #c45911;
+	font-size: 0.714em;
+}
+
+/* nityakarma_prayog: char-style-override-4 */
+.hz {
+	font-size: 0.923em;
+}
+
+/* nityakarma_prayog: char-style-override-8 */
+.ia {
+	color: #231f20;
+	font-size: 0.923em;
+	font-style: normal;
+	font-weight: normal;
+}
+
+/* nityakarma_prayog: char-style-override-10 */
+.ib {
+	font-size: 0.75em;
+	font-style: normal;
+	font-weight: bold;
+}
+
+/* nityakarma_prayog: char-style-override-14 */
+.ic {
+	color: #231f20;
+	font-size: 1.692em;
+	font-style: normal;
+	font-weight: bold;
+}
+
+/* nityakarma_prayog: char-style-override-15 */
+.id {
+	color: #231f20;
+	font-size: 1.154em;
+	font-style: normal;
+	font-weight: normal;
+}
+
+/* nityakarma_prayog: char-style-override-20 */
+.ie {
+	font-size: 0.813em;
+	font-style: normal;
+	font-weight: bold;
+}
+
+/* nityakarma_prayog: frame-1 */
+.if {
+	width: 60%;
+}
+
+/* nityakarma_prayog: frame-2 */
+.ig {
+	width: 35%;
+}
+
+/* nityakarma_prayog: frame-3 */
+.ih {
+	width: 70%;
+}

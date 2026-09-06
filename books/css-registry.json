@@ -1,0 +1,3043 @@
+{
+  "_readme": "Signature-keyed CSS class registry for books/epub.css. When processing a new book: parse its CSS, compute a normalized 'prop:value' signature per class (sorted, later-prop-wins), and look it up here before minting a new code. Reuse the code if the signature matches; otherwise append a new entry with the next base-26 code (a..z, aa..az, ...) and add the rule to epub.css.",
+  "nextCodeIndex": 242,
+  "entries": {
+    "a": {
+      "signature": "color:#c45911;font-family:ChanakyaUni, serif;font-size:1.167em;font-style:normal;font-weight:bold;line-height:1.2;text-align:center;text-indent:0px",
+      "sourceClasses": [
+        {
+          "book": "durga_saptashati",
+          "name": "Titel-Page---Shri-Hari"
+        },
+        {
+          "book": "gita_prabodhini",
+          "name": "Titel-Page---Shri-Hari"
+        }
+      ]
+    },
+    "b": {
+      "signature": "color:#ff0000;font-family:ChanakyaUni, serif;font-size:1.167em;font-style:normal;font-weight:bold;line-height:1.2;text-align:center;text-indent:0px",
+      "sourceClasses": [
+        {
+          "book": "durga_saptashati",
+          "name": "First-End-Page-text"
+        },
+        {
+          "book": "durga_saptashati",
+          "name": "Numbers"
+        },
+        {
+          "book": "gita_prabodhini",
+          "name": "First-End-Page-text"
+        },
+        {
+          "book": "gita_prabodhini",
+          "name": "First-End-Page-text-1"
+        },
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "First-End-Page-text"
+        },
+        {
+          "book": "valmiki_ramayan",
+          "name": "First-End-Page-text"
+        },
+        {
+          "book": "valmiki_ramayan",
+          "name": "First-End-Page-text-1"
+        }
+      ]
+    },
+    "c": {
+      "signature": "color:#c45911;font-family:ChanakyaUni, serif;font-size:1.5em;font-style:normal;font-weight:bold;line-height:1.2;text-align:center;text-indent:0px",
+      "sourceClasses": [
+        {
+          "book": "gita_prabodhini",
+          "name": "Title-Page---Gita-Seva-Trust"
+        },
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "Title-Page---Gita-Seva-Trust"
+        },
+        {
+          "book": "sahasranama_stotra_sangrah",
+          "name": "Title-Page---Gita-Seva-Trust"
+        },
+        {
+          "book": "valmiki_ramayan",
+          "name": "Title-Page---Gita-Seva-Trust"
+        }
+      ]
+    },
+    "d": {
+      "signature": "color:#1066b1;font-family:ChanakyaUni, serif;font-size:2.5em;font-style:normal;font-weight:bold;line-height:1.2;text-align:center;text-indent:0px",
+      "sourceClasses": [
+        {
+          "book": "durga_saptashati",
+          "name": "Title-Page---Book-Name"
+        },
+        {
+          "book": "gita_prabodhini",
+          "name": "Book-Name"
+        },
+        {
+          "book": "gita_prabodhini",
+          "name": "Title-Page---Book-Name"
+        },
+        {
+          "book": "sahasranama_stotra_sangrah",
+          "name": "Title-Page---Book-Name"
+        }
+      ]
+    },
+    "e": {
+      "signature": "color:#231f20;font-family:ChanakyaUni, serif;font-size:1.667em;font-style:normal;font-weight:bold;line-height:1.2;text-align:center;text-indent:0px",
+      "sourceClasses": [
+        {
+          "book": "gita_prabodhini",
+          "name": "Title-Page---Author-Name"
+        },
+        {
+          "book": "gita_prabodhini",
+          "name": "Title-Page--Sub-Title"
+        }
+      ]
+    },
+    "f": {
+      "signature": "color:#231f20;font-family:ChanakyaUni, serif;font-size:1.333em;font-style:normal;font-weight:normal;line-height:1.2;text-align:center;text-indent:0px",
+      "sourceClasses": [
+        {
+          "book": "durga_saptashati",
+          "name": "Image"
+        },
+        {
+          "book": "durga_saptashati",
+          "name": "Title-Page---Tvamev-mata"
+        },
+        {
+          "book": "gita_prabodhini",
+          "name": "Title-Page---Tvamev-mata"
+        },
+        {
+          "book": "nityakarma_prayog",
+          "name": "Title-Page---Tavmev-Mata--pita"
+        },
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "Image"
+        },
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "Tavmev-Mata--pita"
+        }
+      ]
+    },
+    "g": {
+      "signature": "color:#a51512;font-family:ChanakyaUni, serif;font-size:1.333em;font-style:normal;font-weight:bold;line-height:1.2;text-align:center;text-indent:0px",
+      "sourceClasses": [
+        {
+          "book": "durga_saptashati",
+          "name": "Shlok"
+        },
+        {
+          "book": "gita_prabodhini",
+          "name": "Shlok-1"
+        },
+        {
+          "book": "gita_prabodhini",
+          "name": "Shlok-Color-2"
+        },
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "SHLOK"
+        },
+        {
+          "book": "valmiki_ramayan",
+          "name": "Shlok-Color-2"
+        }
+      ]
+    },
+    "h": {
+      "signature": "color:#231f20;font-family:ChanakyaUni, serif;font-size:1.333em;font-style:normal;font-weight:normal;line-height:1.2;text-align:justify;text-indent:18px",
+      "sourceClasses": [
+        {
+          "book": "durga_saptashati",
+          "name": "TXT"
+        },
+        {
+          "book": "gita_prabodhini",
+          "name": "Arth"
+        },
+        {
+          "book": "gita_prabodhini",
+          "name": "No-Paragraph-Style"
+        },
+        {
+          "book": "gita_prabodhini",
+          "name": "TXT"
+        },
+        {
+          "book": "gita_prabodhini",
+          "name": "Text"
+        },
+        {
+          "book": "gita_prabodhini",
+          "name": "Vyakhya"
+        },
+        {
+          "book": "nityakarma_prayog",
+          "name": "TXT"
+        },
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "TXT"
+        },
+        {
+          "book": "sahasranama_stotra_sangrah",
+          "name": "Text-"
+        }
+      ]
+    },
+    "i": {
+      "signature": "color:#ff0000;font-family:ChanakyaUni, serif;font-size:1.5em;font-style:normal;font-weight:bold;line-height:1.2;text-align:center;text-indent:0px",
+      "sourceClasses": [
+        {
+          "book": "gita_prabodhini",
+          "name": "Numbers"
+        },
+        {
+          "book": "gita_prabodhini",
+          "name": "Shlok-Number"
+        }
+      ]
+    },
+    "j": {
+      "signature": "color:#231f20;font-family:ChanakyaUni, serif;font-size:1.333em;font-style:normal;font-weight:bold;line-height:1.2;text-align:center;text-indent:0px",
+      "sourceClasses": [
+        {
+          "book": "durga_saptashati",
+          "name": "Shlok-Black"
+        },
+        {
+          "book": "durga_saptashati",
+          "name": "Title-Page---Author-Name"
+        },
+        {
+          "book": "gita_prabodhini",
+          "name": "Shlok"
+        },
+        {
+          "book": "gita_prabodhini",
+          "name": "Sholk-Black"
+        },
+        {
+          "book": "gita_prabodhini",
+          "name": "Uwach"
+        },
+        {
+          "book": "nityakarma_prayog",
+          "name": "SHLOK-Black"
+        },
+        {
+          "book": "nityakarma_prayog",
+          "name": "Shlok-Black"
+        },
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "Sub-Head-3"
+        },
+        {
+          "book": "sahasranama_stotra_sangrah",
+          "name": "Shlok-Color-2"
+        }
+      ]
+    },
+    "k": {
+      "signature": "color:#c45911;font-family:ChanakyaUni, serif;font-size:1.167em;font-style:normal;font-weight:normal;line-height:1.2;text-align:center;text-indent:0px",
+      "sourceClasses": [
+        {
+          "book": "durga_saptashati",
+          "name": "Page-Break"
+        },
+        {
+          "book": "gita_prabodhini",
+          "name": "Page-Break"
+        },
+        {
+          "book": "nityakarma_prayog",
+          "name": "Page-Break"
+        },
+        {
+          "book": "nityakarma_prayog",
+          "name": "Titel-Page---Shri-Hari"
+        },
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "Page-Break"
+        },
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "Titel-Page---Shri-Hari"
+        },
+        {
+          "book": "sahasranama_stotra_sangrah",
+          "name": "Page-Break"
+        },
+        {
+          "book": "valmiki_ramayan",
+          "name": "Page-Break-1"
+        },
+        {
+          "book": "valmiki_ramayan",
+          "name": "Titel-Page---Shri-Hari"
+        }
+      ]
+    },
+    "l": {
+      "signature": "color:#1066b1;font-family:ChanakyaUni, serif;font-size:1.833em;font-style:normal;font-weight:bold;line-height:1.2;margin-bottom:7px;text-align:center;text-indent:0px",
+      "sourceClasses": [
+        {
+          "book": "durga_saptashati",
+          "name": "Heading"
+        },
+        {
+          "book": "gita_prabodhini",
+          "name": "Chappter-Heading"
+        },
+        {
+          "book": "gita_prabodhini",
+          "name": "Chapter-Heading"
+        },
+        {
+          "book": "gita_prabodhini",
+          "name": "Heading"
+        },
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "Heading"
+        },
+        {
+          "book": "sahasranama_stotra_sangrah",
+          "name": "Heading"
+        }
+      ]
+    },
+    "m": {
+      "signature": "color:#2e3192;font-family:ChanakyaUni, serif;font-size:1.667em;font-style:normal;font-weight:bold;line-height:1.2;margin-bottom:7px;text-align:center;text-indent:0px",
+      "sourceClasses": [
+        {
+          "book": "durga_saptashati",
+          "name": "Sub-Heading"
+        },
+        {
+          "book": "gita_prabodhini",
+          "name": "Hindi-Chappter-Heading"
+        },
+        {
+          "book": "gita_prabodhini",
+          "name": "Hindi-Chappter-Heading-1"
+        },
+        {
+          "book": "gita_prabodhini",
+          "name": "Hindi-Chappter-Heading-2"
+        },
+        {
+          "book": "gita_prabodhini",
+          "name": "Hindi-Chaptter-Heading"
+        },
+        {
+          "book": "gita_prabodhini",
+          "name": "Sub-Heading"
+        },
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "Sub-Heading"
+        },
+        {
+          "book": "valmiki_ramayan",
+          "name": "Sub-Heading"
+        }
+      ]
+    },
+    "n": {
+      "signature": "color:#760000;font-family:ChanakyaUni, serif;font-size:1.083em;font-style:normal;font-weight:normal;line-height:1.2;margin-bottom:6px;text-align:justify;text-indent:18px",
+      "sourceClasses": [
+        {
+          "book": "durga_saptashati",
+          "name": "Footnotes"
+        },
+        {
+          "book": "gita_prabodhini",
+          "name": "Footnotes"
+        },
+        {
+          "book": "gita_prabodhini",
+          "name": "Footnotes-1"
+        },
+        {
+          "book": "gita_prabodhini",
+          "name": "Footnotes-2"
+        },
+        {
+          "book": "nityakarma_prayog",
+          "name": "Footnotes"
+        },
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "Footnotes"
+        },
+        {
+          "book": "sahasranama_stotra_sangrah",
+          "name": "Footnotes"
+        },
+        {
+          "book": "valmiki_ramayan",
+          "name": "Footnotes"
+        }
+      ]
+    },
+    "o": {
+      "signature": "color:#760000;font-family:ChanakyaUni, serif;font-size:1.083em;font-style:normal;font-weight:bold;line-height:1.2;text-align:center;text-indent:0px",
+      "sourceClasses": [
+        {
+          "book": "gita_prabodhini",
+          "name": "Footnotes-Bold"
+        },
+        {
+          "book": "gita_prabodhini",
+          "name": "Footnotes-Bold-1"
+        },
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "Footnotes-Bold"
+        },
+        {
+          "book": "valmiki_ramayan",
+          "name": "Footnotes-Bold"
+        }
+      ]
+    },
+    "p": {
+      "signature": "color:#c45911;font-family:ChanakyaUni, serif;font-size:1.25em;font-style:italic;font-weight:normal;line-height:1.2;text-align:center;text-indent:0px",
+      "sourceClasses": [
+        {
+          "book": "durga_saptashati",
+          "name": "Chapter-End-Text"
+        },
+        {
+          "book": "gita_prabodhini",
+          "name": "Chapter-End-Text"
+        },
+        {
+          "book": "gita_prabodhini",
+          "name": "ChapterEnd1"
+        },
+        {
+          "book": "sahasranama_stotra_sangrah",
+          "name": "Chapter-End-Text"
+        },
+        {
+          "book": "valmiki_ramayan",
+          "name": "Chapter-End-Text"
+        }
+      ]
+    },
+    "q": {
+      "signature": "text-align:right",
+      "sourceClasses": [
+        {
+          "book": "durga_saptashati",
+          "name": "para-style-override-1"
+        },
+        {
+          "book": "gita_prabodhini",
+          "name": "Right"
+        },
+        {
+          "book": "gita_prabodhini",
+          "name": "para-style-override-1"
+        },
+        {
+          "book": "gita_prabodhini",
+          "name": "para-style-override-7"
+        },
+        {
+          "book": "nityakarma_prayog",
+          "name": "para-style-override-1"
+        },
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "para-style-override-1"
+        },
+        {
+          "book": "valmiki_ramayan",
+          "name": "para-style-override-1"
+        }
+      ]
+    },
+    "r": {
+      "signature": "break-after:page",
+      "sourceClasses": [
+        {
+          "book": "durga_saptashati",
+          "name": "para-style-override-2"
+        },
+        {
+          "book": "gita_prabodhini",
+          "name": "para-style-override-2"
+        },
+        {
+          "book": "nityakarma_prayog",
+          "name": "para-style-override-9"
+        },
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "para-style-override-2"
+        },
+        {
+          "book": "sahasranama_stotra_sangrah",
+          "name": "para-style-override-3"
+        },
+        {
+          "book": "valmiki_ramayan",
+          "name": "para-style-override-2"
+        }
+      ]
+    },
+    "s": {
+      "signature": "color:#000000;font-size:0.714em;font-style:normal;font-weight:normal",
+      "sourceClasses": [
+        {
+          "book": "durga_saptashati",
+          "name": "char-style-override-1"
+        },
+        {
+          "book": "gita_prabodhini",
+          "name": "char-style-override-1"
+        },
+        {
+          "book": "nityakarma_prayog",
+          "name": "char-style-override-1"
+        },
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "char-style-override-1"
+        },
+        {
+          "book": "valmiki_ramayan",
+          "name": "char-style-override-1"
+        }
+      ]
+    },
+    "t": {
+      "signature": "color:#231f20;font-size:0.929em",
+      "sourceClasses": [
+        {
+          "book": "gita_prabodhini",
+          "name": "char-style-override-2"
+        }
+      ]
+    },
+    "u": {
+      "signature": "font-size:0.778em",
+      "sourceClasses": [
+        {
+          "book": "gita_prabodhini",
+          "name": "char-style-override-25"
+        },
+        {
+          "book": "gita_prabodhini",
+          "name": "char-style-override-3"
+        }
+      ]
+    },
+    "v": {
+      "signature": "font-style:normal;font-weight:bold",
+      "sourceClasses": [
+        {
+          "book": "durga_saptashati",
+          "name": "char-style-override-4"
+        },
+        {
+          "book": "durga_saptashati",
+          "name": "para-style-override-6"
+        },
+        {
+          "book": "gita_prabodhini",
+          "name": "char-style-override-11"
+        },
+        {
+          "book": "gita_prabodhini",
+          "name": "char-style-override-12"
+        },
+        {
+          "book": "gita_prabodhini",
+          "name": "char-style-override-20"
+        },
+        {
+          "book": "gita_prabodhini",
+          "name": "char-style-override-22"
+        },
+        {
+          "book": "gita_prabodhini",
+          "name": "char-style-override-35"
+        },
+        {
+          "book": "gita_prabodhini",
+          "name": "char-style-override-36"
+        },
+        {
+          "book": "gita_prabodhini",
+          "name": "char-style-override-4"
+        },
+        {
+          "book": "nityakarma_prayog",
+          "name": "char-style-override-5"
+        },
+        {
+          "book": "nityakarma_prayog",
+          "name": "para-style-override-6"
+        },
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "char-style-override-4"
+        },
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "para-style-override-6"
+        },
+        {
+          "book": "sahasranama_stotra_sangrah",
+          "name": "char-style-override-4"
+        },
+        {
+          "book": "valmiki_ramayan",
+          "name": "char-style-override-11"
+        },
+        {
+          "book": "valmiki_ramayan",
+          "name": "para-style-override-5"
+        }
+      ]
+    },
+    "w": {
+      "signature": "font-style:normal;font-weight:normal",
+      "sourceClasses": [
+        {
+          "book": "durga_saptashati",
+          "name": "char-style-override-3"
+        },
+        {
+          "book": "gita_prabodhini",
+          "name": "char-style-override-5"
+        },
+        {
+          "book": "nityakarma_prayog",
+          "name": "char-style-override-3"
+        },
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "char-style-override-8"
+        },
+        {
+          "book": "sahasranama_stotra_sangrah",
+          "name": "char-style-override-13"
+        },
+        {
+          "book": "sahasranama_stotra_sangrah",
+          "name": "para-style-override-7"
+        },
+        {
+          "book": "valmiki_ramayan",
+          "name": "char-style-override-22"
+        }
+      ]
+    },
+    "x": {
+      "signature": "font-size:0.583em;vertical-align:super",
+      "sourceClasses": [
+        {
+          "book": "durga_saptashati",
+          "name": "char-style-override-10"
+        },
+        {
+          "book": "gita_prabodhini",
+          "name": "char-style-override-6"
+        },
+        {
+          "book": "nityakarma_prayog",
+          "name": "char-style-override-6"
+        },
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "char-style-override-10"
+        },
+        {
+          "book": "valmiki_ramayan",
+          "name": "char-style-override-6"
+        }
+      ]
+    },
+    "y": {
+      "signature": "font-size:0.583em;font-style:normal;font-weight:normal;vertical-align:super",
+      "sourceClasses": [
+        {
+          "book": "gita_prabodhini",
+          "name": "char-style-override-7"
+        }
+      ]
+    },
+    "z": {
+      "signature": "color:#ff0000;font-size:0.818em",
+      "sourceClasses": [
+        {
+          "book": "gita_prabodhini",
+          "name": "char-style-override-8"
+        }
+      ]
+    },
+    "aa": {
+      "signature": "font-size:1.125em;font-style:normal;font-weight:bold",
+      "sourceClasses": [
+        {
+          "book": "gita_prabodhini",
+          "name": "char-style-override-9"
+        }
+      ]
+    },
+    "ab": {
+      "signature": "font-size:1.125em",
+      "sourceClasses": [
+        {
+          "book": "gita_prabodhini",
+          "name": "char-style-override-10"
+        },
+        {
+          "book": "valmiki_ramayan",
+          "name": "char-style-override-16"
+        }
+      ]
+    },
+    "ac": {
+      "signature": "",
+      "sourceClasses": [
+        {
+          "book": "_system",
+          "name": "Basic-Graphics-Frame"
+        },
+        {
+          "book": "_system",
+          "name": "Basic-Text-Frame"
+        },
+        {
+          "book": "durga_saptashati",
+          "name": "para-style-override-5"
+        },
+        {
+          "book": "gita_prabodhini",
+          "name": "Basic-Graphics-Frame"
+        },
+        {
+          "book": "gita_prabodhini",
+          "name": "char-style-override-13"
+        },
+        {
+          "book": "gita_prabodhini",
+          "name": "char-style-override-14"
+        },
+        {
+          "book": "gita_prabodhini",
+          "name": "char-style-override-15"
+        },
+        {
+          "book": "gita_prabodhini",
+          "name": "char-style-override-16"
+        },
+        {
+          "book": "gita_prabodhini",
+          "name": "char-style-override-17"
+        },
+        {
+          "book": "gita_prabodhini",
+          "name": "char-style-override-18"
+        },
+        {
+          "book": "gita_prabodhini",
+          "name": "char-style-override-19"
+        },
+        {
+          "book": "gita_prabodhini",
+          "name": "char-style-override-21"
+        },
+        {
+          "book": "gita_prabodhini",
+          "name": "char-style-override-23"
+        },
+        {
+          "book": "gita_prabodhini",
+          "name": "char-style-override-24"
+        },
+        {
+          "book": "gita_prabodhini",
+          "name": "char-style-override-26"
+        },
+        {
+          "book": "gita_prabodhini",
+          "name": "char-style-override-27"
+        },
+        {
+          "book": "gita_prabodhini",
+          "name": "char-style-override-28"
+        },
+        {
+          "book": "gita_prabodhini",
+          "name": "char-style-override-29"
+        },
+        {
+          "book": "gita_prabodhini",
+          "name": "char-style-override-30"
+        },
+        {
+          "book": "gita_prabodhini",
+          "name": "char-style-override-31"
+        },
+        {
+          "book": "gita_prabodhini",
+          "name": "char-style-override-33"
+        },
+        {
+          "book": "gita_prabodhini",
+          "name": "char-style-override-34"
+        },
+        {
+          "book": "gita_prabodhini",
+          "name": "para-style-override-10"
+        },
+        {
+          "book": "gita_prabodhini",
+          "name": "para-style-override-11"
+        },
+        {
+          "book": "gita_prabodhini",
+          "name": "para-style-override-12"
+        },
+        {
+          "book": "gita_prabodhini",
+          "name": "para-style-override-13"
+        },
+        {
+          "book": "gita_prabodhini",
+          "name": "para-style-override-14"
+        },
+        {
+          "book": "gita_prabodhini",
+          "name": "para-style-override-15"
+        },
+        {
+          "book": "gita_prabodhini",
+          "name": "para-style-override-8"
+        },
+        {
+          "book": "gita_prabodhini",
+          "name": "para-style-override-9"
+        },
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "para-style-override-7"
+        },
+        {
+          "book": "sahasranama_stotra_sangrah",
+          "name": "para-style-override-11"
+        },
+        {
+          "book": "valmiki_ramayan",
+          "name": "para-style-override-3"
+        }
+      ]
+    },
+    "ad": {
+      "signature": "text-align:center",
+      "sourceClasses": [
+        {
+          "book": "durga_saptashati",
+          "name": "para-style-override-4"
+        },
+        {
+          "book": "gita_prabodhini",
+          "name": "Image"
+        },
+        {
+          "book": "gita_prabodhini",
+          "name": "para-style-override-3"
+        },
+        {
+          "book": "gita_prabodhini",
+          "name": "para-style-override-4"
+        },
+        {
+          "book": "gita_prabodhini",
+          "name": "para-style-override-5"
+        },
+        {
+          "book": "nityakarma_prayog",
+          "name": "para-style-override-5"
+        }
+      ]
+    },
+    "af": {
+      "signature": "margin-bottom:10px",
+      "sourceClasses": [
+        {
+          "book": "gita_prabodhini",
+          "name": "para-style-override-6"
+        }
+      ]
+    },
+    "ag": {
+      "signature": "color:#a51512;font-family:ChanakyaUni, serif;font-size:1.333em;font-style:italic;font-weight:bold;line-height:1.2;text-align:center;text-indent:0px",
+      "sourceClasses": [
+        {
+          "book": "gita_prabodhini",
+          "name": "Shlok-new"
+        }
+      ]
+    },
+    "ah": {
+      "signature": "font-style:italic",
+      "sourceClasses": [
+        {
+          "book": "gita_prabodhini",
+          "name": "char-style-override-32"
+        }
+      ]
+    },
+    "ai": {
+      "signature": "display:block;height:auto;margin:0 auto;max-width:100%",
+      "sourceClasses": [
+        {
+          "book": "gita_prabodhini",
+          "name": "frame-1"
+        }
+      ]
+    },
+    "aj": {
+      "signature": "margin-bottom:1rem",
+      "sourceClasses": [
+        {
+          "book": "_system",
+          "name": "epub-page"
+        },
+        {
+          "book": "gita_prabodhini",
+          "name": "epub-page"
+        }
+      ]
+    },
+    "ak": {
+      "signature": "margin:2rem 0;border:none;border-top:1px dashed #ccc",
+      "sourceClasses": [
+        {
+          "book": "_system",
+          "name": "page-break"
+        },
+        {
+          "book": "gita_prabodhini",
+          "name": "page-break"
+        }
+      ]
+    },
+    "al": {
+      "signature": "color:#760000;font-family:ChanakyaUni, serif;font-size:1.083em;font-style:normal;font-weight:normal;line-height:1.2;margin-bottom:6px;text-align:right;text-indent:18px",
+      "sourceClasses": [
+        {
+          "book": "gita_prabodhini",
+          "name": "Footnotes-Right"
+        },
+        {
+          "book": "gita_prabodhini",
+          "name": "Footnotes-Right-1"
+        }
+      ]
+    },
+    "am": {
+      "signature": "color:#231f20;font-family:\"Minion Pro\", serif;font-size:1em;font-style:normal;font-weight:normal;line-height:1.2;text-align:left;text-indent:0px",
+      "sourceClasses": [
+        {
+          "book": "durga_saptashati",
+          "name": "No-Paragraph-Style"
+        },
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "No-Paragraph-Style"
+        },
+        {
+          "book": "sahasranama_stotra_sangrah",
+          "name": "No-Paragraph-Style"
+        }
+      ]
+    },
+    "an": {
+      "signature": "color:#231f20;font-family:ChanakyaUni, serif;font-size:1em;font-style:normal;font-weight:normal;line-height:1.2;text-align:justify;text-indent:18px",
+      "sourceClasses": [
+        {
+          "book": "sahasranama_stotra_sangrah",
+          "name": "xfootnote"
+        },
+        {
+          "book": "sahasranama_stotra_sangrah",
+          "name": "xfootnote-1"
+        },
+        {
+          "book": "sahasranama_stotra_sangrah",
+          "name": "xfootnote-2"
+        }
+      ]
+    },
+    "ao": {
+      "signature": "color:#00aeef;font-family:ChanakyaUni, serif;font-size:1.083em;font-style:italic;font-weight:normal;line-height:1.346;text-align:center;text-indent:0px",
+      "sourceClasses": [
+        {
+          "book": "sahasranama_stotra_sangrah",
+          "name": "Uwach"
+        }
+      ]
+    },
+    "ap": {
+      "signature": "color:#ff0000;font-family:ChanakyaUni, serif;font-size:1.5em;font-style:italic;font-weight:normal;line-height:1.2;text-align:center;text-indent:0px",
+      "sourceClasses": [
+        {
+          "book": "sahasranama_stotra_sangrah",
+          "name": "Numbers"
+        }
+      ]
+    },
+    "aq": {
+      "signature": "color:#c45911;font-family:ChanakyaUni, serif;font-size:1.167em;font-style:italic;font-weight:bold;line-height:1.2;text-align:center;text-indent:0px",
+      "sourceClasses": [
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "Uwach"
+        },
+        {
+          "book": "sahasranama_stotra_sangrah",
+          "name": "Chapter-end-Text"
+        },
+        {
+          "book": "valmiki_ramayan",
+          "name": "Uwach"
+        }
+      ]
+    },
+    "ar": {
+      "signature": "color:#231f20;font-family:ChanakyaUni, serif;font-size:2.167em;font-style:normal;font-weight:bold;line-height:1.2;margin-bottom:10px;text-align:center;text-indent:0px",
+      "sourceClasses": [
+        {
+          "book": "sahasranama_stotra_sangrah",
+          "name": "Man-Had"
+        }
+      ]
+    },
+    "as": {
+      "signature": "color:#ff0000;font-family:ChanakyaUni, serif;font-size:1.167em;font-style:normal;font-weight:bold;line-height:1.029;text-align:center;text-indent:0px",
+      "sourceClasses": [
+        {
+          "book": "sahasranama_stotra_sangrah",
+          "name": "First-End-Page-text"
+        }
+      ]
+    },
+    "at": {
+      "signature": "color:#231f20;font-family:ChanakyaUni, serif;font-size:1em;font-style:normal;font-weight:normal;line-height:1.083;text-align:justify;text-indent:18px",
+      "sourceClasses": [
+        {
+          "book": "sahasranama_stotra_sangrah",
+          "name": "Footnote-New"
+        }
+      ]
+    },
+    "au": {
+      "signature": "color:#c45911;font-family:ChanakyaUni, serif;font-size:1.167em;font-style:normal;font-weight:bold;line-height:1.029;text-align:center;text-indent:0px",
+      "sourceClasses": [
+        {
+          "book": "sahasranama_stotra_sangrah",
+          "name": "Titel-Page---Shri-Hari"
+        }
+      ]
+    },
+    "av": {
+      "signature": "color:#231f20;font-family:ChanakyaUni, serif;font-size:1.167em;font-style:normal;font-weight:normal;line-height:1.2;text-align:center;text-indent:0px",
+      "sourceClasses": [
+        {
+          "book": "sahasranama_stotra_sangrah",
+          "name": "Title-Page---Tvamev-mata"
+        }
+      ]
+    },
+    "aw": {
+      "signature": "color:#231f20;font-family:ChanakyaUni, serif;font-size:1.083em;font-style:normal;font-weight:normal;line-height:1.2;text-align:right;text-indent:18px",
+      "sourceClasses": [
+        {
+          "book": "nityakarma_prayog",
+          "name": "TXT-Right"
+        },
+        {
+          "book": "sahasranama_stotra_sangrah",
+          "name": "TXT-Right"
+        }
+      ]
+    },
+    "ax": {
+      "signature": "color:#231f20;font-size:0.917em;font-style:normal;font-weight:normal;text-align:right",
+      "sourceClasses": [
+        {
+          "book": "sahasranama_stotra_sangrah",
+          "name": "para-style-override-1"
+        }
+      ]
+    },
+    "ay": {
+      "signature": "font-size:1.5em",
+      "sourceClasses": [
+        {
+          "book": "sahasranama_stotra_sangrah",
+          "name": "para-style-override-2"
+        }
+      ]
+    },
+    "az": {
+      "signature": "font-family:ChanakyaUni, serif;font-style:normal;font-weight:normal;text-align:center",
+      "sourceClasses": [
+        {
+          "book": "sahasranama_stotra_sangrah",
+          "name": "para-style-override-4"
+        }
+      ]
+    },
+    "ba": {
+      "signature": "font-family:ChanakyaUni, serif;font-style:normal;font-weight:normal;text-align:justify;text-indent:18px",
+      "sourceClasses": [
+        {
+          "book": "sahasranama_stotra_sangrah",
+          "name": "para-style-override-5"
+        }
+      ]
+    },
+    "bb": {
+      "signature": "font-family:ChanakyaUni, serif;font-size:1.333em;font-style:normal;font-weight:normal;text-align:center",
+      "sourceClasses": [
+        {
+          "book": "sahasranama_stotra_sangrah",
+          "name": "para-style-override-6"
+        }
+      ]
+    },
+    "bc": {
+      "signature": "font-family:ChanakyaUni, serif;font-size:1.167em;font-style:normal;font-weight:bold;text-align:center",
+      "sourceClasses": [
+        {
+          "book": "sahasranama_stotra_sangrah",
+          "name": "para-style-override-8"
+        }
+      ]
+    },
+    "bd": {
+      "signature": "font-family:ChanakyaUni, serif;font-style:normal;font-weight:bold;text-align:center",
+      "sourceClasses": [
+        {
+          "book": "sahasranama_stotra_sangrah",
+          "name": "para-style-override-9"
+        }
+      ]
+    },
+    "be": {
+      "signature": "font-family:ChanakyaUni, serif;font-style:normal;font-weight:bold;margin-bottom:10px;text-align:center",
+      "sourceClasses": [
+        {
+          "book": "sahasranama_stotra_sangrah",
+          "name": "para-style-override-10"
+        }
+      ]
+    },
+    "bf": {
+      "signature": "font-family:ChanakyaUni, serif;font-style:italic;font-weight:normal;text-align:center",
+      "sourceClasses": [
+        {
+          "book": "sahasranama_stotra_sangrah",
+          "name": "para-style-override-12"
+        }
+      ]
+    },
+    "bg": {
+      "signature": "font-family:ChanakyaUni, serif;font-size:2.167em;font-style:normal;font-weight:bold;text-align:center",
+      "sourceClasses": [
+        {
+          "book": "sahasranama_stotra_sangrah",
+          "name": "para-style-override-13"
+        }
+      ]
+    },
+    "bh": {
+      "signature": "text-align:justify",
+      "sourceClasses": [
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "para-style-override-19"
+        },
+        {
+          "book": "sahasranama_stotra_sangrah",
+          "name": "para-style-override-14"
+        },
+        {
+          "book": "valmiki_ramayan",
+          "name": "para-style-override-6"
+        }
+      ]
+    },
+    "bi": {
+      "signature": "font-size:0.636em",
+      "sourceClasses": [
+        {
+          "book": "sahasranama_stotra_sangrah",
+          "name": "char-style-override-1"
+        },
+        {
+          "book": "valmiki_ramayan",
+          "name": "char-style-override-5"
+        }
+      ]
+    },
+    "bj": {
+      "signature": "font-size:1.077em;font-style:normal;font-weight:bold",
+      "sourceClasses": [
+        {
+          "book": "durga_saptashati",
+          "name": "char-style-override-11"
+        },
+        {
+          "book": "sahasranama_stotra_sangrah",
+          "name": "char-style-override-2"
+        },
+        {
+          "book": "valmiki_ramayan",
+          "name": "char-style-override-13"
+        }
+      ]
+    },
+    "bk": {
+      "signature": "font-size:0.875em;font-style:normal;font-weight:bold",
+      "sourceClasses": [
+        {
+          "book": "durga_saptashati",
+          "name": "char-style-override-30"
+        },
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "char-style-override-37"
+        },
+        {
+          "book": "sahasranama_stotra_sangrah",
+          "name": "char-style-override-3"
+        }
+      ]
+    },
+    "bl": {
+      "signature": "font-size:0.583em;font-style:normal;font-weight:bold;vertical-align:super",
+      "sourceClasses": [
+        {
+          "book": "nityakarma_prayog",
+          "name": "char-style-override-12"
+        },
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "char-style-override-13"
+        },
+        {
+          "book": "sahasranama_stotra_sangrah",
+          "name": "char-style-override-5"
+        }
+      ]
+    },
+    "bm": {
+      "signature": "font-size:1.077em",
+      "sourceClasses": [
+        {
+          "book": "sahasranama_stotra_sangrah",
+          "name": "char-style-override-6"
+        },
+        {
+          "book": "valmiki_ramayan",
+          "name": "char-style-override-7"
+        }
+      ]
+    },
+    "bn": {
+      "signature": "font-size:1.385em",
+      "sourceClasses": [
+        {
+          "book": "sahasranama_stotra_sangrah",
+          "name": "char-style-override-7"
+        }
+      ]
+    },
+    "bo": {
+      "signature": "font-family:ChanakyaUni, serif;font-style:normal;font-weight:normal",
+      "sourceClasses": [
+        {
+          "book": "nityakarma_prayog",
+          "name": "para-style-override-8"
+        },
+        {
+          "book": "sahasranama_stotra_sangrah",
+          "name": "char-style-override-8"
+        },
+        {
+          "book": "valmiki_ramayan",
+          "name": "char-style-override-18"
+        }
+      ]
+    },
+    "bp": {
+      "signature": "color:#760000;font-size:0.813em;font-style:normal;font-weight:normal",
+      "sourceClasses": [
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "char-style-override-26"
+        },
+        {
+          "book": "sahasranama_stotra_sangrah",
+          "name": "char-style-override-9"
+        }
+      ]
+    },
+    "bq": {
+      "signature": "color:#231f20;font-style:normal;font-weight:normal",
+      "sourceClasses": [
+        {
+          "book": "durga_saptashati",
+          "name": "char-style-override-17"
+        },
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "char-style-override-27"
+        },
+        {
+          "book": "sahasranama_stotra_sangrah",
+          "name": "char-style-override-10"
+        }
+      ]
+    },
+    "br": {
+      "signature": "font-size:1.857em",
+      "sourceClasses": [
+        {
+          "book": "sahasranama_stotra_sangrah",
+          "name": "char-style-override-11"
+        }
+      ]
+    },
+    "bs": {
+      "signature": "color:#a51512;font-style:normal;font-weight:normal",
+      "sourceClasses": [
+        {
+          "book": "sahasranama_stotra_sangrah",
+          "name": "char-style-override-12"
+        }
+      ]
+    },
+    "bt": {
+      "signature": "font-size:0.929em;font-style:normal;font-weight:bold",
+      "sourceClasses": [
+        {
+          "book": "sahasranama_stotra_sangrah",
+          "name": "char-style-override-14"
+        }
+      ]
+    },
+    "bu": {
+      "signature": "font-size:1em",
+      "sourceClasses": [
+        {
+          "book": "sahasranama_stotra_sangrah",
+          "name": "char-style-override-15"
+        }
+      ]
+    },
+    "bv": {
+      "signature": "color:#231f20;font-size:1.571em;font-style:normal;font-weight:bold",
+      "sourceClasses": [
+        {
+          "book": "sahasranama_stotra_sangrah",
+          "name": "char-style-override-16"
+        }
+      ]
+    },
+    "bw": {
+      "signature": "color:#a51512;font-family:ChanakyaUni, serif;font-size:1.5em;font-style:normal;font-weight:bold;line-height:1.2;text-align:center;text-indent:0px",
+      "sourceClasses": [
+        {
+          "book": "durga_saptashati",
+          "name": "Title-Page---Gita-Seva-Trust"
+        },
+        {
+          "book": "nityakarma_prayog",
+          "name": "Title-Page---Gita-Seva-Trust"
+        }
+      ]
+    },
+    "bx": {
+      "signature": "color:#0070c0;font-family:ChanakyaUni, serif;font-size:1.167em;font-style:italic;font-weight:normal;line-height:1.2;text-align:center;text-indent:0px",
+      "sourceClasses": [
+        {
+          "book": "durga_saptashati",
+          "name": "Uwach"
+        }
+      ]
+    },
+    "by": {
+      "signature": "color:#231f20;font-family:ChanakyaUni, serif;font-size:1.083em;font-style:normal;font-weight:normal;line-height:1.2;text-align:right;text-indent:0px",
+      "sourceClasses": [
+        {
+          "book": "durga_saptashati",
+          "name": "TXT-Right"
+        }
+      ]
+    },
+    "bz": {
+      "signature": "color:#760000;font-family:ChanakyaUni, serif;font-size:1.083em;font-style:normal;font-weight:bold;line-height:1.2;text-align:justify;text-indent:0px",
+      "sourceClasses": [
+        {
+          "book": "durga_saptashati",
+          "name": "Footnotes-Bold"
+        },
+        {
+          "book": "nityakarma_prayog",
+          "name": "Footnotes-Bold"
+        }
+      ]
+    },
+    "ca": {
+      "signature": "color:#760000;font-family:ChanakyaUni, serif;font-size:1.083em;font-style:normal;font-weight:normal;line-height:1.2;text-align:right;text-indent:0px",
+      "sourceClasses": [
+        {
+          "book": "durga_saptashati",
+          "name": "Footnotes-Right"
+        },
+        {
+          "book": "nityakarma_prayog",
+          "name": "Footnotes-Right"
+        }
+      ]
+    },
+    "cb": {
+      "signature": "color:#c40075;font-family:ChanakyaUni, serif;font-size:1.333em;font-style:normal;font-weight:bold;line-height:1.2;text-align:center;text-indent:0px",
+      "sourceClasses": [
+        {
+          "book": "durga_saptashati",
+          "name": "Nayash"
+        }
+      ]
+    },
+    "cc": {
+      "signature": "color:#231f20;font-family:ChanakyaUni, serif;font-size:1.333em;font-style:normal;font-weight:bold;line-height:1.2;text-align:justify;text-indent:18px",
+      "sourceClasses": [
+        {
+          "book": "durga_saptashati",
+          "name": "mantra"
+        }
+      ]
+    },
+    "cd": {
+      "signature": "color:#c40075;font-family:ChanakyaUni, serif;font-size:1.333em;font-style:normal;font-weight:bold;line-height:1.2;text-align:center;text-indent:18px",
+      "sourceClasses": [
+        {
+          "book": "durga_saptashati",
+          "name": "OM"
+        }
+      ]
+    },
+    "ce": {
+      "signature": "color:#231f20;font-family:ChanakyaUni, serif;font-size:1.5em;font-style:normal;font-weight:bold;line-height:1.2;text-align:center;text-indent:0px",
+      "sourceClasses": [
+        {
+          "book": "durga_saptashati",
+          "name": "Title-Page--Sub-Title"
+        },
+        {
+          "book": "nityakarma_prayog",
+          "name": "Title-Page---Author-Name"
+        },
+        {
+          "book": "nityakarma_prayog",
+          "name": "Title-page---sub-title-2"
+        },
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "Sub-Head"
+        },
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "Title-Page---Author-Name"
+        }
+      ]
+    },
+    "cf": {
+      "signature": "color:#a51512;font-family:ChanakyaUni, serif;font-size:1.333em;font-style:normal;font-weight:bold;line-height:1.2;text-align:justify;text-indent:18px",
+      "sourceClasses": [
+        {
+          "book": "durga_saptashati",
+          "name": "Gadya"
+        }
+      ]
+    },
+    "cg": {
+      "signature": "text-align:center;text-indent:0px",
+      "sourceClasses": [
+        {
+          "book": "durga_saptashati",
+          "name": "para-style-override-3"
+        },
+        {
+          "book": "nityakarma_prayog",
+          "name": "para-style-override-10"
+        }
+      ]
+    },
+    "ch": {
+      "signature": "font-family:ChanakyaUni, serif;font-size:1.167em;font-style:normal;font-weight:bold;text-align:justify;text-indent:18px",
+      "sourceClasses": [
+        {
+          "book": "durga_saptashati",
+          "name": "para-style-override-7"
+        }
+      ]
+    },
+    "ci": {
+      "signature": "color:#c45911;font-size:0.714em;font-style:normal;font-weight:normal",
+      "sourceClasses": [
+        {
+          "book": "durga_saptashati",
+          "name": "char-style-override-2"
+        }
+      ]
+    },
+    "cj": {
+      "signature": "font-size:1.154em;font-style:normal;font-weight:bold",
+      "sourceClasses": [
+        {
+          "book": "durga_saptashati",
+          "name": "char-style-override-5"
+        },
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "char-style-override-33"
+        }
+      ]
+    },
+    "ck": {
+      "signature": "color:#c45911;font-size:1.077em",
+      "sourceClasses": [
+        {
+          "book": "durga_saptashati",
+          "name": "char-style-override-6"
+        }
+      ]
+    },
+    "cl": {
+      "signature": "color:#1066b1;font-size:1.571em;font-style:normal;font-weight:bold",
+      "sourceClasses": [
+        {
+          "book": "durga_saptashati",
+          "name": "char-style-override-7"
+        }
+      ]
+    },
+    "cm": {
+      "signature": "font-size:0.727em",
+      "sourceClasses": [
+        {
+          "book": "durga_saptashati",
+          "name": "char-style-override-8"
+        }
+      ]
+    },
+    "cn": {
+      "signature": "font-size:0.813em",
+      "sourceClasses": [
+        {
+          "book": "durga_saptashati",
+          "name": "char-style-override-9"
+        },
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "char-style-override-44"
+        },
+        {
+          "book": "valmiki_ramayan",
+          "name": "char-style-override-14"
+        }
+      ]
+    },
+    "co": {
+      "signature": "font-size:1.231em",
+      "sourceClasses": [
+        {
+          "book": "durga_saptashati",
+          "name": "char-style-override-12"
+        },
+        {
+          "book": "nityakarma_prayog",
+          "name": "char-style-override-17"
+        }
+      ]
+    },
+    "cp": {
+      "signature": "color:#0070c0;font-size:1.333em;font-style:normal;font-weight:bold",
+      "sourceClasses": [
+        {
+          "book": "durga_saptashati",
+          "name": "char-style-override-13"
+        }
+      ]
+    },
+    "cq": {
+      "signature": "color:#231f20;font-size:1.2em;font-style:normal;font-weight:bold",
+      "sourceClasses": [
+        {
+          "book": "durga_saptashati",
+          "name": "char-style-override-14"
+        }
+      ]
+    },
+    "cr": {
+      "signature": "font-size:0.875em",
+      "sourceClasses": [
+        {
+          "book": "durga_saptashati",
+          "name": "char-style-override-15"
+        },
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "char-style-override-11"
+        }
+      ]
+    },
+    "cs": {
+      "signature": "color:#231f20;font-size:0.733em",
+      "sourceClasses": [
+        {
+          "book": "durga_saptashati",
+          "name": "char-style-override-16"
+        }
+      ]
+    },
+    "ct": {
+      "signature": "font-family:\"Minion Pro\", serif;font-size:0.75em;font-style:normal;font-weight:normal",
+      "sourceClasses": [
+        {
+          "book": "durga_saptashati",
+          "name": "char-style-override-18"
+        }
+      ]
+    },
+    "cu": {
+      "signature": "color:#760000;font-size:0.813em",
+      "sourceClasses": [
+        {
+          "book": "durga_saptashati",
+          "name": "char-style-override-19"
+        },
+        {
+          "book": "nityakarma_prayog",
+          "name": "char-style-override-16"
+        }
+      ]
+    },
+    "cv": {
+      "signature": "color:#231f20;font-size:0.846em",
+      "sourceClasses": [
+        {
+          "book": "durga_saptashati",
+          "name": "char-style-override-20"
+        }
+      ]
+    },
+    "cw": {
+      "signature": "color:#231f20",
+      "sourceClasses": [
+        {
+          "book": "durga_saptashati",
+          "name": "char-style-override-21"
+        },
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "char-style-override-23"
+        }
+      ]
+    },
+    "cx": {
+      "signature": "color:#231f20;font-size:0.813em;font-style:normal;font-weight:normal",
+      "sourceClasses": [
+        {
+          "book": "durga_saptashati",
+          "name": "char-style-override-22"
+        }
+      ]
+    },
+    "cy": {
+      "signature": "font-size:0.769em",
+      "sourceClasses": [
+        {
+          "book": "durga_saptashati",
+          "name": "char-style-override-23"
+        }
+      ]
+    },
+    "cz": {
+      "signature": "color:#231f20;font-size:0.933em;font-style:normal;font-weight:normal",
+      "sourceClasses": [
+        {
+          "book": "durga_saptashati",
+          "name": "char-style-override-24"
+        }
+      ]
+    },
+    "da": {
+      "signature": "color:#231f20;font-size:0.7em",
+      "sourceClasses": [
+        {
+          "book": "durga_saptashati",
+          "name": "char-style-override-25"
+        }
+      ]
+    },
+    "db": {
+      "signature": "color:#231f20;font-size:1.125em;font-style:normal;font-weight:bold",
+      "sourceClasses": [
+        {
+          "book": "durga_saptashati",
+          "name": "char-style-override-26"
+        }
+      ]
+    },
+    "dc": {
+      "signature": "font-size:13px",
+      "sourceClasses": [
+        {
+          "book": "durga_saptashati",
+          "name": "char-style-override-27"
+        }
+      ]
+    },
+    "dd": {
+      "signature": "color:#231f20;font-size:0.875em",
+      "sourceClasses": [
+        {
+          "book": "durga_saptashati",
+          "name": "char-style-override-28"
+        },
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "char-style-override-6"
+        }
+      ]
+    },
+    "de": {
+      "signature": "color:#1066b1;font-size:1.467em;font-style:normal;font-weight:bold",
+      "sourceClasses": [
+        {
+          "book": "durga_saptashati",
+          "name": "char-style-override-29"
+        }
+      ]
+    },
+    "df": {
+      "signature": "color:#231f20;font-size:0.933em;font-style:normal;font-weight:bold",
+      "sourceClasses": [
+        {
+          "book": "durga_saptashati",
+          "name": "char-style-override-31"
+        }
+      ]
+    },
+    "dg": {
+      "signature": "color:#c45911;font-size:1.154em;font-style:italic;font-weight:normal",
+      "sourceClasses": [
+        {
+          "book": "durga_saptashati",
+          "name": "char-style-override-32"
+        }
+      ]
+    },
+    "dh": {
+      "signature": "color:#231f20;font-size:1.125em",
+      "sourceClasses": [
+        {
+          "book": "durga_saptashati",
+          "name": "char-style-override-33"
+        }
+      ]
+    },
+    "di": {
+      "signature": "font-size:1.846em;font-style:normal;font-weight:bold",
+      "sourceClasses": [
+        {
+          "book": "durga_saptashati",
+          "name": "char-style-override-34"
+        }
+      ]
+    },
+    "dj": {
+      "signature": "font-size:0.929em",
+      "sourceClasses": [
+        {
+          "book": "durga_saptashati",
+          "name": "char-style-override-35"
+        }
+      ]
+    },
+    "dk": {
+      "signature": "width:100%",
+      "sourceClasses": [
+        {
+          "book": "durga_saptashati",
+          "name": "frame-1"
+        },
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "frame-2"
+        }
+      ]
+    },
+    "dl": {
+      "signature": "color:#000000;font-family:ChanakyaUni, serif;font-size:1.083em;font-style:normal;font-weight:bold;line-height:1.2;text-align:center;text-indent:0px",
+      "sourceClasses": [
+        {
+          "book": "valmiki_ramayan",
+          "name": "Eti-Bold"
+        }
+      ]
+    },
+    "dm": {
+      "signature": "color:#000000;font-family:ChanakyaUni, serif;font-size:1.083em;font-style:italic;font-weight:normal;line-height:1.2;text-align:center;text-indent:0px",
+      "sourceClasses": [
+        {
+          "book": "valmiki_ramayan",
+          "name": "Eti"
+        }
+      ]
+    },
+    "dn": {
+      "signature": "color:#c40075;font-family:ChanakyaUni, serif;font-size:1.833em;font-style:normal;font-weight:bold;line-height:1.2;margin-bottom:7px;text-align:center;text-indent:0px",
+      "sourceClasses": [
+        {
+          "book": "valmiki_ramayan",
+          "name": "Heading"
+        }
+      ]
+    },
+    "do": {
+      "signature": "color:#000000;font-family:ChanakyaUni, serif;font-size:1.083em;font-style:normal;font-weight:normal;line-height:1.2;text-align:justify;text-indent:24px",
+      "sourceClasses": [
+        {
+          "book": "valmiki_ramayan",
+          "name": "Footer"
+        }
+      ]
+    },
+    "dp": {
+      "signature": "color:#000000;font-family:ChanakyaUni, serif;font-size:1.333em;font-style:normal;font-weight:normal;line-height:1.2;text-align:justify;text-indent:18px",
+      "sourceClasses": [
+        {
+          "book": "valmiki_ramayan",
+          "name": "TXT"
+        },
+        {
+          "book": "valmiki_ramayan",
+          "name": "mantra"
+        },
+        {
+          "book": "valmiki_ramayan",
+          "name": "mantra-1"
+        }
+      ]
+    },
+    "dq": {
+      "signature": "color:#ff0000;font-family:ChanakyaUni, serif;font-size:1.5em;font-style:normal;font-weight:bold;line-height:1.2;margin-bottom:6px;text-align:center;text-indent:0px",
+      "sourceClasses": [
+        {
+          "book": "valmiki_ramayan",
+          "name": "Numbers"
+        }
+      ]
+    },
+    "dr": {
+      "signature": "color:#760000;font-family:ChanakyaUni, serif;font-size:0.917em;font-style:normal;font-weight:normal;line-height:1.2;text-align:right;text-indent:0px",
+      "sourceClasses": [
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "Footnotes-Right"
+        },
+        {
+          "book": "valmiki_ramayan",
+          "name": "Footnotes-Right"
+        },
+        {
+          "book": "valmiki_ramayan",
+          "name": "Footnotes-Right-1"
+        },
+        {
+          "book": "valmiki_ramayan",
+          "name": "Footnotes-Right-2"
+        }
+      ]
+    },
+    "ds": {
+      "signature": "color:#000000;font-family:\"Minion Pro\", serif;font-size:1em;font-style:normal;font-weight:normal;line-height:1.2;text-align:left;text-indent:0px",
+      "sourceClasses": [
+        {
+          "book": "valmiki_ramayan",
+          "name": "No-Paragraph-Style"
+        },
+        {
+          "book": "valmiki_ramayan",
+          "name": "No-Paragraph-Style-1"
+        },
+        {
+          "book": "valmiki_ramayan",
+          "name": "No-Paragraph-Style-2"
+        },
+        {
+          "book": "valmiki_ramayan",
+          "name": "No-Paragraph-Style-3"
+        },
+        {
+          "book": "valmiki_ramayan",
+          "name": "No-Paragraph-Style-4"
+        }
+      ]
+    },
+    "dt": {
+      "signature": "color:#c40075;font-family:ChanakyaUni, serif;font-size:1.333em;font-style:normal;font-weight:normal;line-height:0.9;text-align:center;text-indent:0px",
+      "sourceClasses": [
+        {
+          "book": "valmiki_ramayan",
+          "name": "Shlok-Color--1"
+        }
+      ]
+    },
+    "du": {
+      "signature": "color:#000000;font-family:ChanakyaUni, serif;font-size:1.333em;font-style:normal;font-weight:bold;line-height:1.2;text-align:center;text-indent:0px",
+      "sourceClasses": [
+        {
+          "book": "valmiki_ramayan",
+          "name": "SHLOK-Black"
+        },
+        {
+          "book": "valmiki_ramayan",
+          "name": "SHLOK-Black-1"
+        }
+      ]
+    },
+    "dv": {
+      "signature": "color:#000000;font-family:ChanakyaUni, serif;font-size:1.083em;font-style:normal;font-weight:normal;line-height:1.108;text-align:justify;text-indent:0px",
+      "sourceClasses": [
+        {
+          "book": "valmiki_ramayan",
+          "name": "Suchi-2"
+        }
+      ]
+    },
+    "dw": {
+      "signature": "color:#c40075;font-family:ChanakyaUni, serif;font-size:1.667em;font-style:normal;font-weight:bold;line-height:1.2;text-align:center;text-indent:0px",
+      "sourceClasses": [
+        {
+          "book": "valmiki_ramayan",
+          "name": "OM"
+        }
+      ]
+    },
+    "dx": {
+      "signature": "color:#005599;font-family:ChanakyaUni, serif;font-size:1.333em;font-style:normal;font-weight:bold;line-height:1.2;text-align:center;text-indent:0px",
+      "sourceClasses": [
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "Nayash"
+        },
+        {
+          "book": "valmiki_ramayan",
+          "name": "Nayash"
+        }
+      ]
+    },
+    "dy": {
+      "signature": "color:#000000;font-family:ChanakyaUni, serif;font-size:1.083em;font-style:normal;font-weight:normal;line-height:1.108;text-align:right;text-indent:18px",
+      "sourceClasses": [
+        {
+          "book": "valmiki_ramayan",
+          "name": "TXT-Right"
+        }
+      ]
+    },
+    "dz": {
+      "signature": "color:#1066b1;font-family:ChanakyaUni, serif;font-size:2.083em;font-style:normal;font-weight:bold;line-height:1.2;margin-bottom:6px;text-align:center;text-indent:0px",
+      "sourceClasses": [
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "Title-Page---Book-Name"
+        },
+        {
+          "book": "valmiki_ramayan",
+          "name": "Title-Page---Book-Name"
+        }
+      ]
+    },
+    "ea": {
+      "signature": "color:#000000;font-family:ChanakyaUni, serif;font-size:1.333em;font-style:normal;font-weight:normal;line-height:1.2;text-align:center;text-indent:0px",
+      "sourceClasses": [
+        {
+          "book": "valmiki_ramayan",
+          "name": "Tavmev-Mata--pita"
+        }
+      ]
+    },
+    "eb": {
+      "signature": "color:#005599;font-family:ChanakyaUni, serif;font-size:1.667em;font-style:normal;font-weight:normal;line-height:1.2;text-align:center;text-indent:0px",
+      "sourceClasses": [
+        {
+          "book": "valmiki_ramayan",
+          "name": "Title-page---sub-title"
+        }
+      ]
+    },
+    "ec": {
+      "signature": "font-family:NalandaTim, serif;font-size:0.75em;font-style:normal;font-weight:normal",
+      "sourceClasses": [
+        {
+          "book": "valmiki_ramayan",
+          "name": "para-style-override-4"
+        }
+      ]
+    },
+    "ed": {
+      "signature": "margin-bottom:3px",
+      "sourceClasses": [
+        {
+          "book": "valmiki_ramayan",
+          "name": "para-style-override-7"
+        }
+      ]
+    },
+    "ee": {
+      "signature": "margin-bottom:5px",
+      "sourceClasses": [
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "para-style-override-10"
+        },
+        {
+          "book": "valmiki_ramayan",
+          "name": "para-style-override-8"
+        }
+      ]
+    },
+    "ef": {
+      "signature": "margin-right:48px;text-align:justify;text-indent:19px",
+      "sourceClasses": [
+        {
+          "book": "valmiki_ramayan",
+          "name": "para-style-override-9"
+        }
+      ]
+    },
+    "eg": {
+      "signature": "margin-right:42px;text-align:justify;text-indent:19px",
+      "sourceClasses": [
+        {
+          "book": "valmiki_ramayan",
+          "name": "para-style-override-10"
+        }
+      ]
+    },
+    "eh": {
+      "signature": "font-family:ChanakyaUni, serif;font-size:1.083em;font-style:normal;font-weight:normal;margin-right:42px;text-align:justify;text-indent:19px",
+      "sourceClasses": [
+        {
+          "book": "valmiki_ramayan",
+          "name": "para-style-override-11"
+        }
+      ]
+    },
+    "ei": {
+      "signature": "text-align:right;text-indent:19px",
+      "sourceClasses": [
+        {
+          "book": "valmiki_ramayan",
+          "name": "para-style-override-12"
+        }
+      ]
+    },
+    "ej": {
+      "signature": "font-family:ChanakyaUni, serif;font-size:1.083em;font-style:normal;font-weight:normal;text-align:justify;text-indent:19px",
+      "sourceClasses": [
+        {
+          "book": "valmiki_ramayan",
+          "name": "para-style-override-13"
+        }
+      ]
+    },
+    "ek": {
+      "signature": "font-family:ChanakyaUni, serif;font-style:normal;font-weight:normal;text-align:right;text-indent:19px",
+      "sourceClasses": [
+        {
+          "book": "valmiki_ramayan",
+          "name": "para-style-override-14"
+        }
+      ]
+    },
+    "el": {
+      "signature": "margin-bottom:6px",
+      "sourceClasses": [
+        {
+          "book": "valmiki_ramayan",
+          "name": "para-style-override-15"
+        }
+      ]
+    },
+    "em": {
+      "signature": "margin-bottom:2px",
+      "sourceClasses": [
+        {
+          "book": "valmiki_ramayan",
+          "name": "para-style-override-16"
+        }
+      ]
+    },
+    "en": {
+      "signature": "text-indent:12px",
+      "sourceClasses": [
+        {
+          "book": "valmiki_ramayan",
+          "name": "para-style-override-17"
+        }
+      ]
+    },
+    "eo": {
+      "signature": "text-align:justify;text-indent:24px",
+      "sourceClasses": [
+        {
+          "book": "valmiki_ramayan",
+          "name": "para-style-override-18"
+        }
+      ]
+    },
+    "ep": {
+      "signature": "font-family:ChanakyaUni, serif;font-size:1.083em;font-style:normal;font-weight:normal;text-align:justify;text-indent:24px",
+      "sourceClasses": [
+        {
+          "book": "valmiki_ramayan",
+          "name": "para-style-override-19"
+        }
+      ]
+    },
+    "eq": {
+      "signature": "font-size:0.714em;font-style:normal;font-weight:normal",
+      "sourceClasses": [
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "char-style-override-2"
+        },
+        {
+          "book": "valmiki_ramayan",
+          "name": "char-style-override-2"
+        }
+      ]
+    },
+    "er": {
+      "signature": "color:#2e74b5",
+      "sourceClasses": [
+        {
+          "book": "valmiki_ramayan",
+          "name": "char-style-override-3"
+        }
+      ]
+    },
+    "es": {
+      "signature": "color:#c40075",
+      "sourceClasses": [
+        {
+          "book": "valmiki_ramayan",
+          "name": "char-style-override-4"
+        }
+      ]
+    },
+    "et": {
+      "signature": "font-size:1.273em",
+      "sourceClasses": [
+        {
+          "book": "valmiki_ramayan",
+          "name": "char-style-override-8"
+        }
+      ]
+    },
+    "eu": {
+      "signature": "font-family:NalandaTim, serif;font-size:0.846em;font-style:normal;font-weight:normal",
+      "sourceClasses": [
+        {
+          "book": "valmiki_ramayan",
+          "name": "char-style-override-9"
+        }
+      ]
+    },
+    "ev": {
+      "signature": "font-size:1.182em",
+      "sourceClasses": [
+        {
+          "book": "valmiki_ramayan",
+          "name": "char-style-override-10"
+        }
+      ]
+    },
+    "ew": {
+      "signature": "font-style:italic;font-weight:normal",
+      "sourceClasses": [
+        {
+          "book": "valmiki_ramayan",
+          "name": "char-style-override-12"
+        }
+      ]
+    },
+    "ex": {
+      "signature": "font-size:1.154em",
+      "sourceClasses": [
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "char-style-override-9"
+        },
+        {
+          "book": "valmiki_ramayan",
+          "name": "char-style-override-15"
+        }
+      ]
+    },
+    "ey": {
+      "signature": "font-family:ChanakyaUni, serif;font-size:1.083em;font-style:normal;font-weight:normal",
+      "sourceClasses": [
+        {
+          "book": "valmiki_ramayan",
+          "name": "char-style-override-17"
+        }
+      ]
+    },
+    "ez": {
+      "signature": "font-family:ChanakyaUni, serif;font-size:4.333em;font-style:normal;font-weight:normal",
+      "sourceClasses": [
+        {
+          "book": "valmiki_ramayan",
+          "name": "char-style-override-19"
+        }
+      ]
+    },
+    "fa": {
+      "signature": "font-size:1.1em",
+      "sourceClasses": [
+        {
+          "book": "valmiki_ramayan",
+          "name": "char-style-override-20"
+        }
+      ]
+    },
+    "fb": {
+      "signature": "color:#000000;font-size:0.867em;font-style:normal;font-weight:bold",
+      "sourceClasses": [
+        {
+          "book": "valmiki_ramayan",
+          "name": "char-style-override-21"
+        }
+      ]
+    },
+    "fc": {
+      "signature": "font-size:0.923em;font-style:normal;font-weight:bold",
+      "sourceClasses": [
+        {
+          "book": "valmiki_ramayan",
+          "name": "char-style-override-23"
+        }
+      ]
+    },
+    "fd": {
+      "signature": "font-size:0.933em;font-style:normal;font-weight:bold",
+      "sourceClasses": [
+        {
+          "book": "valmiki_ramayan",
+          "name": "char-style-override-24"
+        }
+      ]
+    },
+    "fe": {
+      "signature": "font-size:0.846em;font-style:normal;font-weight:bold",
+      "sourceClasses": [
+        {
+          "book": "valmiki_ramayan",
+          "name": "char-style-override-25"
+        }
+      ]
+    },
+    "ff": {
+      "signature": "font-family:ChanakyaUni, serif;font-size:1.167em;font-style:normal;font-weight:normal",
+      "sourceClasses": [
+        {
+          "book": "valmiki_ramayan",
+          "name": "char-style-override-26"
+        }
+      ]
+    },
+    "fg": {
+      "signature": "font-style:italic;font-weight:bold",
+      "sourceClasses": [
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "char-style-override-16"
+        },
+        {
+          "book": "valmiki_ramayan",
+          "name": "char-style-override-27"
+        }
+      ]
+    },
+    "fh": {
+      "signature": "font-family:ChanakyaUni, serif;font-size:1.077em;font-style:normal;font-weight:normal",
+      "sourceClasses": [
+        {
+          "book": "valmiki_ramayan",
+          "name": "char-style-override-28"
+        }
+      ]
+    },
+    "fi": {
+      "signature": "width:4%",
+      "sourceClasses": [
+        {
+          "book": "valmiki_ramayan",
+          "name": "frame-1"
+        }
+      ]
+    },
+    "fj": {
+      "signature": "width:2%",
+      "sourceClasses": [
+        {
+          "book": "valmiki_ramayan",
+          "name": "frame-2"
+        }
+      ]
+    },
+    "fk": {
+      "signature": "vertical-align:middle",
+      "sourceClasses": [
+        {
+          "book": "_system",
+          "name": "inline-svg-glyph"
+        }
+      ]
+    },
+    "fl": {
+      "signature": "color:#005599;font-family:ChanakyaUni, serif;font-size:1.5em;font-style:normal;font-weight:bold;line-height:1.2;text-align:center;text-indent:0px",
+      "sourceClasses": [
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "Sub-Head-2"
+        }
+      ]
+    },
+    "fm": {
+      "signature": "color:#231f20;font-family:ChanakyaUni, serif;font-size:1.083em;font-style:normal;font-weight:normal;line-height:1.108;text-align:right;text-indent:18px",
+      "sourceClasses": [
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "TXT-Right"
+        }
+      ]
+    },
+    "fn": {
+      "signature": "color:#c40075;font-family:ChanakyaUni, serif;font-size:2.083em;font-style:normal;font-weight:bold;line-height:1.2;margin-bottom:6px;text-align:center;text-indent:0px",
+      "sourceClasses": [
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "Main-Heading---Book-Name-etc-"
+        }
+      ]
+    },
+    "fo": {
+      "signature": "color:#231f20;font-size:1.167em",
+      "sourceClasses": [
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "para-style-override-3"
+        }
+      ]
+    },
+    "fp": {
+      "signature": "font-size:1.167em",
+      "sourceClasses": [
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "para-style-override-4"
+        }
+      ]
+    },
+    "fq": {
+      "signature": "font-family:ChanakyaUni, serif;font-size:1.25em;font-style:normal;font-weight:normal;text-align:justify;text-indent:18px",
+      "sourceClasses": [
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "para-style-override-5"
+        }
+      ]
+    },
+    "fr": {
+      "signature": "margin-left:36px;margin-right:39px",
+      "sourceClasses": [
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "para-style-override-8"
+        }
+      ]
+    },
+    "fs": {
+      "signature": "font-family:ChanakyaUni, serif;font-size:0.917em;font-style:normal;font-weight:bold;margin-left:18px;text-align:justify",
+      "sourceClasses": [
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "para-style-override-9"
+        }
+      ]
+    },
+    "ft": {
+      "signature": "font-size:1.083em",
+      "sourceClasses": [
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "para-style-override-11"
+        }
+      ]
+    },
+    "fu": {
+      "signature": "color:#c45911;font-size:1.167em",
+      "sourceClasses": [
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "para-style-override-12"
+        }
+      ]
+    },
+    "fv": {
+      "signature": "text-indent:0px",
+      "sourceClasses": [
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "para-style-override-13"
+        }
+      ]
+    },
+    "fw": {
+      "signature": "font-family:ChanakyaUni, serif;font-size:0.917em;font-style:normal;font-weight:normal;text-align:justify;text-indent:18px",
+      "sourceClasses": [
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "para-style-override-14"
+        }
+      ]
+    },
+    "fx": {
+      "signature": "font-family:ChanakyaUni, serif;font-size:1.25em;font-style:normal;font-weight:normal;text-align:justify",
+      "sourceClasses": [
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "para-style-override-15"
+        }
+      ]
+    },
+    "fy": {
+      "signature": "font-family:ChanakyaUni, serif;font-size:1.25em;font-style:normal;font-weight:bold;text-align:justify",
+      "sourceClasses": [
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "para-style-override-16"
+        }
+      ]
+    },
+    "fz": {
+      "signature": "font-size:1.167em;font-style:normal;font-weight:bold",
+      "sourceClasses": [
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "para-style-override-17"
+        }
+      ]
+    },
+    "ga": {
+      "signature": "font-family:ChanakyaUni, serif;font-size:0.917em;font-style:normal;font-weight:normal;text-align:right;text-indent:18px",
+      "sourceClasses": [
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "para-style-override-18"
+        }
+      ]
+    },
+    "gb": {
+      "signature": "margin-right:39px",
+      "sourceClasses": [
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "para-style-override-20"
+        }
+      ]
+    },
+    "gc": {
+      "signature": "margin-left:24px;margin-right:24px",
+      "sourceClasses": [
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "para-style-override-21"
+        }
+      ]
+    },
+    "gd": {
+      "signature": "font-family:ChanakyaUni, serif;font-size:1.25em;font-style:normal;font-weight:bold;text-align:justify;text-indent:18px",
+      "sourceClasses": [
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "para-style-override-22"
+        }
+      ]
+    },
+    "ge": {
+      "signature": "font-family:ChanakyaUni, serif;font-size:0.917em;font-style:normal;font-weight:normal;margin-left:60px;margin-right:36px;text-align:justify",
+      "sourceClasses": [
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "para-style-override-23"
+        }
+      ]
+    },
+    "gf": {
+      "signature": "font-size:0.722em",
+      "sourceClasses": [
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "char-style-override-3"
+        }
+      ]
+    },
+    "gg": {
+      "signature": "font-size:0.75em",
+      "sourceClasses": [
+        {
+          "book": "nityakarma_prayog",
+          "name": "char-style-override-9"
+        },
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "char-style-override-5"
+        }
+      ]
+    },
+    "gh": {
+      "signature": "font-size:0.938em",
+      "sourceClasses": [
+        {
+          "book": "nityakarma_prayog",
+          "name": "char-style-override-11"
+        },
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "char-style-override-7"
+        }
+      ]
+    },
+    "gi": {
+      "signature": "font-size:0.688em",
+      "sourceClasses": [
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "char-style-override-12"
+        }
+      ]
+    },
+    "gj": {
+      "signature": "color:#2e3192;font-size:1.538em;font-style:normal;font-weight:bold",
+      "sourceClasses": [
+        {
+          "book": "nityakarma_prayog",
+          "name": "char-style-override-18"
+        },
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "char-style-override-14"
+        }
+      ]
+    },
+    "gk": {
+      "signature": "color:#ffffff",
+      "sourceClasses": [
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "char-style-override-15"
+        }
+      ]
+    },
+    "gl": {
+      "signature": "color:#231f20;font-size:1.231em",
+      "sourceClasses": [
+        {
+          "book": "nityakarma_prayog",
+          "name": "char-style-override-7"
+        },
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "char-style-override-17"
+        }
+      ]
+    },
+    "gm": {
+      "signature": "color:#760000;font-size:0.813em;font-style:normal;font-weight:bold",
+      "sourceClasses": [
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "char-style-override-18"
+        }
+      ]
+    },
+    "gn": {
+      "signature": "font-size:0.938em;font-style:normal;font-weight:bold",
+      "sourceClasses": [
+        {
+          "book": "nityakarma_prayog",
+          "name": "char-style-override-19"
+        },
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "char-style-override-19"
+        }
+      ]
+    },
+    "go": {
+      "signature": "font-size:0.846em;font-style:normal;font-weight:normal",
+      "sourceClasses": [
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "char-style-override-20"
+        }
+      ]
+    },
+    "gp": {
+      "signature": "font-size:0.846em",
+      "sourceClasses": [
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "char-style-override-21"
+        }
+      ]
+    },
+    "gq": {
+      "signature": "font-size:0.583em;text-transform:uppercase;vertical-align:super",
+      "sourceClasses": [
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "char-style-override-22"
+        }
+      ]
+    },
+    "gr": {
+      "signature": "font-size:0.9em",
+      "sourceClasses": [
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "char-style-override-24"
+        }
+      ]
+    },
+    "gs": {
+      "signature": "font-size:0.547em;vertical-align:super",
+      "sourceClasses": [
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "char-style-override-25"
+        }
+      ]
+    },
+    "gt": {
+      "signature": "color:#231f20;font-size:0.846em;font-style:normal;font-weight:normal",
+      "sourceClasses": [
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "char-style-override-28"
+        }
+      ]
+    },
+    "gu": {
+      "signature": "font-size:0.944em",
+      "sourceClasses": [
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "char-style-override-29"
+        }
+      ]
+    },
+    "gv": {
+      "signature": "color:#a51512",
+      "sourceClasses": [
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "char-style-override-30"
+        }
+      ]
+    },
+    "gw": {
+      "signature": "font-style:normal;font-weight:bold;text-transform:uppercase",
+      "sourceClasses": [
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "char-style-override-31"
+        }
+      ]
+    },
+    "gx": {
+      "signature": "color:#a51512;font-size:1.231em;font-style:normal;font-weight:bold",
+      "sourceClasses": [
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "char-style-override-32"
+        }
+      ]
+    },
+    "gy": {
+      "signature": "color:#ffffff;font-style:normal;font-weight:bold",
+      "sourceClasses": [
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "char-style-override-34"
+        }
+      ]
+    },
+    "gz": {
+      "signature": "font-size:0.75em;font-style:normal;font-weight:normal",
+      "sourceClasses": [
+        {
+          "book": "nityakarma_prayog",
+          "name": "char-style-override-13"
+        },
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "char-style-override-35"
+        }
+      ]
+    },
+    "ha": {
+      "signature": "color:#ffffff;font-size:0.875em;font-style:normal;font-weight:bold",
+      "sourceClasses": [
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "char-style-override-36"
+        }
+      ]
+    },
+    "hb": {
+      "signature": "color:#c45911;font-size:0.875em",
+      "sourceClasses": [
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "char-style-override-38"
+        }
+      ]
+    },
+    "hc": {
+      "signature": "font-family:ChanakyaUni, serif;font-size:1.25em;font-style:normal;font-weight:bold",
+      "sourceClasses": [
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "char-style-override-39"
+        }
+      ]
+    },
+    "hd": {
+      "signature": "font-family:ChanakyaUni, serif;font-size:1.25em;font-style:normal;font-weight:normal",
+      "sourceClasses": [
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "char-style-override-40"
+        }
+      ]
+    },
+    "he": {
+      "signature": "color:#760000;font-size:0.65em",
+      "sourceClasses": [
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "char-style-override-41"
+        }
+      ]
+    },
+    "hf": {
+      "signature": "color:#2e3192;font-size:1.25em",
+      "sourceClasses": [
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "char-style-override-42"
+        }
+      ]
+    },
+    "hg": {
+      "signature": "font-size:1.071em",
+      "sourceClasses": [
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "char-style-override-43"
+        }
+      ]
+    },
+    "hh": {
+      "signature": "font-size:1.182em;font-style:normal;font-weight:bold",
+      "sourceClasses": [
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "char-style-override-45"
+        }
+      ]
+    },
+    "hi": {
+      "signature": "font-size:1.364em;font-style:normal;font-weight:bold",
+      "sourceClasses": [
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "char-style-override-46"
+        }
+      ]
+    },
+    "hj": {
+      "signature": "color:#c45911;font-size:0.875em;font-style:normal;font-weight:normal",
+      "sourceClasses": [
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "char-style-override-47"
+        }
+      ]
+    },
+    "hk": {
+      "signature": "width:99%",
+      "sourceClasses": [
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "frame-1"
+        }
+      ]
+    },
+    "hl": {
+      "signature": "width:94%",
+      "sourceClasses": [
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "frame-3"
+        }
+      ]
+    },
+    "hm": {
+      "signature": "width:71%",
+      "sourceClasses": [
+        {
+          "book": "nityakarma_pujaprakash",
+          "name": "frame-4"
+        }
+      ]
+    },
+    "hn": {
+      "signature": "color:#231f20;font-family:Times, sans-serif;font-size:1em;font-style:normal;font-weight:normal;line-height:1.2;text-align:left;text-indent:0px",
+      "sourceClasses": [
+        {
+          "book": "nityakarma_prayog",
+          "name": "No-Paragraph-Style"
+        }
+      ]
+    },
+    "ho": {
+      "signature": "color:#1066b1;font-family:ChanakyaUni, serif;font-size:2.5em;font-style:normal;font-weight:bold;line-height:1.2;margin-bottom:6px;text-align:center;text-indent:0px",
+      "sourceClasses": [
+        {
+          "book": "nityakarma_prayog",
+          "name": "Title-Page---Book-Name"
+        }
+      ]
+    },
+    "hp": {
+      "signature": "color:#c45911;font-family:ChanakyaUni, serif;font-size:1.083em;font-style:normal;font-weight:normal;line-height:1.2;text-align:center;text-indent:0px",
+      "sourceClasses": [
+        {
+          "book": "nityakarma_prayog",
+          "name": "Chapter-End-Text"
+        }
+      ]
+    },
+    "hq": {
+      "signature": "color:#1066b1;font-family:ChanakyaUni, serif;font-size:1.833em;font-style:normal;font-weight:bold;line-height:1.2;text-align:center;text-indent:0px",
+      "sourceClasses": [
+        {
+          "book": "nityakarma_prayog",
+          "name": "Heading"
+        }
+      ]
+    },
+    "hr": {
+      "signature": "color:#c45911;font-family:ChanakyaUni, serif;font-size:1.667em;font-style:normal;font-weight:bold;line-height:1.2;margin-bottom:7px;text-align:center;text-indent:0px",
+      "sourceClasses": [
+        {
+          "book": "nityakarma_prayog",
+          "name": "Sub-Heading"
+        }
+      ]
+    },
+    "hs": {
+      "signature": "color:#ff0000;font-family:ChanakyaUni, serif;font-size:1.167em;font-style:normal;font-weight:normal;line-height:1.2;text-align:center;text-indent:0px",
+      "sourceClasses": [
+        {
+          "book": "nityakarma_prayog",
+          "name": "First-End-Page-text"
+        }
+      ]
+    },
+    "ht": {
+      "signature": "color:#ec008c;font-family:ChanakyaUni, serif;font-size:1.667em;font-style:normal;font-weight:bold;line-height:1.2;text-align:center;text-indent:0px",
+      "sourceClasses": [
+        {
+          "book": "nityakarma_prayog",
+          "name": "Title-page---sub-title"
+        }
+      ]
+    },
+    "hu": {
+      "signature": "text-align:right;text-indent:0px",
+      "sourceClasses": [
+        {
+          "book": "nityakarma_prayog",
+          "name": "para-style-override-2"
+        }
+      ]
+    },
+    "hv": {
+      "signature": "font-style:normal;font-weight:bold;text-align:right;text-indent:0px",
+      "sourceClasses": [
+        {
+          "book": "nityakarma_prayog",
+          "name": "para-style-override-3"
+        }
+      ]
+    },
+    "hw": {
+      "signature": "break-after:page;text-align:right;text-indent:0px",
+      "sourceClasses": [
+        {
+          "book": "nityakarma_prayog",
+          "name": "para-style-override-4"
+        }
+      ]
+    },
+    "hx": {
+      "signature": "break-after:page;text-align:right",
+      "sourceClasses": [
+        {
+          "book": "nityakarma_prayog",
+          "name": "para-style-override-7"
+        }
+      ]
+    },
+    "hy": {
+      "signature": "color:#c45911;font-size:0.714em",
+      "sourceClasses": [
+        {
+          "book": "nityakarma_prayog",
+          "name": "char-style-override-2"
+        }
+      ]
+    },
+    "hz": {
+      "signature": "font-size:0.923em",
+      "sourceClasses": [
+        {
+          "book": "nityakarma_prayog",
+          "name": "char-style-override-4"
+        }
+      ]
+    },
+    "ia": {
+      "signature": "color:#231f20;font-size:0.923em;font-style:normal;font-weight:normal",
+      "sourceClasses": [
+        {
+          "book": "nityakarma_prayog",
+          "name": "char-style-override-8"
+        }
+      ]
+    },
+    "ib": {
+      "signature": "font-size:0.75em;font-style:normal;font-weight:bold",
+      "sourceClasses": [
+        {
+          "book": "nityakarma_prayog",
+          "name": "char-style-override-10"
+        }
+      ]
+    },
+    "ic": {
+      "signature": "color:#231f20;font-size:1.692em;font-style:normal;font-weight:bold",
+      "sourceClasses": [
+        {
+          "book": "nityakarma_prayog",
+          "name": "char-style-override-14"
+        }
+      ]
+    },
+    "id": {
+      "signature": "color:#231f20;font-size:1.154em;font-style:normal;font-weight:normal",
+      "sourceClasses": [
+        {
+          "book": "nityakarma_prayog",
+          "name": "char-style-override-15"
+        }
+      ]
+    },
+    "ie": {
+      "signature": "font-size:0.813em;font-style:normal;font-weight:bold",
+      "sourceClasses": [
+        {
+          "book": "nityakarma_prayog",
+          "name": "char-style-override-20"
+        }
+      ]
+    },
+    "if": {
+      "signature": "width:60%",
+      "sourceClasses": [
+        {
+          "book": "nityakarma_prayog",
+          "name": "frame-1"
+        }
+      ]
+    },
+    "ig": {
+      "signature": "width:35%",
+      "sourceClasses": [
+        {
+          "book": "nityakarma_prayog",
+          "name": "frame-2"
+        }
+      ]
+    },
+    "ih": {
+      "signature": "width:70%",
+      "sourceClasses": [
+        {
+          "book": "nityakarma_prayog",
+          "name": "frame-3"
+        }
+      ]
+    }
+  }
+}
