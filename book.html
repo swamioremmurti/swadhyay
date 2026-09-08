@@ -148,11 +148,11 @@
     .chapter-label{font-size:.76rem;letter-spacing:.08em;color:var(--text3);text-align:center;margin-bottom:.6rem}
 
     /* ── Reading typography ── */
-    #display{font-size:1.18rem;color:var(--text);line-height:var(--content-lh,2);}
+    #display{font-size:1.18rem;color:var(--text);line-height:2;}
     #display p{margin-bottom:.9rem}
-    #display .Heading{font-size:1.3em;font-weight:700;color:var(--text);text-align:center;margin:1.7rem 0 .9rem;padding-bottom:.5rem;border-bottom:1px solid var(--border)}
+    #display .Heading{font-size:1.833em;font-weight:700;color:#1066b1;line-height:1.2;text-align:center;margin:1.7rem 0 .9rem}
     #display .Heading:first-child{margin-top:0}
-    #display .Sub-Heading,#display .Sub-Heading-2{font-size:1.05em;font-weight:600;color:var(--accent);text-align:center;margin:1.2rem 0 .5rem}
+    #display .Sub-Heading,#display .Sub-Heading-2{font-size:1.667em;font-weight:700;color:#2e3192;line-height:1.2;text-align:center;margin:1.2rem 0 .5rem}
     #display [class*="Shlok"],#display [class*="SHLOK"],#display [class*="shlok"]{color:var(--accent)!important;text-align:center;line-height:2.15;font-style:italic;margin:.5rem 0}
     #display .shlok-layout{text-align:center;line-height:2.15;font-style:italic;margin:.5rem 0}
     #display .Gadya{color:var(--text);text-align:justify}
@@ -257,73 +257,36 @@
     .bm-del{background:none;border:none;cursor:pointer;color:var(--text3);padding:.1rem .3rem;flex-shrink:0}
     .bm-del:hover{color:var(--danger)}
 
-    /* ── Brightness dimmer (a translucent overlay over just the
-       reading area — there's no real Web API to dial down actual
-       screen brightness, so readers fake it this way) ── */
-    #dim-overlay{position:fixed;top:var(--header-h);left:0;right:0;bottom:var(--footer-h);background:#000;opacity:0;pointer-events:none;z-index:450;transition:opacity .15s}
-
-    /* ── Floating "Aa" settings button ── */
-    #settings-fab{
-        position:fixed;right:1.1rem;bottom:calc(var(--footer-h) + 1rem);z-index:490;
-        width:3rem;height:3rem;border-radius:50%;
-        background:var(--bg);border:1px solid var(--border);cursor:pointer;
-        display:flex;align-items:center;justify-content:center;
-        font-size:.95rem;font-weight:700;color:var(--text2);
-        box-shadow:0 6px 18px rgba(0,0,0,.16);
-        transition:color .15s,border-color .15s,transform .15s;
-    }
-    #settings-fab:hover{color:var(--accent);border-color:var(--accent);transform:scale(1.06)}
-
-    /* ── Aa display-settings panel — a floating card on mobile
-       (anchored above the FAB), a full-height docked bar on
-       desktop (slides in from the right edge) ── */
+    /* ── Aa display-settings panel ── */
     #settings-panel{
-        position:fixed;z-index:700;background:var(--bg);
-        display:flex;flex-direction:column;gap:1.1rem;
-        overflow-y:auto;
+        position:fixed;top:calc(var(--header-h) + .4rem);right:.6rem;z-index:700;
+        background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);
+        padding:1rem 1.1rem;min-width:230px;box-shadow:0 8px 28px rgba(0,0,0,.15);
+        display:none;flex-direction:column;gap:.85rem;
     }
-    .settings-head{display:flex;align-items:center;justify-content:space-between}
-    .settings-title{font-size:.95rem;font-weight:700;color:var(--text)}
-    .settings-row{display:grid;grid-template-columns:5.2rem 1fr;align-items:center;gap:.75rem}
-    .settings-row.settings-row-col{align-items:start}
-    .settings-lbl{font-size:.82rem;color:var(--text2)}
-    .settings-ctl{display:flex;align-items:center;gap:.5rem;color:var(--text3)}
-    .settings-ctl svg{width:1rem;height:1rem;flex-shrink:0}
+    #settings-panel.open{display:flex}
+    .sp-head{font-size:.7rem;color:var(--text3);letter-spacing:.08em;text-transform:uppercase}
+    .sp-font-row{display:flex;align-items:center;gap:.5rem}
     .sp-font-btn{flex-shrink:0;width:1.9rem;height:1.9rem;background:none;border:1px solid var(--border);color:var(--text2);border-radius:8px;cursor:pointer;font-size:.85rem}
     .sp-font-btn:hover{border-color:var(--accent);color:var(--accent)}
-    .settings-ctl input[type="range"]{flex:1;accent-color:var(--accent);cursor:pointer;height:4px;min-width:0}
-    .sp-font-label{font-size:.76rem;color:var(--text3);margin:-.7rem 0 0 5.95rem}
-    .sp-mode-row{display:flex;gap:.5rem}
+    #font-range{flex:1;accent-color:var(--accent);cursor:pointer;height:4px}
+    .sp-font-label{font-size:.76rem;color:var(--text3);text-align:center;min-width:2.6em;flex-shrink:0}
+    .sp-mode-row{display:flex;gap:.6rem}
     .sp-mode-btn{flex:1;display:flex;flex-direction:column;align-items:center;gap:.3rem;background:none;border:none;cursor:pointer}
     .sp-mode-swatch{width:100%;height:1.9rem;border-radius:7px;border:1px solid var(--border)}
     .sp-mode-btn.active .sp-mode-swatch{border-color:var(--accent);border-width:2px}
-    .sp-mode-lbl{font-size:.7rem;color:var(--text3)}
+    .sp-mode-lbl{font-size:.72rem;color:var(--text3)}
     .sp-mode-btn.active .sp-mode-lbl{color:var(--accent)}
 
-    /* Mobile: full-width bottom sheet, docked to the bottom edge */
-    @media(max-width:768px){
-        #settings-panel{
-            left:0;right:0;bottom:0;top:auto;width:100%;
-            border-top:1px solid var(--border);border-radius:18px 18px 0 0;
-            padding:1.1rem 1.2rem calc(1.3rem + env(safe-area-inset-bottom,0px));
-            box-shadow:0 -10px 32px rgba(0,0,0,.18);
-            max-height:75vh;
-            transform:translateY(100%);
-            transition:transform .25s cubic-bezier(.4,0,.2,1);
-        }
-        #settings-panel.open{transform:translateY(0)}
-    }
-    /* Desktop: full-height bar docked to the right edge */
-    @media(min-width:769px){
-        .rd-content-wrap{padding-top:3rem}
-        #settings-panel{
-            top:0;right:0;bottom:0;width:300px;
-            border-left:1px solid var(--border);
-            padding:1.4rem 1.4rem 2rem;box-shadow:-10px 0 28px rgba(0,0,0,.1);
-            transform:translateX(100%);transition:transform .25s cubic-bezier(.4,0,.2,1);
-        }
-        #settings-panel.open{transform:translateX(0)}
-    }
+    @media(min-width:769px){.rd-content-wrap{padding-top:3rem}}
+    </style>
+    <link rel="stylesheet" href="books/epub.css">
+    <style>
+    /* epub.css carries the short class-codes (a, b, c…) that processed
+       books use for their per-book styling, but its own body/li resets
+       are meant for a standalone book page — not this reader shell —
+       so restate the shell's layout after it loads. */
+    body{margin:0;padding:0;max-width:none;font-family:var(--font)}
     </style>
 </head>
 <body>
@@ -375,60 +338,28 @@
     <button class="icon-btn" id="search-btn" aria-label="खोजें">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.3-4.3" stroke-linecap="round"/></svg>
     </button>
+    <button class="icon-btn" id="settings-btn" aria-label="प्रदर्शन सेटिंग" style="font-size:.85rem;font-weight:700">Aa</button>
 </header>
 
-<div id="dim-overlay"></div>
-
-<button id="settings-fab" aria-label="प्रदर्शन सेटिंग">Aa</button>
 <div id="settings-panel">
-    <div class="settings-head">
-        <span class="settings-title">प्रदर्शन</span>
-        <button class="icon-btn" id="settings-close" aria-label="बंद करें">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    <div class="sp-head">अक्षर-आकार</div>
+    <div class="sp-font-row">
+        <button class="sp-font-btn" id="font-down">A−</button>
+        <input type="range" id="font-range" min="0.8" max="1.6" step="0.05" value="1">
+        <button class="sp-font-btn" id="font-up">A+</button>
+    </div>
+    <div class="sp-font-label" id="font-size-label">100%</div>
+    <div class="sp-head">थीम</div>
+    <div class="sp-mode-row">
+        <button class="sp-mode-btn active" id="mode-white" title="White">
+            <span class="sp-mode-swatch" style="background:#ffffff"></span><span class="sp-mode-lbl">White</span>
         </button>
-    </div>
-
-    <div class="settings-row">
-        <span class="settings-lbl">आकार</span>
-        <div class="settings-ctl">
-            <button class="sp-font-btn" id="font-down">A−</button>
-            <input type="range" id="font-range" min="1.4" max="2.8" step="0.05" value="1.4">
-            <button class="sp-font-btn" id="font-up">A+</button>
-        </div>
-    </div>
-    <div class="sp-font-label" id="font-size-label">140%</div>
-
-    <div class="settings-row">
-        <span class="settings-lbl">पंक्ति दूरी</span>
-        <div class="settings-ctl">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4 8h16M4 12h16M4 16h16"/></svg>
-            <input type="range" id="line-range" min="1.5" max="2.6" step="0.1" value="1.5">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4 5h16M4 12h16M4 19h16"/></svg>
-        </div>
-    </div>
-
-    <div class="settings-row">
-        <span class="settings-lbl">चमक</span>
-        <div class="settings-ctl">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="3"/></svg>
-            <input type="range" id="brightness-range" min="0.4" max="1" step="0.05" value="1">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M2 12h2M20 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/></svg>
-        </div>
-    </div>
-
-    <div class="settings-row settings-row-col">
-        <span class="settings-lbl">थीम</span>
-        <div class="sp-mode-row">
-            <button class="sp-mode-btn active" id="mode-white" title="White">
-                <span class="sp-mode-swatch" style="background:#ffffff"></span><span class="sp-mode-lbl">White</span>
-            </button>
-            <button class="sp-mode-btn" id="mode-sepia" title="Sepia">
-                <span class="sp-mode-swatch" style="background:#f4ecd8"></span><span class="sp-mode-lbl">Sepia</span>
-            </button>
-            <button class="sp-mode-btn" id="mode-dark" title="Dark">
-                <span class="sp-mode-swatch" style="background:#141413"></span><span class="sp-mode-lbl">Dark</span>
-            </button>
-        </div>
+        <button class="sp-mode-btn" id="mode-sepia" title="Sepia">
+            <span class="sp-mode-swatch" style="background:#f4ecd8"></span><span class="sp-mode-lbl">Sepia</span>
+        </button>
+        <button class="sp-mode-btn" id="mode-dark" title="Dark">
+            <span class="sp-mode-swatch" style="background:#141413"></span><span class="sp-mode-lbl">Dark</span>
+        </button>
     </div>
 </div>
 
@@ -516,8 +447,8 @@ function setBreadcrumb(book,chapter,sub){
    header/TOC/bookmarks/footer/content all resize
    together as one book.
 ═══════════════════════════════════════════════ */
-const FS_MIN=1.4, FS_MAX=2.8, FS_STEP=0.05, FS_BASE=16;
-let fontScale=parseFloat(localStorage.getItem("sv_fontScale"))||FS_MIN;
+const FS_MIN=0.8, FS_MAX=1.6, FS_STEP=0.05, FS_BASE=16;
+let fontScale=parseFloat(localStorage.getItem("sv_fontScale"))||1;
 function applyFontScale(){
     fontScale=Math.min(FS_MAX,Math.max(FS_MIN,+fontScale.toFixed(2)));
     document.documentElement.style.fontSize=(FS_BASE*fontScale)+"px";
@@ -528,28 +459,6 @@ function applyFontScale(){
 function setFontScale(v){fontScale=+v;applyFontScale()}
 function nudgeFontScale(d){fontScale=Math.min(FS_MAX,Math.max(FS_MIN,+(fontScale+d).toFixed(2)));applyFontScale()}
 applyFontScale();
-
-const LH_MIN=1.5, LH_MAX=2.6;
-let lineHeight=parseFloat(localStorage.getItem("sv_lineHeight"))||LH_MIN;
-function applyLineHeight(){
-    lineHeight=Math.min(LH_MAX,Math.max(LH_MIN,+lineHeight.toFixed(2)));
-    document.documentElement.style.setProperty("--content-lh",lineHeight);
-    document.getElementById("line-range").value=lineHeight;
-    localStorage.setItem("sv_lineHeight",lineHeight);
-}
-function setLineHeight(v){lineHeight=+v;applyLineHeight()}
-applyLineHeight();
-
-const BR_MIN=0.4, BR_MAX=1;
-let brightness=parseFloat(localStorage.getItem("sv_brightness"))||1;
-function applyBrightness(){
-    brightness=Math.min(BR_MAX,Math.max(BR_MIN,+brightness.toFixed(2)));
-    document.getElementById("dim-overlay").style.opacity=(1-brightness)*0.75;
-    document.getElementById("brightness-range").value=brightness;
-    localStorage.setItem("sv_brightness",brightness);
-}
-function setBrightness(v){brightness=+v;applyBrightness()}
-applyBrightness();
 
 const READ_MODES=["white","sepia","dark"];
 function applyReadMode(m){
@@ -964,8 +873,18 @@ document.addEventListener("DOMContentLoaded",function(){
         setTimeout(()=>document.getElementById("loader-overlay").classList.add("hidden"),300);
         if(xhr.status!==200)return;
         const tmp=document.createElement("div");tmp.innerHTML=xhr.responseText;
+        /* per-book image folders (books/<id>_files/…) are referenced with a
+           bare relative path in the source HTML; since this content is
+           injected into book.html (served from the site root) rather than
+           navigated to directly, that path must be re-rooted at books/ or
+           the images 404. The older shared image/ pool is left untouched —
+           it already resolves correctly from the root. */
+        tmp.querySelectorAll("img").forEach(img=>{
+            const src=img.getAttribute("src")||"";
+            if(src.startsWith(bookFileParam+"_files/"))img.setAttribute("src","books/"+src);
+        });
         const contentDiv=tmp.querySelector("#content");if(!contentDiv)return;
-        const titleEl=contentDiv.querySelector("p.Title-Page---Book-Name-Hindi,p.Title-Page---Book-Name,p.Title");
+        const titleEl=contentDiv.querySelector("p.Title-Page---Book-Name-Hindi,p.Title");
         bookTitle=titleEl?titleEl.textContent.trim():bookFileParam;
         document.title=`${bookTitle} — स्वाध्याय`;
         document.getElementById("hbc-book").textContent=bookTitle;
@@ -1005,27 +924,18 @@ document.addEventListener("DOMContentLoaded",function(){
     document.getElementById("read-btn").addEventListener("click",speakContent);
 
     const settingsPanel=document.getElementById("settings-panel");
-    const settingsFab=document.getElementById("settings-fab");
-    settingsFab.addEventListener("click",e=>{
+    document.getElementById("settings-btn").addEventListener("click",e=>{
         e.stopPropagation();
         settingsPanel.classList.toggle("open");
     });
-    document.getElementById("settings-close").addEventListener("click",()=>settingsPanel.classList.remove("open"));
-    /* On mobile the panel is a small floating card, so tapping anywhere
-       else should dismiss it like any popover. On desktop it's a full-
-       height docked bar meant to stay open while you read and adjust
-       settings, so it only closes via its own close button or the FAB. */
     document.addEventListener("click",e=>{
-        if(window.innerWidth>=769)return;
-        if(!settingsPanel.contains(e.target)&&e.target!==settingsFab)
+        if(!settingsPanel.contains(e.target)&&e.target.id!=="settings-btn")
             settingsPanel.classList.remove("open");
     });
 
     document.getElementById("font-up").addEventListener("click",()=>nudgeFontScale(FS_STEP));
     document.getElementById("font-down").addEventListener("click",()=>nudgeFontScale(-FS_STEP));
     document.getElementById("font-range").addEventListener("input",e=>setFontScale(e.target.value));
-    document.getElementById("line-range").addEventListener("input",e=>setLineHeight(e.target.value));
-    document.getElementById("brightness-range").addEventListener("input",e=>setBrightness(e.target.value));
 
     READ_MODES.forEach(m=>{
         document.getElementById("mode-"+m).addEventListener("click",()=>applyReadMode(m));

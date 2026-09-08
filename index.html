@@ -521,6 +521,7 @@
             .cat-card[data-cat="gita"] { --cat-accent: #00796b; }
             .cat-card[data-cat="vedant"] { --cat-accent: #5e35b1; }
             .cat-card[data-cat="stotra"] { --cat-accent: #e09a00; }
+            .cat-card[data-cat="satsang_shiksha"] { --cat-accent: #6d4c41; }
             .cat-card::before {
                 content: "";
                 position: absolute;
@@ -1310,7 +1311,7 @@
 ════════════════════════════════════ -->
         <div id="library" class="wrap section">
             <div class="sec-head">
-                <div class="library-kicker"><i class="fas fa-layer-group"></i> ८ शास्त्र-संग्रह</div>
+                <div class="library-kicker"><i class="fas fa-layer-group"></i> ९ शास्त्र-संग्रह</div>
                 <h2>📚 शास्त्र-भण्डार</h2>
                 <p>अपनी रुचि का संग्रह चुनें और उपलब्ध ग्रंथों को खोलें</p>
                 <div class="rangoli-div"><span>✦ ✦ ✦</span></div>
@@ -1360,7 +1361,7 @@
                         <h3>इतिहास</h3>
                         <p>रामायण · अध्यात्मरामायण · महाभारत</p>
                     </div>
-                    <span class="cat-count">४ ग्रंथ</span>
+                    <span class="cat-count">९ ग्रंथ</span>
                     <div class="cat-action"><span class="cat-action-default">संग्रह खोलें</span><span class="cat-action-open">संग्रह खुला है</span><i class="fas fa-arrow-right"></i></div>
                 </div>
                 <div class="cat-card" data-cat="gita" role="button" tabindex="0" aria-expanded="false">
@@ -1369,7 +1370,7 @@
                         <h3>गीता संहिता</h3>
                         <p>भगवद्गीता एवं अन्य गीता</p>
                     </div>
-                    <span class="cat-count">२७+ गीता</span>
+                    <span class="cat-count">२८+ गीता</span>
                     <div class="cat-action"><span class="cat-action-default">संग्रह खोलें</span><span class="cat-action-open">संग्रह खुला है</span><i class="fas fa-arrow-right"></i></div>
                 </div>
                 <div class="cat-card" data-cat="vedant" role="button" tabindex="0" aria-expanded="false">
@@ -1378,16 +1379,25 @@
                         <h3>वेदान्त</h3>
                         <p>ब्रह्मसूत्र · शंकरभाष्य</p>
                     </div>
-                    <span class="cat-count">५+ ग्रंथ</span>
+                    <span class="cat-count">६+ ग्रंथ</span>
                     <div class="cat-action"><span class="cat-action-default">संग्रह खोलें</span><span class="cat-action-open">संग्रह खुला है</span><i class="fas fa-arrow-right"></i></div>
                 </div>
                 <div class="cat-card" data-cat="stotra" role="button" tabindex="0" aria-expanded="false">
                     <div class="cat-icon" style="background: #fff9c4; color: #f57f17">🙏</div>
                     <div class="cat-text">
-                        <h3>स्तोत्र</h3>
-                        <p>दुर्गासप्तशती · नित्य पूजा</p>
+                        <h3>स्तोत्र एवं भजन</h3>
+                        <p>दुर्गासप्तशती · चालीसा · भजन-संग्रह</p>
                     </div>
-                    <span class="cat-count">४+ ग्रंथ</span>
+                    <span class="cat-count">२३+ ग्रंथ</span>
+                    <div class="cat-action"><span class="cat-action-default">संग्रह खोलें</span><span class="cat-action-open">संग्रह खुला है</span><i class="fas fa-arrow-right"></i></div>
+                </div>
+                <div class="cat-card" data-cat="satsang_shiksha" role="button" tabindex="0" aria-expanded="false">
+                    <div class="cat-icon" style="background: #efebe9; color: #6d4c41">🪔</div>
+                    <div class="cat-text">
+                        <h3>सत्संग एवं जीवन शिक्षा</h3>
+                        <p>प्रवचन · नीति · जीवन-मार्गदर्शन</p>
+                    </div>
+                    <span class="cat-count">२९+ ग्रंथ</span>
                     <div class="cat-action"><span class="cat-action-default">संग्रह खोलें</span><span class="cat-action-open">संग्रह खुला है</span><i class="fas fa-arrow-right"></i></div>
                 </div>
             </div>
@@ -1890,7 +1900,8 @@
                         { id: null,               t: "लिङ्ग पुराण",     s: "शिव-लिङ्ग महिमा",        bg: "#1a0404", fg: "#ff5040", na: 1 },
                         { id: "puran_shiva",      t: "शिव पुराण",       s: "संक्षिप्त संस्करण",      bg: "#200606", fg: "#ff6050" },
                         { id: "puran_skanda",     t: "स्कन्द पुराण",    s: "सात खण्ड · ८१,१०० श्लोक", bg: "#081808", fg: "#60ee60" },
-                        { id: "puran_agni",       t: "अग्नि पुराण",     s: "सर्वविद्या-संग्रह",      bg: "#260e04", fg: "#ff8840" }
+                        { id: "puran_agni",       t: "अग्नि पुराण",     s: "सर्वविद्या-संग्रह",      bg: "#260e04", fg: "#ff8840" },
+                        { id: "sankshipt_garuda_puran", t: "गरुड पुराण (संक्षिप्त)", s: "मृत्यु-रहस्य · लघु संस्करण · सचित्र", bg: "#0c1e10", fg: "#70e080" }
                     ]
                 },
                 upapuran: {
@@ -1956,7 +1967,17 @@
                             s: "१८ पर्व · दस लाख श्लोक",
                             bg: "#160a00",
                             fg: "#ff8030"
-                        }
+                        },
+                        {
+                            id: "valmiki_ramayan",
+                            t: "श्रीमद्वाल्मीकीय रामायण",
+                            s: "परिष्कृत संस्करण · सम्पूर्ण मूल पाठ",
+                            bg: "#240a04",
+                            fg: "#ffa070"
+                        },
+                        { id: "nal_damayanti", t: "नल-दमयन्ती", s: "महाभारत · वनपर्वकी आख्यायिका", bg: "#1a1206", fg: "#e0b060" },
+                        { id: "kavitavali", t: "कवितावली", s: "तुलसीदासजी · सप्तकाण्ड पद्यबद्ध रामकथा", bg: "#1c0a04", fg: "#ff9860" },
+                        { id: "gitavali", t: "गीतावली", s: "तुलसीदासजी · सप्तकाण्ड गेय रामकथा", bg: "#06101e", fg: "#60a0ff" }
                     ]
                 },
                 gita: {
@@ -2036,7 +2057,8 @@
                             s: "जीवन्मुक्तिका मार्ग",
                             bg: "#081e18",
                             fg: "#40ffcc"
-                        }
+                        },
+                        { id: "gajalgita", t: "गजल गीता", s: "गजल-शैलीमें कृष्णार्जुन-संवाद", bg: "#1e0810", fg: "#ff70a0" }
                     ]
                 },
                 vedant: {
@@ -2056,6 +2078,7 @@
                             bg: "#102008",
                             fg: "#80e840"
                         },
+                        { id: "vivek_chudamani", t: "विवेक-चूडामणि (मुनिलाल अनुवाद)", s: "शंकराचार्य · अद्वैत · हिन्दी-अनुवादसहित", bg: "#0c1c10", fg: "#70e090" },
                         { id: "vedant_atmabodha", t: "आत्मबोध", s: "शंकराचार्य रचित", bg: "#201806", fg: "#d0a030" },
                         {
                             id: "पातञ्जलयोगदर्शन",
@@ -2069,7 +2092,7 @@
                     ]
                 },
                 stotra: {
-                    desc: "स्तोत्र भक्ति की सरिता हैं। देवताओं की स्तुति के ये काव्य-रत्न मन को शान्ति और आत्मा को उन्नति प्रदान करते हैं।",
+                    desc: "स्तोत्र एवं भजन भक्ति की सरिता हैं। देवताओं की स्तुति के ये काव्य-रत्न और गेय पद मन को शान्ति और आत्मा को उन्नति प्रदान करते हैं।",
                     books: [
                         {
                             id: "durga_saptasahi",
@@ -2092,7 +2115,62 @@
                             s: "भक्तों की जीवन-कथाएँ",
                             bg: "#100820",
                             fg: "#b080ff"
-                        }
+                        },
+                        { grp: "🙏 स्तोत्र" },
+                        { id: "durga_saptashati", t: "श्रीदुर्गासप्तशती", s: "देवी-माहात्म्य · सचित्र संस्करण", bg: "#240818", fg: "#ff70d0" },
+                        { id: "devi_stotra_ratnakar", t: "देवीस्तोत्ररत्नाकर", s: "देवी-स्तोत्र संकलन", bg: "#1e0a1e", fg: "#f070f0" },
+                        { id: "ganesh_stotra_ratnakar", t: "गणेशस्तोत्ररत्नाकर", s: "गणेश-स्तोत्र संकलन", bg: "#1e1206", fg: "#ffb050" },
+                        { id: "lalita_sahasranama_stotram", t: "श्रीललितासहस्रनामस्तोत्रम्", s: "देवी-सहस्रनाम", bg: "#20081a", fg: "#ff80d0" },
+                        { id: "narayan_kavach", t: "श्रीनारायणकवच", s: "भागवत · रक्षा-स्तोत्र", bg: "#061a2a", fg: "#60b0ff" },
+                        { id: "sahasranam_vishnu", t: "श्रीविष्णुसहस्रनामस्तोत्रम्", s: "विष्णु-सहस्रनाम", bg: "#081e30", fg: "#60c0ff" },
+                        { id: "sahasranama_stotra_sangrah", t: "सहस्रनामस्तोत्रसंग्रह", s: "विविध सहस्रनाम-संकलन", bg: "#1a1006", fg: "#e0a850" },
+                        { id: "santan_gopal_stotra", t: "संतानगोपालस्तोत्र", s: "संतानप्राप्तिके शास्त्रीय उपाय · सचित्र", bg: "#160a20", fg: "#c080ff" },
+                        { id: "shatnaam_stotra_sangrah", t: "शतनामस्तोत्रसंग्रह", s: "शतनाम-स्तोत्र संकलन", bg: "#1c0e08", fg: "#e0a060" },
+                        { id: "shiv_mahimna_stotra", t: "शिवमहिम्नः स्तोत्र", s: "शिव-स्तुति", bg: "#1a0606", fg: "#ff7050" },
+                        { id: "vaidik_sukt_sangrah", t: "वैदिक सूक्त संग्रह", s: "वेद-सूक्तों का संकलन · सचित्र", bg: "#141c06", fg: "#c0e050" },
+                        { id: "panchdev_atharvashirsh_sangrah", t: "पंचदेव अथर्वशीर्ष संग्रह", s: "पंचदेव-अथर्वशीर्ष · पुरुषसूक्त · वैदिक आरती", bg: "#1e1a06", fg: "#e0d050" },
+                        { grp: "🎶 भजन एवं चालीसा" },
+                        { id: "bhajan_sangrah", t: "भजन-संग्रह", s: "गेय भजन-संकलन", bg: "#200e18", fg: "#ff90d0" },
+                        { id: "prarthana", t: "प्रार्थना", s: "नित्य प्रार्थना-संग्रह", bg: "#061422", fg: "#60d0ff" },
+                        { id: "dohavali", t: "दोहावली", s: "भक्ति-दोहे", bg: "#1a1206", fg: "#e0b050" },
+                        { id: "sur_vinay_patrika", t: "सूर-विनय-पत्रिका", s: "सूरदासजी · विनय-पद-संग्रह", bg: "#160c1e", fg: "#c090ff" },
+                        { id: "Chalisa_hanuman_lal", t: "श्रीहनुमानचालीसा", s: "लाल रंग में", bg: "#280604", fg: "#ff7040" },
+                        { id: "Chalisa_shiva", t: "श्रीशिवचालीसा", s: "शिव-स्तुति चालीसा", bg: "#0e1a1e", fg: "#60d0d0" },
+                        { id: "Chalisa_durga_vindhyeshwari", t: "श्रीदुर्गाचालीसा एवं श्रीविन्ध्येश्वरीचालीसा", s: "देवी-स्तुति चालीसा", bg: "#22081a", fg: "#ff80c0" }
+                    ]
+                },
+                satsang_shiksha: {
+                    desc: "सत्संग एवं जीवन शिक्षा के ग्रंथ जीवन को सन्मार्ग पर ले जाने वाले उपदेश, प्रवचन, नीति-वचन और महापुरुषों की जीवन-गाथाएँ प्रस्तुत करते हैं — गृहस्थ-धर्म से लेकर परमार्थ तक का पथ-प्रदर्शन।",
+                    books: [
+                        { id: "vidura_niti", t: "विदुरनीति", s: "महाभारत · विदुरजीका नीति-उपदेश", bg: "#1c1404", fg: "#e0b040" },
+                        { id: "sachchi_salah", t: "सच्ची सलाह", s: "जीवनोपयोगी उपदेश", bg: "#0c1c10", fg: "#70e090" },
+                        { id: "manushya_ka_param_kartavya", t: "मनुष्यका परम कर्तव्य", s: "जीवन-कर्तव्य बोध", bg: "#141c06", fg: "#c0e050" },
+                        { id: "grihasth_mein_kaise_rahen", t: "गृहस्थमें कैसे रहें?", s: "गृहस्थ-धर्म मार्गदर्शन", bg: "#1a1006", fg: "#e0a050" },
+                        { id: "striyon_ke_liye_kartavya_shiksha", t: "स्त्रियोंके लिये कर्तव्यशिक्षा", s: "नारी-धर्म शिक्षा", bg: "#20081a", fg: "#ff80d0" },
+                        { id: "sukhi_bannay_ke_upay", t: "सुखी बननेके उपाय", s: "सुखी जीवनके सूत्र", bg: "#061a1c", fg: "#60d8e0" },
+                        { id: "kalyankari_pravachan", t: "कल्याणकारी प्रवचन", s: "आत्म-कल्याण प्रवचन-संकलन", bg: "#1e1004", fg: "#e0a030" },
+                        { id: "paralok_aur_punarjanma_ki_satya_ghatnayen", t: "परलोक और पुनर्जन्मकी सत्य घटनाएँ", s: "अनुभव-आधारित सत्य कथाएँ", bg: "#100818", fg: "#b080ff" },
+                        { id: "dhyanavastha_prabhu_se_vartalap", t: "ध्यानावस्थामें प्रभुसे वार्तालाप", s: "आध्यात्मिक अनुभव-संवाद", bg: "#08181e", fg: "#60c8e0" },
+                        { id: "shri_radha_madhav_chintan", t: "श्रीराधा-माधव-चिन्तन", s: "राधा-कृष्ण भक्ति-चिन्तन · सारणी सहित", bg: "#1e0818", fg: "#ff80d0" },
+                        { id: "chaitanya_charitavali", t: "श्रीश्रीचैतन्य-चरितावली", s: "चैतन्य महाप्रभुकी जीवन-गाथा", bg: "#141006", fg: "#d8b060" },
+                        { id: "gita_ke_param_pracharak", t: "गीताके परम प्रचारक", s: "गीता-प्रचारकोंकी जीवन-गाथाएँ · सचित्र", bg: "#061e28", fg: "#40e0c0" },
+                        { id: "gita_prabodhini", t: "गीता-प्रबोधनी", s: "गीता-तत्त्व सुबोध व्याख्या", bg: "#081e10", fg: "#60e090" },
+                        { id: "garga_samhita", t: "श्रीगर्ग-संहिता", s: "गर्गाचार्यकृत कृष्ण-लीला वर्णन", bg: "#1c0a06", fg: "#e08050" },
+                        { id: "nityakarma_pujaprakash", t: "नित्यकर्म-पूजाप्रकाश", s: "दैनिक पूजा-विधि · सचित्र", bg: "#06181c", fg: "#50c0d0" },
+                        { id: "nityakarma_prayog", t: "नित्यकर्म-प्रयोग", s: "दैनिक कर्मकाण्ड-प्रयोग", bg: "#08201c", fg: "#50d0b0" },
+                        { id: "laghusiddhantakaumudi", t: "लघुसिद्धान्तकौमुदी", s: "संस्कृत व्याकरण शिक्षा · सचित्र", bg: "#1a1a06", fg: "#d8d050" },
+                        { id: "ramagya_prashna", t: "रामाज्ञा-प्रश्न", s: "तुलसीदासजी · प्रश्नफल विचार · सचित्र", bg: "#0c1e30", fg: "#60a8ff" },
+                        { id: "uddhar_kaise_ho", t: "उद्धार कैसे हो?", s: "जीवनोद्धारके उपाय · पत्र-संकलन", bg: "#1a0c1e", fg: "#c880ff" },
+                        { id: "sadhan_path", t: "साधन-पथ", s: "परमार्थ-ग्रन्थमाला · साधनाका मार्गदर्शन", bg: "#06201a", fg: "#50e0b0" },
+                        { id: "vrat_parichay", t: "व्रत-परिचय", s: "मासानुसार व्रत-विधि परिचय", bg: "#1e1404", fg: "#e0b840" },
+                        { id: "sanskar_prakash", t: "संस्कारप्रकाश", s: "षोडश संस्कार-विधि · सचित्र", bg: "#0c1e18", fg: "#50d0a0" },
+                        { id: "kya_guru_bina_mukti_nahi", t: "क्या गुरु बिना मुक्ति नहीं?", s: "स्वामी रामसुखदासजी · गुरु-तत्त्व विवेचन", bg: "#180c1e", fg: "#b880ff" },
+                        { id: "gita_madhurya", t: "गीता माधुर्य", s: "स्वामी रामसुखदासजी · अध्यायानुसार गीता-व्याख्या", bg: "#061e1a", fg: "#50e0c0" },
+                        { id: "sadhan_sudha_nidhi", t: "साधन-सुधा-निधि", s: "स्वामी रामसुखदासजी · प्रवचन-संकलन", bg: "#1e0c06", fg: "#ff9860" },
+                        { id: "naam_jap_ki_mahima", t: "नाम-जपकी महिमा", s: "स्वामी रामसुखदासजी · भगवन्नाम-जपका माहात्म्य", bg: "#06181e", fg: "#50c0e0" },
+                        { id: "saar_sangrah", t: "सार-संग्रह", s: "स्वामी रामसुखदासजी · गीता-रामायण-भागवत-महाभारतका सार", bg: "#1a0e04", fg: "#e0a050" },
+                        { id: "amrit_kan", t: "अमृत-कण", s: "श्रीहनुमानप्रसादजी पोद्दार · सुभाषित-संकलन", bg: "#140c1e", fg: "#b090ff" },
+                        { id: "shri_bhagavannam_chintan", t: "श्रीभगवन्नाम-चिन्तन", s: "भगवन्नामकी महिमा एवं चिन्तन", bg: "#1e1206", fg: "#e0b060" }
                     ]
                 }
             };

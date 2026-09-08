@@ -1,10 +1,14 @@
 {
   "_readme": "Signature-keyed CSS class registry for books/epub.css. When processing a new book: parse its CSS, compute a normalized 'prop:value' signature per class (sorted, later-prop-wins), and look it up here before minting a new code. Reuse the code if the signature matches; otherwise append a new entry with the next base-26 code (a..z, aa..az, ...) and add the rule to epub.css.",
-  "nextCodeIndex": 353,
+  "nextCodeIndex": 354,
   "entries": {
     "a": {
       "signature": "color:#c45911;font-family:ChanakyaUni, serif;font-size:1.167em;font-style:normal;font-weight:bold;line-height:1.2;text-align:center;text-indent:0px",
       "sourceClasses": [
+        {
+          "book": "amrit_kan",
+          "name": "Titel-Page---Shri-Hari"
+        },
         {
           "book": "bhajan_sangrah",
           "name": "Titel-Page---Shri-Hari"
@@ -38,6 +42,10 @@
           "name": "Titel-Page---Shri-Hari"
         },
         {
+          "book": "gajalgita",
+          "name": "Titel-Page---Shri-Hari"
+        },
+        {
           "book": "gita_ashtavakra",
           "name": "Titel-Page---Shri-Hari"
         },
@@ -46,7 +54,15 @@
           "name": "Titel-Page---Shri-Hari"
         },
         {
+          "book": "gita_madhurya",
+          "name": "Titel-Page---Shri-Hari"
+        },
+        {
           "book": "gita_prabodhini",
+          "name": "Titel-Page---Shri-Hari"
+        },
+        {
+          "book": "gitavali",
           "name": "Titel-Page---Shri-Hari"
         },
         {
@@ -62,6 +78,18 @@
           "name": "Titel-Page---Shri-Hari"
         },
         {
+          "book": "kavitavali",
+          "name": "Titel-Page---Shri-Hari"
+        },
+        {
+          "book": "naam_jap_ki_mahima",
+          "name": "Titel-Page---Shri-Hari"
+        },
+        {
+          "book": "nal_damayanti",
+          "name": "Titel-Page---Shri-Hari"
+        },
+        {
           "book": "narayan_kavach",
           "name": "Titel-Page---Shri-Hari"
         },
@@ -71,6 +99,18 @@
         },
         {
           "book": "prarthana",
+          "name": "Titel-Page---Shri-Hari"
+        },
+        {
+          "book": "ramagya_prashna",
+          "name": "Titel-Page---Shri-Hari"
+        },
+        {
+          "book": "saar_sangrah",
+          "name": "Titel-Page---Shri-Hari"
+        },
+        {
+          "book": "sadhan_path",
           "name": "Titel-Page---Shri-Hari"
         },
         {
@@ -95,6 +135,18 @@
         },
         {
           "book": "sukhi_bannay_ke_upay",
+          "name": "Titel-Page---Shri-Hari"
+        },
+        {
+          "book": "sur_vinay_patrika",
+          "name": "Titel-Page---Shri-Hari"
+        },
+        {
+          "book": "uddhar_kaise_ho",
+          "name": "Titel-Page---Shri-Hari"
+        },
+        {
+          "book": "vrat_parichay",
           "name": "Titel-Page---Shri-Hari"
         }
       ]
@@ -107,6 +159,10 @@
           "name": "First-End-Page-text"
         },
         {
+          "book": "amrit_kan",
+          "name": "First-End-Page-text"
+        },
+        {
           "book": "bhajan_sangrah",
           "name": "First-End-Page-text"
         },
@@ -155,6 +211,10 @@
           "name": "Numbers"
         },
         {
+          "book": "gajalgita",
+          "name": "First-End-Page-text"
+        },
+        {
           "book": "ganesh_stotra_ratnakar",
           "name": "First-End-Page-text"
         },
@@ -171,12 +231,20 @@
           "name": "First-End-Page-text"
         },
         {
+          "book": "gita_madhurya",
+          "name": "First-End-Page-text"
+        },
+        {
           "book": "gita_prabodhini",
           "name": "First-End-Page-text"
         },
         {
           "book": "gita_prabodhini",
           "name": "First-End-Page-text-1"
+        },
+        {
+          "book": "gitavali",
+          "name": "First-End-Page-text"
         },
         {
           "book": "grihasth_mein_kaise_rahen",
@@ -199,7 +267,27 @@
           "name": "First-End-Page-text"
         },
         {
+          "book": "kavitavali",
+          "name": "First-End-Page-text"
+        },
+        {
+          "book": "kya_guru_bina_mukti_nahi",
+          "name": "First-End-Page-text"
+        },
+        {
           "book": "laghusiddhantakaumudi",
+          "name": "First-End-Page-text"
+        },
+        {
+          "book": "naam_jap_ki_mahima",
+          "name": "First-End-Page-text"
+        },
+        {
+          "book": "naam_jap_ki_mahima",
+          "name": "Numbers"
+        },
+        {
+          "book": "nal_damayanti",
           "name": "First-End-Page-text"
         },
         {
@@ -211,6 +299,10 @@
           "name": "First-End-Page-text"
         },
         {
+          "book": "panchdev_atharvashirsh_sangrah",
+          "name": "First-End-Page-text"
+        },
+        {
           "book": "paralok_aur_punarjanma_ki_satya_ghatnayen",
           "name": "First-End-Page-text"
         },
@@ -219,7 +311,27 @@
           "name": "First-End-Page-text"
         },
         {
+          "book": "ramagya_prashna",
+          "name": "First-End-Page-text"
+        },
+        {
+          "book": "saar_sangrah",
+          "name": "First-End-Page-text"
+        },
+        {
+          "book": "saar_sangrah",
+          "name": "Numbers"
+        },
+        {
           "book": "sachchi_salah",
+          "name": "First-End-Page-text"
+        },
+        {
+          "book": "sadhan_path",
+          "name": "First-End-Page-text"
+        },
+        {
+          "book": "sadhan_sudha_nidhi",
           "name": "First-End-Page-text"
         },
         {
@@ -228,6 +340,10 @@
         },
         {
           "book": "sankshipt_garuda_puran",
+          "name": "First-End-Page-text"
+        },
+        {
+          "book": "sanskar_prakash",
           "name": "First-End-Page-text"
         },
         {
@@ -244,6 +360,10 @@
         },
         {
           "book": "shiv_mahimna_stotra",
+          "name": "Numbers"
+        },
+        {
+          "book": "shri_bhagavannam_chintan",
           "name": "Numbers"
         },
         {
@@ -263,6 +383,14 @@
           "name": "First-End-Page-text"
         },
         {
+          "book": "sur_vinay_patrika",
+          "name": "First-End-Page-text"
+        },
+        {
+          "book": "uddhar_kaise_ho",
+          "name": "First-End-Page-text"
+        },
+        {
           "book": "vaidik_sukt_sangrah",
           "name": "First-End-Page-text"
         },
@@ -273,6 +401,10 @@
         {
           "book": "valmiki_ramayan",
           "name": "First-End-Page-text-1"
+        },
+        {
+          "book": "vrat_parichay",
+          "name": "First-End-Page-text"
         }
       ]
     },
@@ -284,6 +416,10 @@
           "name": "Title-Page---Gita-Seva-Trust"
         },
         {
+          "book": "amrit_kan",
+          "name": "Title-Page---Gita-Seva-Trust"
+        },
+        {
           "book": "bhajan_sangrah",
           "name": "Title-Page---Gita-Seva-Trust"
         },
@@ -304,6 +440,10 @@
           "name": "Title-Page---Gita-Seva-Trust"
         },
         {
+          "book": "gajalgita",
+          "name": "Title-Page---Gita-Seva-Trust"
+        },
+        {
           "book": "ganesh_stotra_ratnakar",
           "name": "Title-Page---Gita-Seva-Trust"
         },
@@ -320,11 +460,27 @@
           "name": "Title-Page---Gita-Seva-Trust"
         },
         {
+          "book": "gitavali",
+          "name": "Title-Page---Gita-Seva-Trust"
+        },
+        {
           "book": "kalyankari_pravachan",
           "name": "Title-Page---Gita-Seva-Trust"
         },
         {
+          "book": "kavitavali",
+          "name": "Title-Page---Gita-Seva-Trust"
+        },
+        {
+          "book": "kya_guru_bina_mukti_nahi",
+          "name": "Title-Page---Gita-Seva-Trust"
+        },
+        {
           "book": "laghusiddhantakaumudi",
+          "name": "Title-Page---Gita-Seva-Trust"
+        },
+        {
+          "book": "nal_damayanti",
           "name": "Title-Page---Gita-Seva-Trust"
         },
         {
@@ -336,6 +492,10 @@
           "name": "Title-Page---Gita-Seva-Trust"
         },
         {
+          "book": "panchdev_atharvashirsh_sangrah",
+          "name": "Title-Page---Gita-Seva-Trust"
+        },
+        {
           "book": "paralok_aur_punarjanma_ki_satya_ghatnayen",
           "name": "Title-Page---Gita-Seva-Trust"
         },
@@ -344,7 +504,15 @@
           "name": "Title-Page---Gita-Seva-Trust"
         },
         {
+          "book": "ramagya_prashna",
+          "name": "Title-Page---Gita-Seva-Trust"
+        },
+        {
           "book": "sachchi_salah",
+          "name": "Title-Page---Gita-Seva-Trust"
+        },
+        {
+          "book": "sadhan_sudha_nidhi",
           "name": "Title-Page---Gita-Seva-Trust"
         },
         {
@@ -357,6 +525,10 @@
         },
         {
           "book": "sankshipt_garuda_puran",
+          "name": "Title-Page---Gita-Seva-Trust"
+        },
+        {
+          "book": "sanskar_prakash",
           "name": "Title-Page---Gita-Seva-Trust"
         },
         {
@@ -376,6 +548,14 @@
           "name": "Title-Page---Gita-Seva-Trust"
         },
         {
+          "book": "sur_vinay_patrika",
+          "name": "Title-Page---Gita-Seva-Trust"
+        },
+        {
+          "book": "uddhar_kaise_ho",
+          "name": "Title-Page---Gita-Seva-Trust"
+        },
+        {
           "book": "vaidik_sukt_sangrah",
           "name": "Title-Page---Gita-Seva-Trust"
         },
@@ -386,12 +566,20 @@
         {
           "book": "vidura_niti",
           "name": "Title-Page---Gita-Seva-Trust"
+        },
+        {
+          "book": "vrat_parichay",
+          "name": "Title-Page---Gita-Seva-Trust"
         }
       ]
     },
     "d": {
       "signature": "color:#1066b1;font-family:ChanakyaUni, serif;font-size:2.5em;font-style:normal;font-weight:bold;line-height:1.2;text-align:center;text-indent:0px",
       "sourceClasses": [
+        {
+          "book": "amrit_kan",
+          "name": "Title-Page---Book-Name"
+        },
         {
           "book": "bhajan_sangrah",
           "name": "Title-Page---Book-Name"
@@ -421,6 +609,10 @@
           "name": "Title-Page---Book-Name"
         },
         {
+          "book": "gajalgita",
+          "name": "Title-Page---Book-Name"
+        },
+        {
           "book": "gita_ashtavakra",
           "name": "Title-Page---Book-Name"
         },
@@ -429,11 +621,19 @@
           "name": "Book-Name"
         },
         {
+          "book": "gita_madhurya",
+          "name": "Title-Page---Book-Name"
+        },
+        {
           "book": "gita_prabodhini",
           "name": "Book-Name"
         },
         {
           "book": "gita_prabodhini",
+          "name": "Title-Page---Book-Name"
+        },
+        {
+          "book": "gitavali",
           "name": "Title-Page---Book-Name"
         },
         {
@@ -449,11 +649,31 @@
           "name": "Title-Page---Book-Name"
         },
         {
+          "book": "kavitavali",
+          "name": "Title-Page---Book-Name"
+        },
+        {
+          "book": "naam_jap_ki_mahima",
+          "name": "Title-Page---Book-Name"
+        },
+        {
+          "book": "nal_damayanti",
+          "name": "Title-Page---Book-Name"
+        },
+        {
           "book": "narayan_kavach",
           "name": "Title-Page---Book-Name"
         },
         {
           "book": "prarthana",
+          "name": "Title-Page---Book-Name"
+        },
+        {
+          "book": "ramagya_prashna",
+          "name": "Title-Page---Book-Name"
+        },
+        {
+          "book": "saar_sangrah",
           "name": "Title-Page---Book-Name"
         },
         {
@@ -489,7 +709,19 @@
           "name": "Title-Page---Book-Name"
         },
         {
+          "book": "sur_vinay_patrika",
+          "name": "Title-Page---Book-Name"
+        },
+        {
+          "book": "uddhar_kaise_ho",
+          "name": "Title-Page---Book-Name"
+        },
+        {
           "book": "vidura_niti",
+          "name": "Title-Page---Book-Name"
+        },
+        {
+          "book": "vrat_parichay",
           "name": "Title-Page---Book-Name"
         }
       ]
@@ -497,6 +729,10 @@
     "e": {
       "signature": "color:#231f20;font-family:ChanakyaUni, serif;font-size:1.667em;font-style:normal;font-weight:bold;line-height:1.2;text-align:center;text-indent:0px",
       "sourceClasses": [
+        {
+          "book": "amrit_kan",
+          "name": "Title-Page---Author-Name"
+        },
         {
           "book": "dohavali",
           "name": "Title-Page---Author-Name"
@@ -510,8 +746,32 @@
           "name": "Title-Page--Sub-Title"
         },
         {
+          "book": "gitavali",
+          "name": "Title-Page--Sub-Title"
+        },
+        {
+          "book": "gitavali",
+          "name": "Title-Page--caption"
+        },
+        {
           "book": "kalyankari_pravachan",
           "name": "Title-Page---Author-Name"
+        },
+        {
+          "book": "kavitavali",
+          "name": "Title-Page---Author-Name"
+        },
+        {
+          "book": "kavitavali",
+          "name": "Title-Page--Sub-Title"
+        },
+        {
+          "book": "nal_damayanti",
+          "name": "Title-Page---Author-Name"
+        },
+        {
+          "book": "panchdev_atharvashirsh_sangrah",
+          "name": "pravachan"
         },
         {
           "book": "paralok_aur_punarjanma_ki_satya_ghatnayen",
@@ -520,6 +780,22 @@
         {
           "book": "prarthana",
           "name": "Title-Page---Author-Name"
+        },
+        {
+          "book": "ramagya_prashna",
+          "name": "Title-Page---Author-Name"
+        },
+        {
+          "book": "ramagya_prashna",
+          "name": "Title-Page--Sub-Title"
+        },
+        {
+          "book": "sadhan_path",
+          "name": "Title-Page---Sub-Title"
+        },
+        {
+          "book": "shri_bhagavannam_chintan",
+          "name": "pravachan"
         },
         {
           "book": "shri_radha_madhav_chintan",
@@ -532,6 +808,26 @@
         {
           "book": "sukhi_bannay_ke_upay",
           "name": "Title-Page---Author-Name"
+        },
+        {
+          "book": "sur_vinay_patrika",
+          "name": "Title-Page---Author-Name"
+        },
+        {
+          "book": "sur_vinay_patrika",
+          "name": "Title-Page--Sub-Title"
+        },
+        {
+          "book": "uddhar_kaise_ho",
+          "name": "Title-Page---Author-Name"
+        },
+        {
+          "book": "vivek_chudamani",
+          "name": "pravachan"
+        },
+        {
+          "book": "vrat_parichay",
+          "name": "Title-Page---Author-Name"
         }
       ]
     },
@@ -541,6 +837,10 @@
         {
           "book": "aadhyatma_ramayan",
           "name": "Tavmev-Mata--pita"
+        },
+        {
+          "book": "amrit_kan",
+          "name": "Title-Page---Tvamev-mata"
         },
         {
           "book": "bhajan_sangrah",
@@ -589,6 +889,10 @@
         {
           "book": "durga_saptashati",
           "name": "Title-Page---Tvamev-mata"
+        },
+        {
+          "book": "gajalgita",
+          "name": "Tavmev-Mata--pita"
         },
         {
           "book": "ganesh_stotra_ratnakar",
@@ -603,7 +907,15 @@
           "name": "Title-Page---Tvamev-mata"
         },
         {
+          "book": "gita_madhurya",
+          "name": "Title-Page---Tvamev-mata"
+        },
+        {
           "book": "gita_prabodhini",
+          "name": "Title-Page---Tvamev-mata"
+        },
+        {
+          "book": "gitavali",
           "name": "Title-Page---Tvamev-mata"
         },
         {
@@ -616,6 +928,14 @@
         },
         {
           "book": "kalyankari_pravachan",
+          "name": "Tavmev-Mata--pita"
+        },
+        {
+          "book": "kavitavali",
+          "name": "Title-Page---Tvamev-mata"
+        },
+        {
+          "book": "kya_guru_bina_mukti_nahi",
           "name": "Tavmev-Mata--pita"
         },
         {
@@ -635,6 +955,14 @@
           "name": "Title-Page---Tvamev-mata"
         },
         {
+          "book": "naam_jap_ki_mahima",
+          "name": "Title-Page---Tvamev-mata"
+        },
+        {
+          "book": "nal_damayanti",
+          "name": "Title-Page---Tvamev-mata"
+        },
+        {
           "book": "narayan_kavach",
           "name": "Title-Page---Tvamev-mata"
         },
@@ -649,6 +977,10 @@
         {
           "book": "nityakarma_pujaprakash",
           "name": "Tavmev-Mata--pita"
+        },
+        {
+          "book": "panchdev_atharvashirsh_sangrah",
+          "name": "Title-Page---Tvamev-mata"
         },
         {
           "book": "paralok_aur_punarjanma_ki_satya_ghatnayen",
@@ -667,8 +999,24 @@
           "name": "Title-Page---Tvamev-mata"
         },
         {
+          "book": "ramagya_prashna",
+          "name": "Title-Page---Tvamev-mata"
+        },
+        {
+          "book": "saar_sangrah",
+          "name": "Title-Page---Tvamev-mata"
+        },
+        {
           "book": "sachchi_salah",
           "name": "Title-Page---Tvamev-mata"
+        },
+        {
+          "book": "sadhan_path",
+          "name": "Title-Page---Tvamev-mata"
+        },
+        {
+          "book": "sadhan_sudha_nidhi",
+          "name": "Tavmev-Mata--pita"
         },
         {
           "book": "sahasranam_vishnu",
@@ -683,11 +1031,27 @@
           "name": "Title-Page---Tvamev-mata"
         },
         {
+          "book": "sanskar_prakash",
+          "name": "Image"
+        },
+        {
+          "book": "sanskar_prakash",
+          "name": "Image-1"
+        },
+        {
+          "book": "sanskar_prakash",
+          "name": "Title-Page---Tvamev-mata"
+        },
+        {
           "book": "santan_gopal_stotra",
           "name": "Title-Page---Tvamev-mata"
         },
         {
           "book": "shiv_mahimna_stotra",
+          "name": "Title-Page---Tvamev-mata"
+        },
+        {
+          "book": "shri_bhagavannam_chintan",
           "name": "Title-Page---Tvamev-mata"
         },
         {
@@ -703,11 +1067,27 @@
           "name": "Title-Page---Tvamev-mata"
         },
         {
+          "book": "sur_vinay_patrika",
+          "name": "Title-Page---Tvamev-mata"
+        },
+        {
+          "book": "uddhar_kaise_ho",
+          "name": "Title-Page---Tvamev-mata"
+        },
+        {
           "book": "vaidik_sukt_sangrah",
           "name": "Image"
         },
         {
           "book": "vaidik_sukt_sangrah",
+          "name": "Title-Page---Tvamev-mata"
+        },
+        {
+          "book": "vivek_chudamani",
+          "name": "Title-Page---Tvamev-mata"
+        },
+        {
+          "book": "vrat_parichay",
           "name": "Title-Page---Tvamev-mata"
         }
       ]
@@ -718,6 +1098,10 @@
         {
           "book": "aadhyatma_ramayan",
           "name": "Shlok-Color-2"
+        },
+        {
+          "book": "amrit_kan",
+          "name": "SHLOK"
         },
         {
           "book": "bhajan_sangrah",
@@ -752,6 +1136,10 @@
           "name": "Shlok"
         },
         {
+          "book": "gajalgita",
+          "name": "Shlok-Color-2"
+        },
+        {
           "book": "ganesh_stotra_ratnakar",
           "name": "Shlok-Color-2"
         },
@@ -768,11 +1156,27 @@
           "name": "Shlok-Color-2"
         },
         {
+          "book": "gita_madhurya",
+          "name": "Shlok-Color-2"
+        },
+        {
           "book": "gita_prabodhini",
           "name": "Shlok-1"
         },
         {
           "book": "gita_prabodhini",
+          "name": "Shlok-Color-2"
+        },
+        {
+          "book": "gitavali",
+          "name": "B-3"
+        },
+        {
+          "book": "gitavali",
+          "name": "S-3"
+        },
+        {
+          "book": "gitavali",
           "name": "Shlok-Color-2"
         },
         {
@@ -788,12 +1192,24 @@
           "name": "SHLOK"
         },
         {
+          "book": "kavitavali",
+          "name": "Shlok-Color-2"
+        },
+        {
           "book": "lalita_sahasranama_stotram",
           "name": "Shlok"
         },
         {
           "book": "manushya_ka_param_kartavya",
           "name": "Shlok"
+        },
+        {
+          "book": "naam_jap_ki_mahima",
+          "name": "Shlok"
+        },
+        {
+          "book": "nal_damayanti",
+          "name": "SHLOK"
         },
         {
           "book": "nityakarma_pujaprakash",
@@ -808,8 +1224,36 @@
           "name": "Shlok"
         },
         {
+          "book": "ramagya_prashna",
+          "name": "Shlok-Color-2"
+        },
+        {
+          "book": "saar_sangrah",
+          "name": "Shlok-Color-2"
+        },
+        {
+          "book": "sadhan_path",
+          "name": "SHLOK"
+        },
+        {
+          "book": "sadhan_sudha_nidhi",
+          "name": "SHLOK"
+        },
+        {
+          "book": "sadhan_sudha_nidhi",
+          "name": "Sloke-AA"
+        },
+        {
+          "book": "sanskar_prakash",
+          "name": "Shlok-Color-2"
+        },
+        {
           "book": "shatnaam_stotra_sangrah",
           "name": "Shlok-Color-2"
+        },
+        {
+          "book": "shri_bhagavannam_chintan",
+          "name": "Shlok"
         },
         {
           "book": "shri_radha_madhav_chintan",
@@ -832,11 +1276,27 @@
           "name": "SHLOK"
         },
         {
+          "book": "sur_vinay_patrika",
+          "name": "Shlok-Color-2"
+        },
+        {
+          "book": "uddhar_kaise_ho",
+          "name": "SHLOK"
+        },
+        {
           "book": "vaidik_sukt_sangrah",
           "name": "Shlok-Coloured"
         },
         {
           "book": "valmiki_ramayan",
+          "name": "Shlok-Color-2"
+        },
+        {
+          "book": "vivek_chudamani",
+          "name": "Shlok"
+        },
+        {
+          "book": "vrat_parichay",
           "name": "Shlok-Color-2"
         }
       ]
@@ -847,6 +1307,14 @@
         {
           "book": "aadhyatma_ramayan",
           "name": "TXT"
+        },
+        {
+          "book": "amrit_kan",
+          "name": "No-Paragraph-Style"
+        },
+        {
+          "book": "amrit_kan",
+          "name": "Text"
         },
         {
           "book": "bhajan_sangrah",
@@ -913,6 +1381,10 @@
           "name": "Text"
         },
         {
+          "book": "gita_madhurya",
+          "name": "Text-"
+        },
+        {
           "book": "gita_prabodhini",
           "name": "Arth"
         },
@@ -933,6 +1405,14 @@
           "name": "Vyakhya"
         },
         {
+          "book": "gitavali",
+          "name": "No-Paragraph-Style"
+        },
+        {
+          "book": "gitavali",
+          "name": "TXT"
+        },
+        {
           "book": "grihasth_mein_kaise_rahen",
           "name": "Text-"
         },
@@ -943,6 +1423,22 @@
         {
           "book": "kalyankari_pravachan",
           "name": "Text"
+        },
+        {
+          "book": "kavitavali",
+          "name": "No-Paragraph-Style"
+        },
+        {
+          "book": "kavitavali",
+          "name": "TXT"
+        },
+        {
+          "book": "kavitavali",
+          "name": "Text-2"
+        },
+        {
+          "book": "kya_guru_bina_mukti_nahi",
+          "name": "TXT"
         },
         {
           "book": "laghusiddhantakaumudi",
@@ -957,6 +1453,14 @@
           "name": "TXT"
         },
         {
+          "book": "naam_jap_ki_mahima",
+          "name": "TXT"
+        },
+        {
+          "book": "nal_damayanti",
+          "name": "Text"
+        },
+        {
           "book": "narayan_kavach",
           "name": "Normal"
         },
@@ -966,6 +1470,10 @@
         },
         {
           "book": "nityakarma_pujaprakash",
+          "name": "TXT"
+        },
+        {
+          "book": "panchdev_atharvashirsh_sangrah",
           "name": "TXT"
         },
         {
@@ -997,7 +1505,35 @@
           "name": "TXT"
         },
         {
+          "book": "ramagya_prashna",
+          "name": "Slok1"
+        },
+        {
+          "book": "ramagya_prashna",
+          "name": "TXT"
+        },
+        {
+          "book": "saar_sangrah",
+          "name": "Text-"
+        },
+        {
           "book": "sachchi_salah",
+          "name": "Text"
+        },
+        {
+          "book": "sadhan_path",
+          "name": "Text"
+        },
+        {
+          "book": "sadhan_sudha_nidhi",
+          "name": "F-1"
+        },
+        {
+          "book": "sadhan_sudha_nidhi",
+          "name": "TXT"
+        },
+        {
+          "book": "sadhan_sudha_nidhi",
           "name": "Text"
         },
         {
@@ -1021,6 +1557,14 @@
           "name": "TXT"
         },
         {
+          "book": "sanskar_prakash",
+          "name": "Basic-Paragraph-2"
+        },
+        {
+          "book": "sanskar_prakash",
+          "name": "TXT"
+        },
+        {
           "book": "santan_gopal_stotra",
           "name": "TXT"
         },
@@ -1030,6 +1574,10 @@
         },
         {
           "book": "shiv_mahimna_stotra",
+          "name": "TXT"
+        },
+        {
+          "book": "shri_bhagavannam_chintan",
           "name": "TXT"
         },
         {
@@ -1061,12 +1609,36 @@
           "name": "Text"
         },
         {
+          "book": "sur_vinay_patrika",
+          "name": "TXT"
+        },
+        {
+          "book": "uddhar_kaise_ho",
+          "name": "Running-Matter"
+        },
+        {
+          "book": "uddhar_kaise_ho",
+          "name": "Text"
+        },
+        {
           "book": "vaidik_sukt_sangrah",
           "name": "TXT"
         },
         {
           "book": "vidura_niti",
           "name": "Text-"
+        },
+        {
+          "book": "vivek_chudamani",
+          "name": "TXT"
+        },
+        {
+          "book": "vrat_parichay",
+          "name": "No-Paragraph-Style"
+        },
+        {
+          "book": "vrat_parichay",
+          "name": "Text"
         }
       ]
     },
@@ -1094,12 +1666,36 @@
           "name": "Shlok-Number"
         },
         {
+          "book": "gitavali",
+          "name": "Numbers"
+        },
+        {
+          "book": "gitavali",
+          "name": "Pad-sankhya"
+        },
+        {
+          "book": "kavitavali",
+          "name": "Numbers"
+        },
+        {
           "book": "laghusiddhantakaumudi",
+          "name": "Numbers"
+        },
+        {
+          "book": "panchdev_atharvashirsh_sangrah",
           "name": "Numbers"
         },
         {
           "book": "prarthana",
           "name": "Number"
+        },
+        {
+          "book": "ramagya_prashna",
+          "name": "Numbers"
+        },
+        {
+          "book": "sadhan_sudha_nidhi",
+          "name": "Numbers"
         },
         {
           "book": "shatnaam_stotra_sangrah",
@@ -1108,6 +1704,10 @@
         {
           "book": "shri_radha_madhav_chintan",
           "name": "numbers"
+        },
+        {
+          "book": "sur_vinay_patrika",
+          "name": "Numbers"
         },
         {
           "book": "vidura_niti",
@@ -1175,6 +1775,10 @@
           "name": "Uwach"
         },
         {
+          "book": "gita_madhurya",
+          "name": "Title-Page---Author-Name"
+        },
+        {
           "book": "gita_prabodhini",
           "name": "Shlok"
         },
@@ -1196,6 +1800,10 @@
         },
         {
           "book": "ishadinau",
+          "name": "Title-Page---Author-Name"
+        },
+        {
+          "book": "naam_jap_ki_mahima",
           "name": "Title-Page---Author-Name"
         },
         {
@@ -1227,8 +1835,20 @@
           "name": "Sub-Head-3"
         },
         {
+          "book": "panchdev_atharvashirsh_sangrah",
+          "name": "Shlok"
+        },
+        {
           "book": "prarthana",
           "name": "SHLOK-Black"
+        },
+        {
+          "book": "ramagya_prashna",
+          "name": "Sholk-Black"
+        },
+        {
+          "book": "saar_sangrah",
+          "name": "Title-Page---Author-Name"
         },
         {
           "book": "sachchi_salah",
@@ -1251,6 +1871,14 @@
           "name": "Shlok-Black"
         },
         {
+          "book": "sur_vinay_patrika",
+          "name": "II"
+        },
+        {
+          "book": "sur_vinay_patrika",
+          "name": "Sholk-Black"
+        },
+        {
           "book": "vaidik_sukt_sangrah",
           "name": "Shlok"
         },
@@ -1261,12 +1889,20 @@
         {
           "book": "vidura_niti",
           "name": "Shlok-Color-2"
+        },
+        {
+          "book": "vrat_parichay",
+          "name": "uwach"
         }
       ]
     },
     "k": {
       "signature": "color:#c45911;font-family:ChanakyaUni, serif;font-size:1.167em;font-style:normal;font-weight:normal;line-height:1.2;text-align:center;text-indent:0px",
       "sourceClasses": [
+        {
+          "book": "amrit_kan",
+          "name": "Page-Break"
+        },
         {
           "book": "bhajan_sangrah",
           "name": "Page-Break"
@@ -1312,6 +1948,10 @@
           "name": "Page-Break"
         },
         {
+          "book": "gajalgita",
+          "name": "Page-Break"
+        },
+        {
           "book": "ganesh_stotra_ratnakar",
           "name": "Page-Break"
         },
@@ -1332,7 +1972,15 @@
           "name": "Page-Break"
         },
         {
+          "book": "gita_madhurya",
+          "name": "Page-Break"
+        },
+        {
           "book": "gita_prabodhini",
+          "name": "Page-Break"
+        },
+        {
+          "book": "gitavali",
           "name": "Page-Break"
         },
         {
@@ -1346,6 +1994,18 @@
         {
           "book": "kalyankari_pravachan",
           "name": "Page-Break"
+        },
+        {
+          "book": "kavitavali",
+          "name": "Page-Break"
+        },
+        {
+          "book": "kya_guru_bina_mukti_nahi",
+          "name": "Page-Break"
+        },
+        {
+          "book": "kya_guru_bina_mukti_nahi",
+          "name": "Titel-Page---Shri-Hari"
         },
         {
           "book": "laghusiddhantakaumudi",
@@ -1362,6 +2022,14 @@
         {
           "book": "manushya_ka_param_kartavya",
           "name": "Titel-Page---Shri-Hari"
+        },
+        {
+          "book": "naam_jap_ki_mahima",
+          "name": "Page-Break"
+        },
+        {
+          "book": "nal_damayanti",
+          "name": "Page-Break"
         },
         {
           "book": "narayan_kavach",
@@ -1384,6 +2052,14 @@
           "name": "Titel-Page---Shri-Hari"
         },
         {
+          "book": "panchdev_atharvashirsh_sangrah",
+          "name": "Page-Break"
+        },
+        {
+          "book": "panchdev_atharvashirsh_sangrah",
+          "name": "Titel-Page---Shri-Hari"
+        },
+        {
           "book": "paralok_aur_punarjanma_ki_satya_ghatnayen",
           "name": "Page-Break"
         },
@@ -1396,8 +2072,36 @@
           "name": "Titel-Page---Shri-Hari"
         },
         {
+          "book": "ramagya_prashna",
+          "name": "Page-Break"
+        },
+        {
+          "book": "saar_sangrah",
+          "name": "Page-Break"
+        },
+        {
           "book": "sachchi_salah",
           "name": "Page-Break"
+        },
+        {
+          "book": "sadhan_path",
+          "name": "Page-Break"
+        },
+        {
+          "book": "sadhan_sudha_nidhi",
+          "name": "Center-Dais-A"
+        },
+        {
+          "book": "sadhan_sudha_nidhi",
+          "name": "OM-Namah"
+        },
+        {
+          "book": "sadhan_sudha_nidhi",
+          "name": "Page-Break"
+        },
+        {
+          "book": "sadhan_sudha_nidhi",
+          "name": "Titel-Page---Shri-Hari"
         },
         {
           "book": "sahasranama_stotra_sangrah",
@@ -1409,6 +2113,14 @@
         },
         {
           "book": "sankshipt_garuda_puran",
+          "name": "Titel-Page---Shri-Hari"
+        },
+        {
+          "book": "sanskar_prakash",
+          "name": "Page-Break"
+        },
+        {
+          "book": "sanskar_prakash",
           "name": "Titel-Page---Shri-Hari"
         },
         {
@@ -1424,6 +2136,10 @@
           "name": "Page-Break"
         },
         {
+          "book": "shri_bhagavannam_chintan",
+          "name": "Titel-Page---Shri-Hari"
+        },
+        {
           "book": "shri_radha_madhav_chintan",
           "name": "Page-Break"
         },
@@ -1433,6 +2149,14 @@
         },
         {
           "book": "sukhi_bannay_ke_upay",
+          "name": "Page-Break"
+        },
+        {
+          "book": "sur_vinay_patrika",
+          "name": "Page-Break"
+        },
+        {
+          "book": "uddhar_kaise_ho",
           "name": "Page-Break"
         },
         {
@@ -1454,12 +2178,24 @@
         {
           "book": "vidura_niti",
           "name": "Page-Break"
+        },
+        {
+          "book": "vivek_chudamani",
+          "name": "Titel-Page---Shri-Hari"
+        },
+        {
+          "book": "vrat_parichay",
+          "name": "Page-Break"
         }
       ]
     },
     "l": {
       "signature": "color:#1066b1;font-family:ChanakyaUni, serif;font-size:1.833em;font-style:normal;font-weight:bold;line-height:1.2;margin-bottom:7px;text-align:center;text-indent:0px",
       "sourceClasses": [
+        {
+          "book": "amrit_kan",
+          "name": "Main-Heading"
+        },
         {
           "book": "bhajan_sangrah",
           "name": "Heading"
@@ -1485,7 +2221,15 @@
           "name": "Heading"
         },
         {
+          "book": "gajalgita",
+          "name": "Chapter-Heading"
+        },
+        {
           "book": "gita_ashtavakra",
+          "name": "Heading"
+        },
+        {
+          "book": "gita_madhurya",
           "name": "Heading"
         },
         {
@@ -1501,6 +2245,10 @@
           "name": "Heading"
         },
         {
+          "book": "gitavali",
+          "name": "Heading"
+        },
+        {
           "book": "grihasth_mein_kaise_rahen",
           "name": "Heading"
         },
@@ -1509,8 +2257,24 @@
           "name": "Heading"
         },
         {
+          "book": "kavitavali",
+          "name": "Heading"
+        },
+        {
+          "book": "kya_guru_bina_mukti_nahi",
+          "name": "Heading"
+        },
+        {
           "book": "laghusiddhantakaumudi",
           "name": "Heading"
+        },
+        {
+          "book": "naam_jap_ki_mahima",
+          "name": "Heading"
+        },
+        {
+          "book": "nal_damayanti",
+          "name": "Main-Heading"
         },
         {
           "book": "narayan_kavach",
@@ -1518,6 +2282,10 @@
         },
         {
           "book": "nityakarma_pujaprakash",
+          "name": "Heading"
+        },
+        {
+          "book": "panchdev_atharvashirsh_sangrah",
           "name": "Heading"
         },
         {
@@ -1533,8 +2301,20 @@
           "name": "Heading"
         },
         {
+          "book": "ramagya_prashna",
+          "name": "Heading"
+        },
+        {
+          "book": "saar_sangrah",
+          "name": "Heading"
+        },
+        {
           "book": "sachchi_salah",
           "name": "Main-Heading"
+        },
+        {
+          "book": "sadhan_sudha_nidhi",
+          "name": "Heading"
         },
         {
           "book": "sahasranama_stotra_sangrah",
@@ -1543,6 +2323,14 @@
         {
           "book": "sankshipt_garuda_puran",
           "name": "Heading"
+        },
+        {
+          "book": "sanskar_prakash",
+          "name": "Heading"
+        },
+        {
+          "book": "sanskar_prakash",
+          "name": "Main-Heading"
         },
         {
           "book": "santan_gopal_stotra",
@@ -1577,6 +2365,14 @@
           "name": "Main-Heading"
         },
         {
+          "book": "sur_vinay_patrika",
+          "name": "Heading"
+        },
+        {
+          "book": "uddhar_kaise_ho",
+          "name": "Main-Heading"
+        },
+        {
           "book": "vaidik_sukt_sangrah",
           "name": "Heading"
         },
@@ -1596,6 +2392,10 @@
         {
           "book": "aadhyatma_ramayan",
           "name": "Sub-Heading"
+        },
+        {
+          "book": "amrit_kan",
+          "name": "Sub-Heading-"
         },
         {
           "book": "bhajan_sangrah",
@@ -1658,6 +2458,10 @@
           "name": "Sub-Heading"
         },
         {
+          "book": "gitavali",
+          "name": "Sub-Heading"
+        },
+        {
           "book": "grihasth_mein_kaise_rahen",
           "name": "Sub-Heading"
         },
@@ -1668,6 +2472,10 @@
         {
           "book": "ishadinau",
           "name": "Sub-Heading-2"
+        },
+        {
+          "book": "kavitavali",
+          "name": "Sub-Heading"
         },
         {
           "book": "laghusiddhantakaumudi",
@@ -1682,7 +2490,19 @@
           "name": "Sub-Heading"
         },
         {
+          "book": "naam_jap_ki_mahima",
+          "name": "Sub-Heading"
+        },
+        {
+          "book": "nal_damayanti",
+          "name": "Sub-Heading-"
+        },
+        {
           "book": "nityakarma_pujaprakash",
+          "name": "Sub-Heading"
+        },
+        {
+          "book": "panchdev_atharvashirsh_sangrah",
           "name": "Sub-Heading"
         },
         {
@@ -1698,8 +2518,24 @@
           "name": "Sub-Heading"
         },
         {
+          "book": "ramagya_prashna",
+          "name": "Sub-Heading"
+        },
+        {
+          "book": "saar_sangrah",
+          "name": "Sub-Heading"
+        },
+        {
           "book": "sachchi_salah",
           "name": "Sub-Heading-"
+        },
+        {
+          "book": "sadhan_sudha_nidhi",
+          "name": "Sub-Heading"
+        },
+        {
+          "book": "sadhan_sudha_nidhi",
+          "name": "Sub-Heading-A"
         },
         {
           "book": "sankshipt_garuda_puran",
@@ -1708,6 +2544,34 @@
         {
           "book": "sankshipt_garuda_puran",
           "name": "pravachan"
+        },
+        {
+          "book": "sanskar_prakash",
+          "name": "Sub-Heading-1"
+        },
+        {
+          "book": "sanskar_prakash",
+          "name": "Sub-Heading-1-1"
+        },
+        {
+          "book": "sanskar_prakash",
+          "name": "Sub-Heading-1-2"
+        },
+        {
+          "book": "sanskar_prakash",
+          "name": "Sub-Heading-1-3"
+        },
+        {
+          "book": "sanskar_prakash",
+          "name": "Sub-Heading-2"
+        },
+        {
+          "book": "sanskar_prakash",
+          "name": "Sub-Heading-2-1"
+        },
+        {
+          "book": "sanskar_prakash",
+          "name": "Sub-Heading-2-2"
         },
         {
           "book": "santan_gopal_stotra",
@@ -1726,11 +2590,27 @@
           "name": "Sub-Heading-"
         },
         {
+          "book": "sur_vinay_patrika",
+          "name": "Sub-Heading"
+        },
+        {
+          "book": "uddhar_kaise_ho",
+          "name": "Sub-Heading"
+        },
+        {
           "book": "vaidik_sukt_sangrah",
           "name": "Sub-Heading"
         },
         {
           "book": "valmiki_ramayan",
+          "name": "Sub-Heading"
+        },
+        {
+          "book": "vivek_chudamani",
+          "name": "Sub-Heading"
+        },
+        {
+          "book": "vrat_parichay",
           "name": "Sub-Heading"
         }
       ]
@@ -1740,6 +2620,10 @@
       "sourceClasses": [
         {
           "book": "aadhyatma_ramayan",
+          "name": "Footnotes"
+        },
+        {
+          "book": "amrit_kan",
           "name": "Footnotes"
         },
         {
@@ -1779,6 +2663,10 @@
           "name": "Footnotes"
         },
         {
+          "book": "gita_madhurya",
+          "name": "Footnotes"
+        },
+        {
           "book": "gita_prabodhini",
           "name": "Footnotes"
         },
@@ -1789,6 +2677,14 @@
         {
           "book": "gita_prabodhini",
           "name": "Footnotes-2"
+        },
+        {
+          "book": "gitavali",
+          "name": "Footnotes"
+        },
+        {
+          "book": "gitavali",
+          "name": "Futnoot"
         },
         {
           "book": "grihasth_mein_kaise_rahen",
@@ -1807,6 +2703,14 @@
           "name": "Footnotes"
         },
         {
+          "book": "kavitavali",
+          "name": "Footnotes"
+        },
+        {
+          "book": "kya_guru_bina_mukti_nahi",
+          "name": "Footnotes"
+        },
+        {
           "book": "laghusiddhantakaumudi",
           "name": "Footnotes"
         },
@@ -1819,6 +2723,10 @@
           "name": "Footnotes"
         },
         {
+          "book": "naam_jap_ki_mahima",
+          "name": "Footnotes"
+        },
+        {
           "book": "nityakarma_prayog",
           "name": "Footnotes"
         },
@@ -1827,7 +2735,23 @@
           "name": "Footnotes"
         },
         {
+          "book": "panchdev_atharvashirsh_sangrah",
+          "name": "Footnotes"
+        },
+        {
           "book": "puran_padma",
+          "name": "Footnotes"
+        },
+        {
+          "book": "ramagya_prashna",
+          "name": "Footnotes"
+        },
+        {
+          "book": "sadhan_sudha_nidhi",
+          "name": "Footnote-A"
+        },
+        {
+          "book": "sadhan_sudha_nidhi",
           "name": "Footnotes"
         },
         {
@@ -1836,6 +2760,10 @@
         },
         {
           "book": "sankshipt_garuda_puran",
+          "name": "Footnotes"
+        },
+        {
+          "book": "sanskar_prakash",
           "name": "Footnotes"
         },
         {
@@ -1851,6 +2779,10 @@
           "name": "Footnotes"
         },
         {
+          "book": "shri_bhagavannam_chintan",
+          "name": "Footnotes"
+        },
+        {
           "book": "shri_radha_madhav_chintan",
           "name": "Footnotes"
         },
@@ -1860,6 +2792,14 @@
         },
         {
           "book": "sukhi_bannay_ke_upay",
+          "name": "Footnotes"
+        },
+        {
+          "book": "sur_vinay_patrika",
+          "name": "Footnotes"
+        },
+        {
+          "book": "uddhar_kaise_ho",
           "name": "Footnotes"
         },
         {
@@ -1873,12 +2813,24 @@
         {
           "book": "vidura_niti",
           "name": "Footnotes"
+        },
+        {
+          "book": "vivek_chudamani",
+          "name": "Footnotes"
+        },
+        {
+          "book": "vrat_parichay",
+          "name": "Footnotes"
         }
       ]
     },
     "o": {
       "signature": "color:#760000;font-family:ChanakyaUni, serif;font-size:1.083em;font-style:normal;font-weight:bold;line-height:1.2;text-align:center;text-indent:0px",
       "sourceClasses": [
+        {
+          "book": "amrit_kan",
+          "name": "Footnotes-Bold"
+        },
         {
           "book": "chaitanya_charitavali",
           "name": "Footnotes-Bold"
@@ -1912,11 +2864,23 @@
           "name": "Footnotes-Bold-1"
         },
         {
+          "book": "gitavali",
+          "name": "Footnotes-Bold"
+        },
+        {
+          "book": "kya_guru_bina_mukti_nahi",
+          "name": "Footnotes-Bold"
+        },
+        {
           "book": "laghusiddhantakaumudi",
           "name": "Footnotes-Bold"
         },
         {
           "book": "manushya_ka_param_kartavya",
+          "name": "Footnotes-Bold"
+        },
+        {
+          "book": "nal_damayanti",
           "name": "Footnotes-Bold"
         },
         {
@@ -1928,7 +2892,31 @@
           "name": "Footnotes-Bold"
         },
         {
+          "book": "sadhan_sudha_nidhi",
+          "name": "Footnotes-Bold"
+        },
+        {
           "book": "sankshipt_garuda_puran",
+          "name": "Footnotes-Bold"
+        },
+        {
+          "book": "sanskar_prakash",
+          "name": "Footnotes-Bold"
+        },
+        {
+          "book": "sanskar_prakash",
+          "name": "Footnotes-Bold-1"
+        },
+        {
+          "book": "sanskar_prakash",
+          "name": "Footnotes-Bold-2"
+        },
+        {
+          "book": "sanskar_prakash",
+          "name": "Footnotes-Bold-3"
+        },
+        {
+          "book": "shri_bhagavannam_chintan",
           "name": "Footnotes-Bold"
         },
         {
@@ -1946,6 +2934,14 @@
         {
           "book": "valmiki_ramayan",
           "name": "Footnotes-Bold"
+        },
+        {
+          "book": "vivek_chudamani",
+          "name": "Footnotes-Bold"
+        },
+        {
+          "book": "vrat_parichay",
+          "name": "Footnotes-Bold"
         }
       ]
     },
@@ -1954,6 +2950,10 @@
       "sourceClasses": [
         {
           "book": "aadhyatma_ramayan",
+          "name": "Chapter-End-Text"
+        },
+        {
+          "book": "amrit_kan",
           "name": "Chapter-End-Text"
         },
         {
@@ -1993,11 +2993,19 @@
           "name": "ChapterEnd1"
         },
         {
+          "book": "gitavali",
+          "name": "Chapter-End-Text"
+        },
+        {
           "book": "ishadinau",
           "name": "Chapter-End-Text"
         },
         {
           "book": "kalyankari_pravachan",
+          "name": "Chapter-End-Text"
+        },
+        {
+          "book": "kavitavali",
           "name": "Chapter-End-Text"
         },
         {
@@ -2037,6 +3045,14 @@
           "name": "Chapter-End-Text-2"
         },
         {
+          "book": "sanskar_prakash",
+          "name": "Chapter-End-Text"
+        },
+        {
+          "book": "sanskar_prakash",
+          "name": "Chapter-End-Text-1"
+        },
+        {
           "book": "santan_gopal_stotra",
           "name": "Chapter-End-Text"
         },
@@ -2046,6 +3062,10 @@
         },
         {
           "book": "shiv_mahimna_stotra",
+          "name": "Chapter-End-Text"
+        },
+        {
+          "book": "shri_bhagavannam_chintan",
           "name": "Chapter-End-Text"
         },
         {
@@ -2067,6 +3087,18 @@
         {
           "book": "vidura_niti",
           "name": "Chapter-End-Text"
+        },
+        {
+          "book": "vivek_chudamani",
+          "name": "Chapter-End-Text"
+        },
+        {
+          "book": "vivek_chudamani",
+          "name": "Uvach"
+        },
+        {
+          "book": "vrat_parichay",
+          "name": "End-text"
         }
       ]
     },
@@ -2076,6 +3108,14 @@
         {
           "book": "aadhyatma_ramayan",
           "name": "para-style-override-1"
+        },
+        {
+          "book": "amrit_kan",
+          "name": "para-style-override-1"
+        },
+        {
+          "book": "amrit_kan",
+          "name": "para-style-override-7"
         },
         {
           "book": "bhajan_sangrah",
@@ -2122,6 +3162,10 @@
           "name": "para-style-override-1"
         },
         {
+          "book": "gajalgita",
+          "name": "para-style-override-1"
+        },
+        {
           "book": "ganesh_stotra_ratnakar",
           "name": "para-style-override-1"
         },
@@ -2142,6 +3186,10 @@
           "name": "para-style-override-7"
         },
         {
+          "book": "gita_madhurya",
+          "name": "para-style-override-1"
+        },
+        {
           "book": "gita_prabodhini",
           "name": "Right"
         },
@@ -2154,6 +3202,10 @@
           "name": "para-style-override-7"
         },
         {
+          "book": "gitavali",
+          "name": "para-style-override-1"
+        },
+        {
           "book": "grihasth_mein_kaise_rahen",
           "name": "para-style-override-1"
         },
@@ -2163,6 +3215,18 @@
         },
         {
           "book": "kalyankari_pravachan",
+          "name": "para-style-override-1"
+        },
+        {
+          "book": "kavitavali",
+          "name": "para-style-override-1"
+        },
+        {
+          "book": "kya_guru_bina_mukti_nahi",
+          "name": "Right"
+        },
+        {
+          "book": "kya_guru_bina_mukti_nahi",
           "name": "para-style-override-1"
         },
         {
@@ -2178,6 +3242,14 @@
           "name": "para-style-override-1"
         },
         {
+          "book": "naam_jap_ki_mahima",
+          "name": "para-style-override-1"
+        },
+        {
+          "book": "nal_damayanti",
+          "name": "para-style-override-1"
+        },
+        {
           "book": "narayan_kavach",
           "name": "para-style-override-1"
         },
@@ -2187,6 +3259,10 @@
         },
         {
           "book": "nityakarma_pujaprakash",
+          "name": "para-style-override-1"
+        },
+        {
+          "book": "panchdev_atharvashirsh_sangrah",
           "name": "para-style-override-1"
         },
         {
@@ -2206,7 +3282,23 @@
           "name": "para-style-override-1"
         },
         {
+          "book": "ramagya_prashna",
+          "name": "para-style-override-1"
+        },
+        {
+          "book": "saar_sangrah",
+          "name": "para-style-override-1"
+        },
+        {
           "book": "sachchi_salah",
+          "name": "para-style-override-1"
+        },
+        {
+          "book": "sadhan_path",
+          "name": "para-style-override-1"
+        },
+        {
+          "book": "sadhan_sudha_nidhi",
           "name": "para-style-override-1"
         },
         {
@@ -2218,11 +3310,19 @@
           "name": "para-style-override-1"
         },
         {
+          "book": "sanskar_prakash",
+          "name": "para-style-override-1"
+        },
+        {
           "book": "santan_gopal_stotra",
           "name": "para-style-override-1"
         },
         {
           "book": "shiv_mahimna_stotra",
+          "name": "para-style-override-1"
+        },
+        {
+          "book": "shri_bhagavannam_chintan",
           "name": "para-style-override-1"
         },
         {
@@ -2250,11 +3350,27 @@
           "name": "para-style-override-1"
         },
         {
+          "book": "sur_vinay_patrika",
+          "name": "para-style-override-1"
+        },
+        {
+          "book": "uddhar_kaise_ho",
+          "name": "para-style-override-1"
+        },
+        {
           "book": "vaidik_sukt_sangrah",
           "name": "para-style-override-1"
         },
         {
           "book": "valmiki_ramayan",
+          "name": "para-style-override-1"
+        },
+        {
+          "book": "vivek_chudamani",
+          "name": "para-style-override-1"
+        },
+        {
+          "book": "vrat_parichay",
           "name": "para-style-override-1"
         }
       ]
@@ -2264,6 +3380,10 @@
       "sourceClasses": [
         {
           "book": "aadhyatma_ramayan",
+          "name": "para-style-override-2"
+        },
+        {
+          "book": "amrit_kan",
           "name": "para-style-override-2"
         },
         {
@@ -2323,7 +3443,15 @@
           "name": "para-style-override-2"
         },
         {
+          "book": "gita_madhurya",
+          "name": "para-style-override-2"
+        },
+        {
           "book": "gita_prabodhini",
+          "name": "para-style-override-2"
+        },
+        {
+          "book": "gitavali",
           "name": "para-style-override-2"
         },
         {
@@ -2343,6 +3471,14 @@
           "name": "para-style-override-2"
         },
         {
+          "book": "kavitavali",
+          "name": "para-style-override-2"
+        },
+        {
+          "book": "kya_guru_bina_mukti_nahi",
+          "name": "para-style-override-2"
+        },
+        {
           "book": "laghusiddhantakaumudi",
           "name": "para-style-override-2"
         },
@@ -2355,6 +3491,14 @@
           "name": "para-style-override-4"
         },
         {
+          "book": "naam_jap_ki_mahima",
+          "name": "para-style-override-2"
+        },
+        {
+          "book": "nal_damayanti",
+          "name": "para-style-override-2"
+        },
+        {
           "book": "narayan_kavach",
           "name": "para-style-override-2"
         },
@@ -2364,6 +3508,10 @@
         },
         {
           "book": "nityakarma_pujaprakash",
+          "name": "para-style-override-2"
+        },
+        {
+          "book": "panchdev_atharvashirsh_sangrah",
           "name": "para-style-override-2"
         },
         {
@@ -2379,7 +3527,23 @@
           "name": "para-style-override-4"
         },
         {
+          "book": "ramagya_prashna",
+          "name": "para-style-override-2"
+        },
+        {
+          "book": "saar_sangrah",
+          "name": "para-style-override-2"
+        },
+        {
           "book": "sachchi_salah",
+          "name": "para-style-override-2"
+        },
+        {
+          "book": "sadhan_path",
+          "name": "para-style-override-2"
+        },
+        {
+          "book": "sadhan_sudha_nidhi",
           "name": "para-style-override-2"
         },
         {
@@ -2395,6 +3559,10 @@
           "name": "para-style-override-2"
         },
         {
+          "book": "sanskar_prakash",
+          "name": "para-style-override-2"
+        },
+        {
           "book": "santan_gopal_stotra",
           "name": "para-style-override-2"
         },
@@ -2405,6 +3573,10 @@
         {
           "book": "shiv_mahimna_stotra",
           "name": "para-style-override-2"
+        },
+        {
+          "book": "shri_bhagavannam_chintan",
+          "name": "para-style-override-4"
         },
         {
           "book": "shri_radha_madhav_chintan",
@@ -2419,6 +3591,14 @@
           "name": "para-style-override-2"
         },
         {
+          "book": "sur_vinay_patrika",
+          "name": "para-style-override-2"
+        },
+        {
+          "book": "uddhar_kaise_ho",
+          "name": "para-style-override-2"
+        },
+        {
           "book": "vaidik_sukt_sangrah",
           "name": "para-style-override-2"
         },
@@ -2429,6 +3609,14 @@
         {
           "book": "vidura_niti",
           "name": "para-style-override-3"
+        },
+        {
+          "book": "vivek_chudamani",
+          "name": "para-style-override-4"
+        },
+        {
+          "book": "vrat_parichay",
+          "name": "para-style-override-2"
         }
       ]
     },
@@ -2437,6 +3625,10 @@
       "sourceClasses": [
         {
           "book": "aadhyatma_ramayan",
+          "name": "char-style-override-1"
+        },
+        {
+          "book": "amrit_kan",
           "name": "char-style-override-1"
         },
         {
@@ -2476,6 +3668,10 @@
           "name": "char-style-override-1"
         },
         {
+          "book": "gajalgita",
+          "name": "char-style-override-1"
+        },
+        {
           "book": "ganesh_stotra_ratnakar",
           "name": "char-style-override-1"
         },
@@ -2488,7 +3684,15 @@
           "name": "char-style-override-1"
         },
         {
+          "book": "gita_madhurya",
+          "name": "char-style-override-1"
+        },
+        {
           "book": "gita_prabodhini",
+          "name": "char-style-override-1"
+        },
+        {
+          "book": "gitavali",
           "name": "char-style-override-1"
         },
         {
@@ -2504,7 +3708,23 @@
           "name": "char-style-override-1"
         },
         {
+          "book": "kavitavali",
+          "name": "char-style-override-1"
+        },
+        {
+          "book": "kya_guru_bina_mukti_nahi",
+          "name": "char-style-override-1"
+        },
+        {
           "book": "laghusiddhantakaumudi",
+          "name": "char-style-override-1"
+        },
+        {
+          "book": "naam_jap_ki_mahima",
+          "name": "char-style-override-1"
+        },
+        {
+          "book": "nal_damayanti",
           "name": "char-style-override-1"
         },
         {
@@ -2520,6 +3740,10 @@
           "name": "char-style-override-1"
         },
         {
+          "book": "panchdev_atharvashirsh_sangrah",
+          "name": "char-style-override-1"
+        },
+        {
           "book": "paralok_aur_punarjanma_ki_satya_ghatnayen",
           "name": "char-style-override-1"
         },
@@ -2528,7 +3752,23 @@
           "name": "char-style-override-1"
         },
         {
+          "book": "ramagya_prashna",
+          "name": "char-style-override-1"
+        },
+        {
+          "book": "saar_sangrah",
+          "name": "char-style-override-1"
+        },
+        {
           "book": "sachchi_salah",
+          "name": "char-style-override-1"
+        },
+        {
+          "book": "sadhan_path",
+          "name": "char-style-override-1"
+        },
+        {
+          "book": "sadhan_sudha_nidhi",
           "name": "char-style-override-1"
         },
         {
@@ -2537,6 +3777,10 @@
         },
         {
           "book": "sankshipt_garuda_puran",
+          "name": "char-style-override-1"
+        },
+        {
+          "book": "sanskar_prakash",
           "name": "char-style-override-1"
         },
         {
@@ -2560,11 +3804,23 @@
           "name": "char-style-override-1"
         },
         {
+          "book": "sur_vinay_patrika",
+          "name": "char-style-override-1"
+        },
+        {
+          "book": "uddhar_kaise_ho",
+          "name": "char-style-override-1"
+        },
+        {
           "book": "vaidik_sukt_sangrah",
           "name": "char-style-override-1"
         },
         {
           "book": "valmiki_ramayan",
+          "name": "char-style-override-1"
+        },
+        {
+          "book": "vrat_parichay",
           "name": "char-style-override-1"
         }
       ]
@@ -2572,6 +3828,10 @@
     "t": {
       "signature": "color:#231f20;font-size:0.929em",
       "sourceClasses": [
+        {
+          "book": "amrit_kan",
+          "name": "char-style-override-2"
+        },
         {
           "book": "bhajan_sangrah",
           "name": "char-style-override-2"
@@ -2586,6 +3846,10 @@
         },
         {
           "book": "dohavali",
+          "name": "char-style-override-2"
+        },
+        {
+          "book": "gajalgita",
           "name": "char-style-override-2"
         },
         {
@@ -2601,7 +3865,19 @@
           "name": "char-style-override-2"
         },
         {
+          "book": "gitavali",
+          "name": "char-style-override-2"
+        },
+        {
           "book": "kalyankari_pravachan",
+          "name": "char-style-override-2"
+        },
+        {
+          "book": "kavitavali",
+          "name": "char-style-override-2"
+        },
+        {
+          "book": "nal_damayanti",
           "name": "char-style-override-2"
         },
         {
@@ -2617,6 +3893,10 @@
           "name": "char-style-override-2"
         },
         {
+          "book": "ramagya_prashna",
+          "name": "char-style-override-2"
+        },
+        {
           "book": "shri_radha_madhav_chintan",
           "name": "char-style-override-2"
         },
@@ -2627,12 +3907,28 @@
         {
           "book": "sukhi_bannay_ke_upay",
           "name": "char-style-override-2"
+        },
+        {
+          "book": "sur_vinay_patrika",
+          "name": "char-style-override-2"
+        },
+        {
+          "book": "uddhar_kaise_ho",
+          "name": "char-style-override-2"
+        },
+        {
+          "book": "vrat_parichay",
+          "name": "char-style-override-2"
         }
       ]
     },
     "u": {
       "signature": "font-size:0.778em",
       "sourceClasses": [
+        {
+          "book": "amrit_kan",
+          "name": "char-style-override-3"
+        },
         {
           "book": "bhajan_sangrah",
           "name": "char-style-override-3"
@@ -2650,6 +3946,10 @@
           "name": "char-style-override-3"
         },
         {
+          "book": "gajalgita",
+          "name": "char-style-override-3"
+        },
+        {
           "book": "gita_ke_param_pracharak",
           "name": "char-style-override-3"
         },
@@ -2662,7 +3962,19 @@
           "name": "char-style-override-3"
         },
         {
+          "book": "gitavali",
+          "name": "char-style-override-3"
+        },
+        {
           "book": "kalyankari_pravachan",
+          "name": "char-style-override-3"
+        },
+        {
+          "book": "kavitavali",
+          "name": "char-style-override-3"
+        },
+        {
+          "book": "nal_damayanti",
           "name": "char-style-override-3"
         },
         {
@@ -2682,6 +3994,10 @@
           "name": "char-style-override-3"
         },
         {
+          "book": "ramagya_prashna",
+          "name": "char-style-override-3"
+        },
+        {
           "book": "shri_radha_madhav_chintan",
           "name": "char-style-override-3"
         },
@@ -2692,6 +4008,18 @@
         {
           "book": "sukhi_bannay_ke_upay",
           "name": "char-style-override-3"
+        },
+        {
+          "book": "sur_vinay_patrika",
+          "name": "char-style-override-3"
+        },
+        {
+          "book": "uddhar_kaise_ho",
+          "name": "char-style-override-3"
+        },
+        {
+          "book": "vrat_parichay",
+          "name": "char-style-override-3"
         }
       ]
     },
@@ -2701,6 +4029,18 @@
         {
           "book": "aadhyatma_ramayan",
           "name": "char-style-override-7"
+        },
+        {
+          "book": "amrit_kan",
+          "name": "char-style-override-11"
+        },
+        {
+          "book": "amrit_kan",
+          "name": "char-style-override-12"
+        },
+        {
+          "book": "amrit_kan",
+          "name": "char-style-override-4"
         },
         {
           "book": "bhajan_sangrah",
@@ -2785,6 +4125,18 @@
         {
           "book": "gita_ke_param_pracharak",
           "name": "char-style-override-4"
+        },
+        {
+          "book": "gita_madhurya",
+          "name": "char-style-override-4"
+        },
+        {
+          "book": "gita_madhurya",
+          "name": "para-style-override-6"
+        },
+        {
+          "book": "gita_madhurya",
+          "name": "x15-Bold"
         },
         {
           "book": "gita_prabodhini",
@@ -2815,6 +4167,10 @@
           "name": "char-style-override-4"
         },
         {
+          "book": "gitavali",
+          "name": "char-style-override-4"
+        },
+        {
           "book": "grihasth_mein_kaise_rahen",
           "name": "char-style-override-4"
         },
@@ -2835,6 +4191,18 @@
           "name": "char-style-override-4"
         },
         {
+          "book": "kavitavali",
+          "name": "char-style-override-4"
+        },
+        {
+          "book": "kya_guru_bina_mukti_nahi",
+          "name": "char-style-override-4"
+        },
+        {
+          "book": "kya_guru_bina_mukti_nahi",
+          "name": "para-style-override-6"
+        },
+        {
           "book": "laghusiddhantakaumudi",
           "name": "char-style-override-4"
         },
@@ -2848,6 +4216,18 @@
         },
         {
           "book": "manushya_ka_param_kartavya",
+          "name": "char-style-override-4"
+        },
+        {
+          "book": "naam_jap_ki_mahima",
+          "name": "char-style-override-4"
+        },
+        {
+          "book": "nal_damayanti",
+          "name": "char-style-override-11"
+        },
+        {
+          "book": "nal_damayanti",
           "name": "char-style-override-4"
         },
         {
@@ -2875,6 +4255,14 @@
           "name": "para-style-override-6"
         },
         {
+          "book": "panchdev_atharvashirsh_sangrah",
+          "name": "char-style-override-4"
+        },
+        {
+          "book": "panchdev_atharvashirsh_sangrah",
+          "name": "para-style-override-6"
+        },
+        {
           "book": "paralok_aur_punarjanma_ki_satya_ghatnayen",
           "name": "char-style-override-4"
         },
@@ -2887,8 +4275,36 @@
           "name": "char-style-override-4"
         },
         {
+          "book": "ramagya_prashna",
+          "name": "char-style-override-11"
+        },
+        {
+          "book": "ramagya_prashna",
+          "name": "char-style-override-12"
+        },
+        {
+          "book": "ramagya_prashna",
+          "name": "char-style-override-4"
+        },
+        {
+          "book": "saar_sangrah",
+          "name": "char-style-override-4"
+        },
+        {
           "book": "sachchi_salah",
           "name": "char-style-override-6"
+        },
+        {
+          "book": "sadhan_path",
+          "name": "char-style-override-5"
+        },
+        {
+          "book": "sadhan_sudha_nidhi",
+          "name": "char-style-override-4"
+        },
+        {
+          "book": "sadhan_sudha_nidhi",
+          "name": "para-style-override-6"
         },
         {
           "book": "sahasranama_stotra_sangrah",
@@ -2900,6 +4316,14 @@
         },
         {
           "book": "sankshipt_garuda_puran",
+          "name": "para-style-override-6"
+        },
+        {
+          "book": "sanskar_prakash",
+          "name": "char-style-override-4"
+        },
+        {
+          "book": "sanskar_prakash",
           "name": "para-style-override-6"
         },
         {
@@ -2916,6 +4340,10 @@
         },
         {
           "book": "shiv_mahimna_stotra",
+          "name": "char-style-override-4"
+        },
+        {
+          "book": "shri_bhagavannam_chintan",
           "name": "char-style-override-4"
         },
         {
@@ -2951,6 +4379,14 @@
           "name": "char-style-override-4"
         },
         {
+          "book": "sur_vinay_patrika",
+          "name": "char-style-override-4"
+        },
+        {
+          "book": "uddhar_kaise_ho",
+          "name": "char-style-override-4"
+        },
+        {
           "book": "vaidik_sukt_sangrah",
           "name": "char-style-override-4"
         },
@@ -2965,6 +4401,26 @@
         {
           "book": "valmiki_ramayan",
           "name": "para-style-override-5"
+        },
+        {
+          "book": "vivek_chudamani",
+          "name": "char-style-override-4"
+        },
+        {
+          "book": "vrat_parichay",
+          "name": "char-style-override-11"
+        },
+        {
+          "book": "vrat_parichay",
+          "name": "char-style-override-12"
+        },
+        {
+          "book": "vrat_parichay",
+          "name": "char-style-override-20"
+        },
+        {
+          "book": "vrat_parichay",
+          "name": "char-style-override-4"
         }
       ]
     },
@@ -2974,6 +4430,10 @@
         {
           "book": "aadhyatma_ramayan",
           "name": "char-style-override-3"
+        },
+        {
+          "book": "amrit_kan",
+          "name": "char-style-override-5"
         },
         {
           "book": "bhajan_sangrah",
@@ -3016,7 +4476,15 @@
           "name": "char-style-override-5"
         },
         {
+          "book": "gita_madhurya",
+          "name": "char-style-override-3"
+        },
+        {
           "book": "gita_prabodhini",
+          "name": "char-style-override-5"
+        },
+        {
+          "book": "gitavali",
           "name": "char-style-override-5"
         },
         {
@@ -3032,6 +4500,14 @@
           "name": "char-style-override-5"
         },
         {
+          "book": "kavitavali",
+          "name": "char-style-override-5"
+        },
+        {
+          "book": "kya_guru_bina_mukti_nahi",
+          "name": "char-style-override-8"
+        },
+        {
           "book": "laghusiddhantakaumudi",
           "name": "char-style-override-8"
         },
@@ -3044,11 +4520,23 @@
           "name": "char-style-override-3"
         },
         {
+          "book": "naam_jap_ki_mahima",
+          "name": "char-style-override-3"
+        },
+        {
+          "book": "nal_damayanti",
+          "name": "char-style-override-5"
+        },
+        {
           "book": "nityakarma_prayog",
           "name": "char-style-override-3"
         },
         {
           "book": "nityakarma_pujaprakash",
+          "name": "char-style-override-8"
+        },
+        {
+          "book": "panchdev_atharvashirsh_sangrah",
           "name": "char-style-override-8"
         },
         {
@@ -3068,6 +4556,22 @@
           "name": "para-style-override-8"
         },
         {
+          "book": "ramagya_prashna",
+          "name": "char-style-override-5"
+        },
+        {
+          "book": "saar_sangrah",
+          "name": "char-style-override-3"
+        },
+        {
+          "book": "sadhan_path",
+          "name": "char-style-override-8"
+        },
+        {
+          "book": "sadhan_sudha_nidhi",
+          "name": "char-style-override-8"
+        },
+        {
           "book": "sahasranama_stotra_sangrah",
           "name": "char-style-override-13"
         },
@@ -3077,6 +4581,10 @@
         },
         {
           "book": "sankshipt_garuda_puran",
+          "name": "char-style-override-8"
+        },
+        {
+          "book": "sanskar_prakash",
           "name": "char-style-override-8"
         },
         {
@@ -3092,6 +4600,14 @@
           "name": "char-style-override-3"
         },
         {
+          "book": "shri_bhagavannam_chintan",
+          "name": "char-style-override-3"
+        },
+        {
+          "book": "shri_bhagavannam_chintan",
+          "name": "para-style-override-8"
+        },
+        {
           "book": "shri_radha_madhav_chintan",
           "name": "char-style-override-5"
         },
@@ -3101,6 +4617,14 @@
         },
         {
           "book": "sukhi_bannay_ke_upay",
+          "name": "char-style-override-5"
+        },
+        {
+          "book": "sur_vinay_patrika",
+          "name": "char-style-override-5"
+        },
+        {
+          "book": "uddhar_kaise_ho",
           "name": "char-style-override-5"
         },
         {
@@ -3114,6 +4638,14 @@
         {
           "book": "vidura_niti",
           "name": "para-style-override-7"
+        },
+        {
+          "book": "vivek_chudamani",
+          "name": "char-style-override-3"
+        },
+        {
+          "book": "vrat_parichay",
+          "name": "char-style-override-5"
         }
       ]
     },
@@ -3123,6 +4655,10 @@
         {
           "book": "aadhyatma_ramayan",
           "name": "char-style-override-8"
+        },
+        {
+          "book": "amrit_kan",
+          "name": "char-style-override-6"
         },
         {
           "book": "chaitanya_charitavali",
@@ -3153,7 +4689,15 @@
           "name": "char-style-override-6"
         },
         {
+          "book": "gita_madhurya",
+          "name": "char-style-override-10"
+        },
+        {
           "book": "gita_prabodhini",
+          "name": "char-style-override-6"
+        },
+        {
+          "book": "gitavali",
           "name": "char-style-override-6"
         },
         {
@@ -3162,6 +4706,14 @@
         },
         {
           "book": "ishadinau",
+          "name": "char-style-override-10"
+        },
+        {
+          "book": "kavitavali",
+          "name": "char-style-override-6"
+        },
+        {
+          "book": "kya_guru_bina_mukti_nahi",
           "name": "char-style-override-10"
         },
         {
@@ -3177,11 +4729,19 @@
           "name": "char-style-override-7"
         },
         {
+          "book": "nal_damayanti",
+          "name": "char-style-override-6"
+        },
+        {
           "book": "nityakarma_prayog",
           "name": "char-style-override-6"
         },
         {
           "book": "nityakarma_pujaprakash",
+          "name": "char-style-override-10"
+        },
+        {
+          "book": "panchdev_atharvashirsh_sangrah",
           "name": "char-style-override-10"
         },
         {
@@ -3193,7 +4753,23 @@
           "name": "char-style-override-7"
         },
         {
+          "book": "ramagya_prashna",
+          "name": "char-style-override-6"
+        },
+        {
+          "book": "sadhan_path",
+          "name": "char-style-override-6"
+        },
+        {
+          "book": "sadhan_sudha_nidhi",
+          "name": "char-style-override-10"
+        },
+        {
           "book": "sankshipt_garuda_puran",
+          "name": "char-style-override-10"
+        },
+        {
+          "book": "sanskar_prakash",
           "name": "char-style-override-10"
         },
         {
@@ -3209,6 +4785,10 @@
           "name": "char-style-override-10"
         },
         {
+          "book": "shri_bhagavannam_chintan",
+          "name": "char-style-override-7"
+        },
+        {
           "book": "shri_radha_madhav_chintan",
           "name": "char-style-override-6"
         },
@@ -3218,6 +4798,14 @@
         },
         {
           "book": "sukhi_bannay_ke_upay",
+          "name": "char-style-override-6"
+        },
+        {
+          "book": "sur_vinay_patrika",
+          "name": "char-style-override-6"
+        },
+        {
+          "book": "uddhar_kaise_ho",
           "name": "char-style-override-6"
         },
         {
@@ -3227,12 +4815,24 @@
         {
           "book": "valmiki_ramayan",
           "name": "char-style-override-6"
+        },
+        {
+          "book": "vivek_chudamani",
+          "name": "char-style-override-7"
+        },
+        {
+          "book": "vrat_parichay",
+          "name": "char-style-override-6"
         }
       ]
     },
     "y": {
       "signature": "font-size:0.583em;font-style:normal;font-weight:normal;vertical-align:super",
       "sourceClasses": [
+        {
+          "book": "amrit_kan",
+          "name": "char-style-override-7"
+        },
         {
           "book": "chalisa_hanuman_lal",
           "name": "char-style-override-7"
@@ -3250,7 +4850,23 @@
           "name": "char-style-override-7"
         },
         {
+          "book": "gitavali",
+          "name": "char-style-override-7"
+        },
+        {
+          "book": "kavitavali",
+          "name": "char-style-override-7"
+        },
+        {
+          "book": "nal_damayanti",
+          "name": "char-style-override-7"
+        },
+        {
           "book": "paralok_aur_punarjanma_ki_satya_ghatnayen",
+          "name": "char-style-override-7"
+        },
+        {
+          "book": "ramagya_prashna",
           "name": "char-style-override-7"
         },
         {
@@ -3263,6 +4879,14 @@
         },
         {
           "book": "sukhi_bannay_ke_upay",
+          "name": "char-style-override-7"
+        },
+        {
+          "book": "uddhar_kaise_ho",
+          "name": "char-style-override-7"
+        },
+        {
+          "book": "vrat_parichay",
           "name": "char-style-override-7"
         }
       ]
@@ -3271,6 +4895,10 @@
       "signature": "color:#ff0000;font-size:0.818em",
       "sourceClasses": [
         {
+          "book": "amrit_kan",
+          "name": "char-style-override-8"
+        },
+        {
           "book": "chalisa_hanuman_lal",
           "name": "char-style-override-8"
         },
@@ -3287,7 +4915,19 @@
           "name": "char-style-override-8"
         },
         {
+          "book": "gitavali",
+          "name": "char-style-override-8"
+        },
+        {
+          "book": "nal_damayanti",
+          "name": "char-style-override-8"
+        },
+        {
           "book": "paralok_aur_punarjanma_ki_satya_ghatnayen",
+          "name": "char-style-override-8"
+        },
+        {
+          "book": "ramagya_prashna",
           "name": "char-style-override-8"
         },
         {
@@ -3301,12 +4941,24 @@
         {
           "book": "sukhi_bannay_ke_upay",
           "name": "char-style-override-8"
+        },
+        {
+          "book": "uddhar_kaise_ho",
+          "name": "char-style-override-8"
+        },
+        {
+          "book": "vrat_parichay",
+          "name": "char-style-override-8"
         }
       ]
     },
     "aa": {
       "signature": "font-size:1.125em;font-style:normal;font-weight:bold",
       "sourceClasses": [
+        {
+          "book": "amrit_kan",
+          "name": "char-style-override-9"
+        },
         {
           "book": "chalisa_hanuman_lal",
           "name": "char-style-override-9"
@@ -3320,7 +4972,19 @@
           "name": "char-style-override-9"
         },
         {
+          "book": "gitavali",
+          "name": "char-style-override-9"
+        },
+        {
+          "book": "nal_damayanti",
+          "name": "char-style-override-9"
+        },
+        {
           "book": "paralok_aur_punarjanma_ki_satya_ghatnayen",
+          "name": "char-style-override-9"
+        },
+        {
+          "book": "ramagya_prashna",
           "name": "char-style-override-9"
         },
         {
@@ -3338,12 +5002,20 @@
         {
           "book": "sukhi_bannay_ke_upay",
           "name": "char-style-override-9"
+        },
+        {
+          "book": "vrat_parichay",
+          "name": "char-style-override-9"
         }
       ]
     },
     "ab": {
       "signature": "font-size:1.125em",
       "sourceClasses": [
+        {
+          "book": "amrit_kan",
+          "name": "char-style-override-10"
+        },
         {
           "book": "chalisa_hanuman_lal",
           "name": "char-style-override-10"
@@ -3373,6 +5045,10 @@
           "name": "char-style-override-2"
         },
         {
+          "book": "nal_damayanti",
+          "name": "char-style-override-10"
+        },
+        {
           "book": "paralok_aur_punarjanma_ki_satya_ghatnayen",
           "name": "char-style-override-10"
         },
@@ -3381,11 +5057,19 @@
           "name": "char-style-override-2"
         },
         {
+          "book": "ramagya_prashna",
+          "name": "char-style-override-10"
+        },
+        {
           "book": "sachchi_salah",
           "name": "char-style-override-8"
         },
         {
           "book": "shatnaam_stotra_sangrah",
+          "name": "char-style-override-2"
+        },
+        {
+          "book": "shri_bhagavannam_chintan",
           "name": "char-style-override-2"
         },
         {
@@ -3403,6 +5087,14 @@
         {
           "book": "valmiki_ramayan",
           "name": "char-style-override-16"
+        },
+        {
+          "book": "vivek_chudamani",
+          "name": "char-style-override-2"
+        },
+        {
+          "book": "vrat_parichay",
+          "name": "char-style-override-10"
         }
       ]
     },
@@ -3426,6 +5118,42 @@
           "name": "para-style-override-9"
         },
         {
+          "book": "amrit_kan",
+          "name": "Basic-Graphics-Frame"
+        },
+        {
+          "book": "amrit_kan",
+          "name": "char-style-override-13"
+        },
+        {
+          "book": "amrit_kan",
+          "name": "char-style-override-14"
+        },
+        {
+          "book": "amrit_kan",
+          "name": "char-style-override-15"
+        },
+        {
+          "book": "amrit_kan",
+          "name": "char-style-override-16"
+        },
+        {
+          "book": "amrit_kan",
+          "name": "char-style-override-17"
+        },
+        {
+          "book": "amrit_kan",
+          "name": "para-style-override-10"
+        },
+        {
+          "book": "amrit_kan",
+          "name": "para-style-override-8"
+        },
+        {
+          "book": "amrit_kan",
+          "name": "para-style-override-9"
+        },
+        {
           "book": "chalisa_hanuman_lal",
           "name": "char-style-override-13"
         },
@@ -3440,6 +5168,14 @@
         {
           "book": "durga_saptashati",
           "name": "para-style-override-5"
+        },
+        {
+          "book": "gajalgita",
+          "name": "Basic-Graphics-Frame"
+        },
+        {
+          "book": "gajalgita",
+          "name": "Basic-Text-Frame"
         },
         {
           "book": "garga_samhita",
@@ -3516,6 +5252,14 @@
         {
           "book": "gita_ke_param_pracharak",
           "name": "para-style-override-9"
+        },
+        {
+          "book": "gita_madhurya",
+          "name": "Basic-Graphics-Frame"
+        },
+        {
+          "book": "gita_madhurya",
+          "name": "para-style-override-5"
         },
         {
           "book": "gita_prabodhini",
@@ -3626,6 +5370,10 @@
           "name": "para-style-override-9"
         },
         {
+          "book": "gitavali",
+          "name": "Basic-Graphics-Frame"
+        },
+        {
           "book": "grihasth_mein_kaise_rahen",
           "name": "para-style-override-5"
         },
@@ -3646,8 +5394,32 @@
           "name": "para-style-override-9"
         },
         {
+          "book": "kavitavali",
+          "name": "Basic-Graphics-Frame"
+        },
+        {
+          "book": "kya_guru_bina_mukti_nahi",
+          "name": "Basic-Graphics-Frame"
+        },
+        {
+          "book": "kya_guru_bina_mukti_nahi",
+          "name": "Basic-Text-Frame"
+        },
+        {
+          "book": "kya_guru_bina_mukti_nahi",
+          "name": "para-style-override-7"
+        },
+        {
           "book": "laghusiddhantakaumudi",
           "name": "para-style-override-7"
+        },
+        {
+          "book": "naam_jap_ki_mahima",
+          "name": "Basic-Graphics-Frame"
+        },
+        {
+          "book": "nal_damayanti",
+          "name": "Basic-Graphics-Frame"
         },
         {
           "book": "narayan_kavach",
@@ -3674,6 +5446,58 @@
           "name": "para-style-override-7"
         },
         {
+          "book": "panchdev_atharvashirsh_sangrah",
+          "name": "Basic-Graphics-Frame"
+        },
+        {
+          "book": "panchdev_atharvashirsh_sangrah",
+          "name": "para-style-override-7"
+        },
+        {
+          "book": "ramagya_prashna",
+          "name": "Basic-Graphics-Frame"
+        },
+        {
+          "book": "saar_sangrah",
+          "name": "Basic-Graphics-Frame"
+        },
+        {
+          "book": "saar_sangrah",
+          "name": "para-style-override-5"
+        },
+        {
+          "book": "sadhan_path",
+          "name": "Basic-Graphics-Frame"
+        },
+        {
+          "book": "sadhan_path",
+          "name": "Basic-Text-Frame"
+        },
+        {
+          "book": "sadhan_sudha_nidhi",
+          "name": "Basic-Graphics-Frame"
+        },
+        {
+          "book": "sadhan_sudha_nidhi",
+          "name": "para-style-override-24"
+        },
+        {
+          "book": "sadhan_sudha_nidhi",
+          "name": "para-style-override-25"
+        },
+        {
+          "book": "sadhan_sudha_nidhi",
+          "name": "para-style-override-26"
+        },
+        {
+          "book": "sadhan_sudha_nidhi",
+          "name": "para-style-override-27"
+        },
+        {
+          "book": "sadhan_sudha_nidhi",
+          "name": "para-style-override-7"
+        },
+        {
           "book": "sahasranama_stotra_sangrah",
           "name": "para-style-override-11"
         },
@@ -3688,6 +5512,34 @@
         {
           "book": "sankshipt_garuda_puran",
           "name": "para-style-override-7"
+        },
+        {
+          "book": "sanskar_prakash",
+          "name": "Basic-Graphics-Frame"
+        },
+        {
+          "book": "sanskar_prakash",
+          "name": "Basic-Text-Frame"
+        },
+        {
+          "book": "sanskar_prakash",
+          "name": "Basic-Text-Frame-1"
+        },
+        {
+          "book": "sanskar_prakash",
+          "name": "para-style-override-24"
+        },
+        {
+          "book": "sanskar_prakash",
+          "name": "para-style-override-25"
+        },
+        {
+          "book": "sanskar_prakash",
+          "name": "para-style-override-7"
+        },
+        {
+          "book": "shri_bhagavannam_chintan",
+          "name": "Basic-Graphics-Frame"
         },
         {
           "book": "shri_radha_madhav_chintan",
@@ -3762,18 +5614,82 @@
           "name": "para-style-override-9"
         },
         {
+          "book": "sur_vinay_patrika",
+          "name": "Basic-Graphics-Frame"
+        },
+        {
+          "book": "uddhar_kaise_ho",
+          "name": "Basic-Graphics-Frame"
+        },
+        {
           "book": "vaidik_sukt_sangrah",
           "name": "para-style-override-7"
         },
         {
           "book": "valmiki_ramayan",
           "name": "para-style-override-3"
+        },
+        {
+          "book": "vivek_chudamani",
+          "name": "Basic-Graphics-Frame"
+        },
+        {
+          "book": "vivek_chudamani",
+          "name": "Basic-Text-Frame"
+        },
+        {
+          "book": "vrat_parichay",
+          "name": "Basic-Graphics-Frame"
+        },
+        {
+          "book": "vrat_parichay",
+          "name": "char-style-override-13"
+        },
+        {
+          "book": "vrat_parichay",
+          "name": "char-style-override-14"
+        },
+        {
+          "book": "vrat_parichay",
+          "name": "char-style-override-15"
+        },
+        {
+          "book": "vrat_parichay",
+          "name": "char-style-override-16"
+        },
+        {
+          "book": "vrat_parichay",
+          "name": "char-style-override-17"
+        },
+        {
+          "book": "vrat_parichay",
+          "name": "char-style-override-18"
+        },
+        {
+          "book": "vrat_parichay",
+          "name": "char-style-override-19"
         }
       ]
     },
     "ad": {
       "signature": "text-align:center",
       "sourceClasses": [
+        {
+          "book": "amrit_kan",
+          "name": "Image"
+        },
+        {
+          "book": "amrit_kan",
+          "name": "para-style-override-3"
+        },
+        {
+          "book": "amrit_kan",
+          "name": "para-style-override-4"
+        },
+        {
+          "book": "amrit_kan",
+          "name": "para-style-override-5"
+        },
         {
           "book": "bhajan_sangrah",
           "name": "para-style-override-3"
@@ -3827,6 +5743,10 @@
           "name": "para-style-override-5"
         },
         {
+          "book": "gita_madhurya",
+          "name": "para-style-override-4"
+        },
+        {
           "book": "gita_prabodhini",
           "name": "Image"
         },
@@ -3843,12 +5763,40 @@
           "name": "para-style-override-5"
         },
         {
+          "book": "gitavali",
+          "name": "para-style-override-3"
+        },
+        {
           "book": "grihasth_mein_kaise_rahen",
           "name": "para-style-override-4"
         },
         {
           "book": "ishadinau",
           "name": "para-style-override-4"
+        },
+        {
+          "book": "kavitavali",
+          "name": "para-style-override-3"
+        },
+        {
+          "book": "kavitavali",
+          "name": "para-style-override-4"
+        },
+        {
+          "book": "kavitavali",
+          "name": "para-style-override-5"
+        },
+        {
+          "book": "nal_damayanti",
+          "name": "para-style-override-3"
+        },
+        {
+          "book": "nal_damayanti",
+          "name": "para-style-override-4"
+        },
+        {
+          "book": "nal_damayanti",
+          "name": "para-style-override-5"
         },
         {
           "book": "narayan_kavach",
@@ -3891,6 +5839,26 @@
           "name": "para-style-override-5"
         },
         {
+          "book": "ramagya_prashna",
+          "name": "Image"
+        },
+        {
+          "book": "ramagya_prashna",
+          "name": "para-style-override-3"
+        },
+        {
+          "book": "ramagya_prashna",
+          "name": "para-style-override-4"
+        },
+        {
+          "book": "ramagya_prashna",
+          "name": "para-style-override-5"
+        },
+        {
+          "book": "saar_sangrah",
+          "name": "para-style-override-4"
+        },
+        {
           "book": "sahasranam_vishnu",
           "name": "para-style-override-2"
         },
@@ -3925,6 +5893,26 @@
         {
           "book": "sukhi_bannay_ke_upay",
           "name": "para-style-override-3"
+        },
+        {
+          "book": "uddhar_kaise_ho",
+          "name": "para-style-override-3"
+        },
+        {
+          "book": "uddhar_kaise_ho",
+          "name": "para-style-override-4"
+        },
+        {
+          "book": "uddhar_kaise_ho",
+          "name": "para-style-override-5"
+        },
+        {
+          "book": "vrat_parichay",
+          "name": "para-style-override-3"
+        },
+        {
+          "book": "vrat_parichay",
+          "name": "para-style-override-4"
         }
       ]
     },
@@ -3934,6 +5922,10 @@
         {
           "book": "aadhyatma_ramayan",
           "name": "para-style-override-5"
+        },
+        {
+          "book": "amrit_kan",
+          "name": "para-style-override-6"
         },
         {
           "book": "chalisa_hanuman_lal",
@@ -3961,6 +5953,10 @@
         },
         {
           "book": "shri_radha_madhav_chintan",
+          "name": "para-style-override-6"
+        },
+        {
+          "book": "uddhar_kaise_ho",
           "name": "para-style-override-6"
         }
       ]
@@ -4000,7 +5996,83 @@
           "name": "epub-page"
         },
         {
+          "book": "amrit_kan",
+          "name": "epub-page"
+        },
+        {
+          "book": "gajalgita",
+          "name": "epub-page"
+        },
+        {
+          "book": "gita_madhurya",
+          "name": "epub-page"
+        },
+        {
           "book": "gita_prabodhini",
+          "name": "epub-page"
+        },
+        {
+          "book": "gitavali",
+          "name": "epub-page"
+        },
+        {
+          "book": "kavitavali",
+          "name": "epub-page"
+        },
+        {
+          "book": "kya_guru_bina_mukti_nahi",
+          "name": "epub-page"
+        },
+        {
+          "book": "naam_jap_ki_mahima",
+          "name": "epub-page"
+        },
+        {
+          "book": "nal_damayanti",
+          "name": "epub-page"
+        },
+        {
+          "book": "panchdev_atharvashirsh_sangrah",
+          "name": "epub-page"
+        },
+        {
+          "book": "ramagya_prashna",
+          "name": "epub-page"
+        },
+        {
+          "book": "saar_sangrah",
+          "name": "epub-page"
+        },
+        {
+          "book": "sadhan_path",
+          "name": "epub-page"
+        },
+        {
+          "book": "sadhan_sudha_nidhi",
+          "name": "epub-page"
+        },
+        {
+          "book": "sanskar_prakash",
+          "name": "epub-page"
+        },
+        {
+          "book": "shri_bhagavannam_chintan",
+          "name": "epub-page"
+        },
+        {
+          "book": "sur_vinay_patrika",
+          "name": "epub-page"
+        },
+        {
+          "book": "uddhar_kaise_ho",
+          "name": "epub-page"
+        },
+        {
+          "book": "vivek_chudamani",
+          "name": "epub-page"
+        },
+        {
+          "book": "vrat_parichay",
           "name": "epub-page"
         }
       ]
@@ -4013,7 +6085,83 @@
           "name": "page-break"
         },
         {
+          "book": "amrit_kan",
+          "name": "page-break"
+        },
+        {
+          "book": "gajalgita",
+          "name": "page-break"
+        },
+        {
+          "book": "gita_madhurya",
+          "name": "page-break"
+        },
+        {
           "book": "gita_prabodhini",
+          "name": "page-break"
+        },
+        {
+          "book": "gitavali",
+          "name": "page-break"
+        },
+        {
+          "book": "kavitavali",
+          "name": "page-break"
+        },
+        {
+          "book": "kya_guru_bina_mukti_nahi",
+          "name": "page-break"
+        },
+        {
+          "book": "naam_jap_ki_mahima",
+          "name": "page-break"
+        },
+        {
+          "book": "nal_damayanti",
+          "name": "page-break"
+        },
+        {
+          "book": "panchdev_atharvashirsh_sangrah",
+          "name": "page-break"
+        },
+        {
+          "book": "ramagya_prashna",
+          "name": "page-break"
+        },
+        {
+          "book": "saar_sangrah",
+          "name": "page-break"
+        },
+        {
+          "book": "sadhan_path",
+          "name": "page-break"
+        },
+        {
+          "book": "sadhan_sudha_nidhi",
+          "name": "page-break"
+        },
+        {
+          "book": "sanskar_prakash",
+          "name": "page-break"
+        },
+        {
+          "book": "shri_bhagavannam_chintan",
+          "name": "page-break"
+        },
+        {
+          "book": "sur_vinay_patrika",
+          "name": "page-break"
+        },
+        {
+          "book": "uddhar_kaise_ho",
+          "name": "page-break"
+        },
+        {
+          "book": "vivek_chudamani",
+          "name": "page-break"
+        },
+        {
+          "book": "vrat_parichay",
           "name": "page-break"
         }
       ]
@@ -4038,6 +6186,14 @@
           "name": "Footnotes-Right-1"
         },
         {
+          "book": "gitavali",
+          "name": "Footnotes-Right"
+        },
+        {
+          "book": "nal_damayanti",
+          "name": "Footnotes-Right"
+        },
+        {
           "book": "shri_radha_madhav_chintan",
           "name": "Footnotes-Right"
         },
@@ -4047,6 +6203,10 @@
         },
         {
           "book": "sukhi_bannay_ke_upay",
+          "name": "Footnotes-Right"
+        },
+        {
+          "book": "vrat_parichay",
           "name": "Footnotes-Right"
         }
       ]
@@ -4067,6 +6227,10 @@
           "name": "No-Paragraph-Style"
         },
         {
+          "book": "gita_madhurya",
+          "name": "No-Paragraph-Style"
+        },
+        {
           "book": "grihasth_mein_kaise_rahen",
           "name": "No-Paragraph-Style"
         },
@@ -4075,11 +6239,31 @@
           "name": "No-Paragraph-Style"
         },
         {
+          "book": "kya_guru_bina_mukti_nahi",
+          "name": "No-Paragraph-Style"
+        },
+        {
           "book": "laghusiddhantakaumudi",
           "name": "No-Paragraph-Style"
         },
         {
+          "book": "naam_jap_ki_mahima",
+          "name": "No-Paragraph-Style"
+        },
+        {
           "book": "nityakarma_pujaprakash",
+          "name": "No-Paragraph-Style"
+        },
+        {
+          "book": "panchdev_atharvashirsh_sangrah",
+          "name": "No-Paragraph-Style"
+        },
+        {
+          "book": "saar_sangrah",
+          "name": "No-Paragraph-Style"
+        },
+        {
+          "book": "sadhan_sudha_nidhi",
           "name": "No-Paragraph-Style"
         },
         {
@@ -4088,6 +6272,10 @@
         },
         {
           "book": "sankshipt_garuda_puran",
+          "name": "No-Paragraph-Style"
+        },
+        {
+          "book": "sanskar_prakash",
           "name": "No-Paragraph-Style"
         },
         {
@@ -4323,8 +6511,16 @@
           "name": "para-style-override-15"
         },
         {
+          "book": "shri_bhagavannam_chintan",
+          "name": "para-style-override-3"
+        },
+        {
           "book": "vidura_niti",
           "name": "para-style-override-2"
+        },
+        {
+          "book": "vivek_chudamani",
+          "name": "para-style-override-3"
         }
       ]
     },
@@ -4440,11 +6636,19 @@
           "name": "para-style-override-19"
         },
         {
+          "book": "sadhan_sudha_nidhi",
+          "name": "para-style-override-19"
+        },
+        {
           "book": "sahasranama_stotra_sangrah",
           "name": "para-style-override-14"
         },
         {
           "book": "sankshipt_garuda_puran",
+          "name": "para-style-override-19"
+        },
+        {
+          "book": "sanskar_prakash",
           "name": "para-style-override-19"
         },
         {
@@ -4475,6 +6679,10 @@
       "sourceClasses": [
         {
           "book": "durga_saptashati",
+          "name": "char-style-override-11"
+        },
+        {
+          "book": "gita_madhurya",
           "name": "char-style-override-11"
         },
         {
@@ -4540,6 +6748,10 @@
       "signature": "font-size:0.583em;font-style:normal;font-weight:bold;vertical-align:super",
       "sourceClasses": [
         {
+          "book": "kya_guru_bina_mukti_nahi",
+          "name": "char-style-override-13"
+        },
+        {
           "book": "laghusiddhantakaumudi",
           "name": "char-style-override-13"
         },
@@ -4552,11 +6764,23 @@
           "name": "char-style-override-13"
         },
         {
+          "book": "panchdev_atharvashirsh_sangrah",
+          "name": "char-style-override-13"
+        },
+        {
+          "book": "sadhan_sudha_nidhi",
+          "name": "char-style-override-13"
+        },
+        {
           "book": "sahasranama_stotra_sangrah",
           "name": "char-style-override-5"
         },
         {
           "book": "sankshipt_garuda_puran",
+          "name": "char-style-override-13"
+        },
+        {
+          "book": "sanskar_prakash",
           "name": "char-style-override-13"
         },
         {
@@ -4593,6 +6817,10 @@
           "name": "char-style-override-9"
         },
         {
+          "book": "sadhan_path",
+          "name": "char-style-override-4"
+        },
+        {
           "book": "sahasranama_stotra_sangrah",
           "name": "char-style-override-6"
         },
@@ -4603,6 +6831,10 @@
         {
           "book": "valmiki_ramayan",
           "name": "char-style-override-7"
+        },
+        {
+          "book": "vivek_chudamani",
+          "name": "char-style-override-9"
         }
       ]
     },
@@ -4645,6 +6877,10 @@
         },
         {
           "book": "nityakarma_pujaprakash",
+          "name": "char-style-override-26"
+        },
+        {
+          "book": "sadhan_sudha_nidhi",
           "name": "char-style-override-26"
         },
         {
@@ -4701,8 +6937,20 @@
           "name": "char-style-override-2"
         },
         {
+          "book": "sadhan_sudha_nidhi",
+          "name": "char-style-override-27"
+        },
+        {
           "book": "sahasranama_stotra_sangrah",
           "name": "char-style-override-10"
+        },
+        {
+          "book": "shri_bhagavannam_chintan",
+          "name": "char-style-override-1"
+        },
+        {
+          "book": "vivek_chudamani",
+          "name": "char-style-override-1"
         }
       ]
     },
@@ -4718,6 +6966,10 @@
     "bs": {
       "signature": "color:#a51512;font-style:normal;font-weight:normal",
       "sourceClasses": [
+        {
+          "book": "gita_madhurya",
+          "name": "char-style-override-12"
+        },
         {
           "book": "sahasranama_stotra_sangrah",
           "name": "char-style-override-12"
@@ -4783,6 +7035,10 @@
           "name": "Title-Page---Gita-Seva-Trust"
         },
         {
+          "book": "gita_madhurya",
+          "name": "Title-Page---Gita-Seva-Trust"
+        },
+        {
           "book": "grihasth_mein_kaise_rahen",
           "name": "Title-Page---Gita-Seva-Trust"
         },
@@ -4799,11 +7055,23 @@
           "name": "Title-Page---Gita-Seva-Trust"
         },
         {
+          "book": "naam_jap_ki_mahima",
+          "name": "Title-Page---Gita-Seva-Trust"
+        },
+        {
           "book": "nityakarma_prayog",
           "name": "Title-Page---Gita-Seva-Trust"
         },
         {
           "book": "puran_padma",
+          "name": "Title-Page---Gita-Seva-Trust"
+        },
+        {
+          "book": "saar_sangrah",
+          "name": "Title-Page---Gita-Seva-Trust"
+        },
+        {
+          "book": "sadhan_path",
           "name": "Title-Page---Gita-Seva-Trust"
         },
         {
@@ -4813,6 +7081,14 @@
         {
           "book": "shiv_mahimna_stotra",
           "name": "Title-Page---Gita-Seva-Trust"
+        },
+        {
+          "book": "shri_bhagavannam_chintan",
+          "name": "Title-Page---Gita-Seva-Trust"
+        },
+        {
+          "book": "vivek_chudamani",
+          "name": "Title-Page---Gita-Seva-Trust"
         }
       ]
     },
@@ -4821,6 +7097,10 @@
       "sourceClasses": [
         {
           "book": "durga_saptashati",
+          "name": "Uwach"
+        },
+        {
+          "book": "saar_sangrah",
           "name": "Uwach"
         }
       ]
@@ -4837,6 +7117,10 @@
           "name": "TXT-Right"
         },
         {
+          "book": "gita_madhurya",
+          "name": "TXT-Right"
+        },
+        {
           "book": "grihasth_mein_kaise_rahen",
           "name": "TXT-Right"
         },
@@ -4846,6 +7130,14 @@
         },
         {
           "book": "kalyankari_pravachan",
+          "name": "TXT-Right"
+        },
+        {
+          "book": "naam_jap_ki_mahima",
+          "name": "TXT-Right"
+        },
+        {
+          "book": "saar_sangrah",
           "name": "TXT-Right"
         },
         {
@@ -4882,6 +7174,10 @@
           "name": "Footnotes-Bold"
         },
         {
+          "book": "naam_jap_ki_mahima",
+          "name": "Footnotes-Bold"
+        },
+        {
           "book": "nityakarma_prayog",
           "name": "Footnotes-Bold"
         },
@@ -4908,6 +7204,10 @@
         },
         {
           "book": "ishadinau",
+          "name": "Footnotes-Right"
+        },
+        {
+          "book": "naam_jap_ki_mahima",
           "name": "Footnotes-Right"
         },
         {
@@ -4966,6 +7266,10 @@
         },
         {
           "book": "lalita_sahasranama_stotram",
+          "name": "TXT-Bold"
+        },
+        {
+          "book": "panchdev_atharvashirsh_sangrah",
           "name": "TXT-Bold"
         },
         {
@@ -5031,6 +7335,10 @@
           "name": "Description"
         },
         {
+          "book": "kya_guru_bina_mukti_nahi",
+          "name": "Title-Page---Author-Name"
+        },
+        {
           "book": "laghusiddhantakaumudi",
           "name": "Title-Page---Author-Name"
         },
@@ -5067,8 +7375,28 @@
           "name": "Title-Page---Author-Name"
         },
         {
+          "book": "sadhan_path",
+          "name": "Title-Page---Author-Name"
+        },
+        {
+          "book": "sadhan_sudha_nidhi",
+          "name": "Title-Page---Author-Name"
+        },
+        {
           "book": "sankshipt_garuda_puran",
           "name": "Title-Page---Sub-Heading"
+        },
+        {
+          "book": "shri_bhagavannam_chintan",
+          "name": "Title-Page---Author-Name"
+        },
+        {
+          "book": "vivek_chudamani",
+          "name": "Title-Page---Author-Name"
+        },
+        {
+          "book": "vrat_parichay",
+          "name": "Description"
         }
       ]
     },
@@ -5081,6 +7409,10 @@
         },
         {
           "book": "laghusiddhantakaumudi",
+          "name": "Gadya"
+        },
+        {
+          "book": "uddhar_kaise_ho",
           "name": "Gadya"
         }
       ]
@@ -5101,6 +7433,10 @@
           "name": "para-style-override-2"
         },
         {
+          "book": "gita_madhurya",
+          "name": "para-style-override-3"
+        },
+        {
           "book": "grihasth_mein_kaise_rahen",
           "name": "para-style-override-3"
         },
@@ -5113,6 +7449,10 @@
           "name": "para-style-override-2"
         },
         {
+          "book": "naam_jap_ki_mahima",
+          "name": "para-style-override-3"
+        },
+        {
           "book": "nityakarma_prayog",
           "name": "para-style-override-10"
         },
@@ -5121,12 +7461,24 @@
           "name": "para-style-override-2"
         },
         {
+          "book": "saar_sangrah",
+          "name": "para-style-override-3"
+        },
+        {
           "book": "santan_gopal_stotra",
           "name": "para-style-override-3"
         },
         {
           "book": "shiv_mahimna_stotra",
           "name": "para-style-override-3"
+        },
+        {
+          "book": "shri_bhagavannam_chintan",
+          "name": "para-style-override-2"
+        },
+        {
+          "book": "vivek_chudamani",
+          "name": "para-style-override-2"
         }
       ]
     },
@@ -5135,6 +7487,10 @@
       "sourceClasses": [
         {
           "book": "durga_saptashati",
+          "name": "para-style-override-7"
+        },
+        {
+          "book": "gita_madhurya",
           "name": "para-style-override-7"
         },
         {
@@ -5163,11 +7519,23 @@
           "name": "char-style-override-2"
         },
         {
+          "book": "gita_madhurya",
+          "name": "char-style-override-2"
+        },
+        {
           "book": "grihasth_mein_kaise_rahen",
           "name": "char-style-override-2"
         },
         {
           "book": "ishadinau",
+          "name": "char-style-override-2"
+        },
+        {
+          "book": "naam_jap_ki_mahima",
+          "name": "char-style-override-2"
+        },
+        {
+          "book": "saar_sangrah",
           "name": "char-style-override-2"
         },
         {
@@ -5188,6 +7556,10 @@
           "name": "char-style-override-5"
         },
         {
+          "book": "gita_madhurya",
+          "name": "char-style-override-5"
+        },
+        {
           "book": "grihasth_mein_kaise_rahen",
           "name": "char-style-override-5"
         },
@@ -5200,7 +7572,19 @@
           "name": "char-style-override-33"
         },
         {
+          "book": "naam_jap_ki_mahima",
+          "name": "char-style-override-5"
+        },
+        {
           "book": "nityakarma_pujaprakash",
+          "name": "char-style-override-33"
+        },
+        {
+          "book": "saar_sangrah",
+          "name": "char-style-override-5"
+        },
+        {
+          "book": "sadhan_sudha_nidhi",
           "name": "char-style-override-33"
         },
         {
@@ -5225,11 +7609,23 @@
           "name": "char-style-override-6"
         },
         {
+          "book": "gita_madhurya",
+          "name": "char-style-override-6"
+        },
+        {
           "book": "grihasth_mein_kaise_rahen",
           "name": "char-style-override-6"
         },
         {
           "book": "ishadinau",
+          "name": "char-style-override-6"
+        },
+        {
+          "book": "naam_jap_ki_mahima",
+          "name": "char-style-override-6"
+        },
+        {
+          "book": "saar_sangrah",
           "name": "char-style-override-6"
         },
         {
@@ -5250,11 +7646,19 @@
           "name": "char-style-override-7"
         },
         {
+          "book": "gita_madhurya",
+          "name": "char-style-override-7"
+        },
+        {
           "book": "grihasth_mein_kaise_rahen",
           "name": "char-style-override-7"
         },
         {
           "book": "ishadinau",
+          "name": "char-style-override-7"
+        },
+        {
+          "book": "saar_sangrah",
           "name": "char-style-override-7"
         },
         {
@@ -5272,6 +7676,10 @@
       "sourceClasses": [
         {
           "book": "durga_saptashati",
+          "name": "char-style-override-8"
+        },
+        {
+          "book": "gita_madhurya",
           "name": "char-style-override-8"
         },
         {
@@ -5302,6 +7710,10 @@
         {
           "book": "garga_samhita",
           "name": "char-style-override-6"
+        },
+        {
+          "book": "gita_madhurya",
+          "name": "char-style-override-9"
         },
         {
           "book": "grihasth_mein_kaise_rahen",
@@ -5336,8 +7748,16 @@
           "name": "char-style-override-9"
         },
         {
+          "book": "shri_bhagavannam_chintan",
+          "name": "char-style-override-6"
+        },
+        {
           "book": "valmiki_ramayan",
           "name": "char-style-override-14"
+        },
+        {
+          "book": "vivek_chudamani",
+          "name": "char-style-override-6"
         }
       ]
     },
@@ -5404,6 +7824,10 @@
           "name": "char-style-override-15"
         },
         {
+          "book": "kya_guru_bina_mukti_nahi",
+          "name": "char-style-override-11"
+        },
+        {
           "book": "laghusiddhantakaumudi",
           "name": "char-style-override-11"
         },
@@ -5416,16 +7840,36 @@
           "name": "char-style-override-11"
         },
         {
+          "book": "panchdev_atharvashirsh_sangrah",
+          "name": "char-style-override-11"
+        },
+        {
           "book": "puran_padma",
           "name": "char-style-override-5"
+        },
+        {
+          "book": "sadhan_sudha_nidhi",
+          "name": "char-style-override-11"
         },
         {
           "book": "sankshipt_garuda_puran",
           "name": "char-style-override-11"
         },
         {
+          "book": "sanskar_prakash",
+          "name": "char-style-override-11"
+        },
+        {
+          "book": "shri_bhagavannam_chintan",
+          "name": "char-style-override-5"
+        },
+        {
           "book": "vaidik_sukt_sangrah",
           "name": "char-style-override-11"
+        },
+        {
+          "book": "vivek_chudamani",
+          "name": "char-style-override-5"
         }
       ]
     },
@@ -5521,6 +7965,10 @@
           "name": "char-style-override-23"
         },
         {
+          "book": "sadhan_sudha_nidhi",
+          "name": "char-style-override-23"
+        },
+        {
           "book": "sankshipt_garuda_puran",
           "name": "char-style-override-23"
         }
@@ -5588,6 +8036,10 @@
           "name": "char-style-override-28"
         },
         {
+          "book": "kya_guru_bina_mukti_nahi",
+          "name": "char-style-override-6"
+        },
+        {
           "book": "laghusiddhantakaumudi",
           "name": "char-style-override-6"
         },
@@ -5596,7 +8048,19 @@
           "name": "char-style-override-6"
         },
         {
+          "book": "panchdev_atharvashirsh_sangrah",
+          "name": "char-style-override-6"
+        },
+        {
+          "book": "sadhan_sudha_nidhi",
+          "name": "char-style-override-6"
+        },
+        {
           "book": "sankshipt_garuda_puran",
+          "name": "char-style-override-6"
+        },
+        {
+          "book": "sanskar_prakash",
           "name": "char-style-override-6"
         },
         {
@@ -5687,6 +8151,10 @@
           "name": "frame-4"
         },
         {
+          "book": "amrit_kan",
+          "name": "frame-1"
+        },
+        {
           "book": "devi_bhagavat",
           "name": "frame-2"
         },
@@ -5701,6 +8169,18 @@
         {
           "book": "puran_padma",
           "name": "frame-1"
+        },
+        {
+          "book": "ramagya_prashna",
+          "name": "frame-1"
+        },
+        {
+          "book": "sanskar_prakash",
+          "name": "frame-1"
+        },
+        {
+          "book": "sanskar_prakash",
+          "name": "frame-2"
         }
       ]
     },
@@ -5790,6 +8270,10 @@
           "name": "Footnotes-Right"
         },
         {
+          "book": "kya_guru_bina_mukti_nahi",
+          "name": "Footnotes-Right"
+        },
+        {
           "book": "manushya_ka_param_kartavya",
           "name": "Footnotes-Right"
         },
@@ -5802,7 +8286,31 @@
           "name": "Footnotes-Right"
         },
         {
+          "book": "sadhan_sudha_nidhi",
+          "name": "Footnotes-Right"
+        },
+        {
           "book": "sankshipt_garuda_puran",
+          "name": "Footnotes-Right"
+        },
+        {
+          "book": "sanskar_prakash",
+          "name": "Footnotes-Right"
+        },
+        {
+          "book": "sanskar_prakash",
+          "name": "Footnotes-Right-1"
+        },
+        {
+          "book": "sanskar_prakash",
+          "name": "Footnotes-Right-2"
+        },
+        {
+          "book": "sanskar_prakash",
+          "name": "Footnotes-Right-3"
+        },
+        {
+          "book": "shri_bhagavannam_chintan",
           "name": "Footnotes-Right"
         },
         {
@@ -5816,6 +8324,10 @@
         {
           "book": "valmiki_ramayan",
           "name": "Footnotes-Right-2"
+        },
+        {
+          "book": "vivek_chudamani",
+          "name": "Footnotes-Right"
         }
       ]
     },
@@ -5865,6 +8377,10 @@
           "name": "Shlok-Black"
         },
         {
+          "book": "kya_guru_bina_mukti_nahi",
+          "name": "SHLOK-Black"
+        },
+        {
           "book": "laghusiddhantakaumudi",
           "name": "SHLOK-Black"
         },
@@ -5879,6 +8395,30 @@
         {
           "book": "puran_padma",
           "name": "Shlok-Black-2"
+        },
+        {
+          "book": "sadhan_sudha_nidhi",
+          "name": "SHLOK-Black"
+        },
+        {
+          "book": "sanskar_prakash",
+          "name": "SHLOK-Black"
+        },
+        {
+          "book": "sanskar_prakash",
+          "name": "SHLOK-Black-1"
+        },
+        {
+          "book": "sanskar_prakash",
+          "name": "SHLOK-Black-2"
+        },
+        {
+          "book": "sanskar_prakash",
+          "name": "SHLOK-Black-3"
+        },
+        {
+          "book": "shri_bhagavannam_chintan",
+          "name": "Shlok-Black"
         },
         {
           "book": "valmiki_ramayan",
@@ -5903,6 +8443,10 @@
       "signature": "color:#c40075;font-family:ChanakyaUni, serif;font-size:1.667em;font-style:normal;font-weight:bold;line-height:1.2;text-align:center;text-indent:0px",
       "sourceClasses": [
         {
+          "book": "sanskar_prakash",
+          "name": "OM"
+        },
+        {
           "book": "valmiki_ramayan",
           "name": "OM"
         }
@@ -5916,6 +8460,10 @@
           "name": "Nayash"
         },
         {
+          "book": "sanskar_prakash",
+          "name": "Nayash"
+        },
+        {
           "book": "valmiki_ramayan",
           "name": "Nayash"
         }
@@ -5925,7 +8473,15 @@
       "signature": "color:#000000;font-family:ChanakyaUni, serif;font-size:1.083em;font-style:normal;font-weight:normal;line-height:1.108;text-align:right;text-indent:18px",
       "sourceClasses": [
         {
+          "book": "amrit_kan",
+          "name": "TXT-Right"
+        },
+        {
           "book": "gita_ke_param_pracharak",
+          "name": "TXT-Right"
+        },
+        {
+          "book": "nal_damayanti",
           "name": "TXT-Right"
         },
         {
@@ -5941,7 +8497,15 @@
           "name": "TXT-Right"
         },
         {
+          "book": "uddhar_kaise_ho",
+          "name": "TXT-Right"
+        },
+        {
           "book": "valmiki_ramayan",
+          "name": "TXT-Right"
+        },
+        {
+          "book": "vrat_parichay",
           "name": "TXT-Right"
         }
       ]
@@ -5954,6 +8518,10 @@
           "name": "Title-Page---Book-Name"
         },
         {
+          "book": "kya_guru_bina_mukti_nahi",
+          "name": "Title-Page---Book-Name"
+        },
+        {
           "book": "laghusiddhantakaumudi",
           "name": "Title-Page---Book-Name"
         },
@@ -5962,7 +8530,19 @@
           "name": "Title-Page---Book-Name"
         },
         {
+          "book": "panchdev_atharvashirsh_sangrah",
+          "name": "Title-Page---Book-Name"
+        },
+        {
+          "book": "sadhan_sudha_nidhi",
+          "name": "Title-Page---Book-Name"
+        },
+        {
           "book": "sankshipt_garuda_puran",
+          "name": "Title-Page---Book-Name"
+        },
+        {
+          "book": "sanskar_prakash",
           "name": "Title-Page---Book-Name"
         },
         {
@@ -6039,7 +8619,15 @@
           "name": "para-style-override-10"
         },
         {
+          "book": "sadhan_sudha_nidhi",
+          "name": "para-style-override-10"
+        },
+        {
           "book": "sankshipt_garuda_puran",
+          "name": "para-style-override-10"
+        },
+        {
+          "book": "sanskar_prakash",
           "name": "para-style-override-10"
         },
         {
@@ -6175,6 +8763,10 @@
           "name": "char-style-override-2"
         },
         {
+          "book": "kya_guru_bina_mukti_nahi",
+          "name": "char-style-override-2"
+        },
+        {
           "book": "laghusiddhantakaumudi",
           "name": "char-style-override-2"
         },
@@ -6183,7 +8775,23 @@
           "name": "char-style-override-2"
         },
         {
+          "book": "panchdev_atharvashirsh_sangrah",
+          "name": "char-style-override-2"
+        },
+        {
+          "book": "sadhan_path",
+          "name": "char-style-override-2"
+        },
+        {
+          "book": "sadhan_sudha_nidhi",
+          "name": "char-style-override-2"
+        },
+        {
           "book": "sankshipt_garuda_puran",
+          "name": "char-style-override-2"
+        },
+        {
+          "book": "sanskar_prakash",
           "name": "char-style-override-2"
         },
         {
@@ -6306,6 +8914,10 @@
       "signature": "font-size:1.154em",
       "sourceClasses": [
         {
+          "book": "kya_guru_bina_mukti_nahi",
+          "name": "char-style-override-9"
+        },
+        {
           "book": "laghusiddhantakaumudi",
           "name": "char-style-override-9"
         },
@@ -6314,7 +8926,19 @@
           "name": "char-style-override-9"
         },
         {
+          "book": "panchdev_atharvashirsh_sangrah",
+          "name": "char-style-override-9"
+        },
+        {
+          "book": "sadhan_sudha_nidhi",
+          "name": "char-style-override-9"
+        },
+        {
           "book": "sankshipt_garuda_puran",
+          "name": "char-style-override-9"
+        },
+        {
+          "book": "sanskar_prakash",
           "name": "char-style-override-9"
         },
         {
@@ -6463,6 +9087,14 @@
           "name": "char-style-override-9"
         },
         {
+          "book": "sadhan_path",
+          "name": "char-style-override-7"
+        },
+        {
+          "book": "sadhan_sudha_nidhi",
+          "name": "char-style-override-16"
+        },
+        {
           "book": "sankshipt_garuda_puran",
           "name": "char-style-override-16"
         },
@@ -6518,12 +9150,20 @@
         {
           "book": "nityakarma_pujaprakash",
           "name": "Sub-Head-2"
+        },
+        {
+          "book": "vrat_parichay",
+          "name": "Sub-Head-2"
         }
       ]
     },
     "fm": {
       "signature": "color:#231f20;font-family:ChanakyaUni, serif;font-size:1.083em;font-style:normal;font-weight:normal;line-height:1.108;text-align:right;text-indent:18px",
       "sourceClasses": [
+        {
+          "book": "kya_guru_bina_mukti_nahi",
+          "name": "TXT-Right"
+        },
         {
           "book": "laghusiddhantakaumudi",
           "name": "TXT-Right"
@@ -6533,7 +9173,19 @@
           "name": "TXT-Right"
         },
         {
+          "book": "panchdev_atharvashirsh_sangrah",
+          "name": "TXT-Right"
+        },
+        {
+          "book": "sadhan_sudha_nidhi",
+          "name": "TXT-Right"
+        },
+        {
           "book": "sankshipt_garuda_puran",
+          "name": "TXT-Right"
+        },
+        {
+          "book": "sanskar_prakash",
           "name": "TXT-Right"
         },
         {
@@ -6545,6 +9197,18 @@
     "fn": {
       "signature": "color:#c40075;font-family:ChanakyaUni, serif;font-size:2.083em;font-style:normal;font-weight:bold;line-height:1.2;margin-bottom:6px;text-align:center;text-indent:0px",
       "sourceClasses": [
+        {
+          "book": "amrit_kan",
+          "name": "Main-Heading---Book-Name-etc-"
+        },
+        {
+          "book": "gita_madhurya",
+          "name": "Main-Heading---Book-Name-etc-"
+        },
+        {
+          "book": "gitavali",
+          "name": "Main-Heading---Book-Name-etc-"
+        },
         {
           "book": "laghusiddhantakaumudi",
           "name": "Main-Heading---Book-Name-etc-"
@@ -6571,6 +9235,10 @@
       "signature": "color:#231f20;font-size:1.167em",
       "sourceClasses": [
         {
+          "book": "kya_guru_bina_mukti_nahi",
+          "name": "para-style-override-3"
+        },
+        {
           "book": "laghusiddhantakaumudi",
           "name": "para-style-override-3"
         },
@@ -6579,7 +9247,19 @@
           "name": "para-style-override-3"
         },
         {
+          "book": "panchdev_atharvashirsh_sangrah",
+          "name": "para-style-override-3"
+        },
+        {
+          "book": "sadhan_sudha_nidhi",
+          "name": "para-style-override-3"
+        },
+        {
           "book": "sankshipt_garuda_puran",
+          "name": "para-style-override-3"
+        },
+        {
+          "book": "sanskar_prakash",
           "name": "para-style-override-3"
         },
         {
@@ -6604,6 +9284,10 @@
           "name": "char-style-override-18"
         },
         {
+          "book": "kya_guru_bina_mukti_nahi",
+          "name": "para-style-override-4"
+        },
+        {
           "book": "laghusiddhantakaumudi",
           "name": "para-style-override-4"
         },
@@ -6612,11 +9296,27 @@
           "name": "para-style-override-4"
         },
         {
+          "book": "panchdev_atharvashirsh_sangrah",
+          "name": "para-style-override-4"
+        },
+        {
           "book": "puran_padma",
           "name": "char-style-override-18"
         },
         {
+          "book": "sadhan_path",
+          "name": "para-style-override-3"
+        },
+        {
+          "book": "sadhan_sudha_nidhi",
+          "name": "para-style-override-4"
+        },
+        {
           "book": "sankshipt_garuda_puran",
+          "name": "para-style-override-4"
+        },
+        {
+          "book": "sanskar_prakash",
           "name": "para-style-override-4"
         },
         {
@@ -6629,6 +9329,10 @@
       "signature": "font-family:ChanakyaUni, serif;font-size:1.25em;font-style:normal;font-weight:normal;text-align:justify;text-indent:18px",
       "sourceClasses": [
         {
+          "book": "kya_guru_bina_mukti_nahi",
+          "name": "para-style-override-5"
+        },
+        {
           "book": "laghusiddhantakaumudi",
           "name": "para-style-override-5"
         },
@@ -6637,7 +9341,19 @@
           "name": "para-style-override-5"
         },
         {
+          "book": "panchdev_atharvashirsh_sangrah",
+          "name": "para-style-override-5"
+        },
+        {
+          "book": "sadhan_sudha_nidhi",
+          "name": "para-style-override-5"
+        },
+        {
           "book": "sankshipt_garuda_puran",
+          "name": "para-style-override-5"
+        },
+        {
+          "book": "sanskar_prakash",
           "name": "para-style-override-5"
         },
         {
@@ -6658,7 +9374,15 @@
           "name": "para-style-override-8"
         },
         {
+          "book": "sadhan_sudha_nidhi",
+          "name": "para-style-override-8"
+        },
+        {
           "book": "sankshipt_garuda_puran",
+          "name": "para-style-override-8"
+        },
+        {
+          "book": "sanskar_prakash",
           "name": "para-style-override-8"
         },
         {
@@ -6679,7 +9403,15 @@
           "name": "para-style-override-9"
         },
         {
+          "book": "sadhan_sudha_nidhi",
+          "name": "para-style-override-9"
+        },
+        {
           "book": "sankshipt_garuda_puran",
+          "name": "para-style-override-9"
+        },
+        {
+          "book": "sanskar_prakash",
           "name": "para-style-override-9"
         }
       ]
@@ -6696,7 +9428,15 @@
           "name": "para-style-override-11"
         },
         {
+          "book": "sadhan_sudha_nidhi",
+          "name": "para-style-override-11"
+        },
+        {
           "book": "sankshipt_garuda_puran",
+          "name": "para-style-override-11"
+        },
+        {
+          "book": "sanskar_prakash",
           "name": "para-style-override-11"
         }
       ]
@@ -6709,7 +9449,15 @@
           "name": "para-style-override-12"
         },
         {
+          "book": "sadhan_sudha_nidhi",
+          "name": "para-style-override-12"
+        },
+        {
           "book": "sankshipt_garuda_puran",
+          "name": "para-style-override-12"
+        },
+        {
+          "book": "sanskar_prakash",
           "name": "para-style-override-12"
         }
       ]
@@ -6734,7 +9482,15 @@
           "name": "para-style-override-13"
         },
         {
+          "book": "sadhan_sudha_nidhi",
+          "name": "para-style-override-13"
+        },
+        {
           "book": "sankshipt_garuda_puran",
+          "name": "para-style-override-13"
+        },
+        {
+          "book": "sanskar_prakash",
           "name": "para-style-override-13"
         }
       ]
@@ -6747,7 +9503,15 @@
           "name": "para-style-override-14"
         },
         {
+          "book": "sadhan_sudha_nidhi",
+          "name": "para-style-override-14"
+        },
+        {
           "book": "sankshipt_garuda_puran",
+          "name": "para-style-override-14"
+        },
+        {
+          "book": "sanskar_prakash",
           "name": "para-style-override-14"
         }
       ]
@@ -6760,7 +9524,15 @@
           "name": "para-style-override-15"
         },
         {
+          "book": "sadhan_sudha_nidhi",
+          "name": "para-style-override-15"
+        },
+        {
           "book": "sankshipt_garuda_puran",
+          "name": "para-style-override-15"
+        },
+        {
+          "book": "sanskar_prakash",
           "name": "para-style-override-15"
         }
       ]
@@ -6773,7 +9545,15 @@
           "name": "para-style-override-16"
         },
         {
+          "book": "sadhan_sudha_nidhi",
+          "name": "para-style-override-16"
+        },
+        {
           "book": "sankshipt_garuda_puran",
+          "name": "para-style-override-16"
+        },
+        {
+          "book": "sanskar_prakash",
           "name": "para-style-override-16"
         },
         {
@@ -6794,7 +9574,19 @@
           "name": "para-style-override-17"
         },
         {
+          "book": "sadhan_path",
+          "name": "para-style-override-7"
+        },
+        {
+          "book": "sadhan_sudha_nidhi",
+          "name": "para-style-override-17"
+        },
+        {
           "book": "sankshipt_garuda_puran",
+          "name": "para-style-override-17"
+        },
+        {
+          "book": "sanskar_prakash",
           "name": "para-style-override-17"
         }
       ]
@@ -6807,7 +9599,15 @@
           "name": "para-style-override-18"
         },
         {
+          "book": "sadhan_sudha_nidhi",
+          "name": "para-style-override-18"
+        },
+        {
           "book": "sankshipt_garuda_puran",
+          "name": "para-style-override-18"
+        },
+        {
+          "book": "sanskar_prakash",
           "name": "para-style-override-18"
         }
       ]
@@ -6820,7 +9620,15 @@
           "name": "para-style-override-20"
         },
         {
+          "book": "sadhan_sudha_nidhi",
+          "name": "para-style-override-20"
+        },
+        {
           "book": "sankshipt_garuda_puran",
+          "name": "para-style-override-20"
+        },
+        {
+          "book": "sanskar_prakash",
           "name": "para-style-override-20"
         }
       ]
@@ -6833,7 +9641,15 @@
           "name": "para-style-override-21"
         },
         {
+          "book": "sadhan_sudha_nidhi",
+          "name": "para-style-override-21"
+        },
+        {
           "book": "sankshipt_garuda_puran",
+          "name": "para-style-override-21"
+        },
+        {
+          "book": "sanskar_prakash",
           "name": "para-style-override-21"
         }
       ]
@@ -6846,7 +9662,15 @@
           "name": "para-style-override-22"
         },
         {
+          "book": "sadhan_sudha_nidhi",
+          "name": "para-style-override-22"
+        },
+        {
           "book": "sankshipt_garuda_puran",
+          "name": "para-style-override-22"
+        },
+        {
+          "book": "sanskar_prakash",
           "name": "para-style-override-22"
         }
       ]
@@ -6859,7 +9683,15 @@
           "name": "para-style-override-23"
         },
         {
+          "book": "sadhan_sudha_nidhi",
+          "name": "para-style-override-23"
+        },
+        {
           "book": "sankshipt_garuda_puran",
+          "name": "para-style-override-23"
+        },
+        {
+          "book": "sanskar_prakash",
           "name": "para-style-override-23"
         }
       ]
@@ -6867,6 +9699,10 @@
     "gf": {
       "signature": "font-size:0.722em",
       "sourceClasses": [
+        {
+          "book": "kya_guru_bina_mukti_nahi",
+          "name": "char-style-override-3"
+        },
         {
           "book": "laghusiddhantakaumudi",
           "name": "char-style-override-3"
@@ -6876,7 +9712,19 @@
           "name": "char-style-override-3"
         },
         {
+          "book": "panchdev_atharvashirsh_sangrah",
+          "name": "char-style-override-3"
+        },
+        {
+          "book": "sadhan_sudha_nidhi",
+          "name": "char-style-override-3"
+        },
+        {
           "book": "sankshipt_garuda_puran",
+          "name": "char-style-override-3"
+        },
+        {
+          "book": "sanskar_prakash",
           "name": "char-style-override-3"
         },
         {
@@ -6897,6 +9745,10 @@
           "name": "char-style-override-10"
         },
         {
+          "book": "kya_guru_bina_mukti_nahi",
+          "name": "char-style-override-5"
+        },
+        {
           "book": "laghusiddhantakaumudi",
           "name": "char-style-override-5"
         },
@@ -6913,6 +9765,10 @@
           "name": "char-style-override-5"
         },
         {
+          "book": "panchdev_atharvashirsh_sangrah",
+          "name": "char-style-override-5"
+        },
+        {
           "book": "puran_padma",
           "name": "char-style-override-10"
         },
@@ -6921,12 +9777,24 @@
           "name": "char-style-override-5"
         },
         {
+          "book": "sadhan_sudha_nidhi",
+          "name": "char-style-override-5"
+        },
+        {
           "book": "sankshipt_garuda_puran",
+          "name": "char-style-override-5"
+        },
+        {
+          "book": "sanskar_prakash",
           "name": "char-style-override-5"
         },
         {
           "book": "vaidik_sukt_sangrah",
           "name": "char-style-override-5"
+        },
+        {
+          "book": "vivek_chudamani",
+          "name": "char-style-override-10"
         }
       ]
     },
@@ -6936,6 +9804,10 @@
         {
           "book": "devi_bhagavat",
           "name": "char-style-override-11"
+        },
+        {
+          "book": "kya_guru_bina_mukti_nahi",
+          "name": "char-style-override-7"
         },
         {
           "book": "laghusiddhantakaumudi",
@@ -6950,7 +9822,19 @@
           "name": "char-style-override-7"
         },
         {
+          "book": "panchdev_atharvashirsh_sangrah",
+          "name": "char-style-override-7"
+        },
+        {
+          "book": "sadhan_sudha_nidhi",
+          "name": "char-style-override-7"
+        },
+        {
           "book": "sankshipt_garuda_puran",
+          "name": "char-style-override-7"
+        },
+        {
+          "book": "sanskar_prakash",
           "name": "char-style-override-7"
         },
         {
@@ -6963,6 +9847,10 @@
       "signature": "font-size:0.688em",
       "sourceClasses": [
         {
+          "book": "kya_guru_bina_mukti_nahi",
+          "name": "char-style-override-12"
+        },
+        {
           "book": "laghusiddhantakaumudi",
           "name": "char-style-override-12"
         },
@@ -6971,7 +9859,19 @@
           "name": "char-style-override-12"
         },
         {
+          "book": "panchdev_atharvashirsh_sangrah",
+          "name": "char-style-override-12"
+        },
+        {
+          "book": "sadhan_sudha_nidhi",
+          "name": "char-style-override-12"
+        },
+        {
           "book": "sankshipt_garuda_puran",
+          "name": "char-style-override-12"
+        },
+        {
+          "book": "sanskar_prakash",
           "name": "char-style-override-12"
         },
         {
@@ -6996,7 +9896,19 @@
           "name": "char-style-override-14"
         },
         {
+          "book": "panchdev_atharvashirsh_sangrah",
+          "name": "char-style-override-14"
+        },
+        {
+          "book": "sadhan_sudha_nidhi",
+          "name": "char-style-override-14"
+        },
+        {
           "book": "sankshipt_garuda_puran",
+          "name": "char-style-override-14"
+        },
+        {
+          "book": "sanskar_prakash",
           "name": "char-style-override-14"
         },
         {
@@ -7029,16 +9941,32 @@
           "name": "char-style-override-15"
         },
         {
+          "book": "panchdev_atharvashirsh_sangrah",
+          "name": "char-style-override-15"
+        },
+        {
           "book": "puran_padma",
           "name": "char-style-override-11"
+        },
+        {
+          "book": "sadhan_sudha_nidhi",
+          "name": "char-style-override-15"
         },
         {
           "book": "sankshipt_garuda_puran",
           "name": "char-style-override-15"
         },
         {
+          "book": "sanskar_prakash",
+          "name": "char-style-override-15"
+        },
+        {
           "book": "vaidik_sukt_sangrah",
           "name": "char-style-override-15"
+        },
+        {
+          "book": "vivek_chudamani",
+          "name": "char-style-override-11"
         }
       ]
     },
@@ -7058,6 +9986,10 @@
           "name": "char-style-override-17"
         },
         {
+          "book": "sadhan_sudha_nidhi",
+          "name": "char-style-override-17"
+        },
+        {
           "book": "sankshipt_garuda_puran",
           "name": "char-style-override-17"
         }
@@ -7072,6 +10004,10 @@
         },
         {
           "book": "nityakarma_pujaprakash",
+          "name": "char-style-override-18"
+        },
+        {
+          "book": "sadhan_sudha_nidhi",
           "name": "char-style-override-18"
         },
         {
@@ -7100,6 +10036,10 @@
           "name": "char-style-override-19"
         },
         {
+          "book": "sadhan_sudha_nidhi",
+          "name": "char-style-override-19"
+        },
+        {
           "book": "sankshipt_garuda_puran",
           "name": "char-style-override-19"
         }
@@ -7114,6 +10054,10 @@
         },
         {
           "book": "nityakarma_pujaprakash",
+          "name": "char-style-override-20"
+        },
+        {
+          "book": "sadhan_sudha_nidhi",
           "name": "char-style-override-20"
         },
         {
@@ -7146,6 +10090,10 @@
           "name": "char-style-override-13"
         },
         {
+          "book": "sadhan_sudha_nidhi",
+          "name": "char-style-override-21"
+        },
+        {
           "book": "sankshipt_garuda_puran",
           "name": "char-style-override-21"
         }
@@ -7160,6 +10108,10 @@
         },
         {
           "book": "nityakarma_pujaprakash",
+          "name": "char-style-override-22"
+        },
+        {
+          "book": "sadhan_sudha_nidhi",
           "name": "char-style-override-22"
         },
         {
@@ -7180,6 +10132,10 @@
           "name": "char-style-override-24"
         },
         {
+          "book": "sadhan_sudha_nidhi",
+          "name": "char-style-override-24"
+        },
+        {
           "book": "sankshipt_garuda_puran",
           "name": "char-style-override-24"
         }
@@ -7194,6 +10150,10 @@
         },
         {
           "book": "nityakarma_pujaprakash",
+          "name": "char-style-override-25"
+        },
+        {
+          "book": "sadhan_sudha_nidhi",
           "name": "char-style-override-25"
         },
         {
@@ -7212,6 +10172,10 @@
         {
           "book": "nityakarma_pujaprakash",
           "name": "char-style-override-28"
+        },
+        {
+          "book": "sadhan_sudha_nidhi",
+          "name": "char-style-override-28"
         }
       ]
     },
@@ -7224,6 +10188,10 @@
         },
         {
           "book": "nityakarma_pujaprakash",
+          "name": "char-style-override-29"
+        },
+        {
+          "book": "sadhan_sudha_nidhi",
           "name": "char-style-override-29"
         },
         {
@@ -7246,6 +10214,10 @@
         {
           "book": "nityakarma_pujaprakash",
           "name": "char-style-override-30"
+        },
+        {
+          "book": "sadhan_sudha_nidhi",
+          "name": "char-style-override-30"
         }
       ]
     },
@@ -7259,6 +10231,10 @@
         {
           "book": "nityakarma_pujaprakash",
           "name": "char-style-override-31"
+        },
+        {
+          "book": "sadhan_sudha_nidhi",
+          "name": "char-style-override-31"
         }
       ]
     },
@@ -7271,6 +10247,10 @@
         },
         {
           "book": "nityakarma_pujaprakash",
+          "name": "char-style-override-32"
+        },
+        {
+          "book": "sadhan_sudha_nidhi",
           "name": "char-style-override-32"
         }
       ]
@@ -7489,6 +10469,22 @@
         {
           "book": "sachchi_salah",
           "name": "Title-Page---Book-Name"
+        },
+        {
+          "book": "sadhan_path",
+          "name": "Title-Page---Book-Name"
+        },
+        {
+          "book": "shri_bhagavannam_chintan",
+          "name": "Title-Page---Book-Name"
+        },
+        {
+          "book": "vivek_chudamani",
+          "name": "Title-Page---Book-Name"
+        },
+        {
+          "book": "vivek_chudamani",
+          "name": "x-Main-Heading"
         }
       ]
     },
@@ -7689,6 +10685,10 @@
         {
           "book": "sachchi_salah",
           "name": "Footnotes"
+        },
+        {
+          "book": "sadhan_path",
+          "name": "Footnotes"
         }
       ]
     },
@@ -7740,6 +10740,22 @@
         {
           "book": "sankshipt_garuda_puran",
           "name": "Basic-Paragraph-1"
+        },
+        {
+          "book": "sanskar_prakash",
+          "name": "Basic-Paragraph"
+        },
+        {
+          "book": "sanskar_prakash",
+          "name": "Basic-Paragraph-1"
+        },
+        {
+          "book": "shri_bhagavannam_chintan",
+          "name": "Basic-Paragraph"
+        },
+        {
+          "book": "vivek_chudamani",
+          "name": "Basic-Paragraph"
         }
       ]
     },
@@ -7772,6 +10788,14 @@
         },
         {
           "book": "puran_padma",
+          "name": "Heading"
+        },
+        {
+          "book": "shri_bhagavannam_chintan",
+          "name": "Heading"
+        },
+        {
+          "book": "vivek_chudamani",
           "name": "Heading"
         }
       ]
@@ -7851,6 +10875,14 @@
         },
         {
           "book": "puran_padma",
+          "name": "para-style-override-7"
+        },
+        {
+          "book": "shri_bhagavannam_chintan",
+          "name": "para-style-override-7"
+        },
+        {
+          "book": "vivek_chudamani",
           "name": "para-style-override-7"
         }
       ]
@@ -8343,6 +11375,14 @@
         {
           "book": "puran_padma",
           "name": "No-Paragraph-Style"
+        },
+        {
+          "book": "sadhan_path",
+          "name": "No-Paragraph-Style"
+        },
+        {
+          "book": "vivek_chudamani",
+          "name": "No-Paragraph-Style"
         }
       ]
     },
@@ -8367,6 +11407,14 @@
         },
         {
           "book": "puran_padma",
+          "name": "First-End-Page-text"
+        },
+        {
+          "book": "shri_bhagavannam_chintan",
+          "name": "First-End-Page-text"
+        },
+        {
+          "book": "vivek_chudamani",
           "name": "First-End-Page-text"
         }
       ]
@@ -8410,6 +11458,14 @@
         {
           "book": "puran_padma",
           "name": "TXT-Right"
+        },
+        {
+          "book": "shri_bhagavannam_chintan",
+          "name": "TXT-Right"
+        },
+        {
+          "book": "vivek_chudamani",
+          "name": "TXT-Right"
         }
       ]
     },
@@ -8435,6 +11491,14 @@
         {
           "book": "puran_padma",
           "name": "Page-Break"
+        },
+        {
+          "book": "shri_bhagavannam_chintan",
+          "name": "Page-Break"
+        },
+        {
+          "book": "vivek_chudamani",
+          "name": "Page-Break"
         }
       ]
     },
@@ -8452,6 +11516,14 @@
         {
           "book": "puran_padma",
           "name": "para-style-override-5"
+        },
+        {
+          "book": "shri_bhagavannam_chintan",
+          "name": "para-style-override-5"
+        },
+        {
+          "book": "vivek_chudamani",
+          "name": "para-style-override-5"
         }
       ]
     },
@@ -8465,6 +11537,14 @@
         {
           "book": "puran_padma",
           "name": "para-style-override-6"
+        },
+        {
+          "book": "shri_bhagavannam_chintan",
+          "name": "para-style-override-6"
+        },
+        {
+          "book": "vivek_chudamani",
+          "name": "para-style-override-6"
         }
       ]
     },
@@ -8477,6 +11557,10 @@
         },
         {
           "book": "puran_padma",
+          "name": "para-style-override-9"
+        },
+        {
+          "book": "shri_bhagavannam_chintan",
           "name": "para-style-override-9"
         }
       ]
@@ -8494,6 +11578,14 @@
         },
         {
           "book": "puran_padma",
+          "name": "char-style-override-8"
+        },
+        {
+          "book": "shri_bhagavannam_chintan",
+          "name": "char-style-override-8"
+        },
+        {
+          "book": "vivek_chudamani",
           "name": "char-style-override-8"
         }
       ]
@@ -8744,7 +11836,15 @@
           "name": "Content"
         },
         {
+          "book": "sadhan_path",
+          "name": "Content"
+        },
+        {
           "book": "sahasranam_vishnu",
+          "name": "Content"
+        },
+        {
+          "book": "vrat_parichay",
           "name": "Content"
         }
       ]
@@ -8755,6 +11855,10 @@
         {
           "book": "chaitanya_charitavali",
           "name": "Sub-Heading"
+        },
+        {
+          "book": "sadhan_path",
+          "name": "Sub-Hading"
         }
       ]
     },
@@ -8777,6 +11881,10 @@
         {
           "book": "chaitanya_charitavali",
           "name": "para-style-override-4"
+        },
+        {
+          "book": "sadhan_path",
+          "name": "para-style-override-4"
         }
       ]
     },
@@ -8785,6 +11893,10 @@
       "sourceClasses": [
         {
           "book": "chaitanya_charitavali",
+          "name": "para-style-override-5"
+        },
+        {
+          "book": "sadhan_path",
           "name": "para-style-override-5"
         }
       ]
@@ -8795,6 +11907,10 @@
         {
           "book": "chaitanya_charitavali",
           "name": "para-style-override-6"
+        },
+        {
+          "book": "sadhan_path",
+          "name": "para-style-override-6"
         }
       ]
     },
@@ -8804,6 +11920,10 @@
         {
           "book": "chaitanya_charitavali",
           "name": "para-style-override-8"
+        },
+        {
+          "book": "sadhan_path",
+          "name": "para-style-override-8"
         }
       ]
     },
@@ -8812,6 +11932,10 @@
       "sourceClasses": [
         {
           "book": "chaitanya_charitavali",
+          "name": "para-style-override-9"
+        },
+        {
+          "book": "sadhan_path",
           "name": "para-style-override-9"
         }
       ]
@@ -8830,6 +11954,10 @@
       "sourceClasses": [
         {
           "book": "chaitanya_charitavali",
+          "name": "char-style-override-3"
+        },
+        {
+          "book": "sadhan_path",
           "name": "char-style-override-3"
         }
       ]
@@ -9007,6 +12135,15 @@
         {
           "book": "sahasranam_vishnu",
           "name": "char-style-override-11"
+        }
+      ]
+    },
+    "mp": {
+      "signature": "color:#760000;font-family:ChanakyaUni, serif;font-size:1em;font-style:italic;font-weight:normal;line-height:1.2;text-align:right;text-indent:0px",
+      "sourceClasses": [
+        {
+          "book": "sadhan_path",
+          "name": "Said"
         }
       ]
     }
