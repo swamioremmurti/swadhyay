@@ -148,6 +148,10 @@
         {
           "book": "vrat_parichay",
           "name": "Titel-Page---Shri-Hari"
+        },
+        {
+          "book": "dampatya_jeevan_ka_adarsh",
+          "name": "Titel-Page---Shri-Hari"
         }
       ]
     },
@@ -405,6 +409,10 @@
         {
           "book": "vrat_parichay",
           "name": "First-End-Page-text"
+        },
+        {
+          "book": "dampatya_jeevan_ka_adarsh",
+          "name": "Numbers"
         }
       ]
     },
@@ -574,6 +582,18 @@
         {
           "book": "puran_harivansh",
           "name": "Title-Page---Gita-Seva-Trust"
+        },
+        {
+          "book": "badon_ke_jeevan_se_shiksha",
+          "name": "Title-Page---Gita-Seva-Trust"
+        },
+        {
+          "book": "gita_mahatmya_kahaniyan",
+          "name": "Title-Page---Gita-Seva-Trust"
+        },
+        {
+          "book": "navadha_bhakti",
+          "name": "Title-Page---Gita-Seva-Trust"
         }
       ]
     },
@@ -735,6 +755,10 @@
         {
           "book": "gita_padached",
           "name": "Title"
+        },
+        {
+          "book": "dampatya_jeevan_ka_adarsh",
+          "name": "Title-Page---Book-Name"
         }
       ]
     },
@@ -1129,6 +1153,26 @@
         {
           "book": "भिक्षुगीता",
           "name": "Title-Page---Tvamev-mata"
+        },
+        {
+          "book": "badon_ke_jeevan_se_shiksha",
+          "name": "Image"
+        },
+        {
+          "book": "badon_ke_jeevan_se_shiksha",
+          "name": "Tavmev-Mata--pita"
+        },
+        {
+          "book": "dampatya_jeevan_ka_adarsh",
+          "name": "Title-Page---Tvamev-mata"
+        },
+        {
+          "book": "gita_mahatmya_kahaniyan",
+          "name": "Tavmev-Mata--pita"
+        },
+        {
+          "book": "navadha_bhakti",
+          "name": "Tavmev-Mata--pita"
         }
       ]
     },
@@ -1354,6 +1398,18 @@
         {
           "book": "भिक्षुगीता",
           "name": "Shlok"
+        },
+        {
+          "book": "badon_ke_jeevan_se_shiksha",
+          "name": "SHLOK"
+        },
+        {
+          "book": "dampatya_jeevan_ka_adarsh",
+          "name": "Shlok-Color-2"
+        },
+        {
+          "book": "navadha_bhakti",
+          "name": "Shlok-Color-2"
         }
       ]
     },
@@ -1727,6 +1783,22 @@
         {
           "book": "भिक्षुगीता",
           "name": "TXT"
+        },
+        {
+          "book": "badon_ke_jeevan_se_shiksha",
+          "name": "TXT"
+        },
+        {
+          "book": "dampatya_jeevan_ka_adarsh",
+          "name": "Text-"
+        },
+        {
+          "book": "gita_mahatmya_kahaniyan",
+          "name": "TXT"
+        },
+        {
+          "book": "navadha_bhakti",
+          "name": "TXT"
         }
       ]
     },
@@ -2009,6 +2081,10 @@
         {
           "book": "gita_padached",
           "name": "Shlok-L"
+        },
+        {
+          "book": "dampatya_jeevan_ka_adarsh",
+          "name": "Title-Page---Author-Name"
         }
       ]
     },
@@ -2330,6 +2406,34 @@
         {
           "book": "भिक्षुगीता",
           "name": "Titel-Page---Shri-Hari"
+        },
+        {
+          "book": "badon_ke_jeevan_se_shiksha",
+          "name": "Page-Break"
+        },
+        {
+          "book": "badon_ke_jeevan_se_shiksha",
+          "name": "Titel-Page---Shri-Hari"
+        },
+        {
+          "book": "dampatya_jeevan_ka_adarsh",
+          "name": "Page-Break"
+        },
+        {
+          "book": "gita_mahatmya_kahaniyan",
+          "name": "Page-Break"
+        },
+        {
+          "book": "gita_mahatmya_kahaniyan",
+          "name": "Titel-Page---Shri-Hari"
+        },
+        {
+          "book": "navadha_bhakti",
+          "name": "Page-Break"
+        },
+        {
+          "book": "navadha_bhakti",
+          "name": "Titel-Page---Shri-Hari"
         }
       ]
     },
@@ -2534,6 +2638,22 @@
         },
         {
           "book": "gita_padached",
+          "name": "Heading"
+        },
+        {
+          "book": "badon_ke_jeevan_se_shiksha",
+          "name": "Heading"
+        },
+        {
+          "book": "dampatya_jeevan_ka_adarsh",
+          "name": "Heading"
+        },
+        {
+          "book": "gita_mahatmya_kahaniyan",
+          "name": "Heading"
+        },
+        {
+          "book": "navadha_bhakti",
           "name": "Heading"
         }
       ]
@@ -2792,6 +2912,14 @@
         {
           "book": "परमहंसगीता",
           "name": "Sub-Heading-2"
+        },
+        {
+          "book": "dampatya_jeevan_ka_adarsh",
+          "name": "Sub-Heading"
+        },
+        {
+          "book": "navadha_bhakti",
+          "name": "Sub-Heading"
         }
       ]
     },
@@ -3009,6 +3137,18 @@
         {
           "book": "gita_padached",
           "name": "Footnote"
+        },
+        {
+          "book": "dampatya_jeevan_ka_adarsh",
+          "name": "Footnote"
+        },
+        {
+          "book": "dampatya_jeevan_ka_adarsh",
+          "name": "Footnotes"
+        },
+        {
+          "book": "navadha_bhakti",
+          "name": "Footnotes"
         }
       ]
     },
@@ -3146,6 +3286,14 @@
         {
           "book": "puran_harivansh",
           "name": "Footnotes-bold"
+        },
+        {
+          "book": "gita_mahatmya_kahaniyan",
+          "name": "Footnotes-Bold"
+        },
+        {
+          "book": "navadha_bhakti",
+          "name": "Footnotes-Bold"
         }
       ]
     },
@@ -4681,6 +4829,18 @@
         {
           "book": "भिक्षुगीता",
           "name": "char-style-override-4"
+        },
+        {
+          "book": "dampatya_jeevan_ka_adarsh",
+          "name": "char-style-override-2"
+        },
+        {
+          "book": "gita_mahatmya_kahaniyan",
+          "name": "char-style-override-3"
+        },
+        {
+          "book": "navadha_bhakti",
+          "name": "char-style-override-5"
         }
       ]
     },
@@ -5968,6 +6128,30 @@
         {
           "book": "paramahamsgita",
           "name": "Basic-Graphics-Frame"
+        },
+        {
+          "book": "badon_ke_jeevan_se_shiksha",
+          "name": "Basic-Graphics-Frame"
+        },
+        {
+          "book": "badon_ke_jeevan_se_shiksha",
+          "name": "Basic-Text-Frame"
+        },
+        {
+          "book": "dampatya_jeevan_ka_adarsh",
+          "name": "Basic-Graphics-Frame"
+        },
+        {
+          "book": "gita_mahatmya_kahaniyan",
+          "name": "Basic-Graphics-Frame"
+        },
+        {
+          "book": "navadha_bhakti",
+          "name": "Basic-Graphics-Frame"
+        },
+        {
+          "book": "navadha_bhakti",
+          "name": "Basic-Text-Frame"
         }
       ]
     },
@@ -6596,6 +6780,10 @@
         },
         {
           "book": "puran_harivansh",
+          "name": "No-Paragraph-Style"
+        },
+        {
+          "book": "navadha_bhakti",
           "name": "No-Paragraph-Style"
         }
       ]
@@ -7401,6 +7589,10 @@
         {
           "book": "भिक्षुगीता",
           "name": "Title-Page---Gita-Seva-Trust"
+        },
+        {
+          "book": "dampatya_jeevan_ka_adarsh",
+          "name": "Title-Page---Gita-Seva-Trust"
         }
       ]
     },
@@ -7463,6 +7655,10 @@
         {
           "book": "sukhi_bannay_ke_upay",
           "name": "TXT-Right"
+        },
+        {
+          "book": "dampatya_jeevan_ka_adarsh",
+          "name": "TXT-Right"
         }
       ]
     },
@@ -7496,6 +7692,10 @@
         {
           "book": "santan_gopal_stotra",
           "name": "Footnotes-Bold"
+        },
+        {
+          "book": "dampatya_jeevan_ka_adarsh",
+          "name": "Footnotes-Bold"
         }
       ]
     },
@@ -7528,6 +7728,10 @@
         },
         {
           "book": "santan_gopal_stotra",
+          "name": "Footnotes-Right"
+        },
+        {
+          "book": "dampatya_jeevan_ka_adarsh",
           "name": "Footnotes-Right"
         }
       ]
@@ -7717,6 +7921,10 @@
         {
           "book": "vrat_parichay",
           "name": "Description"
+        },
+        {
+          "book": "navadha_bhakti",
+          "name": "Title-Page---Author-Name"
         }
       ]
     },
@@ -8648,6 +8856,14 @@
         {
           "book": "vivek_chudamani",
           "name": "Footnotes-Right"
+        },
+        {
+          "book": "gita_mahatmya_kahaniyan",
+          "name": "Footnotes-Right"
+        },
+        {
+          "book": "navadha_bhakti",
+          "name": "Footnotes-Right"
         }
       ]
     },
@@ -8888,6 +9104,18 @@
         {
           "book": "paramahamsgita",
           "name": "Title"
+        },
+        {
+          "book": "badon_ke_jeevan_se_shiksha",
+          "name": "Title-Page---Book-Name"
+        },
+        {
+          "book": "gita_mahatmya_kahaniyan",
+          "name": "Title-Page---Book-Name"
+        },
+        {
+          "book": "navadha_bhakti",
+          "name": "Title-Page---Book-Name"
         }
       ]
     },
@@ -9551,6 +9779,14 @@
         {
           "book": "paramahamsgita",
           "name": "Sub-Title"
+        },
+        {
+          "book": "badon_ke_jeevan_se_shiksha",
+          "name": "TXT-Right"
+        },
+        {
+          "book": "navadha_bhakti",
+          "name": "TXT-Right"
         }
       ]
     },
