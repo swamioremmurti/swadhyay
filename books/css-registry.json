@@ -570,6 +570,10 @@
         {
           "book": "vrat_parichay",
           "name": "Title-Page---Gita-Seva-Trust"
+        },
+        {
+          "book": "puran_harivansh",
+          "name": "Title-Page---Gita-Seva-Trust"
         }
       ]
     },
@@ -723,6 +727,14 @@
         {
           "book": "vrat_parichay",
           "name": "Title-Page---Book-Name"
+        },
+        {
+          "book": "gita_padached",
+          "name": "Book-Name"
+        },
+        {
+          "book": "gita_padached",
+          "name": "Title"
         }
       ]
     },
@@ -827,6 +839,10 @@
         },
         {
           "book": "vrat_parichay",
+          "name": "Title-Page---Author-Name"
+        },
+        {
+          "book": "puran_harivansh",
           "name": "Title-Page---Author-Name"
         }
       ]
@@ -1089,6 +1105,30 @@
         {
           "book": "vrat_parichay",
           "name": "Title-Page---Tvamev-mata"
+        },
+        {
+          "book": "puran_harivansh",
+          "name": "Image"
+        },
+        {
+          "book": "puran_harivansh",
+          "name": "Tavmev-Mata--pita"
+        },
+        {
+          "book": "paramahamsgita",
+          "name": "Image"
+        },
+        {
+          "book": "परमहंसगीता",
+          "name": "Image"
+        },
+        {
+          "book": "परमहंसगीता",
+          "name": "Title-Page---Tvamev-mata"
+        },
+        {
+          "book": "भिक्षुगीता",
+          "name": "Title-Page---Tvamev-mata"
         }
       ]
     },
@@ -1298,6 +1338,22 @@
         {
           "book": "vrat_parichay",
           "name": "Shlok-Color-2"
+        },
+        {
+          "book": "Gita_भिक्षुगीता",
+          "name": "Shlok"
+        },
+        {
+          "book": "paramahamsgita",
+          "name": "Shlok"
+        },
+        {
+          "book": "परमहंसगीता",
+          "name": "Shlok"
+        },
+        {
+          "book": "भिक्षुगीता",
+          "name": "Shlok"
         }
       ]
     },
@@ -1639,6 +1695,38 @@
         {
           "book": "vrat_parichay",
           "name": "Text"
+        },
+        {
+          "book": "puran_harivansh",
+          "name": "TXT"
+        },
+        {
+          "book": "Gita_भिक्षुगीता",
+          "name": "TXT"
+        },
+        {
+          "book": "paramahamsgita",
+          "name": "TXT"
+        },
+        {
+          "book": "gita_padached",
+          "name": "No-Paragraph-Style"
+        },
+        {
+          "book": "gita_padached",
+          "name": "Padchched-1"
+        },
+        {
+          "book": "gita_padached",
+          "name": "Paradhan-Vishay"
+        },
+        {
+          "book": "परमहंसगीता",
+          "name": "TXT"
+        },
+        {
+          "book": "भिक्षुगीता",
+          "name": "TXT"
         }
       ]
     },
@@ -1711,6 +1799,10 @@
         },
         {
           "book": "vidura_niti",
+          "name": "Shlok-Number"
+        },
+        {
+          "book": "gita_padached",
           "name": "Shlok-Number"
         }
       ]
@@ -1893,6 +1985,30 @@
         {
           "book": "vrat_parichay",
           "name": "uwach"
+        },
+        {
+          "book": "puran_harivansh",
+          "name": "Shlok"
+        },
+        {
+          "book": "puran_harivansh",
+          "name": "Uwach"
+        },
+        {
+          "book": "gita_padached",
+          "name": "Shlok"
+        },
+        {
+          "book": "gita_padached",
+          "name": "Uwach"
+        },
+        {
+          "book": "gita_padached",
+          "name": "Bole"
+        },
+        {
+          "book": "gita_padached",
+          "name": "Shlok-L"
         }
       ]
     },
@@ -2186,6 +2302,34 @@
         {
           "book": "vrat_parichay",
           "name": "Page-Break"
+        },
+        {
+          "book": "puran_harivansh",
+          "name": "Chapter-End"
+        },
+        {
+          "book": "puran_harivansh",
+          "name": "Page-Break"
+        },
+        {
+          "book": "puran_harivansh",
+          "name": "Titel-Page---Shri-Hari"
+        },
+        {
+          "book": "gita_padached",
+          "name": "Chapter-End"
+        },
+        {
+          "book": "gita_padached",
+          "name": "Page-Break"
+        },
+        {
+          "book": "परमहंसगीता",
+          "name": "Titel-Page---Shri-Hari"
+        },
+        {
+          "book": "भिक्षुगीता",
+          "name": "Titel-Page---Shri-Hari"
         }
       ]
     },
@@ -2382,6 +2526,14 @@
         },
         {
           "book": "vidura_niti",
+          "name": "Heading"
+        },
+        {
+          "book": "puran_harivansh",
+          "name": "Heading"
+        },
+        {
+          "book": "gita_padached",
           "name": "Heading"
         }
       ]
@@ -2612,6 +2764,34 @@
         {
           "book": "vrat_parichay",
           "name": "Sub-Heading"
+        },
+        {
+          "book": "puran_harivansh",
+          "name": "Sub-Heading"
+        },
+        {
+          "book": "Gita_भिक्षुगीता",
+          "name": "Sub-Heading"
+        },
+        {
+          "book": "paramahamsgita",
+          "name": "Sub-Heading"
+        },
+        {
+          "book": "paramahamsgita",
+          "name": "Sub-Heading-2"
+        },
+        {
+          "book": "gita_padached",
+          "name": "Sub-Heading"
+        },
+        {
+          "book": "परमहंसगीता",
+          "name": "Sub-Heading"
+        },
+        {
+          "book": "परमहंसगीता",
+          "name": "Sub-Heading-2"
         }
       ]
     },
@@ -2821,6 +3001,14 @@
         {
           "book": "vrat_parichay",
           "name": "Footnotes"
+        },
+        {
+          "book": "puran_harivansh",
+          "name": "Footnotes"
+        },
+        {
+          "book": "gita_padached",
+          "name": "Footnote"
         }
       ]
     },
@@ -2942,6 +3130,22 @@
         {
           "book": "vrat_parichay",
           "name": "Footnotes-Bold"
+        },
+        {
+          "book": "puran_harivansh",
+          "name": "Footnotes-Bold"
+        },
+        {
+          "book": "puran_harivansh",
+          "name": "Footnotes-Bold-1"
+        },
+        {
+          "book": "puran_harivansh",
+          "name": "Footnotes-Bold-2"
+        },
+        {
+          "book": "puran_harivansh",
+          "name": "Footnotes-bold"
         }
       ]
     },
@@ -3099,6 +3303,34 @@
         {
           "book": "vrat_parichay",
           "name": "End-text"
+        },
+        {
+          "book": "puran_harivansh",
+          "name": "Chapter-End-Text"
+        },
+        {
+          "book": "puran_harivansh",
+          "name": "char-style-override-15"
+        },
+        {
+          "book": "Gita_भिक्षुगीता",
+          "name": "Uvach"
+        },
+        {
+          "book": "Gita_भिक्षुगीता",
+          "name": "chapterend"
+        },
+        {
+          "book": "paramahamsgita",
+          "name": "Chapter-End-Text"
+        },
+        {
+          "book": "परमहंसगीता",
+          "name": "Chapter-End-Text"
+        },
+        {
+          "book": "भिक्षुगीता",
+          "name": "Chapter-End-Text"
         }
       ]
     },
@@ -4421,6 +4653,34 @@
         {
           "book": "vrat_parichay",
           "name": "char-style-override-4"
+        },
+        {
+          "book": "puran_harivansh",
+          "name": "char-style-override-8"
+        },
+        {
+          "book": "puran_harivansh",
+          "name": "char-style-override-30"
+        },
+        {
+          "book": "puran_harivansh",
+          "name": "char-style-override-32"
+        },
+        {
+          "book": "puran_harivansh",
+          "name": "char-style-override-33"
+        },
+        {
+          "book": "gita_padached",
+          "name": "char-style-override-12"
+        },
+        {
+          "book": "परमहंसगीता",
+          "name": "char-style-override-4"
+        },
+        {
+          "book": "भिक्षुगीता",
+          "name": "char-style-override-4"
         }
       ]
     },
@@ -4823,6 +5083,34 @@
         {
           "book": "vrat_parichay",
           "name": "char-style-override-6"
+        },
+        {
+          "book": "puran_harivansh",
+          "name": "char-style-override-10"
+        },
+        {
+          "book": "puran_harivansh",
+          "name": "char-style-override-17"
+        },
+        {
+          "book": "gita_padached",
+          "name": "char-style-override-29"
+        },
+        {
+          "book": "gita_padached",
+          "name": "char-style-override-32"
+        },
+        {
+          "book": "gita_padached",
+          "name": "char-style-override-34"
+        },
+        {
+          "book": "gita_padached",
+          "name": "char-style-override-37"
+        },
+        {
+          "book": "gita_padached",
+          "name": "char-style-override-42"
         }
       ]
     },
@@ -5668,6 +5956,18 @@
         {
           "book": "vrat_parichay",
           "name": "char-style-override-19"
+        },
+        {
+          "book": "puran_harivansh",
+          "name": "Basic-Graphics-Frame"
+        },
+        {
+          "book": "Gita_भिक्षुगीता",
+          "name": "Basic-Graphics-Frame"
+        },
+        {
+          "book": "paramahamsgita",
+          "name": "Basic-Graphics-Frame"
         }
       ]
     },
@@ -6292,6 +6592,10 @@
         },
         {
           "book": "vidura_niti",
+          "name": "No-Paragraph-Style"
+        },
+        {
+          "book": "puran_harivansh",
           "name": "No-Paragraph-Style"
         }
       ]
@@ -7089,6 +7393,14 @@
         {
           "book": "vivek_chudamani",
           "name": "Title-Page---Gita-Seva-Trust"
+        },
+        {
+          "book": "परमहंसगीता",
+          "name": "Title-Page---Gita-Seva-Trust"
+        },
+        {
+          "book": "भिक्षुगीता",
+          "name": "Title-Page---Gita-Seva-Trust"
         }
       ]
     },
@@ -7291,6 +7603,14 @@
         {
           "book": "vaidik_sukt_sangrah",
           "name": "TXT-bold"
+        },
+        {
+          "book": "paramahamsgita",
+          "name": "TXT-Bold"
+        },
+        {
+          "book": "परमहंसगीता",
+          "name": "TXT-Bold"
         }
       ]
     },
@@ -8427,6 +8747,10 @@
         {
           "book": "valmiki_ramayan",
           "name": "SHLOK-Black-1"
+        },
+        {
+          "book": "puran_harivansh",
+          "name": "SHLOK-Black"
         }
       ]
     },
@@ -8552,6 +8876,18 @@
         {
           "book": "valmiki_ramayan",
           "name": "Title-Page---Book-Name"
+        },
+        {
+          "book": "puran_harivansh",
+          "name": "Title-Page---Book-Name"
+        },
+        {
+          "book": "Gita_भिक्षुगीता",
+          "name": "Title"
+        },
+        {
+          "book": "paramahamsgita",
+          "name": "Title"
         }
       ]
     },
@@ -9154,6 +9490,22 @@
         {
           "book": "vrat_parichay",
           "name": "Sub-Head-2"
+        },
+        {
+          "book": "puran_harivansh",
+          "name": "Sub-Head-2"
+        },
+        {
+          "book": "paramahamsgita",
+          "name": "Caption"
+        },
+        {
+          "book": "gita_padached",
+          "name": "Shlok-Subject"
+        },
+        {
+          "book": "परमहंसगीता",
+          "name": "Caption"
         }
       ]
     },
@@ -9191,6 +9543,14 @@
         {
           "book": "vaidik_sukt_sangrah",
           "name": "TXT-Right"
+        },
+        {
+          "book": "puran_harivansh",
+          "name": "TXT-Right"
+        },
+        {
+          "book": "paramahamsgita",
+          "name": "Sub-Title"
         }
       ]
     },
@@ -10485,6 +10845,14 @@
         {
           "book": "vivek_chudamani",
           "name": "x-Main-Heading"
+        },
+        {
+          "book": "परमहंसगीता",
+          "name": "Title-Page---Book-Name"
+        },
+        {
+          "book": "भिक्षुगीता",
+          "name": "Title-Page---Book-Name"
         }
       ]
     },
@@ -10756,6 +11124,14 @@
         {
           "book": "vivek_chudamani",
           "name": "Basic-Paragraph"
+        },
+        {
+          "book": "puran_harivansh",
+          "name": "Basic-Paragraph"
+        },
+        {
+          "book": "puran_harivansh",
+          "name": "Basic-Paragraph-1"
         }
       ]
     },
@@ -10796,6 +11172,22 @@
         },
         {
           "book": "vivek_chudamani",
+          "name": "Heading"
+        },
+        {
+          "book": "Gita_भिक्षुगीता",
+          "name": "Heading"
+        },
+        {
+          "book": "paramahamsgita",
+          "name": "Heading"
+        },
+        {
+          "book": "परमहंसगीता",
+          "name": "Heading"
+        },
+        {
+          "book": "भिक्षुगीता",
           "name": "Heading"
         }
       ]
@@ -11245,6 +11637,14 @@
         {
           "book": "aadhyatma_ramayan",
           "name": "Title-page---sub-title"
+        },
+        {
+          "book": "puran_harivansh",
+          "name": "Title-page---sub-title"
+        },
+        {
+          "book": "gita_padached",
+          "name": "Sub-Title"
         }
       ]
     },
@@ -11499,6 +11899,22 @@
         {
           "book": "vivek_chudamani",
           "name": "Page-Break"
+        },
+        {
+          "book": "Gita_भिक्षुगीता",
+          "name": "Page-Break"
+        },
+        {
+          "book": "paramahamsgita",
+          "name": "Page-Break"
+        },
+        {
+          "book": "परमहंसगीता",
+          "name": "Page-Break"
+        },
+        {
+          "book": "भिक्षुगीता",
+          "name": "Page-Break"
         }
       ]
     },
@@ -11681,6 +12097,18 @@
         },
         {
           "book": "lalita_sahasranama_stotram",
+          "name": "Uvach"
+        },
+        {
+          "book": "paramahamsgita",
+          "name": "Uvach"
+        },
+        {
+          "book": "परमहंसगीता",
+          "name": "Uvach"
+        },
+        {
+          "book": "भिक्षुगीता",
           "name": "Uvach"
         }
       ]
