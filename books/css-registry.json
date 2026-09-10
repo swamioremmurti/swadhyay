@@ -152,6 +152,50 @@
         {
           "book": "dampatya_jeevan_ka_adarsh",
           "name": "Titel-Page---Shri-Hari"
+        },
+        {
+          "book": "brahmacharya",
+          "name": "Titel-Page---Shri-Hari"
+        },
+        {
+          "book": "radha_madhav_ras_sudha",
+          "name": "Titel-Page---Shri-Hari"
+        },
+        {
+          "book": "sandhya_gayatri_brahmacharya",
+          "name": "Titel-Page---Shri-Hari"
+        },
+        {
+          "book": "sandhyopasana_vidhi",
+          "name": "Titel-Page---Shri-Hari"
+        },
+        {
+          "book": "virah_padavali",
+          "name": "Titel-Page---Shri-Hari"
+        },
+        {
+          "book": "premi_bhakt",
+          "name": "Titel-Page---Shri-Hari"
+        },
+        {
+          "book": "shri_krishna_vigyan",
+          "name": "Titel-Page---Shri-Hari"
+        },
+        {
+          "book": "parvati_mangal",
+          "name": "Titel-Page---Shri-Hari"
+        },
+        {
+          "book": "manav_jeevan_ka_lakshya",
+          "name": "Titel-Page---Shri-Hari"
+        },
+        {
+          "book": "shri_krishna_bal_madhuri",
+          "name": "Titel-Page---Shri-Hari"
+        },
+        {
+          "book": "bhakt_narsingh_mehta",
+          "name": "Titel-Page---Shri-Hari"
         }
       ]
     },
@@ -413,6 +457,14 @@
         {
           "book": "dampatya_jeevan_ka_adarsh",
           "name": "Numbers"
+        },
+        {
+          "book": "premi_bhakt",
+          "name": "Numbers"
+        },
+        {
+          "book": "bhakt_narsingh_mehta",
+          "name": "Numbers"
         }
       ]
     },
@@ -594,6 +646,58 @@
         {
           "book": "navadha_bhakti",
           "name": "Title-Page---Gita-Seva-Trust"
+        },
+        {
+          "book": "satsang_ke_bikhre_moti",
+          "name": "Title-Page---Gita-Seva-Trust"
+        },
+        {
+          "book": "ekadashi_vrat_ka_mahatmya",
+          "name": "Title-Page---Gita-Seva-Trust"
+        },
+        {
+          "book": "radha_madhav_ras_sudha",
+          "name": "Title-Page---Gita-Seva-Trust"
+        },
+        {
+          "book": "sandhya_gayatri_brahmacharya",
+          "name": "Title-Page---Gita-Seva-Trust"
+        },
+        {
+          "book": "gita_darpan",
+          "name": "Title-Page---Gita-Seva-Trust"
+        },
+        {
+          "book": "virah_padavali",
+          "name": "Title-Page---Gita-Seva-Trust"
+        },
+        {
+          "book": "shri_prem_bhakti_prakash",
+          "name": "Title-Page---Gita-Seva-Trust"
+        },
+        {
+          "book": "pita_ki_seekh",
+          "name": "Title-Page---Gita-Seva-Trust"
+        },
+        {
+          "book": "parvati_mangal",
+          "name": "Title-Page---Gita-Seva-Trust"
+        },
+        {
+          "book": "manav_jeevan_ka_lakshya",
+          "name": "Title-Page---Gita-Seva-Trust"
+        },
+        {
+          "book": "shri_krishna_bal_madhuri",
+          "name": "Title-Page---Gita-Seva-Trust"
+        },
+        {
+          "book": "tattva_vichar",
+          "name": "Title-Page---Gita-Seva-Trust"
+        },
+        {
+          "book": "vaishakh_kartik_magh_maas_mahatmya",
+          "name": "Title-Page---Gita-Seva-Trust"
         }
       ]
     },
@@ -759,6 +863,46 @@
         {
           "book": "dampatya_jeevan_ka_adarsh",
           "name": "Title-Page---Book-Name"
+        },
+        {
+          "book": "brahmacharya",
+          "name": "Title-Page---Book-Name"
+        },
+        {
+          "book": "radha_madhav_ras_sudha",
+          "name": "Title-Page---Book-Name"
+        },
+        {
+          "book": "sandhya_gayatri_brahmacharya",
+          "name": "Title-Page---Book-Name"
+        },
+        {
+          "book": "virah_padavali",
+          "name": "Title-Page---Book-Name"
+        },
+        {
+          "book": "premi_bhakt",
+          "name": "Title-Page---Book-Name"
+        },
+        {
+          "book": "shri_krishna_vigyan",
+          "name": "Title-Page---Book-Name"
+        },
+        {
+          "book": "parvati_mangal",
+          "name": "Title-Page---Book-Name"
+        },
+        {
+          "book": "manav_jeevan_ka_lakshya",
+          "name": "Title-Page---Book-Name"
+        },
+        {
+          "book": "shri_krishna_bal_madhuri",
+          "name": "Title-Page---Book-Name"
+        },
+        {
+          "book": "bhakt_narsingh_mehta",
+          "name": "Title-Page---Book-Name"
         }
       ]
     },
@@ -868,6 +1012,50 @@
         {
           "book": "puran_harivansh",
           "name": "Title-Page---Author-Name"
+        },
+        {
+          "book": "radha_madhav_ras_sudha",
+          "name": "Title-Page---Author-Name"
+        },
+        {
+          "book": "radha_madhav_ras_sudha",
+          "name": "pravachan"
+        },
+        {
+          "book": "sandhyopasana_vidhi",
+          "name": "Title-Page---Sub-Title"
+        },
+        {
+          "book": "gita_darpan",
+          "name": "Title-Page---Author-Name"
+        },
+        {
+          "book": "virah_padavali",
+          "name": "Title-Page---Author-Name"
+        },
+        {
+          "book": "virah_padavali",
+          "name": "Title-Page--Sub-Title"
+        },
+        {
+          "book": "parvati_mangal",
+          "name": "Title-Page--Sub-Title"
+        },
+        {
+          "book": "manav_jeevan_ka_lakshya",
+          "name": "Title-Page---Author-Name"
+        },
+        {
+          "book": "shri_krishna_bal_madhuri",
+          "name": "Title-Page---Author-Name"
+        },
+        {
+          "book": "shri_krishna_bal_madhuri",
+          "name": "Title-Page--Sub-Title"
+        },
+        {
+          "book": "mahatvapurna_prashnottar",
+          "name": "pravachan"
         }
       ]
     },
@@ -1173,6 +1361,142 @@
         {
           "book": "navadha_bhakti",
           "name": "Tavmev-Mata--pita"
+        },
+        {
+          "book": "brahmacharya",
+          "name": "Title-Page---Tvamev-mata"
+        },
+        {
+          "book": "satsang_ke_bikhre_moti",
+          "name": "Tavmev-Mata--pita"
+        },
+        {
+          "book": "ekadashi_vrat_ka_mahatmya",
+          "name": "Image"
+        },
+        {
+          "book": "ekadashi_vrat_ka_mahatmya",
+          "name": "Title-Page---Tvamev-mata"
+        },
+        {
+          "book": "radha_madhav_ras_sudha",
+          "name": "Title-Page---Tvamev-mata"
+        },
+        {
+          "book": "sandhya_gayatri_brahmacharya",
+          "name": "Title-Page---Tvamev-mata"
+        },
+        {
+          "book": "sandhyopasana_vidhi",
+          "name": "Title-Page---Tvamev-mata"
+        },
+        {
+          "book": "gita_shankarbhashya",
+          "name": "Title-Page---Tvamev-mata"
+        },
+        {
+          "book": "antyakarma_shraddha_prakash",
+          "name": "Image"
+        },
+        {
+          "book": "antyakarma_shraddha_prakash",
+          "name": "Title-Page---Tvamev-mata"
+        },
+        {
+          "book": "gita_darpan",
+          "name": "Image"
+        },
+        {
+          "book": "gita_darpan",
+          "name": "Image-1"
+        },
+        {
+          "book": "gita_darpan",
+          "name": "Title-Page---Tvamev-mata"
+        },
+        {
+          "book": "virah_padavali",
+          "name": "Title-Page---Tvamev-mata"
+        },
+        {
+          "book": "premi_bhakt",
+          "name": "Title-Page---Tvamev-mata"
+        },
+        {
+          "book": "bhagavat_navneet",
+          "name": "Image"
+        },
+        {
+          "book": "bhagavat_navneet",
+          "name": "Title-Page---Tvamev-mata"
+        },
+        {
+          "book": "vishnu_sahasranama_shankarbhashya",
+          "name": "Title-Page---Tvamev-mata"
+        },
+        {
+          "book": "shri_prem_bhakti_prakash",
+          "name": "Title-Page---Tvamev-mata"
+        },
+        {
+          "book": "shri_krishna_vigyan",
+          "name": "Tavmev-Mata--pita"
+        },
+        {
+          "book": "pita_ki_seekh",
+          "name": "Tavmev-Mata--pita"
+        },
+        {
+          "book": "parvati_mangal",
+          "name": "Title-Page---Tvamev-mata"
+        },
+        {
+          "book": "shiv_smaran",
+          "name": "Image"
+        },
+        {
+          "book": "shiv_smaran",
+          "name": "Title-Page---Tvamev-mata"
+        },
+        {
+          "book": "manav_jeevan_ka_lakshya",
+          "name": "Title-Page---Tvamev-mata"
+        },
+        {
+          "book": "shri_krishna_bal_madhuri",
+          "name": "Title-Page---Tvamev-mata"
+        },
+        {
+          "book": "bhakt_narsingh_mehta",
+          "name": "Title-Page---Tvamev-mata"
+        },
+        {
+          "book": "mahatvapurna_prashnottar",
+          "name": "Title-Page---Tvamev-mata"
+        },
+        {
+          "book": "shiv_sahasranama_stotram",
+          "name": "Title-Page---Tvamev-mata"
+        },
+        {
+          "book": "chetavani_pad_sangrah",
+          "name": "Title-Page---Tvamev-mata"
+        },
+        {
+          "book": "tattva_vichar",
+          "name": "Tavmev-Mata--pita"
+        },
+        {
+          "book": "gita_sangrah",
+          "name": "Image"
+        },
+        {
+          "book": "gita_sangrah",
+          "name": "Title-Page---Tvamev-mata"
+        },
+        {
+          "book": "vaishakh_kartik_magh_maas_mahatmya",
+          "name": "Tavmev-Mata--pita"
         }
       ]
     },
@@ -1410,6 +1734,110 @@
         {
           "book": "navadha_bhakti",
           "name": "Shlok-Color-2"
+        },
+        {
+          "book": "brahmacharya",
+          "name": "Shlok"
+        },
+        {
+          "book": "satsang_ke_bikhre_moti",
+          "name": "Shlok-Color-2"
+        },
+        {
+          "book": "ekadashi_vrat_ka_mahatmya",
+          "name": "SHLOK"
+        },
+        {
+          "book": "sandhya_gayatri_brahmacharya",
+          "name": "SHLOK"
+        },
+        {
+          "book": "sandhyopasana_vidhi",
+          "name": "SHLOK"
+        },
+        {
+          "book": "sandhyopasana_vidhi",
+          "name": "FOOT"
+        },
+        {
+          "book": "gita_shankarbhashya",
+          "name": "Shlok"
+        },
+        {
+          "book": "antyakarma_shraddha_prakash",
+          "name": "Shlok"
+        },
+        {
+          "book": "virah_padavali",
+          "name": "Shlok-Color-2"
+        },
+        {
+          "book": "premi_bhakt",
+          "name": "Shlok-Color-2"
+        },
+        {
+          "book": "bhagavat_navneet",
+          "name": "SHLOK"
+        },
+        {
+          "book": "bhagavat_navneet",
+          "name": "Shlok-Color-2"
+        },
+        {
+          "book": "vishnu_sahasranama_shankarbhashya",
+          "name": "Shlok"
+        },
+        {
+          "book": "vishnu_sahasranama_shankarbhashya",
+          "name": "Text-Regular"
+        },
+        {
+          "book": "shri_krishna_vigyan",
+          "name": "Shlok-Color-2"
+        },
+        {
+          "book": "shri_krishna_vigyan",
+          "name": "Shlok-Color-2-New"
+        },
+        {
+          "book": "pita_ki_seekh",
+          "name": "SHLOK"
+        },
+        {
+          "book": "parvati_mangal",
+          "name": "Shlok-Color-2"
+        },
+        {
+          "book": "shiv_smaran",
+          "name": "Shlok"
+        },
+        {
+          "book": "manav_jeevan_ka_lakshya",
+          "name": "SHLOK"
+        },
+        {
+          "book": "shri_krishna_bal_madhuri",
+          "name": "Shlok-Color-2"
+        },
+        {
+          "book": "bhakt_narsingh_mehta",
+          "name": "Shlok-Color-2"
+        },
+        {
+          "book": "mahatvapurna_prashnottar",
+          "name": "Shlok"
+        },
+        {
+          "book": "chetavani_pad_sangrah",
+          "name": "Shlok"
+        },
+        {
+          "book": "tattva_vichar",
+          "name": "Shlok-Color-2"
+        },
+        {
+          "book": "gita_sangrah",
+          "name": "Shlok"
         }
       ]
     },
@@ -1799,6 +2227,158 @@
         {
           "book": "navadha_bhakti",
           "name": "TXT"
+        },
+        {
+          "book": "brahmacharya",
+          "name": "TXT"
+        },
+        {
+          "book": "satsang_ke_bikhre_moti",
+          "name": "TXT"
+        },
+        {
+          "book": "ekadashi_vrat_ka_mahatmya",
+          "name": "TXT"
+        },
+        {
+          "book": "radha_madhav_ras_sudha",
+          "name": "No-Paragraph-Style"
+        },
+        {
+          "book": "radha_madhav_ras_sudha",
+          "name": "TXT"
+        },
+        {
+          "book": "sandhya_gayatri_brahmacharya",
+          "name": "No-Paragraph-Style"
+        },
+        {
+          "book": "sandhya_gayatri_brahmacharya",
+          "name": "Text"
+        },
+        {
+          "book": "sandhyopasana_vidhi",
+          "name": "Text"
+        },
+        {
+          "book": "sandhyopasana_vidhi",
+          "name": "No-paragraph-style"
+        },
+        {
+          "book": "gita_shankarbhashya",
+          "name": "TXT"
+        },
+        {
+          "book": "antyakarma_shraddha_prakash",
+          "name": "TXT"
+        },
+        {
+          "book": "gita_darpan",
+          "name": "TXT"
+        },
+        {
+          "book": "gita_darpan",
+          "name": "Foot"
+        },
+        {
+          "book": "gita_darpan",
+          "name": "Foot-1"
+        },
+        {
+          "book": "virah_padavali",
+          "name": "No-Paragraph-Style"
+        },
+        {
+          "book": "virah_padavali",
+          "name": "TXT"
+        },
+        {
+          "book": "premi_bhakt",
+          "name": "Text-"
+        },
+        {
+          "book": "bhagavat_navneet",
+          "name": "TXT"
+        },
+        {
+          "book": "vishnu_sahasranama_shankarbhashya",
+          "name": "TXT"
+        },
+        {
+          "book": "shri_prem_bhakti_prakash",
+          "name": "TXT"
+        },
+        {
+          "book": "shri_prem_bhakti_prakash",
+          "name": "x100"
+        },
+        {
+          "book": "shri_krishna_vigyan",
+          "name": "Text"
+        },
+        {
+          "book": "pita_ki_seekh",
+          "name": "TEXT-1"
+        },
+        {
+          "book": "pita_ki_seekh",
+          "name": "TEXT-2"
+        },
+        {
+          "book": "pita_ki_seekh",
+          "name": "TEXT-Black"
+        },
+        {
+          "book": "parvati_mangal",
+          "name": "No-Paragraph-Style"
+        },
+        {
+          "book": "shiv_smaran",
+          "name": "TXT"
+        },
+        {
+          "book": "manav_jeevan_ka_lakshya",
+          "name": "No-Paragraph-Style"
+        },
+        {
+          "book": "manav_jeevan_ka_lakshya",
+          "name": "Text"
+        },
+        {
+          "book": "shri_krishna_bal_madhuri",
+          "name": "TXT"
+        },
+        {
+          "book": "bhakt_narsingh_mehta",
+          "name": "Description"
+        },
+        {
+          "book": "bhakt_narsingh_mehta",
+          "name": "Text-"
+        },
+        {
+          "book": "mahatvapurna_prashnottar",
+          "name": "TXT"
+        },
+        {
+          "book": "shiv_sahasranama_stotram",
+          "name": "TXT"
+        },
+        {
+          "book": "chetavani_pad_sangrah",
+          "name": "TXT"
+        },
+        {
+          "book": "tattva_vichar",
+          "name": "TXT"
+        },
+        {
+          "book": "gita_sangrah",
+          "name": "TXT"
+        },
+        {
+          "book": "vaishakh_kartik_magh_maas_mahatmya",
+          "name": "TXT"
         }
       ]
     },
@@ -1876,6 +2456,30 @@
         {
           "book": "gita_padached",
           "name": "Shlok-Number"
+        },
+        {
+          "book": "radha_madhav_ras_sudha",
+          "name": "Numbers"
+        },
+        {
+          "book": "gita_shankarbhashya",
+          "name": "Shlok-Number"
+        },
+        {
+          "book": "virah_padavali",
+          "name": "Numbers"
+        },
+        {
+          "book": "shri_prem_bhakti_prakash",
+          "name": "Shlok-Number--2"
+        },
+        {
+          "book": "pita_ki_seekh",
+          "name": "SHLOK-number"
+        },
+        {
+          "book": "shri_krishna_bal_madhuri",
+          "name": "Numbers"
         }
       ]
     },
@@ -2085,6 +2689,34 @@
         {
           "book": "dampatya_jeevan_ka_adarsh",
           "name": "Title-Page---Author-Name"
+        },
+        {
+          "book": "brahmacharya",
+          "name": "Title-Page---Author-Name"
+        },
+        {
+          "book": "ekadashi_vrat_ka_mahatmya",
+          "name": "Shlok"
+        },
+        {
+          "book": "radha_madhav_ras_sudha",
+          "name": "Shlok"
+        },
+        {
+          "book": "sandhya_gayatri_brahmacharya",
+          "name": "Uwach"
+        },
+        {
+          "book": "shri_prem_bhakti_prakash",
+          "name": "Shlok"
+        },
+        {
+          "book": "shri_krishna_vigyan",
+          "name": "Title-Page---Author-Name"
+        },
+        {
+          "book": "vaishakh_kartik_magh_maas_mahatmya",
+          "name": "Shlok"
         }
       ]
     },
@@ -2434,6 +3066,122 @@
         {
           "book": "navadha_bhakti",
           "name": "Titel-Page---Shri-Hari"
+        },
+        {
+          "book": "brahmacharya",
+          "name": "Page-Break"
+        },
+        {
+          "book": "satsang_ke_bikhre_moti",
+          "name": "Page-Break"
+        },
+        {
+          "book": "satsang_ke_bikhre_moti",
+          "name": "Titel-Page---Shri-Hari"
+        },
+        {
+          "book": "ekadashi_vrat_ka_mahatmya",
+          "name": "Page-Break"
+        },
+        {
+          "book": "radha_madhav_ras_sudha",
+          "name": "Page-Break"
+        },
+        {
+          "book": "sandhya_gayatri_brahmacharya",
+          "name": "Page-Break"
+        },
+        {
+          "book": "sandhyopasana_vidhi",
+          "name": "Page-Break"
+        },
+        {
+          "book": "gita_shankarbhashya",
+          "name": "Titel-Page---Shri-Hari"
+        },
+        {
+          "book": "antyakarma_shraddha_prakash",
+          "name": "Titel-Page---Shri-Hari"
+        },
+        {
+          "book": "gita_darpan",
+          "name": "Page-Break"
+        },
+        {
+          "book": "gita_darpan",
+          "name": "Titel-Page---Shri-Hari"
+        },
+        {
+          "book": "virah_padavali",
+          "name": "Page-Break"
+        },
+        {
+          "book": "premi_bhakt",
+          "name": "Page-Break"
+        },
+        {
+          "book": "bhagavat_navneet",
+          "name": "Titel-Page---Shri-Hari"
+        },
+        {
+          "book": "vishnu_sahasranama_shankarbhashya",
+          "name": "Titel-Page---Shri-Hari"
+        },
+        {
+          "book": "shri_prem_bhakti_prakash",
+          "name": "Page-Break"
+        },
+        {
+          "book": "shri_krishna_vigyan",
+          "name": "OM-Namah"
+        },
+        {
+          "book": "pita_ki_seekh",
+          "name": "Page-Break-1"
+        },
+        {
+          "book": "parvati_mangal",
+          "name": "Page-Break"
+        },
+        {
+          "book": "shiv_smaran",
+          "name": "Titel-Page---Shri-Hari"
+        },
+        {
+          "book": "manav_jeevan_ka_lakshya",
+          "name": "Page-Break"
+        },
+        {
+          "book": "shri_krishna_bal_madhuri",
+          "name": "Page-Break"
+        },
+        {
+          "book": "bhakt_narsingh_mehta",
+          "name": "Page-Break"
+        },
+        {
+          "book": "mahatvapurna_prashnottar",
+          "name": "Titel-Page---Shri-Hari"
+        },
+        {
+          "book": "shiv_sahasranama_stotram",
+          "name": "Titel-Page---Shri-Hari"
+        },
+        {
+          "book": "chetavani_pad_sangrah",
+          "name": "Titel-Page---Shri-Hari"
+        },
+        {
+          "book": "gita_sangrah",
+          "name": "Titel-Page---Shri-Hari"
+        },
+        {
+          "book": "vaishakh_kartik_magh_maas_mahatmya",
+          "name": "Page-Break"
+        },
+        {
+          "book": "vaishakh_kartik_magh_maas_mahatmya",
+          "name": "Titel-Page---Shri-Hari"
         }
       ]
     },
@@ -2654,6 +3402,86 @@
         },
         {
           "book": "navadha_bhakti",
+          "name": "Heading"
+        },
+        {
+          "book": "brahmacharya",
+          "name": "Heading"
+        },
+        {
+          "book": "satsang_ke_bikhre_moti",
+          "name": "Heading"
+        },
+        {
+          "book": "ekadashi_vrat_ka_mahatmya",
+          "name": "Heading"
+        },
+        {
+          "book": "radha_madhav_ras_sudha",
+          "name": "Heading"
+        },
+        {
+          "book": "gita_darpan",
+          "name": "Heading"
+        },
+        {
+          "book": "gita_darpan",
+          "name": "Main-Heading"
+        },
+        {
+          "book": "gita_darpan",
+          "name": "Purvardh---Uttrardh"
+        },
+        {
+          "book": "virah_padavali",
+          "name": "Heading"
+        },
+        {
+          "book": "premi_bhakt",
+          "name": "Heading"
+        },
+        {
+          "book": "shri_prem_bhakti_prakash",
+          "name": "Main-Heading"
+        },
+        {
+          "book": "shri_krishna_vigyan",
+          "name": "Heading"
+        },
+        {
+          "book": "shri_krishna_vigyan",
+          "name": "Main-Heading"
+        },
+        {
+          "book": "pita_ki_seekh",
+          "name": "Heading"
+        },
+        {
+          "book": "pita_ki_seekh",
+          "name": "Heading-English"
+        },
+        {
+          "book": "parvati_mangal",
+          "name": "Heading"
+        },
+        {
+          "book": "manav_jeevan_ka_lakshya",
+          "name": "Heading"
+        },
+        {
+          "book": "manav_jeevan_ka_lakshya",
+          "name": "Main-Heading"
+        },
+        {
+          "book": "shri_krishna_bal_madhuri",
+          "name": "Heading"
+        },
+        {
+          "book": "bhakt_narsingh_mehta",
+          "name": "Heading"
+        },
+        {
+          "book": "vaishakh_kartik_magh_maas_mahatmya",
           "name": "Heading"
         }
       ]
@@ -2920,6 +3748,90 @@
         {
           "book": "navadha_bhakti",
           "name": "Sub-Heading"
+        },
+        {
+          "book": "sandhya_gayatri_brahmacharya",
+          "name": "Sub-Heading"
+        },
+        {
+          "book": "gita_shankarbhashya",
+          "name": "Sub-Heading"
+        },
+        {
+          "book": "antyakarma_shraddha_prakash",
+          "name": "Sub-Heading"
+        },
+        {
+          "book": "antyakarma_shraddha_prakash",
+          "name": "Sub-Heading-2"
+        },
+        {
+          "book": "gita_darpan",
+          "name": "Sub-Heading"
+        },
+        {
+          "book": "virah_padavali",
+          "name": "Sub-Heading"
+        },
+        {
+          "book": "bhagavat_navneet",
+          "name": "Sub-Heading"
+        },
+        {
+          "book": "bhagavat_navneet",
+          "name": "Sub-Heading-2"
+        },
+        {
+          "book": "shri_prem_bhakti_prakash",
+          "name": "Sub-Heading"
+        },
+        {
+          "book": "shri_krishna_vigyan",
+          "name": "Sub-Heading"
+        },
+        {
+          "book": "shri_krishna_vigyan",
+          "name": "Sub-Heading-1"
+        },
+        {
+          "book": "manav_jeevan_ka_lakshya",
+          "name": "Sub-Heading-"
+        },
+        {
+          "book": "shri_krishna_bal_madhuri",
+          "name": "Sub-Heading"
+        },
+        {
+          "book": "bhakt_narsingh_mehta",
+          "name": "Sub-Heading"
+        },
+        {
+          "book": "mahatvapurna_prashnottar",
+          "name": "Sub-Heading"
+        },
+        {
+          "book": "chetavani_pad_sangrah",
+          "name": "Sub-Heading"
+        },
+        {
+          "book": "chetavani_pad_sangrah",
+          "name": "Sub-Heading-2"
+        },
+        {
+          "book": "tattva_vichar",
+          "name": "Sub-Heading"
+        },
+        {
+          "book": "gita_sangrah",
+          "name": "Sub-Heading"
+        },
+        {
+          "book": "gita_sangrah",
+          "name": "Sub-Heading-2"
+        },
+        {
+          "book": "vaishakh_kartik_magh_maas_mahatmya",
+          "name": "Sub-Heading"
         }
       ]
     },
@@ -3149,6 +4061,90 @@
         {
           "book": "navadha_bhakti",
           "name": "Footnotes"
+        },
+        {
+          "book": "brahmacharya",
+          "name": "Footnotes"
+        },
+        {
+          "book": "satsang_ke_bikhre_moti",
+          "name": "Footnotes"
+        },
+        {
+          "book": "ekadashi_vrat_ka_mahatmya",
+          "name": "Footnotes"
+        },
+        {
+          "book": "radha_madhav_ras_sudha",
+          "name": "Footnotes"
+        },
+        {
+          "book": "sandhya_gayatri_brahmacharya",
+          "name": "Footnotes"
+        },
+        {
+          "book": "gita_shankarbhashya",
+          "name": "Footnotes"
+        },
+        {
+          "book": "antyakarma_shraddha_prakash",
+          "name": "Footnotes"
+        },
+        {
+          "book": "gita_darpan",
+          "name": "Footnotes"
+        },
+        {
+          "book": "virah_padavali",
+          "name": "Footnotes"
+        },
+        {
+          "book": "premi_bhakt",
+          "name": "Footnotes"
+        },
+        {
+          "book": "vishnu_sahasranama_shankarbhashya",
+          "name": "Footnotes"
+        },
+        {
+          "book": "shri_prem_bhakti_prakash",
+          "name": "Footnotes"
+        },
+        {
+          "book": "pita_ki_seekh",
+          "name": "Footnotes"
+        },
+        {
+          "book": "manav_jeevan_ka_lakshya",
+          "name": "Footnotes"
+        },
+        {
+          "book": "shri_krishna_bal_madhuri",
+          "name": "Footnotes"
+        },
+        {
+          "book": "bhakt_narsingh_mehta",
+          "name": "Footnotes"
+        },
+        {
+          "book": "mahatvapurna_prashnottar",
+          "name": "Footnotes"
+        },
+        {
+          "book": "shiv_sahasranama_stotram",
+          "name": "Footnotes"
+        },
+        {
+          "book": "tattva_vichar",
+          "name": "Footnotes"
+        },
+        {
+          "book": "gita_sangrah",
+          "name": "Footnotes"
+        },
+        {
+          "book": "vaishakh_kartik_magh_maas_mahatmya",
+          "name": "Footnotes"
         }
       ]
     },
@@ -3293,6 +4289,54 @@
         },
         {
           "book": "navadha_bhakti",
+          "name": "Footnotes-Bold"
+        },
+        {
+          "book": "ekadashi_vrat_ka_mahatmya",
+          "name": "Footnotes-Bold"
+        },
+        {
+          "book": "sandhya_gayatri_brahmacharya",
+          "name": "Footnotes-Bold"
+        },
+        {
+          "book": "antyakarma_shraddha_prakash",
+          "name": "Footnotes-Bold"
+        },
+        {
+          "book": "gita_darpan",
+          "name": "Footnotes-Bold"
+        },
+        {
+          "book": "gita_darpan",
+          "name": "Footnotes-Bold-1"
+        },
+        {
+          "book": "virah_padavali",
+          "name": "Footnotes-Bold"
+        },
+        {
+          "book": "bhagavat_navneet",
+          "name": "Footnotes-Bold"
+        },
+        {
+          "book": "vishnu_sahasranama_shankarbhashya",
+          "name": "Footnotes-Bold"
+        },
+        {
+          "book": "shri_prem_bhakti_prakash",
+          "name": "Footnotes-Bold"
+        },
+        {
+          "book": "pita_ki_seekh",
+          "name": "Footnotes-Bold"
+        },
+        {
+          "book": "manav_jeevan_ka_lakshya",
+          "name": "Footnotes-Bold"
+        },
+        {
+          "book": "vaishakh_kartik_magh_maas_mahatmya",
           "name": "Footnotes-Bold"
         }
       ]
@@ -3478,6 +4522,78 @@
         },
         {
           "book": "भिक्षुगीता",
+          "name": "Chapter-End-Text"
+        },
+        {
+          "book": "radha_madhav_ras_sudha",
+          "name": "Chapter-End-Text"
+        },
+        {
+          "book": "sandhya_gayatri_brahmacharya",
+          "name": "End-Text"
+        },
+        {
+          "book": "sandhyopasana_vidhi",
+          "name": "End-Text"
+        },
+        {
+          "book": "gita_shankarbhashya",
+          "name": "Chapter-End-Text"
+        },
+        {
+          "book": "antyakarma_shraddha_prakash",
+          "name": "Chapter-End-Text"
+        },
+        {
+          "book": "antyakarma_shraddha_prakash",
+          "name": "char-style-override-29"
+        },
+        {
+          "book": "antyakarma_shraddha_prakash",
+          "name": "char-style-override-32"
+        },
+        {
+          "book": "bhagavat_navneet",
+          "name": "Chapter-End-Text"
+        },
+        {
+          "book": "vishnu_sahasranama_shankarbhashya",
+          "name": "Chapter-End-Text"
+        },
+        {
+          "book": "vishnu_sahasranama_shankarbhashya",
+          "name": "Uvach"
+        },
+        {
+          "book": "shri_prem_bhakti_prakash",
+          "name": "ChapterEnd1"
+        },
+        {
+          "book": "shri_krishna_vigyan",
+          "name": "End-text-new"
+        },
+        {
+          "book": "manav_jeevan_ka_lakshya",
+          "name": "Chapter-End-Text"
+        },
+        {
+          "book": "shiv_sahasranama_stotram",
+          "name": "Chapter-End-Text"
+        },
+        {
+          "book": "shiv_sahasranama_stotram",
+          "name": "Uvach"
+        },
+        {
+          "book": "tattva_vichar",
+          "name": "Chapter-End-Text"
+        },
+        {
+          "book": "gita_sangrah",
+          "name": "Chapter-End-Text"
+        },
+        {
+          "book": "vaishakh_kartik_magh_maas_mahatmya",
           "name": "Chapter-End-Text"
         }
       ]
@@ -4841,6 +5957,334 @@
         {
           "book": "navadha_bhakti",
           "name": "char-style-override-5"
+        },
+        {
+          "book": "brahmacharya",
+          "name": "char-style-override-2"
+        },
+        {
+          "book": "satsang_ke_bikhre_moti",
+          "name": "char-style-override-3"
+        },
+        {
+          "book": "ekadashi_vrat_ka_mahatmya",
+          "name": "char-style-override-3"
+        },
+        {
+          "book": "ekadashi_vrat_ka_mahatmya",
+          "name": "char-style-override-5"
+        },
+        {
+          "book": "radha_madhav_ras_sudha",
+          "name": "char-style-override-2"
+        },
+        {
+          "book": "sandhya_gayatri_brahmacharya",
+          "name": "char-style-override-10"
+        },
+        {
+          "book": "sandhyopasana_vidhi",
+          "name": "char-style-override-5"
+        },
+        {
+          "book": "gita_shankarbhashya",
+          "name": "char-style-override-5"
+        },
+        {
+          "book": "gita_shankarbhashya",
+          "name": "char-style-override-6"
+        },
+        {
+          "book": "gita_shankarbhashya",
+          "name": "char-style-override-7"
+        },
+        {
+          "book": "gita_shankarbhashya",
+          "name": "char-style-override-13"
+        },
+        {
+          "book": "gita_shankarbhashya",
+          "name": "char-style-override-14"
+        },
+        {
+          "book": "gita_shankarbhashya",
+          "name": "char-style-override-15"
+        },
+        {
+          "book": "gita_shankarbhashya",
+          "name": "char-style-override-21"
+        },
+        {
+          "book": "gita_shankarbhashya",
+          "name": "char-style-override-22"
+        },
+        {
+          "book": "gita_shankarbhashya",
+          "name": "char-style-override-23"
+        },
+        {
+          "book": "gita_shankarbhashya",
+          "name": "char-style-override-24"
+        },
+        {
+          "book": "gita_shankarbhashya",
+          "name": "char-style-override-28"
+        },
+        {
+          "book": "antyakarma_shraddha_prakash",
+          "name": "char-style-override-2"
+        },
+        {
+          "book": "antyakarma_shraddha_prakash",
+          "name": "char-style-override-5"
+        },
+        {
+          "book": "antyakarma_shraddha_prakash",
+          "name": "char-style-override-6"
+        },
+        {
+          "book": "antyakarma_shraddha_prakash",
+          "name": "char-style-override-14"
+        },
+        {
+          "book": "antyakarma_shraddha_prakash",
+          "name": "char-style-override-18"
+        },
+        {
+          "book": "antyakarma_shraddha_prakash",
+          "name": "char-style-override-23"
+        },
+        {
+          "book": "antyakarma_shraddha_prakash",
+          "name": "char-style-override-27"
+        },
+        {
+          "book": "gita_darpan",
+          "name": "char-style-override-3"
+        },
+        {
+          "book": "gita_darpan",
+          "name": "char-style-override-10"
+        },
+        {
+          "book": "gita_darpan",
+          "name": "char-style-override-17"
+        },
+        {
+          "book": "gita_darpan",
+          "name": "char-style-override-18"
+        },
+        {
+          "book": "gita_darpan",
+          "name": "char-style-override-6"
+        },
+        {
+          "book": "virah_padavali",
+          "name": "char-style-override-3"
+        },
+        {
+          "book": "virah_padavali",
+          "name": "char-style-override-4"
+        },
+        {
+          "book": "premi_bhakt",
+          "name": "char-style-override-2"
+        },
+        {
+          "book": "premi_bhakt",
+          "name": "char-style-override-3"
+        },
+        {
+          "book": "premi_bhakt",
+          "name": "char-style-override-4"
+        },
+        {
+          "book": "bhagavat_navneet",
+          "name": "char-style-override-2"
+        },
+        {
+          "book": "vishnu_sahasranama_shankarbhashya",
+          "name": "char-style-override-3"
+        },
+        {
+          "book": "vishnu_sahasranama_shankarbhashya",
+          "name": "char-style-override-4"
+        },
+        {
+          "book": "vishnu_sahasranama_shankarbhashya",
+          "name": "char-style-override-5"
+        },
+        {
+          "book": "vishnu_sahasranama_shankarbhashya",
+          "name": "char-style-override-6"
+        },
+        {
+          "book": "vishnu_sahasranama_shankarbhashya",
+          "name": "char-style-override-7"
+        },
+        {
+          "book": "vishnu_sahasranama_shankarbhashya",
+          "name": "char-style-override-10"
+        },
+        {
+          "book": "vishnu_sahasranama_shankarbhashya",
+          "name": "char-style-override-16"
+        },
+        {
+          "book": "vishnu_sahasranama_shankarbhashya",
+          "name": "char-style-override-17"
+        },
+        {
+          "book": "shri_prem_bhakti_prakash",
+          "name": "char-style-override-3"
+        },
+        {
+          "book": "shri_krishna_vigyan",
+          "name": "char-style-override-3"
+        },
+        {
+          "book": "shri_krishna_vigyan",
+          "name": "char-style-override-10"
+        },
+        {
+          "book": "pita_ki_seekh",
+          "name": "char-style-override-3"
+        },
+        {
+          "book": "pita_ki_seekh",
+          "name": "char-style-override-5"
+        },
+        {
+          "book": "pita_ki_seekh",
+          "name": "char-style-override-12"
+        },
+        {
+          "book": "parvati_mangal",
+          "name": "char-style-override-3"
+        },
+        {
+          "book": "parvati_mangal",
+          "name": "char-style-override-4"
+        },
+        {
+          "book": "shiv_smaran",
+          "name": "char-style-override-3"
+        },
+        {
+          "book": "manav_jeevan_ka_lakshya",
+          "name": "char-style-override-5"
+        },
+        {
+          "book": "manav_jeevan_ka_lakshya",
+          "name": "char-style-override-7"
+        },
+        {
+          "book": "manav_jeevan_ka_lakshya",
+          "name": "char-style-override-16"
+        },
+        {
+          "book": "shri_krishna_bal_madhuri",
+          "name": "char-style-override-5"
+        },
+        {
+          "book": "shri_krishna_bal_madhuri",
+          "name": "char-style-override-8"
+        },
+        {
+          "book": "shri_krishna_bal_madhuri",
+          "name": "char-style-override-9"
+        },
+        {
+          "book": "bhakt_narsingh_mehta",
+          "name": "char-style-override-1"
+        },
+        {
+          "book": "bhakt_narsingh_mehta",
+          "name": "char-style-override-2"
+        },
+        {
+          "book": "bhakt_narsingh_mehta",
+          "name": "char-style-override-3"
+        },
+        {
+          "book": "bhakt_narsingh_mehta",
+          "name": "char-style-override-5"
+        },
+        {
+          "book": "bhakt_narsingh_mehta",
+          "name": "char-style-override-7"
+        },
+        {
+          "book": "bhakt_narsingh_mehta",
+          "name": "char-style-override-8"
+        },
+        {
+          "book": "mahatvapurna_prashnottar",
+          "name": "char-style-override-2"
+        },
+        {
+          "book": "mahatvapurna_prashnottar",
+          "name": "char-style-override-4"
+        },
+        {
+          "book": "mahatvapurna_prashnottar",
+          "name": "char-style-override-6"
+        },
+        {
+          "book": "mahatvapurna_prashnottar",
+          "name": "char-style-override-8"
+        },
+        {
+          "book": "mahatvapurna_prashnottar",
+          "name": "char-style-override-9"
+        },
+        {
+          "book": "mahatvapurna_prashnottar",
+          "name": "char-style-override-15"
+        },
+        {
+          "book": "shiv_sahasranama_stotram",
+          "name": "char-style-override-3"
+        },
+        {
+          "book": "chetavani_pad_sangrah",
+          "name": "char-style-override-4"
+        },
+        {
+          "book": "tattva_vichar",
+          "name": "char-style-override-3"
+        },
+        {
+          "book": "tattva_vichar",
+          "name": "char-style-override-5"
+        },
+        {
+          "book": "tattva_vichar",
+          "name": "char-style-override-6"
+        },
+        {
+          "book": "gita_sangrah",
+          "name": "char-style-override-2"
+        },
+        {
+          "book": "gita_sangrah",
+          "name": "char-style-override-4"
+        },
+        {
+          "book": "gita_sangrah",
+          "name": "char-style-override-8"
+        },
+        {
+          "book": "gita_sangrah",
+          "name": "char-style-override-16"
+        },
+        {
+          "book": "vaishakh_kartik_magh_maas_mahatmya",
+          "name": "char-style-override-3"
+        },
+        {
+          "book": "vaishakh_kartik_magh_maas_mahatmya",
+          "name": "char-style-override-7"
         }
       ]
     },
@@ -5271,6 +6715,90 @@
         {
           "book": "gita_padached",
           "name": "char-style-override-42"
+        },
+        {
+          "book": "ekadashi_vrat_ka_mahatmya",
+          "name": "char-style-override-6"
+        },
+        {
+          "book": "sandhya_gayatri_brahmacharya",
+          "name": "char-style-override-8"
+        },
+        {
+          "book": "sandhyopasana_vidhi",
+          "name": "char-style-override-6"
+        },
+        {
+          "book": "sandhyopasana_vidhi",
+          "name": "char-style-override-8"
+        },
+        {
+          "book": "sandhyopasana_vidhi",
+          "name": "char-style-override-11"
+        },
+        {
+          "book": "sandhyopasana_vidhi",
+          "name": "char-style-override-12"
+        },
+        {
+          "book": "sandhyopasana_vidhi",
+          "name": "char-style-override-19"
+        },
+        {
+          "book": "sandhyopasana_vidhi",
+          "name": "char-style-override-24"
+        },
+        {
+          "book": "gita_shankarbhashya",
+          "name": "char-style-override-20"
+        },
+        {
+          "book": "antyakarma_shraddha_prakash",
+          "name": "char-style-override-8"
+        },
+        {
+          "book": "antyakarma_shraddha_prakash",
+          "name": "char-style-override-10"
+        },
+        {
+          "book": "gita_darpan",
+          "name": "char-style-override-7"
+        },
+        {
+          "book": "gita_darpan",
+          "name": "char-style-override-14"
+        },
+        {
+          "book": "vishnu_sahasranama_shankarbhashya",
+          "name": "char-style-override-14"
+        },
+        {
+          "book": "pita_ki_seekh",
+          "name": "char-style-override-9"
+        },
+        {
+          "book": "pita_ki_seekh",
+          "name": "char-style-override-13"
+        },
+        {
+          "book": "manav_jeevan_ka_lakshya",
+          "name": "char-style-override-10"
+        },
+        {
+          "book": "bhakt_narsingh_mehta",
+          "name": "char-style-override-6"
+        },
+        {
+          "book": "gita_sangrah",
+          "name": "char-style-override-13"
+        },
+        {
+          "book": "gita_sangrah",
+          "name": "char-style-override-14"
+        },
+        {
+          "book": "vaishakh_kartik_magh_maas_mahatmya",
+          "name": "char-style-override-8"
         }
       ]
     },
@@ -6152,6 +7680,110 @@
         {
           "book": "navadha_bhakti",
           "name": "Basic-Text-Frame"
+        },
+        {
+          "book": "brahmacharya",
+          "name": "Basic-Graphics-Frame"
+        },
+        {
+          "book": "satsang_ke_bikhre_moti",
+          "name": "Basic-Graphics-Frame"
+        },
+        {
+          "book": "ekadashi_vrat_ka_mahatmya",
+          "name": "Basic-Graphics-Frame"
+        },
+        {
+          "book": "radha_madhav_ras_sudha",
+          "name": "Basic-Graphics-Frame"
+        },
+        {
+          "book": "sandhya_gayatri_brahmacharya",
+          "name": "Basic-Graphics-Frame"
+        },
+        {
+          "book": "sandhyopasana_vidhi",
+          "name": "Basic-Text-Frame"
+        },
+        {
+          "book": "gita_shankarbhashya",
+          "name": "Basic-Graphics-Frame"
+        },
+        {
+          "book": "antyakarma_shraddha_prakash",
+          "name": "Basic-Graphics-Frame"
+        },
+        {
+          "book": "gita_darpan",
+          "name": "Basic-Graphics-Frame"
+        },
+        {
+          "book": "virah_padavali",
+          "name": "Basic-Graphics-Frame"
+        },
+        {
+          "book": "premi_bhakt",
+          "name": "Basic-Graphics-Frame"
+        },
+        {
+          "book": "bhagavat_navneet",
+          "name": "Basic-Graphics-Frame"
+        },
+        {
+          "book": "shri_prem_bhakti_prakash",
+          "name": "Basic-Graphics-Frame"
+        },
+        {
+          "book": "shri_prem_bhakti_prakash",
+          "name": "Basic-Text-Frame"
+        },
+        {
+          "book": "pita_ki_seekh",
+          "name": "Basic-Graphics-Frame"
+        },
+        {
+          "book": "pita_ki_seekh",
+          "name": "Basic-Text-Frame"
+        },
+        {
+          "book": "parvati_mangal",
+          "name": "Basic-Graphics-Frame"
+        },
+        {
+          "book": "shiv_smaran",
+          "name": "Basic-Graphics-Frame"
+        },
+        {
+          "book": "manav_jeevan_ka_lakshya",
+          "name": "Basic-Graphics-Frame"
+        },
+        {
+          "book": "shri_krishna_bal_madhuri",
+          "name": "Basic-Graphics-Frame"
+        },
+        {
+          "book": "bhakt_narsingh_mehta",
+          "name": "Basic-Graphics-Frame"
+        },
+        {
+          "book": "mahatvapurna_prashnottar",
+          "name": "Basic-Graphics-Frame"
+        },
+        {
+          "book": "shiv_sahasranama_stotram",
+          "name": "Basic-Graphics-Frame"
+        },
+        {
+          "book": "chetavani_pad_sangrah",
+          "name": "Basic-Graphics-Frame"
+        },
+        {
+          "book": "gita_sangrah",
+          "name": "Basic-Graphics-Frame"
+        },
+        {
+          "book": "vaishakh_kartik_magh_maas_mahatmya",
+          "name": "Basic-Graphics-Frame"
         }
       ]
     },
@@ -6692,6 +8324,14 @@
         {
           "book": "vrat_parichay",
           "name": "Footnotes-Right"
+        },
+        {
+          "book": "sandhya_gayatri_brahmacharya",
+          "name": "Footnotes-Right"
+        },
+        {
+          "book": "manav_jeevan_ka_lakshya",
+          "name": "Footnotes-Right"
         }
       ]
     },
@@ -6785,6 +8425,30 @@
         {
           "book": "navadha_bhakti",
           "name": "No-Paragraph-Style"
+        },
+        {
+          "book": "brahmacharya",
+          "name": "No-Paragraph-Style"
+        },
+        {
+          "book": "ekadashi_vrat_ka_mahatmya",
+          "name": "No-Paragraph-Style"
+        },
+        {
+          "book": "gita_darpan",
+          "name": "No-Paragraph-Style"
+        },
+        {
+          "book": "pita_ki_seekh",
+          "name": "No-Paragraph-Style"
+        },
+        {
+          "book": "bhakt_narsingh_mehta",
+          "name": "No-Paragraph-Style"
+        },
+        {
+          "book": "vaishakh_kartik_magh_maas_mahatmya",
+          "name": "No-Paragraph-Style"
         }
       ]
     },
@@ -6864,6 +8528,10 @@
         },
         {
           "book": "vidura_niti",
+          "name": "Chapter-end-Text"
+        },
+        {
+          "book": "bhakt_narsingh_mehta",
           "name": "Chapter-end-Text"
         }
       ]
@@ -7593,6 +9261,62 @@
         {
           "book": "dampatya_jeevan_ka_adarsh",
           "name": "Title-Page---Gita-Seva-Trust"
+        },
+        {
+          "book": "brahmacharya",
+          "name": "Title-Page---Gita-Seva-Trust"
+        },
+        {
+          "book": "sandhyopasana_vidhi",
+          "name": "Title-Page---Gita-Seva-Trust"
+        },
+        {
+          "book": "gita_shankarbhashya",
+          "name": "Title-Page---Gita-Seva-Trust"
+        },
+        {
+          "book": "antyakarma_shraddha_prakash",
+          "name": "Title-Page---Gita-Seva-Trust"
+        },
+        {
+          "book": "premi_bhakt",
+          "name": "Title-Page---Gita-Seva-Trust"
+        },
+        {
+          "book": "bhagavat_navneet",
+          "name": "Title-Page---Gita-Seva-Trust"
+        },
+        {
+          "book": "vishnu_sahasranama_shankarbhashya",
+          "name": "Title-Page---Gita-Seva-Trust"
+        },
+        {
+          "book": "shri_krishna_vigyan",
+          "name": "Title-Page---Gita-Seva-Trust"
+        },
+        {
+          "book": "shiv_smaran",
+          "name": "Title-Page---Gita-Seva-Trust"
+        },
+        {
+          "book": "bhakt_narsingh_mehta",
+          "name": "Title-Page---Gita-Seva-Trust"
+        },
+        {
+          "book": "mahatvapurna_prashnottar",
+          "name": "Title-Page---Gita-Seva-Trust"
+        },
+        {
+          "book": "shiv_sahasranama_stotram",
+          "name": "Title-Page---Gita-Seva-Trust"
+        },
+        {
+          "book": "chetavani_pad_sangrah",
+          "name": "Title-Page---Gita-Seva-Trust"
+        },
+        {
+          "book": "gita_sangrah",
+          "name": "Title-Page---Gita-Seva-Trust"
         }
       ]
     },
@@ -7605,6 +9329,10 @@
         },
         {
           "book": "saar_sangrah",
+          "name": "Uwach"
+        },
+        {
+          "book": "shri_krishna_vigyan",
           "name": "Uwach"
         }
       ]
@@ -7659,6 +9387,18 @@
         {
           "book": "dampatya_jeevan_ka_adarsh",
           "name": "TXT-Right"
+        },
+        {
+          "book": "brahmacharya",
+          "name": "TXT-Right"
+        },
+        {
+          "book": "premi_bhakt",
+          "name": "TXT-Right"
+        },
+        {
+          "book": "bhakt_narsingh_mehta",
+          "name": "TXT-Right"
         }
       ]
     },
@@ -7695,6 +9435,10 @@
         },
         {
           "book": "dampatya_jeevan_ka_adarsh",
+          "name": "Footnotes-Bold"
+        },
+        {
+          "book": "bhakt_narsingh_mehta",
           "name": "Footnotes-Bold"
         }
       ]
@@ -7733,6 +9477,10 @@
         {
           "book": "dampatya_jeevan_ka_adarsh",
           "name": "Footnotes-Right"
+        },
+        {
+          "book": "bhakt_narsingh_mehta",
+          "name": "Footnotes-Right"
         }
       ]
     },
@@ -7745,6 +9493,10 @@
         },
         {
           "book": "ishadinau",
+          "name": "Nayash"
+        },
+        {
+          "book": "shri_krishna_vigyan",
           "name": "Nayash"
         }
       ]
@@ -7815,6 +9567,42 @@
         {
           "book": "परमहंसगीता",
           "name": "TXT-Bold"
+        },
+        {
+          "book": "brahmacharya",
+          "name": "TXT-Bold"
+        },
+        {
+          "book": "sandhya_gayatri_brahmacharya",
+          "name": "Text-Bold"
+        },
+        {
+          "book": "gita_shankarbhashya",
+          "name": "TXT-Bold"
+        },
+        {
+          "book": "antyakarma_shraddha_prakash",
+          "name": "TXT-Bold"
+        },
+        {
+          "book": "bhagavat_navneet",
+          "name": "TXT-Bold"
+        },
+        {
+          "book": "vishnu_sahasranama_shankarbhashya",
+          "name": "TXT-Bold"
+        },
+        {
+          "book": "shiv_smaran",
+          "name": "TXT-Bold"
+        },
+        {
+          "book": "shiv_sahasranama_stotram",
+          "name": "TXT-Bold"
+        },
+        {
+          "book": "gita_sangrah",
+          "name": "TXT-Bold"
         }
       ]
     },
@@ -7823,6 +9611,10 @@
       "sourceClasses": [
         {
           "book": "durga_saptashati",
+          "name": "OM"
+        },
+        {
+          "book": "shri_krishna_vigyan",
           "name": "OM"
         }
       ]
@@ -7924,6 +9716,58 @@
         },
         {
           "book": "navadha_bhakti",
+          "name": "Title-Page---Author-Name"
+        },
+        {
+          "book": "satsang_ke_bikhre_moti",
+          "name": "Title-Page---Author-Name"
+        },
+        {
+          "book": "gita_shankarbhashya",
+          "name": "Title-Page---Author-Name"
+        },
+        {
+          "book": "antyakarma_shraddha_prakash",
+          "name": "Title-Page---Translater-Name"
+        },
+        {
+          "book": "bhagavat_navneet",
+          "name": "Title-Page---Author-Name"
+        },
+        {
+          "book": "vishnu_sahasranama_shankarbhashya",
+          "name": "Title-Page---Author-Name"
+        },
+        {
+          "book": "vishnu_sahasranama_shankarbhashya",
+          "name": "Title-Page---Sub-Head"
+        },
+        {
+          "book": "vishnu_sahasranama_shankarbhashya",
+          "name": "Title-Page---Sub-Heading"
+        },
+        {
+          "book": "shri_prem_bhakti_prakash",
+          "name": "Title-Page---Author-Name"
+        },
+        {
+          "book": "pita_ki_seekh",
+          "name": "Title-Page---Author-Name"
+        },
+        {
+          "book": "shiv_smaran",
+          "name": "Title-Page---Author-Name"
+        },
+        {
+          "book": "mahatvapurna_prashnottar",
+          "name": "Title-Page---Author-Name"
+        },
+        {
+          "book": "shiv_sahasranama_stotram",
+          "name": "Title-Page---Sub-Heading"
+        },
+        {
+          "book": "tattva_vichar",
           "name": "Title-Page---Author-Name"
         }
       ]
@@ -8744,6 +10588,10 @@
         {
           "book": "valmiki_ramayan",
           "name": "Heading"
+        },
+        {
+          "book": "tattva_vichar",
+          "name": "Heading"
         }
       ]
     },
@@ -8864,6 +10712,42 @@
         {
           "book": "navadha_bhakti",
           "name": "Footnotes-Right"
+        },
+        {
+          "book": "ekadashi_vrat_ka_mahatmya",
+          "name": "Footnotes-Right"
+        },
+        {
+          "book": "antyakarma_shraddha_prakash",
+          "name": "Footnotes-Right"
+        },
+        {
+          "book": "gita_darpan",
+          "name": "Footnotes-Right"
+        },
+        {
+          "book": "gita_darpan",
+          "name": "Footnotes-Right-1"
+        },
+        {
+          "book": "bhagavat_navneet",
+          "name": "Footnotes-Right"
+        },
+        {
+          "book": "vishnu_sahasranama_shankarbhashya",
+          "name": "Footnotes-Right"
+        },
+        {
+          "book": "shri_prem_bhakti_prakash",
+          "name": "Footnotes-Right"
+        },
+        {
+          "book": "pita_ki_seekh",
+          "name": "Footnotes-Right"
+        },
+        {
+          "book": "vaishakh_kartik_magh_maas_mahatmya",
+          "name": "Footnotes-Right"
         }
       ]
     },
@@ -8889,6 +10773,14 @@
         {
           "book": "valmiki_ramayan",
           "name": "No-Paragraph-Style-4"
+        },
+        {
+          "book": "gita_sangrah",
+          "name": "No-Paragraph-Style-1"
+        },
+        {
+          "book": "gita_sangrah",
+          "name": "No-Paragraph-Style-2"
         }
       ]
     },
@@ -8967,6 +10859,34 @@
         {
           "book": "puran_harivansh",
           "name": "SHLOK-Black"
+        },
+        {
+          "book": "gita_shankarbhashya",
+          "name": "Shlok-Black"
+        },
+        {
+          "book": "antyakarma_shraddha_prakash",
+          "name": "Shlok-Black"
+        },
+        {
+          "book": "gita_darpan",
+          "name": "SHLOK-Black"
+        },
+        {
+          "book": "vishnu_sahasranama_shankarbhashya",
+          "name": "Shlok-Black"
+        },
+        {
+          "book": "shri_prem_bhakti_prakash",
+          "name": "SHLOK-Black"
+        },
+        {
+          "book": "shiv_smaran",
+          "name": "Shlok-Black"
+        },
+        {
+          "book": "shiv_sahasranama_stotram",
+          "name": "Shlok-Black"
         }
       ]
     },
@@ -9005,6 +10925,10 @@
         },
         {
           "book": "valmiki_ramayan",
+          "name": "Nayash"
+        },
+        {
+          "book": "gita_darpan",
           "name": "Nayash"
         }
       ]
@@ -9046,6 +10970,14 @@
         },
         {
           "book": "vrat_parichay",
+          "name": "TXT-Right"
+        },
+        {
+          "book": "sandhya_gayatri_brahmacharya",
+          "name": "TXT-Right"
+        },
+        {
+          "book": "manav_jeevan_ka_lakshya",
           "name": "TXT-Right"
         }
       ]
@@ -9116,6 +11048,34 @@
         {
           "book": "navadha_bhakti",
           "name": "Title-Page---Book-Name"
+        },
+        {
+          "book": "satsang_ke_bikhre_moti",
+          "name": "Title-Page---Book-Name"
+        },
+        {
+          "book": "ekadashi_vrat_ka_mahatmya",
+          "name": "Title-Page---Book-Name"
+        },
+        {
+          "book": "gita_darpan",
+          "name": "Title-Page---Book-Name"
+        },
+        {
+          "book": "shri_prem_bhakti_prakash",
+          "name": "Title-Page---Book-Name"
+        },
+        {
+          "book": "pita_ki_seekh",
+          "name": "Title-Page---Book-Name"
+        },
+        {
+          "book": "tattva_vichar",
+          "name": "Title-Page---Book-Name"
+        },
+        {
+          "book": "vaishakh_kartik_magh_maas_mahatmya",
+          "name": "Title-Page---Book-Name"
         }
       ]
     },
@@ -9145,6 +11105,10 @@
         },
         {
           "book": "valmiki_ramayan",
+          "name": "Title-page---sub-title"
+        },
+        {
+          "book": "pita_ki_seekh",
           "name": "Title-page---sub-title"
         }
       ]
@@ -9734,6 +11698,18 @@
         {
           "book": "परमहंसगीता",
           "name": "Caption"
+        },
+        {
+          "book": "satsang_ke_bikhre_moti",
+          "name": "Center"
+        },
+        {
+          "book": "gita_darpan",
+          "name": "sub-head"
+        },
+        {
+          "book": "gita_sangrah",
+          "name": "Caption"
         }
       ]
     },
@@ -9786,6 +11762,26 @@
         },
         {
           "book": "navadha_bhakti",
+          "name": "TXT-Right"
+        },
+        {
+          "book": "satsang_ke_bikhre_moti",
+          "name": "TXT-Right"
+        },
+        {
+          "book": "ekadashi_vrat_ka_mahatmya",
+          "name": "TXT-Right"
+        },
+        {
+          "book": "gita_darpan",
+          "name": "TXT-Right"
+        },
+        {
+          "book": "parvati_mangal",
+          "name": "TXT-Right"
+        },
+        {
+          "book": "vaishakh_kartik_magh_maas_mahatmya",
           "name": "TXT-Right"
         }
       ]
@@ -11089,6 +13085,46 @@
         {
           "book": "भिक्षुगीता",
           "name": "Title-Page---Book-Name"
+        },
+        {
+          "book": "sandhyopasana_vidhi",
+          "name": "Title-Page---Book-Name"
+        },
+        {
+          "book": "gita_shankarbhashya",
+          "name": "Title-Page---Book-Name"
+        },
+        {
+          "book": "antyakarma_shraddha_prakash",
+          "name": "Title-Page---Book-Name"
+        },
+        {
+          "book": "bhagavat_navneet",
+          "name": "Title-Page---Book-Name"
+        },
+        {
+          "book": "vishnu_sahasranama_shankarbhashya",
+          "name": "Title-Page---Book-Name"
+        },
+        {
+          "book": "shiv_smaran",
+          "name": "Title-Page---Book-Name"
+        },
+        {
+          "book": "mahatvapurna_prashnottar",
+          "name": "Title-Page---Book-Name"
+        },
+        {
+          "book": "shiv_sahasranama_stotram",
+          "name": "Title-Page---Book-Name"
+        },
+        {
+          "book": "chetavani_pad_sangrah",
+          "name": "Title-Page---Book-Name"
+        },
+        {
+          "book": "gita_sangrah",
+          "name": "Title-Page---Book-Name"
         }
       ]
     },
@@ -11368,6 +13404,18 @@
         {
           "book": "puran_harivansh",
           "name": "Basic-Paragraph-1"
+        },
+        {
+          "book": "ekadashi_vrat_ka_mahatmya",
+          "name": "Basic-Paragraph"
+        },
+        {
+          "book": "mahatvapurna_prashnottar",
+          "name": "Basic-Paragraph"
+        },
+        {
+          "book": "vaishakh_kartik_magh_maas_mahatmya",
+          "name": "Basic-Paragraph"
         }
       ]
     },
@@ -11425,6 +13473,42 @@
         {
           "book": "भिक्षुगीता",
           "name": "Heading"
+        },
+        {
+          "book": "gita_shankarbhashya",
+          "name": "Heading"
+        },
+        {
+          "book": "antyakarma_shraddha_prakash",
+          "name": "Heading"
+        },
+        {
+          "book": "bhagavat_navneet",
+          "name": "Heading"
+        },
+        {
+          "book": "vishnu_sahasranama_shankarbhashya",
+          "name": "Heading"
+        },
+        {
+          "book": "shiv_smaran",
+          "name": "Heading"
+        },
+        {
+          "book": "mahatvapurna_prashnottar",
+          "name": "Heading"
+        },
+        {
+          "book": "shiv_sahasranama_stotram",
+          "name": "Heading"
+        },
+        {
+          "book": "chetavani_pad_sangrah",
+          "name": "Heading"
+        },
+        {
+          "book": "gita_sangrah",
+          "name": "Heading"
         }
       ]
     },
@@ -11446,6 +13530,10 @@
       "sourceClasses": [
         {
           "book": "ganesh_stotra_ratnakar",
+          "name": "TXT-Right"
+        },
+        {
+          "book": "tattva_vichar",
           "name": "TXT-Right"
         }
       ]
@@ -11855,6 +13943,14 @@
         {
           "book": "aadhyatma_ramayan",
           "name": "Titel-Page---Shri-Hari"
+        },
+        {
+          "book": "tattva_vichar",
+          "name": "Page-Break"
+        },
+        {
+          "book": "tattva_vichar",
+          "name": "Titel-Page---Shri-Hari"
         }
       ]
     },
@@ -11881,6 +13977,22 @@
         {
           "book": "gita_padached",
           "name": "Sub-Title"
+        },
+        {
+          "book": "radha_madhav_ras_sudha",
+          "name": "Title-Page---Sub-heading"
+        },
+        {
+          "book": "shiv_smaran",
+          "name": "Title-Page-Subheading"
+        },
+        {
+          "book": "shri_krishna_bal_madhuri",
+          "name": "Title-page---sub-title"
+        },
+        {
+          "book": "mahatvapurna_prashnottar",
+          "name": "Title-Page---subheading"
         }
       ]
     },
@@ -12019,6 +14131,42 @@
         {
           "book": "vivek_chudamani",
           "name": "No-Paragraph-Style"
+        },
+        {
+          "book": "gita_shankarbhashya",
+          "name": "No-Paragraph-Style"
+        },
+        {
+          "book": "antyakarma_shraddha_prakash",
+          "name": "No-Paragraph-Style"
+        },
+        {
+          "book": "bhagavat_navneet",
+          "name": "No-Paragraph-Style"
+        },
+        {
+          "book": "vishnu_sahasranama_shankarbhashya",
+          "name": "No-Paragraph-Style"
+        },
+        {
+          "book": "shiv_smaran",
+          "name": "No-Paragraph-Style"
+        },
+        {
+          "book": "mahatvapurna_prashnottar",
+          "name": "No-Paragraph-Style"
+        },
+        {
+          "book": "shiv_sahasranama_stotram",
+          "name": "No-Paragraph-Style"
+        },
+        {
+          "book": "chetavani_pad_sangrah",
+          "name": "No-Paragraph-Style"
+        },
+        {
+          "book": "gita_sangrah",
+          "name": "No-Paragraph-Style"
         }
       ]
     },
@@ -12061,6 +14209,14 @@
         {
           "book": "puran_padma",
           "name": "pravachan"
+        },
+        {
+          "book": "gita_shankarbhashya",
+          "name": "pravachan"
+        },
+        {
+          "book": "antyakarma_shraddha_prakash",
+          "name": "pravachan"
         }
       ]
     },
@@ -12101,6 +14257,42 @@
         },
         {
           "book": "vivek_chudamani",
+          "name": "TXT-Right"
+        },
+        {
+          "book": "gita_shankarbhashya",
+          "name": "TXT-Right"
+        },
+        {
+          "book": "antyakarma_shraddha_prakash",
+          "name": "Shlok-Right"
+        },
+        {
+          "book": "antyakarma_shraddha_prakash",
+          "name": "Text-Right"
+        },
+        {
+          "book": "bhagavat_navneet",
+          "name": "TXT-Right"
+        },
+        {
+          "book": "vishnu_sahasranama_shankarbhashya",
+          "name": "TXT-Right"
+        },
+        {
+          "book": "shri_prem_bhakti_prakash",
+          "name": "Right"
+        },
+        {
+          "book": "shiv_smaran",
+          "name": "TXT-Right"
+        },
+        {
+          "book": "mahatvapurna_prashnottar",
+          "name": "TXT-Right"
+        },
+        {
+          "book": "gita_sangrah",
           "name": "TXT-Right"
         }
       ]
@@ -12150,6 +14342,42 @@
         },
         {
           "book": "भिक्षुगीता",
+          "name": "Page-Break"
+        },
+        {
+          "book": "gita_shankarbhashya",
+          "name": "Page-Break"
+        },
+        {
+          "book": "antyakarma_shraddha_prakash",
+          "name": "Page-Break"
+        },
+        {
+          "book": "bhagavat_navneet",
+          "name": "Page-Break"
+        },
+        {
+          "book": "vishnu_sahasranama_shankarbhashya",
+          "name": "Page-Break"
+        },
+        {
+          "book": "shiv_smaran",
+          "name": "Page-Break"
+        },
+        {
+          "book": "mahatvapurna_prashnottar",
+          "name": "Page-Break"
+        },
+        {
+          "book": "shiv_sahasranama_stotram",
+          "name": "Page-Break"
+        },
+        {
+          "book": "chetavani_pad_sangrah",
+          "name": "Page-Break"
+        },
+        {
+          "book": "gita_sangrah",
           "name": "Page-Break"
         }
       ]
@@ -12313,6 +14541,22 @@
         {
           "book": "devi_bhagavat",
           "name": "Basic-Paragraph"
+        },
+        {
+          "book": "antyakarma_shraddha_prakash",
+          "name": "Basic-Paragraph"
+        },
+        {
+          "book": "bhagavat_navneet",
+          "name": "Basic-Paragraph"
+        },
+        {
+          "book": "shiv_smaran",
+          "name": "Basic-Paragraph"
+        },
+        {
+          "book": "gita_sangrah",
+          "name": "Basic-Paragraph"
         }
       ]
     },
@@ -12346,6 +14590,14 @@
         {
           "book": "भिक्षुगीता",
           "name": "Uvach"
+        },
+        {
+          "book": "antyakarma_shraddha_prakash",
+          "name": "Uvach"
+        },
+        {
+          "book": "gita_sangrah",
+          "name": "Uvach"
         }
       ]
     },
@@ -12358,6 +14610,26 @@
         },
         {
           "book": "lalita_sahasranama_stotram",
+          "name": "Numbers"
+        },
+        {
+          "book": "antyakarma_shraddha_prakash",
+          "name": "Numbers"
+        },
+        {
+          "book": "bhagavat_navneet",
+          "name": "Numbers"
+        },
+        {
+          "book": "chetavani_pad_sangrah",
+          "name": "Numbers"
+        },
+        {
+          "book": "gita_sangrah",
+          "name": "Numbers"
+        },
+        {
+          "book": "vaishakh_kartik_magh_maas_mahatmya",
           "name": "Numbers"
         }
       ]
@@ -12510,6 +14782,14 @@
         {
           "book": "vrat_parichay",
           "name": "Content"
+        },
+        {
+          "book": "sandhya_gayatri_brahmacharya",
+          "name": "Content"
+        },
+        {
+          "book": "sandhyopasana_vidhi",
+          "name": "Content"
         }
       ]
     },
@@ -12631,6 +14911,10 @@
       "sourceClasses": [
         {
           "book": "sahasranam_vishnu",
+          "name": "Normal"
+        },
+        {
+          "book": "sandhyopasana_vidhi",
           "name": "Normal"
         }
       ]
