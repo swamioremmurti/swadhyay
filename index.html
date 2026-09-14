@@ -3,524 +3,3186 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>स्वाध्याय - हिन्दू शास्त्र संग्रह</title>
-
-        <link rel="stylesheet" href="includes/bootstrap.min.css" />
+        <title>स्वाध्याय — हिन्दू शास्त्र संग्रह</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Noto+Serif+Devanagari:wght@400;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap"
+            rel="stylesheet" />
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari&display=swap" rel="stylesheet" />
         <link rel="stylesheet" href="includes/swiper-bundle.min.css" />
         <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
         <style>
+            /* ══════════════════════════════════════════
+       TOKENS — Light Warm Indian Palette
+    ══════════════════════════════════════════ */
+            :root {
+                --bg: #fff8f0;
+                --surface: #fff0e0;
+                --card: #ffffff;
+                --card2: #fff4e8;
+
+                --saff: #ff6d00;
+                --saff-lt: #ff9100;
+                --gold: #ffb300;
+                --gold-lt: #ffc84a;
+                --kumkum: #c62828;
+                --maroon: #7b1600;
+                --dark-hdr: #3d0000;
+                --pista: #00c853;
+                --lotus: #e91e63;
+                --marigold: #ffb300;
+
+                --border: rgba(180, 80, 0, 0.14);
+                --txt: #1a0a00;
+                --txt2: #7a4020;
+                --txt3: #b08060;
+                --radius: 18px;
+                --serif: "Noto Serif Devanagari", serif;
+                --sans: "Noto Sans Devanagari", sans-serif;
+                --shadow: rgba(180, 80, 0, 0.12) 0 4px 20px;
+            }
+
+            *,
+            *::before,
+            *::after {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+            html {
+                scroll-behavior: smooth;
+                font-size: 17px;
+                overflow-x: hidden;
+                max-width: 100%;
+            }
             body {
-                font-family: "Noto Sans Devanagari", sans-serif;
-                background-color: #f8f9fa;
-                font-size: 1.5em;
+                font-family: var(--sans);
+                background: var(--bg);
+                color: var(--txt);
+                overflow-x: hidden;
+                max-width: 100%;
+                line-height: 1.7;
+            }
+            /* Custom scrollbar — desktop only (pointer: fine = mouse) */
+            @media (pointer: fine) {
+                ::-webkit-scrollbar {
+                    width: 5px;
+                }
+                ::-webkit-scrollbar-track {
+                    background: var(--surface);
+                }
+                ::-webkit-scrollbar-thumb {
+                    background: var(--saff);
+                    border-radius: 4px;
+                }
             }
 
-            .category-card {
-                transition:
-                    transform 0.2s ease,
-                    box-shadow 0.2s ease;
-                cursor: pointer;
+            /* ── UTILITIES ──────────────────────────── */
+            .wrap {
+                max-width: 1160px;
+                margin: 0 auto;
+                padding: 0 1.25rem;
+                width: 100%;
+            }
+            .section {
+                padding: 3rem 0;
+                width: 100%;
+            }
+            .hidden {
+                display: none !important;
             }
 
-            .category-card:hover {
-                transform: translateY(-5px);
-                box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-            }
-
-            .hero {
-                position: relative;
-                background: url("images/Mount-Kailash.png") center center/cover;
-                color: white;
-                padding: 20px 0;
+            .sec-head {
                 text-align: center;
-                overflow: hidden;
+                margin-bottom: 2.2rem;
+            }
+            .sec-head h2 {
+                font-family: var(--serif);
+                font-size: clamp(1.45rem, 3.2vw, 2rem);
+                color: var(--kumkum);
+                font-weight: 700;
+                line-height: 1.2;
+            }
+            .sec-head p {
+                color: var(--txt2);
+                font-size: 0.95rem;
+                margin-top: 0.35rem;
             }
 
-            .hero::before {
+            /* Rangoli divider */
+            .rangoli-div {
+                display: flex;
+                align-items: center;
+                gap: 0.8rem;
+                margin: 0.7rem auto 0;
+                max-width: 280px;
+            }
+            .rangoli-div::before,
+            .rangoli-div::after {
                 content: "";
-                position: absolute;
+                flex: 1;
+                height: 1.5px;
+                background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            }
+            .rangoli-div span {
+                color: var(--saff);
+                font-size: 1.1rem;
+                letter-spacing: 0.4rem;
+                flex-shrink: 0;
+            }
+
+            /* ── NAV ────────────────────────────────── */
+            .nav {
+                position: fixed;
                 top: 0;
                 left: 0;
-                width: 100%;
-                height: 100%;
-                background: rgba(0, 0, 0, 0.5);
-                z-index: 1;
+                right: 0;
+                z-index: 500;
+                background: var(--dark-hdr);
+                border-bottom: 3px solid var(--saff);
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 0.7rem 1.5rem;
+                height: 58px;
+                box-shadow: 0 2px 16px rgba(61, 0, 0, 0.35);
             }
-
-            .hero > * {
-                position: relative;
-                z-index: 2;
-            }
-
-            .hero h1 {
+            .nav-brand {
+                font-family: var(--serif);
+                font-size: 1.3rem;
                 font-weight: 700;
-                color: yellow;
-                font-size: 3em;
+                color: #ffd740;
+                text-decoration: none;
+                letter-spacing: 0.04em;
+            }
+            .nav-links {
+                display: flex;
+                align-items: center;
+                gap: 1.4rem;
+            }
+            .nav-links a {
+                color: rgba(255, 255, 255, 0.85);
+                text-decoration: none;
+                font-size: 0.95rem;
+                transition: color 0.2s;
+            }
+            .nav-links a:hover {
+                color: var(--gold-lt);
+            }
+            .nav-search-btn {
+                background: rgba(255, 255, 255, 0.12);
+                border: 1px solid rgba(255, 255, 255, 0.25);
+                color: #fff;
+                border-radius: 50%;
+                width: 34px;
+                height: 34px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                font-size: 0.9rem;
+                transition: background 0.2s;
+            }
+            .nav-search-btn:hover {
+                background: rgba(255, 145, 0, 0.3);
             }
 
-            .card-detail {
-                margin-top: 0px;
+            /* ── HERO ───────────────────────────────── */
+            .hero {
+                margin-top: 58px;
+                position: relative;
+                min-height: 42vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                overflow: hidden;
+                background: linear-gradient(135deg, #7b1600 0%, #c62828 40%, #ff6d00 70%, #ffb300 100%);
+            }
+            /* Rangoli SVG pattern overlay */
+            .hero-pattern {
+                position: absolute;
+                inset: 0;
+                pointer-events: none;
+                opacity: 0.08;
+                background-image: radial-gradient(circle at 15% 50%, #fff 1px, transparent 1px),
+                    radial-gradient(circle at 85% 50%, #fff 1px, transparent 1px),
+                    radial-gradient(circle at 50% 20%, #fff 1px, transparent 1px),
+                    radial-gradient(circle at 50% 80%, #fff 1px, transparent 1px);
+                background-size: 40px 40px;
+            }
+            .hero-lotus {
+                position: absolute;
+                right: 5%;
+                top: 50%;
+                transform: translateY(-50%);
+                font-size: clamp(6rem, 15vw, 10rem);
+                opacity: 0.08;
+                pointer-events: none;
+                line-height: 1;
+            }
+            .hero-inner {
+                position: relative;
+                z-index: 10;
+                text-align: center;
+                padding: 2.5rem 1.5rem 2.8rem;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 0.85rem;
+                width: 100%;
+                max-width: 880px;
+            }
+            .hero-om {
+                font-size: clamp(3rem, 8vw, 5rem);
+                line-height: 1;
+                color: #ffd740;
+                filter: drop-shadow(0 0 18px rgba(255, 210, 0, 0.7));
+                animation: om-glow 4s ease-in-out infinite;
+            }
+            @keyframes om-glow {
+                0%,
+                100% {
+                    filter: drop-shadow(0 0 14px rgba(255, 210, 0, 0.6));
+                }
+                50% {
+                    filter: drop-shadow(0 0 32px rgba(255, 255, 150, 1));
+                }
+            }
+            .hero-title {
+                font-family: var(--serif);
+                font-size: clamp(2.4rem, 7vw, 4rem);
+                font-weight: 700;
+                letter-spacing: 0.04em;
+                line-height: 1.1;
+                color: #ffffff;
+                text-shadow: 0 2px 12px rgba(61, 0, 0, 0.5);
+            }
+            .hero-tagline {
+                font-size: clamp(1rem, 2.5vw, 1.25rem);
+                color: rgba(255, 255, 255, 0.92);
+                background: rgba(0, 0, 0, 0.18);
+                border: 1px solid rgba(255, 255, 255, 0.3);
+                border-radius: 100px;
+                padding: 0.5rem 1.6rem;
+                backdrop-filter: blur(4px);
+            }
+            .hero-verse {
+                font-size: 0.95rem;
+                font-style: italic;
+                color: rgba(255, 255, 220, 0.88);
+            }
+
+            /* Stats row */
+            .hero-stats {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 0.75rem;
+            }
+            .stat {
+                background: rgba(255, 255, 255, 0.18);
+                border: 1px solid rgba(255, 255, 255, 0.35);
+                border-radius: 12px;
+                padding: 0.65rem 1.3rem;
+                text-align: center;
+                min-width: 80px;
+                backdrop-filter: blur(6px);
+            }
+            .stat-n {
+                font-size: 1.8rem;
+                font-weight: 700;
+                color: #ffd740;
+                line-height: 1;
+            }
+            .stat-l {
+                font-size: 0.82rem;
+                color: rgba(255, 255, 255, 0.85);
+                margin-top: 0.1rem;
+            }
+
+            /* Today bar in hero */
+            .today-bar {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                align-items: center;
+                gap: 0.4rem 1rem;
+                background: rgba(0, 0, 0, 0.2);
+                border: 1px solid rgba(255, 255, 255, 0.25);
+                border-radius: 12px;
+                padding: 0.6rem 1.2rem;
+                font-size: 0.95rem;
+                backdrop-filter: blur(4px);
+            }
+            .td-item {
+                display: flex;
+                gap: 0.3rem;
+                align-items: baseline;
+            }
+            .td-lbl {
+                color: rgba(255, 255, 200, 0.75);
+                font-size: 0.8rem;
+            }
+            .td-val {
+                color: #ffd740;
+                font-weight: 600;
+            }
+            .td-sep {
+                color: rgba(255, 200, 100, 0.5);
+            }
+
+            /* Hero CTA */
+            .hero-cta {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.55rem;
+                background: #ffffff;
+                color: var(--maroon);
+                font-weight: 700;
+                font-size: 1rem;
+                border-radius: 100px;
+                padding: 0.75rem 2rem;
+                text-decoration: none;
                 border: none;
-                animation: fadeIn 0.3s ease-in-out;
+                cursor: pointer;
+                font-family: var(--sans);
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+                transition:
+                    transform 0.2s,
+                    box-shadow 0.2s;
+            }
+            .hero-cta:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 8px 28px rgba(0, 0, 0, 0.3);
             }
 
-            h5 {
-                font-weight: bold;
-                color: #b90861;
-                font-size: 1.2em;
+            /* ── SEARCH BAR ─────────────────────────── */
+            .search-wrap {
+                background: var(--surface);
+                border-bottom: 1px solid var(--border);
+                padding: 1rem 1.25rem;
+            }
+            .search-inner {
+                max-width: 680px;
+                margin: 0 auto;
+                position: relative;
+            }
+            .search-inner input {
+                width: 100%;
+                padding: 0.85rem 1rem 0.85rem 3rem;
+                background: #ffffff;
+                border: 1.5px solid var(--border);
+                border-radius: 50px;
+                font-family: var(--sans);
+                font-size: 1rem;
+                color: var(--txt);
+                outline: none;
+                box-shadow: 0 2px 12px rgba(180, 80, 0, 0.08);
+                transition:
+                    border-color 0.2s,
+                    box-shadow 0.2s;
+            }
+            .search-inner input:focus {
+                border-color: var(--saff);
+                box-shadow: 0 2px 20px rgba(255, 109, 0, 0.18);
+            }
+            .search-inner input::placeholder {
+                color: var(--txt3);
+            }
+            .search-icon {
+                position: absolute;
+                left: 1rem;
+                top: 50%;
+                transform: translateY(-50%);
+                color: var(--saff);
+                font-size: 1.05rem;
+                pointer-events: none;
+            }
+            .search-results-wrap {
+                max-width: 900px;
+                margin: 1rem auto 0;
+            }
+            .search-results-count {
+                font-size: 0.85rem;
+                color: var(--txt3);
+                margin-bottom: 0.7rem;
+            }
+            .search-results-empty {
+                font-size: 0.92rem;
+                color: var(--txt3);
+                text-align: center;
+                padding: 1.4rem 0.5rem;
             }
 
-            @keyframes fadeIn {
+            /* ── LIBRARY ────────────────────────────── */
+            #library {
+                position: relative;
+                background:
+                    radial-gradient(circle at 8% 8%, rgba(255, 179, 0, 0.1), transparent 25%),
+                    radial-gradient(circle at 92% 88%, rgba(198, 40, 40, 0.06), transparent 28%),
+                    var(--bg);
+            }
+            #library::before {
+                content: "";
+                position: absolute;
+                inset: 1.2rem 0 auto;
+                height: 1px;
+                background: linear-gradient(90deg, transparent, rgba(255, 109, 0, 0.2), transparent);
+                pointer-events: none;
+            }
+            #library .sec-head {
+                margin-bottom: 1.7rem;
+            }
+            .library-kicker {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.45rem;
+                margin-bottom: 0.55rem;
+                padding: 0.3rem 0.85rem;
+                border: 1px solid rgba(198, 40, 40, 0.14);
+                border-radius: 100px;
+                background: rgba(255, 255, 255, 0.72);
+                color: var(--kumkum);
+                font-size: 0.76rem;
+                font-weight: 700;
+                letter-spacing: 0.03em;
+                box-shadow: 0 4px 14px rgba(180, 80, 0, 0.06);
+            }
+            .library-kicker i {
+                color: var(--saff);
+            }
+            .library-hint {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                gap: 0.5rem;
+                margin-top: 0.85rem;
+                color: var(--txt2);
+                font-size: 0.86rem;
+                font-weight: 600;
+            }
+            .library-hint-dot {
+                position: relative;
+                width: 9px;
+                height: 9px;
+                border-radius: 50%;
+                background: var(--saff);
+                box-shadow: 0 0 0 4px rgba(255, 109, 0, 0.12);
+                animation: hint-pulse 1.8s ease-out infinite;
+            }
+            @keyframes hint-pulse {
+                0%, 100% { box-shadow: 0 0 0 4px rgba(255, 109, 0, 0.12); }
+                50% { box-shadow: 0 0 0 8px rgba(255, 109, 0, 0); }
+            }
+
+            .cat-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+                gap: 1.05rem;
+            }
+            @media (max-width: 600px) {
+                .cat-grid {
+                    grid-template-columns: 1fr 1fr;
+                    gap: 0.75rem;
+                }
+            }
+
+            .cat-card {
+                --cat-accent: var(--saff);
+                display: grid;
+                grid-template-columns: auto minmax(0, 1fr) auto;
+                grid-template-areas:
+                    "icon text count"
+                    "icon action action";
+                align-items: center;
+                column-gap: 0.9rem;
+                row-gap: 0.65rem;
+                min-height: 132px;
+                padding: 1.1rem 1rem 0.9rem;
+                background: linear-gradient(145deg, #ffffff 55%, #fffaf5 100%);
+                border: 1px solid rgba(180, 80, 0, 0.13);
+                border-radius: 20px;
+                cursor: pointer;
+                transition:
+                    transform 0.24s ease,
+                    box-shadow 0.24s ease,
+                    border-color 0.24s ease,
+                    background 0.24s ease;
+                position: relative;
+                overflow: hidden;
+                isolation: isolate;
+                box-shadow: 0 7px 24px rgba(113, 45, 0, 0.08);
+                outline: none;
+            }
+            .cat-card[data-cat="upanishad"] { --cat-accent: #2e7d32; }
+            .cat-card[data-cat="puran"] { --cat-accent: #ad1457; }
+            .cat-card[data-cat="upapuran"] { --cat-accent: #8e245d; }
+            .cat-card[data-cat="itihas"] { --cat-accent: #bf360c; }
+            .cat-card[data-cat="gita"] { --cat-accent: #00796b; }
+            .cat-card[data-cat="vedant"] { --cat-accent: #5e35b1; }
+            .cat-card[data-cat="stotra"] { --cat-accent: #e09a00; }
+            .cat-card[data-cat="satsang_shiksha"] { --cat-accent: #6d4c41; }
+            .cat-card::before {
+                content: "";
+                position: absolute;
+                inset: 0 auto 0 0;
+                width: 5px;
+                background: var(--cat-accent);
+                transform: scaleY(0.38);
+                transform-origin: center;
+                border-radius: 0 8px 8px 0;
+                transition: transform 0.24s ease;
+            }
+            .cat-card::after {
+                content: "";
+                position: absolute;
+                z-index: -1;
+                width: 120px;
+                height: 120px;
+                right: -66px;
+                top: -72px;
+                border-radius: 50%;
+                background: var(--cat-accent);
+                opacity: 0.055;
+                transition: transform 0.3s ease, opacity 0.3s ease;
+            }
+            @media (max-width: 600px) {
+                .cat-card {
+                    grid-template-columns: 1fr;
+                    grid-template-areas:
+                        "icon"
+                        "text"
+                        "count"
+                        "action";
+                    justify-items: center;
+                    text-align: center;
+                    min-height: 220px;
+                    padding: 1rem 0.65rem 0.75rem;
+                    gap: 0.4rem;
+                }
+                .cat-count {
+                    justify-self: center;
+                }
+                .cat-text p {
+                    font-size: 0.8rem;
+                }
+            }
+            @media (max-width: 410px) {
+                .cat-grid {
+                    grid-template-columns: 1fr;
+                }
+                .cat-card {
+                    grid-template-columns: auto minmax(0, 1fr) auto;
+                    grid-template-areas:
+                        "icon text count"
+                        "icon action action";
+                    justify-items: stretch;
+                    text-align: left;
+                    min-height: 126px;
+                    padding: 1rem 0.85rem;
+                }
+                .cat-count {
+                    justify-self: end;
+                }
+            }
+            .cat-card:hover::before,
+            .cat-card.open::before,
+            .cat-card:focus-visible::before {
+                transform: scaleY(1);
+            }
+            .cat-card:hover {
+                transform: translateY(-6px);
+                box-shadow: 0 16px 34px rgba(113, 45, 0, 0.15);
+                border-color: color-mix(in srgb, var(--cat-accent) 45%, white);
+            }
+            .cat-card:hover::after {
+                transform: scale(1.35);
+                opacity: 0.09;
+            }
+            .cat-card:focus-visible {
+                box-shadow: 0 0 0 3px rgba(255, 109, 0, 0.2), 0 14px 30px rgba(113, 45, 0, 0.12);
+            }
+            .cat-card.open {
+                border-color: var(--cat-accent);
+                background: linear-gradient(145deg, #ffffff 35%, #fff4e8 100%);
+                box-shadow: 0 13px 30px rgba(113, 45, 0, 0.16);
+            }
+
+            .cat-icon {
+                grid-area: icon;
+                width: 56px;
+                height: 56px;
+                border-radius: 17px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.5rem;
+                flex-shrink: 0;
+                box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.7), 0 6px 14px rgba(100, 40, 0, 0.07);
+                transition: transform 0.24s ease;
+            }
+            .cat-card:hover .cat-icon,
+            .cat-card.open .cat-icon {
+                transform: scale(1.07) rotate(-2deg);
+            }
+            .cat-text {
+                grid-area: text;
+                min-width: 0;
+            }
+            .cat-text h3 {
+                font-size: 1.08rem;
+                font-weight: 700;
+                color: var(--kumkum);
+                line-height: 1.2;
+            }
+            .cat-text p {
+                font-size: 0.87rem;
+                color: var(--txt2);
+                margin-top: 0.15rem;
+            }
+            .cat-count {
+                grid-area: count;
+                flex-shrink: 0;
+                align-self: start;
+                background: #fff8f1;
+                border: 1px solid rgba(255, 109, 0, 0.25);
+                border-radius: 20px;
+                padding: 0.18rem 0.68rem;
+                font-size: 0.78rem;
+                color: var(--saff);
+                font-weight: 700;
+                white-space: nowrap;
+            }
+            .cat-action {
+                grid-area: action;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                width: 100%;
+                padding-top: 0.55rem;
+                border-top: 1px dashed rgba(180, 80, 0, 0.18);
+                color: var(--cat-accent);
+                font-size: 0.78rem;
+                font-weight: 700;
+                line-height: 1;
+            }
+            .cat-action i {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                width: 25px;
+                height: 25px;
+                border-radius: 50%;
+                background: var(--cat-accent);
+                color: #fff;
+                font-size: 0.68rem;
+                transition: transform 0.24s ease;
+            }
+            .cat-card:hover .cat-action i {
+                transform: translateX(3px);
+            }
+            .cat-card.open .cat-action i {
+                transform: rotate(90deg);
+            }
+            .cat-action-open {
+                display: none;
+            }
+            .cat-card.open .cat-action-default {
+                display: none;
+            }
+            .cat-card.open .cat-action-open {
+                display: inline;
+            }
+
+            /* Book panel */
+            .book-panel {
+                grid-column: 1 / -1;
+                background: linear-gradient(135deg, #fff8f0, #fff2e6);
+                border: 1.5px solid rgba(255, 109, 0, 0.25);
+                border-radius: var(--radius);
+                padding: 1.4rem 1.1rem 1.2rem;
+                animation: slide-in 0.22s ease;
+                box-shadow: rgba(180, 80, 0, 0.1) 0 4px 20px;
+            }
+            @keyframes slide-in {
                 from {
                     opacity: 0;
-                    transform: translateY(10px);
+                    transform: translateY(-8px);
                 }
-
                 to {
                     opacity: 1;
                     transform: translateY(0);
                 }
             }
-
-            .section-title {
-                font-size: 2rem;
-                margin: 1.5rem 0 0.5rem;
-                font-weight: bold;
-                color: goldenrod;
+            .panel-desc {
+                font-size: 0.95rem;
+                color: var(--txt2);
+                line-height: 1.8;
+                border-left: 4px solid var(--saff);
+                padding-left: 1rem;
+                margin-bottom: 1.2rem;
+                background: rgba(255, 109, 0, 0.04);
+                border-radius: 0 8px 8px 0;
+                padding: 0.6rem 1rem;
+            }
+            .book-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(115px, 1fr));
+                gap: 1rem;
+            }
+            @media (max-width: 480px) {
+                .book-grid {
+                    grid-template-columns: repeat(2, 1fr);
+                    gap: 0.8rem;
+                }
             }
 
-            .swiper {
+            .bk {
+                display: block;
+                text-decoration: none;
+                cursor: pointer;
+                transition: transform 0.2s;
+            }
+            .bk:hover {
+                transform: translateY(-5px) scale(1.03);
+            }
+            .bk.dim .bk-cover {
+                opacity: 0.45;
+                filter: grayscale(0.4);
+            }
+            .bk.dim .bk-name {
+                color: var(--txt3);
+            }
+            .bk-cover {
                 width: 100%;
-                padding-bottom: 20px;
+                aspect-ratio: 2/3;
+                border-radius: 10px;
+                box-shadow: 3px 5px 18px rgba(0, 0, 0, 0.18);
+                overflow: hidden;
+                display: block;
+            }
+            .bk-cover img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                display: block;
+            }
+            .bk-name {
+                font-size: 0.9rem;
+                font-weight: 600;
+                color: var(--txt);
+                line-height: 1.3;
+                margin-top: 0.4rem;
+            }
+            .bk-sub {
+                font-size: 0.78rem;
+                color: var(--txt3);
+                margin-top: 0.12rem;
+            }
+            .bk-cs {
+                display: inline-block;
+                font-size: 0.72rem;
+                margin-top: 0.22rem;
+                background: rgba(255, 109, 0, 0.09);
+                color: var(--saff);
+                border-radius: 4px;
+                padding: 1px 7px;
+            }
+            .bk-grp-hdr {
+                width: 100%;
+                padding: 0.65rem 0.25rem 0.2rem;
+                margin-top: 0.6rem;
+                font-size: 0.82rem;
+                font-weight: 700;
+                letter-spacing: 0.04em;
+                color: var(--gold);
+                border-bottom: 1px solid rgba(200,160,40,0.25);
             }
 
-            .swiper-slide {
+            /* ── PANCHANG BAND ──────────────────────── */
+            .band {
+                background: var(--surface);
+                border-top: 1px solid var(--border);
+                border-bottom: 1px solid var(--border);
+            }
+
+            .panch-vrat-row {
+                display: flex;
+                gap: 1.4rem;
+                align-items: flex-start;
+            }
+            .panch-vrat-row .panch-block {
+                flex: 3;
+                min-width: 0;
+            }
+            .panch-vrat-row .vrat-block {
+                flex: 2;
+                min-width: 0;
+                display: flex;
+                flex-direction: column;
+                overflow: hidden;
+            }
+            .fest-inner-head {
+                font-family: var(--serif);
+                font-size: 1.05rem;
+                font-weight: 700;
+                color: var(--kumkum);
+                margin-top: 1em;
+                margin-bottom: 0.75rem;
                 text-align: center;
             }
-
-            .book-image {
-                width: auto;
-                height: 180px;
-                border-radius: 8px;
-                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            @media (max-width: 780px) {
+                .panch-vrat-row {
+                    flex-direction: column;
+                    align-items: stretch;
+                    width: 100%;
+                }
+                .panch-vrat-row .panch-block,
+                .vrat-block,
+                .fest-inner {
+                    width: 100%;
+                }
             }
 
-            .swiper-slide a {
-                text-decoration: none !important;
+            /* Panchang card */
+            .panch-block {
+                background: var(--card);
+                border: 1.5px solid rgba(0, 180, 70, 0.3);
+                border-radius: var(--radius);
+                padding: 1.3rem 1.1rem;
+                box-shadow: 0 4px 20px rgba(0, 180, 70, 0.08);
             }
-
-            .book-title {
-                margin-top: 0.5rem;
-                font-size: 1.5rem;
-                color: maroon;
-                font-weight: bold;
+            .panch-block h3 {
+                font-size: 1.3rem;
+                color: #1b6b00;
+                margin-bottom: 0.9rem;
+                font-family: var(--serif);
                 text-align: center;
+            }
+            .panch-inner-row {
+                display: flex;
+                gap: 0.9rem;
+                align-items: flex-start;
+            }
+            .panch-col {
+                flex: 1;
+                min-width: 0;
+            }
+            .panch-col-astro {
+                border-left: 1px solid rgba(0, 180, 70, 0.2);
+                padding-left: 0.9rem;
+            }
+            .panch-col-head {
+                font-size: 0.66rem;
+                color: #1b6b00;
+                font-weight: 700;
+                letter-spacing: 0.1em;
+                text-transform: uppercase;
+                margin-bottom: 0.45rem;
+                text-align: center;
+            }
+            @media (max-width: 600px) {
+                .panch-inner-row {
+                    flex-direction: column;
+                    align-items: stretch;
+                    gap: 0.5rem;
+                }
+                .panch-col {
+                    width: 100%;
+                }
+                .panch-col-astro {
+                    border-left: none;
+                    padding-left: 0;
+                    border-top: 1px solid rgba(0, 180, 70, 0.2);
+                    padding-top: 0.5rem;
+                }
+            }
+
+            /* Vrat card — warm kumkum theme */
+            .vrat-block {
+                background: var(--card);
+                border: 1.5px solid rgba(198, 40, 40, 0.25);
+                border-radius: var(--radius);
+                padding: 1.3rem 1.1rem;
+                box-shadow: 0 4px 20px rgba(198, 40, 40, 0.06);
+            }
+            .vrat-block h3 {
+                font-size: 1.3rem;
+                color: var(--kumkum);
+                margin-bottom: 0.9rem;
+                font-family: var(--serif);
+                text-align: center;
+            }
+            .vrat-rows {
+                flex: 1;
+                min-height: 0;
+                overflow-y: auto;
+                padding-right: 0.2rem;
+            }
+            .vrat-rows::-webkit-scrollbar {
+                width: 6px;
+            }
+            .vrat-rows::-webkit-scrollbar-thumb {
+                background: rgba(198, 40, 40, 0.25);
+                border-radius: 6px;
+            }
+
+            /* Shared row style used in panchang + vrat */
+            .vrat-row {
+                display: flex;
+                align-items: baseline;
+                gap: 0.7rem;
+                flex-wrap: wrap;
+                padding: 0.7rem 0.85rem;
+                border-radius: 10px;
+                background: rgba(255, 109, 0, 0.04);
+                border: 1px solid rgba(255, 109, 0, 0.1);
+                margin-bottom: 0.5rem;
+            }
+            .vrat-row:last-child {
+                margin-bottom: 0;
+            }
+            .vrat-icon {
+                font-size: 1.25rem;
+                flex-shrink: 0;
+            }
+            .vrat-label {
+                font-size: 0.8rem;
+                color: var(--txt3);
+                white-space: nowrap;
+                flex-shrink: 0;
+            }
+            .vrat-name {
+                font-size: 1rem;
+                font-weight: 700;
+                color: var(--txt);
+                min-width: 0;
+                word-break: break-word;
+            }
+            .vrat-date {
+                font-size: 0.88rem;
+                color: var(--txt2);
+                margin-left: auto;
+                white-space: nowrap;
+                flex-shrink: 0;
+            }
+            @media (max-width: 480px) {
+                .vrat-row {
+                    flex-wrap: wrap;
+                }
+                .vrat-date {
+                    margin-left: 0;
+                    width: 100%;
+                    color: var(--txt3);
+                    font-size: 0.82rem;
+                }
+            }
+
+            /* Shastriya Ghatna */
+            .shastr-block {
+                background: var(--card);
+                border: 1.5px solid rgba(233, 30, 99, 0.2);
+                border-radius: var(--radius);
+                padding: 1.4rem 1.2rem;
+                margin-top: 1.2rem;
+                box-shadow: 0 4px 20px rgba(233, 30, 99, 0.06);
+            }
+            .shastr-block h3 {
+                font-size: 1.3rem;
+                color: var(--lotus);
+                margin-bottom: 0.25rem;
+                font-family: var(--serif);
+                text-align: center;
+            }
+            .shastr-subtitle {
+                text-align: center;
+                font-size: 0.84rem;
+                color: var(--txt3);
+                margin-bottom: 1rem;
+            }
+            .shastr-cards {
+                display: flex;
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+            .shastr-card {
+                background: rgba(233, 30, 99, 0.03);
+                border-left: 4px solid var(--lotus);
+                border-radius: 0 10px 10px 0;
+                padding: 0.9rem 1rem;
+                border-top: 1px solid rgba(233, 30, 99, 0.1);
+                border-right: 1px solid rgba(233, 30, 99, 0.1);
+                border-bottom: 1px solid rgba(233, 30, 99, 0.1);
+            }
+            .shastr-badge {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.35rem;
+                font-size: 0.73rem;
+                font-weight: 700;
+                letter-spacing: 0.03em;
+                background: rgba(233, 30, 99, 0.1);
+                color: var(--lotus);
+                border-radius: 20px;
+                padding: 2px 9px;
+                margin-bottom: 0.5rem;
+            }
+            .shastr-badge.strong {
+                background: rgba(0, 200, 83, 0.12);
+                color: #1b6b00;
+            }
+            .shastr-granth {
+                font-size: 0.78rem;
+                color: var(--txt3);
+                margin-bottom: 0.28rem;
+            }
+            .shastr-event {
+                font-size: 1rem;
+                font-weight: 700;
+                color: var(--kumkum);
+                line-height: 1.3;
+                margin-bottom: 0.35rem;
+            }
+            .shastr-vivran {
+                font-size: 0.86rem;
+                color: var(--txt2);
+                line-height: 1.65;
+            }
+            .shastr-vivran.collapsed {
+                display: -webkit-box;
+                -webkit-line-clamp: 3;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+            }
+            .shastr-more {
+                font-size: 0.8rem;
+                color: var(--saff);
+                cursor: pointer;
+                margin-top: 0.28rem;
+                text-decoration: underline;
+                text-underline-offset: 2px;
+            }
+            .shastr-tags {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.28rem;
+                margin-top: 0.45rem;
+            }
+            .shastr-tag {
+                font-size: 0.7rem;
+                background: rgba(255, 109, 0, 0.08);
+                color: var(--txt3);
+                border-radius: 12px;
+                padding: 1px 8px;
+            }
+            .shastr-empty {
+                text-align: center;
+                color: var(--txt3);
+                font-size: 0.92rem;
+                padding: 1rem 0;
+            }
+
+            /* Festival swiper cards */
+            .fest-card {
+                background: var(--card);
+                border: 1px solid var(--border);
+                border-radius: 14px;
+                padding: 1rem 0.9rem;
+                text-align: center;
+                width: 100%;
+                min-width: 128px;
+                transition:
+                    transform 0.18s,
+                    box-shadow 0.18s;
+                box-shadow: var(--shadow);
+            }
+            .fest-card:hover {
+                transform: translateY(-3px);
+                box-shadow: rgba(180, 80, 0, 0.2) 0 8px 24px;
+            }
+            .fest-icon {
+                font-size: 2.2rem;
+                margin-bottom: 0.35rem;
+            }
+            .fest-icon-img {
+                width: 56px;
+                height: 56px;
+                border-radius: 50%;
+                object-fit: cover;
+                border: 1.5px solid rgba(255, 109, 0, 0.35);
+            }
+            .fest-name {
+                font-size: 0.94rem;
+                font-weight: 700;
+                color: var(--kumkum);
+                line-height: 1.25;
+            }
+            .fest-desc {
+                font-size: 0.79rem;
+                color: var(--txt3);
+                margin-top: 0.18rem;
+            }
+            .fest-date {
+                font-size: 0.75rem;
+                color: var(--txt2);
+                margin-top: 0.3rem;
+            }
+            .fest-tag {
+                display: inline-block;
+                margin-top: 0.4rem;
+                background: rgba(255, 109, 0, 0.12);
+                color: var(--saff);
+                font-size: 0.77rem;
+                font-weight: 700;
+                border-radius: 20px;
+                padding: 2px 9px;
+            }
+            .fest-tag.today-tag {
+                background: rgba(0, 200, 83, 0.12);
+                color: #1b6b00;
+            }
+
+            /* ── QUOTE BAND ─────────────────────────── */
+            .quote-band {
+                background: var(--card);
+                border-top: 3px solid var(--saff);
+                border-bottom: 3px solid var(--saff);
+                text-align: center;
+                padding: 3rem 1.5rem;
+                position: relative;
+                overflow: hidden;
+            }
+            .quote-band::before {
+                content: "";
+                position: absolute;
+                inset: 0;
+                background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(255, 109, 0, 0.05) 0%, transparent 70%);
+                pointer-events: none;
+            }
+            .q-om {
+                font-size: 2.5rem;
+                color: var(--saff);
+                margin-bottom: 0.5rem;
+                filter: drop-shadow(0 0 8px rgba(255, 145, 0, 0.4));
+            }
+            .q-text {
+                font-family: var(--serif);
+                font-size: clamp(1.1rem, 2.3vw, 1.4rem);
+                color: var(--txt);
+                font-style: italic;
+                line-height: 2;
+                max-width: 660px;
+                margin: 0 auto 0.7rem;
+                position: relative;
+            }
+            .q-src {
+                font-size: 0.9rem;
+                color: var(--saff);
+                font-weight: 600;
+                position: relative;
+            }
+
+            /* ── FOOTER ─────────────────────────────── */
+            footer {
+                background: var(--dark-hdr);
+                border-top: 3px solid var(--saff);
+                text-align: center;
+                padding: 2.5rem 1rem;
+            }
+            .ft-om {
+                font-size: 2.2rem;
+                color: #ffd740;
+                filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.5));
+            }
+            .ft-name {
+                font-family: var(--serif);
+                font-size: 1.2rem;
+                font-weight: 700;
+                color: #ffd740;
+                margin-top: 0.28rem;
+            }
+            .ft-desc {
+                font-size: 0.88rem;
+                color: rgba(255, 255, 255, 0.6);
+                margin-top: 0.18rem;
+            }
+            .ft-links {
+                display: flex;
+                justify-content: center;
+                gap: 1.5rem;
+                flex-wrap: wrap;
+                margin: 0.9rem 0;
+            }
+            .ft-links a {
+                color: rgba(255, 255, 255, 0.75);
+                text-decoration: none;
+                font-size: 0.95rem;
+                transition: color 0.2s;
+            }
+            .ft-links a:hover {
+                color: #ffd740;
+            }
+            .ft-copy {
+                font-size: 0.84rem;
+                color: rgba(255, 255, 255, 0.4);
             }
         </style>
     </head>
     <body>
-        <!-- Hero Section -->
+        <!-- NAV -->
+        <nav class="nav">
+            <a class="nav-brand" href="index.html">स्वाध्याय</a>
+            <div class="nav-links">
+                <!--
+        <a href="tithi.html"><i class="fas fa-calendar-alt"></i>&nbsp;तिथि</a>
+        <a href="clock.html"><i class="far fa-clock"></i>&nbsp;घड़ी</a>
+        <a href="about.html"><i class="fas fa-info-circle"></i>&nbsp;परिचय</a>
+        <button class="nav-search-btn" onclick="document.querySelector('.search-inner input').focus();document.querySelector('.search-wrap').scrollIntoView({behavior:'smooth'})">
+            <i class="fas fa-search"></i>
+        </button>
+        -->
+            </div>
+        </nav>
+
+        <!-- ════════════════════════════════════
+     HERO — saffron/kumkum gradient banner
+════════════════════════════════════ -->
         <section class="hero">
-            <div class="container">
-                <h1>स्वाध्याय</h1>
-                <p class="lead">हिन्दू शास्त्रों का एक डिजिटल संग्रह</p>
+            <div class="hero-pattern"></div>
+            <div class="hero-lotus">🪷</div>
+
+            <div class="hero-inner">
+                
+                <h1 class="hero-title">स्वाध्याय</h1>
+                <div class="hero-tagline">📚&nbsp; हिन्दू शास्त्रों का डिजिटल पुस्तकालय</div>
+                <div class="hero-verse">"स्वाध्यायान्मा प्रमदः" — तैत्तिरीयोपनिषद्</div>
+
+                <div class="hero-stats">
+                    <div class="stat">
+                        <div class="stat-n">४</div>
+                        <div class="stat-l">वेद</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-n">१८+</div>
+                        <div class="stat-l">पुराण</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-n">१०+</div>
+                        <div class="stat-l">उपनिषद्</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-n">४०+</div>
+                        <div class="stat-l">ग्रंथ</div>
+                    </div>
+                </div>
+
+                <div class="today-bar">
+                    <div class="td-item"><span class="td-lbl">वार</span><span class="td-val" id="h-vara">—</span></div>
+                    <span class="td-sep">·</span>
+                    <div class="td-item">
+                        <span class="td-lbl">तिथि</span><span class="td-val" id="h-tithi">—</span>
+                    </div>
+                    <span class="td-sep">·</span>
+                    <div class="td-item">
+                        <span class="td-lbl">पक्ष</span><span class="td-val" id="h-paksha">—</span>
+                    </div>
+                    <span class="td-sep">·</span>
+                    <div class="td-item"><span class="td-lbl">समय</span><span class="td-val" id="h-time">—</span></div>
+                </div>
+
+                <a class="hero-cta" href="#library"> <i class="fas fa-book-open"></i>&nbsp; ग्रंथ पढ़ना शुरू करें </a>
             </div>
         </section>
 
-        <!-- Categories Section -->
-        <section class="py-5">
-            <div class="container">
-                <div class="row g-4" id="category-row">
-                    <!-- Cards -->
-                    <div class="col-md-4 col-6 category-col" data-id="ved">
-                        <div class="card category-card text-center p-4">
-                            <i class="fas fa-book fa-2x mb-3 text-primary"></i>
-                            <h5>वेद</h5>
-                            <p>ऋग्वेद, यजुर्वेद, सामवेद, अथर्ववेद</p>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-6 category-col" data-id="upanishad">
-                        <div class="card category-card text-center p-4">
-                            <i class="fas fa-scroll fa-2x mb-3 text-success"></i>
-                            <h5>उपनिषद्</h5>
-                            <p>प्रमुख उपनिषदों के शुद्ध संस्करण</p>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-6 category-col" data-id="puran">
-                        <div class="card category-card text-center p-4">
-                            <i class="fas fa-atlas fa-2x mb-3 text-warning"></i>
-                            <h5>पुराण</h5>
-                            <p>अठारह पुराणों का संग्रह</p>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-6 category-col" data-id="itihas">
-                        <div class="card category-card text-center p-4">
-                            <i class="fas fa-feather fa-2x mb-3 text-danger"></i>
-                            <h5>इतिहास</h5>
-                            <p>रामायण और महाभारत</p>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-6 category-col" data-id="gita">
-                        <div class="card category-card text-center p-4">
-                            <i class="fas fa-chess-board fa-2x mb-3 text-info"></i>
-                            <h5>गीता संहिता</h5>
-                            <p>श्रीमद्भगवद्गीता एवं अन्य गीता</p>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-6 category-col" data-id="stotra">
-                        <div class="card category-card text-center p-4">
-                            <i class="fas fa-praying-hands fa-2x mb-3 text-secondary"></i>
-                            <h5>स्तोत्र</h5>
-                            <p>विविध स्तोत्र और प्रार्थनाएँ</p>
-                        </div>
-                    </div>
-                </div>
+        <!-- SEARCH BAR -->
+        <div class="search-wrap">
+            <div class="search-inner">
+                <span class="search-icon"><i class="fas fa-search"></i></span>
+                <input type="text" id="search-input" placeholder="ग्रंथ खोजें — Hindi या English में (e.g. Gita, Upanishad, Purana)…" aria-label="ग्रंथ खोजें" autocomplete="off" />
             </div>
-        </section>
-
-        <!-- Hidden Templates -->
-        <div style="display: none">
-            <div id="ved-template">
-                <h5>वेदों का विस्तृत परिचय</h5>
-                <p class="justify" style="text-align: justify">
-                    <strong>वेद</strong> हिन्दू धर्म के प्राचीनतम और सर्वोच्च धर्मग्रंथ हैं। ये संस्कृत भाषा में रचित
-                    हैं और भारतीय संस्कृति, दर्शन, धर्म, विज्ञान, और समाज के मूल आधार माने जाते हैं। <b>"वेद"</b> शब्द
-                    संस्कृत के <b>"विद्"</b> धातु से निकला है, जिसका अर्थ है <i>"जानना"</i> या <i>"ज्ञान"</i>।
-                    <b>वेदों</b> को <b>श्रुति</b> कहा जाता है, जिसका अर्थ है – <i>"जो सुना गया है"</i> अर्थात्
-                    ईश्वरप्रदत्त ज्ञान जिसे ऋषियों ने श्रवण करके याद किया और आगे पीढ़ी दर पीढ़ी स्मृति के रूप में
-                    संरक्षित किया।
-                </p>
-
-                <div class="section-title">वेद</div>
-                <div class="swiper ved-swiper">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <a href="index_1.html?rigveda">
-                                <img src="images/rigveda.png" class="book-image" alt="ऋग्वेद" />
-                                <div class="book-title">ऋग्वेद</div>
-                            </a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="index_1.html?vedasama">
-                                <img src="images/samaveda.png" class="book-image" alt="सामवेद" />
-                                <div class="book-title">सामवेद</div>
-                            </a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="index_1.html?vedayajur">
-                                <img src="images/yajurved.png" class="book-image" alt="यजुर्वेद" />
-                                <div class="book-title">यजुर्वेद</div>
-                            </a>
-                        </div>
-                        <div class="swiper-slide">
-                            <img src="images/atarvaved.png" class="book-image" alt="अथर्ववेद" />
-                            <div class="book-title">अथर्ववेद</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div id="upanishad-template">
-                <h5>उपनिषदों की झलक</h5>
-                <p>
-                    <b>उपनिषद</b> भारतीय दर्शन का अमूल्य रत्न हैं। ये वेदों के अंतिम भाग हैं, जिन्हें वेदांत भी कहा जाता
-                    है। <b>"उपनिषद"</b> शब्द का शाब्दिक अर्थ है — <b>"उप"</b> <i>(निकट)</i>, <b>"नि"</b> <i>(नीचे)</i>,
-                    और <b>"सद्"</b> <i>(बैठना)</i> — अर्थात गुरु के पास बैठकर ज्ञान प्राप्त करना। इन ग्रंथों में आत्मा
-                    (आत्मन्), ब्रह्म, मोक्ष, और जीवन के परम सत्य पर गहन चर्चा की गई है।
-                </p>
-                <div class="swiper upanishad-swiper">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <a href="index_1.html?upa_ishavas">
-                                <img src="images/ishavasya.png" class="book-image" alt="ईशावास्य उपनिषद्" />
-                                <div class="book-title">ईशावास्य उपनिषद्</div></a
-                            >
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="index_1.html?u_केनोपनिषद्">
-                                <img src="images/kenopanishad.png" class="book-image" alt="केन उपनिषद्" />
-                                <div class="book-title">केनोपनिषद्</div>
-                            </a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="index_1.html?u_कठोपनिषद्">
-                                <img src="images/book.jpg" class="book-image" alt="केन उपनिषद्" />
-                                <div class="book-title">कठोपनिषद्</div>
-                            </a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="index_1.html?u_माण्डूक्योपनिषद्">
-                                <img src="images/book.jpg" class="book-image" alt="माण्डूक्य उपनिषद्" />
-                                <div class="book-title">माण्डूक्य उपनिषद्</div>
-                            </a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="index_1.html?u_तैत्तिरीयोपनिषद्">
-                                <img src="images/book.jpg" class="book-image" alt="माण्डूक्य उपनिषद्" />
-                                <div class="book-title">तैत्तिरीयोपनिषद्</div>
-                            </a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="index_1.html?u_प्रश्नोपनिषद्">
-                                <img src="images/book.jpg" class="book-image" alt="माण्डूक्य उपनिषद्" />
-                                <div class="book-title">प्रश्नोपनिषद्</div>
-                            </a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="books/" class="disabled-link">
-                                <img src="images/book.jpg" class="book-image" alt="ऐतरेय उपनिषद्" />
-                                <div class="book-title">ऐतरेय उपनिषद्</div>
-                            </a>
-                        </div>
-                        <div class="swiper-slide">
-                            <img src="images/book.jpg" class="book-image" alt="ऐतरेय आरण्यक उपनिषद्" />
-                            <div class="book-title">ऐतरेय आरण्यक उपनिषद्</div>
-                        </div>
-                        <div class="swiper-slide">
-                            <img src="images/book.jpg" class="book-image" alt="बृहदारण्यक उपनिषद्" />
-                            <div class="book-title">बृहदारण्यक उपनिषद्</div>
-                        </div>
-                        <div class="swiper-slide">
-                            <img src="images/book.jpg" class="book-image" alt="चाण्डोग्य उपनिषद्" />
-                            <div class="book-title">चाण्डोग्य उपनिषद्</div>
-                        </div>
-
-                        <div class="swiper-slide">
-                            <img src="images/book.jpg" class="book-image" alt="कठ उपनिषद्" />
-                            <div class="book-title">कठ उपनिषद्</div>
-                        </div>
-                        <div class="swiper-slide">
-                            <img src="images/book.jpg" class="book-image" alt="काठक उपनिषद्" />
-                            <div class="book-title">काठक उपनिषद्</div>
-                        </div>
-                        <div class="swiper-slide">
-                            <img src="images/book.jpg" class="book-image" alt="मुण्डक उपनिषद्" />
-                            <div class="book-title">मुण्डक उपनिषद्</div>
-                        </div>
-
-                        <!-- Add other Upanishads here -->
-                    </div>
-                </div>
-            </div>
-            <div id="puran-template">
-                <h5>पुराणों का महत्व</h5>
-                <p>
-                    <b>पुराण</b> हिन्दू धर्म के महत्त्वपूर्ण धार्मिक ग्रंथ हैं, जो वेदों के बाद सबसे अधिक लोकप्रिय और
-                    व्यापक रूप से पढ़े व माने जाने वाले ग्रंथ हैं। इनका उद्देश्य धार्मिक, नैतिक, सांस्कृतिक और ऐतिहासिक
-                    ज्ञान को जनसामान्य तक सरल भाषा में पहुँचाना है। <b>"पुराण"</b> शब्द का अर्थ होता है —
-                    <i>"प्राचीन कथा"</i> या <i>"पुरातन ज्ञान"</i>।
-                </p>
-                <div class="swiper mahapurana-swiper">
-                    <div class="swiper-wrapper">
-                        
-                        <div class="swiper-slide">
-                        <a href="index_1.html?puran_matsya">
-                            <img src="images/puran_matsya.png" class="book-image" alt="ब्रह्म पुराण" />
-                            <div class="book-title">मत्स्यमहापुराण</div>
-                        </a>
-                        </div>
-                        
-                        <div class="swiper-slide">
-                            <img src="images/book.jpg" class="book-image" alt="ब्रह्म पुराण" />
-                            <div class="book-title">ब्रह्म पुराण</div>
-                        </div>
-
-                        <div class="swiper-slide">
-                            <a href="index_1.html?puran_vishnu">
-                                <img src="images/vishnupuran.png" class="book-image" alt="विष्णु पुराण" />
-                                <div class="book-title">विष्णु पुराण</div>
-                            </a>
-                        </div>
-
-                        <div class="swiper-slide">
-                            <a href="index_1.html?puran_shiva">
-                                <img src="images/shiv_puran.png" class="book-image" alt="शिव पुराण" />
-                                <div class="book-title">संक्षिप्त शिवपुराण</div>
-                            </a>
-                        </div>
-
-                        <div class="swiper-slide">
-                            <a href="index_1.html?puran_padma">
-                                <img src="images/padmapuran.png" class="book-image" alt="पद्म पुराण" />
-                                <div class="book-title">पद्म पुराण</div>
-                            </a>
-                        </div>
-
-                        <div class="swiper-slide">
-                            <a href="index_1.html?puran_bhagavat">
-                                <img src="images/bhagavat_mahapuran.png" class="book-image" alt="भागवत पुराण" />
-                                <div class="book-title">श्रीमद‍्भागवत महापुराण</div>
-                            </a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="index_1.html?puran_varaha">
-                                <img src="images/varahpuran.png" class="book-image" alt="वराह पुराण" />
-                                <div class="book-title">वराह पुराण</div>
-                            </a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="index_1.html?puran_narad">
-                                <img src="images/naradpuran.png" class="book-image" alt="नारद पुराण" />
-                                <div class="book-title">नारद पुराण</div>
-                            </a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="index_1.html?puran_garud">
-                                <img src="images/garud_puran.png" class="book-image" alt="गरुड पुराण" />
-                                <div class="book-title">गरुड पुराण</div>
-                            </a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="index_1.html?puran_agni">
-                                <img src="images/agni_puran.png" class="book-image" alt="अग्नि पुराण" />
-                                <div class="book-title">अग्नि पुराण</div>
-                            </a>
-                        </div>
-
-                        <div class="swiper-slide">
-                            <a href="index_1.html?puran_markandey">
-                                <img src="images/puran_markandey.png" class="book-image" alt="मार्कण्डेय पुराण" />
-                                <div class="book-title">मार्कण्डेय पुराण</div>
-                            </a>
-                        </div>
-
-                        <div class="swiper-slide">
-                            <img src="images/book.jpg" class="book-image" alt="भविष्य पुराण" />
-                            <div class="book-title">भविष्य पुराण</div>
-                        </div>
-                        <div class="swiper-slide">
-                            <img src="images/book.jpg" class="book-image" alt="ब्रह्मवैवर्त पुराण" />
-                            <div class="book-title">ब्रह्मवैवर्त पुराण</div>
-                        </div>
-                        <div class="swiper-slide">
-                            <img src="images/book.jpg" class="book-image" alt="लिङ्ग पुराण" />
-                            <div class="book-title">लिङ्ग पुराण</div>
-                        </div>
-
-                        <div class="swiper-slide">
-                            <img src="images/book.jpg" class="book-image" alt="स्कन्द पुराण" />
-                            <div class="book-title">स्कन्द पुराण</div>
-                        </div>
-                        <div class="swiper-slide">
-                            <img src="images/book.jpg" class="book-image" alt="वामन पुराण" />
-                            <div class="book-title">वामन पुराण</div>
-                        </div>
-                        <div class="swiper-slide">
-                            <img src="images/book.jpg" class="book-image" alt="कूर्म पुराण" />
-                            <div class="book-title">कूर्म पुराण</div>
-                        </div>
-                        <div class="swiper-slide">
-                            <img src="images/book.jpg" class="book-image" alt="मत्स्य पुराण" />
-                            <div class="book-title">मत्स्य पुराण</div>
-                        </div>
-
-                        <div class="swiper-slide">
-                            <img src="images/book.jpg" class="book-image" alt="ब्रह्माण्ड पुराण" />
-                            <div class="book-title">ब्रह्माण्ड पुराण</div>
-                        </div>
-
-                        <!-- Add other Mahapuranas -->
-                    </div>
-                </div>
-            </div>
-            <div id="itihas-template">
-                <h5>इतिहास ग्रंथ</h5>
-                <p>
-                    इतिहास मानव जाति के अतीत की घटनाओं, सभ्यताओं, संस्कृति और विकास की कहानी है। यह हमें हमारे पूर्वजों
-                    की उपलब्धियों, संघर्षों और गलतियों से परिचित कराता है। इतिहास केवल जानकारी नहीं, बल्कि सीख है, जो
-                    वर्तमान को समझने और भविष्य को दिशा देने में सहायक होती है।
-                </p>
-                <div class="swiper upapurana-swiper">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <a href="index_1.html?valmiki">
-                                <img src="images/valmiki.png" class="book-image" alt="गणेश पुराण" />
-                                <div class="book-title">श्रीमद्वाल्मीकीय<br />रामायण</div>
-                            </a>
-                        </div>
-                        
-                        <div class="swiper-slide">
-                            <a href="index_1.html?ramcharitmanas">
-                                <img src="images/ramcharitmanas.png" class="book-image" alt="गणेश पुराण" />
-                                <div class="book-title">श्रीमद्गोस्वामी<br>तुलसीदासजी<br>विरचित<br>श्रीरामचरितमानस</div>
-                            </a>
-                        </div>
-                        
-                        
-                        <div class="swiper-slide">
-                            <a href="index_1.html?संक्षिप्तमहाभारत">
-                                <img src="images/sanksiptmahabharatham.png" class="book-image" alt="गणेश पुराण" />
-                                <div class="book-title">संक्षिप्त महाभारत</div>
-                            </a>
-                        </div>
-                        
-                        <div class="swiper-slide">
-                            <a href="index_1.html?mahabharat_full">
-                                <img src="images/mahabharath.png" class="book-image" alt="गणेश पुराण" />
-                                <div class="book-title">महाभारत</div>
-                            </a>
-                        </div>
-
-                        <!-- Add other Upapuranas -->
-                    </div>
-                </div>
-            </div>
-            <div id="gita-template">
-                <h5>गीता संहिता</h5>
-                <p>भगवद्गीता और अन्य गीता ग्रंथ।</p>
-            </div>
-            <div id="stotra-template">
-                <h5>स्तोत्र संग्रह</h5>
-                <p>प्रार्थनाएँ, चालीसा, आरती आदि।</p>
+            <div class="search-results-wrap" id="search-results-wrap" style="display: none">
+                <div class="search-results-count" id="search-results-count"></div>
+                <div class="book-grid" id="search-results-grid"></div>
             </div>
         </div>
 
-        <!-- Footer -->
-        <footer class="text-center py-3">© 2025 स्वाध्याय | सभी अधिकार सुरक्षित</footer>
+        <!-- ════════════════════════════════════
+     LIBRARY — the main purpose of the site
+════════════════════════════════════ -->
+        <div id="library" class="wrap section">
+            <div class="sec-head">
+                <div class="library-kicker"><i class="fas fa-layer-group"></i> ९ शास्त्र-संग्रह</div>
+                <h2>📚 शास्त्र-भण्डार</h2>
+                <p>अपनी रुचि का संग्रह चुनें और उपलब्ध ग्रंथों को खोलें</p>
+                <div class="rangoli-div"><span>✦ ✦ ✦</span></div>
+                <div class="library-hint"><span class="library-hint-dot"></span> संग्रह पर क्लिक करके पुस्तकें देखें</div>
+            </div>
 
-        <!-- Scripts -->
+            <div class="cat-grid" id="cat-grid">
+                <div class="cat-card" data-cat="ved" role="button" tabindex="0" aria-expanded="false">
+                    <div class="cat-icon" style="background: #fff3e0; color: #e65100">📖</div>
+                    <div class="cat-text">
+                        <h3>वेद</h3>
+                        <p>ऋग् · साम · यजुर् · अथर्व</p>
+                    </div>
+                    <span class="cat-count">४ ग्रंथ</span>
+                    <div class="cat-action"><span class="cat-action-default">संग्रह खोलें</span><span class="cat-action-open">संग्रह खुला है</span><i class="fas fa-arrow-right"></i></div>
+                </div>
+                <div class="cat-card" data-cat="upanishad" role="button" tabindex="0" aria-expanded="false">
+                    <div class="cat-icon" style="background: #e8f5e9; color: #2e7d32">📜</div>
+                    <div class="cat-text">
+                        <h3>उपनिषद्</h3>
+                        <p>वेदांत के आधार-ग्रंथ</p>
+                    </div>
+                    <span class="cat-count">१०+ ग्रंथ</span>
+                    <div class="cat-action"><span class="cat-action-default">संग्रह खोलें</span><span class="cat-action-open">संग्रह खुला है</span><i class="fas fa-arrow-right"></i></div>
+                </div>
+                <div class="cat-card" data-cat="puran" role="button" tabindex="0" aria-expanded="false">
+                    <div class="cat-icon" style="background: #fce4ec; color: #ad1457">🏛️</div>
+                    <div class="cat-text">
+                        <h3>पुराण</h3>
+                        <p>अठारह महापुराण</p>
+                    </div>
+                    <span class="cat-count">१८+ ग्रंथ</span>
+                    <div class="cat-action"><span class="cat-action-default">संग्रह खोलें</span><span class="cat-action-open">संग्रह खुला है</span><i class="fas fa-arrow-right"></i></div>
+                </div>
+                <div class="cat-card" data-cat="upapuran" role="button" tabindex="0" aria-expanded="false">
+                    <div class="cat-icon" style="background: #fce4ec; color: #880e4f">📜</div>
+                    <div class="cat-text">
+                        <h3>उप-पुराण</h3>
+                        <p>अठारह उप-पुराण</p>
+                    </div>
+                    <span class="cat-count">१८ ग्रंथ</span>
+                    <div class="cat-action"><span class="cat-action-default">संग्रह खोलें</span><span class="cat-action-open">संग्रह खुला है</span><i class="fas fa-arrow-right"></i></div>
+                </div>
+                <div class="cat-card" data-cat="itihas" role="button" tabindex="0" aria-expanded="false">
+                    <div class="cat-icon" style="background: #fbe9e7; color: #bf360c">⚔️</div>
+                    <div class="cat-text">
+                        <h3>इतिहास</h3>
+                        <p>रामायण · अध्यात्मरामायण · महाभारत</p>
+                    </div>
+                    <span class="cat-count">१० ग्रंथ</span>
+                    <div class="cat-action"><span class="cat-action-default">संग्रह खोलें</span><span class="cat-action-open">संग्रह खुला है</span><i class="fas fa-arrow-right"></i></div>
+                </div>
+                <div class="cat-card" data-cat="gita" role="button" tabindex="0" aria-expanded="false">
+                    <div class="cat-icon" style="background: #e0f2f1; color: #00695c">🕊️</div>
+                    <div class="cat-text">
+                        <h3>गीता संहिता</h3>
+                        <p>भगवद्गीता एवं अन्य गीता</p>
+                    </div>
+                    <span class="cat-count">२८+ गीता</span>
+                    <div class="cat-action"><span class="cat-action-default">संग्रह खोलें</span><span class="cat-action-open">संग्रह खुला है</span><i class="fas fa-arrow-right"></i></div>
+                </div>
+                <div class="cat-card" data-cat="vedant" role="button" tabindex="0" aria-expanded="false">
+                    <div class="cat-icon" style="background: #ede7f6; color: #4527a0">🧘</div>
+                    <div class="cat-text">
+                        <h3>वेदान्त</h3>
+                        <p>ब्रह्मसूत्र · शंकरभाष्य</p>
+                    </div>
+                    <span class="cat-count">६+ ग्रंथ</span>
+                    <div class="cat-action"><span class="cat-action-default">संग्रह खोलें</span><span class="cat-action-open">संग्रह खुला है</span><i class="fas fa-arrow-right"></i></div>
+                </div>
+                <div class="cat-card" data-cat="stotra" role="button" tabindex="0" aria-expanded="false">
+                    <div class="cat-icon" style="background: #fff9c4; color: #f57f17">🙏</div>
+                    <div class="cat-text">
+                        <h3>स्तोत्र एवं भजन</h3>
+                        <p>दुर्गासप्तशती · चालीसा · भजन-संग्रह</p>
+                    </div>
+                    <span class="cat-count">२३+ ग्रंथ</span>
+                    <div class="cat-action"><span class="cat-action-default">संग्रह खोलें</span><span class="cat-action-open">संग्रह खुला है</span><i class="fas fa-arrow-right"></i></div>
+                </div>
+                <div class="cat-card" data-cat="satsang_shiksha" role="button" tabindex="0" aria-expanded="false">
+                    <div class="cat-icon" style="background: #efebe9; color: #6d4c41">🪔</div>
+                    <div class="cat-text">
+                        <h3>सत्संग एवं जीवन शिक्षा</h3>
+                        <p>प्रवचन · नीति · जीवन-मार्गदर्शन</p>
+                    </div>
+                    <span class="cat-count">२९+ ग्रंथ</span>
+                    <div class="cat-action"><span class="cat-action-default">संग्रह खोलें</span><span class="cat-action-open">संग्रह खुला है</span><i class="fas fa-arrow-right"></i></div>
+                </div>
+            </div>
+
+            <!-- book-panel injected dynamically inside the grid by JS -->
+        </div>
+
+        <!-- ════════════════════════════════════
+     PANCHANG + EKADASI + FESTIVALS
+════════════════════════════════════ -->
+        <div class="band">
+            <div class="wrap section">
+                <div class="sec-head">
+                    <h2>🪔 आज का पञ्चाङ्ग</h2>
+                    <p id="full-date">—</p>
+                    <div class="rangoli-div"><span>✦ ✦ ✦</span></div>
+                </div>
+
+                <div class="panch-vrat-row">
+                    <div class="panch-block">
+                        <h3>🌿 पञ्चाङ्ग</h3>
+                        <div class="panch-inner-row">
+                            <!-- Left sub-col: पाँच अंग -->
+                            <div class="panch-col">
+                                <div class="panch-col-head">पञ्चाङ्ग</div>
+                                <div class="vrat-row">
+                                    <span class="vrat-icon">☀️</span>
+                                    <span class="vrat-label">वार</span>
+                                    <span class="vrat-name" id="p-vara">—</span>
+                                    <span class="vrat-date" id="p-vara-d">—</span>
+                                </div>
+                                <div class="vrat-row">
+                                    <span class="vrat-icon">🌙</span>
+                                    <span class="vrat-label">तिथि</span>
+                                    <span class="vrat-name" id="p-tithi">—</span>
+                                    <span class="vrat-date" id="p-paksha">—</span>
+                                </div>
+                                <div class="vrat-row">
+                                    <span class="vrat-icon">⭐</span>
+                                    <span class="vrat-label">नक्षत्र</span>
+                                    <span class="vrat-name" id="p-naks">—</span>
+                                    <span class="vrat-date" id="p-naks-d">—</span>
+                                </div>
+                                <div class="vrat-row">
+                                    <span class="vrat-icon">🔮</span>
+                                    <span class="vrat-label">योग</span>
+                                    <span class="vrat-name" id="p-yoga">—</span>
+                                    <span class="vrat-date" id="p-yoga-q">—</span>
+                                </div>
+                                <div class="vrat-row" style="margin-bottom: 0">
+                                    <span class="vrat-icon">📅</span>
+                                    <span class="vrat-label">हिन्दू मास</span>
+                                    <span class="vrat-name" id="p-masa">—</span>
+                                    <span class="vrat-date">विक्रम सं. २०८२</span>
+                                </div>
+                            </div>
+
+                            <!-- Right sub-col: खगोलीय समय -->
+                            <div class="panch-col panch-col-astro">
+                                <div class="panch-col-head">खगोलीय समय</div>
+                                <div class="vrat-row">
+                                    <span class="vrat-icon">🌅</span>
+                                    <span class="vrat-label">सूर्योदय</span>
+                                    <span class="vrat-name" id="p-sunrise">—</span>
+                                </div>
+                                <div class="vrat-row">
+                                    <span class="vrat-icon">🌇</span>
+                                    <span class="vrat-label">सूर्यास्त</span>
+                                    <span class="vrat-name" id="p-sunset">—</span>
+                                </div>
+                                <div class="vrat-row">
+                                    <span class="vrat-icon">🌕</span>
+                                    <span class="vrat-label">चन्द्रोदय</span>
+                                    <span class="vrat-name" id="p-moonrise">—</span>
+                                </div>
+                                <div class="vrat-row">
+                                    <span class="vrat-icon">🌑</span>
+                                    <span class="vrat-label">चन्द्रास्त</span>
+                                    <span class="vrat-name" id="p-moonset">—</span>
+                                </div>
+                                <div class="vrat-row">
+                                    <span class="vrat-icon">⚠️</span>
+                                    <span class="vrat-label">राहुकाल</span>
+                                    <span class="vrat-name" id="p-rahu">—</span>
+                                </div>
+                                <div class="vrat-row" style="margin-bottom: 0">
+                                    <span class="vrat-icon">🧿</span>
+                                    <span class="vrat-label">सम्वत्सर</span>
+                                    <span class="vrat-name">क्रोधी</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /panch-inner-row -->
+                    </div>
+                    <!-- /panch-block -->
+
+                    <!-- Upcoming Vrats -->
+                    <div class="vrat-block">
+                        <h3>🌙 आगामी व्रत</h3>
+                        <div class="vrat-rows" id="vrat-rows">
+                            <div class="vrat-row">
+                                <span class="vrat-icon">🌿</span>
+                                <span class="vrat-label">एकादशी</span>
+                                <span class="vrat-name" id="vrat-ek-name">—</span>
+                                <span class="vrat-date" id="vrat-ek-date">—</span>
+                            </div>
+                            <div class="vrat-row">
+                                <span class="vrat-icon">🔱</span>
+                                <span class="vrat-label">शिवरात्रि</span>
+                                <span class="vrat-name" id="vrat-shiv-name">—</span>
+                                <span class="vrat-date" id="vrat-shiv-date">—</span>
+                            </div>
+                            <div class="vrat-row">
+                                <span class="vrat-icon">🐘</span>
+                                <span class="vrat-label">संकष्टी चतुर्थी</span>
+                                <span class="vrat-name" id="vrat-chat-name">—</span>
+                                <span class="vrat-date" id="vrat-chat-date">—</span>
+                            </div>
+                            <div class="vrat-row">
+                                <span class="vrat-icon">🪷</span>
+                                <span class="vrat-label">विनायक चतुर्थी</span>
+                                <span class="vrat-name" id="vrat-vinayak-name">—</span>
+                                <span class="vrat-date" id="vrat-vinayak-date">—</span>
+                            </div>
+                            <div class="vrat-row">
+                                <span class="vrat-icon">🌺</span>
+                                <span class="vrat-label">दुर्गाष्टमी</span>
+                                <span class="vrat-name" id="vrat-durgashtami-name">—</span>
+                                <span class="vrat-date" id="vrat-durgashtami-date">—</span>
+                            </div>
+                            <div class="vrat-row">
+                                <span class="vrat-icon">🖤</span>
+                                <span class="vrat-label">मासिक काली पूजा</span>
+                                <span class="vrat-name" id="vrat-kali-name">—</span>
+                                <span class="vrat-date" id="vrat-kali-date">—</span>
+                            </div>
+                            <div class="vrat-row">
+                                <span class="vrat-icon">⚔️</span>
+                                <span class="vrat-label">षष्ठी</span>
+                                <span class="vrat-name" id="vrat-shashthi-name">—</span>
+                                <span class="vrat-date" id="vrat-shashthi-date">—</span>
+                            </div>
+                            <div class="vrat-row">
+                                <span class="vrat-icon">🌕</span>
+                                <span class="vrat-label">पूर्णिमा</span>
+                                <span class="vrat-name" id="vrat-purnima-name">—</span>
+                                <span class="vrat-date" id="vrat-purnima-date">—</span>
+                            </div>
+                            <div class="vrat-row">
+                                <span class="vrat-icon">☀️</span>
+                                <span class="vrat-label">मासिक सप्तमी</span>
+                                <span class="vrat-name" id="vrat-saptami-name">—</span>
+                                <span class="vrat-date" id="vrat-saptami-date">—</span>
+                            </div>
+                            <div class="vrat-row">
+                                <span class="vrat-icon">🪴</span>
+                                <span class="vrat-label">द्वादशी</span>
+                                <span class="vrat-name" id="vrat-dwadashi-name">—</span>
+                                <span class="vrat-date" id="vrat-dwadashi-date">—</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /vrat-block -->
+                </div>
+                <!-- /panch-vrat-row -->
+
+                <!-- Festivals -->
+                <div class="fest-inner">
+                    <div class="fest-inner-head">🎊 आगामी पर्व एवं उत्सव</div>
+                    <div class="swiper fest-swiper" style="padding-bottom: 1rem">
+                        <div class="swiper-wrapper" id="fest-list"></div>
+                    </div>
+                </div>
+                <!-- /fest-inner -->
+
+                <!-- Shastriya Ghatna -->
+                <div class="shastr-block" id="shastr-block" style="display: none">
+                    <h3>📜 आज की शास्त्रीय घटना</h3>
+                    <div class="shastr-subtitle" id="shastr-subtitle">आज की तिथि से संबंधित शास्त्रीय प्रसंग</div>
+                    <div class="shastr-cards" id="shastr-list"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ════════════════════════════════════
+     DAILY VERSE
+════════════════════════════════════ -->
+        <div class="quote-band">
+            <div class="q-om">ॐ</div>
+            <div class="q-text" id="q-text">—</div>
+            <div class="q-src" id="q-src">—</div>
+        </div>
+
+        <!-- FOOTER -->
+        <footer>
+            <div class="ft-om">ॐ</div>
+            <div class="ft-name">स्वाध्याय</div>
+            <div class="ft-desc">हिन्दू शास्त्रों का डिजिटल पुस्तकालय</div>
+            <div class="ft-links">
+                <a href="tithi.html">तिथि</a>
+                <a href="clock.html">घड़ी</a>
+                <a href="puli_meka.html">पुलिमेका</a>
+                <a href="story.html">कथा</a>
+                <a href="about.html">परिचय</a>
+            </div>
+            <div class="ft-copy">© २०२५ स्वाध्याय &nbsp;·&nbsp; ज्ञान निःशुल्क है, इसे बाँटिए</div>
+        </footer>
+
         <script>
-            document.addEventListener("DOMContentLoaded", () => {
-                const cards = document.querySelectorAll(".category-col");
+            /* ============================================================
+   DATA
+============================================================ */
+            const VARAS = ["रविवार", "सोमवार", "मंगलवार", "बुधवार", "गुरुवार", "शुक्रवार", "शनिवार"];
+            const VARA_DEV = ["सूर्य", "चन्द्र", "मंगल", "बुध", "बृहस्पति", "शुक्र", "शनि"];
+            const TITHIS = [
+                "प्रतिपदा",
+                "द्वितीया",
+                "तृतीया",
+                "चतुर्थी",
+                "पञ्चमी",
+                "षष्ठी",
+                "सप्तमी",
+                "अष्टमी",
+                "नवमी",
+                "दशमी",
+                "एकादशी",
+                "द्वादशी",
+                "त्रयोदशी",
+                "चतुर्दशी",
+                "पूर्णिमा",
+                "प्रतिपदा",
+                "द्वितीया",
+                "तृतीया",
+                "चतुर्थी",
+                "पञ्चमी",
+                "षष्ठी",
+                "सप्तमी",
+                "अष्टमी",
+                "नवमी",
+                "दशमी",
+                "एकादशी",
+                "द्वादशी",
+                "त्रयोदशी",
+                "चतुर्दशी",
+                "अमावस्या"
+            ];
+            const NAKS = [
+                { n: "अश्विनी", d: "अश्विनीकुमार" },
+                { n: "भरणी", d: "यम" },
+                { n: "कृत्तिका", d: "अग्नि" },
+                { n: "रोहिणी", d: "ब्रह्मा" },
+                { n: "मृगशिरा", d: "चन्द्र" },
+                { n: "आर्द्रा", d: "रुद्र" },
+                { n: "पुनर्वसु", d: "अदिति" },
+                { n: "पुष्य", d: "बृहस्पति" },
+                { n: "आश्लेषा", d: "सर्प" },
+                { n: "मघा", d: "पितृ" },
+                { n: "पूर्वाफाल्गुनी", d: "भग" },
+                { n: "उत्तराफाल्गुनी", d: "अर्यमा" },
+                { n: "हस्त", d: "सूर्य" },
+                { n: "चित्रा", d: "विश्वकर्मा" },
+                { n: "स्वाती", d: "वायु" },
+                { n: "विशाखा", d: "इन्द्राग्नि" },
+                { n: "अनुराधा", d: "मित्र" },
+                { n: "ज्येष्ठा", d: "इन्द्र" },
+                { n: "मूल", d: "निरृति" },
+                { n: "पूर्वाषाढ़ा", d: "अपः" },
+                { n: "उत्तराषाढ़ा", d: "विश्वेदेव" },
+                { n: "श्रवण", d: "विष्णु" },
+                { n: "धनिष्ठा", d: "वसव" },
+                { n: "शतभिषा", d: "वरुण" },
+                { n: "पूर्वाभाद्रपद", d: "अजैकपाद" },
+                { n: "उत्तराभाद्रपद", d: "अहिर्बुध्न्य" },
+                { n: "रेवती", d: "पूषा" }
+            ];
+            const YOGAS = [
+                { n: "विष्कम्भ", q: "अशुभ" },
+                { n: "प्रीति", q: "शुभ" },
+                { n: "आयुष्मान्", q: "शुभ" },
+                { n: "सौभाग्य", q: "शुभ" },
+                { n: "शोभन", q: "शुभ" },
+                { n: "अतिगण्ड", q: "अशुभ" },
+                { n: "सुकर्मा", q: "शुभ" },
+                { n: "धृति", q: "शुभ" },
+                { n: "शूल", q: "अशुभ" },
+                { n: "गण्ड", q: "अशुभ" },
+                { n: "वृद्धि", q: "शुभ" },
+                { n: "ध्रुव", q: "शुभ" },
+                { n: "व्याघात", q: "अशुभ" },
+                { n: "हर्षण", q: "शुभ" },
+                { n: "वज्र", q: "अशुभ" },
+                { n: "सिद्धि", q: "शुभ" },
+                { n: "व्यतीपात", q: "अशुभ" },
+                { n: "वरीयान्", q: "शुभ" },
+                { n: "परिघ", q: "अशुभ" },
+                { n: "शिव", q: "शुभ" },
+                { n: "सिद्ध", q: "शुभ" },
+                { n: "साध्य", q: "शुभ" },
+                { n: "शुभ", q: "शुभ" },
+                { n: "शुक्ल", q: "शुभ" },
+                { n: "ब्रह्म", q: "शुभ" },
+                { n: "इन्द्र", q: "शुभ" },
+                { n: "वैधृति", q: "अशुभ" }
+            ];
+            const MASAS = [
+                "चैत्र",
+                "वैशाख",
+                "ज्येष्ठ",
+                "आषाढ़",
+                "श्रावण",
+                "भाद्रपद",
+                "आश्विन",
+                "कार्तिक",
+                "मार्गशीर्ष",
+                "पौष",
+                "माघ",
+                "फाल्गुन"
+            ];
+            const RAHU = [
+                "१५:०० – १६:३०",
+                "७:३० – ९:००",
+                "१५:०० – १६:३०",
+                "१२:०० – १३:३०",
+                "१०:३० – १२:००",
+                "१०:३० – १२:००",
+                "९:०० – १०:३०"
+            ];
 
-                const config = {
-                    slidesPerView: 2.5,
-                    spaceBetween: 10,
-                    breakpoints: {
-                        768: { slidesPerView: 4.5, spaceBetween: 20 },
-                        1024: { slidesPerView: 7.5, spaceBetween: 20 }
+            /* Dates sourced from Drikpanchang (verified via web search), not this
+   page's own simplified tithi engine — that engine uses mean-motion-only
+   formulas without full lunar perturbations/ayanamsa, which drift by
+   several tithis when projected months ahead. Getting a religious
+   observance date wrong is worse than an empty list, so these are
+   hardcoded from an authoritative source and need a yearly refresh. */
+            const FESTIVALS = [
+                { n: "नाग पञ्चमी", dt: "2026-08-17", ico: "🐍", img: "images/festivals/nag-panchami.png", d: "श्रावण शुक्ल पञ्चमी" },
+                { n: "रक्षाबन्धन", dt: "2026-08-28", ico: "🎀", img: "images/festivals/raksha-bandhan.png", d: "श्रावण पूर्णिमा" },
+                { n: "जन्माष्टमी", dt: "2026-09-04", ico: "🦚", img: "images/festivals/janmashtami.png", d: "भाद्र कृष्ण अष्टमी" },
+                { n: "गणेश चतुर्थी", dt: "2026-09-14", ico: "🐘", img: "images/festivals/ganesh-chaturthi.png", d: "भाद्र शुक्ल चतुर्थी" },
+                { n: "नवरात्रि", dt: "2026-10-11", ico: "🌺", img: "images/festivals/navaratri.png", d: "आश्विन शुक्ल प्रतिपदा" },
+                { n: "दशहरा", dt: "2026-10-20", ico: "🏹", img: "images/festivals/dussehra.png", d: "विजयादशमी" },
+                { n: "दीपावली", dt: "2026-11-08", ico: "🪔", d: "कार्तिक अमावस्या" },
+                { n: "कार्तिक पूर्णिमा", dt: "2026-11-24", ico: "🌕", d: "देव दीपावली" },
+                { n: "मकर संक्रान्ति", dt: "2027-01-14", ico: "☀️", d: "सूर्य का मकर में प्रवेश" },
+                { n: "महाशिवरात्रि", dt: "2027-03-06", ico: "🔱", d: "फाल्गुन कृष्ण चतुर्दशी" },
+                { n: "होली", dt: "2027-03-23", ico: "🎨", d: "फाल्गुन पूर्णिमा" },
+                { n: "राम नवमी", dt: "2027-04-15", ico: "🏹", d: "चैत्र शुक्ल नवमी" },
+                { n: "अक्षय तृतीया", dt: "2027-05-09", ico: "✨", d: "वैशाख शुक्ल तृतीया" },
+                { n: "गुरु पूर्णिमा", dt: "2027-07-18", ico: "🪔", d: "आषाढ़ पूर्णिमा" }
+            ];
+
+            const LIBRARY = {
+                ved: {
+                    desc: "वेद हिन्दू धर्म के प्राचीनतम श्रुति-ग्रंथ हैं। 'वेद' शब्द संस्कृत 'विद्' धातु से बना है जिसका अर्थ है 'जानना'। इनमें यज्ञ, दर्शन, विज्ञान और आध्यात्म का अद्भुत संगम है।",
+                    books: [
+                        { id: "veda_rigveda", t: "ऋग्वेद", s: "१०,५५२ ऋचाएँ", bg: "#0d1b3e", fg: "#6ea8ff" },
+                        { id: "veda_sama", t: "सामवेद", s: "१,८७५ साम · संगीत वेद", bg: "#0d2a18", fg: "#60ffaa" },
+                        { id: "veda_yajur", t: "यजुर्वेद", s: "यज्ञ-विधि · कर्मकाण्ड", bg: "#1e0830", fg: "#c080ff" },
+                        { id: "veda_atharva", t: "अथर्ववेद", s: "२० काण्ड · ५,९७७ मन्त्र", bg: "#261206", fg: "#ffa060" }
+                    ]
+                },
+                upanishad: {
+                    desc: "उपनिषद् वेदांत के मूल ग्रंथ हैं — 'उप' (निकट) + 'नि' (नीचे) + 'षद्' (बैठना) — गुरु के चरणों में बैठकर प्राप्त ज्ञान। इनमें आत्मा, ब्रह्म और मोक्ष का परम रहस्य है। मुख्य १०, अन्य प्रमुख ३ और कुल १०८ उपनिषद् हैं।",
+                    books: [
+                        /* ── संग्रह ── */
+                        { id: "ishadinau", t: "ईशादि नौ उपनिषद्", s: "संग्रह · प्रमुख नौ उपनिषदोंका संकलन", bg: "#0a1a1a", fg: "#50d0d0" },
+                        /* ── दशोपनिषद् (मुख्य १०) ── */
+                        { id: "upa_ishavas",          t: "ईशावास्योपनिषद्",       s: "शु॰यजु॰ · ४० मन्त्र",          bg: "#0f2a1a", fg: "#60ffaa" },
+                        { id: "u_केनोपनिषद्",          t: "केनोपनिषद्",             s: "सामवेद · ब्रह्म-जिज्ञासा",     bg: "#0a1e2e", fg: "#60c0ff" },
+                        { id: "u_कठोपनिषद्",           t: "कठोपनिषद्",              s: "कृ॰यजु॰ · नचिकेता-यम संवाद",  bg: "#1c0830", fg: "#b060ff" },
+                        { id: "u_प्रश्नोपनिषद्",        t: "प्रश्नोपनिषद्",           s: "अथर्व॰ · षट् प्रश्न",           bg: "#182606", fg: "#c0ff60" },
+                        { id: "u_मुण्डकोपनिषद्",   t: "मुण्डकोपनिषद्",         s: "अथर्व॰ · परा-अपरा विद्या · ६४ मन्त्र",    bg: "#081e1e", fg: "#60ffff" },
+                        //{ id: "u_माण्डूक्योपनिषद्",    t: "माण्डूक्योपनिषद्",       s: "अथर्व॰ · ॐकार की व्याख्या",  bg: "#261806", fg: "#ffaa40" },
+                        { id: "u_तैत्तिरीयोपनिषद्",   t: "तैत्तिरीयोपनिषद्",       s: "कृ॰यजु॰ · आनन्दवल्ली",        bg: "#0e2608", fg: "#80ff60" },
+                        { id: "u_ऐतरेयोपनिषद्",    t: "ऐतरेयोपनिषद्",          s: "ऋग्वेद · सृष्टि-रहस्य · प्रज्ञानं ब्रह्म",  bg: "#280a0a", fg: "#ff7070" },
+                        { id: "u_छान्दोग्योपनिषद्", t: "छान्दोग्योपनिषद्", s: "सामवेद · तत्त्वमसि · ८ अध्याय", bg: "#1e0a1e", fg: "#ff60ff" },
+                        { id: "u_बृहदारण्यकोपनिषद्", t: "बृहदारण्यकोपनिषद्",      s: "शु॰यजु॰ · सबसे विस्तृत",      bg: "#08082a", fg: "#6060ff" },
+                        /* ── अन्य प्रमुख ── */
+                        { id: "u_श्वेताश्वतरोपनिषद्",  t: "श्वेताश्वतरोपनिषद्",     s: "कृ॰यजु॰ · शिव-वेदान्त",       bg: "#200a20", fg: "#ff80c0" },
+                        { id: "u_कौषीतकि उपनिषद्", t: "कौषीतकि उपनिषद्",       s: "ऋग्वेद · प्राण-विज्ञान",      bg: "#0a1a10", fg: "#60c080" },
+                        { id: "u_श्री अरविन्दोपनिषद्", t: "श्री अरविन्दोपनिषद्",   s: "आधुनिक · सच्चिदानन्द-दर्शन",  bg: "#1a0a18", fg: "#c060e0", en: "aurobindo" },
+                        { id: "u_मैत्रायणी उपनिषद्", t: "मैत्रायणी उपनिषद्",      s: "कृ॰यजु॰ · षड् प्राण",         bg: "#1a100a", fg: "#c09060" },
+                        /* ── १०८ उपनिषद् (शेष) ── */
+                        { id: "u_ब्रह्म उपनिषद्", t: "ब्रह्म उपनिषद्",         s: "कृ॰यजु॰ · ब्रह्मविद्या",      bg: "#0a1818", fg: "#50c0a0" },
+                        { id: "u_कैवल्य उपनिषद्", t: "कैवल्य उपनिषद्",         s: "कृ॰यजु॰ · मोक्ष-तत्त्व",      bg: "#18080e", fg: "#c05080" },
+                        { id: null, t: "जाबाल उपनिषद्",          s: "शु॰यजु॰ · संन्यास-विधि",      bg: "#0a0a18", fg: "#6060c0", na: 1 },
+                        { id: null, t: "शिखा उपनिषद्",           s: "कृ॰यजु॰ · प्रणव-शिखा",        bg: "#181008", fg: "#c09040", na: 1 },
+                        { id: null, t: "हंस उपनिषद्",            s: "शु॰यजु॰ · हंस-विद्या",         bg: "#081808", fg: "#50a060", na: 1 },
+                        { id: null, t: "अरुणि उपनिषद्",          s: "सामवेद · संन्यास",             bg: "#100818", fg: "#9060c0", na: 1 },
+                        { id: null, t: "गर्भ उपनिषद्",           s: "कृ॰यजु॰ · गर्भ-विज्ञान",      bg: "#181800", fg: "#a0a030", na: 1 },
+                        { id: null, t: "नारायण उपनिषद्",         s: "कृ॰यजु॰ · नारायण-स्तुति",     bg: "#100810", fg: "#c060b0", na: 1 },
+                        { id: null, t: "परमहंस उपनिषद्",         s: "शु॰यजु॰ · परमहंस-धर्म",       bg: "#0a1818", fg: "#50c0a0", na: 1 },
+                        { id: null, t: "अमृतबिन्दु उपनिषद्",     s: "कृ॰यजु॰ · ॐ-ध्यान",           bg: "#18080e", fg: "#c05080", na: 1 },
+                        { id: null, t: "अमृतनाद उपनिषद्",        s: "कृ॰यजु॰ · नाद-योग",           bg: "#0a0a18", fg: "#6060c0", na: 1 },
+                        { id: "u_अथर्वशिरस उपनिषद्", t: "अथर्वशिरस उपनिषद्",      s: "अथर्व॰ · शिव-तत्त्व",          bg: "#181008", fg: "#c09040" },
+                        { id: null, t: "अथर्वशिखा उपनिषद्",      s: "अथर्व॰ · प्रणव-उपासना",        bg: "#081808", fg: "#50a060", na: 1 },
+                        { id: null, t: "मैत्रेय उपनिषद्",         s: "सामवेद · मैत्री-भावना",        bg: "#100818", fg: "#9060c0", na: 1 },
+                        { id: null, t: "कौषीतकी ब्राह्मण उपनिषद्", s: "ऋग्वेद · चित्तशुद्धि",       bg: "#181800", fg: "#a0a030", na: 1 },
+                        { id: null, t: "बृहज्जाबाल उपनिषद्",     s: "अथर्व॰ · रुद्र-विद्या",        bg: "#100810", fg: "#c060b0", na: 1 },
+                        { id: null, t: "नृसिंहतापनीय उपनिषद्",   s: "अथर्व॰ · नृसिंह-रहस्य",       bg: "#0a1818", fg: "#50c0a0", na: 1 },
+                        { id: null, t: "कालाग्निरुद्र उपनिषद्",  s: "कृ॰यजु॰ · भस्मधारण",          bg: "#18080e", fg: "#c05080", na: 1 },
+                        { id: null, t: "सुबाल उपनिषद्",          s: "शु॰यजु॰ · सृष्टि-क्रम",        bg: "#0a0a18", fg: "#6060c0", na: 1 },
+                        { id: null, t: "क्षुरिका उपनिषद्",        s: "कृ॰यजु॰ · योग-धार",           bg: "#181008", fg: "#c09040", na: 1 },
+                        { id: null, t: "मन्त्रिका उपनिषद्",       s: "शु॰यजु॰ · मन्त्र-विचार",       bg: "#081808", fg: "#50a060", na: 1 },
+                        { id: null, t: "सर्वसार उपनिषद्",         s: "कृ॰यजु॰ · तत्त्वसार",          bg: "#100818", fg: "#9060c0", na: 1 },
+                        { id: null, t: "निरालम्ब उपनिषद्",        s: "शु॰यजु॰ · निराधार ब्रह्म",    bg: "#181800", fg: "#a0a030", na: 1 },
+                        { id: null, t: "रहस्य उपनिषद्",           s: "कृ॰यजु॰ · परम रहस्य",         bg: "#100810", fg: "#c060b0", na: 1 },
+                        { id: null, t: "वज्रसूचिका उपनिषद्",     s: "सामवेद · वर्ण-खण्डन",         bg: "#0a1818", fg: "#50c0a0", na: 1 },
+                        { id: null, t: "तेजोबिन्दु उपनिषद्",      s: "कृ॰यजु॰ · ज्ञान-तेज",         bg: "#18080e", fg: "#c05080", na: 1 },
+                        { id: null, t: "नादबिन्दु उपनिषद्",       s: "ऋग्वेद · नाद-ब्रह्म",         bg: "#0a0a18", fg: "#6060c0", na: 1 },
+                        { id: null, t: "ध्यानबिन्दु उपनिषद्",     s: "कृ॰यजु॰ · ध्यान-योग",         bg: "#181008", fg: "#c09040", na: 1 },
+                        { id: null, t: "ब्रह्मविद्या उपनिषद्",    s: "कृ॰यजु॰ · ब्रह्मज्ञान",       bg: "#081808", fg: "#50a060", na: 1 },
+                        { id: null, t: "योगतत्त्व उपनिषद्",       s: "कृ॰यजु॰ · अष्टांग-योग",       bg: "#100818", fg: "#9060c0", na: 1 },
+                        { id: null, t: "आत्मबोध उपनिषद्",         s: "ऋग्वेद · आत्म-ज्ञान",         bg: "#181800", fg: "#a0a030", na: 1 },
+                        { id: null, t: "परब्रह्म उपनिषद्",        s: "अथर्व॰ · परब्रह्म-तत्त्व",    bg: "#100810", fg: "#c060b0", na: 1 },
+                        { id: null, t: "अवध्यूत उपनिषद्",         s: "कृ॰यजु॰ · अवधूत-धर्म",        bg: "#0a1818", fg: "#50c0a0", na: 1 },
+                        { id: null, t: "त्रिशिखी ब्राह्मण उपनिषद्", s: "शु॰यजु॰ · त्रिशिखा",        bg: "#18080e", fg: "#c05080", na: 1 },
+                        { id: null, t: "सीता उपनिषद्",            s: "अथर्व॰ · सीता-रहस्य",         bg: "#0a0a18", fg: "#6060c0", na: 1 },
+                        { id: null, t: "योगचूडामणि उपनिषद्",      s: "सामवेद · कुण्डलिनी-योग",     bg: "#181008", fg: "#c09040", na: 1 },
+                        { id: null, t: "निर्वाण उपनिषद्",          s: "ऋग्वेद · मोक्ष-मार्ग",        bg: "#081808", fg: "#50a060", na: 1 },
+                        { id: null, t: "मण्डल ब्राह्मण उपनिषद्",  s: "शु॰यजु॰ · प्राण-तत्त्व",     bg: "#100818", fg: "#9060c0", na: 1 },
+                        { id: null, t: "दक्षिणामूर्ति उपनिषद्",   s: "कृ॰यजु॰ · शिव-गुरु",         bg: "#181800", fg: "#a0a030", na: 1 },
+                        { id: null, t: "शरभ उपनिषद्",             s: "अथर्व॰ · शिव-शक्ति",          bg: "#100810", fg: "#c060b0", na: 1 },
+                        { id: null, t: "स्कन्द उपनिषद्",           s: "कृ॰यजु॰ · स्कन्द-विद्या",     bg: "#0a1818", fg: "#50c0a0", na: 1 },
+                        { id: null, t: "महानारायण उपनिषद्",        s: "कृ॰यजु॰ · नारायण-सूक्त",      bg: "#18080e", fg: "#c05080", na: 1 },
+                        { id: null, t: "अद्वयतारक उपनिषद्",       s: "शु॰यजु॰ · अद्वैत-बोध",       bg: "#0a0a18", fg: "#6060c0", na: 1 },
+                        { id: null, t: "रामरहस्य उपनिषद्",         s: "अथर्व॰ · राम-रहस्य",          bg: "#181008", fg: "#c09040", na: 1 },
+                        { id: null, t: "रामतापनीय उपनिषद्",        s: "अथर्व॰ · राम-तारक",           bg: "#081808", fg: "#50a060", na: 1 },
+                        { id: null, t: "वासुदेव उपनिषद्",          s: "सामवेद · वासुदेव-तत्त्व",    bg: "#100818", fg: "#9060c0", na: 1 },
+                        { id: null, t: "मुद्गल उपनिषद्",           s: "ऋग्वेद · गणेश-विद्या",        bg: "#181800", fg: "#a0a030", na: 1 },
+                        { id: null, t: "शाण्डिल्य उपनिषद्",        s: "अथर्व॰ · अष्टांग-योग",        bg: "#100810", fg: "#c060b0", na: 1 },
+                        { id: null, t: "पैंगल उपनिषद्",            s: "शु॰यजु॰ · तत्त्वज्ञान",       bg: "#0a1818", fg: "#50c0a0", na: 1 },
+                        { id: null, t: "भिक्षुक उपनिषद्",          s: "शु॰यजु॰ · संन्यास-आश्रम",    bg: "#18080e", fg: "#c05080", na: 1 },
+                        { id: null, t: "महा उपनिषद्",              s: "सामवेद · नारायण-स्तुति",     bg: "#0a0a18", fg: "#6060c0", na: 1 },
+                        { id: null, t: "शारीरक उपनिषद्",           s: "शु॰यजु॰ · देह-तत्त्व",        bg: "#181008", fg: "#c09040", na: 1 },
+                        { id: null, t: "योगशिखा उपनिषद्",          s: "कृ॰यजु॰ · योग-शिखर",         bg: "#081808", fg: "#50a060", na: 1 },
+                        { id: null, t: "तुर्यातीत उपनिषद्",        s: "शु॰यजु॰ · चतुर्थातीत",        bg: "#100818", fg: "#9060c0", na: 1 },
+                        { id: null, t: "संन्यास उपनिषद्",           s: "सामवेद · संन्यास-धर्म",      bg: "#181800", fg: "#a0a030", na: 1 },
+                        { id: null, t: "परमहंस परिव्राजक उपनिषद्", s: "शु॰यजु॰ · परिव्राजक",        bg: "#100810", fg: "#c060b0", na: 1 },
+                        { id: null, t: "अक्षमालिका उपनिषद्",       s: "ऋग्वेद · जप-माला",           bg: "#0a1818", fg: "#50c0a0", na: 1 },
+                        { id: null, t: "अव्यक्त उपनिषद्",          s: "सामवेद · अव्यक्त-माया",      bg: "#18080e", fg: "#c05080", na: 1 },
+                        { id: null, t: "एकाक्षर उपनिषद्",          s: "कृ॰यजु॰ · एकाक्षर ॐ",        bg: "#0a0a18", fg: "#6060c0", na: 1 },
+                        { id: null, t: "अन्नपूर्णा उपनिषद्",       s: "अथर्व॰ · अन्नपूर्णा-विद्या",  bg: "#181008", fg: "#c09040", na: 1 },
+                        { id: null, t: "सूर्य उपनिषद्",             s: "अथर्व॰ · सूर्य-उपासना",       bg: "#081808", fg: "#50a060", na: 1 },
+                        { id: null, t: "अक्षि उपनिषद्",             s: "कृ॰यजु॰ · सूर्य-नेत्र",       bg: "#100818", fg: "#9060c0", na: 1 },
+                        { id: null, t: "अध्यात्म उपनिषद्",          s: "शु॰यजु॰ · आत्म-विचार",       bg: "#181800", fg: "#a0a030", na: 1 },
+                        { id: null, t: "कुण्डिका उपनिषद्",          s: "सामवेद · संन्यास-चिह्न",     bg: "#100810", fg: "#c060b0", na: 1 },
+                        { id: null, t: "सावित्री उपनिषद्",          s: "सामवेद · गायत्री-रहस्य",     bg: "#0a1818", fg: "#50c0a0", na: 1 },
+                        { id: null, t: "आत्मा उपनिषद्",             s: "अथर्व॰ · आत्म-विवेक",        bg: "#18080e", fg: "#c05080", na: 1 },
+                        { id: null, t: "पाशुपत ब्रह्म उपनिषद्",    s: "अथर्व॰ · शिव-पाशुपत",       bg: "#0a0a18", fg: "#6060c0", na: 1 },
+                        { id: null, t: "त्रिपुरा उपनिषद्",          s: "ऋग्वेद · त्रिपुरा-शक्ति",    bg: "#181008", fg: "#c09040", na: 1 },
+                        { id: null, t: "देवी उपनिषद्",              s: "अथर्व॰ · देवी-महिमा",        bg: "#081808", fg: "#50a060", na: 1 },
+                        { id: null, t: "त्रिपुरतापिनी उपनिषद्",    s: "अथर्व॰ · त्रिपुरा-रहस्य",    bg: "#100818", fg: "#9060c0", na: 1 },
+                        { id: null, t: "भावनोपनिषद्",               s: "अथर्व॰ · श्रीचक्र",          bg: "#181800", fg: "#a0a030", na: 1 },
+                        { id: null, t: "सरस्वती रहस्य उपनिषद्",    s: "कृ॰यजु॰ · वाग्देवी",         bg: "#100810", fg: "#c060b0", na: 1 },
+                        { id: null, t: "बह्वृच उपनिषद्",            s: "ऋग्वेद · शक्ति-तत्त्व",      bg: "#0a1818", fg: "#50c0a0", na: 1 },
+                        { id: null, t: "गणपति उपनिषद्",             s: "अथर्व॰ · गणपति-विद्या",      bg: "#18080e", fg: "#c05080", na: 1 },
+                        { id: null, t: "गणेशतापिनी उपनिषद्",        s: "अथर्व॰ · गणेश-रहस्य",       bg: "#0a0a18", fg: "#6060c0", na: 1 },
+                        { id: null, t: "कृष्ण उपनिषद्",             s: "अथर्व॰ · कृष्ण-तत्त्व",      bg: "#181008", fg: "#c09040", na: 1 },
+                        { id: null, t: "गोपालतापिनी उपनिषद्",       s: "अथर्व॰ · गोपाल-रहस्य",      bg: "#081808", fg: "#50a060", na: 1 },
+                        { id: null, t: "दत्तात्रेय उपनिषद्",        s: "अथर्व॰ · दत्त-विद्या",       bg: "#100818", fg: "#9060c0", na: 1 },
+                        { id: null, t: "गरुड़ उपनिषद्",             s: "अथर्व॰ · गरुड़-मन्त्र",       bg: "#181800", fg: "#a0a030", na: 1 },
+                        { id: null, t: "कलिसन्तरण उपनिषद्",         s: "कृ॰यजु॰ · हरिनाम-संकीर्तन",  bg: "#100810", fg: "#c060b0", na: 1 },
+                        { id: null, t: "जाबालदर्शन उपनिषद्",        s: "सामवेद · शिव-तत्त्व",        bg: "#0a1818", fg: "#50c0a0", na: 1 },
+                        { id: null, t: "हयग्रीव उपनिषद्",           s: "अथर्व॰ · हयग्रीव-विद्या",    bg: "#18080e", fg: "#c05080", na: 1 },
+                        { id: null, t: "रामपूर्वतापिनी उपनिषद्",   s: "अथर्व॰ · राम-तारक पूर्व",    bg: "#0a0a18", fg: "#6060c0", na: 1 },
+                        { id: null, t: "रामोत्तरतापिनी उपनिषद्",   s: "अथर्व॰ · राम-तारक उत्तर",    bg: "#181008", fg: "#c09040", na: 1 },
+                        { id: null, t: "सौभाग्यलक्ष्मी उपनिषद्",   s: "ऋग्वेद · लक्ष्मी-विद्या",    bg: "#081808", fg: "#50a060", na: 1 },
+                        { id: null, t: "देवीभावन उपनिषद्",          s: "अथर्व॰ · भावना-उपासना",      bg: "#100818", fg: "#9060c0", na: 1 },
+                        { id: null, t: "रुद्रहृदय उपनिषद्",         s: "कृ॰यजु॰ · रुद्र-हृदय",       bg: "#181800", fg: "#a0a030", na: 1 },
+                        { id: null, t: "योगकुण्डलिनी उपनिषद्",      s: "शु॰यजु॰ · कुण्डलिनी",        bg: "#100810", fg: "#c060b0", na: 1 },
+                        { id: null, t: "भस्मजाबाल उपनिषद्",         s: "अथर्व॰ · भस्मधारण-विधि",    bg: "#0a1818", fg: "#50c0a0", na: 1 },
+                        { id: null, t: "रुद्राक्षजाबाल उपनिषद्",    s: "सामवेद · रुद्राक्ष-महिमा",  bg: "#18080e", fg: "#c05080", na: 1 },
+                        { id: null, t: "गणपति अथर्वशीर्ष उपनिषद्",  s: "अथर्व॰ · गणेश-अथर्वशीर्ष", bg: "#0a0a18", fg: "#6060c0", na: 1 },
+                        { id: null, t: "तारसार उपनिषद्",             s: "शु॰यजु॰ · तारक-मन्त्र",      bg: "#181008", fg: "#c09040", na: 1 },
+                        { id: null, t: "मुक्तिका उपनिषद्",           s: "शु॰यजु॰ · १०८ उपनिषत्-सूची", bg: "#081808", fg: "#50a060", na: 1 }
+                    ]
+                },
+                puran: {
+                    desc: "पुराण वेदों के ज्ञान को कथाओं द्वारा जन-जन तक पहुँचाते हैं। इनमें सृष्टि, वंशावली और धर्म का विस्तृत वर्णन है। अठारह महापुराण तीन गुणों के अनुसार वर्गीकृत हैं।",
+                    books: [
+                        /* ── सात्त्विक पुराण (विष्णु प्रधान) ── */
+                        { grp: "🌟 सात्त्विक पुराण — विष्णु प्रधान" },
+                        { id: "puran_vishnu",     t: "विष्णु पुराण",     s: "वैष्णव महापुराण",      bg: "#06103a", fg: "#5090ff" },
+                        { id: "puran_bhagavat",   t: "भागवत महापुराण",  s: "कृष्ण-लीला · १२ स्कन्ध", bg: "#060e30", fg: "#7090ff" },
+                        { id: "bhagavat_navneet", t: "भागवत नवनीत",     s: "भागवतकी सरस कथाओंका सचित्र संकलन", bg: "#0a1030", fg: "#8090ff" },
+                        { id: "puran_narad",      t: "नारद पुराण",      s: "भक्तिशास्त्र",           bg: "#201006", fg: "#ffaa50" },
+                        { id: "puran_garud",      t: "गरुड पुराण",      s: "मृत्यु-रहस्य",           bg: "#061a10", fg: "#50ffaa" },
+                        { id: "puran_padma",      t: "पद्म पुराण",      s: "सृष्टि-लीला",            bg: "#1e0a1e", fg: "#ff80ff" },
+                        { id: "puran_varaha",     t: "वराह पुराण",      s: "वराह अवतार",             bg: "#101e06", fg: "#90ff60" },
+                        /* ── राजसिक पुराण (ब्रह्मा प्रधान) ── */
+                        { grp: "🔆 राजसिक पुराण — ब्रह्मा प्रधान" },
+                        { id: "puran_brahma",     t: "ब्रह्म पुराण",    s: "आदि पुराण",              bg: "#251808", fg: "#c8902a" },
+                        { id: null,               t: "ब्रह्माण्ड पुराण", s: "ब्रह्माण्ड-वर्णन",       bg: "#100618", fg: "#e060ff", na: 1 },
+                        { id: "puran_brahmvaivart", t: "ब्रह्मवैवर्त पुराण", s: "राधा-कृष्ण लीला",  bg: "#08081e", fg: "#7060ff" },
+                        { id: "puran_markandey",  t: "मार्कण्डेय पुराण", s: "देवीमाहात्म्य सहित",   bg: "#14062a", fg: "#b060ff" },
+                        { id: null,               t: "भविष्य पुराण",    s: "भविष्य-कथन",             bg: "#1e1e06", fg: "#d0cc40", na: 1 },
+                        { id: "puran_vaman",      t: "वामन पुराण",      s: "वामन अवतार · ९५ अध्याय", bg: "#06101e", fg: "#40aaff" },
+                        /* ── तामसिक पुराण (शिव प्रधान) ── */
+                        { grp: "🔥 तामसिक पुराण — शिव प्रधान" },
+                        { id: "puran_matsya",     t: "मत्स्य पुराण",    s: "मत्स्य अवतार",           bg: "#081830", fg: "#60aaff" },
+                        { id: null,               t: "कूर्म पुराण",     s: "कूर्म अवतार",            bg: "#1e1006", fg: "#ffaa40", na: 1 },
+                        { id: null,               t: "लिङ्ग पुराण",     s: "शिव-लिङ्ग महिमा",        bg: "#1a0404", fg: "#ff5040", na: 1 },
+                        { id: "puran_shiva",      t: "शिव पुराण",       s: "संक्षिप्त संस्करण",      bg: "#200606", fg: "#ff6050" },
+                        { id: "puran_skanda",     t: "स्कन्द पुराण",    s: "सात खण्ड · ८१,१०० श्लोक", bg: "#081808", fg: "#60ee60" },
+                        { id: "puran_agni",       t: "अग्नि पुराण",     s: "सर्वविद्या-संग्रह",      bg: "#260e04", fg: "#ff8840" },
+                        { id: "sankshipt_garuda_puran", t: "गरुड पुराण (संक्षिप्त)", s: "मृत्यु-रहस्य · लघु संस्करण · सचित्र", bg: "#0c1e10", fg: "#70e080" },
+                        { id: "devi_bhagavat", t: "श्रीमद्देवीभागवत (संक्षिप्त)", s: "शक्ति-महापुराण · लघु संस्करण", bg: "#1e0a1e", fg: "#e070d0" }
+                    ]
+                },
+                upapuran: {
+                    desc: "उप-पुराण अठारह हैं। ये महापुराणों के पूरक हैं और विविध देवताओं, तीर्थों एवं व्रतों का विस्तृत विवरण प्रस्तुत करते हैं। गणेशपुराण भी एक प्रमुख उप-पुराण है।",
+                    books: [
+                        { id: "puran_ganesh_upasana", t: "गणेश पुराण",      s: "उपासनाखण्ड · ६१ अध्याय",  bg: "#1c1006", fg: "#d0a030" },
+                        { id: "puran_ganesh_upasana_padartha", t: "गणेश पुराण (पद-विच्छेद)", s: "उपासनाखण्ड · पदार्थ-भावार्थ सहित · ९२ अध्याय पूर्ण", bg: "#241408", fg: "#e0a850" },
+                        { id: "puran_ganesh_krida_padartha", t: "गणेश पुराण (पद-विच्छेद)", s: "क्रीडाखण्ड · पदार्थ-भावार्थ सहित · कार्य-प्रगति पर", bg: "#1c2408", fg: "#b8d060" },
+                        { id: null,             t: "सनत्कुमार उप-पुराण", s: "सनत्कुमार प्रणीत",       bg: "#0a1e2e", fg: "#60c0ff", na: 1 },
+                        { id: "Nrishing_puran", t: "नृसिंह उप-पुराण",   s: "नृसिंह-महिमा",           bg: "#1a0810", fg: "#ff80a0" },
+                        { id: null,             t: "स्कन्द उप-पुराण",   s: "स्कन्द-माहात्म्य",       bg: "#081808", fg: "#60ee60", na: 1 },
+                        { id: null,             t: "शिवधर्म उप-पुराण",  s: "शिव-धर्म-विधान",         bg: "#1a0404", fg: "#ff6050", na: 1 },
+                        { id: null,             t: "आश्चर्य उप-पुराण",  s: "अद्भुत-कथाएँ",           bg: "#1e1808", fg: "#d0b060", na: 1 },
+                        { id: null,             t: "नारदीय उप-पुराण",   s: "नारद-प्रणीत",            bg: "#201006", fg: "#ffaa50", na: 1 },
+                        { id: null,             t: "कपिल उप-पुराण",     s: "सांख्य-दर्शन",           bg: "#0a180a", fg: "#80d060", na: 1 },
+                        { id: null,             t: "वामन उप-पुराण",     s: "वामन-चरित",              bg: "#06101e", fg: "#40aaff", na: 1 },
+                        { id: null,             t: "औशनस उप-पुराण",    s: "शुक्राचार्य प्रणीत",      bg: "#181008", fg: "#c09060", na: 1 },
+                        { id: null,             t: "ब्रह्माण्ड उप-पुराण", s: "ब्रह्माण्ड-वर्णन",     bg: "#100618", fg: "#e060ff", na: 1 },
+                        { id: null,             t: "वारुण उप-पुराण",    s: "वरुण-देव-महिमा",         bg: "#081828", fg: "#5090d0", na: 1 },
+                        { id: null,             t: "कालिका उप-पुराण",   s: "कालिका-माहात्म्य",       bg: "#180810", fg: "#c06080", na: 1 },
+                        { id: null,             t: "महेश्वर उप-पुराण",  s: "महेश्वर-लीला",           bg: "#200606", fg: "#ff7060", na: 1 },
+                        { id: null,             t: "साम्ब उप-पुराण",    s: "सूर्य-उपासना",           bg: "#201808", fg: "#e0a040", na: 1 },
+                        { id: null,             t: "सौर उप-पुराण",      s: "सूर्य-महिमा",            bg: "#261c04", fg: "#ffc840", na: 1 },
+                        { id: null,             t: "पराशर उप-पुराण",    s: "पराशर मुनि प्रणीत",      bg: "#0a1a10", fg: "#60c080", na: 1 },
+                        { id: null,             t: "मारीच उप-पुराण",    s: "मारीच-प्रणीत",           bg: "#181818", fg: "#a0a0a0", na: 1 },
+                        { id: null,             t: "भार्गव उप-पुराण",   s: "भृगु-वंश-वर्णन",         bg: "#1e1004", fg: "#d08040", na: 1 }
+                    ]
+                },
+                itihas: {
+                    desc: "रामायण और महाभारत हिन्दू धर्म के दो महाकाव्य हैं। ये केवल कथाएँ नहीं — जीवन-दर्शन, नीति, प्रेम और धर्म का सम्पूर्ण ज्ञान इनमें समाहित है।",
+                    books: [
+                        {
+                            id: "valmiki",
+                            t: "वाल्मीकि रामायण",
+                            s: "७ काण्ड · २४,०००+ श्लोक",
+                            bg: "#2a0806",
+                            fg: "#ff8840"
+                        },
+                        {
+                            id: "ramcharitmanas",
+                            t: "रामचरितमानस",
+                            s: "तुलसीदास · अवधी भाषा",
+                            bg: "#1c1006",
+                            fg: "#d4a030"
+                        },
+                        {
+                            id: "aadhyatma_ramayan",
+                            t: "अध्यात्मरामायण",
+                            s: "ब्रह्माण्डपुराणान्तर्गत · ७१ खण्ड",
+                            bg: "#200404",
+                            fg: "#ff9060"
+                        },
+                        {
+                            id: "mahabharat",
+                            t: "संक्षिप्त महाभारत",
+                            s: "गीताप्रेस संस्करण",
+                            bg: "#1e0a00",
+                            fg: "#ffaa40"
+                        },
+                        {
+                            id: "mahabharat_full",
+                            t: "महाभारत पूर्ण",
+                            s: "१८ पर्व · दस लाख श्लोक",
+                            bg: "#160a00",
+                            fg: "#ff8030"
+                        },
+                        {
+                            id: "valmiki_ramayan",
+                            t: "श्रीमद्वाल्मीकीय रामायण",
+                            s: "परिष्कृत संस्करण · सम्पूर्ण मूल पाठ",
+                            bg: "#240a04",
+                            fg: "#ffa070"
+                        },
+                        { id: "puran_harivansh", t: "श्रीहरिवंशपुराण", s: "महाभारत-खिलभाग · हरिवंश-विष्णु-भविष्यपर्व", bg: "#0a1030", fg: "#6080ff" },
+                        { id: "nal_damayanti", t: "नल-दमयन्ती", s: "महाभारत · वनपर्वकी आख्यायिका", bg: "#1a1206", fg: "#e0b060" },
+                        { id: "kavitavali", t: "कवितावली", s: "तुलसीदासजी · सप्तकाण्ड पद्यबद्ध रामकथा", bg: "#1c0a04", fg: "#ff9860" },
+                        { id: "gitavali", t: "गीतावली", s: "तुलसीदासजी · सप्तकाण्ड गेय रामकथा", bg: "#06101e", fg: "#60a0ff" }
+                    ]
+                },
+                gita: {
+                    desc: "गीता भगवान का साक्षात् उपदेश है। श्रीमद्भगवद्गीता इनमें सर्वोच्च है। गीता-संग्रहमें पच्चीस विभिन्न गीता-ग्रन्थों का सानुवाद संकलन है — प्रत्येक गीता अपने विशेष दर्शन के साथ जीवन-पथ प्रकाशित करती है।",
+                    books: [
+                        {
+                            id: "श्रीमद्भगवद्‍गीतासुगमपाठ",
+                            t: "श्रीमद्भगवद्‍गीता",
+                            s: "१८ अध्याय · ७०० श्लोक",
+                            bg: "#061e28",
+                            fg: "#40e0c0"
+                        },
+                        {
+                            id: "gita_darpan",
+                            t: "गीता दर्पण",
+                            s: "स्वामी रामसुखदासजी · गीताके विषयोंका विवेचनात्मक संकलन",
+                            bg: "#061e1e",
+                            fg: "#40d0d0"
+                        },
+                        {
+                            id: "gita_shankarbhashya",
+                            t: "श्रीमद्भगवद्गीता शांकरभाष्य",
+                            s: "आद्य शंकराचार्यकृत भाष्य · हिन्दी अनुवाद सहित",
+                            bg: "#141428",
+                            fg: "#9090ff"
+                        },
+                        {
+                            id: "gita_padached",
+                            t: "श्रीमद्भगवद्गीता (पदच्छेद)",
+                            s: "तत्त्वविवेचनी · शब्दशः अन्वय-अर्थ सहित",
+                            bg: "#1e1406",
+                            fg: "#ffb340"
+                        },
+                        {
+                            id: "gita_ashtavakra",
+                            t: "अष्टावक्र गीता",
+                            s: "अद्वैत का शिखर · २० अध्याय",
+                            bg: "#0a1628",
+                            fg: "#60b0ff"
+                        },
+                        { id: "gita_srirama", t: "श्रीराम गीता", s: "उत्तरकाण्ड", bg: "#280c06", fg: "#ff9050" },
+                        { id: "गणेशगीता", t: "गणेश गीता", s: "गणेश-पुराण-जात", bg: "#1c1006", fg: "#d0a030" },
+                        { id: "परमहंसगीता", t: "परमहंस गीता", s: "भागवत एकादश स्कन्ध", bg: "#061e12", fg: "#40ee80" },
+                        { id: "भिक्षुगीता", t: "भिक्षु गीता", s: "मनोजय का उपाय", bg: "#180818", fg: "#d060e0" },
+                        { id: "षड्जगीता", t: "षड्ज गीता", s: "षड्ज राजाको उपदेश", bg: "#0a1e10", fg: "#60ffb0" },
+                        { id: "पिंगलागीता", t: "पिंगला गीता", s: "वेश्याका वैराग्य", bg: "#28081e", fg: "#ff80c0" },
+                        { id: "शम्पाकगीता", t: "शम्पाक गीता", s: "शम्पाकका उपदेश", bg: "#1a1008", fg: "#ffb060" },
+                        { id: "मङ्किगीता", t: "मङ्कि गीता", s: "मङ्कि मुनिका उपदेश", bg: "#1e1408", fg: "#ffcc60" },
+                        { id: "आजगरगीता", t: "आजगर गीता", s: "अजगर-वृत्ति दर्शन", bg: "#0a1a0a", fg: "#80ff80" },
+                        { id: "हारीतगीता", t: "हारीत गीता", s: "हारीत मुनिका उपदेश", bg: "#061810", fg: "#60e8a0" },
+                        { id: "वृत्रगीता", t: "वृत्र गीता", s: "वृत्रासुरका वैराग्य", bg: "#200808", fg: "#ff8060" },
+                        { id: "पुत्रगीता", t: "पुत्र गीता", s: "पितृ-पुत्र संवाद", bg: "#081428", fg: "#60b0ff" },
+                        { id: "कामगीता", t: "काम गीता", s: "कामदेवका उपदेश", bg: "#200618", fg: "#ff70c0" },
+                        { id: "यमगीता-1", t: "यमगीता (१)", s: "यमराजका उपदेश · प्रथम", bg: "#1a0a0a", fg: "#ff6060" },
+                        { id: "यमगीता-2", t: "यमगीता (२)", s: "यमराजका उपदेश · द्वितीय", bg: "#220808", fg: "#ff7070" },
+                        { id: "हंसगीता-1", t: "हंसगीता (१)", s: "हंसरूप भगवान् · प्रथम", bg: "#101828", fg: "#a0c8ff" },
+                        {
+                            id: "हंसगीता-2",
+                            t: "हंसगीता (२)",
+                            s: "हंसरूप भगवान् · द्वितीय",
+                            bg: "#0c1830",
+                            fg: "#80b0ff"
+                        },
+                        { id: "नारदगीता", t: "नारद गीता", s: "नारदजीका ज्ञानोपदेश", bg: "#1e1a06", fg: "#ffe060" },
+                        { id: "उत्तरगीता", t: "उत्तर गीता", s: "अर्जुनको पुन: उपदेश", bg: "#061e20", fg: "#40e0d0" },
+                        {
+                            id: "रामगीता-1",
+                            t: "रामगीता (१)",
+                            s: "श्रीरामजीका उपदेश · प्रथम",
+                            bg: "#280e06",
+                            fg: "#ff9060"
+                        },
+                        {
+                            id: "रामगीता-2",
+                            t: "रामगीता (२)",
+                            s: "श्रीरामजीका उपदेश · द्वितीय",
+                            bg: "#301006",
+                            fg: "#ffa060"
+                        },
+                        { id: "भगवतीगीता", t: "भगवती गीता", s: "देवीका ज्ञानोपदेश", bg: "#220828", fg: "#ff80e0" },
+                        {
+                            id: "अवधूतगीता-1",
+                            t: "अवधूतगीता (१)",
+                            s: "दत्तात्रेय · अद्वैत · प्रथम",
+                            bg: "#160828",
+                            fg: "#c080ff"
+                        },
+                        {
+                            id: "अवधूतगीता-2",
+                            t: "अवधूतगीता (२)",
+                            s: "दत्तात्रेय · अद्वैत · द्वितीय",
+                            bg: "#1a0a30",
+                            fg: "#b070ff"
+                        },
+                        {
+                            id: "जीवन्मुक्तगीता",
+                            t: "जीवन्मुक्त गीता",
+                            s: "जीवन्मुक्तिका मार्ग",
+                            bg: "#081e18",
+                            fg: "#40ffcc"
+                        },
+                        { id: "gajalgita", t: "गजल गीता", s: "गजल-शैलीमें कृष्णार्जुन-संवाद", bg: "#1e0810", fg: "#ff70a0" },
+                        { id: "gita_sangrah", t: "गीता-संग्रह", s: "पच्चीस गीता-ग्रन्थोंका सानुवाद संकलन · सचित्र", bg: "#141428", fg: "#9090ff" },
+                        { id: "shri_krishna_vigyan", t: "श्रीकृष्ण विज्ञान", s: "श्रीमद्भगवद्गीताका सार-विवेचन", bg: "#0a1830", fg: "#70a0ff" }
+                    ]
+                },
+                vedant: {
+                    desc: "वेदान्त दर्शन के ग्रंथ आत्मा और ब्रह्म के अद्वैत सत्य का निरूपण करते हैं। शंकराचार्य ने इन ग्रंथों की अद्वैत-दृष्टि से व्याख्या की है।",
+                    books: [
+                        {
+                            id: "vedant_ब्रह्मसूत्र",
+                            t: "ब्रह्मसूत्र",
+                            s: "वेदांत का आधार",
+                            bg: "#0a1830",
+                            fg: "#60a8ff"
+                        },
+                        {
+                            id: "Vedant_vivekachudamani",
+                            t: "विवेकचूडामणि",
+                            s: "शंकराचार्य · अद्वैत",
+                            bg: "#102008",
+                            fg: "#80e840"
+                        },
+                        { id: "vivek_chudamani", t: "विवेक-चूडामणि (मुनिलाल अनुवाद)", s: "शंकराचार्य · अद्वैत · हिन्दी-अनुवादसहित", bg: "#0c1c10", fg: "#70e090" },
+                        { id: "vedant_atmabodha", t: "आत्मबोध", s: "शंकराचार्य रचित", bg: "#201806", fg: "#d0a030" },
+                        {
+                            id: "पातञ्जलयोगदर्शन",
+                            t: "पातञ्जल योगदर्शन",
+                            s: "१९६ सूत्र · अष्टांग",
+                            bg: "#061818",
+                            fg: "#40e0c0"
+                        },
+                        { id: "shankarbhashya", t: "शांकरभाष्य", s: "उपनिषद् भाष्य", bg: "#180610", fg: "#e060c0" },
+                        { id: "साधक-संजीवनी", t: "साधक-संजीवनी", s: "गीता की व्याख्या", bg: "#0c0c20", fg: "#8080ff" }
+                    ]
+                },
+                stotra: {
+                    desc: "स्तोत्र एवं भजन भक्ति की सरिता हैं। देवताओं की स्तुति के ये काव्य-रत्न और गेय पद मन को शान्ति और आत्मा को उन्नति प्रदान करते हैं।",
+                    books: [
+                        {
+                            id: "durga_saptasahi",
+                            t: "दुर्गा सप्तशती",
+                            s: "७०० श्लोक · देवी-माहात्म्य",
+                            bg: "#280820",
+                            fg: "#ff60e0"
+                        },
+                        {
+                            id: "स्तोत्ररत्नावली",
+                            t: "स्तोत्ररत्नावली",
+                            s: "विविध स्तोत्र-संग्रह",
+                            bg: "#1c1006",
+                            fg: "#d0a030"
+                        },
+                        { id: "nitya_puja", t: "नित्य पूजा", s: "दैनिक पूजन-विधि", bg: "#061808", fg: "#60ee80" },
+                        {
+                            id: "bhaktcharitavali",
+                            t: "भक्त चरितावली",
+                            s: "भक्तों की जीवन-कथाएँ",
+                            bg: "#100820",
+                            fg: "#b080ff"
+                        },
+                        { grp: "🙏 स्तोत्र" },
+                        { id: "durga_saptashati", t: "श्रीदुर्गासप्तशती", s: "देवी-माहात्म्य · सचित्र संस्करण", bg: "#240818", fg: "#ff70d0" },
+                        { id: "devi_stotra_ratnakar", t: "देवीस्तोत्ररत्नाकर", s: "देवी-स्तोत्र संकलन", bg: "#1e0a1e", fg: "#f070f0" },
+                        { id: "ganesh_stotra_ratnakar", t: "गणेशस्तोत्ररत्नाकर", s: "गणेश-स्तोत्र संकलन", bg: "#1e1206", fg: "#ffb050" },
+                        { id: "lalita_sahasranama_stotram", t: "श्रीललितासहस्रनामस्तोत्रम्", s: "देवी-सहस्रनाम", bg: "#20081a", fg: "#ff80d0" },
+                        { id: "narayan_kavach", t: "श्रीनारायणकवच", s: "भागवत · रक्षा-स्तोत्र", bg: "#061a2a", fg: "#60b0ff" },
+                        { id: "sahasranam_vishnu", t: "श्रीविष्णुसहस्रनामस्तोत्रम्", s: "विष्णु-सहस्रनाम", bg: "#081e30", fg: "#60c0ff" },
+                        { id: "sahasranama_stotra_sangrah", t: "सहस्रनामस्तोत्रसंग्रह", s: "विविध सहस्रनाम-संकलन", bg: "#1a1006", fg: "#e0a850" },
+                        { id: "santan_gopal_stotra", t: "संतानगोपालस्तोत्र", s: "संतानप्राप्तिके शास्त्रीय उपाय · सचित्र", bg: "#160a20", fg: "#c080ff" },
+                        { id: "shatnaam_stotra_sangrah", t: "शतनामस्तोत्रसंग्रह", s: "शतनाम-स्तोत्र संकलन", bg: "#1c0e08", fg: "#e0a060" },
+                        { id: "vishnu_sahasranama_shankarbhashya", t: "श्रीविष्णुसहस्रनाम", s: "आद्यशंकराचार्यकृत भाष्य · हिन्दी अनुवादसहित", bg: "#06103a", fg: "#5090ff" },
+                        { id: "shiv_sahasranama_stotram", t: "श्रीशिवसहस्रनामस्तोत्रम्", s: "महाभारतान्तर्गत शिव-सहस्रनाम", bg: "#200606", fg: "#ff6050" },
+                        { id: "shiv_mahimna_stotra", t: "शिवमहिम्नः स्तोत्र", s: "शिव-स्तुति", bg: "#1a0606", fg: "#ff7050" },
+                        { id: "vaidik_sukt_sangrah", t: "वैदिक सूक्त संग्रह", s: "वेद-सूक्तों का संकलन · सचित्र", bg: "#141c06", fg: "#c0e050" },
+                        { id: "panchdev_atharvashirsh_sangrah", t: "पंचदेव अथर्वशीर्ष संग्रह", s: "पंचदेव-अथर्वशीर्ष · पुरुषसूक्त · वैदिक आरती", bg: "#1e1a06", fg: "#e0d050" },
+                        { grp: "🎶 भजन एवं चालीसा" },
+                        { id: "bhajan_sangrah", t: "भजन-संग्रह", s: "गेय भजन-संकलन", bg: "#200e18", fg: "#ff90d0" },
+                        { id: "radha_madhav_ras_sudha", t: "श्रीराधा-माधव-रस-सुधा", s: "षोडशगीत · हिंदी अनुवादसहित", bg: "#1e0810", fg: "#ff70a0" },
+                        { id: "virah_padavali", t: "विरह-पदावली", s: "सूरदासजीरचित · गोपी-विरहके पद", bg: "#100a1e", fg: "#a080ff" },
+                        { id: "shri_krishna_bal_madhuri", t: "श्रीकृष्ण बाल माधुरी", s: "बाल-लीलाके पद", bg: "#181008", fg: "#e0a860" },
+                        { id: "parvati_mangal", t: "पार्वती मंगल", s: "शिव-पार्वती विवाह-प्रसंग", bg: "#1a0818", fg: "#e070d0" },
+                        { id: "chetavani_pad_sangrah", t: "चेतावनी पद-संग्रह", s: "हिन्दी एवं राजस्थानी बोलीमें चेतावनीके पद", bg: "#0e1006", fg: "#c0d060" },
+                        { id: "prarthana", t: "प्रार्थना", s: "नित्य प्रार्थना-संग्रह", bg: "#061422", fg: "#60d0ff" },
+                        { id: "dohavali", t: "दोहावली", s: "भक्ति-दोहे", bg: "#1a1206", fg: "#e0b050" },
+                        { id: "sur_vinay_patrika", t: "सूर-विनय-पत्रिका", s: "सूरदासजी · विनय-पद-संग्रह", bg: "#160c1e", fg: "#c090ff" },
+                        { id: "Chalisa_hanuman_lal", t: "श्रीहनुमानचालीसा", s: "लाल रंग में", bg: "#280604", fg: "#ff7040" },
+                        { id: "Chalisa_shiva", t: "श्रीशिवचालीसा", s: "शिव-स्तुति चालीसा", bg: "#0e1a1e", fg: "#60d0d0" },
+                        { id: "Chalisa_durga_vindhyeshwari", t: "श्रीदुर्गाचालीसा एवं श्रीविन्ध्येश्वरीचालीसा", s: "देवी-स्तुति चालीसा", bg: "#22081a", fg: "#ff80c0" }
+                    ]
+                },
+                satsang_shiksha: {
+                    desc: "सत्संग एवं जीवन शिक्षा के ग्रंथ जीवन को सन्मार्ग पर ले जाने वाले उपदेश, प्रवचन, नीति-वचन और महापुरुषों की जीवन-गाथाएँ प्रस्तुत करते हैं — गृहस्थ-धर्म से लेकर परमार्थ तक का पथ-प्रदर्शन।",
+                    books: [
+                        { id: "vidura_niti", t: "विदुरनीति", s: "महाभारत · विदुरजीका नीति-उपदेश", bg: "#1c1404", fg: "#e0b040" },
+                        { id: "sachchi_salah", t: "सच्ची सलाह", s: "जीवनोपयोगी उपदेश", bg: "#0c1c10", fg: "#70e090" },
+                        { id: "manushya_ka_param_kartavya", t: "मनुष्यका परम कर्तव्य", s: "जीवन-कर्तव्य बोध", bg: "#141c06", fg: "#c0e050" },
+                        { id: "grihasth_mein_kaise_rahen", t: "गृहस्थमें कैसे रहें?", s: "गृहस्थ-धर्म मार्गदर्शन", bg: "#1a1006", fg: "#e0a050" },
+                        { id: "dampatya_jeevan_ka_adarsh", t: "दाम्पत्य-जीवनका आदर्श", s: "श्रीहनुमानप्रसादजी पोद्दार · सुखी गृहस्थका मार्ग", bg: "#1c0a1c", fg: "#e080d0" },
+                        { id: "badon_ke_jeevan_se_shiksha", t: "बड़ोंके जीवनसे शिक्षा", s: "महापुरुषोंकी जीवन-गाथाएँ", bg: "#0e1a10", fg: "#80d090" },
+                        { id: "navadha_bhakti", t: "नवधा भक्ति", s: "भक्तिके नौ प्रकार", bg: "#1a0c06", fg: "#e09050" },
+                        { id: "gita_mahatmya_kahaniyan", t: "श्रीमद्भगवद्गीता माहात्म्यकी कहानियाँ", s: "गीता-पाठके फलस्वरूप घटित प्रसंग", bg: "#061a1c", fg: "#50d0e0" },
+                        { id: "striyon_ke_liye_kartavya_shiksha", t: "स्त्रियोंके लिये कर्तव्यशिक्षा", s: "नारी-धर्म शिक्षा", bg: "#20081a", fg: "#ff80d0" },
+                        { id: "sukhi_bannay_ke_upay", t: "सुखी बननेके उपाय", s: "सुखी जीवनके सूत्र", bg: "#061a1c", fg: "#60d8e0" },
+                        { id: "kalyankari_pravachan", t: "कल्याणकारी प्रवचन", s: "आत्म-कल्याण प्रवचन-संकलन", bg: "#1e1004", fg: "#e0a030" },
+                        { id: "paralok_aur_punarjanma_ki_satya_ghatnayen", t: "परलोक और पुनर्जन्मकी सत्य घटनाएँ", s: "अनुभव-आधारित सत्य कथाएँ", bg: "#100818", fg: "#b080ff" },
+                        { id: "dhyanavastha_prabhu_se_vartalap", t: "ध्यानावस्थामें प्रभुसे वार्तालाप", s: "आध्यात्मिक अनुभव-संवाद", bg: "#08181e", fg: "#60c8e0" },
+                        { id: "shri_radha_madhav_chintan", t: "श्रीराधा-माधव-चिन्तन", s: "राधा-कृष्ण भक्ति-चिन्तन · सारणी सहित", bg: "#1e0818", fg: "#ff80d0" },
+                        { id: "chaitanya_charitavali", t: "श्रीश्रीचैतन्य-चरितावली", s: "चैतन्य महाप्रभुकी जीवन-गाथा", bg: "#141006", fg: "#d8b060" },
+                        { id: "gita_ke_param_pracharak", t: "गीताके परम प्रचारक", s: "गीता-प्रचारकोंकी जीवन-गाथाएँ · सचित्र", bg: "#061e28", fg: "#40e0c0" },
+                        { id: "gita_prabodhini", t: "गीता-प्रबोधनी", s: "गीता-तत्त्व सुबोध व्याख्या", bg: "#081e10", fg: "#60e090" },
+                        { id: "garga_samhita", t: "श्रीगर्ग-संहिता", s: "गर्गाचार्यकृत कृष्ण-लीला वर्णन", bg: "#1c0a06", fg: "#e08050" },
+                        { id: "nityakarma_pujaprakash", t: "नित्यकर्म-पूजाप्रकाश", s: "दैनिक पूजा-विधि · सचित्र", bg: "#06181c", fg: "#50c0d0" },
+                        { id: "nityakarma_prayog", t: "नित्यकर्म-प्रयोग", s: "दैनिक कर्मकाण्ड-प्रयोग", bg: "#08201c", fg: "#50d0b0" },
+                        { id: "laghusiddhantakaumudi", t: "लघुसिद्धान्तकौमुदी", s: "संस्कृत व्याकरण शिक्षा · सचित्र", bg: "#1a1a06", fg: "#d8d050" },
+                        { id: "ramagya_prashna", t: "रामाज्ञा-प्रश्न", s: "तुलसीदासजी · प्रश्नफल विचार · सचित्र", bg: "#0c1e30", fg: "#60a8ff" },
+                        { id: "uddhar_kaise_ho", t: "उद्धार कैसे हो?", s: "जीवनोद्धारके उपाय · पत्र-संकलन", bg: "#1a0c1e", fg: "#c880ff" },
+                        { id: "sadhan_path", t: "साधन-पथ", s: "परमार्थ-ग्रन्थमाला · साधनाका मार्गदर्शन", bg: "#06201a", fg: "#50e0b0" },
+                        { id: "vrat_parichay", t: "व्रत-परिचय", s: "मासानुसार व्रत-विधि परिचय", bg: "#1e1404", fg: "#e0b840" },
+                        { id: "ekadashi_vrat_ka_mahatmya", t: "एकादशी व्रतका माहात्म्य", s: "चौबीस एकादशियोंकी कथाएँ · सचित्र", bg: "#1a0e04", fg: "#e0a050" },
+                        { id: "vaishakh_kartik_magh_maas_mahatmya", t: "वैशाख-कार्तिक-माघ-मास-माहात्म्य", s: "पद्म व स्कन्दपुराणके अनुसार तीन पुण्य मासोंकी महिमा", bg: "#0e1a04", fg: "#a0d060" },
+                        { id: "sandhya_gayatri_brahmacharya", t: "सन्ध्या, सन्ध्या-गायत्रीका महत्त्व और ब्रह्मचर्य", s: "नित्यकर्म · सन्ध्योपासन-विधि", bg: "#06141e", fg: "#50b0e0" },
+                        { id: "sandhyopasana_vidhi", t: "संध्योपासनविधि और तर्पण एवं बलिवैश्वदेव विधि", s: "मन्त्रानुवादसहित · सचित्र", bg: "#04181c", fg: "#40c0d0" },
+                        { id: "brahmacharya", t: "ब्रह्मचर्य", s: "ब्रह्मचर्यकी महिमा एवं साधन", bg: "#0e1a1e", fg: "#60c8d8" },
+                        { id: "antyakarma_shraddha_prakash", t: "अन्त्यकर्म श्राद्धप्रकाश", s: "सम्पूर्ण श्राद्धप्रक्रियाका निरूपण · सचित्र", bg: "#1c1004", fg: "#d09040" },
+                        { id: "satsang_ke_bikhre_moti", t: "सत्संग के बिखरे मोती", s: "सत्संग-वचनोंका संकलन", bg: "#100a1c", fg: "#a080e0" },
+                        { id: "premi_bhakt", t: "प्रेमी भक्त", s: "भक्त बिल्वमंगल, जयदेव, रूप-सनातन आदिकी जीवन-गाथाएँ", bg: "#180c1a", fg: "#d080e0" },
+                        { id: "shri_prem_bhakti_prakash", t: "श्रीप्रेमभक्तिप्रकाश", s: "जीवात्मा-परमात्माका प्रेम-संवाद", bg: "#1e0a0e", fg: "#ff7090" },
+                        { id: "pita_ki_seekh", t: "पिता की सीख", s: "हिन्दी-अंग्रेजी · पिता-पुत्र संवादमें स्वास्थ्य-शिक्षा", bg: "#0a1e14", fg: "#60e0a0" },
+                        { id: "shiv_smaran", t: "शिव स्मरण", s: "भगवान् शिवके दस नामोंकी दस प्रेरक कथाएँ", bg: "#1a0606", fg: "#ff6050" },
+                        { id: "manav_jeevan_ka_lakshya", t: "मानव जीवन का लक्ष्य", s: "भगवत्प्राप्तिका मार्ग", bg: "#100a1c", fg: "#a080e0" },
+                        { id: "bhakt_narsingh_mehta", t: "भक्त नरसिंह मेहता", s: "गुजरातके आदि भक्त-कविकी जीवन-गाथा", bg: "#1c1206", fg: "#e0a840" },
+                        { id: "mahatvapurna_prashnottar", t: "महत्त्वपूर्ण प्रश्नोत्तर", s: "लोक-परलोकके सुधारसम्बन्धी प्रश्नोत्तर", bg: "#061a1e", fg: "#50c0d8" },
+                        { id: "tattva_vichar", t: "तत्त्वविचार", s: "आत्म-तत्त्वका विवेचन", bg: "#0a1006", fg: "#a0c060" },
+                        { id: "sanskar_prakash", t: "संस्कारप्रकाश", s: "षोडश संस्कार-विधि · सचित्र", bg: "#0c1e18", fg: "#50d0a0" },
+                        { id: "kya_guru_bina_mukti_nahi", t: "क्या गुरु बिना मुक्ति नहीं?", s: "स्वामी रामसुखदासजी · गुरु-तत्त्व विवेचन", bg: "#180c1e", fg: "#b880ff" },
+                        { id: "gita_madhurya", t: "गीता माधुर्य", s: "स्वामी रामसुखदासजी · अध्यायानुसार गीता-व्याख्या", bg: "#061e1a", fg: "#50e0c0" },
+                        { id: "sadhan_sudha_nidhi", t: "साधन-सुधा-निधि", s: "स्वामी रामसुखदासजी · प्रवचन-संकलन", bg: "#1e0c06", fg: "#ff9860" },
+                        { id: "naam_jap_ki_mahima", t: "नाम-जपकी महिमा", s: "स्वामी रामसुखदासजी · भगवन्नाम-जपका माहात्म्य", bg: "#06181e", fg: "#50c0e0" },
+                        { id: "saar_sangrah", t: "सार-संग्रह", s: "स्वामी रामसुखदासजी · गीता-रामायण-भागवत-महाभारतका सार", bg: "#1a0e04", fg: "#e0a050" },
+                        { id: "amrit_kan", t: "अमृत-कण", s: "श्रीहनुमानप्रसादजी पोद्दार · सुभाषित-संकलन", bg: "#140c1e", fg: "#b090ff" },
+                        { id: "shri_bhagavannam_chintan", t: "श्रीभगवन्नाम-चिन्तन", s: "भगवन्नामकी महिमा एवं चिन्तन", bg: "#1e1206", fg: "#e0b060" }
+                    ]
+                }
+            };
+
+            /* ============================================================
+   SEARCH — Devanagari → Latin transliteration so book titles can be
+   found by typing in English (e.g. "kaushitaki", "brihadaranyaka")
+============================================================ */
+            const DEVANAGARI_VOWELS = {
+                "अ": "a", "आ": "a", "इ": "i", "ई": "i", "उ": "u", "ऊ": "u",
+                "ऋ": "ri", "ॠ": "ri", "ऌ": "li", "ॡ": "li",
+                "ए": "e", "ऐ": "ai", "ओ": "o", "औ": "au", "ॐ": "om",
+            };
+            const DEVANAGARI_MATRAS = {
+                "ा": "a", "ि": "i", "ी": "i", "ु": "u", "ू": "u",
+                "ृ": "ri", "ॄ": "ri", "ॢ": "li", "ॣ": "li",
+                "े": "e", "ै": "ai", "ो": "o", "ौ": "au",
+            };
+            const DEVANAGARI_CONSONANTS = {
+                "क": "ka", "ख": "kha", "ग": "ga", "घ": "gha", "ङ": "nga",
+                "च": "cha", "छ": "chha", "ज": "ja", "झ": "jha", "ञ": "nya",
+                "ट": "ta", "ठ": "tha", "ड": "da", "ढ": "dha", "ण": "na",
+                "त": "ta", "थ": "tha", "द": "da", "ध": "dha", "न": "na",
+                "प": "pa", "फ": "pha", "ब": "ba", "भ": "bha", "म": "ma",
+                "य": "ya", "र": "ra", "ल": "la", "व": "va",
+                "श": "sha", "ष": "sha", "स": "sa", "ह": "ha", "ळ": "la",
+            };
+            const DEVANAGARI_DIGITS = "०१२३४५६७८९";
+
+            function transliterate(str) {
+                if (!str) return "";
+                const chars = Array.from(str);
+                let out = "";
+                for (let i = 0; i < chars.length; i++) {
+                    const c = chars[i],
+                        next = chars[i + 1];
+                    if (DEVANAGARI_CONSONANTS[c]) {
+                        const base = DEVANAGARI_CONSONANTS[c].slice(0, -1);
+                        if (next === "्") {
+                            out += base;
+                            i++;
+                        } else if (next && DEVANAGARI_MATRAS[next]) {
+                            out += base + DEVANAGARI_MATRAS[next];
+                            i++;
+                        } else {
+                            out += base + "a";
+                        }
+                    } else if (DEVANAGARI_VOWELS[c]) {
+                        out += DEVANAGARI_VOWELS[c];
+                    } else if (c === "ं") {
+                        out += "n";
+                    } else if (c === "ः") {
+                        out += "h";
+                    } else if (c === "ँ" || c === "ऽ" || c === "्") {
+                        /* nasalisation / avagraha / stray virama — skip */
+                    } else if (c === "‍" || c === "‌") {
+                        /* zero-width joiner/non-joiner used for conjunct rendering — skip */
+                    } else if (DEVANAGARI_DIGITS.includes(c)) {
+                        out += DEVANAGARI_DIGITS.indexOf(c);
+                    } else if (c >= "ऀ" && c <= "ॿ") {
+                        /* other devanagari punctuation (॰ etc.) — skip */
+                    } else {
+                        out += c;
                     }
-                };
+                }
+                return out.toLowerCase();
+            }
 
-                cards.forEach((card, index) => {
-                    card.addEventListener("click", () => {
-                        const existing = document.querySelector(".card-detail");
-                        if (existing) existing.remove();
+            /* smooth over sandhi joins ("...opanishad" -> "...a upanishad") and
+               aspirate spelling variants ("chh" -> "ch") so common English
+               spellings of compound Sanskrit titles still match */
+            function normalizeForSearch(s) {
+                return s
+                    .replace(/opanishad/g, "a upanishad")
+                    .replace(/chh/g, "ch")
+                    .replace(/shri/g, "sri");
+            }
 
-                        const screenWidth = window.innerWidth;
-                        const perRow = screenWidth < 768 ? 2 : 3;
-                        const rowEndIndex = index + (perRow - (index % perRow)) - 1;
-                        const lastCard = cards[Math.min(rowEndIndex, cards.length - 1)];
-
-                        const idBase = card.getAttribute("data-id");
-                        const templateEl = document.getElementById(`${idBase}-template`);
-                        if (!templateEl) return;
-
-                        const wrapper = document.createElement("div");
-                        wrapper.className = "col-12 card-detail";
-                        wrapper.innerHTML = '<div class="card p-4 bg-light border">' + templateEl.innerHTML + "</div>";
-
-                        lastCard.parentElement.insertBefore(wrapper, lastCard.nextSibling);
-
-                        // ✅ Initialize Swipers in the new content
-                        const swipers = wrapper.querySelectorAll(".swiper");
-                        swipers.forEach((swiperEl) => {
-                            new Swiper(swiperEl, config);
+            /* flat, searchable index of every book across all categories */
+            let SEARCH_INDEX = null;
+            function buildSearchIndex() {
+                if (SEARCH_INDEX) return SEARCH_INDEX;
+                SEARCH_INDEX = [];
+                Object.keys(LIBRARY).forEach((catId) => {
+                    LIBRARY[catId].books.forEach((bk) => {
+                        if (!bk.t) return; // skip group-header markers
+                        /* "en" is an optional manual alias for titles whose common
+                           English name diverges from a direct transliteration
+                           (e.g. "aurobindo" for अरविन्द, spelt very differently
+                           in English than the Sanskrit sounds out to) */
+                        const tEn = normalizeForSearch(transliterate(bk.t) + (bk.en ? " " + bk.en : ""));
+                        SEARCH_INDEX.push({
+                            bk,
+                            catId,
+                            tDeva: bk.t.toLowerCase(),
+                            sDeva: (bk.s || "").toLowerCase(),
+                            tEn,
+                            tEnFlat: tEn.replace(/\s+/g, ""),
                         });
                     });
                 });
+                return SEARCH_INDEX;
+            }
+
+            function searchBooks(query) {
+                const q = query.trim().toLowerCase();
+                if (!q) return [];
+                const qEn = normalizeForSearch(transliterate(q)),
+                    qEnFlat = qEn.replace(/\s+/g, "");
+                /* English/romanized matching is checked only against the title
+                   (not the subtitle) — subtitles carry generic Sanskrit words
+                   (e.g. कथा "story") whose transliteration would otherwise
+                   false-match unrelated books. Devanagari subtitle matching
+                   stays on, since an exact Devanagari substring is precise. */
+                return buildSearchIndex().filter(
+                    (e) =>
+                        e.tDeva.includes(q) ||
+                        e.sDeva.includes(q) ||
+                        e.tEn.includes(qEn) ||
+                        qEn.includes(e.tEn) ||
+                        e.tEnFlat.includes(qEnFlat) ||
+                        qEnFlat.includes(e.tEnFlat)
+                );
+            }
+
+            function renderSearchResults(query) {
+                const wrap = document.getElementById("search-results-wrap"),
+                    grid = document.getElementById("search-results-grid"),
+                    count = document.getElementById("search-results-count");
+                if (!query.trim()) {
+                    wrap.style.display = "none";
+                    grid.innerHTML = "";
+                    return;
+                }
+                const matches = searchBooks(query);
+                wrap.style.display = "block";
+                count.textContent = matches.length ? `${matches.length} ग्रंथ मिले` : "";
+                if (!matches.length) {
+                    grid.innerHTML = `<div class="search-results-empty">कोई ग्रंथ नहीं मिला — कृपया अन्य शब्द आज़माएँ</div>`;
+                    return;
+                }
+                grid.innerHTML = matches
+                    .map(({ bk }) => {
+                        const cover = mkCover(bk),
+                            cls = "bk" + (bk.na ? " dim" : ""),
+                            tag = bk.na ? '<span class="bk-cs">शीघ्र आएगा</span>' : "";
+                        return bk.id
+                            ? `<a class="${cls}" href="book.html?${bk.id}"><div class="bk-cover"><img src="${cover}" alt="${bk.t}" loading="lazy"></div><div class="bk-name">${bk.t}</div><div class="bk-sub">${bk.s}</div>${tag}</a>`
+                            : `<div class="${cls}"><div class="bk-cover"><img src="${cover}" alt="${bk.t}" loading="lazy"></div><div class="bk-name">${bk.t}</div><div class="bk-sub">${bk.s}</div>${tag}</div>`;
+                    })
+                    .join("");
+            }
+
+            function initSearch() {
+                const input = document.getElementById("search-input");
+                input.addEventListener("input", () => renderSearchResults(input.value));
+            }
+
+            const QUOTES = [
+                {
+                    t: "सर्वे भवन्तु सुखिनः। सर्वे सन्तु निरामयाः।\nसर्वे भद्राणि पश्यन्तु। मा कश्चिद् दुःखभाग्भवेत्॥",
+                    s: "बृहदारण्यकोपनिषद्"
+                },
+                { t: "अहं ब्रह्मास्मि — मैं ब्रह्म हूँ।", s: "बृहदारण्यकोपनिषद् १.४.१०" },
+                { t: "तत् त्वम् असि — वह तुम ही हो।", s: "छान्दोग्योपनिषद् ६.८.७" },
+                { t: "योगः कर्मसु कौशलम् — कर्म में कुशलता ही योग है।", s: "श्रीमद्भगवद्‍गीता २.५०" },
+                { t: "सत्यमेव जयते नानृतम् — सत्य की ही जीत होती है।", s: "मुण्डकोपनिषद् ३.१.६" },
+                { t: "स्वाध्यायान्मा प्रमदः — अध्ययन में कभी प्रमाद मत करो।", s: "तैत्तिरीयोपनिषद्" },
+                {
+                    t: "एकं सद्विप्रा बहुधा वदन्ति — सत्य एक है, ज्ञानी उसे अनेक नामों से कहते हैं।",
+                    s: "ऋग्वेद १.१६४.४६"
+                },
+                { t: "कर्मण्येवाधिकारस्ते मा फलेषु कदाचन।", s: "श्रीमद्भगवद्‍गीता २.४७" },
+                { t: "आत्मा वा अरे द्रष्टव्यः — आत्मा को देखना चाहिए।", s: "बृहदारण्यकोपनिषद्" },
+                { t: "नायमात्मा बलहीनेन लभ्यः — आत्मा दुर्बल को नहीं मिलती।", s: "मुण्डकोपनिषद्" },
+                { t: "प्रज्ञानं ब्रह्म — ज्ञान ही ब्रह्म है।", s: "ऐतरेयोपनिषद् ३.३" },
+                { t: "नेह नानास्ति किञ्चन — यहाँ नानात्व कुछ भी नहीं है।", s: "कठोपनिषद्" }
+            ];
+
+            /* ============================================================
+   ASTRONOMY (simplified Jean Meeus)
+============================================================ */
+            function jdn(d) {
+                const y = d.getUTCFullYear(),
+                    m = d.getUTCMonth() + 1;
+                const day = d.getUTCDate() + d.getUTCHours() / 24 + d.getUTCMinutes() / 1440;
+                let Y = y,
+                    M = m;
+                if (M <= 2) {
+                    Y--;
+                    M += 12;
+                }
+                const A = Math.floor(Y / 100),
+                    B = 2 - A + Math.floor(A / 4);
+                return Math.floor(365.25 * (Y + 4716)) + Math.floor(30.6001 * (M + 1)) + day + B - 1524.5;
+            }
+            function n360(x) {
+                return ((x % 360) + 360) % 360;
+            }
+            function sunL(j) {
+                const n = j - 2451545,
+                    g = (n360(357.528 + 0.9856003 * n) * Math.PI) / 180;
+                return n360(280.46 + 0.9856474 * n + 1.915 * Math.sin(g) + 0.02 * Math.sin(2 * g));
+            }
+            function moonL(j) {
+                const n = j - 2451545,
+                    M = (n360(134.963 + 13.064993 * n) * Math.PI) / 180,
+                    F = (n360(93.272 + 13.22935 * n) * Math.PI) / 180;
+                return n360(
+                    218.316 +
+                        13.176396 * n +
+                        6.289 * Math.sin(M) -
+                        1.274 * Math.sin(2 * F - M) +
+                        0.658 * Math.sin(2 * F)
+                );
+            }
+            function getTithi(d) {
+                return Math.floor(n360(moonL(jdn(d)) - sunL(jdn(d))) / 12) + 1;
+            }
+            function getNaks(d) {
+                return Math.floor(n360(moonL(jdn(d))) / (360 / 27));
+            }
+            function getYoga(d) {
+                return Math.floor(n360(sunL(jdn(d)) + moonL(jdn(d))) / (360 / 27));
+            }
+            function getMasa(d) {
+                return Math.floor(sunL(jdn(d)) / 30) % 12;
+            }
+            /* Ekadasi names: [masa][0=Shukla, 1=Krishna] */
+            const EKADASI_NAMES = {
+                0: { 0: "कामदा एकादशी", 1: "पापमोचिनी एकादशी" },
+                1: { 0: "मोहिनी एकादशी", 1: "वरूथिनी एकादशी" },
+                2: { 0: "निर्जला एकादशी", 1: "अपरा एकादशी" },
+                3: { 0: "देवशयनी एकादशी", 1: "योगिनी एकादशी" },
+                4: { 0: "पुत्रदा एकादशी", 1: "कामिका एकादशी" },
+                5: { 0: "परिवर्तिनी एकादशी", 1: "अजा एकादशी" },
+                6: { 0: "पाशाङ्कुशा एकादशी", 1: "इन्दिरा एकादशी" },
+                7: { 0: "प्रबोधिनी एकादशी", 1: "रमा एकादशी" },
+                8: { 0: "मोक्षदा एकादशी", 1: "उत्पन्ना एकादशी" },
+                9: { 0: "पुत्रदा एकादशी", 1: "सफला एकादशी" },
+                10: { 0: "जया एकादशी", 1: "षट्तिला एकादशी" },
+                11: { 0: "आमलकी एकादशी", 1: "विजया एकादशी" }
+            };
+
+            /* Shivaratri names by masa (Krishna Chaturdashi = tithi 29) */
+            const SHIVRATRI_NAMES = {
+                0: "चैत्र शिवरात्रि",
+                1: "वैशाख शिवरात्रि",
+                2: "ज्येष्ठ शिवरात्रि",
+                3: "आषाढ़ शिवरात्रि",
+                4: "श्रावण शिवरात्रि",
+                5: "भाद्रपद शिवरात्रि",
+                6: "आश्विन शिवरात्रि",
+                7: "कार्तिक शिवरात्रि",
+                8: "मार्गशीर्ष शिवरात्रि",
+                9: "पौष शिवरात्रि",
+                10: "माघ शिवरात्रि",
+                11: "महाशिवरात्रि"
+            };
+
+            /* Sankashti Chaturthi names by masa (Krishna Chaturthi = tithi 19) */
+            const SANKASHTI_NAMES = {
+                0: "विकट संकष्टी",
+                1: "भालचन्द्र संकष्टी",
+                2: "वक्रतुण्ड संकष्टी",
+                3: "एकदन्त संकष्टी",
+                4: "कृष्णपिङ्गल संकष्टी",
+                5: "गजानन संकष्टी",
+                6: "हेरम्ब संकष्टी",
+                7: "विघ्नराज संकष्टी",
+                8: "अवनी संकष्टी",
+                9: "वरद संकष्टी",
+                10: "सङ्कटहर संकष्टी",
+                11: "द्विजप्रिय संकष्टी"
+            };
+
+            function nextTithiDate(from, target) {
+                const d = new Date(from);
+                // Normalize to 6 AM local (sunrise proxy) for consistent
+                // tithi determination — avoids showing different dates
+                // depending on what time of day the page is loaded.
+                d.setHours(6, 0, 0, 0);
+                for (let i = 0; i < 40; i++) {
+                    if (getTithi(d) === target) return new Date(d);
+                    d.setDate(d.getDate() + 1);
+                }
+                return null;
+            }
+            function nextEkadasi(from) {
+                const d = new Date(from);
+                d.setHours(6, 0, 0, 0);
+                for (let i = 0; i < 40; i++) {
+                    const t = getTithi(d);
+                    if (t === 11 || t === 26) return new Date(d);
+                    d.setDate(d.getDate() + 1);
+                }
+                return null;
+            }
+            /* User location — updated by geolocation */
+            let USER_LAT = 17.385; // fallback: Hyderabad
+            let USER_LNG = 78.486;
+
+            /*
+   USNO Sunrise/Sunset Algorithm
+   Source: https://edwilliams.org/sunrise_sunset_algorithm.htm
+   Returns local clock hours (float) for sunrise and sunset.
+*/
+            function sunriseSunset(date) {
+                const D2R = Math.PI / 180;
+                const R2D = 180 / Math.PI;
+                const lat = USER_LAT,
+                    lng = USER_LNG;
+                const utcOff = -date.getTimezoneOffset() / 60;
+
+                // Day of year
+                const start = new Date(date.getFullYear(), 0, 0);
+                const N = Math.floor((date - start) / 86400000);
+
+                const lngHour = lng / 15;
+
+                function calc(rising) {
+                    const t = N + ((rising ? 6 : 18) - lngHour) / 24;
+
+                    // Sun's mean anomaly
+                    const M = 0.9856 * t - 3.289;
+
+                    // Sun's true longitude
+                    let L = M + 1.916 * Math.sin(M * D2R) + 0.02 * Math.sin(2 * M * D2R) + 282.634;
+                    L = ((L % 360) + 360) % 360;
+
+                    // Right ascension
+                    let RA = R2D * Math.atan(0.91764 * Math.tan(L * D2R));
+                    RA = ((RA % 360) + 360) % 360;
+                    RA += Math.floor(L / 90) * 90 - Math.floor(RA / 90) * 90;
+                    RA /= 15;
+
+                    // Declination
+                    const sinDec = 0.39782 * Math.sin(L * D2R);
+                    const cosDec = Math.cos(Math.asin(sinDec));
+
+                    // Hour angle (zenith = 90°50' for sunrise/sunset)
+                    const cosH =
+                        (Math.cos(90.833 * D2R) - sinDec * Math.sin(lat * D2R)) / (cosDec * Math.cos(lat * D2R));
+                    if (cosH > 1 || cosH < -1) return null; // polar day/night
+
+                    let H = R2D * Math.acos(cosH);
+                    if (rising) H = 360 - H;
+                    H /= 15;
+
+                    // Local mean time
+                    const T = H + RA - 0.06571 * t - 6.622;
+
+                    // UTC → local
+                    return ((((T - lngHour) % 24) + 24) % 24) + utcOff;
+                }
+
+                return { sr: calc(true), ss: calc(false) };
+            }
+
+            /* ── MOON RISE / SET (Paul Schlyter lunar ephemeris + lat/lng) ──────────────
+   Uses the same USER_LAT / USER_LNG as the USNO sunrise algorithm.
+   Accurate to ±10–30 min for most dates/locations.
+─────────────────────────────────────────────────────────────────────────── */
+            function moonRiseSet(date) {
+                const D2R = Math.PI / 180,
+                    R2D = 180 / Math.PI;
+                const lat = USER_LAT,
+                    lng = USER_LNG;
+                const utcOff = -date.getTimezoneOffset() / 60;
+
+                // Days from J2000.0
+                const d =
+                    (Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) - Date.UTC(2000, 0, 1)) / 86400000;
+
+                // ── Moon orbital elements ──────────────────────────────────────────────
+                const N = (((125.1228 - 0.0529538083 * d) % 360) + 360) % 360; // ascending node lon
+                const w = (((318.0634 + 0.1643573223 * d) % 360) + 360) % 360; // arg of perigee
+                const e = 0.0549; // eccentricity
+                const a = 60.2666; // semi-major (earth radii)
+                let Mm = (((115.3654 + 13.0649929509 * d) % 360) + 360) % 360; // mean anomaly
+
+                // Eccentric anomaly (Newton–Raphson)
+                let E = Mm + R2D * e * Math.sin(Mm * D2R) * (1 + e * Math.cos(Mm * D2R));
+                for (let i = 0; i < 5; i++) E -= (E - R2D * e * Math.sin(E * D2R) - Mm) / (1 - e * Math.cos(E * D2R));
+
+                // Heliocentric rectangular
+                const xv = a * (Math.cos(E * D2R) - e);
+                const yv = a * Math.sqrt(1 - e * e) * Math.sin(E * D2R);
+                const v = R2D * Math.atan2(yv, xv); // true anomaly
+                const r = Math.sqrt(xv * xv + yv * yv);
+
+                const inc = 5.1454 * D2R;
+                const vw = (v + w) * D2R;
+                const xh = r * (Math.cos(N * D2R) * Math.cos(vw) - Math.sin(N * D2R) * Math.sin(vw) * Math.cos(inc));
+                const yh = r * (Math.sin(N * D2R) * Math.cos(vw) + Math.cos(N * D2R) * Math.sin(vw) * Math.cos(inc));
+                const zh = r * Math.sin(vw) * Math.sin(inc);
+
+                // ── Perturbations (main terms) ─────────────────────────────────────────
+                const Ms = (((356.047 + 0.9856002585 * d) % 360) + 360) % 360; // Sun mean anomaly
+                const Ls = (((Ms + 282.9404 + 4.70935e-5 * d) % 360) + 360) % 360; // Sun mean lon
+                const Lm = (((Mm + w + N) % 360) + 360) % 360; // Moon mean lon
+                const Dm = Lm - Ls; // elongation
+                const Fm = Lm - N; // arg of latitude
+
+                const dlon =
+                    -1.274 * Math.sin((Mm - 2 * Dm) * D2R) +
+                    0.658 * Math.sin(2 * Dm * D2R) -
+                    0.186 * Math.sin(Ms * D2R) -
+                    0.059 * Math.sin((2 * Mm - 2 * Dm) * D2R) -
+                    0.057 * Math.sin((Mm - 2 * Dm + Ms) * D2R) +
+                    0.053 * Math.sin((Mm + 2 * Dm) * D2R) +
+                    0.046 * Math.sin((2 * Dm - Ms) * D2R) +
+                    0.041 * Math.sin((Mm - Ms) * D2R) -
+                    0.035 * Math.sin(Dm * D2R) -
+                    0.031 * Math.sin((Mm + Ms) * D2R) -
+                    0.015 * Math.sin((2 * Fm - 2 * Dm) * D2R) +
+                    0.011 * Math.sin((Mm - 4 * Dm) * D2R);
+                const dlat =
+                    -0.173 * Math.sin((Fm - 2 * Dm) * D2R) -
+                    0.055 * Math.sin((Mm - Fm - 2 * Dm) * D2R) -
+                    0.046 * Math.sin((Mm + Fm - 2 * Dm) * D2R) +
+                    0.033 * Math.sin((Fm + 2 * Dm) * D2R) +
+                    0.017 * Math.sin((2 * Mm + Fm) * D2R);
+
+                const moonLon = (R2D * Math.atan2(yh, xh) + dlon + 360) % 360;
+                const moonLat = R2D * Math.atan2(zh, Math.sqrt(xh * xh + yh * yh)) + dlat;
+
+                // ── Ecliptic → Equatorial ─────────────────────────────────────────────
+                const eps = 23.4393 - 3.563e-7 * d;
+                const sinEps = Math.sin(eps * D2R),
+                    cosEps = Math.cos(eps * D2R);
+                const sinLon = Math.sin(moonLon * D2R),
+                    cosLon = Math.cos(moonLon * D2R);
+                const sinLat = Math.sin(moonLat * D2R),
+                    cosLat = Math.cos(moonLat * D2R);
+
+                const RA =
+                    ((((R2D * Math.atan2(sinLon * cosEps - Math.tan(moonLat * D2R) * sinEps, cosLon)) / 15) % 24) +
+                        24) %
+                    24;
+                const Dec = R2D * Math.asin(sinLat * cosEps + cosLat * sinEps * sinLon);
+
+                // ── Hour angle at rise / set (zenith 90.833° — refraction + semi-diameter) ──
+                const cosH =
+                    (Math.cos(90.833 * D2R) - Math.sin(Dec * D2R) * Math.sin(lat * D2R)) /
+                    (Math.cos(Dec * D2R) * Math.cos(lat * D2R));
+                if (cosH > 1 || cosH < -1) return { rise: null, set: null };
+
+                const H = (R2D * Math.acos(cosH)) / 15;
+                const lngHour = lng / 15;
+                const rise = ((((RA - lngHour - H) % 24) + 24) % 24) + utcOff;
+                const set = ((((RA - lngHour + H) % 24) + 24) % 24) + utcOff;
+                return { rise: ((rise % 24) + 24) % 24, set: ((set % 24) + 24) % 24 };
+            }
+
+            function fetchLocation() {
+                if (!navigator.geolocation) return;
+                navigator.geolocation.getCurrentPosition(
+                    (pos) => {
+                        USER_LAT = pos.coords.latitude;
+                        USER_LNG = pos.coords.longitude;
+                        buildPanchang();
+                    },
+                    () => {},
+                    { timeout: 8000, maximumAge: 3600000 }
+                );
+            }
+            function toHM(h) {
+                h = ((h % 24) + 24) % 24;
+                const hr = Math.floor(h),
+                    mn = Math.round((h - hr) * 60) % 60;
+                return `${String(hr).padStart(2, "0")}:${String(mn).padStart(2, "0")}`;
+            }
+            function pad2(n) {
+                return String(n).padStart(2, "0");
+            }
+
+            /* ============================================================
+   STARS
+============================================================ */
+            (() => {
+                const c = document.getElementById("stars");
+                if (!c) return;
+                for (let i = 0; i < 160; i++) {
+                    const s = document.createElement("div");
+                    s.className = "star";
+                    const sz = Math.random() * 2 + 0.4;
+                    s.style.cssText = `width:${sz}px;height:${sz}px;top:${Math.random() * 100}%;left:${Math.random() * 100}%;--d:${2 + Math.random() * 5}s;--dl:${Math.random() * 5}s;`;
+                    c.appendChild(s);
+                }
+            })();
+
+            /* ============================================================
+   CLOCK + EKADASI (every second)
+============================================================ */
+            function fmtDate(d) {
+                return d.toLocaleDateString("hi-IN", { weekday: "long", day: "numeric", month: "long" });
+            }
+
+            function buildVrats() {
+                const now = new Date();
+
+                // Ekadasi
+                const ekDate = nextEkadasi(now);
+                if (ekDate) {
+                    const t = getTithi(ekDate);
+                    const paksha = t <= 15 ? 0 : 1;
+                    const masa = getMasa(ekDate);
+                    const name =
+                        (EKADASI_NAMES[masa] || {})[paksha] || (paksha === 0 ? "शुक्ल एकादशी" : "कृष्ण एकादशी");
+                    document.getElementById("vrat-ek-name").textContent = name;
+                    document.getElementById("vrat-ek-date").textContent = fmtDate(ekDate);
+                }
+
+                // Shivaratri (Krishna Chaturdashi = tithi 29)
+                const shivDate = nextTithiDate(now, 29);
+                if (shivDate) {
+                    const masa = getMasa(shivDate);
+                    document.getElementById("vrat-shiv-name").textContent = SHIVRATRI_NAMES[masa] || "मासिक शिवरात्रि";
+                    document.getElementById("vrat-shiv-date").textContent = fmtDate(shivDate);
+                }
+
+                // Sankashti Chaturthi (Krishna Chaturthi = tithi 19)
+                const chatDate = nextTithiDate(now, 19);
+                if (chatDate) {
+                    const masa = getMasa(chatDate);
+                    document.getElementById("vrat-chat-name").textContent = SANKASHTI_NAMES[masa] || "संकष्टी चतुर्थी";
+                    document.getElementById("vrat-chat-date").textContent = fmtDate(chatDate);
+                }
+
+                function setVratRow(prefix, name, date) {
+                    if (!date) return;
+                    document.getElementById(`vrat-${prefix}-name`).textContent = name;
+                    document.getElementById(`vrat-${prefix}-date`).textContent = fmtDate(date);
+                }
+
+                // Vinayaka Chaturthi (Shukla Chaturthi = tithi 4) — गणेश
+                setVratRow("vinayak", "विनायक चतुर्थी", nextTithiDate(now, 4));
+
+                // Durga Ashtami (Shukla Ashtami = tithi 8) — दुर्गा
+                setVratRow("durgashtami", "दुर्गाष्टमी", nextTithiDate(now, 8));
+
+                // Masik Kali Puja (Amavasya = tithi 30) — काली
+                setVratRow("kali", "मासिक काली पूजा", nextTithiDate(now, 30));
+
+                // Shashthi (Shukla Shashthi = tithi 6) — कार्तिकेय
+                setVratRow("shashthi", "षष्ठी", nextTithiDate(now, 6));
+
+                // Purnima (tithi 15) — दत्तात्रेय / चन्द्र
+                setVratRow("purnima", "पूर्णिमा", nextTithiDate(now, 15));
+
+                // Monthly Saptami (Shukla Saptami = tithi 7) — सूर्य
+                setVratRow("saptami", "मासिक सप्तमी", nextTithiDate(now, 7));
+
+                // Dwadashi — day after Ekadashi, either paksha — तुलसी
+                if (ekDate) {
+                    const dwadashiDate = new Date(ekDate);
+                    dwadashiDate.setDate(dwadashiDate.getDate() + 1);
+                    setVratRow("dwadashi", "द्वादशी", dwadashiDate);
+                }
+            }
+
+            /* पञ्चाङ्ग card sets its own height from content; vrat-block
+   is pinned to match it and scrolls internally beyond that. */
+            function syncVratHeight() {
+                const panch = document.querySelector(".panch-block");
+                const vrat = document.querySelector(".vrat-block");
+                if (!panch || !vrat) return;
+                if (window.innerWidth <= 780) {
+                    vrat.style.height = "";
+                    return;
+                }
+                vrat.style.height = panch.offsetHeight + "px";
+            }
+
+            function tick() {
+                const now = new Date();
+                document.getElementById("h-time").textContent = [now.getHours(), now.getMinutes(), now.getSeconds()]
+                    .map(pad2)
+                    .join(":");
+            }
+
+            /* ============================================================
+   PANCHANG (every minute)
+============================================================ */
+            function buildPanchang() {
+                const now = new Date();
+                // तिथि/नक्षत्र/योग/मास "today" is reckoned from the sunrise-proxy
+                // (6 AM local), matching nextTithiDate/nextEkadasi — otherwise the
+                // hero tithi (literal current moment) can disagree with आगामी व्रत
+                // (sunrise-based) whenever the tithi changes partway through the day.
+                const now6 = new Date(now);
+                now6.setHours(6, 0, 0, 0);
+                const t = getTithi(now6),
+                    tithi = TITHIS[t - 1] || "—",
+                    paksha = t <= 15 ? "शुक्ल पक्ष" : "कृष्ण पक्ष";
+                const naks = NAKS[getNaks(now6)],
+                    yoga = YOGAS[getYoga(now6)],
+                    vara = now.getDay(),
+                    masa = getMasa(now6);
+                // hero bar
+                document.getElementById("h-vara").textContent = VARAS[vara];
+                document.getElementById("h-tithi").textContent = tithi;
+                document.getElementById("h-paksha").textContent = paksha;
+                // dashboard
+                document.getElementById("full-date").textContent = now.toLocaleDateString("hi-IN", {
+                    weekday: "long",
+                    day: "numeric",
+                    month: "long",
+                    year: "numeric"
+                });
+                document.getElementById("p-vara").textContent = VARAS[vara];
+                document.getElementById("p-vara-d").textContent = VARA_DEV[vara] + " वार";
+                document.getElementById("p-tithi").textContent = tithi;
+                document.getElementById("p-paksha").textContent = paksha;
+                document.getElementById("p-naks").textContent = naks.n;
+                document.getElementById("p-naks-d").textContent = "देवता: " + naks.d;
+                document.getElementById("p-yoga").textContent = yoga.n;
+                document.getElementById("p-yoga-q").textContent = yoga.q + " योग";
+                document.getElementById("p-masa").textContent = MASAS[masa];
+                document.getElementById("p-rahu").textContent = RAHU[vara];
+                const { sr, ss } = sunriseSunset(now);
+                document.getElementById("p-sunrise").textContent = toHM(sr);
+                document.getElementById("p-sunset").textContent = toHM(ss);
+                const moon = moonRiseSet(now);
+                document.getElementById("p-moonrise").textContent = moon.rise != null ? toHM(moon.rise) : "—";
+                document.getElementById("p-moonset").textContent = moon.set != null ? toHM(moon.set) : "—";
+            }
+
+            /* ============================================================
+   SHASTRIYA GHATNA — match today's panchang vs dates.json
+============================================================ */
+            function buildShaastriyaGhatna() {
+                const now = new Date();
+                // Sunrise-proxy, matching buildPanchang() / nextEkadasi — see
+                // comment there for why "today's" tithi isn't the literal-now tithi.
+                const now6 = new Date(now);
+                now6.setHours(6, 0, 0, 0);
+                const t = getTithi(now6);
+                const todayTithiName = TITHIS[t - 1] || ""; // e.g. "नवमी"
+                const todayPaksha = t <= 15 ? "शुक्लपक्ष" : "कृष्णपक्ष"; // no space
+                const todayMaas = MASAS[getMasa(now6)]; // e.g. "चैत्र"
+
+                fetch("database/dates.json")
+                    .then((r) => r.json())
+                    .then((json) => {
+                        const entries = json.data || [];
+
+                        // Scoring rules:
+                        // - maas = today's exact maas  → eligible (score 3 or 2)
+                        // - maas = "वर्षभर"            → eligible (applies all year, score 3 or 2)
+                        // - maas = "अनिर्दिष्ट"        → SKIP
+                        // - maas = any other month     → SKIP
+                        // Score 3: tithi + paksha match (maas = today or वर्षभर)
+                        // Score 2: tithi matches, paksha = दोनों (maas = today or वर्षभर)
+
+                        // Strip Unicode nukta (़ U+093C) for loose Devanagari comparison
+                        // e.g. "आषाढ़" == "आषाढ" after stripping
+                        function stripNukta(s){ return (s||"").replace(/़/g,""); }
+
+                        const todayMaasNorm = stripNukta(todayMaas);
+
+                        function maasMatch(dbMaas) {
+                            if (!dbMaas) return false;
+                            // Year-round applies always
+                            if (dbMaas === "वर्षभर" || dbMaas === "प्रत्येक मास") return true;
+                            // Skip deliberately unspecified
+                            if (dbMaas.startsWith("अनिर्दिष्ट")) return false;
+                            // Extract base month name before any parenthesis, slash, dash
+                            // e.g. "भाद्रपद (प्रौष्ठपदी)" → "भाद्रपद"
+                            //      "कार्तिक (अनुमानित)"  → "कार्तिक"
+                            //      "आषाढ"               → "आषाढ"  (matches आषाढ़)
+                            const base = stripNukta(dbMaas.split(/[\(\[\/\-]/)[0].trim());
+                            return base === todayMaasNorm;
+                        }
+
+                        function score(e) {
+                            if (!e.tithi || e.tithi === "अनिर्दिष्ट") return 0;
+                            if (!maasMatch(e.maas)) return 0;
+                            if (!e.tithi.includes(todayTithiName)) return 0; // tithi must appear
+                            const pkMatch = e.paksh === todayPaksha || e.paksh === "दोनों";
+                            return pkMatch ? 3 : 2;
+                        }
+
+                        const scored = entries
+                            .map((e) => ({ e, s: score(e) }))
+                            .filter((x) => x.s > 0)
+                            .sort((a, b) => b.s - a.s);
+
+                        // No fallback — only show exact-month matches; cap at 4 cards
+                        const shown = scored.slice(0, 4);
+
+                        const block = document.getElementById("shastr-block");
+                        const list = document.getElementById("shastr-list");
+                        const sub = document.getElementById("shastr-subtitle");
+                        list.innerHTML = "";
+
+                        if (!shown.length) {
+                            // No exact maas+tithi match — keep block hidden
+                            block.style.display = "none";
+                            return;
+                        }
+
+                        block.style.display = "block";
+                        sub.textContent = todayTithiName + " · " + todayPaksha + " · " + todayMaas;
+
+                        shown.forEach(({ e, s }) => {
+                            const card = document.createElement("div");
+                            card.className = "shastr-card";
+
+                            const badgeClass = s === 3 ? "shastr-badge strong" : "shastr-badge";
+                            const badgeText = s === 3 ? "✦ तिथि · पक्ष · मास — पूर्ण मिलान" : "✦ तिथि · मास मिलान";
+
+                            const vivran = e.vivraN || "";
+                            const shortV = vivran.length > 240 ? vivran.slice(0, 240) + "…" : vivran;
+                            const hasMore = vivran.length > 240;
+                            const vivId = "viv-" + e.id;
+
+                            const tags = (e.tags || [])
+                                .slice(0, 5)
+                                .map((tg) => `<span class="shastr-tag">${tg}</span>`)
+                                .join("");
+
+                            card.innerHTML = `
+                    <div class="${badgeClass}">${badgeText}</div>
+                    <div class="shastr-granth">📖 ${e.granth} · ${e.skandh_kand} · ${e.sarg_adhyay}</div>
+                    <div class="shastr-event">${e.parv_vrat_naam || e.ghatna}</div>
+                    ${e.ghatna && e.parv_vrat_naam ? `<div style="font-size:.84rem;color:var(--txt3);margin-bottom:.3rem">🔹 ${e.ghatna}</div>` : ""}
+                    <div class="shastr-vivran collapsed" id="${vivId}">${shortV}</div>
+                    ${
+                        hasMore
+                            ? `<div class="shastr-more" onclick="
+                        var el=document.getElementById('${vivId}');
+                        var full=${JSON.stringify(vivran)};
+                        if(el.classList.contains('collapsed')){el.textContent=full;el.classList.remove('collapsed');this.textContent='… कम करें';}
+                        else{el.textContent=${JSON.stringify(shortV)};el.classList.add('collapsed');this.textContent='… और पढ़ें';}
+                    ">… और पढ़ें</div>`
+                            : ""
+                    }
+                    ${e.phal ? `<div style="font-size:.82rem;color:var(--saff);margin-top:.45rem">🌸 फल: ${e.phal}</div>` : ""}
+                    <div class="shastr-tags">${tags}</div>
+                `;
+                            list.appendChild(card);
+                        });
+                    })
+                    .catch(() => {
+                        // silently skip if JSON not found
+                    });
+            }
+
+            /* ============================================================
+   FESTIVALS
+============================================================ */
+            function buildFestivals() {
+                const now = new Date();
+                now.setHours(0, 0, 0, 0);
+                const list = document.getElementById("fest-list");
+                list.innerHTML = "";
+                FESTIVALS.map((f) => {
+                    const fd = new Date(f.dt + "T00:00:00");
+                    return { f, fd, diff: Math.round((fd - now) / 86400000) };
+                })
+                    .filter((x) => x.diff >= -1)
+                    .sort((a, b) => a.diff - b.diff)
+                    .forEach(({ f, fd, diff }) => {
+                        const slide = document.createElement("div");
+                        slide.className = "swiper-slide";
+                        let badge,
+                            cls = "fest-tag";
+                        if (diff < 0) badge = "बीत गया";
+                        else if (diff === 0) {
+                            badge = "आज! 🎉";
+                            cls += " today-tag";
+                        } else badge = diff + " दिन शेष";
+                        const dateStr = fd.toLocaleDateString("hi-IN", { day: "numeric", month: "long", year: "numeric" });
+                        const iconHtml = f.img
+                            ? `<img class="fest-icon-img" src="${f.img}" alt="${f.n}">`
+                            : f.ico;
+                        slide.innerHTML = `<div class="fest-card"><div class="fest-icon">${iconHtml}</div><div class="fest-name">${f.n}</div><div class="fest-desc">${f.d}</div><div class="fest-date">${dateStr}</div><div class="${cls}">${badge}</div></div>`;
+                        list.appendChild(slide);
+                    });
+                new Swiper(".fest-swiper", {
+                    spaceBetween: 14,
+                    slidesPerView: 2.5,
+                    freeMode: true,
+                    breakpoints: { 780: { slidesPerView: 4.5 } },
+                });
+            }
+
+            /* ============================================================
+   BOOK COVER SVG
+============================================================ */
+            function mkCover(bk) {
+                const { bg, fg, t: title } = bk;
+                const uid = "u" + Math.random().toString(36).slice(2, 7);
+                const words = title.split(/\s+/);
+                const lines = [];
+                let cur = "";
+                words.forEach((w) => {
+                    if (cur.length && (cur + w).length > 9) {
+                        lines.push(cur.trim());
+                        cur = w + " ";
+                    } else cur += w + " ";
+                });
+                if (cur.trim()) lines.push(cur.trim());
+                const lh = 13,
+                    fs = lines.length > 3 ? 8 : lines.length > 2 ? 9 : 10,
+                    sy = Math.max(82, 100 - ((lines.length - 1) * lh) / 2);
+                const tsvg = lines
+                    .map(
+                        (l, i) =>
+                            `<text x="70" y="${sy + i * lh}" text-anchor="middle" font-size="${fs}" fill="${fg}" font-family="Noto Serif Devanagari,serif" font-weight="700">${l}</text>`
+                    )
+                    .join("");
+                // lighten bg
+                const lighter =
+                    "#" +
+                    parseInt(bg.slice(1), 16)
+                        .toString(16)
+                        .padStart(6, "0")
+                        .replace(/(..)/g, (_, h) =>
+                            Math.min(255, parseInt(h, 16) + 28)
+                                .toString(16)
+                                .padStart(2, "0")
+                        );
+                return (
+                    "data:image/svg+xml;charset=utf-8," +
+                    encodeURIComponent(
+                        `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 200">
+<defs><linearGradient id="${uid}" x1="0" y1="0" x2=".4" y2="1"><stop offset="0%" stop-color="${lighter}"/><stop offset="100%" stop-color="${bg}"/></linearGradient></defs>
+<rect width="140" height="200" fill="url(#${uid})"/>
+<rect width="11" height="200" fill="${fg}" opacity=".6"/>
+<rect x="11" width="2" height="200" fill="${fg}" opacity=".18"/>
+<rect x="11" y="0" width="129" height="28" fill="${fg}" opacity=".08"/>
+<rect x="11" y="172" width="129" height="28" fill="${fg}" opacity=".08"/>
+<circle cx="70" cy="90" r="48" fill="none" stroke="${fg}" stroke-width=".7" opacity=".22"/>
+<circle cx="70" cy="90" r="35" fill="none" stroke="${fg}" stroke-width=".5" opacity=".16"/>
+<circle cx="70" cy="90" r="22" fill="none" stroke="${fg}" stroke-width=".4" opacity=".12"/>
+<text x="70" y="107" text-anchor="middle" font-size="44" fill="${fg}" opacity=".07" font-family="serif">ॐ</text>
+${tsvg}
+<line x1="24" y1="155" x2="116" y2="155" stroke="${fg}" stroke-width=".5" opacity=".28"/>
+<text x="75" y="185" text-anchor="middle" font-size="5.5" fill="${fg}" opacity=".38" font-family="sans-serif" letter-spacing="1.3">SVADHYAYA</text>
+<circle cx="29" cy="14" r="1.8" fill="${fg}" opacity=".35"/>
+<circle cx="70" cy="14" r="1.8" fill="${fg}" opacity=".35"/>
+<circle cx="111" cy="14" r="1.8" fill="${fg}" opacity=".35"/>
+</svg>`
+                    )
+                );
+            }
+
+            /* ============================================================
+   LIBRARY
+============================================================ */
+            let openCat = null;
+
+            function renderBooks(catId, clickedCard) {
+                const cat = LIBRARY[catId];
+                const grid = document.getElementById("cat-grid");
+
+                /* remove any existing panel from the grid */
+                const old = document.getElementById("book-panel");
+                if (old) old.remove();
+
+                /* find the last card in the same visual row as clickedCard */
+                const cards = Array.from(grid.querySelectorAll(".cat-card"));
+                const rowTop = clickedCard.getBoundingClientRect().top;
+                let lastInRow = clickedCard;
+                cards.forEach((c) => {
+                    if (Math.abs(c.getBoundingClientRect().top - rowTop) < 10) {
+                        if (cards.indexOf(c) > cards.indexOf(lastInRow)) lastInRow = c;
+                    }
+                });
+
+                /* build panel */
+                const panel = document.createElement("div");
+                panel.id = "book-panel";
+                panel.className = "book-panel";
+
+                let html = `<div class="panel-desc">${cat.desc}</div><div class="book-grid">`;
+                cat.books.forEach((bk) => {
+                    if (bk.grp) {
+                        html += `<div class="bk-grp-hdr">${bk.grp}</div>`;
+                        return;
+                    }
+                    const cover = mkCover(bk),
+                        cls = "bk" + (bk.na ? " dim" : ""),
+                        tag = bk.na ? '<span class="bk-cs">शीघ्र आएगा</span>' : "";
+                    if (bk.id) {
+                        html += `<a class="${cls}" href="book.html?${bk.id}"><div class="bk-cover"><img src="${cover}" alt="${bk.t}" loading="lazy"></div><div class="bk-name">${bk.t}</div><div class="bk-sub">${bk.s}</div>${tag}</a>`;
+                    } else {
+                        html += `<div class="${cls}"><div class="bk-cover"><img src="${cover}" alt="${bk.t}" loading="lazy"></div><div class="bk-name">${bk.t}</div><div class="bk-sub">${bk.s}</div>${tag}</div>`;
+                    }
+                });
+                html += "</div>";
+                panel.innerHTML = html;
+
+                /* insert right after the last card in that row */
+                lastInRow.insertAdjacentElement("afterend", panel);
+                panel.scrollIntoView({ behavior: "smooth", block: "nearest" });
+            }
+
+            function initLibrary() {
+                document.querySelectorAll(".cat-card").forEach((card) => {
+                    const toggleCategory = () => {
+                        const id = card.dataset.cat;
+                        if (openCat === id) {
+                            card.classList.remove("open");
+                            card.setAttribute("aria-expanded", "false");
+                            const p = document.getElementById("book-panel");
+                            if (p) p.remove();
+                            openCat = null;
+                            return;
+                        }
+                        document.querySelectorAll(".cat-card").forEach((c) => {
+                            c.classList.remove("open");
+                            c.setAttribute("aria-expanded", "false");
+                        });
+                        card.classList.add("open");
+                        card.setAttribute("aria-expanded", "true");
+                        openCat = id;
+                        renderBooks(id, card);
+                    };
+                    card.addEventListener("click", toggleCategory);
+                    card.addEventListener("keydown", (event) => {
+                        if (event.key === "Enter" || event.key === " ") {
+                            event.preventDefault();
+                            toggleCategory();
+                        }
+                    });
+                });
+            }
+
+            /* ============================================================
+   QUOTE
+============================================================ */
+            function setQuote() {
+                const q = QUOTES[new Date().getDate() % QUOTES.length];
+                document.getElementById("q-text").innerHTML = q.t.replace("\n", "<br>");
+                document.getElementById("q-src").textContent = "— " + q.s;
+            }
+
+            /* ============================================================
+   INIT
+============================================================ */
+            document.addEventListener("DOMContentLoaded", () => {
+                tick();
+                buildPanchang();
+                buildVrats();
+                buildShaastriyaGhatna();
+                buildFestivals();
+                initLibrary();
+                initSearch();
+                setQuote();
+                fetchLocation();
+                syncVratHeight();
+                setInterval(tick, 1000);
+                setInterval(buildPanchang, 60000);
+                window.addEventListener("resize", syncVratHeight);
             });
         </script>
     </body>

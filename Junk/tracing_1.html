@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Telugu Alphabet Tracing</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #f3f4f6;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .app {
+      background: #ffffff;
+      padding: 24px 28px;
+      border-radius: 24px;
+      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.18);
+      max-width: 520px;
+      width: 100%;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 1.4rem;
+      margin: 0 0 4px;
+    }
+
+    .subtitle {
+      font-size: 0.9rem;
+      color: #6b7280;
+      margin-bottom: 12px;
+    }
+
+    .letter-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+      margin-bottom: 12px;
+    }
+
+    .letter-button {
+      border-radius: 999px;
+      border: 1px solid #e5e7eb;
+      background: #f9fafb;
+      padding: 6px 12px;
+      cursor: pointer;
+      font-size: 1.3rem;
+      transition: background 0.15s ease, transform 0.12s ease,
+                  box-shadow 0.12s ease, border-color 0.15s ease;
+      box-shadow: 0 3px 6px rgba(15, 23, 42, 0.08);
+    }
+
+    .letter-button.active {
+      background: #2563eb;
+      color: white;
+      border-color: #1d4ed8;
+      box-shadow: 0 8px 16px rgba(37, 99, 235, 0.35);
+      transform: translateY(-1px);
+    }
+
+    .svg-wrapper {
+      background: #f9fafb;
+      border-radius: 20px;
+      padding: 16px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 16px;
+      border: 1px solid #e5e7eb;
+    }
+
+    svg {
+      width: 260px;
+      height: 260px;
+    }
+
+    /* Light gray guides */
+    .guide {
+      fill: none;
+      stroke: #e5e7eb;
+      stroke-width: 10;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-dasharray: 8 14;
+    }
+
+    /* Active strokes */
+    .stroke {
+      fill: none;
+      stroke: #3b82f6;
+      stroke-width: 12;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    #pen {
+      fill: #f97316;
+      stroke: #7c2d12;
+      stroke-width: 2;
+      opacity: 0;
+    }
+
+    .controls {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      align-items: center;
+      margin-top: 4px;
+      flex-wrap: wrap;
+    }
+
+    button.play-btn {
+      border: none;
+      border-radius: 999px;
+      padding: 10px 20px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      background: linear-gradient(135deg, #3b82f6, #2563eb);
+      color: white;
+      box-shadow: 0 8px 18px rgba(37, 99, 235, 0.3);
+      transition: transform 0.12s ease, box-shadow 0.12s ease;
+    }
+
+    button.play-btn:active {
+      transform: translateY(1px) scale(0.99);
+      box-shadow: 0 4px 10px rgba(37, 99, 235, 0.35);
+    }
+
+    .hint {
+      font-size: 0.8rem;
+      color: #9ca3af;
+      margin-top: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <h1>Telugu Letter Tracing</h1>
+    <div class="subtitle">Choose a letter and watch how to write it.</div>
+
+    <!-- Letter selector -->
+    <div class="letter-row" id="letterRow">
+      <!-- You can extend this list to all letters -->
+      <button class="letter-button active" data-letter="అ">అ</button>
+      <button class="letter-button" data-letter="ఆ">ఆ</button>
+      <button class="letter-button" data-letter="ఇ">ఇ</button>
+      <button class="letter-button" data-letter="ఈ">ఈ</button>
+    </div>
+
+    <div class="svg-wrapper">
+      <svg viewBox="0 0 200 200" id="letterSvg">
+        <!-- We’ll dynamically insert guide + stroke paths here -->
+        <g id="guideGroup"></g>
+        <g id="strokeGroup"></g>
+        <circle id="pen" r="6" cx="0" cy="0" />
+      </svg>
+    </div>
+
+    <div class="controls">
+      <button class="play-btn" id="playBtn">Play Animation</button>
+    </div>
+
+    <div class="hint">
+      The shapes here are simple teaching examples.  
+      For a real classroom, you can replace the paths with accurate ones from a Telugu font.
+    </div>
+  </div>
+
+  <script>
+    /**
+     * LETTER_DATA:
+     * For each Telugu letter, provide an array of stroke paths (SVG "d" strings).
+     * - All coordinates are within the viewBox 0 0 200 200
+     * - Each entry in "strokes" is drawn in order.
+     *
+     * NOTE: These sample paths are approximate, kid-friendly shapes — not
+     * exact font outlines. You can export real paths from Inkscape/Illustrator
+     * and paste them here.
+     */
+    const LETTER_DATA = {
+      "అ": {
+        strokes: [
+          // Main rounded body
+          "M70 60 C 45 60 35 90 40 120 C 45 150 75 165 105 160 C 135 155 150 130 145 105 C 140 80 120 60 95 60 Z",
+          // Small right leg / tail
+          "M115 115 L145 155"
+        ]
+      },
+      "ఆ": {
+        strokes: [
+          // Base like అ
+          "M70 60 C 45 60 35 90 40 120 C 45 150 75 165 105 160 C 135 155 150 130 145 105 C 140 80 120 60 95 60 Z",
+          // Extra long right curve
+          "M120 90 C 150 95 165 115 165 145 C 165 160 160 170 150 175",
+          // Small top line
+          "M70 40 L120 40"
+        ]
+      },
+      "ఇ": {
+        strokes: [
+          // Vertical body with curve at bottom
+          "M80 50 L80 130 C 80 150 95 165 115 165 C 135 165 150 150 150 135",
+          // Top hook
+          "M80 50 C 90 35 110 30 130 35"
+        ]
+      },
+      "ఈ": {
+        strokes: [
+          // Similar to ఇ but slightly wider body
+          "M70 50 L70 130 C 70 155 90 170 115 170 C 140 170 160 150 160 130",
+          // Top long hook
+          "M70 50 C 90 30 120 25 145 30",
+          // Small inner stroke
+          "M100 95 C 115 90 125 95 135 105"
+        ]
+      }
+
+      // 👉 Add the rest of the Telugu alphabets here:
+      // "ఉ": { strokes: [ "M...", "M..." ] },
+      // "ఊ": { strokes: [ ... ] },
+      // etc.
+    };
+
+    const svg = document.getElementById("letterSvg");
+    const guideGroup = document.getElementById("guideGroup");
+    const strokeGroup = document.getElementById("strokeGroup");
+    const pen = document.getElementById("pen");
+    const playBtn = document.getElementById("playBtn");
+    const letterRow = document.getElementById("letterRow");
+
+    const STROKE_DURATION = 1200;
+    const GAP_BETWEEN_STROKES = 250;
+
+    let currentLetter = "అ";
+    let currentStrokePaths = []; // SVGPathElement[]
+
+    function clearGroups() {
+      guideGroup.innerHTML = "";
+      strokeGroup.innerHTML = "";
+      currentStrokePaths = [];
+    }
+
+    function loadLetter(letter) {
+      currentLetter = letter;
+      clearGroups();
+
+      const data = LETTER_DATA[letter];
+      if (!data) return;
+
+      data.strokes.forEach((d, index) => {
+        // Guide path (light grey, dashed)
+        const guidePath = document.createElementNS("http://www.w3.org/2000/svg", "path");
+        guidePath.setAttribute("d", d);
+        guidePath.setAttribute("class", "guide");
+        guideGroup.appendChild(guidePath);
+
+        // Animated stroke path (blue)
+        const strokePath = document.createElementNS("http://www.w3.org/2000/svg", "path");
+        strokePath.setAttribute("d", d);
+        strokePath.setAttribute("class", "stroke");
+        strokePath.setAttribute("id", `stroke-${index}`);
+        strokeGroup.appendChild(strokePath);
+
+        currentStrokePaths.push(strokePath);
+      });
+
+      resetStrokes();
+    }
+
+    function resetStrokes() {
+      currentStrokePaths.forEach(path => {
+        const length = path.getTotalLength();
+        path.style.strokeDasharray = length;
+        path.style.strokeDashoffset = length;
+      });
+      pen.style.opacity = 0;
+
+      // Place pen at start of first stroke (if exists)
+      if (currentStrokePaths.length > 0) {
+        const firstStroke = currentStrokePaths[0];
+        const p = firstStroke.getPointAtLength(0);
+        pen.setAttribute("cx", p.x);
+        pen.setAttribute("cy", p.y);
+      }
+    }
+
+    function animateStroke(path, duration) {
+      const length = path.getTotalLength();
+      const startTime = performance.now();
+
+      return new Promise(resolve => {
+        path.style.strokeDasharray = length;
+        path.style.strokeDashoffset = length;
+        pen.style.opacity = 1;
+
+        function step(now) {
+          const elapsed = now - startTime;
+          const t = Math.min(elapsed / duration, 1); // 0 → 1
+          const drawLen = length * t;
+
+          path.style.strokeDashoffset = length - drawLen;
+
+          const point = path.getPointAtLength(drawLen);
+          pen.setAttribute("cx", point.x);
+          pen.setAttribute("cy", point.y);
+
+          if (t < 1) {
+            requestAnimationFrame(step);
+          } else {
+            resolve();
+          }
+        }
+
+        requestAnimationFrame(step);
+      });
+    }
+
+    async function playAnimation() {
+      if (!currentStrokePaths.length) return;
+
+      playBtn.disabled = true;
+      playBtn.textContent = "Playing...";
+
+      resetStrokes();
+
+      for (let i = 0; i < currentStrokePaths.length; i++) {
+        await animateStroke(currentStrokePaths[i], STROKE_DURATION);
+        if (i < currentStrokePaths.length - 1) {
+          await new Promise(r => setTimeout(r, GAP_BETWEEN_STROKES));
+        }
+      }
+
+      setTimeout(() => {
+        pen.style.opacity = 0;
+        playBtn.disabled = false;
+        playBtn.textContent = "Replay";
+      }, 300);
+    }
+
+    playBtn.addEventListener("click", playAnimation);
+
+    // Letter button click
+    letterRow.addEventListener("click", (e) => {
+      const btn = e.target.closest(".letter-button");
+      if (!btn) return;
+
+      const letter = btn.dataset.letter;
+      if (!LETTER_DATA[letter]) return;
+
+      // Update active state
+      Array.from(letterRow.querySelectorAll(".letter-button")).forEach(b => {
+        b.classList.toggle("active", b === btn);
+      });
+
+      loadLetter(letter);
+      playBtn.textContent = "Play Animation";
+      playBtn.disabled = false;
+    });
+
+    // Initialize
+    loadLetter(currentLetter);
+  </script>
+</body>
+</html>

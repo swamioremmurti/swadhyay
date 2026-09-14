@@ -1,0 +1,978 @@
+<!doctype html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>स्वाध्याय — पाठक</title>
+    <script src="includes/hammer.min.js"></script>
+    <style>
+    /* ═══════════════════════════════════════════
+       FONT — Chanakya Unicode only, used for every
+       piece of text in this reader.
+    ═══════════════════════════════════════════ */
+    @font-face{
+        font-family:'ChanakyaBBTUni';
+        src:url('fonts/chanakya/ChanakyaBBTUni.ttf') format('truetype');
+        font-weight:normal;font-style:normal;font-display:swap;
+    }
+
+    /* ═══════════════════════════════════════════
+       DESIGN TOKENS — neutral, paper-first reader
+       palette (White / Sepia / Dark), the pattern
+       used by Kindle, Apple Books, Play Books.
+       Every font-size below is rem/em, anchored to
+       <html>'s font-size, so the size control scales
+       the header, TOC, footer and content together.
+    ═══════════════════════════════════════════ */
+    :root {
+        --bg:      #ffffff;
+        --surface: #f6f5f2;
+        --border:  #e4e1d8;
+        --text:    #1c1b19;
+        --text2:   #5c584e;
+        --text3:   #948f80;
+        --accent:  #a8571e;
+        --accent-bg: rgba(168,87,30,.08);
+        --danger:  #c0392b;
+        --radius:  10px;
+        --font:    'ChanakyaBBTUni', 'Noto Sans Devanagari', sans-serif;
+        --header-h: 3.4rem;
+        --footer-h: 3.7rem;
+    }
+    body.mode-sepia{
+        --bg:#f4ecd8; --surface:#ece0c2; --border:#ddcda0;
+        --text:#3a2f1c; --text2:#6b5a3a; --text3:#a08f68;
+    }
+    body.mode-dark{
+        --bg:#141413; --surface:#1e1d1b; --border:#333230;
+        --text:#e9e6df; --text2:#a8a399; --text3:#726d63;
+        --accent:#d98a44; --accent-bg:rgba(217,138,68,.14);
+    }
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    html { font-size:16px; scroll-behavior:smooth; }
+    body {
+        font-family:var(--font); background:var(--bg); color:var(--text);
+        height:100vh; overflow:hidden; display:flex; flex-direction:column;
+        transition:background .2s,color .2s;
+    }
+    button,input{font-family:var(--font)}
+    ::-webkit-scrollbar{width:6px}
+    ::-webkit-scrollbar-track{background:transparent}
+    ::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px}
+
+    .icon-btn{
+        background:none;border:none;cursor:pointer;color:var(--text2);
+        width:2.2rem;height:2.2rem;border-radius:50%;
+        display:flex;align-items:center;justify-content:center;flex-shrink:0;
+        transition:color .15s,background .15s;
+    }
+    .icon-btn:hover{color:var(--text);background:var(--accent-bg)}
+    .icon-btn:disabled{opacity:.3;cursor:not-allowed}
+    .icon-btn:disabled:hover{background:none;color:var(--text2)}
+    .icon-btn svg{width:1.15rem;height:1.15rem}
+
+    /* ── Loader ── */
+    #loader-overlay{
+        position:fixed;inset:0;z-index:9000;background:var(--bg);
+        display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;
+        transition:opacity .3s,visibility .3s;
+    }
+    #loader-overlay.hidden{opacity:0;visibility:hidden;pointer-events:none}
+    .loader-mark{font-size:1.8rem;color:var(--accent);opacity:.85}
+    #loader-text{font-size:.85rem;color:var(--text3)}
+    .loader-bar-wrap{width:180px;height:3px;background:var(--border);border-radius:2px;overflow:hidden}
+    #loader-bar{height:100%;width:0%;background:var(--accent);transition:width .3s}
+
+    /* ── Top progress ── */
+    #scroll-prog{position:fixed;top:var(--header-h);left:0;right:0;height:2px;z-index:400;background:transparent}
+    #scroll-prog-bar{height:100%;width:0%;background:var(--accent);transition:width .1s}
+
+    /* ── Header ── */
+    .rd-hdr{
+        position:fixed;top:0;left:0;right:0;z-index:600;height:var(--header-h);
+        background:var(--bg);border-bottom:1px solid var(--border);
+        display:flex;align-items:center;gap:.2rem;padding:0 .6rem;
+    }
+    #hdr-breadcrumb{
+        flex:1;overflow:hidden;display:flex;align-items:center;gap:.35rem;
+        font-size:.82rem;color:var(--text3);white-space:nowrap;min-width:0;padding:0 .4rem;
+    }
+    #hdr-breadcrumb .hbc{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .hbc-book{color:var(--text2);font-weight:600}
+    .hbc-sub{color:var(--accent)!important}
+
+    /* ── Search ── */
+    #search-bar{
+        position:fixed;top:var(--header-h);left:0;right:0;z-index:590;
+        background:var(--bg);border-bottom:1px solid var(--border);
+        padding:.6rem .9rem;display:none;align-items:center;gap:.5rem;
+    }
+    #search-bar.open{display:flex}
+    #search-input{
+        flex:1;background:var(--surface);border:1px solid var(--border);
+        color:var(--text);border-radius:8px;padding:.45rem .8rem;
+        font-size:.92rem;outline:none;
+    }
+    #search-input:focus{border-color:var(--accent)}
+    #search-results{
+        position:fixed;top:calc(var(--header-h) + 3rem);left:0;right:0;z-index:580;
+        background:var(--bg);border-bottom:1px solid var(--border);
+        max-height:280px;overflow-y:auto;display:none;
+    }
+    #search-results.open{display:block}
+    .sr-item{padding:.6rem 1.1rem;cursor:pointer;border-bottom:1px solid var(--border);font-size:.88rem;color:var(--text2)}
+    .sr-item:hover{background:var(--surface)}
+    .sr-item .sr-ctx{font-size:.74rem;color:var(--text3);margin-top:.15rem}
+    .sr-match{color:var(--accent);font-weight:700}
+    .sr-empty{padding:.9rem 1.1rem;color:var(--text3);font-size:.88rem;text-align:center}
+    mark.search-hl{background:var(--accent-bg);color:var(--accent);border-radius:3px;padding:0 2px}
+
+    /* ── Shortcut modal ── */
+    .shortcut-modal{position:fixed;inset:0;z-index:800;background:rgba(0,0,0,.35);display:none;align-items:center;justify-content:center}
+    .shortcut-modal.open{display:flex}
+    .sc-box{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:1.3rem 1.5rem;min-width:250px;max-width:320px}
+    .sc-title{font-size:1rem;font-weight:700;margin-bottom:.9rem;text-align:center;color:var(--text)}
+    .sc-row{display:flex;justify-content:space-between;align-items:center;padding:.35rem 0;border-bottom:1px solid var(--border);font-size:.85rem}
+    .sc-row:last-of-type{border:none}
+    .sc-key{background:var(--surface);color:var(--text2);border:1px solid var(--border);border-radius:5px;padding:.1rem .5rem;font-size:.75rem;font-family:monospace}
+    .sc-action{color:var(--text3)}
+    .sc-close-btn{display:block;margin:.9rem auto 0;background:var(--surface);border:1px solid var(--border);color:var(--text2);border-radius:8px;padding:.4rem 1.4rem;cursor:pointer;font-size:.88rem}
+    .sc-close-btn:hover{color:var(--text)}
+
+    /* ── Body / main reading column ── */
+    .rd-body{margin-top:var(--header-h);height:calc(100vh - var(--header-h) - var(--footer-h));overflow:hidden}
+    .rd-main{height:100%;overflow-y:auto;overflow-x:hidden;background:var(--bg)}
+    .rd-content-wrap{max-width:680px;width:100%;margin:0 auto;padding:2.4rem 1.4rem 4rem}
+    @media(max-width:640px){.rd-content-wrap{padding:1.6rem 1.1rem 3rem}}
+
+    .chapter-label{font-size:.76rem;letter-spacing:.08em;color:var(--text3);text-align:center;margin-bottom:.6rem}
+
+    /* ── Reading typography ── */
+    #display{font-size:1.18rem;color:var(--text);line-height:2;}
+    #display p{margin-bottom:.9rem}
+    #display .Heading{font-size:1.833em;font-weight:700;color:#1066b1;line-height:1.2;text-align:center;margin:1.7rem 0 .9rem}
+    #display .Heading:first-child{margin-top:0}
+    #display .Sub-Heading,#display .Sub-Heading-2{font-size:1.667em;font-weight:700;color:#2e3192;line-height:1.2;text-align:center;margin:1.2rem 0 .5rem}
+    #display [class*="Shlok"],#display [class*="SHLOK"],#display [class*="shlok"]{color:var(--accent)!important;text-align:center;line-height:2.15;font-style:italic;margin:.5rem 0}
+    #display .shlok-layout{text-align:center;line-height:2.15;font-style:italic;margin:.5rem 0}
+    #display .Gadya{color:var(--text);text-align:justify}
+    #display .Uwach,#display .Uvach{text-align:center;font-style:italic;color:var(--text3)}
+    #display .Title,#display .Title-Page---Book-Name-Hindi,#display .Title-Page---Book-Name{text-align:center;font-size:1.5em;font-weight:700;color:var(--text);margin:1rem 0}
+    #display .Sub-Title{text-align:center;color:var(--accent);font-size:1.05em}
+    #display .Numbers{color:var(--text2);text-align:center}
+    #display .author{text-align:center;font-weight:600;color:var(--text2)}
+    #display .end_ch,#display .chapterEnd,#display .chapterend{text-align:center;font-style:italic;color:var(--text3)}
+    #display .Page-Break,#display .Page-Break-1{text-align:center;color:var(--text3);opacity:.6;border-bottom:1px solid var(--border);padding:.3rem 0;margin:1rem 0}
+    #display .Footnotes{color:var(--text3);font-size:.85em}
+    #display .Footnotes-Right{text-align:right;color:var(--text3);font-size:.85em}
+    #display .Image{text-align:center}
+    #display .Image img{max-width:100%;border-radius:8px}
+    #display .bold,#display .Bold,#display .TXT-Bold{font-weight:700}
+    #display .Padartha{text-align:justify;font-size:.94em;color:var(--text2);margin-bottom:.4rem}
+    #display .Bhavartha{text-align:justify}
+    #display .italic,#display .char-style-override-7{font-style:italic}
+    #display .Center,#display .center{text-align:center}
+    #display .Right,#display .right,#display .TXT-Right,#display .para-style-override-3{text-align:right}
+    #display .justify{text-align:justify}
+    #display .blue{color:#2266aa}
+    #display .pink{color:var(--accent)}
+    #display .ocean-blue{color:#7a4fbf}
+    #display .Sub-Heading-1{display:none}
+    #display .parent-heading{color:var(--text3)!important;font-size:.8em!important;font-weight:600;letter-spacing:.04em;font-style:normal;margin-bottom:1.1rem!important;text-align:center}
+    #display .WordByWord{background:var(--surface);border-left:3px solid var(--accent);padding:.6em .9em;margin:.8em 0;font-size:.9em;line-height:1.75;color:var(--text2)}
+    #display .wbw-label{font-weight:700;color:var(--accent)}
+    .highlight{background:var(--accent-bg);color:var(--accent);border-radius:3px;padding:0 2px}
+
+    .para-wrap{position:relative;display:block}
+    .bm-star{position:absolute;right:-1.7em;top:.3em;background:none;border:none;cursor:pointer;color:var(--text3);opacity:0;transition:opacity .15s,color .15s;padding:0;line-height:1}
+    .bm-star svg{width:1em;height:1em;stroke:currentColor;fill:none;stroke-width:1.6}
+    .para-wrap:hover .bm-star{opacity:1}
+    .bm-star.saved{opacity:1;color:var(--accent)}
+    .bm-star.saved svg{fill:currentColor}
+    #display p{cursor:pointer}
+    #display p:hover{background:var(--surface);border-radius:4px}
+
+    /* ── Footer ── */
+    .rd-footer{
+        position:fixed;bottom:0;left:0;right:0;z-index:500;height:var(--footer-h);
+        background:var(--bg);border-top:1px solid var(--border);
+        display:flex;align-items:center;justify-content:center;gap:1.6rem;padding:0 1rem;
+    }
+    .rd-ft-pos{font-size:.8rem;color:var(--text3);min-width:3rem;text-align:center}
+    .rd-ft-right{position:absolute;right:.8rem;display:flex;gap:.2rem}
+
+    /* ── Toast ── */
+    .toast{
+        position:fixed;bottom:calc(var(--footer-h)+12px);left:50%;transform:translateX(-50%) translateY(10px);
+        background:var(--text);color:var(--bg);border-radius:8px;padding:.5rem 1.1rem;
+        font-size:.85rem;z-index:700;opacity:0;transition:opacity .25s,transform .25s;
+        pointer-events:none;white-space:nowrap;
+    }
+    .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+    /* ── TOC drawer (single implementation, all screen sizes) ── */
+    .rd-overlay{display:none;position:fixed;inset:0;z-index:700;background:rgba(0,0,0,.4)}
+    .rd-overlay.open{display:block}
+    .rd-drawer{
+        position:fixed;top:0;left:0;bottom:0;z-index:800;width:min(320px,86vw);
+        background:var(--bg);border-right:1px solid var(--border);
+        transform:translateX(-100%);transition:transform .25s cubic-bezier(.4,0,.2,1);
+        display:flex;flex-direction:column;overflow:hidden;
+    }
+    .rd-drawer.open{transform:translateX(0)}
+    .rd-drawer-head{padding:1rem 1rem .7rem;border-bottom:1px solid var(--border);flex-shrink:0;display:flex;align-items:flex-start;justify-content:space-between;gap:.5rem}
+    .rd-drawer-title{font-size:1rem;font-weight:700;color:var(--text);line-height:1.35}
+    .tabs{display:flex;border-bottom:1px solid var(--border);flex-shrink:0}
+    .tab-btn{flex:1;background:none;border:none;cursor:pointer;padding:.65rem .3rem;font-size:.82rem;font-weight:600;color:var(--text3);border-bottom:2px solid transparent}
+    .tab-btn:hover{color:var(--text2)}
+    .tab-btn.active{color:var(--accent);border-bottom-color:var(--accent)}
+    .tab-panel{display:none;flex:1;overflow-y:auto;flex-direction:column}
+    .tab-panel.active{display:flex}
+
+    .rd-chapter{border-bottom:1px solid var(--border)}
+    .rd-ch-btn{width:100%;background:none;border:none;cursor:pointer;display:flex;align-items:flex-start;gap:.7rem;padding:.7rem 1rem;color:var(--text2);font-size:.9rem;text-align:left;line-height:1.4}
+    .rd-ch-btn:hover{background:var(--surface);color:var(--text)}
+    .rd-ch-btn.open,.rd-ch-btn.active{color:var(--text);background:var(--accent-bg)}
+    .rd-ch-num{flex-shrink:0;width:1.6em;height:1.6em;border-radius:50%;border:1px solid var(--border);color:var(--text3);display:flex;align-items:center;justify-content:center;font-size:.76em;font-weight:700;margin-top:.05em}
+    .rd-ch-btn.open .rd-ch-num,.rd-ch-btn.active .rd-ch-num{border-color:var(--accent);color:var(--accent)}
+    .rd-ch-body{flex:1;min-width:0}
+    .rd-ch-arrow{margin-left:auto;flex-shrink:0;font-size:.65rem;color:var(--text3);transition:transform .2s;margin-top:.35em}
+    .rd-ch-btn.open .rd-ch-arrow{transform:rotate(90deg)}
+    .rd-ch-time{font-size:.7rem;color:var(--text3);display:block;margin-top:.12rem}
+    .rd-sub-list{display:none;background:var(--surface)}
+    .rd-sub-list.open{display:block}
+    .rd-sub-btn{display:flex;width:100%;background:none;border:none;cursor:pointer;padding:.55rem 1rem .55rem 1.15rem;gap:.5rem;align-items:flex-start;font-size:.85rem;color:var(--text3);text-align:left;line-height:1.4;border-left:2px solid transparent}
+    .rd-sub-btn:hover{color:var(--text)}
+    .rd-sub-btn.active{color:var(--accent);border-left-color:var(--accent);font-weight:600}
+    .rd-sub-num{flex-shrink:0;color:var(--text3);font-weight:700}
+    .rd-sub-time{display:block;font-size:.7rem;color:var(--text3);font-weight:400;margin-top:.1rem}
+
+    .bm-empty{padding:1.5rem 1rem;text-align:center;color:var(--text3);font-size:.88rem}
+    .bm-item{display:flex;align-items:flex-start;gap:.5rem;padding:.65rem .9rem;border-bottom:1px solid var(--border);cursor:pointer}
+    .bm-item:hover{background:var(--surface)}
+    .bm-text{flex:1;font-size:.84rem;color:var(--text2);line-height:1.45;overflow:hidden;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical}
+    .bm-ctx{font-size:.72rem;color:var(--accent);margin-bottom:.2rem;font-weight:600}
+    @keyframes bmFlash{0%{background:var(--accent-bg)}100%{background:transparent}}
+    .bm-flash{animation:bmFlash 1.6s ease-out forwards;border-radius:4px}
+    .bm-del{background:none;border:none;cursor:pointer;color:var(--text3);padding:.1rem .3rem;flex-shrink:0}
+    .bm-del:hover{color:var(--danger)}
+
+    /* ── Aa display-settings panel ── */
+    #settings-panel{
+        position:fixed;top:calc(var(--header-h) + .4rem);right:.6rem;z-index:700;
+        background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);
+        padding:1rem 1.1rem;min-width:230px;box-shadow:0 8px 28px rgba(0,0,0,.15);
+        display:none;flex-direction:column;gap:.85rem;
+    }
+    #settings-panel.open{display:flex}
+    .sp-head{font-size:.7rem;color:var(--text3);letter-spacing:.08em;text-transform:uppercase}
+    .sp-font-row{display:flex;align-items:center;gap:.5rem}
+    .sp-font-btn{flex-shrink:0;width:1.9rem;height:1.9rem;background:none;border:1px solid var(--border);color:var(--text2);border-radius:8px;cursor:pointer;font-size:.85rem}
+    .sp-font-btn:hover{border-color:var(--accent);color:var(--accent)}
+    #font-range{flex:1;accent-color:var(--accent);cursor:pointer;height:4px}
+    .sp-font-label{font-size:.76rem;color:var(--text3);text-align:center;min-width:2.6em;flex-shrink:0}
+    .sp-mode-row{display:flex;gap:.6rem}
+    .sp-mode-btn{flex:1;display:flex;flex-direction:column;align-items:center;gap:.3rem;background:none;border:none;cursor:pointer}
+    .sp-mode-swatch{width:100%;height:1.9rem;border-radius:7px;border:1px solid var(--border)}
+    .sp-mode-btn.active .sp-mode-swatch{border-color:var(--accent);border-width:2px}
+    .sp-mode-lbl{font-size:.72rem;color:var(--text3)}
+    .sp-mode-btn.active .sp-mode-lbl{color:var(--accent)}
+
+    @media(min-width:769px){.rd-content-wrap{padding-top:3rem}}
+    </style>
+    <link rel="stylesheet" href="books/epub.css">
+    <style>
+    /* epub.css carries the short class-codes (a, b, c…) that processed
+       books use for their per-book styling, but its own body/li resets
+       are meant for a standalone book page — not this reader shell —
+       so restate the shell's layout after it loads. */
+    body{margin:0;padding:0;max-width:none;font-family:var(--font)}
+    </style>
+</head>
+<body>
+
+<!-- LOADER -->
+<div id="loader-overlay">
+    <div class="loader-mark">ॐ</div>
+    <div class="loader-bar-wrap"><div id="loader-bar"></div></div>
+    <div id="loader-text">लोड हो रहा है…</div>
+</div>
+
+<div id="scroll-prog"><div id="scroll-prog-bar"></div></div>
+
+<div id="search-bar">
+    <input type="search" id="search-input" placeholder="ग्रन्थ में खोजें…" autocomplete="off">
+    <button class="icon-btn" id="search-close" aria-label="बंद करें">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+</div>
+<div id="search-results"></div>
+
+<div class="shortcut-modal" id="shortcut-modal">
+    <div class="sc-box">
+        <div class="sc-title">कुंजी-संक्षेप</div>
+        <div class="sc-row"><span class="sc-action">पूर्व अनुभाग</span><span class="sc-key">←</span></div>
+        <div class="sc-row"><span class="sc-action">अगला अनुभाग</span><span class="sc-key">→</span></div>
+        <div class="sc-row"><span class="sc-action">खोज खोलें</span><span class="sc-key">Ctrl+F</span></div>
+        <div class="sc-row"><span class="sc-action">अक्षर बड़ा / छोटा</span><span class="sc-key">Ctrl +/−</span></div>
+        <div class="sc-row"><span class="sc-action">स्वाइप बाएँ/दाएँ</span><span class="sc-key">Swipe</span></div>
+        <button class="sc-close-btn" id="sc-close">बंद करें</button>
+    </div>
+</div>
+
+<!-- HEADER -->
+<header class="rd-hdr">
+    <button class="icon-btn" id="toc-btn" aria-label="अनुक्रमणिका">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h10"/></svg>
+    </button>
+    <button class="icon-btn" id="back-btn" aria-label="पुस्तकालय" onclick="location.href='index.html'">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
+    <div id="hdr-breadcrumb">
+        <span class="hbc hbc-book" id="hbc-book"></span>
+        <span class="hbc hbc-mid" id="hbc-mid" style="display:none">›</span>
+        <span class="hbc hbc-chapter" id="hbc-chapter" style="display:none"></span>
+        <span class="hbc hbc-sub-sep" id="hbc-sub-sep" style="display:none">›</span>
+        <span class="hbc hbc-sub" id="hbc-sub" style="display:none"></span>
+    </div>
+    <button class="icon-btn" id="search-btn" aria-label="खोजें">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.3-4.3" stroke-linecap="round"/></svg>
+    </button>
+    <button class="icon-btn" id="settings-btn" aria-label="प्रदर्शन सेटिंग" style="font-size:.85rem;font-weight:700">Aa</button>
+</header>
+
+<div id="settings-panel">
+    <div class="sp-head">अक्षर-आकार</div>
+    <div class="sp-font-row">
+        <button class="sp-font-btn" id="font-down">A−</button>
+        <input type="range" id="font-range" min="0.8" max="1.6" step="0.05" value="1">
+        <button class="sp-font-btn" id="font-up">A+</button>
+    </div>
+    <div class="sp-font-label" id="font-size-label">100%</div>
+    <div class="sp-head">थीम</div>
+    <div class="sp-mode-row">
+        <button class="sp-mode-btn active" id="mode-white" title="White">
+            <span class="sp-mode-swatch" style="background:#ffffff"></span><span class="sp-mode-lbl">White</span>
+        </button>
+        <button class="sp-mode-btn" id="mode-sepia" title="Sepia">
+            <span class="sp-mode-swatch" style="background:#f4ecd8"></span><span class="sp-mode-lbl">Sepia</span>
+        </button>
+        <button class="sp-mode-btn" id="mode-dark" title="Dark">
+            <span class="sp-mode-swatch" style="background:#141413"></span><span class="sp-mode-lbl">Dark</span>
+        </button>
+    </div>
+</div>
+
+<!-- TOC DRAWER -->
+<div class="rd-overlay" id="rd-overlay"></div>
+<div class="rd-drawer" id="rd-drawer">
+    <div class="rd-drawer-head">
+        <div class="rd-drawer-title" id="drawer-book-title"></div>
+        <button class="icon-btn" id="drawer-close" aria-label="बंद करें">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+    </div>
+    <div class="tabs">
+        <button class="tab-btn active" data-tab="chapters">अध्याय</button>
+        <button class="tab-btn" data-tab="bookmarks">बुकमार्क</button>
+    </div>
+    <div class="tab-panel active" id="panel-chapters">
+        <div id="toc-chapters"></div>
+    </div>
+    <div class="tab-panel" id="panel-bookmarks">
+        <div id="toc-bookmarks"></div>
+    </div>
+</div>
+
+<!-- MAIN -->
+<div class="rd-body">
+    <main class="rd-main" id="rd-main">
+        <div class="rd-content-wrap">
+            <div id="display"></div>
+        </div>
+    </main>
+</div>
+
+<!-- FOOTER -->
+<footer class="rd-footer">
+    <button class="icon-btn" id="prev-btn" disabled aria-label="पूर्व अनुभाग">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
+    <button class="icon-btn" id="read-btn" aria-label="सुनें">
+        <svg id="read-icon-play" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 9v6h4l5 5V4L8 9H4z"/><path d="M16.5 8a4.5 4.5 0 010 8"/>
+        </svg>
+        <svg id="read-icon-stop" viewBox="0 0 24 24" fill="currentColor" style="display:none"><rect x="6" y="6" width="12" height="12" rx="2"/></svg>
+    </button>
+    <span class="rd-ft-pos" id="rd-ft-pos">—</span>
+    <button class="icon-btn" id="next-btn" aria-label="अगला अनुभाग">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+    </button>
+    <div class="rd-ft-right">
+        <button class="icon-btn" id="shortcut-btn" aria-label="कुंजी-संक्षेप" style="font-size:.85rem;font-weight:700">?</button>
+    </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ═══════════════════════════════════════════════
+   UTILITIES
+═══════════════════════════════════════════════ */
+function toHindiNum(n){return String(n).split("").map(d=>"०१२३४५६७८९"[+d]||d).join("")}
+function wordCount(t){return t.trim().split(/\s+/).filter(Boolean).length}
+function readMins(wc){return Math.max(1,Math.round(wc/120))}
+
+function showToast(msg){
+    const t=document.getElementById("toast");
+    t.textContent=msg;t.classList.add("show");
+    clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove("show"),2200);
+}
+
+function setBreadcrumb(book,chapter,sub){
+    document.getElementById("hbc-book").textContent=book||"";
+    const elCh=document.getElementById("hbc-chapter");
+    const elSub=document.getElementById("hbc-sub");
+    elCh.textContent=chapter||""; elSub.textContent=sub||"";
+    document.getElementById("hbc-mid").style.display=chapter?"":"none";
+    elCh.style.display=chapter?"":"none";
+    document.getElementById("hbc-sub-sep").style.display=sub?"":"none";
+    elSub.style.display=sub?"":"none";
+}
+
+/* ═══════════════════════════════════════════════
+   FONT SIZE + READING MODE
+   Scaling <html>'s own font-size (not an isolated
+   variable used by only one element) is what makes
+   header/TOC/bookmarks/footer/content all resize
+   together as one book.
+═══════════════════════════════════════════════ */
+const FS_MIN=0.8, FS_MAX=1.6, FS_STEP=0.05, FS_BASE=16;
+let fontScale=parseFloat(localStorage.getItem("sv_fontScale"))||1;
+function applyFontScale(){
+    fontScale=Math.min(FS_MAX,Math.max(FS_MIN,+fontScale.toFixed(2)));
+    document.documentElement.style.fontSize=(FS_BASE*fontScale)+"px";
+    document.getElementById("font-size-label").textContent=Math.round(fontScale*100)+"%";
+    document.getElementById("font-range").value=fontScale;
+    localStorage.setItem("sv_fontScale",fontScale);
+}
+function setFontScale(v){fontScale=+v;applyFontScale()}
+function nudgeFontScale(d){fontScale=Math.min(FS_MAX,Math.max(FS_MIN,+(fontScale+d).toFixed(2)));applyFontScale()}
+applyFontScale();
+
+const READ_MODES=["white","sepia","dark"];
+function applyReadMode(m){
+    document.body.classList.remove("mode-sepia","mode-dark");
+    if(m!=="white")document.body.classList.add("mode-"+m);
+    document.querySelectorAll(".sp-mode-btn").forEach(b=>b.classList.remove("active"));
+    document.getElementById("mode-"+m)?.classList.add("active");
+    localStorage.setItem("sv_readMode",m);
+}
+applyReadMode(READ_MODES.includes(localStorage.getItem("sv_readMode"))?localStorage.getItem("sv_readMode"):"white");
+
+/* ═══════════════════════════════════════════════
+   TTS
+═══════════════════════════════════════════════ */
+let isSpeaking=false;
+/* Many TTS engines silently stall (no onend, no onerror) or hard-error on
+   very long utterances - the पदार्थः/भावार्थः paragraphs can run 1000+
+   characters. Split each paragraph into shorter chunks at natural
+   boundaries so long text keeps reading instead of stopping after the
+   first long paragraph. */
+function splitForSpeech(text,maxLen=180){
+    if(text.length<=maxLen)return[text];
+    const chunks=[];let rest=text;
+    while(rest.length>maxLen){
+        let cut=-1;
+        for(const sep of["। ","; ",", "," "]){
+            const idx=rest.lastIndexOf(sep,maxLen);
+            if(idx>0){cut=idx+sep.length;break}
+        }
+        if(cut<=0)cut=maxLen;
+        chunks.push(rest.slice(0,cut).trim());
+        rest=rest.slice(cut);
+    }
+    if(rest.trim())chunks.push(rest.trim());
+    return chunks;
+}
+async function speakContent(){
+    const synth=window.speechSynthesis;
+    if(isSpeaking){synth.cancel();return}
+    const contentDiv=document.getElementById("display");
+    const nodes=Array.from(contentDiv.childNodes).filter(n=>{
+        if(n.nodeType!==Node.ELEMENT_NODE)return true;
+        const p=n.matches("p")?n:n.querySelector("p");
+        if(p)return !p.className.toLowerCase().includes("shlok");
+        return true;
+    });
+    const queue=[];
+    nodes.forEach(node=>{
+        const text=node.textContent.trim();
+        if(!text)return;
+        splitForSpeech(text).forEach((chunk,ci)=>queue.push({node,chunk,isFirst:ci===0}));
+    });
+    function getHindiVoice(){
+        return new Promise(resolve=>{
+            let v=synth.getVoices();
+            if(v.length)return resolve(v.find(x=>x.lang&&x.lang.startsWith("hi")));
+            synth.onvoiceschanged=()=>{v=synth.getVoices();resolve(v.find(x=>x.lang&&x.lang.startsWith("hi")))};
+        });
+    }
+    const voice=await getHindiVoice();
+    if(!voice){alert("Hindi TTS voice not found.\nAndroid: Settings › System › Languages & input › TTS\niOS: Settings › Accessibility › Spoken Content › Voices › Hindi");return}
+    isSpeaking=true;
+    const btn=document.getElementById("read-btn");
+    document.getElementById("read-icon-play").style.display="none";
+    document.getElementById("read-icon-stop").style.display="";
+    function clearHL(){contentDiv.querySelectorAll(".highlight").forEach(el=>{el.parentNode.replaceChild(document.createTextNode(el.textContent),el);el.parentNode.normalize()})}
+    function stop(){clearHL();isSpeaking=false;document.getElementById("read-icon-play").style.display="";document.getElementById("read-icon-stop").style.display="none"}
+    function speakLine(i){
+        if(i>=queue.length||!isSpeaking){stop();return}
+        const{node,chunk,isFirst}=queue[i];
+        if(isFirst){
+            clearHL();
+            if(node.nodeType===Node.TEXT_NODE){const sp=document.createElement("span");sp.textContent=node.textContent;sp.className="highlight";contentDiv.replaceChild(sp,node);sp.scrollIntoView({behavior:"smooth",block:"center"})}
+            else if(node.nodeType===Node.ELEMENT_NODE){
+                const full=node.textContent.trim();
+                const esc=full.replace(/[.*+?^${}()|[\]\\]/g,"\\$&");
+                node.innerHTML=node.innerHTML.replace(new RegExp(esc,"g"),`<span class="highlight">$&</span>`);
+                const hl=node.querySelector(".highlight");
+                (hl||node).scrollIntoView({behavior:"smooth",block:"center"});
+            }
+        }
+        const utt=new SpeechSynthesisUtterance(chunk);utt.voice=voice;
+        const advance=()=>speakLine(i+1);
+        utt.onend=advance;utt.onerror=advance;
+        synth.speak(utt);
+    }
+    speakLine(0);
+}
+
+/* ═══════════════════════════════════════════════
+   BOOKMARKS
+═══════════════════════════════════════════════ */
+const BM_KEY="sv_bookmarks";
+let bookFileParam="";
+function getBMs(){return JSON.parse(localStorage.getItem(BM_KEY)||"{}")}
+function saveBMs(bm){localStorage.setItem(BM_KEY,JSON.stringify(bm))}
+function starIcon(saved){return `<svg viewBox="0 0 24 24"><path d="M12 3.5l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17.4 6.6 20.4l1-6.1-4.4-4.3 6.1-.9L12 3.5z"/></svg>`}
+
+function addBM(pid,text,chT,shT,cidx){
+    const bm=getBMs();
+    if(!bm[bookFileParam])bm[bookFileParam]=[];
+    if(!bm[bookFileParam].find(b=>b.pid===pid)){
+        bm[bookFileParam].push({pid,text:text.slice(0,160),chT,shT,cidx,ts:Date.now()});
+        saveBMs(bm);showToast("बुकमार्क सहेजा गया");
+    }
+    renderBMPanel();
+}
+function removeBM(pid){
+    const bm=getBMs();
+    if(bm[bookFileParam])bm[bookFileParam]=bm[bookFileParam].filter(b=>b.pid!==pid);
+    saveBMs(bm);renderBMPanel();
+    document.querySelectorAll(`.bm-star[data-pid="${pid}"]`).forEach(s=>{s.classList.remove("saved");s.title="बुकमार्क करें"});
+    showToast("बुकमार्क हटाया");
+}
+function renderBMPanel(){
+    const bm=getBMs()[bookFileParam]||[];
+    const el=document.getElementById("toc-bookmarks");if(!el)return;
+    el.innerHTML="";
+    if(!bm.length){el.innerHTML='<div class="bm-empty">कोई बुकमार्क नहीं</div>';return}
+    bm.slice().reverse().forEach(b=>{
+        const div=document.createElement("div");div.className="bm-item";
+        div.innerHTML=
+            `<div class="bm-text"><div class="bm-ctx">${b.chT}${b.shT?" › "+b.shT:""}</div>${b.text}</div>`+
+            `<button class="bm-del" title="हटाएँ" data-pid="${b.pid}">✕</button>`;
+        div.querySelector(".bm-del").addEventListener("click",e=>{e.stopPropagation();removeBM(b.pid)});
+        div.addEventListener("click",()=>{
+            if(typeof window._svNavigate!=="function"){showToast("पुस्तक लोड हो रही है…");return}
+            let cidx=(b.cidx!=null)?b.cidx:(window._svFindSection?.(b.chT,b.shT)??-1);
+            if(cidx<0){showToast("अनुभाग नहीं मिला");return}
+            window._svNavigate(cidx);
+            closeDrawer();
+            setTimeout(()=>{
+                const needle=b.text.slice(0,40).trim();
+                const paras=document.querySelectorAll("#display p");
+                for(const p of paras){
+                    if(p.textContent.trim().startsWith(needle.slice(0,30))){
+                        p.scrollIntoView({behavior:"smooth",block:"center"});
+                        p.classList.add("bm-flash");
+                        setTimeout(()=>p.classList.remove("bm-flash"),1600);
+                        break;
+                    }
+                }
+            },300);
+        });
+        el.appendChild(div);
+    });
+}
+
+/* ═══════════════════════════════════════════════
+   SEARCH
+═══════════════════════════════════════════════ */
+let searchIdx=[];   // [{text, chT, shT, conceptualIdx}]
+function buildSearchIdx(paragraphs,chapters){
+    searchIdx=[];
+    chapters.forEach(ch=>{
+        const chT=ch.headingEl.textContent.trim();
+        if(ch.subHeadings.length===0){
+            for(let i=ch.startIdx;i<ch.endIdx;i++){
+                const t=paragraphs[i].textContent.trim();
+                if(t)searchIdx.push({text:t,chT,shT:"",conceptualIdx:ch.conceptualIdx});
+            }
+        } else {
+            ch.subHeadings.forEach(sh=>{
+                const shT=sh.el.textContent.trim();
+                for(let i=sh.startIdx;i<sh.endIdx;i++){
+                    const t=paragraphs[i].textContent.trim();
+                    if(t)searchIdx.push({text:t,chT,shT,conceptualIdx:sh.conceptualIdx});
+                }
+            });
+        }
+    });
+}
+function doSearch(q,navFn){
+    const resDiv=document.getElementById("search-results");
+    if(!q||q.trim().length<2){resDiv.classList.remove("open");resDiv.innerHTML="";return}
+    const ql=q.trim().toLowerCase();
+    const hits=searchIdx.filter(d=>d.text.toLowerCase().includes(ql)).slice(0,40);
+    resDiv.innerHTML="";
+    if(!hits.length){resDiv.innerHTML='<div class="sr-empty">कोई परिणाम नहीं</div>';resDiv.classList.add("open");return}
+    hits.forEach(h=>{
+        const item=document.createElement("div");item.className="sr-item";
+        const idx=h.text.toLowerCase().indexOf(ql);
+        const raw=h.text.slice(Math.max(0,idx-30),idx+70).replace(/</g,"&lt;");
+        const hl=raw.replace(new RegExp(ql.replace(/[.*+?^${}()|[\]\\]/g,"\\$&"),"gi"),m=>`<span class="sr-match">${m}</span>`);
+        item.innerHTML=`<div>${hl}</div><div class="sr-ctx">${h.chT}${h.shT?" › "+h.shT:""}</div>`;
+        item.addEventListener("click",()=>{
+            navFn(h.conceptualIdx);
+            resDiv.classList.remove("open");
+            document.getElementById("search-bar").classList.remove("open");
+            const esc=ql.replace(/[.*+?^${}()|[\]\\]/g,"\\$&");
+            setTimeout(()=>{
+                document.getElementById("display").querySelectorAll("p").forEach(p=>{
+                    if(p.textContent.toLowerCase().includes(ql)){
+                        p.innerHTML=p.innerHTML.replace(new RegExp(esc,"gi"),m=>`<mark class="search-hl">${m}</mark>`);
+                        p.querySelector("mark.search-hl")?.scrollIntoView({behavior:"smooth",block:"center"});
+                    }
+                });
+            },200);
+        });
+        resDiv.appendChild(item);
+    });
+    resDiv.classList.add("open");
+}
+
+/* ═══════════════════════════════════════════════
+   DRAWER
+═══════════════════════════════════════════════ */
+function openDrawer(){document.getElementById("rd-drawer").classList.add("open");document.getElementById("rd-overlay").classList.add("open")}
+function closeDrawer(){document.getElementById("rd-drawer").classList.remove("open");document.getElementById("rd-overlay").classList.remove("open")}
+
+/* ═══════════════════════════════════════════════
+   MAIN APP
+═══════════════════════════════════════════════ */
+document.addEventListener("DOMContentLoaded",function(){
+
+    const displayDiv=document.getElementById("display");
+    const rdMain=document.getElementById("rd-main");
+
+    /* URL param */
+    const params=new URLSearchParams(window.location.search);
+    bookFileParam=[...params.keys()][0]||"shiva_puran";
+    const fileName=`/books/${bookFileParam}.html`;
+
+    /* Resume progress */
+    const PROG_KEY="readingProgress";
+    const allProg=JSON.parse(localStorage.getItem(PROG_KEY)||"{}");
+    let resumeIdx=-1;
+    if(allProg[bookFileParam]?.conceptualIdx!==undefined)
+        if(confirm("पिछली बार की स्थिति से पढ़ना चाहेंगे?\n\nResume from where you left off?"))
+            resumeIdx=allProg[bookFileParam].conceptualIdx;
+
+    /* State */
+    let paragraphs=[], chapters=[], conceptualItems=[];
+    let currentCIdx=-1, bookTitle="";
+
+    function scrollTop(){rdMain.scrollTo({top:0,behavior:"smooth"})}
+
+    function updatePosLabel(){
+        document.getElementById("rd-ft-pos").textContent=
+            currentCIdx<0?"—":`${toHindiNum(currentCIdx+1)} / ${toHindiNum(conceptualItems.length)}`;
+    }
+
+    function showIntro(){
+        displayDiv.innerHTML="";
+        let end=paragraphs.findIndex(p=>p.classList.contains("Heading")||p.classList.contains("Sub-Heading"));
+        if(end===-1)end=paragraphs.length;
+        for(let i=0;i<end;i++)displayDiv.appendChild(paragraphs[i].cloneNode(true));
+        applyShlokClasses();
+        currentCIdx=-1;setBreadcrumb(bookTitle,"","");scrollTop();updateNavBtns();updatePosLabel();
+    }
+
+    function loadItem(idx){
+        if(idx<0||idx>=conceptualItems.length)return;
+        currentCIdx=idx;
+        const item=conceptualItems[idx];
+        displayDiv.innerHTML="";
+        const chIdx=chapters.indexOf(item.ch);
+        if(chapters.length>1){
+            const lbl=document.createElement("div");lbl.className="chapter-label";
+            lbl.textContent=`अध्याय ${toHindiNum(chIdx+1)}`;
+            displayDiv.appendChild(lbl);
+        }
+        if(item.type==="heading"){
+            for(let i=item.ch.startIdx;i<item.ch.endIdx;i++)
+                displayDiv.appendChild(paragraphs[i].cloneNode(true));
+            setBreadcrumb(bookTitle,item.ch.headingEl.textContent.trim(),"");
+        } else {
+            const sh=item.sh,ch=item.ch;
+            const dimH=ch.headingEl.cloneNode(true);dimH.classList.add("parent-heading");displayDiv.appendChild(dimH);
+            for(let i=sh.startIdx;i<sh.endIdx;i++)displayDiv.appendChild(paragraphs[i].cloneNode(true));
+            setBreadcrumb(bookTitle,ch.headingEl.textContent.trim(),sh.el.textContent.trim());
+        }
+        allProg[bookFileParam]={conceptualIdx:idx};
+        localStorage.setItem(PROG_KEY,JSON.stringify(allProg));
+        applyShlokClasses();decorateParas(item);scrollTop();updateNavBtns();syncActive(idx);updatePosLabel();
+    }
+
+    const SHLOK_LIKE=["Title-Page---Tvamev-mata","Titel-Page---Shri-Hari"];
+    const SHLOK_LAYOUT_LIKE=["Title-Page---Author-Name"];
+    function applyShlokClasses(){
+        displayDiv.querySelectorAll("p").forEach(p=>{
+            if(SHLOK_LIKE.some(c=>p.classList.contains(c)))p.classList.add("Shlok");
+            if(SHLOK_LAYOUT_LIKE.some(c=>p.classList.contains(c)))p.classList.add("shlok-layout");
+        });
+    }
+
+    function decorateParas(item){
+        let pid=0;
+        displayDiv.querySelectorAll("p").forEach(p=>{
+            const id=`p_${currentCIdx}_${pid++}`;
+            const chT=item.ch.headingEl.textContent.trim();
+            const shT=item.type==="sub"?item.sh.el.textContent.trim():"";
+            p.addEventListener("click",()=>{
+                navigator.clipboard?.writeText(p.textContent+`\n— ${bookTitle}${shT?" › "+shT:""}`)
+                    .then(()=>showToast("कॉपी हो गया")).catch(()=>{});
+            });
+            const star=document.createElement("button");
+            star.className="bm-star";star.dataset.pid=id;star.title="बुकमार्क करें";star.innerHTML=starIcon(false);
+            const bm=getBMs()[bookFileParam]||[];
+            if(bm.find(b=>b.pid===id))star.classList.add("saved");
+            star.addEventListener("click",e=>{
+                e.stopPropagation();
+                const cur=getBMs()[bookFileParam]||[];
+                if(cur.find(b=>b.pid===id)){removeBM(id)}
+                else{addBM(id,p.textContent,chT,shT,currentCIdx);star.classList.add("saved")}
+            });
+            const wrap=document.createElement("span");wrap.className="para-wrap";
+            p.parentNode.insertBefore(wrap,p);wrap.appendChild(p);wrap.appendChild(star);
+        });
+        renderBMPanel();
+    }
+
+    function syncActive(idx){
+        document.querySelectorAll(".rd-ch-btn.active,.rd-sub-btn.active").forEach(b=>b.classList.remove("active"));
+        document.querySelectorAll(`[data-cidx="${idx}"]`).forEach(b=>{
+            b.classList.add("active");
+            const sl=b.closest(".rd-chapter")?.querySelector(".rd-sub-list");
+            if(sl)sl.classList.add("open");
+            const cb=b.closest(".rd-chapter")?.querySelector(".rd-ch-btn");
+            if(cb)cb.classList.add("open","active");
+        });
+    }
+
+    function updateNavBtns(){
+        document.getElementById("prev-btn").disabled=(currentCIdx<0);
+        document.getElementById("next-btn").disabled=(currentCIdx>=conceptualItems.length-1);
+    }
+
+    function parseStructure(){
+        chapters=[];let curCh=null;
+        paragraphs.forEach((p,idx)=>{
+            if(p.classList.contains("Heading")){
+                curCh={headingEl:p,startIdx:idx,endIdx:paragraphs.length,subHeadings:[],conceptualIdx:-1};
+                chapters.push(curCh);
+            } else if(p.classList.contains("Sub-Heading")&&curCh){
+                curCh.subHeadings.push({el:p,startIdx:idx,endIdx:paragraphs.length,text:p.textContent.trim(),conceptualIdx:-1});
+            }
+        });
+        chapters.forEach((ch,ci)=>{
+            ch.endIdx=chapters[ci+1]?chapters[ci+1].startIdx:paragraphs.length;
+            ch.subHeadings.forEach((sh,si)=>{
+                sh.endIdx=ch.subHeadings[si+1]?ch.subHeadings[si+1].startIdx:ch.endIdx;
+            });
+        });
+        conceptualItems=[];
+        chapters.forEach(ch=>{
+            if(ch.subHeadings.length===0){
+                ch.conceptualIdx=conceptualItems.length;
+                conceptualItems.push({type:"heading",ch});
+            } else {
+                ch.subHeadings.forEach(sh=>{
+                    sh.conceptualIdx=conceptualItems.length;
+                    conceptualItems.push({type:"sub",ch,sh});
+                });
+            }
+        });
+    }
+
+    function buildMenuDOM(container){
+        container.innerHTML="";
+        chapters.forEach((ch,chIdx)=>{
+            let chText="";
+            const chDiv=document.createElement("div");chDiv.className="rd-chapter";
+            const chBtn=document.createElement("button");chBtn.className="rd-ch-btn";
+            for(let i=ch.startIdx;i<ch.endIdx;i++)chText+=paragraphs[i].textContent+" ";
+            chBtn.innerHTML=`<span class="rd-ch-num">${toHindiNum(chIdx+1)}</span><span class="rd-ch-body">${ch.headingEl.textContent}<span class="rd-ch-time">~${toHindiNum(readMins(wordCount(chText)))} मिनट</span></span><span class="rd-ch-arrow">▶</span>`;
+            const subList=document.createElement("div");subList.className="rd-sub-list";
+            chDiv.appendChild(chBtn);chDiv.appendChild(subList);container.appendChild(chDiv);
+
+            if(ch.subHeadings.length===0){
+                chBtn.dataset.cidx=String(ch.conceptualIdx);
+                chBtn.addEventListener("click",()=>{loadItem(ch.conceptualIdx);closeDrawer()});
+            } else {
+                chBtn.addEventListener("click",()=>{
+                    const open=subList.classList.toggle("open");
+                    chBtn.classList.toggle("open",open);
+                });
+                ch.subHeadings.forEach((sh,si)=>{
+                    let shText="";
+                    for(let i=sh.startIdx;i<sh.endIdx;i++)shText+=paragraphs[i].textContent+" ";
+                    const subBtn=document.createElement("button");subBtn.className="rd-sub-btn";
+                    subBtn.dataset.cidx=String(sh.conceptualIdx);
+                    subBtn.innerHTML=`<span class="rd-sub-num">${toHindiNum(si+1)}.</span><span>${sh.text}<span class="rd-sub-time">~${toHindiNum(readMins(wordCount(shText)))} मिनट</span></span>`;
+                    subBtn.addEventListener("click",()=>{loadItem(sh.conceptualIdx);closeDrawer()});
+                    subList.appendChild(subBtn);
+                });
+            }
+        });
+    }
+
+    function navigateTo(idx){if(idx>=0&&idx<conceptualItems.length)loadItem(idx)}
+    window._svNavigate=navigateTo;
+    window._svFindSection=function(chT,shT){
+        const idx=conceptualItems.findIndex(it=>{
+            const chMatch=it.ch.headingEl.textContent.trim()===chT;
+            if(!shT) return chMatch && it.type==="heading";
+            return chMatch && it.type==="sub" && it.sh.el.textContent.trim()===shT;
+        });
+        return idx;
+    };
+
+    /* XHR */
+    const xhr=new XMLHttpRequest();
+    xhr.open("GET",fileName,true);
+    document.getElementById("loader-overlay").classList.remove("hidden");
+    xhr.onprogress=e=>{
+        if(e.lengthComputable){const pct=Math.floor(e.loaded/e.total*100);document.getElementById("loader-bar").style.width=pct+"%";document.getElementById("loader-text").textContent=`लोड हो रहा है… ${pct}%`}
+    };
+    xhr.onload=function(){
+        document.getElementById("loader-bar").style.width="100%";
+        document.getElementById("loader-text").textContent="तैयार है";
+        setTimeout(()=>document.getElementById("loader-overlay").classList.add("hidden"),300);
+        if(xhr.status!==200)return;
+        const tmp=document.createElement("div");tmp.innerHTML=xhr.responseText;
+        /* per-book image folders (books/<id>_files/…) are referenced with a
+           bare relative path in the source HTML; since this content is
+           injected into book.html (served from the site root) rather than
+           navigated to directly, that path must be re-rooted at books/ or
+           the images 404. The older shared image/ pool is left untouched —
+           it already resolves correctly from the root. */
+        tmp.querySelectorAll("img").forEach(img=>{
+            const src=img.getAttribute("src")||"";
+            if(src.startsWith(bookFileParam+"_files/"))img.setAttribute("src","books/"+src);
+        });
+        const contentDiv=tmp.querySelector("#content");if(!contentDiv)return;
+        const titleEl=contentDiv.querySelector("p.Title-Page---Book-Name-Hindi,p.Title");
+        bookTitle=titleEl?titleEl.textContent.trim():bookFileParam;
+        document.title=`${bookTitle} — स्वाध्याय`;
+        document.getElementById("hbc-book").textContent=bookTitle;
+        document.getElementById("drawer-book-title").textContent=bookTitle;
+        paragraphs=Array.from(contentDiv.querySelectorAll("p"));
+        parseStructure();
+        buildMenuDOM(document.getElementById("toc-chapters"));
+        buildSearchIdx(paragraphs,chapters);
+        if(resumeIdx>=0&&resumeIdx<conceptualItems.length)loadItem(resumeIdx);
+        else showIntro();
+        renderBMPanel();
+    };
+    xhr.onerror=()=>document.getElementById("loader-overlay").classList.add("hidden");
+    xhr.send();
+
+    /* ── Events ── */
+    rdMain.addEventListener("scroll",function(){
+        const max=this.scrollHeight-this.clientHeight;
+        document.getElementById("scroll-prog-bar").style.width=(max>0?this.scrollTop/max*100:0)+"%";
+    });
+
+    document.getElementById("toc-btn").addEventListener("click",openDrawer);
+    document.getElementById("drawer-close").addEventListener("click",closeDrawer);
+    document.getElementById("rd-overlay").addEventListener("click",closeDrawer);
+
+    document.querySelectorAll(".tab-btn").forEach(tab=>{
+        tab.addEventListener("click",()=>{
+            document.querySelectorAll(".tab-btn").forEach(t=>t.classList.remove("active"));
+            document.querySelectorAll(".tab-panel").forEach(p=>p.classList.remove("active"));
+            tab.classList.add("active");
+            document.getElementById("panel-"+tab.dataset.tab)?.classList.add("active");
+        });
+    });
+
+    document.getElementById("prev-btn").addEventListener("click",()=>navigateTo(currentCIdx-1));
+    document.getElementById("next-btn").addEventListener("click",()=>navigateTo(currentCIdx+1));
+    document.getElementById("read-btn").addEventListener("click",speakContent);
+
+    const settingsPanel=document.getElementById("settings-panel");
+    document.getElementById("settings-btn").addEventListener("click",e=>{
+        e.stopPropagation();
+        settingsPanel.classList.toggle("open");
+    });
+    document.addEventListener("click",e=>{
+        if(!settingsPanel.contains(e.target)&&e.target.id!=="settings-btn")
+            settingsPanel.classList.remove("open");
+    });
+
+    document.getElementById("font-up").addEventListener("click",()=>nudgeFontScale(FS_STEP));
+    document.getElementById("font-down").addEventListener("click",()=>nudgeFontScale(-FS_STEP));
+    document.getElementById("font-range").addEventListener("input",e=>setFontScale(e.target.value));
+
+    READ_MODES.forEach(m=>{
+        document.getElementById("mode-"+m).addEventListener("click",()=>applyReadMode(m));
+    });
+
+    const searchBar=document.getElementById("search-bar");
+    const searchInput=document.getElementById("search-input");
+    const searchResults=document.getElementById("search-results");
+    document.getElementById("search-btn").addEventListener("click",()=>{
+        searchBar.classList.toggle("open");
+        if(searchBar.classList.contains("open")){searchInput.focus()}
+        else{searchResults.classList.remove("open");searchResults.innerHTML=""}
+    });
+    document.getElementById("search-close").addEventListener("click",()=>{searchBar.classList.remove("open");searchResults.classList.remove("open");searchResults.innerHTML=""});
+    searchInput.addEventListener("input",()=>doSearch(searchInput.value,navigateTo));
+    searchInput.addEventListener("keydown",e=>{if(e.key==="Escape"){searchBar.classList.remove("open");searchResults.classList.remove("open")}});
+
+    document.getElementById("shortcut-btn").addEventListener("click",()=>document.getElementById("shortcut-modal").classList.add("open"));
+    document.getElementById("sc-close").addEventListener("click",()=>document.getElementById("shortcut-modal").classList.remove("open"));
+    document.getElementById("shortcut-modal").addEventListener("click",e=>{if(e.target===e.currentTarget)e.currentTarget.classList.remove("open")});
+
+    document.addEventListener("keydown",e=>{
+        if(e.target===searchInput)return;
+        if(e.key==="ArrowLeft")navigateTo(currentCIdx-1);
+        if(e.key==="ArrowRight")navigateTo(currentCIdx+1);
+        if((e.ctrlKey||e.metaKey)&&e.key==="f"){e.preventDefault();searchBar.classList.add("open");searchInput.focus()}
+        if((e.ctrlKey||e.metaKey)&&(e.key==="+"||e.key==="=")){e.preventDefault();nudgeFontScale(FS_STEP)}
+        if((e.ctrlKey||e.metaKey)&&e.key==="-"){e.preventDefault();nudgeFontScale(-FS_STEP)}
+        if(e.key==="Escape"){document.getElementById("shortcut-modal").classList.remove("open");searchBar.classList.remove("open");searchResults.classList.remove("open");closeDrawer()}
+    });
+
+    const hammer=new Hammer(document.body);
+    hammer.get("swipe").set({direction:Hammer.DIRECTION_HORIZONTAL,threshold:10,velocity:0.3});
+    hammer.on("swipeleft", ()=>navigateTo(currentCIdx+1));
+    hammer.on("swiperight",()=>navigateTo(currentCIdx-1));
+
+});
+</script>
+</body>
+</html>
